@@ -1,223 +1,6 @@
-<!-- <div class="clearfix">
-    <h3 class="float-start LoginName">National Login</h3>
-    <div class="float-end">
-         <ul class="StationRegion">
-            <li>
-
-                <mat-form-field>
-                    <mat-label>Select Region</mat-label>
-                    <mat-select (selectionChange)="getStationByRegionId($event.value)" [(ngModel)]="regionCode">
-                        <mat-option *ngFor="let data of regionList" value="{{data.regionCode}}">{{data.regionName}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-               
-            </li>
-            <li>
-                <mat-form-field>
-                    <mat-label>Select Station</mat-label>
-                    <mat-select (selectionChange)="getKvSchoolByStationId($event.value)" [(ngModel)]="stationCode1">
-                        <mat-option *ngFor="let data of stationList" value="{{data.statinCode}}">{{data.stationName}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                
-            </li>
-            <li>
-                <mat-form-field>
-                    <mat-label>Select School</mat-label>
-                    <mat-select (selectionChange)="onSchoolSelect($event.value)" [(ngModel)]="businessUnitTypeCode">
-                        <mat-option *ngFor="let data of kvSchoolList" value="{{data.udiseSchCode}}">{{data.kvName}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </li>
-        </ul> 
-    </div>
-</div>
-<ul class="display-inline mt-5">
-    <li class="p-4 green-bg rounded-3">
-       
-         <div >
-            <div class=" d-flex align-items-center justify-content-center">
-                <div class="flex-grow-1">
-                    <h2 class="TolTeacherValue text-white">{{dashboardData?.noOfSchool}}</h2>
-                    <h3 class="mb-0 TotName text-white">Total School's</h3>
-                </div>
-                <div class="flex-shrink-0 ms-3">
-                    <img src="assets/assets/img/total-school-icon.png" alt="...">
-                </div>
-            </div>
-        </div> 
-    </li>
-
-    <li class="card p-4 blue-bg rounded-3">
-        
-         <div >
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                    <h2 class="TolTeacherValue text-white">{{dashboardData?.totalTeacher}}</h2>
-                    <h3 class="mb-0 TotName text-white">Total Staff</h3>
-                </div>
-                <div class="flex-shrink-0 ms-3">
-                    <img src="assets/assets/img/total-teacher-icon.png" alt="...">
-                </div>
-            </div>
-        </div> 
-    </li>
-
-    <li class="card p-4  rounded-3">
-       
-         <div>
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                    <h2 class="TolTeacherValue mb-2 blue-text">{{totalTeachingStaff}}</h2>
-                    <h3 class="mb-0 blue-text TotalTeachingStaff">Total Teaching Staff</h3>
-                </div>
-
-            </div>
-            <div class="clearfix mt45">
-                <div class="float-start">
-                    <h3 class="mb-0">Regular Staff</h3>
-                </div>
-                <div class="float-end">
-                    <span class="fontb">{{dashboardData?.teachingRegular}}</span>
-                </div>
-            </div>
-        </div> 
-    </li>
-
-    <li class="card p-4 rounded-3">
-        
-         <div >
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                    <h2 class="TolTeacherValue mb-2 green-text">{{nontotalTeachingStaff}}</h2>
-                    <h3 class="mb-0 green-text TotalTeachingStaff1">Total Non-Teaching Staff</h3>
-                </div>
-
-            </div>
-            <div class="clearfix mt45">
-                <div class="float-start">
-                    <h3 class="mb-0">Regular Staff</h3>
-                </div>
-                <div class="float-end">
-                    <span class="fontb">{{dashboardData?.nonteachingRegular}}</span>
-                </div>
-            </div>
-        </div> 
-    </li>
-</ul>
-
-
-<ul class="display-inline mt-2">
-    <li class="card p-4 rounded-3 ">
-        <h2 class="TolTeacherValue mb-2 blue-text text-center">Teaching Staff</h2>
-        <div class="row mt-2">
-            <div class="col-6 text-center border-end">
-                <div class="round-box bg-blue"> <i class='bx bx-user-circle iconBlue '></i></div>
-                <h4 class="Verified mb-0">Verified </h4>
-                <h2 class="mb-0">{{dashboardData?.teachingSa}}</h2>
-            </div>
-            <div class="col-6 text-center">
-                <div class="round-box bg-blue"> <i class='bx bx-user-circle iconBlue '></i></div>
-                <h4 class="Verified mb-0">Not-Verified </h4>
-                <h2 class="mb-0">{{teachingNotVerified}}</h2>
-            </div>
-        </div>
-        <div class="pattern">
-            <i class='bx bx-user-circle imgRotate'></i>
-        </div>
-    </li>
-    <li class="card p-4 rounded-3 ">
-        <h2 class="TolTeacherValue mb-2 silver-text text-center">Non-Teaching Staff</h2>
-        <div class="row mt-2">
-            <div class="col-6 text-center border-end">
-                <div class="round-box bg-sil"> <i class='bx bx-user-circle iconsilver '></i></div>
-                <h4 class="Verified mb-0">Verified </h4>
-                <h2 class="mb-0">{{dashboardData?.nonteachingSa}}</h2>
-            </div>
-            <div class="col-6 text-center">
-                <div class="round-box bg-sil">  <i class='bx bx-user-circle iconsilver '></i></div>
-                <h4 class="Verified mb-0">Not-Verified </h4>
-                <h2 class="mb-0">{{nonteachingNotVerified}}</h2>
-            </div>
-        </div>
-        <div class="pattern">
-            <i class='bx bx-user-circle imgRotate'></i>
-        </div>
-    </li>
-
-    <li class="card p-4 rounded-3 ">
-        <h2 class="TolTeacherValue mb-2 blue-text text-center">Transfer(Teaching Staff)</h2>
-        <div class="row mt-2">
-            <div class="col-6 text-center border-end">
-                <div class="round-box bg-blue"> <i class='bx bx-rocket iconBlue '></i></div> 
-                <h4 class="Verified mb-0">Initiated </h4>
-                <h2 class="mb-0">0</h2>
-            </div>
-            <div class="col-6 text-center">
-                <div class="round-box bg-blue"><i class='bx bx-rocket iconBlue '></i></div> 
-                <h4 class="Verified mb-0">Not-Initiated</h4>
-                <h2 class="mb-0">0</h2>
-            </div>
-        </div>
-        <div class="pattern">
-            <i class='bx bx-rocket imgRotate'></i>
-        </div>
-    </li>
-    <li class="card p-4 rounded-3 ">
-        <h2 class="TolTeacherValue mb-2 silver-text text-center">Transfer(Non-Teaching Staff)</h2>
-        <div class="row mt-2">
-            <div class="col-6 text-center border-end">
-                <div class="round-box bg-sil"> <i class='bx bx-rocket iconsilver '></i></div>
-                <h4 class="Verified mb-0">Initiated </h4>
-                <h2 class="mb-0">0</h2>
-            </div>
-            <div class="col-6 text-center">
-                <div class="round-box bg-sil"> <i class='bx bx-rocket iconsilver '></i></div> 
-                <h4 class="Verified mb-0">Not-Initiated </h4>
-                <h2 class="mb-0">0</h2>
-            </div>
-        </div>
-        <div class="pattern">
-            <i class='bx bx-rocket imgRotate'></i>
-        </div>
-    </li>
-
-</ul> -->
-
-
-
-
-
-<!-- New Dashboard Data Below -->
-
-
-<!-- <div class="container-fluid">
-    <div class="page-header">
-        <div class="row">
-            <div class="col-sm-6">
-                <h3 class="page-header">General</h3>
-            </div>
-            <div
-                class="col-sm-6">
-              
-                <ul class="bookmark">
-                    <li>
-                        <i class='bx bx-message-square-dots bxStyle'></i>
-                    </li>
-                    <li>
-                        <i class='bx bx-notification bxStyle'></i>
-                    </li>
-                    <li>
-                        <i class='bx bx-star bxStyle'></i>
-                    </li>
-                </ul>
-   
-            </div>
-        </div>
-    </div>
-</div> -->
+<!-- 
 <div class="clearfix">
-    <!-- <h3 class="float-start LoginName">National Login</h3> -->
+
     <div class="float-end">
         <ul class="StationRegion">
             <li>
@@ -279,18 +62,7 @@
                         </div>
                         <div class="col-md-6">
                             <ul class="teacherStaff1">
-                                <!-- <li *ngIf = "!regionFlag" style="padding-top: 9px;">
-                                    <div class="clearfix">
-                                        <div class="float-start">
-                                            <h2 class="font896">No. of Region:</h2>
-                                        </div>
-                                        <div class="float-end CircleYellow">
-                                            <span class="circle ">
-                                                {{dashboardData?.no_of_region}}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </li> -->
+                           
                                 <li style="padding-top: 9px;">
                                     <div class="clearfix">
                                         <div class="float-start">
@@ -303,18 +75,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <!-- <li *ngIf = "!stationFlag" style="padding-top: 7px;">
-                                    <div class="clearfix">
-                                        <div class="float-start">
-                                            <h2 class="font896">No. of Station:</h2>
-                                        </div>
-                                        <div class="float-end CircleYellow">
-                                            <span class="circle ">
-                                                {{dashboardData?.no_of_station}}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </li> -->
+                         
                                 <li style="padding-top: 7px;">
                                     <div class="clearfix">
                                         <div class="float-start">
@@ -327,18 +88,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <!-- <li *ngIf = "!schoolFlag" style="padding-top: 7px;">
-                                    <div class="clearfix">
-                                        <div class="float-start">
-                                            <h2 class="font896">No. of School:</h2>
-                                        </div>
-                                        <div class="float-end CircleYellow">
-                                            <span class="circle ">
-                                                {{dashboardData?.no_of_school}}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </li> -->
+                          
                                 <li style="padding-top: 7px;">
                                     <div class="clearfix">
                                         <div class="float-start">
@@ -756,51 +506,6 @@
 
     </div>
 
-    <!-- <div class="row">
-        <div
-            class="col-xl-12 xl-50 col-sm-12 box-col-12">
-           
-            <div class="shadow-sm bg-white mt-3">
-                <div class="p-4 ">
-                    <div class="row">
-                        <div class="col-md-12 mb-2 ">
-                            <h4 class="KVTt border-bottom-dashed pb-2 text-green">School Status :</h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Total Staff :
-                                <span style="color: blue; font-size: x-large;">{{totalTeachers}}</span>
-                            </h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Verified Staff :
-                                <span style="color: green; font-size: x-large;">{{verifiedCOunt}}</span>
-                            </h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Pending at School :
-                                <span style="color: purple; font-size: x-large;">{{schoolPendingCount}}</span>
-                            </h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Pending at Staff :
-                                <span style="color: orange; font-size: x-large;">{{teacherPendingCount}}</span>
-                            </h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Initiated by School :
-                                <span style="color: #1a73e8; font-size: x-large;">{{schoolInitiated}}</span>
-                            </h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Not Initiated :
-                                <span style="color: red; font-size: x-large;">{{notInitiatedCount}}</span>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <div style="text-align: right; " class="col-sm-12" (click)="showDiv.next = !showDiv.next; getDataOnMoreClick()">
         <label
@@ -816,5 +521,14 @@
             </ag-grid-angular>
         </div>
     </mat-card>
+
+</div>
+
+ -->
+
+
+<div>
+
+    Please fill all Masters
 
 </div>

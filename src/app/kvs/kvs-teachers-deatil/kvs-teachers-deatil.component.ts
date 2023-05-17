@@ -325,11 +325,11 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
   createUser(val) {
     
-    // alert("create user");
+    // alert("create user--->"+JSON.stringify(this.teacherList));
     debugger;
 
     for (let i = 0; i < this.teacherList.length; i++) {
-      if (this.teacherList[i].teacherId == val) {
+      if (this.teacherList[i].teacherEmployeeCode == val) {
 
         this.verifySingleTeacherList = this.teacherList[i];
         var str = this.verifySingleTeacherList.teacherName;
@@ -360,7 +360,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
                   "mobile": this.verifySingleTeacherList.teacherMobile,
                   "parentuser": this.userName,
                   "password": this.bcriptMethod('system123#'),
-                  "username": this.verifySingleTeacherList.teacherId,
+                  "username": this.verifySingleTeacherList.teacherEmployeeCode,
                   "businessUnitTypeCode": this.businessUnitTypeCode,
                   "verifyFlag": this.verifySingleTeacherList.verifyFlag
                 }
@@ -368,17 +368,17 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
                 this.outSideService.createUserOnVerify(createUser).subscribe((response) => {
                   if(response.status == '1' || response.status == 1){
                     for(let i=0; i<this.kvTeacher.length; i++){
-                      if(this.kvTeacher.teacherId == response.username){
+                      if(this.kvTeacher.empcode == response.username){
                         this.kvTeacher.teacherAccountId = response.userHash;
                       }
                     }
                     
                     for (let i = 0; i < this.users.length; i++) {
-                      if (this.teacherList[i].teacherId == response.username) {
+                      if (this.teacherList[i].teacherEmployeeCode == response.username) {
                         this.teacherList[i].teacherSystemGeneratedCode = response.username;
                       }
                       
-                      if (this.users[i].teacherId == response.username) {
+                      if (this.users[i].teacherEmployeeCode == response.username) {
                         this.users[i].systchcode = response.username;
                         const data = {
                           "teacherAccountId": response.userHash,

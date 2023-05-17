@@ -26,8 +26,11 @@ export class AuthGuard implements CanActivate {
     if(document.location.href.indexOf("reportGrid")>-1){
       return true;
     }
-    // alert("called--->"+sessionStorage.getItem("authTeacherDetails"));
+    // alert("get called--->"+sessionStorage.getItem("authTeacherDetails"));
+    // alert("called");
+    debugger;
     if (sessionStorage.getItem("authTeacherDetails") == null) {
+      // alert("in get credential")
       var returnType = getCredential();
     
       if (sessionStorage.getItem("authTeacherDetails") != null && JSON.parse(sessionStorage.getItem("authTeacherDetails")).status != 0) {

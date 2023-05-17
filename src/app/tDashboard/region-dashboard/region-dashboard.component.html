@@ -1,42 +1,16 @@
-<div class="clearfix">
+<!-- <div class="clearfix">
     <h3 class="float-start LoginName">Region Login</h3>
     <div class="float-end">
-        <!-- <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">Region Name : 
-        </span>
-        <mat-form-field>
-            <mat-label>Select Region</mat-label>
-            <mat-select (selectionChange)="getStationByRegionId($event.value)" [(ngModel)]="regionCode">
-                <mat-option *ngFor="let data of regionList" value="{{data.regionCode}}">{{data.regionName}}</mat-option>               
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">Station Name : 
-        </span>
-        <mat-form-field>
-            <mat-label>Select Station</mat-label>
-            <mat-select (selectionChange)="getKvSchoolByStationId($event.value)" [(ngModel)]="stationCode1">
-                <mat-option *ngFor="let data of stationList" value="{{data.statinCode}}">{{data.stationName}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">School Name : 
-        </span>
-        <mat-form-field>
-            <mat-label>Select School</mat-label>
-            <mat-select (selectionChange)="onSchoolSelect($event.value)" [(ngModel)]="businessUnitTypeCode">
-                <mat-option *ngFor="let data of kvSchoolList" value="{{data.udiseSchCode}}-{{data.kvCode}}">{{data.kvName}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div> -->
+ 
          <ul class="StationRegion">
             <li>
 
                 <mat-form-field>
                     <mat-label>Select Region</mat-label>
                     <mat-select (selectionChange)="getStationByRegionId($event.value)" [(ngModel)]="regionCode">
-                        <!-- <mat-option value="">Select</mat-option> -->
+                        
                         <mat-option *ngFor="let data of regionList" value="{{data.regionCode}}">{{data.regionName}}</mat-option>
-                        <!-- <mat-option value="NA">NA</mat-option> -->
+                        
                     </mat-select>
                 </mat-form-field>
                
@@ -45,9 +19,9 @@
                 <mat-form-field>
                     <mat-label>Select Station</mat-label>
                     <mat-select (selectionChange)="getKvSchoolByStationId($event.value)" [(ngModel)]="stationCode1">
-                        <!-- <mat-option value="">Select</mat-option> -->
+                        
                         <mat-option *ngFor="let data of stationList" value="{{data.statinCode}}">{{data.stationName}}</mat-option>
-                        <!-- <mat-option value="NA">NA</mat-option> -->
+                        
                     </mat-select>
                 </mat-form-field>
                 
@@ -56,9 +30,9 @@
                 <mat-form-field>
                     <mat-label>Select School</mat-label>
                     <mat-select (selectionChange)="onSchoolSelect($event.value)" [(ngModel)]="businessUnitTypeCode">
-                        <!-- <mat-option value="Teaching">Select</mat-option> -->
+                        
                         <mat-option *ngFor="let data of kvSchoolList" value="{{data.udiseSchCode}}">{{data.kvName}}</mat-option>
-                        <!-- <mat-option value="NA">NA</mat-option> -->
+                        
                     </mat-select>
                 </mat-form-field>
             </li>
@@ -68,11 +42,7 @@
 
 <div class="shadow-sm bg-white border-3">
     <ul class="stationUL">
-        <!-- <li>
-            <h3>Station Name :
-                <span class="StationValue">Narnaul(0123)</span>
-            </h3>
-        </li> -->
+    
         <li>
             <h3>Region Name :
                 <span class="StationValue">{{kvSchoolDetails.region_name}}</span>
@@ -86,72 +56,6 @@
     </ul>
 </div>
 
-<!-- <div class="row mt-4">
-    <div class="col-md-3">
-        <div class="card mt-3 px-4 py-5 green-bg rounded-3">
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                  <h2 class="TolTeacherValue text-white">240</h2>
-                  <h3 class="mb-0 TotName text-white">Total School's</h3>
-                </div>
-                <div class="flex-shrink-0 ms-3">
-                    <img src="assets/assets/img/total-school-icon.png" alt="...">
-                  </div>
-              </div>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card mt-3 px-4 py-5 blue-bg rounded-3" >
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                  <h2 class="TolTeacherValue text-white">4635</h2>
-                  <h3 class="mb-0 TotName text-white">Total Teacher's</h3>
-                </div>
-                <div class="flex-shrink-0 ms-3">
-                    <img src="assets/assets/img/total-teacher-icon.png" alt="...">
-                  </div>
-              </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card mt-3 p-4  rounded-3" >
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                  <h2 class="TolTeacherValue mb-2 blue-text">4635</h2>
-                  <h3 class="mb-0 blue-text TotalTeachingStaff">Total Teaching Staff</h3>
-                </div>
-                
-        </div>
-        <div class="clearfix mt45">
-            <div class="float-start"> <h3 class="mb-0">Regular Staff</h3></div>
-            <div class="float-end"><span class="fontb">23</span></div>
-        </div>
-        <div class="clearfix mt-0">
-            <div class="float-start"><h3 class="mb-0">Contratual Staff</h3></div>
-            <div class="float-end"> <span class="fontb">25</span></div>
-        </div>
-    </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card mt-3 p-4 rounded-3" >
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                  <h2 class="TolTeacherValue mb-2 green-text">4635</h2>
-                  <h3 class="mb-0 green-text TotalTeachingStaff1">Total Non - Teaching Staff</h3>
-                </div>
-                
-        </div>
-        <div class="clearfix mt45">
-            <div class="float-start"> <h3 class="mb-0">Regular Staff</h3></div>
-            <div class="float-end"><span class="fontb">23</span></div>
-        </div>
-        <div class="clearfix mt-0">
-            <div class="float-start"><h3 class="mb-0">Contratual Staff</h3></div>
-            <div class="float-end"> <span class="fontb">25</span></div>
-        </div>
-    </div>
-</div> -->
 <ul class="display-inline mt-5">
     <li class="p-4 green-bg rounded-3">
        
@@ -201,14 +105,7 @@
                     <span class="fontb">{{dashboardData.teachingRegular}}</span>
                 </div>
             </div>
-            <!-- <div class="clearfix mt-0">
-                <div class="float-start">
-                    <h3 class="mb-0">Contratual Staff</h3>
-                </div>
-                <div class="float-end">
-                    <span class="fontb">{{dashboardData.teachingContractual}}</span>
-                </div>
-            </div> -->
+          
         </div> 
     </li>
 
@@ -230,14 +127,7 @@
                     <span class="fontb">{{dashboardData.nonteachingRegular}}</span>
                 </div>
             </div>
-            <!-- <div class="clearfix mt-0">
-                <div class="float-start">
-                    <h3 class="mb-0">Contratual Staff</h3>
-                </div>
-                <div class="float-end">
-                    <span class="fontb">{{dashboardData.nonteachingContractual}}</span>
-                </div>
-            </div> -->
+       
         </div> 
     </li>
 </ul>
@@ -318,4 +208,4 @@
         </div>
     </li>
 
-</ul>
+</ul> -->

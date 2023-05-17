@@ -125,9 +125,9 @@
                 <span class="TitleSetheader">Employee Details</span>
             </a>
         </li>
-        <!-- <ng-container > -->
+        <!-- <ng-container >  this is national-->
 
-        <li *ngIf="kvIfConditions == true" class="nav-item">
+        <li *ngIf="kvIfConditions == true && this.businessUnitTypeId !='2'" class="nav-item">
             <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/kvsTchDetails">
                 <i class='bx bx-user-pin bxStyle'></i>
                 <span class="TitleSetheader">Employee Details </span>
@@ -225,9 +225,8 @@
 
 
 
-        <li *ngIf="showNational" class="nav-item">
+        <!-- <li *ngIf="showNational" class="nav-item">
             <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/kvSanctionedPost">
-                <!-- <i class='bx bx-transfer bxStyle'></i> -->
                 <i class='bx bx-calculator bxStyle'></i>
                 <span class="TitleSetheader">Sanctioned Post</span>
             </a>
@@ -239,14 +238,9 @@
                 <span class="TitleSetheader">
                 Report</span>
             </a>
-        </li>
+        </li> -->
 
-        <li class="nav-item">
-            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/changePassword">
-                <i class='bx bxs-key bxStyle'></i>
-                <span class="TitleSetheader"> Change Password </span>
-            </a>
-        </li>
+
 
 
 
@@ -295,7 +289,7 @@
         </li> -->
 
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="showNational">
 
             <a class="nav-link nav-link navStyle" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
                 <i class='bx bxs-notepad bxStyle'></i>
@@ -383,6 +377,13 @@
                     </a>
                 </li>
             </ul>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/changePassword">
+                <i class='bx bxs-key bxStyle'></i>
+                <span class="TitleSetheader"> Change Password </span>
+            </a>
         </li>
 
     </ul>

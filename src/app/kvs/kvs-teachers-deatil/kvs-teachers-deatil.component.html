@@ -151,7 +151,7 @@
                     <span *ngIf="row.systchcode != 'null' && row.systchcode != '' ">{{row.systchcode}}</span>
                     <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
                         <button [disabled]="disabledCreateButton" type="button"
-                            class="btn btn-sm btn12 btn-outline-success" (click)="createUser(row.teacherId)">Create
+                            class="btn btn-sm btn12 btn-outline-success" (click)="createUser(row.empcode)">Create
                             User</button>
                     </span>
                 </mat-cell>

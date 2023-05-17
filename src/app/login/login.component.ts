@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   userDto:any;
   loginForm: FormGroup;
   submitted = false;
+  businessUnitTypeId:any;
   constructor(   private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router, private auth :AuthService) { }
@@ -46,8 +47,22 @@ export class LoginComponent implements OnInit {
     // alert(JSON.stringify("login response---->"+JSON.stringify(res)))
     if (res.token) {
       sessionStorage.setItem("authTeacherDetails", JSON.stringify(res));
-      this.router.navigate(['/teacher/profile']);
+     this.businessUnitTypeId= JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[0].business_unit_type_id;
+      if(this.businessUnitTypeId=="2"){
+        this.router.navigate(['/teacher/nationalDashboard']);
+      }else if(this.businessUnitTypeId=="3"){
+        this.router.navigate(['/teacher/regionDashboard']);
+      }else if(this.businessUnitTypeId=="4"){
+        this.router.navigate(['/teacher/stationDashboard']);
+      }else if(this.businessUnitTypeId=="5"){
+        this.router.navigate(['/teacher/profile']);
+      }else{
+        this.router.navigate(['/teacher/profile']);
+      }
+
     }
+
+   
   },
     error => { 
       alert("login response--->"+JSON.stringify(error))
