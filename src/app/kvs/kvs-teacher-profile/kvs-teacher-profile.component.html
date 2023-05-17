@@ -1,0 +1,282 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="shadow">
+                <h2 class="kvsTitle mb-0">Personal Details:</h2>
+                <!-- <div class="bg-white p-3">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <h4 class="titleSet">Employee Name</h4>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <h4 class="titleSet">Post Code</h4>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <h4 class="titleSet">Subject Code</h4>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <h4 class="titleSet">Employee Code</h4>
+                            <input type="text" class="form-control">
+                        </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <h4 class="titleSet">Present Station Code</h4>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <h4 class="titleSet">Present KV Code</h4>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <h4 class="titleSet">Shift(1/2)</h4>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                              </div>
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+                            <h4 class="titleSet">Date of Joining in KVS in Present Post</h4>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h4 class="titleSet">Date of Joining in Present station in Present Post</h4>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h4 class="titleSet">Date of Joining in Present KV in Present Post</h4>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <h4 class="titleSet"><span class="text-green"> 7 (A)</span> If you are presently posted at Hard / NE station then date of continuous posting in Hard / NE station in present post</h4>
+                            <input type="date" class="form-control" style="width:250px;">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <h4 class="titleSet"><span class="text-green"> 7 (B)</span> Have you been transferred on adminitrative ground under  Para 7(e) and not completed 03 years at the present station as on 30-06-2021</h4>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                              </div>
+                        </div>
+                        <div class="col-md-12 ">
+                            <h4 class="titleSet"><span class="text-green"> 7 (C)</span>  Have you been rectruited under special rectruiment for NER</h4>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                              </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <h4 class="titleSet">Date of Birth</h4>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <h4 class="titleSet">Gender</h4>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">Male</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">Female</label>
+                              </div>
+                        </div>
+                    </div>
+                </div>  -->
+                <fieldset [disabled]="!allowEdit">
+                <div class="bg-white p-3">
+                    <form [formGroup]="kvsTeacherBasicProfile" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"><span class="text-green">1.</span> Employee Name</h4>
+                                <input type="text" class="form-control" formControlName="teacherName" [(ngModel)]="singleKvTeacher.teacherName">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"><span class="text-green">2.</span> Post Name(Code)</h4>
+                                <input type="text" class="form-control" formControlName="postCode" [(ngModel)]="singleKvTeacher.postCode">
+                            </div>
+                            <!-- <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"> <span class="text-green">2</span> Teacher Id</h4>
+                                <input type="text" class="form-control" formControlName="teacherName">
+                            </div> -->
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"><span class="text-green">3.</span> Subject Name(Code)</h4>
+                                <input type="text" class="form-control" formControlName="subjectCode" [(ngModel)]="singleKvTeacher.subjectCode">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"><span class="text-green">4.</span> Employee Code</h4>
+                                <input type="text" class="form-control" formControlName="empCode" [(ngModel)]="singleKvTeacher.teacherEmployeeCode">
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"><span class="text-green">5.</span> Present Station Code</h4>
+                                <input type="text" class="form-control" formControlName="presentStationCode" [(ngModel)]="singleKvTeacher.presentStationCode">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"><span class="text-green">6.</span> Present KV Name(Code)</h4>
+                                <input type="text" class="form-control" formControlName="presentKvCode" [(ngModel)]="singleKvTeacher.presentKvCode">
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"> <span class="text-green">7.</span> Date of Birth</h4>
+                                <!-- <input type="date" class="form-control" formControlName="dob" [(ngModel)]="singleKvTeacher.dob"> -->
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <mat-datepicker-toggle mdSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </div>
+                                    <input class="form-control" [matDatepicker]="picker" placeholder="Enter your DoB"
+                                        formControlName="dob" (dateChange)="updateDOB($event)" [(ngModel)]="singleKvTeacher.teacherDob">
+
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"><span class="text-green">8.</span> Gender</h4>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                        id="inlineRadio1" value="1" formControlName="gender"  [checked]="genderMale">
+                                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                        id="inlineRadio2" value="2" formControlName="gender" [checked]="genderFemale">
+                                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <hr>
+                        <div class="row">
+
+                            <div class="col-md-4 mb-3">
+                                <h4 class="titleSet"><span class="text-green">9.</span> Date of Joining in KVS in Present
+                                    Post</h4>
+                                <!-- <input type="date" class="form-control" formControlName="dojKvsPresentPost" [(ngModel)]="singleKvTeacher.dojPresentPost"> -->
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <mat-datepicker-toggle mdSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </div>
+                                    <input class="form-control" [matDatepicker]="picker1" placeholder="Enter your DoB"
+                                        formControlName="dojKvsPresentPost" (dateChange)="updateDOB($event)" [(ngModel)]="singleKvTeacher.dojPresentPost">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <h4 class="titleSet"><span class="text-green">10.</span> Date of Joining in Present
+                                    station in Present Post</h4>
+                                <!-- <input type="date" class="form-control" formControlName="dojPresentStationPresentPost" [(ngModel)]="singleKvTeacher.dojPresentStnPresentPost"> -->
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <mat-datepicker-toggle mdSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                    </div>
+                                    <input class="form-control" [matDatepicker]="picker2" placeholder="Enter your DoB"
+                                        formControlName="dojPresentStationPresentPost" (dateChange)="updateDOB($event)" [(ngModel)]="singleKvTeacher.dojPresentStnPresentPost">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <h4 class="titleSet"><span class="text-green">11.</span> Date of Joining in Present KV in
+                                    Present Post</h4>
+                                <!-- <input type="date" class="form-control" formControlName="dojKvPresentPost"  [(ngModel)]="singleKvTeacher.dojPresentKvPresentPost"> -->
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <mat-datepicker-toggle mdSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker3></mat-datepicker>
+                                    </div>
+                                    <input class="form-control" [matDatepicker]="picker3" placeholder="Enter your DoB"
+                                        formControlName="dojKvPresentPost" (dateChange)="updateDOB($event)" [(ngModel)]="singleKvTeacher.dojPresentKvPresentPost">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <h4 class="titleSet"><span class="text-green">12.</span> If you are presently posted
+                                    at Hard / NE station then date of continuous posting in Hard / NE station in present
+                                    post</h4>
+                                <input type="date" class="form-control" style="width:250px;" >
+                            </div>
+                            <!-- <div class="col-md-12 mb-3">
+                            <h4 class="titleSet"><span class="text-green"> 7 (B)</span> Have you been transferred on adminitrative ground under  Para 7(e) and not completed 03 years at the present station as on 30-06-2021</h4>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                            </div>
+                        </div> -->
+                            <!-- <div class="col-md-12 ">
+                            <h4 class="titleSet"><span class="text-green"> 7 (C)</span>  Have you been rectruited under special rectruiment for NER</h4>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                            </div>
+                        </div> -->
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-success floatRight">Submit</button>
+                        </div>
+                        </div>
+
+                        <!--<hr>
+                         <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"> Home Town</h4>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"> District</h4>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <h4 class="titleSet"> State</h4>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div> -->
+                    </form>
+                </div>
+            </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

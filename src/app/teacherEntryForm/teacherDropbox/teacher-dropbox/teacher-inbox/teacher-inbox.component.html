@@ -1,0 +1,172 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- <div class="col-md-3">
+            <div class=" bg-white ">
+                <div class="card">
+                    <div class="card-header dropAnchor" data-bs-toggle="collapse" data-bs-target="#collapseicon" aria-expanded="true" aria-controls="collapseicon">
+                        <div class="clearfix">
+                            <div class="float-start">
+                                <h5 class="mb-0 p-0">
+                                    Search here
+                                  </h5>
+                            </div>
+                            <div class="float-end">
+                                <i class='bx bx-chevron-down bxStyle'></i>
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="collapse show" id="collapseicon" aria-labelledby="collapseicon" data-parent="#accordion" style="">
+                      <div class="card-body filter-cards-view animate-chk">
+                        <div class="job-filter mb-3">
+                          <div class="faq-form">
+                            <input class="form-control" type="text" placeholder="Search.."><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                          </div>
+                        </div>
+                        <div class="job-filter">
+                          <div class="faq-form">
+                            <input class="form-control" type="text" placeholder="location.."><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin search-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                          </div>
+                        </div>
+                        <div class="checkbox-animated">
+                          <label class="d-block" for="chk-ani">
+                            <input class="checkbox_animated" id="chk-ani" type="checkbox"> Retired teacher (8688)
+                          </label>
+                          <label class="d-block" for="chk-ani1">
+                            <input class="checkbox_animated" id="chk-ani1" type="checkbox">Rejoin Teacher (503)
+                          </label>
+                          <label class="d-block" for="chk-ani2">
+                            <input class="checkbox_animated" id="chk-ani2" type="checkbox">Transfer Change(288)
+                          </label>
+                         
+                        </div>
+                        <button class="btn btn-green text-center" type="button">Find Teacher</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class=" bg-white">
+                <div class="card">
+                    <div class="card-header dropAnchor" data-bs-toggle="collapse" data-bs-target="#collapseicon" aria-expanded="true" aria-controls="collapseicon">
+                        <div class="clearfix">
+                            <div class="float-start">
+                                <h5 class="mb-0 p-0">
+                                    Job Title
+                                  </h5>
+                            </div>
+                            <div class="float-end">
+                                <i class='bx bx-chevron-down bxStyle'></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse show" id="collapseicon" aria-labelledby="collapseicon" data-parent="#accordion" style="">
+                      <div class="card-body filter-cards-view animate-chk">
+                        <div class="checkbox-animated">
+                          <label class="d-block" for="chk-ani">
+                            <input class="checkbox_animated" id="chk-ani" type="checkbox"> Math Teacher (8688)
+                          </label>
+                          <label class="d-block" for="chk-ani1">
+                            <input class="checkbox_animated" id="chk-ani1" type="checkbox">Science Teacher (503)
+                          </label>
+                          <label class="d-block" for="chk-ani2">
+                            <input class="checkbox_animated" id="chk-ani2" type="checkbox"> Hindi Teacher(288)
+                          </label>
+                        </div>
+                        <button class="btn btn-green text-center " type="button">All jobs Title</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div> -->
+        <div class="col-md-12">
+            <div class="shadow-sm bg-white p-3 rounded">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="job-filter mb-3">
+                            <div class="faq-form">
+                              <input class="form-control" type="text" placeholder="Search.."><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            </div>
+                          </div>
+                          <div class=" text-center">
+                          <div class="btn-group " role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-green-logout py-2">All</button>
+                            <button type="button" class="btn btn-green-logout py-2">Name</button>
+                            <button type="button" class="btn btn-green-logout py-2">Email</button>
+                            <button type="button" class="btn btn-green-logout py-2">Mobile</button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <hr/>
+
+                    <div class="col-md-12">
+                        <div class="example-header">
+                            <mat-form-field>
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
+                            </mat-form-field>
+                          </div>
+                          
+                          <div class="example-container mat-elevation-z8">
+                          
+                            <mat-table [dataSource]="dataSource" matSort>
+                              <ng-container matColumnDef="sno">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header style="width:5%"> S.No. </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.sno}} </mat-cell>        
+                              </ng-container>
+                          
+                              <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.name | titlecase}}</mat-cell>
+                              </ng-container>
+                          
+                              <ng-container matColumnDef="dob">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.dob}} </mat-cell>
+                              </ng-container>
+                          
+                              <ng-container matColumnDef="email">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Email Id </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" > {{row.email}} </mat-cell>
+                              </ng-container>
+                        
+                              <ng-container matColumnDef="mobile">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile No. </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" > {{row.mobile}} </mat-cell>
+                              </ng-container>
+                        
+                              <ng-container matColumnDef="gender">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" > {{row.gender | titlecase}} </mat-cell>
+                              </ng-container>
+                        
+                              <ng-container matColumnDef="systchcode">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> System Teacher Code </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" > {{row.systchcode}} </mat-cell>
+                              </ng-container>
+                        
+                              <ng-container matColumnDef="action">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx" >
+                                   <i class='bx bx-show bxStyle1 mr-2' title="View" (click)="onViewClick(row.teacherId)">{{row.a}} </i>
+                                    <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit" (click)="onEditClick(row.teacherId)">{{row.b}}</i>
+                                    <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i> 
+                                    <i class='bx bx-box bxStyle1' title="Dropbox">{{row.d}}</i>
+                                </mat-cell>                  
+                              </ng-container>
+                        
+                              
+                          
+                              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                              <mat-row *matRowDef="let row; columns: displayedColumns;">
+                              </mat-row>
+                            </mat-table>
+                          
+                            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

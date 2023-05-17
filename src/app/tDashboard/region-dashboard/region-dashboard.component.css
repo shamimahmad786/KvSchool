@@ -1,0 +1,240 @@
+@media screen and (min-width: 1600px) {
+    .LoginName{ font-size:1.3em; font-weight:600; color:#434a52; font-family:'Montserrat', sans-serif;}
+    ul.StationRegion,
+    ul.stationUL{ list-style: none; padding:0px; margin:0px; box-sizing: border-box;}
+    ul.StationRegion li{ display: inline-table; margin-left:15px;}
+    ul.stationUL li{ display: inline-table; margin:15px 15px 15px 0px; padding-right:15px; border-right:1px solid silver;}
+    ul.stationUL li:last-child{ border-right:none;}
+    ul.stationUL li:first-child{ padding-left:15px;}
+    ul.stationUL li h3{ margin-bottom: 0px; font-weight: 400; font-family:'roboto', sans-serif; letter-spacing: 0.8px;}
+    ul.stationUL li .StationValue{ font-weight: 600; color:#434a52; font-family:'Montserrat', sans-serif;}
+    .flex-grow-1 h2.TolTeacherValue{ position: relative; font-size: 2rem; font-weight: 800; letter-spacing: 1px;}
+    .flex-grow-1 h2.TolTeacherValue::before {content: ''; position: absolute; bottom: -15px; left: 0; width: 60px; height: 3px; background-color: #fff; }
+    
+    .flex-grow-1 h3,
+    .BlueLine h2,
+    .SilverLine h2{ position: relative;}
+    .flex-grow-1 h3.TotalTeachingStaff::before{content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 3px; background-color: #647ff2; }
+    .BlueLine h2.TolTeacherValue::before{content: ''; position: absolute; bottom: -10px; left: 50%; transform:translate(-50%, 50%); width: 40px; height: 3px; background-color: #647ff2; }
+    .SilverLine h2.TolTeacherValue::before{content: ''; position: absolute; bottom: -10px; left: 50%; transform:translate(-50%, 50%); width: 40px; height: 3px; background-color: #616263; }
+    .flex-grow-1 h3.TotalTeachingStaff{ font-size: 1.4em; letter-spacing: 1px; font-weight: 300;}
+    .flex-grow-1 h3.TotalTeachingStaff1::before{content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 3px; background-color: #40b983; }
+    .flex-grow-1 h3.TotalTeachingStaff1{ font-size: 1.4em; letter-spacing: 1px; font-weight: 300;}
+    .green-bg{background-color: #40b983;}
+    .blue-bg{background-color: #647ff2;}
+    .green-text{color:#40b983;}
+    .blue-text{color:#647ff2;}
+    h3.TotName {font-size: 1.4em; color: white; letter-spacing: 1px; font-weight: 300;}
+    h3.TotName{ font-size: 1.4em; color: white; letter-spacing: 1px; font-weight: 300; margin-top: 37px;}
+    .fontb{font-size:1.3em; font-weight:600; color:#434a52; font-family:'Montserrat', sans-serif;}
+    .mt45{ margin-top:30px;}
+    ul.display-inline{padding: 0px; margin:0px; list-style: none;}
+    ul.display-inline li{display: inline-table; margin-right: 15px; width:24.2%; min-height: 200px; line-height: 20px; overflow: hidden;}
+    ul.display-inline li:last-child{margin-right: 0px;}
+    .Verified{ font-size: 1rem; color: #4c4c4c; font-weight: 400;}
+    .mtop-3 { padding-top: 28px;}
+    
+    h2.TolTeacherValue.mb-2.silver-text.text-center {
+        color: #858585;
+    }
+    .pattern{ position: absolute; top: -15px; right: -15px;}
+    .pattern i.imgRotate{fill: rgba(36, 105, 92, 0.00); font-size:75px; color:rgba(36, 105, 92, 0.05);
+        -webkit-transform: rotate(-25deg); transform: rotate(-25deg);}
+    ul.display-inline li:hover .pattern i.imgRotate{fill: rgba(36, 105, 92, 1); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    .round-box {width: 55px; height: 55px; border-radius: 27px; display: -webkit-box;  display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -ms-flex-align: center;  align-items: center; -webkit-box-pack: center; -ms-flex-pack: center;
+        justify-content: center; margin-left: auto;  margin-right: auto; -webkit-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    } 
+    .bg-sil{background-color: rgba(169, 169, 169, 0.1);}  
+    .bg-blue{background-color: rgba(100, 127, 242, 0.1);} 
+    
+    i.iconBlue{font-size:36px; color:#647ff2;}
+    ul.display-inline li:hover i.iconBlue{ color:white;}
+    ul.display-inline li:hover .bg-blue{background-color:#647ff2;} 
+    
+    i.iconsilver{font-size:36px; color:#858585;}
+    ul.display-inline li:hover i.iconsilver{ color:white;}
+    ul.display-inline li:hover .bg-sil{background-color:#858585;} 
+    }
+     @media screen and (max-width: 1599px) {
+    
+        .LoginName{ font-size:1.3em; font-weight:600; color:#434a52; font-family:'Montserrat', sans-serif;}
+        ul.StationRegion,
+        ul.stationUL{ list-style: none; padding:0px; margin:0px; box-sizing: border-box;}
+        ul.StationRegion li{ display: inline-table; margin-left:15px;}
+        ul.stationUL li{ display: inline-table; margin:15px 15px 15px 0px; padding-right:15px; border-right:1px solid silver;}
+        ul.stationUL li:last-child{ border-right:none;}
+        ul.stationUL li:first-child{ padding-left:15px;}
+        ul.stationUL li h3{ margin-bottom: 0px; font-weight: 400; font-family:'roboto', sans-serif; letter-spacing: 0.8px;}
+        ul.stationUL li .StationValue{ font-weight: 600; color:#434a52; font-family:'Montserrat', sans-serif;}
+        .flex-grow-1 h2.TolTeacherValue{ position: relative; font-size: 2rem; font-weight: 800; letter-spacing: 1px;}
+        .flex-grow-1 h2.TolTeacherValue::before {content: ''; position: absolute; bottom: -15px; left: 0; width: 60px; height: 3px; background-color: #fff; }
+        
+        .flex-grow-1 h3,
+        .BlueLine h2,
+        .SilverLine h2{ position: relative;}
+        .flex-grow-1 h3.TotalTeachingStaff::before{content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 3px; background-color: #647ff2; }
+        .BlueLine h2.TolTeacherValue::before{content: ''; position: absolute; bottom: -10px; left: 50%; transform:translate(-50%, 50%); width: 40px; height: 3px; background-color: #647ff2; }
+        .SilverLine h2.TolTeacherValue::before{content: ''; position: absolute; bottom: -10px; left: 50%; transform:translate(-50%, 50%); width: 40px; height: 3px; background-color: #616263; }
+        .flex-grow-1 h3.TotalTeachingStaff{ font-size: 1.4em; letter-spacing: 1px; font-weight: 300;}
+        .flex-grow-1 h3.TotalTeachingStaff1::before{content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 3px; background-color: #40b983; }
+        .flex-grow-1 h3.TotalTeachingStaff1{ font-size: 1.4em; letter-spacing: 1px; font-weight: 300;}
+        .green-bg{background-color: #40b983;}
+        .blue-bg{background-color: #647ff2;}
+        .green-text{color:#40b983;}
+        .blue-text{color:#647ff2;}
+        h3.TotName {font-size: 1.4em; color: white; letter-spacing: 1px; font-weight: 300;}
+        h3.TotName{ font-size: 1.4em; color: white; letter-spacing: 1px; font-weight: 300; margin-top: 37px;}
+        .fontb{font-size:1.3em; font-weight:600; color:#434a52; font-family:'Montserrat', sans-serif;}
+        .mt45{ margin-top:30px;}
+        ul.display-inline{padding: 0px; margin:0px; list-style: none;}
+        ul.display-inline li{display: inline-table; margin-right: 15px; width:23%; min-height: 240px; line-height: 20px; overflow: hidden;}
+        ul.display-inline li:last-child{margin-right: 0px;}
+        .Verified{ font-size: 1rem; color: #4c4c4c; font-weight: 400;}
+        .mtop-3 { padding-top: 28px;}
+        
+        h2.TolTeacherValue.mb-2.silver-text.text-center {
+            color: #858585;
+        }
+        .pattern{ position: absolute; top: -15px; right: -15px;}
+    .pattern i.imgRotate{fill: rgba(36, 105, 92, 0.00); font-size:75px; color:rgba(36, 105, 92, 0.05);
+        -webkit-transform: rotate(-25deg); transform: rotate(-25deg);}
+    ul.display-inline li:hover .pattern i.imgRotate{fill: rgba(36, 105, 92, 1); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    .round-box {width: 55px; height: 55px; border-radius: 27px; display: -webkit-box;  display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -ms-flex-align: center;  align-items: center; -webkit-box-pack: center; -ms-flex-pack: center;
+        justify-content: center; margin-left: auto;  margin-right: auto; -webkit-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    } 
+    .bg-sil{background-color: rgba(169, 169, 169, 0.1);}  
+    .bg-blue{background-color: rgba(100, 127, 242, 0.1);} 
+    
+    i.iconBlue{font-size:36px; color:#647ff2;}
+    ul.display-inline li:hover i.iconBlue{ color:white;}
+    ul.display-inline li:hover .bg-blue{background-color:#647ff2;} 
+    
+    i.iconsilver{font-size:36px; color:#858585;}
+    ul.display-inline li:hover i.iconsilver{ color:white;}
+    ul.display-inline li:hover .bg-sil{background-color:#858585;} 
+    }
+    
+    @media screen and (max-width: 768px) {
+        .LoginName{ font-size:1.3em; font-weight:600; color:#434a52; font-family:'Montserrat', sans-serif;}
+        ul.StationRegion,
+        ul.stationUL{ list-style: none; padding:0px; margin:0px; box-sizing: border-box;}
+        ul.StationRegion li{ display: inline-table; margin-left:15px;}
+        ul.stationUL li{ display: inline-table; margin:15px 15px 15px 0px; padding-right:15px; border-right:1px solid silver;}
+        ul.stationUL li:last-child{ border-right:none;}
+        ul.stationUL li:first-child{ padding-left:15px;}
+        ul.stationUL li h3{ margin-bottom: 0px; font-weight: 400; font-family:'roboto', sans-serif; letter-spacing: 0.8px;}
+        ul.stationUL li .StationValue{ font-weight: 600; color:#434a52; font-family:'Montserrat', sans-serif;}
+        .flex-grow-1 h2.TolTeacherValue{ position: relative; font-size: 2rem; font-weight: 800; letter-spacing: 1px;}
+        .flex-grow-1 h2.TolTeacherValue::before {content: ''; position: absolute; bottom: -15px; left: 0; width: 60px; height: 3px; background-color: #fff; }
+        
+        .flex-grow-1 h3,
+        .BlueLine h2,
+        .SilverLine h2{ position: relative;}
+        .flex-grow-1 h3.TotalTeachingStaff::before{content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 3px; background-color: #647ff2; }
+        .BlueLine h2.TolTeacherValue::before{content: ''; position: absolute; bottom: -10px; left: 50%; transform:translate(-50%, 50%); width: 40px; height: 3px; background-color: #647ff2; }
+        .SilverLine h2.TolTeacherValue::before{content: ''; position: absolute; bottom: -10px; left: 50%; transform:translate(-50%, 50%); width: 40px; height: 3px; background-color: #616263; }
+        .flex-grow-1 h3.TotalTeachingStaff{ font-size: 1.4em; letter-spacing: 1px; font-weight: 300;}
+        .flex-grow-1 h3.TotalTeachingStaff1::before{content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 3px; background-color: #40b983; }
+        .flex-grow-1 h3.TotalTeachingStaff1{ font-size: 1.4em; letter-spacing: 1px; font-weight: 300;}
+        .green-bg{background-color: #40b983;}
+        .blue-bg{background-color: #647ff2;}
+        .green-text{color:#40b983;}
+        .blue-text{color:#647ff2;}
+        h3.TotName {font-size: 1.4em; color: white; letter-spacing: 1px; font-weight: 300;}
+        h3.TotName{ font-size: 1.4em; color: white; letter-spacing: 1px; font-weight: 300; margin-top: 37px;}
+        .fontb{font-size:1.3em; font-weight:600; color:#434a52; font-family:'Montserrat', sans-serif;}
+        .mt45{ margin-top:30px;}
+        ul.display-inline{padding: 0px; margin:0px; list-style: none;}
+        ul.display-inline li{display: inline-table; margin-right: 15px; width:45% ! important; min-height: 240px; line-height: 20px; overflow: hidden;}
+        ul.display-inline li:last-child{margin-right: 0px;}
+        .Verified{ font-size: 1rem; color: #4c4c4c; font-weight: 400;}
+        .mtop-3 { padding-top: 28px;}
+        
+        h2.TolTeacherValue.mb-2.silver-text.text-center {
+            color: #858585;
+        }
+        .pattern{ position: absolute; top: -15px; right: -15px;}
+    .pattern i.imgRotate{fill: rgba(36, 105, 92, 0.00); font-size:75px; color:rgba(36, 105, 92, 0.05);
+        -webkit-transform: rotate(-25deg); transform: rotate(-25deg);}
+    ul.display-inline li:hover .pattern i.imgRotate{fill: rgba(36, 105, 92, 1); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    .round-box {width: 55px; height: 55px; border-radius: 27px; display: -webkit-box;  display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -ms-flex-align: center;  align-items: center; -webkit-box-pack: center; -ms-flex-pack: center;
+        justify-content: center; margin-left: auto;  margin-right: auto; -webkit-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    } 
+    .bg-sil{background-color: rgba(169, 169, 169, 0.1);}  
+    .bg-blue{background-color: rgba(100, 127, 242, 0.1);} 
+    
+    i.iconBlue{font-size:36px; color:#647ff2;}
+    ul.display-inline li:hover i.iconBlue{ color:white;}
+    ul.display-inline li:hover .bg-blue{background-color:#647ff2;} 
+    
+    i.iconsilver{font-size:36px; color:#858585;}
+    ul.display-inline li:hover i.iconsilver{ color:white;}
+    ul.display-inline li:hover .bg-sil{background-color:#858585;} 
+    }
+    
+    
+    @media screen and (max-width: 600px) {
+        .LoginName{ font-size:1.3em; font-weight:600; color:#434a52; font-family:'Montserrat', sans-serif;}
+        ul.StationRegion,
+        ul.stationUL{ list-style: none; padding:0px; margin:0px; box-sizing: border-box;}
+        ul.StationRegion li{ display: inline-table; margin-left:15px;}
+        ul.stationUL li{ display: inline-table; margin:0px 15px; padding-right:15px; border-right:none;}
+        ul.stationUL li:last-child{ border-right:none;}
+        ul.stationUL li:first-child{ padding-left:15px;}
+        ul.stationUL li h3{ margin-bottom: 0px; font-weight: 400; font-family:'roboto', sans-serif; letter-spacing: 0.8px;}
+        ul.stationUL li .StationValue{ font-weight: 600; color:#434a52; font-family:'Montserrat', sans-serif;}
+        .flex-grow-1 h2.TolTeacherValue{ position: relative; font-size: 2rem; font-weight: 800; letter-spacing: 1px;}
+        .flex-grow-1 h2.TolTeacherValue::before {content: ''; position: absolute; bottom: -15px; left: 0; width: 60px; height: 3px; background-color: #fff; }
+        
+        .flex-grow-1 h3,
+        .BlueLine h2,
+        .SilverLine h2{ position: relative;}
+        .flex-grow-1 h3.TotalTeachingStaff::before{content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 3px; background-color: #647ff2; }
+        .BlueLine h2.TolTeacherValue::before{content: ''; position: absolute; bottom: -10px; left: 50%; transform:translate(-50%, 50%); width: 40px; height: 3px; background-color: #647ff2; }
+        .SilverLine h2.TolTeacherValue::before{content: ''; position: absolute; bottom: -10px; left: 50%; transform:translate(-50%, 50%); width: 40px; height: 3px; background-color: #616263; }
+        .flex-grow-1 h3.TotalTeachingStaff{ font-size: 1.4em; letter-spacing: 1px; font-weight: 300;}
+        .flex-grow-1 h3.TotalTeachingStaff1::before{content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 3px; background-color: #40b983; }
+        .flex-grow-1 h3.TotalTeachingStaff1{ font-size: 1.4em; letter-spacing: 1px; font-weight: 300;}
+        .green-bg{background-color: #40b983;}
+        .blue-bg{background-color: #647ff2;}
+        .green-text{color:#40b983;}
+        .blue-text{color:#647ff2;}
+        h3.TotName {font-size: 1.4em; color: white; letter-spacing: 1px; font-weight: 300;}
+        h3.TotName{ font-size: 1.4em; color: white; letter-spacing: 1px; font-weight: 300; margin-top: 37px;}
+        .fontb{font-size:1.3em; font-weight:600; color:#434a52; font-family:'Montserrat', sans-serif;}
+        .mt45{ margin-top:30px;}
+        ul.display-inline{padding: 0px; margin:0px; list-style: none;}
+        ul.display-inline li{display: inline-table; margin-right: 15px; width:100% ! important; min-height: 240px; line-height: 20px; overflow: hidden;}
+        ul.display-inline li:last-child{margin-right: 0px;}
+        .Verified{ font-size: 1rem; color: #4c4c4c; font-weight: 400;}
+        .mtop-3 { padding-top: 28px;}
+        
+        h2.TolTeacherValue.mb-2.silver-text.text-center {
+            color: #858585;
+        }
+        .pattern{ position: absolute; top: -15px; right: -15px;}
+    .pattern i.imgRotate{fill: rgba(36, 105, 92, 0.00); font-size:75px; color:rgba(36, 105, 92, 0.05);
+        -webkit-transform: rotate(-25deg); transform: rotate(-25deg);}
+    ul.display-inline li:hover .pattern i.imgRotate{fill: rgba(36, 105, 92, 1); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    .round-box {width: 55px; height: 55px; border-radius: 27px; display: -webkit-box;  display: -ms-flexbox; display: flex;
+        -webkit-box-align: center; -ms-flex-align: center;  align-items: center; -webkit-box-pack: center; -ms-flex-pack: center;
+        justify-content: center; margin-left: auto;  margin-right: auto; -webkit-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    } 
+    .bg-sil{background-color: rgba(169, 169, 169, 0.1);}  
+    .bg-blue{background-color: rgba(100, 127, 242, 0.1);} 
+    
+    i.iconBlue{font-size:36px; color:#647ff2;}
+    ul.display-inline li:hover i.iconBlue{ color:white;}
+    ul.display-inline li:hover .bg-blue{background-color:#647ff2;} 
+    
+    i.iconsilver{font-size:36px; color:#858585;}
+    ul.display-inline li:hover i.iconsilver{ color:white;}
+    ul.display-inline li:hover .bg-sil{background-color:#858585;} 
+    }

@@ -1,0 +1,632 @@
+<div class="shadow-sm bg-white p-3 rounded">
+    <div><button class="btn btn-success  floatRight" style="background-color: #24695c; border: #24695c;"
+            (click)="newTeacher()">New Employee</button></div>
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
+        </mat-form-field>
+    </div>
+
+
+    <div class="example-container mat-elevation-z8">
+
+        <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="sno">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.sno}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.name }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="dob">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.dob}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Email Id </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color">
+                    <span (click)="onVerifyEmail(row.teacherId)" class="AnchoR">
+                        <div *ngIf="emailNoti;  else elseBlock">
+                            <i class='bx bx-check-circle'
+                                style='color:#003f07; font-size:22px; position: absolute; '></i>
+                        </div>
+                        <ng-template #elseBlock>
+                            <i class='bx bx-error-circle bx-flip-horizontal bx-tada'
+                                style='color:#f94f4f; font-size:22px; position: absolute;'></i>
+                        </ng-template>
+
+                        <span class="ms-4"> {{row.email}}</span>
+                    </span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="mobile">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile No. </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color">
+                    <!-- <span (click)="onVerifyMobile(row.teacherId)" class="AnchoR">
+                        
+                        <div *ngIf="mobileNoti;  else elseBlock">
+                            <i class='bx bx-check-circle' style='color:#003f07; font-size:22px;'  ></i>
+                        </div>
+                        <ng-template #elseBlock>
+                            <i class='bx bx-error-circle bx-flip-horizontal bx-tada' style='color:#f94f4f; font-size:22px;' ></i>
+                        </ng-template>
+                        <span class="ms-1"> {{row.mobile}}</span>
+                    </span> -->
+
+                    <span (click)="onVerifyMobile(row.teacherId)" class="AnchoR">
+                        <div *ngIf="mobileNoti;  else elseBlock">
+                            <i class='bx bx-check-circle'
+                                style='color:#003f07; font-size:22px; position: absolute; '></i>
+                        </div>
+                        <ng-template #elseBlock>
+                            <i class='bx bx-error-circle bx-flip-horizontal bx-tada'
+                                style='color:#f94f4f; font-size:22px;'></i>
+                        </ng-template>
+
+                        <span class="ms-4 "> {{row.mobile}}</span>
+                    </span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="gender">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="systchcode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> System Employee Code </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.systchcode}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
+                    <i class='bx bx-show bxStyle1 mr-2' title="View" (click)="onViewClick(row.teacherId)">{{row.a}} </i>
+                    <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"
+                        (click)="onEditClick(row.teacherId)">{{row.b}}</i>
+                    <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"
+                        (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
+                    <i class='bx bx-box bxStyle1' title="Dropbox" (click)="onDropboxClick(row.teacherId)">{{row.d}}</i>
+                </mat-cell>
+            </ng-container>
+
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+    </div>
+</div>
+
+
+
+
+
+<!-- <div class="container-fluid">
+    <div class="card">
+    <h2 class="bg-green mb-0 px-3"> Teacher Records</h2>
+    <div class="p-3">
+        <table id="example" class="table table-hover " style="width:100%">
+            <thead>
+                <tr>
+                    <th width="5%">S.No</th>
+                    <th>Name</th>
+                    <th>Teacher Code</th>
+                    <th>DBO</th>
+                    <th>Email Id</th>
+                    <th>Mobile No.</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="align-middle">
+                    <td class="align-middle">1</td>
+                    <td class="align-middle"><img src="assets/assets/img/12.png" class="img-30 rounded-circle"/> Gopi Khatana</td>
+                    <td class="align-middle">123456125</td>
+                    <td class="align-middle">12/8/2021</td>
+                    <td class="align-middle">gopi.jitin@gmail.com</td>
+                    <td class="align-middle">7014931622</td>
+                    <td class="align-middle">female</td>
+                    
+                    <td class="IconBx">
+                        <a class="p-1"> <i class='bx bx-show bxStyle1 mr-2' title="View"></i></a>
+                        <a class="p-1"> <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"></i></a>
+                        <a class="p-1"> <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"></i></a>
+                        <a class="p-1"> <i class='bx bx-box bxStyle1' title="Dropbox"></i></a>
+                    </td>
+                </tr>
+                <tr class="align-middle">
+                    <td class="align-middle">2</td>
+                    <td class="align-middle"><img src="assets/assets/img/12.png" class="img-30 rounded-circle"/> Gopi Khatana</td>
+                    <td class="align-middle">123456125</td>
+                    <td class="align-middle">12/8/2021</td>
+                    <td class="align-middle">gopi.jitin@gmail.com</td>
+                    <td class="align-middle">7014931622</td>
+                    <td class="align-middle">male</td>
+                    
+                    <td class="IconBx">
+                        <a class="p-1"> <i class='bx bx-show bxStyle1 mr-2' title="View"></i></a>
+                        <a class="p-1"> <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"></i></a>
+                        <a class="p-1"> <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"></i></a>
+                        <a class="p-1"> <i class='bx bx-box bxStyle1' title="Dropbox"></i></a>
+                    </td>
+                </tr>
+                <tr class="align-middle">
+                    <td class="align-middle">3</td>
+                    <td class="align-middle"><img src="assets/assets/img/12.png" class="img-30 rounded-circle"/> Gopi Khatana</td>
+                    <td class="align-middle">123456125</td>
+                    <td class="align-middle">12/8/2021</td>
+                    <td class="align-middle">gopi.jitin@gmail.com</td>
+                    <td class="align-middle">7014931622</td>
+                    <td class="align-middle">male</td>
+                   
+                    <td class="IconBx">
+                        <a class="p-1"> <i class='bx bx-show bxStyle1 mr-2' title="View"></i></a>
+                        <a class="p-1"> <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"></i></a>
+                        <a class="p-1"> <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"></i></a>
+                        <a class="p-1"> <i class='bx bx-box bxStyle1' title="Dropbox"></i></a>
+                    </td>
+                </tr>
+                <tr class="align-middle">
+                    <td class="align-middle">4</td>
+                    <td class="align-middle"><img src="assets/assets/img/12.png" class="img-30 rounded-circle"/> Gopi Khatana</td>
+                    <td class="align-middle">123456125</td>
+                    <td class="align-middle">12/8/2021</td>
+                    <td class="align-middle">gopi.jitin@gmail.com</td>
+                    <td class="align-middle">7014931622</td>
+                    <td class="align-middle">male</td>
+                   
+                    <td class="IconBx">
+                        <a class="p-1"> <i class='bx bx-show bxStyle1 mr-2' title="View"></i></a>
+                        <a class="p-1"> <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"></i></a>
+                        <a class="p-1"> <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"></i></a>
+                        <a class="p-1"> <i class='bx bx-box bxStyle1' title="Dropbox"></i></a>
+                    </td>
+                </tr>
+                <tr class="align-middle">
+                    <td class="align-middle">5</td>
+                    <td class="align-middle"><img src="assets/assets/img/12.png" class="img-30 rounded-circle"/> Gopi Khatana</td>
+                    <td class="align-middle">123456125</td>
+                    <td class="align-middle">12/8/2021</td>
+                    <td class="align-middle">gopi.jitin@gmail.com</td>
+                    <td class="align-middle">7014931622</td>
+                    <td class="align-middle">male</td>
+                    
+                    <td class="IconBx">
+                        <a class="p-1"> <i class='bx bx-show bxStyle1 mr-2' title="View"></i></a>
+                        <a class="p-1"> <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"></i></a>
+                        <a class="p-1"> <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"></i></a>
+                        <a class="p-1"> <i class='bx bx-box bxStyle1' title="Dropbox"></i></a>
+                    </td>
+                </tr>
+                <tr class="align-middle">
+                    <td class="align-middle">6</td>
+                    <td class="align-middle"><img src="assets/assets/img/12.png" class="img-30 rounded-circle"/> Gopi Khatana</td>
+                    <td class="align-middle">123456125</td>
+                    <td class="align-middle">12/8/2021</td>
+                    <td class="align-middle">gopi.jitin@gmail.com</td>
+                    <td class="align-middle">7014931622</td>
+                    <td class="align-middle">male</td>
+                    
+                    <td class="IconBx">
+                        <a class="p-1"> <i class='bx bx-show bxStyle1 mr-2' title="View"></i></a>
+                        <a class="p-1"> <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"></i></a>
+                        <a class="p-1"> <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"></i></a>
+                        <a class="p-1"> <i class='bx bx-box bxStyle1' title="Dropbox"></i></a>
+                    </td>
+                </tr>
+                <tr class="align-middle">
+                    <td class="align-middle">7</td>
+                    <td class="align-middle"><img src="assets/assets/img/12.png" class="img-30 rounded-circle"/> Gopi Khatana</td>
+                    <td class="align-middle">123456125</td>
+                    <td class="align-middle">12/8/2021</td>
+                    <td class="align-middle">gopi.jitin@gmail.com</td>
+                    <td class="align-middle">7014931622</td>
+                    <td class="align-middle">male</td>
+                   
+                    <td class="IconBx">
+                        <a class="p-1"> <i class='bx bx-show bxStyle1 mr-2' title="View"></i></a>
+                        <a class="p-1"> <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"></i></a>
+                        <a class="p-1"> <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"></i></a>
+                        <a class="p-1"> <i class='bx bx-box bxStyle1' title="Dropbox"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> -->
+
+<div mat-dialog-content>
+    <ng-template #test let-modal style="min-width: 100%;">
+
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="clearfix">
+                        <div class="float-left">
+                            <h2 class="mb-0 text-green">Detailed Data of Selected Employee</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="" style="min-width: 100%; max-height: 750px;">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table-striped">
+                        <tr>
+                            <th>School Id</th>
+                            <td>{{verifySingleTeacherList.schoolId}}</td>
+                            <th>Udise School Code</th>
+                            <td>{{verifySingleTeacherList.udiseSchCode}}</td>
+                            <th>Employee Id</th>
+                            <td>{{verifySingleTeacherList.teacherId}}</td>
+
+                        </tr>
+
+                        <tr>
+                            <th>Name</th>
+                            <td>{{verifySingleTeacherList.name | titlecase}}</td>
+                            <th>Gender</th>
+                            <td>{{verifySingleTeacherList.gender | genderPipe}}</td>
+                            <th>Date of Birth</th>
+                            <td>{{verifySingleTeacherList.dob}}</td>
+
+                        </tr>
+                        <tr>
+                            <th>Social Category</th>
+                            <td>{{verifySingleTeacherList.socialCat | socialCatPipe}}</td>
+                            <th>Email</th>
+                            <td>{{verifySingleTeacherList.email}}</td>
+                            <th>Mobile Number</th>
+                            <td>{{verifySingleTeacherList.mobile}}</td>
+                        </tr>
+
+                        <tr>
+
+                            <th>Employee Type</th>
+                            <td>{{verifySingleTeacherList.tchType | typeOfTeacherPipe}}</td>
+                            <th>Nature of Appointment</th>
+                            <td>{{verifySingleTeacherList.natureOfAppt | natureOfApntmntPipe}}</td>
+                            <th>Date of Joining</th>
+                            <td>{{verifySingleTeacherList.dojService}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Academic Qualification</th>
+                            <td>{{verifySingleTeacherList.qualAcad | hAcdQualPipe}}</td>
+                            <th>Professional Qualification</th>
+                            <td>{{verifySingleTeacherList.qualProf | profQualPipe}}</td>
+                            <th>Class Taught</th>
+                            <td>{{verifySingleTeacherList.classTaught | classTaughtPipe}}</td>
+                        </tr>
+                        <tr>
+                            <th>Appointed Subject</th>
+                            <td>{{verifySingleTeacherList.apptSub | appointedForLevelPipe}}</td>
+                            <th>Subject taught 1</th>
+                            <td>{{verifySingleTeacherList.subTaught1 | mainSubjectPipe}}</td>
+                            <th>Subject taught 2</th>
+                            <td>{{verifySingleTeacherList.subTaught2 | mainSubjectPipe}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>BRC Training</th>
+                            <td>{{verifySingleTeacherList.trnBrc}}</td>
+                            <th>CRC Training</th>
+                            <td>{{verifySingleTeacherList.trnCrc}}</td>
+                            <th>DIET Training</th>
+                            <td>{{verifySingleTeacherList.trnDiet}}</td>
+                        </tr>
+
+                        <tr>
+
+                            <th>Training Other</th>
+                            <td>{{verifySingleTeacherList.trnOther | trainingPipe}}</td>
+                            <th>Training Needed</th>
+                            <td>{{verifySingleTeacherList.trngNeeded | trainingPipe}}</td>
+                            <th>Non Teaching Days</th>
+                            <td>{{verifySingleTeacherList.nontchDays}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Maths Upto</th>
+                            <td>{{verifySingleTeacherList.mathUpto | hAcdQualPipe}}</td>
+                            <th>Science Upto</th>
+                            <td>{{verifySingleTeacherList.scienceUpto | hAcdQualPipe}}</td>
+                            <th>English Upto</th>
+                            <td>{{verifySingleTeacherList.englishUpto | hAcdQualPipe}}</td>
+
+                        </tr>
+
+                        <tr>
+                            <th>Social Study Upto</th>
+                            <td>{{verifySingleTeacherList.soc_studyUpto | hAcdQualPipe}}</td>
+                            <th>Year of Joining Present School</th>
+                            <td>{{verifySingleTeacherList.yoj_presSch}}</td>
+                            <th>Disability Type</th>
+                            <td>{{verifySingleTeacherList.disabilityType | disabilityPipe}}</td>
+
+                        </tr>
+
+                        <tr>
+                            <th>CWSN Training</th>
+                            <td>{{verifySingleTeacherList.trainedCwsn | yesNoPipe}}</td>
+                            <th>Computer Training</th>
+                            <td>{{verifySingleTeacherList.trainedComp | yesNoPipe}}</td>
+                            <th>Training Received</th>
+                            <td>{{verifySingleTeacherList.trngRcvd | trainingPipe}}</td>
+
+                        </tr>
+
+                        <tr>
+                            <th>Language Studied Upto</th>
+                            <td>{{verifySingleTeacherList.langStudyUpto | hAcdQualPipe}}</td>
+                            <th>State Id</th>
+                            <td>{{verifySingleTeacherList.stateId}}</td>
+                            <th>Employee Organisation Type</th>
+                            <td>{{verifySingleTeacherList.tchTypeOrg}}</td>
+
+                        </tr>
+
+                        <tr>
+                            <th>Employee Social Category Organisation</th>
+                            <td>{{verifySingleTeacherList.tchSocialCatOrg}}</td>
+                            <th>Organisation Nature of Appointment</th>
+                            <td>{{verifySingleTeacherList.natureApptOrg}}</td>
+                            <th>Academic Year</th>
+                            <td>{{verifySingleTeacherList.acYear}}</td>
+
+                        </tr>
+
+                    </table>
+                    <div class="p-2">
+                        <a class=" btn-cancel p-2 me-2"
+                            (click)="onVerify('false') ; modal.dismiss('Cross click')">Cancel</a>
+                        <button class="btn btn-sm btn-green-logout p-2 me-1"
+                            (click)="onVerify('false') ; modal.dismiss('Cross click')">Edit</button>
+                        <button class="btn btn-success btn-sm" style="margin-left: 3px;"
+                            (click)="onVerify('true') ; modal.dismiss('Cross click')"> Confirm & Verify</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </ng-template>
+</div>
+
+<!-- dropbox model -->
+
+<div mat-dialog-content>
+    <ng-template #DropBox let-modal style="min-width: 100%;">
+
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="clearfix">
+                        <div class="float-left">
+                            <h2 class="mb-0 text-green">Basic Information Employee</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="" style="min-width: 100%; max-height: 750px;">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table-striped">
+                        <tr>
+                            <th>Name</th>
+                            <td> {{singleDeletedTeacher.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Mobile</th>
+                            <td> {{singleDeletedTeacher.mobile}}</td>
+                        </tr>
+                        <tr>
+                            <th>Email Id</th>
+                            <td> {{singleDeletedTeacher.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Employee Id</th>
+                            <td>{{singleDeletedTeacher.teacher_id}}</td>
+                        </tr>
+                        <tr>
+                            <th>System Employee Code </th>
+                            <td>{{singleDeletedTeacher.systemTeacherCode}}</td>
+                        </tr>
+                        <tr>
+                            <th>Date of Birth</th>
+                            <td>{{singleDeletedTeacher.dob}}</td>
+                        </tr>
+                    </table>
+                    <div class="p-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label form-label-custom">Dropout
+                                        Type</label>
+                                    <select class="form-select form-select-md" aria-label=".form-select-sm example"
+                                        (change)="onDropoutType($event)">
+                                        <option selected>Select Type</option>
+                                        <option value="1">Voluntary</option>
+                                        <option value="2">Involuntary</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div *ngIf="dropoutTypeSelected" class="col-md-6">
+                                <div *ngIf="dropoutType" class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label form-label-custom"
+                                        required>Voluntary</label>
+                                    <select class="form-select form-select-md" aria-label=".form-select-sm example"
+                                        (change)="onDropoutTypeValue($event)">
+                                        <option selected> Select</option>
+                                        <option value="1">Retired</option>
+                                        <option value="2">Transfer</option>
+                                        <option value="3">Resigned</option>
+                                        <option value="4">Death</option>
+                                        <option value="8">Other</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="!dropoutType" class="mb-3">
+                                    <label for="exampleFormControlInput1"
+                                        class="form-label form-label-custom">Involuntary</label>
+                                    <select class="form-select form-select-md" aria-label=".form-select-sm example"
+                                        (change)="onDropoutTypeValue($event)">
+                                        <option selected> Select</option>
+                                        <option value="5">Dismissed</option>
+                                        <option value="6">Terminated</option>
+                                        <option value="7">Lay Off</option>
+                                        <option value="8">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <form [formGroup]="dropboxForm">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1"
+                                            class="form-label form-label-custom" >Give
+                                            Feedback</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            rows="1" formControlName="feedback"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-1">
+
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Enter Udise Code" aria-label="Search for..."
+                                                aria-describedby="btnNavbarSearch" class="form-control form-control-sm"
+                                                autocomplete="off" formControlName="udiseCode">
+                                            <!-- <button id="btnNavbarSearch" type="button" class="btn btn-default btn-sm">
+                                                <i class="bx bx-search bxStyle"></i>
+                                            </button> -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="">
+                                        <button class="btn btn-success btn-sm me-2 " style="margin-left: 3px;"
+                                            (click)="onVerifyDropbox('true') ; modal.dismiss('Cross click')">
+                                            Submit</button>
+                                        <a class=" btn-cancel p-2 "
+                                            (click)="onVerifyDropbox('false') ; modal.dismiss('Cross click')">Cancel</a>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <hr>
+                                <div class="col-md-12" >
+                                <h3 style="color: red; text-align: center;"> *Note - Teacher moved to dropbox can be found inside Outbox section of Dropbox.</h3>
+                                </div>
+                            </form>
+                            
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </ng-template>
+</div>
+
+
+
+<!-- <table mat-table [dataSource]="dataSource">
+    
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Weight </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Symbol </th>
+            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator> -->
+
+<!-- <app-teacher-entry-form
+[teacherListTest]="teacherListTest"
+></app-teacher-entry-form> -->
+
+
+<!-- COde By Ghufran -->
+
+<!-- <div class="container card">
+
+    <table id="" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Email Id</th>
+                <th>Mobile No.</th>
+                <th>Class Taught</th>
+                <th>Appointed Subject</th>
+                <th>Type of Teachers</th>
+                <th>Nature of Appointment</th>
+                <th>System Teacher Code</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="align-middle" *ngFor="let data of teacherList; let i=index;">
+                <td class="align-middle">{{i+1}}</td>
+                <td class="align-middle">{{data.name}}</td>
+                <td class="align-middle">{{data.email}}</td>
+                <td class="align-middle">{{data.mobile}}</td>
+                <td class="align-middle">{{data.classTaught}}</td>
+                <td class="align-middle">{{data.apptSub}}</td>
+                <td class="align-middle">{{data.tchType}}</td>
+                <td class="align-middle">{{data.natureOfAppt}}</td>
+                <td class="align-middle">{{data.systemTeacherCode}}</td>
+
+                <td class="IconBx">
+                    <i class='bx bx-show bxStyle1 mr-2' title="View" (click)="onViewClick(i)"></i>
+                    <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit" (click)="onEditClick(i)"></i>
+                    <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(i)"></i>
+                    <i class='bx bx-box bxStyle1' title="Dropbox" (click)="onDropboxClick(i)"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+</div> -->

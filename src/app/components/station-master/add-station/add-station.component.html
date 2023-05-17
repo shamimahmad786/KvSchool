@@ -1,0 +1,63 @@
+
+<div class="container-fluid px-4">
+    <form [formGroup]="stationForm" (ngSubmit)="submit()">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-83">
+                    <div class=" bg-profile-head">
+                        <h5 class="mb-0 p-2 FontTitle  text-white">{{isEdit?'Edit Station':'Add New Station'}}</h5>
+                    </div>
+                 
+                    <div class="m-3 prof-fields">
+                        <div class="row">
+                                   
+                            <div class="col-md-5 form-group">
+                                <label class="titleSet">Station Code</label>                    
+                                <input type="text"  formControlName="stationCode" class="form-control" maxlength="3">
+                                <!-- <span class="help-block text-danger"
+                                    *ngIf="!stationForm.get('stationCode').valid && stationForm.get('stationCode').touched">Please Enter Station Code !</span> -->
+                                    <mat-error *ngIf="isSubmitted && errorHandling('stationCode', 'required')">
+                                        Please Enter Station Code!
+                                    </mat-error>
+                                    <mat-error *ngIf="isSubmitted && errorHandling('stationCode','pattern')">Please Enter Valid Station Code.(3 digit number)
+                                    </mat-error>
+
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <label class="titleSet">Station Name</label>                    
+                                <input type="text" formControlName="stationName" class="form-control">
+                                <!-- <span class="help-block text-danger"
+                                    *ngIf="!stationForm.get('stationName').valid && stationForm.get('stationName').touched">Please Enter Station Name !</span> -->
+                                    <mat-error *ngIf="isSubmitted && errorHandling('stationName', 'required')">
+                                        Please Enter Station Code!
+                                    </mat-error>
+                                    <mat-error *ngIf="isSubmitted && errorHandling('stationName','textField')">Pleae Enter a Valid Name(Only white space is allowed.)
+                                    </mat-error>
+                            </div>
+                            <div class="col-md-5 form-group mt-3">
+                                    <label class="titleSet">Select Status</label>
+                                    <mat-select formControlName="status" class="form-control">
+                                        <mat-option>Select Status</mat-option>
+                                        <mat-option *ngFor="let status of statusList" [value]="status.value">{{status.status}}</mat-option>
+                                    </mat-select>
+                                <mat-error *ngIf="isSubmitted && errorHandling('status', 'required')">
+                                    Please select the status!
+                                  </mat-error>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary mt-2">{{isEdit?'Update':'Add Station'}}</button>&nbsp;&nbsp;
+                                <button type="button" *ngIf="!isEdit" class="btn btn-primary mt-2" (click)="clear()">Clear</button>&nbsp;&nbsp;
+                                <button type="button" class="btn btn-primary mt-2" (click)="redirectToList()">Cancel</button>
+                            </div>
+
+                    </div>
+            
+                </div>
+            </div>
+
+
+        </div>
+        </div>
+    </form>
+</div>

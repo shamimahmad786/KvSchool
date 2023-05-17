@@ -1,0 +1,13 @@
+{
+    "teacherEntryForm": {
+        "name":"नाम",
+        "gender":"लिंग",
+        "dob":"जन्म की तारीख",
+        "socialCat":"सामाजिक श्रेणी",
+        "emailId":"ईमेल पता",
+        "mobileNo":"मोबाइल नंबर",
+        "male":"नर",
+        "female":"महिला",
+        "transgender":"ट्रांसजेंडर"
+    }
+}

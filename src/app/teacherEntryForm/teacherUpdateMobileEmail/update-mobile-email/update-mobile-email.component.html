@@ -1,0 +1,144 @@
+<div class="container-fluid px-4">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="shadow-sm bg-white p-3 rounded">
+                <div class="example-header">
+                    <mat-form-field>
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                    </mat-form-field>
+                </div>
+                <div class="example-container mat-elevation-z8">
+                    <mat-table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="sno">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.sno}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.name | titlecase}}</mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="email">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Email Id </mat-header-cell>
+                            <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.email}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="mobile">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile No. </mat-header-cell>
+                            <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.mobile}} </mat-cell>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="gender">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+                            <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="systchcode">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> System Employee Code </mat-header-cell>
+                            <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.systchcode}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="action">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                            <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
+                                <i class='bx bx-mobile-alt  bxStyle1 mr-2' title="Update"
+                                    (click)="onMobileClick(row.teacherId)" >{{row.b}}</i>
+                                <i class='bx bx-mail-send  bxStyle1 mr-2' title="Update"
+                                (click)="onEmailClick(row.teacherId)">{{row.c}}</i>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;">
+                        </mat-row>
+                    </mat-table>
+
+                    <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="onClick" class="col-md-3">
+            <form [formGroup]="teacherBasicInfoForm" (ngSubmit)="onSubmit()">
+                <div >
+                    <div class="card mt-83">
+                        <div class=" bg-profile-head">
+                            <h5 class="mb-0 p-2 FontTitle  text-white">Basic Information</h5>
+                        </div>
+                        <fieldset [disabled]="allowEdit">
+                            <div class="m-3 prof-fields">
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label class="labelSet">Name</label>
+                                        <input formControlName="name" type="text" class="form-control"
+                                            [(ngModel)]="singleTeacherData.name" disabled>
+                                    </div>
+                                   
+                                    
+                                        <div class="col-md-12 mt-3">
+                                            <label class="labelSet">Employee Id</label>
+                                            <input formControlName="teacherId" type="text" class="form-control"
+                                                [(ngModel)]="singleTeacherData.teacherId" disabled>
+                                        </div>
+                                        
+                                    <div *ngIf="!email" class="col-md-12 mt-3">
+                                        <label class="labelSet">Mobile Number</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="Enter mobile number" formControlName="mobNumber"
+                                            [(ngModel)]="singleTeacherData.mobile" disabled>
+                                    </div>
+                                    <div *ngIf="!email" class="col-md-12 mt-3">
+                                        <label class="labelSet">New Mobile Number</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="Enter new mobile number" formControlName="newMobileNum"
+                                            [(ngModel)]="newMobileNumber" >
+                                    </div>
+                                    <div *ngIf="!email" class="col-md-12 mt-3">
+                                        <label class="labelSet">Re-enter Mobile Number</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="Re-enter mobile number" formControlName=""
+                                            [(ngModel)]="reEnterMobileNumber" >
+                                    </div>
+                                    <!-- --Email-- -->
+                                    <div *ngIf="email" class="col-md-12 mt-3">
+                                        <label class="labelSet">Email Id</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="Email Id" formControlName="mobNumber"
+                                            [(ngModel)]="singleTeacherData.mobile" disabled>
+                                    </div>
+                                    <div *ngIf="email" class="col-md-12 mt-3">
+                                        <label class="labelSet">New Email Id</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="Enter new Email Id" formControlName="newMobileNum"
+                                            [(ngModel)]="newMobileNumber" >
+                                    </div>
+                                    <div *ngIf="email" class="col-md-12 mt-3">
+                                        <label class="labelSet">Re-enter Email Id</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="Re-enter Email Id" formControlName=""
+                                            [(ngModel)]="reEnterMobileNumber" >
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                         <ul class="m-0 p-0 getOTPMessage">
+                                             <li> <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1"
+                                                placeholder="OTP" formControlName="" style="width:70px;"></li>
+                                                <li> 
+                                                    <button type="button" class="btn btn-green-logout py-2 ms-2">Send OTP</button>
+                                                </li>
+                                         </ul>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                            <button class="btn btn-green btn-block" type="submit" >Verify OTP</button>
+                        </div> -->
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-green" type="submit">Verify OTP</button>
+                           
+                          </div>
+                    </div>
+                </div>                
+            </form>
+        </div>
+    </div>
+</div>

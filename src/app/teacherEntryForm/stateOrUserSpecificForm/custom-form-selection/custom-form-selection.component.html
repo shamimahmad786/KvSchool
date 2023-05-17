@@ -1,0 +1,230 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card shadow-sm p-3">
+                <div *ngFor="let control of actualForm; let i=index;">
+                    <div [ngSwitch]="control.question_type">
+                        <div *ngSwitchCase="'checkbox'">
+                            <div class="col-md-6">
+                                <div class="mt-2">
+                                    <h5 class="fontStyleGk"> <span class="question">Q. {{i+1}}</span>
+                                        {{control.question_text}}</h5>
+                                </div>
+
+                                <div class="form-check mb-2" *ngFor="let val1 of control.field_position_01">
+                                    <input class="form-check-input" type="checkbox" value="{{val1}}"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label mt-1" for="flexCheckDefault">
+                                        {{val1}}
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div *ngSwitchCase="'radio'">
+                            <div class="col-md-6">
+                                <div class="mt-2">
+                                    <h5 class="fontStyleGk"> <span class="question">Q. {{i+1}}</span>
+                                        {{control.question_text}}</h5>
+                                </div>
+                                <div class="form-check mb-2" *ngFor="let val1 of control.field_position_01">
+                                    <input class="form-check-input" type="radio" value="{{val1}}" id="flexCheckDefault">
+                                    <label class="form-check-label mt-3" for="flexCheckDefault">
+                                        {{val1}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngSwitchCase="'select'">
+                            <div class="col-md-6">
+                                <div class="mt-2">
+                                    <h5 class="fontStyleGk"> <span class="question">Q. {{i+1}}</span>
+                                        {{control.question_text}}</h5>
+                                </div>
+                                <div >
+                                    <select class="form-control">
+                                        <option value="-1">Select</option>
+                                        <option class="form-check mb-2" *ngFor="let val1 of control.field_position_01" value="{{val1}}">{{val1}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngSwitchCase="'input'">
+                            <div class="col-md-6">
+                                <div class="mt-2">
+                                    <h5 class="fontStyleGk"> <span class="question">Q. {{i+1}}</span>
+                                        {{control.question_text}}</h5>
+                                </div>
+                                <div >
+                                    <input formControlName="label" type="text" class="form-control" placeholder="Enter your answer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <div class="col-md-10 offset-md-1">
+                <div class="card shadow-sm p-3">
+                    <div class="row">
+                        <!-- <div class="col-md-1">
+                        <label>Q1</label>
+                    </div> -->
+                        <div class="col-md-8">
+                            <input formControlName="label" type="text" class="form-control"
+                                placeholder="Enter your question">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                    aria-label="Text input with segmented dropdown button" placeholder=""
+                                    value={{selectedLevel}} disabled>
+                                <div class="input-group-append">
+                                    <button type="button"
+                                        class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <ul class="dropDownUl">
+                                            <li (click)="onselectedlevel('Multiple Choice')"> <i
+                                                    class='bx bx-list-ul'></i>
+                                                Multiple Choice <span class="float-right CheckBOXX"><i
+                                                        class='bx bx-check'></i></span></li>
+                                            <li (click)="onselectedlevel('Radio Button')"> <i
+                                                    class='bx bx-select-multiple'></i>
+                                                Radio Button <span class="float-right CheckBOXX"><i
+                                                        class='bx bx-check'></i></span></li>
+                                            <li (click)="onselectedlevel('Dropdown')"> <i
+                                                    class='bx bx-code bx-rotate-90'></i> Dropdown <span
+                                                    class="float-right CheckBOXX"><i class='bx bx-check'></i></span>
+                                            </li>
+                                            <li (click)="onselectedlevel('Matrix')"> <i class='bx bx-grid'></i>
+                                                Matrix
+                                                <span class="float-right CheckBOXX"><i class='bx bx-check'></i></span>
+                                            </li>
+                                            <li (click)="onselectedlevel('Single Text')"> <img
+                                                    src="./assets/assets/img/single.png" /> Single Text
+                                                <span class="float-right CheckBOXX"><i class='bx bx-check'></i></span>
+                                            </li>
+                                            <li (click)="onselectedlevel('Multiple Text')"> <img
+                                                    src="./assets/assets/img/double.png" /> Multiple Text
+                                                <span class="float-right CheckBOXX"><i class='bx bx-check'></i></span>
+                                            </li>
+                                            <li (click)="onselectedlevel('Date Time')"> <i class='bx bx-time'></i>
+                                                Date
+                                                Time
+                                                <span class="float-right CheckBOXX"><i class='bx bx-check'></i></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row" *ngIf="setLableType != 'input' && setLableType != 'multipleText'">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <select formcontrolname="name" class="form-select my-1 mr-sm-2"
+                                id="inlineFormCustomSelectPref" (change)="onChangeType($event.target.value)">
+                                <option value="">Select Type</option>
+                                <option value="agree">Agree-Disagree</option>
+                                <option value="satisfied">Satisfied-Dissatisfied</option>
+                                <option value="yesno">Yes-No</option>
+                                <option value="interested">Interested-Not interested</option>
+                                <option value="easy">Easy-Difficult</option>
+                                <option value="always">Always-Never</option>
+                                <option value="approve">Approve-Disapprove</option>
+                                <option value="true">True-False</option>
+                                <option value="all">All-None</option>
+                                <option value="positive">Positive-Negative</option>
+                                <option value="clearly">Clearly-Not clearly</option>
+                                <option value="early">Early-Late</option>
+                                <option value="months">Months</option>
+                                <option value="week">Days of the week</option>
+                                <option value="income">Income</option>
+                                <option value="race">Race/Ethnicity</option>
+                                <option value="age">Age</option>
+                                <option value="frequency">Frequency</option>
+                                <option value="recentexp">Recent Experience</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-5">
+                        <ul class="quantities" formArrayName="quantities">
+                            <li *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i">
+                                <ul class="UlList">
+                                    <li *ngIf="setLableType == 'multiChoice';else other_content"> <input type="radio"
+                                            disabled /> </li>
+                                    <li *ngIf="setLableType == 'checkbox'; else other_content"> <input type="checkbox"
+                                            disabled /> </li>
+                                    <li
+                                        *ngIf="setLableType == 'multipleText' || setLableType == 'dateTime';else other_content">
+                                        <span style="color: #7f7f7f; font-size: 14px;">Label {{i+1}} &nbsp;</span>
+                                    </li>
+                                    <ng-template #other_content>
+                                        <li input type="" disabled> </li>
+                                    </ng-template>
+                                    <li class="font90"> <input type="text" formControlName="qty"
+                                            class="form-control form-control-sm mb-2" placeholder="Enter Something">
+                                    </li>
+                                    <li>
+                                        <div class="ControlButton"> <i class='bx bx-plus-circle' (click)="addQuantity()"
+                                                style='color:#7f7f7f; font-size:28px;'></i>
+                                            <i class='bx bx-minus-circle' (click)="removeQuantity(i)"
+                                                style='color:#7f7f7f; font-size:28px;'></i>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li *ngIf="onValid">
+                                <ul class="UlList border-bottom border-top pt-2 pb-3 p-0">
+                                    <li><input type="checkbox" (click)="optionalChechBox('other')" />
+
+                                    </li>
+                                    <li class="font90">Add an "Other" Answer Option or Comment Field</li>
+                                    <li><i class='bx bx-info-circle pt-1' style='color:#e67171; font-size:24px;'></i>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <li *ngIf="onValid">
+                                <ul class="UlList border-bottom pb-3 p-0">
+                                    <li><input type="checkbox" (click)="optionalChechBox('none')" /></li>
+                                    <li class="font90">Add a "None of the above" Answer Option</li>
+                                    <li><i class='bx bx-info-circle pt-1' style='color:#e67171; font-size:24px;'></i>
+                                    </li>
+                                </ul>
+                                <button type="submit" class="btn btn-success mt-3">Submit</button>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div *ngIf="setLableType == 'input' || setLableType == 'multipleText'">
+                        <button type="submit" class="btn btn-success mt-3">Submit</button>
+                    </div>
+                    <div *ngIf="onSelectType" class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <select class="form-select" formControlName="name" aria-label="Default select example"
+                                (change)="onChangeSelection($event.target.value)">
+                                <option value="null" disabled selected>Select one</option>
+                                <option class="bi bi-alarm" *ngFor="let data1 of selectioType; let i=index;"
+                                    value="{{data1}}">
+                                    {{data1}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

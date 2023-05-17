@@ -1,0 +1,234 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="shadow-sm bg-white p-3 rounded">
+               
+                <div class="row ">
+                   
+
+                    <!-- <div class="col-md-12">
+                            <div class="example-header">
+                            <mat-form-field>
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                            </mat-form-field>
+                            </div>
+                          
+                          <div class="example-container mat-elevation-z8">
+                          
+                            <mat-table [dataSource]="dataSource" matSort>
+                              <ng-container matColumnDef="sno">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header style="width:5%"> S.No. </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.sno}} </mat-cell>        
+                              </ng-container>
+                          
+                              <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.name | titlecase}}</mat-cell>
+                              </ng-container>
+                          
+                              <ng-container matColumnDef="dob">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.dob}} </mat-cell>
+                              </ng-container>
+                          
+                              <ng-container matColumnDef="email">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Email Id </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" > {{row.email}} </mat-cell>
+                              </ng-container>
+                        
+                              <ng-container matColumnDef="mobile">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile No. </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" > {{row.mobile}} </mat-cell>
+                              </ng-container>
+                        
+                              <ng-container matColumnDef="gender">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" > {{row.gender | titlecase}} </mat-cell>
+                              </ng-container>
+                        
+                              <ng-container matColumnDef="systchcode">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> System Teacher Code </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" > {{row.systchcode}} </mat-cell>
+                              </ng-container>
+                        
+                              <ng-container matColumnDef="action">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx" >
+                                   <i class='bx bx-show bxStyle1 mr-2' title="View" (click)="onViewClick(row.teacherId)">{{row.a}} </i>
+                                    <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit" (click)="onEditClick(row.teacherId)">{{row.b}}</i>
+                                    <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i> 
+                                    <i class='bx bx-box bxStyle1' title="Dropbox">{{row.d}}</i>
+                                </mat-cell>                  
+                              </ng-container>
+                        
+                              
+                          
+                              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                              <mat-row *matRowDef="let row; columns: displayedColumns;">
+                              </mat-row>
+                            </mat-table>
+                          
+                            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+                          </div>
+                    </div> -->
+                    <div class="example-header">
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
+                        </mat-form-field>
+                    
+                        <!-- <mat-form-field>
+                          <select (change)="applyFilterOnSelect($event.target.value)">
+                              <option value="Teaching">Teaching</option>
+                              <option value="Non-Teaching">Non-Teaching</option>
+                          </select>
+                      </mat-form-field> -->
+                        &nbsp;&nbsp;
+                        <mat-form-field>
+                            <mat-label>Select Filter</mat-label>
+                            <mat-select (selectionChange)="applyFilterOnSelect($event.value)">
+                                <mat-option value="Teaching">Teaching</mat-option>
+                                <mat-option value="Non-Teaching">Non-Teaching</mat-option>
+                                <mat-option value="NA">NA</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    
+                    </div>
+                    <div class="example-container mat-elevation-z8">
+                        <mat-table [dataSource]="dataSource" matSort>
+                            <ng-container matColumnDef="sno">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.sno}} </mat-cell>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="empcode">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Post </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.empcode}} </mat-cell>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Subject </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.name | titlecase}}</mat-cell>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="gender">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Employee Code </mat-header-cell>
+                                <!-- <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender | genderPipe }} </mat-cell> -->
+                                <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender}} </mat-cell>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="dob">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Employee Id </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.dob | date}} </mat-cell>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="staffType">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Name </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.staffType}} </mat-cell>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="schoolName">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Gender </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.schoolName}}</mat-cell>
+                            </ng-container>
+                    
+                            <!-- <ng-container matColumnDef="dropboxDate">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>Dropboxed Date </mat-header-cell>
+                                <mat-cell *matCellDef="let row">{{row.dropboxDate}}</mat-cell>
+                            </ng-container> -->
+                    
+                    
+                    
+                            <!-- <ng-container matColumnDef="email">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header> Email Id </mat-header-cell>
+                              <mat-cell *matCellDef="let row" [style.color]="row.color">
+                                  <span (click)="onVerifyEmail(row.teacherId)" class="AnchoR">
+                                      <div *ngIf="emailNoti;  else elseBlock">
+                                          <i class='bx bx-check-circle'
+                                              style='color:#003f07; font-size:22px; position: absolute; '></i>
+                                      </div>
+                                      <ng-template #elseBlock>
+                                          <i class='bx bx-error-circle bx-flip-horizontal bx-tada'
+                                              style='color:#f94f4f; font-size:22px; position: absolute;'></i>
+                                      </ng-template>
+                    
+                                      <span class="ms-4"> {{row.email}}</span>
+                                  </span>
+                              </mat-cell>
+                          </ng-container> -->
+                    
+                            <!-- <ng-container matColumnDef="mobile">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile No. </mat-header-cell>
+                              <mat-cell *matCellDef="let row" [style.color]="row.color">
+                                  <span (click)="onVerifyMobile(row.teacherId)" class="AnchoR">
+                                      <div *ngIf="mobileNoti;  else elseBlock">
+                                          <i class='bx bx-check-circle'
+                                              style='color:#003f07; font-size:22px; position: absolute; '></i>
+                                      </div>
+                                      <ng-template #elseBlock>
+                                          <i class='bx bx-error-circle bx-flip-horizontal bx-tada'
+                                              style='color:#f94f4f; font-size:22px;'></i>
+                                      </ng-template>
+                    
+                                      <span class="ms-4 "> {{row.mobile}}</span>
+                                  </span>
+                              </mat-cell>
+                          </ng-container> -->
+                    
+                    
+                    
+                            <!-- <ng-container matColumnDef="status">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+                              <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
+                    
+                                  <span *ngIf="row.approved === 'SI'" class=' bx-badge-check-sch bxStyle1 mr-2'> School
+                                      Initiated</span>
+                                  <span *ngIf="row.approved === 'SA'" class=' bx-badge-check-verified bxStyle1 mr-2'>Verified</span>
+                                  <span *ngIf="row.approved === 'TA'"
+                                      class=' bx-badge-check-pSch bxStyle1 mr-2'>Pending(School)</span>
+                    
+                                  <span
+                                      *ngIf="row.approved != 'TI' && row.approved != 'TA' && row.approved != 'SI' && row.approved != 'SA'"
+                                      class=' bx-message-square-x-ni bxStyle1 mr-2'>Not Initiated</span>
+                                  <span *ngIf="row.approved == 'TI'" class=' bx-loader-circle-tch bxStyle1 mr-2'>Pending(Teacher)
+                                  </span>
+                              </mat-cell>
+                          </ng-container> -->
+                    
+                            <!-- <ng-container matColumnDef="systchcode">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header>User Id </mat-header-cell>
+                              <mat-cell *matCellDef="let row">
+                                  <span *ngIf="row.systchcode != 'null' && row.systchcode != '' ">{{row.systchcode}}</span>
+                                  <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
+                                      <button [disabled]="disabledCreateButton" type="button" class="btn btn12 btn-outline-primary"
+                                          (click)="createUser(row.teacherId)">Create
+                                          User</button>
+                                  </span>
+                              </mat-cell>
+                          </ng-container> -->
+                    
+                            <ng-container matColumnDef="action">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Action (Mark Surplus) </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
+                                    <!-- <i class='bx bx-show bxStyle1 mr-2' title="View" (click)="onViewClick(row.teacherId)">{{row.a}} </i>
+                                  <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"
+                                      (click)="onEditClick(row.teacherId)">{{row.b}}</i>
+                                  <i *ngIf="row.approved == 'TA'" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"
+                                      (click)="onVerifyClick(row.teacherId)">{{row.c}}</i> -->
+                                    <!-- <i class='bx bx-import' ></i> -->
+                                    <i class='bx bxs-file-export' title="Mark Surplus" (click)="getEmployee(row.teacherId)">{{row.d}}</i>
+                                    <!-- <box-icon name='reset' animation='tada' color='#0e0e0e' >{{row.d}}</box-icon> -->
+                                    <!-- <box-icon name='reset' animation='spin' flip='horizontal' color='#0e0e0e' ></box-icon> -->
+                                    <!-- <i class='bx bx-box bxStyle1' title="Dropbox" (click)="onDropboxClick(row.teacherId)"></i> -->
+                                </mat-cell>
+                            </ng-container>
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;">
+                            </mat-row>
+                        </mat-table>
+                        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

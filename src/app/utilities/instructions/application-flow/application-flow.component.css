@@ -1,0 +1,91 @@
+.table-step thead {
+    text-align:center;
+    background-color:#3bac7a;
+}
+.table-step thead th {
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:#fff;
+    border-right:1px solid #ecf5f1;
+}
+.table-step thead th.deep {
+    background-color:#268d5f;
+}
+tr.sub-head {
+    font-weight:600;
+    background-color:#f7f7f7;
+}
+tr.sub-head th {
+    border-right:1px solid #eaeaea;	
+    font-size:16px;
+    font-weight:600;
+}
+tr.sub-head td.deep {
+    font-weight:600;
+    background-color:#f3f3f3;
+}
+.table-step th {
+    font-size:15px;
+    font-weight:600;
+    line-height:22px;
+    text-align:center;
+}
+.table-step td {
+    padding:10px 20px;
+    font-size:14px;
+    line-height:22px;
+}
+.table-step td strong {
+    font-weight:500;
+}
+.table-step td.stepcolor {
+    background-color:#e4fff3;
+    border-right:1px solid #bbe3d1;
+    position:relative;
+}
+.table-step td.stepcolor:last-child {
+    border-right:none;
+}
+.table-step td.non-stepcolor {
+    background-color:#fbfbfb;
+    border-right:1px solid #fff;
+    position:relative;
+}
+.table-step td.stepcolor img {
+    position:absolute;
+    width:21px;
+    height:10px;
+    bottom:20px;
+    right:20px;
+}
+.table-step td.stepcolor img.down {
+    width:16px;
+    height:15px;
+}
+.table-step img.down1 {
+    width:13px;
+    height:18px;
+}
+.table-step td.stepcolor img.up {
+    position:absolute;
+    width:16px;
+    height:15px;
+    top:20px;
+    right:20px;
+}
+
+.close {
+    position:relative;
+}
+.close-btn {
+    position:absolute;
+    width:28px;
+    height:28px;
+    top:15px;
+    right:15px;
+    outline: none;
+}
+.close-btn {
+    outline: none;
+}

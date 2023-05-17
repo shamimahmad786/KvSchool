@@ -1,0 +1,12 @@
+{
+    "tDashboard": {
+        "login": "लॉग इन करें",
+        "home": "घर",
+        "about": "हमारे बारे में",
+        "dashboard": "शिक्षक डैशबोर्ड",
+        "Dashboard&Reports": "डैशबोर्ड और रिपोर्ट",
+        "EmployeeProfile": "कर्मचारी प्रोफ़ाइल",
+        "EmployeeTransfer": "कर्मचारी स्थानांतरण",
+        "AdminModule": "व्यवस्थापक मॉड्यूल"
+    }
+}

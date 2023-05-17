@@ -1,0 +1,52 @@
+.mat-header-cell {
+    color: rgb(23 68 60);
+    font-size: 14px;
+  }
+  .IconBx i {
+    font-size: 20px;
+    color: #545e7d;
+    cursor: pointer;
+  }
+
+.faq-form {
+    position: relative;
+}
+.faq-form .search-icon {
+    position: absolute;
+    right: 12px;
+    top: 9px;
+    width: 16px;
+    height: 16px;
+}
+
+.mat-column-schoolName {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 20% !important;
+  /* width:10% !important; */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-name {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 18% !important;
+  /* width:10% !important; */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}

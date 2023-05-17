@@ -1,0 +1,17 @@
+ 
+  table {
+    width: 100%;
+  }
+  th.mat-header-cell:first-of-type{
+    padding-left: 8px;
+  
+  }
+  th.mat-header-cell{
+    padding-left: 11px!important;
+  }
+  td.mat-cell{
+    padding-left: 11px!important;
+  }
+  .bg-1{
+    background-color: #fff;
+  }

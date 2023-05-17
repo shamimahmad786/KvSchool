@@ -1,0 +1,99 @@
+<div class="container-fluid px-4">
+    <div class="row" style="background-color:#fff ;">
+
+        <div class="col-lg-12 align-right mb-2 mt-2">
+            <button mat-raised-button color="primary" class="float-end" (click)="redirectto()">Add</button>
+        </div>
+        <div class="col-lg-12">
+          <form [formGroup]="stationCategoryMF" (ngSubmit)="search()">
+            <div class="row mb-3"> 
+                <div class="col-md-4 form-group py-1">
+                    <mat-form-field class="example-full-width"  style="width: 100%; height: 10px;">
+                        <mat-label class="mat_label">Select Station</mat-label>
+                        <input type="text"
+                               placeholder="Station Code"
+                               aria-label="Station Code"
+                               matInput
+                               [formControl]="stationCategoryMF['controls'].stationCode"
+                               [matAutocomplete]="auto" >
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
+                          <mat-option *ngFor="let option of filteredOptions | async" [value]="option.stationName" >
+                            {{option.stationName}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                      <div class="mt-2">
+                      <span class="help-block text-danger"
+                      *ngIf="!stationCategoryMF.get('stationCode').valid && stationCategoryMF.get('stationCode').touched">Please Select Station!</span></div>
+                </div>
+                <!-- <div class="col-md-4 form-group">
+ 
+                    <mat-form-field style="width: 100%;">
+                        <mat-label class="mat_label titleSet">Select Station</mat-label>
+                        <mat-select  formControlName="stationCode">
+                            <mat-option value="">Select</mat-option>
+                            <mat-option [value]="station.stationName" *ngFor="let station of stationList">{{station.stationName}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span class="help-block text-danger"
+                    *ngIf="!stationCategoryMF.get('stationCode').valid && stationCategoryMF.get('stationCode').touched">Please Enter Region!</span>
+                </div> -->
+                <div class="col-md-4 form-group">
+                    <button mat-raised-button color="primary" type="submit">Search</button>
+                </div>
+            </div>
+           </form>
+        </div>
+        <div *ngIf="dataSource">
+            <mat-form-field style="width: 20%;">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Category Name">
+            </mat-form-field>
+         </div>
+        <div class="example-container mat-elevation-z8">
+            <table mat-table *ngIf="dataSource.data.length > 0" [dataSource]="dataSource" matSort>
+                <!-- Position Column -->
+                <ng-container matColumnDef="sno">
+                    <th mat-header-cell *matHeaderCellDef> S.No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="stationname">
+                    <th mat-header-cell *matHeaderCellDef> Station Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.stationname|titlecase}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="categoryname">
+                    <th mat-header-cell *matHeaderCellDef> Category Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.categoryname|uppercase}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fromdate">
+                    <th mat-header-cell *matHeaderCellDef> From Date</th>
+                    <td mat-cell *matCellDef="let element"> {{element.fromdate|date:"dd/MM/YYYY"}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="todate">
+                    <th mat-header-cell *matHeaderCellDef> To Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.todate|date:"dd/MM/YYYY"}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{(element.status==true)?'Active':'Inactive'}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data Found</td>
+                </tr>
+            </table>
+
+
+            <mat-paginator [pageSizeOptions]="[10,20, 25]"> </mat-paginator>
+        </div>
+    </div>
+</div>

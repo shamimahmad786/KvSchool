@@ -1,0 +1,193 @@
+/* 
+@import '~ngx-toastr/toastr';
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Montserrat', sans-serif; }
+body {
+    font-size: 14px;
+    overflow-x: hidden;
+    font-family: "Montserrat", sans-serif;
+    color: #242934;
+  
+}
+.checkbox_animated:after {
+    content: "";
+    position: absolute;
+    top: -0.125rem;
+    left: 0;
+    width: 1.3rem;
+    height: 1.3rem;
+    background: #fff;
+    border: 2px solid #e6edef;
+    cursor: pointer;
+}
+.checkbox_animated:checked:before {
+    -webkit-transform: rotate(-45deg) scale(1, 1);
+    transform: rotate(-45deg) scale(1, 1);
+}
+.checkbox_animated:before {
+    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75), -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    -webkit-transform: rotate(-45deg) scale(0, 0);
+    transform: rotate(-45deg) scale(0, 0);
+    content: "";
+    position: absolute;
+    left: 0.25rem;
+    top: 0.225rem;
+    z-index: 1;
+    width: 0.75rem;
+    height: 0.375rem;
+    border: 2px solid #24695c;
+    border-top-style: none;
+    border-right-style: none;
+}
+
+.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+    font-size: 35px ! important;
+    background: #ff5556 ! important;
+    padding:3px 7px 8px !important;
+    color: white ! important; 
+  }
+  .border-right {
+    border-right: 1px solid #eeeeee;
+}
+  .owl-carousel{ padding-bottom: 70px;;}
+
+  ag-grid-angular {
+    width: 100% !important;
+}
+
+
+.mat-select-search-inside-mat-option .mat-select-search-input {
+    background: rgba(36, 105, 92, 0.1) !important;
+    border-radius: 45px !important;
+    margin: 4px;
+    width: 96% !important;
+    margin: 5px !important;
+    height: 31px ! important;
+    border: 2px solid #24695c !important;
+}
+
+.mat-icon-button i,
+.mat-icon-button .mat-icon {
+    line-height: 18px !important;
+} */
+
+
+/* You can add global styles to this file, and also import other style files */
+
+@import '~ngx-toastr/toastr';
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
+/* @import '~ngx-toastr/toastr-bs4-alert'; */
+
+
+/* @import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins'; */
+
+
+/* @import '~ngx-toastr/toastr-bs4-alert'; */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+body {
+    font-size: 14px;
+    overflow-x: hidden;
+    font-family: "Montserrat", sans-serif;
+    color: #242934;
+}
+
+.checkbox_animated:after {
+    content: "";
+    position: absolute;
+    top: -0.125rem;
+    left: 0;
+    width: 1.3rem;
+    height: 1.3rem;
+    background: #fff;
+    border: 2px solid #e6edef;
+    cursor: pointer;
+}
+
+.checkbox_animated:checked:before {
+    -webkit-transform: rotate(-45deg) scale(1, 1);
+    transform: rotate(-45deg) scale(1, 1);
+}
+
+.checkbox_animated:before {
+    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75), -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    -webkit-transform: rotate(-45deg) scale(0, 0);
+    transform: rotate(-45deg) scale(0, 0);
+    content: "";
+    position: absolute;
+    left: 0.25rem;
+    top: 0.225rem;
+    z-index: 1;
+    width: 0.75rem;
+    height: 0.375rem;
+    border: 2px solid #24695c;
+    border-top-style: none;
+    border-right-style: none;
+}
+
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel button.owl-dot {
+    font-size: 35px ! important;
+    background: #ff5556 ! important;
+    padding: 3px 7px 8px !important;
+    color: white ! important;
+}
+
+.border-right {
+    border-right: 1px solid #eeeeee;
+}
+
+.owl-carousel {
+    padding-bottom: 70px;
+    ;
+}
+
+ag-grid-angular {
+    width: 100% !important;
+}
+
+.mat-select-search-inside-mat-option .mat-select-search-input {
+    background: rgba(36, 105, 92, 0.1) !important;
+    border-radius: 45px !important;
+    margin: 4px;
+    width: 96% !important;
+    margin: 5px !important;
+    height: 31px ! important;
+    border: 2px solid #24695c !important;
+}
+
+.mat-icon-button i,
+.mat-icon-button .mat-icon {
+    line-height: 18px !important;
+}
+
+.color-satyam {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 36px;
+    color: #722123;
+}

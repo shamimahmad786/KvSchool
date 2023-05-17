@@ -1,0 +1,389 @@
+<!-- <nav class="sb-sidenav accordion sb-sidenav-light bg-white shadow-sm" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <h4 class="TeacherTitle">Teachers Dashboard</h4>
+                <a class="nav-link navStyle mt-2"  routerLinkActive="active" >
+                    <i class='bx bx-home-circle bxStyle'></i>
+                    <span class="TitleSetheader">Dashboard</span>
+                </a>
+                <a class="nav-link navStyle " routerLink="/teacher/profile"  routerLinkActive="active" >
+                    <i class='bx bxs-school bxStyle'></i>
+                    <span class="TitleSetheader"> School Profile</span>
+                </a>
+              
+                <a class="dropdown GkDropbx">
+                    <a class="nav-link navStyle dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class='bx bxl-dropbox bxStyle'></i>
+                        <span class="TitleSetheader">Profile</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="nav-link navStyle" routerLinkActive="active"routerLink="/teacher/teacherHome">
+                            <i class='bx bxs-inbox bxStyle'></i>
+                            <span class="TitleSetheader">New</span>
+                        </a>
+        
+                        <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teacherOutbox">
+                            <i class='bx bx-archive-out bxStyle' ></i>
+                            <span class="TitleSetheader">Copy From Dropbox</span>
+                        </a>
+
+                        <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teachersDetail">
+                            <i class='bx bx-archive-out bxStyle' ></i>
+                            <span class="TitleSetheader">View / Edit</span>
+                        </a>
+
+                        <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teachersDetail">
+                            <i class='bx bx-archive-out bxStyle' ></i>
+                            <span class="TitleSetheader">Detailed Profile</span>
+                        </a>
+
+                        <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/updateEmailMobile">
+                            <i class='bx bx-archive-out bxStyle' ></i>
+                            <span class="TitleSetheader">Update Email & Mobile</span>
+                        </a>
+                    </div>
+                </a>
+                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/customForm">
+                    <i class='bx bx-question-mark bxStyle'></i>
+                    <span class="TitleSetheader">State Specific Question</span>
+                </a>
+                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teachersDetail">
+                    <i class='bx bx-user-pin bxStyle'></i>
+                    <span class="TitleSetheader">Teachers Detail</span>
+                </a>
+             
+                <span class="dropdown GkDropbx">
+                    <a class="nav-link navStyle dropdown-toggle"   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class='bx bxl-dropbox bxStyle'></i>
+                        <span class="TitleSetheader">DropBox</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teacherInbox">
+                            <i class='bx bxs-inbox bxStyle'></i>
+                            <span class="TitleSetheader">Inbox</span>
+                        </a>
+        
+                        <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teacherOutbox">
+                            <i class='bx bx-archive-out bxStyle' ></i>
+                            <span class="TitleSetheader">Outbpx</span>
+                        </a>
+                    </div>
+                </span>
+
+            </div>              
+        </div>
+    </nav> -->
+
+<nav class="sidebar sb-sidenav accordion sb-sidenav-light bg-white shadow-sm" style="position:relative" id="sidenavAccordion">
+    <!-- <nav class="sidebar card py-2 mb-4"> -->
+    <a id="sidebarToggle" class="sidebarToggle" style="text-align: right;position: absolute;text-align: right;right: -30px !important;">
+        <i class='bx bx-chevrons-left'></i>
+    </a>
+    <ul class="nav flex-column" id="nav_accordion">
+        <!-- <h4 class="TeacherTitle">Teachers Dashboard</h4> -->
+        <!-- <li class="nav-item">
+            <a class="nav-link navStyle mt-2" routerLinkActive="active">
+                <i class='bx bx-home-circle bxStyle'></i>
+                <span class="TitleSetheader">Dashboard</span>
+            </a>
+        </li> -->
+
+        <!-- Dashboard ---Starts -->
+        <li *ngIf="showNational" class="nav-item">
+            <a class="nav-link navStyle " routerLink="/teacher/nationalDashboard" routerLinkActive="active">
+                <i class='bx bxs-school bxStyle'></i>
+                <span class="TitleSetheader">
+                    Dashboard</span>
+            </a>
+        </li>
+        <li *ngIf="showRegion" class="nav-item">
+            <a class="nav-link navStyle " routerLink="/teacher/regionDashboard" routerLinkActive="active">
+                <i class='bx bxs-school bxStyle'></i>
+                <span class="TitleSetheader">
+                    Dashboard</span>
+            </a>
+        </li>
+        <li *ngIf="showStation" class="nav-item">
+            <a class="nav-link navStyle " routerLink="/teacher/stationDashboard" routerLinkActive="active">
+                <i class='bx bxs-school bxStyle'></i>
+                <span class="TitleSetheader">
+                    Dashboard</span>
+            </a>
+        </li>
+        <li *ngIf="showSchool" class="nav-item">
+            <a class="nav-link navStyle " routerLink="/teacher/profile" routerLinkActive="active">
+                <i class='bx bxs-school bxStyle'></i>
+                <span class="TitleSetheader">
+                    Dashboard</span>
+            </a>
+        </li>
+        <!-- Dashboard ---Ends -->
+
+        <li class="nav-item" *ngIf="kvIfConditions == false">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teachersDetail">
+                <i class='bx bx-user-pin bxStyle'></i>
+                <span class="TitleSetheader">Employee Details</span>
+            </a>
+        </li>
+        <!-- <ng-container > -->
+
+        <li *ngIf="kvIfConditions == true" class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/kvsTchDetails">
+                <i class='bx bx-user-pin bxStyle'></i>
+                <span class="TitleSetheader">Employee Details </span>
+            </a>
+        </li>
+
+
+
+        <!-- </ng-container> -->
+        <!-- <li class="nav-item has-submenu">
+            <a class="nav-link navStyle">
+                <i class='bx bxl-dropbox bxStyle'></i>
+                <span class="TitleSetheader">Profile</span>
+                <i class='bx bx-chevron-down bxStyle dropIcon'></i>
+            </a>
+            <ul class="submenu collapse">
+                <li>
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teacherHome">
+                        <i class='bx bxs-inbox bxStyle'></i>
+                        <span class="TitleSetheader">New</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teacherOutbox">
+                        <i class='bx bx-archive-out bxStyle'></i>
+                        <span class="TitleSetheader">Copy From Dropbox</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teachersDetail">
+                        <i class='bx bx-archive-out bxStyle'></i>
+                        <span class="TitleSetheader">View / Edit</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teachersDetail">
+                        <i class='bx bx-archive-out bxStyle'></i>
+                        <span class="TitleSetheader">Detailed Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/updateEmailMobile">
+                        <i class='bx bx-archive-out bxStyle'></i>
+                        <span class="TitleSetheader">Update Email & Mobile</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li> -->
+
+
+        <!-- Temporary Comment By Shamim -->
+        <!-- <li class="nav-item has-submenu">
+            <a class="nav-link nav-link navStyle" href="#">
+                <i class='bx bxl-dropbox bxStyle'></i>
+                <span class="TitleSetheader">DropBox</span>
+                <i class='bx bx-chevron-down bxStyle dropIcon'></i>
+            </a>
+            <ul class="submenu collapse">
+                <li>
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teacherOutbox">
+                        <i class='bx bx-archive-out bxStyle'></i>
+                        <span class="TitleSetheader">Outbox</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li> -->
+        <!-- End  -->
+
+
+        <!-- <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/surveyMaster">
+                <i class='bx bx-user-pin bxStyle'></i>
+                <span class="TitleSetheader">Survey Master</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/customForm">
+                <i class='bx bx-question-mark bxStyle'></i>
+                <span class="TitleSetheader">State Specific Question</span>
+            </a>
+        </li> -->
+
+
+
+        <!-- Temporary commented by Shamim -->
+        <!-- <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/kvsTchTransfer">
+                <i class='bx bx-transfer bxStyle'></i>
+                <span class="TitleSetheader">Employee Transfer</span>
+            </a>
+        </li> -->
+        <!-- End -->
+
+
+
+        <li *ngIf="showNational" class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/kvSanctionedPost">
+                <!-- <i class='bx bx-transfer bxStyle'></i> -->
+                <i class='bx bx-calculator bxStyle'></i>
+                <span class="TitleSetheader">Sanctioned Post</span>
+            </a>
+        </li>
+
+        <li *ngIf="showNational" class="nav-item">
+            <a class="nav-link navStyle " routerLink="/teacher/nationalReport" routerLinkActive="active">
+                <i class='bx bxs-school bxStyle'></i>
+                <span class="TitleSetheader">
+                Report</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/changePassword">
+                <i class='bx bxs-key bxStyle'></i>
+                <span class="TitleSetheader"> Change Password </span>
+            </a>
+        </li>
+
+
+
+        <!-- <li *ngIf="showNational" class="nav-item">
+            <a class="nav-link navStyle " routerLink="/teacher/nationalReport" routerLinkActive="active">
+                <i class='bx bxs-report bxStyle'></i>
+                <span class="TitleSetheader">
+                    Reports</span>
+            </a>
+        </li>
+        <li *ngIf="showSchool" class="nav-item">
+            <a class="nav-link navStyle " routerLink="/teacher/schoolReport" routerLinkActive="active">
+                <i class='bx bxs-report bxStyle'></i>
+                <span class="TitleSetheader">
+                    Reports</span>
+            </a>
+        </li> -->
+
+        <!-- <li class="nav-item has-submenu">
+            <a class="nav-link nav-link navStyle" href="#">
+                <i class='bx bxl-dropbox bxStyle'></i>
+                <span class="TitleSetheader">Surplus Deployment</span>
+                <i class='bx bx-chevron-down bxStyle dropIcon'></i>
+            </a>
+            <ul class="submenu collapse">
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/surplusListing">
+                        <i class='bx bx-book-add bxStyle' ></i>
+                        <span class="TitleSetheader">Sanctioned Post</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/identifySurplus">
+                        <i class='bx bx-book-add bxStyle' ></i>
+                        <span class="TitleSetheader">Identify Surplus</span> 
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/surplusStaff">
+                        <i class='bx bx-book-add bxStyle' ></i>
+                        <span class="TitleSetheader">Surplus Staff</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li> -->
+
+
+        <li class="nav-item">
+
+            <a class="nav-link nav-link navStyle" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+                <i class='bx bxs-notepad bxStyle'></i>
+                <span class="TitleSetheader">Masters</span>
+                <i class='bx bx-chevron-down bxStyle dropIcon'></i>
+            </a>
+
+            <ul class="collapse p-0 m-0" id="collapseExample">
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionMaster">
+                        <i class='bx bx-location-plus bxStyle'></i>
+                        <span class="TitleSetheader">Region Master</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationMaster">
+                        <i class='bx bx-polygon bxStyle'></i>
+                        <span class="TitleSetheader">Station Master</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/schoolMaster">
+                        <i class='bx bxs-school bxStyle'></i>
+                        <span class="TitleSetheader">School Master</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMaster">
+                        <i class='bx bxs-vector bxStyle'></i>
+                        <span class="TitleSetheader">Station Category Master</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stafftypeMaster">
+                        <i class='bx bxs-vector bxStyle'></i>
+                        <span class="TitleSetheader">Staff Type Master</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/designationMaster">
+                        <i class='bx bxs-vector bxStyle'></i>
+                        <span class="TitleSetheader">Designation Master</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/subjectMaster">
+                        <i class='bx bxs-vector bxStyle'></i>
+                        <span class="TitleSetheader">Subject Master</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionStationMapping">
+                        <i class='bx bx-station bxStyle'></i>
+                        <span class="TitleSetheader">Region Station Mapping</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMapping">
+                        <i class='bx bx-station bxStyle'></i>
+                        <span class="TitleSetheader">Station Category Mapping</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/schoolStationMapping">
+                        <i class='bx bx-station bxStyle'></i>
+                        <span class="TitleSetheader">School Station Mapping</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stafftypePostMapping">
+                        <i class='bx bx-station bxStyle'></i>
+                        <span class="TitleSetheader">Staff-Type-Post Mapping</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/postSubjectMapping">
+                        <i class='bx bx-station bxStyle'></i>
+                        <span class="TitleSetheader">Post-Subject Mapping</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/sanctioned-post">
+                        <i class='bx bx-station bxStyle'></i>
+                        <span class="TitleSetheader">Sanctioned-Post Mapping</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</nav>

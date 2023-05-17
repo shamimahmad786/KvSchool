@@ -1,0 +1,24 @@
+.mat-option {
+    height: 35px;
+}
+
+::ng-deep .mat-optgroup-label {
+    display: none !important;
+}
+
+mat-form-field {
+    width: 99% !important;
+}
+
+.mat-select-search-panel {
+    margin-top: 100px !important;
+}
+
+span.ng-star-inserted mat-icon {
+    position: relative;
+    top: 7px;
+}
+
+a {
+    cursor: pointer !important;
+}

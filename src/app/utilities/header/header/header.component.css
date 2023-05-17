@@ -1,0 +1,19 @@
+i.bx-dots-vertical-rounded {
+    background: #e9f0ee;
+    padding: 5px 10px 5px;
+    color: #24695c;
+    font-size:20px; font-weight: 700;
+    cursor:pointer;
+    border-radius: 5px;
+}
+
+.dropdown-menu {
+    top: 100%;
+    left: -140px ! important;
+    margin-top:0px;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #f5f5f5;
+    background-color: #24695c;
+}

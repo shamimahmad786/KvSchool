@@ -1,0 +1,122 @@
+<mat-card>
+
+
+
+    <mat-card-title>Reports- {{reportFullName}}</mat-card-title>
+     <div class="row">
+
+        
+    </div> 
+    <div class="row">
+        <div class="col-md-12 ">
+            <button class="btn btn-success float-end" (click)="download()" style=" background: #24695c;">Download PDF</button>
+            <button class="btn btn-success float-end mx-2" routerLink="/teacher/nationalReport" style=" background: #24695c;">Back</button>       
+            
+        </div>
+    </div>
+
+
+    <div class="row" *ngIf="reportId==1">
+        <div class="col-sm-2">
+            <mat-form-field>
+                <mat-select [formControl]="regionCtrl" placeholder="Region" (selectionChange)="regionChange($event.value)" #regionSelect disableOptionCentering>
+                    <mat-option>
+                        <ngx-mat-select-search [formControl]="regionFilterCtrl"></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let region of filteredRegion | async" [value]="region">
+                        {{region.regionName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+            <mat-form-field>
+                <mat-select [formControl]="stationCtrl" placeholder="Station" (selectionChange)="getSchoolByStation($event.value)" #stationSelect disableOptionCentering>
+                    <mat-option>
+                        <ngx-mat-select-search [formControl]="stationFilterCtrl"></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let station of filteredStation | async" [value]="station">
+                        {{station.stationName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+            <mat-form-field>
+                <mat-select [formControl]="schoolCtrl" placeholder="school" (selectionChange)="getStaffBySchool($event.value)" #schoolSelect disableOptionCentering>
+                    <mat-option>
+                        <ngx-mat-select-search [formControl]="schoolFilterCtrl"></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let school of filteredSchool | async" [value]="school">
+                        {{school.kvName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 2px;" *ngIf="reportId==1">
+        <div class="col-sm-6 mb-3">
+            <mat-toolbar color="primary" style="height: 45px; font-size: 16px; font-weight: bold; color: #E6E8EA; background: #24695c;">
+                <!-- <span><a mat-button (click)="breadCrumbMain()" style="color: white;"
+      >Main</a
+    ></span -->
+                <!-- > -->
+
+                <span *ngFor="let m of menuHeader; let indx = index" style="color: white;">
+    <a mat-button (click)="breadCrumb(menuHeader, indx)" style=""
+      >{{ m.label }}
+    </a>
+    <ng-container *ngIf="menuHeader.length-1 !=indx">
+        <mat-icon fxFlex="10">{{m.icon}}</mat-icon>
+    </ng-container>
+   
+  </span>
+            </mat-toolbar>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <ag-grid-angular style="width: 500px; height: 500px;" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [groupDisplayType]="groupDisplayType" [showOpenedGroup]="true"
+            [animateRows]="true" [gridOptions]="gridOptions" (gridReady)="onGridReady($event)">
+        </ag-grid-angular>
+    </div>
+</mat-card>
+
+<!-- 
+<div class="row">
+    <div class="col-sm-2">
+        <mat-form-field>
+            <mat-select [formControl]="regionCtrl" placeholder="Region" (selectionChange)="regionChange($event.value)" #regionSelect>
+                <mat-option>
+                    <ngx-mat-select-search [formControl]="regionFilterCtrl"></ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let region of filteredRegion | async" [value]="region">
+                    {{region.regionName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+        <mat-form-field>
+            <mat-select [formControl]="stationCtrl" placeholder="Station" (selectionChange)="getSchoolByStation($event.value)" #stationSelect>
+                <mat-option>
+                    <ngx-mat-select-search [formControl]="stationFilterCtrl"></ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let station of filteredStation | async" [value]="station">
+                    {{station.stationName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+        <mat-form-field>
+            <mat-select [formControl]="schoolCtrl" placeholder="school" #schoolSelect>
+                <mat-option>
+                    <ngx-mat-select-search [formControl]="schoolFilterCtrl"></ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let school of filteredSchool | async" [value]="school">
+                    {{school.kvName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div> -->

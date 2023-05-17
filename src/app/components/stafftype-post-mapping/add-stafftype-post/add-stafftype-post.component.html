@@ -1,0 +1,58 @@
+
+<div class="container-fluid px-4">
+    <form [formGroup]="stafftypePostForm" (ngSubmit)="submit()">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-83">
+                    <div class=" bg-profile-head">
+                        <h5 class="mb-0 p-2 FontTitle  text-white">Add New Staff-Type-Post Mapping</h5>
+                    </div>
+                 
+                    <div class="m-3 prof-fields">
+                        <div class="row">
+                                   
+                            <div class="col-md-5 form-group mt-3">
+                                    <label class="titleSet">Select Staff-Type</label>
+                                    <mat-select formControlName="staffType"  class="form-control">
+                                        <mat-option value="">Select Staff-Type</mat-option>
+                                        <mat-option *ngFor="let staffType of staffTypeList" [value]="staffType.id">{{staffType.staffType}}</mat-option>
+                                    </mat-select>
+                                <mat-error *ngIf="isSubmitted && errorHandling('staffType', 'required')">
+                                    Please select the Staff-Type!
+                                  </mat-error>
+                            </div>
+
+                            <div class="col-md-5 form-group mt-3">
+                          
+                                <label class="titleSet">Select Post</label>
+                                <mat-select formControlName="postCode" class="form-control">
+                                    <mat-option value="">Select Status</mat-option>
+                                    <mat-option *ngFor="let post of designationList" [value]="post.id" (click)="valueChange(post.postName)">{{post.postCode}}({{post.postName}})</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="isSubmitted && errorHandling('postCode', 'required')">
+                                    Please select the Post Code!
+                                  </mat-error>
+              
+                            </div>
+                            <!-- <div class="col-md-5 form-group">
+                                <label class="titleSet">Post Name</label>                    
+                                <input type="text" formControlName="postName" class="form-control" disabled=true readonly>
+          
+                            </div> -->
+                            <div class="mt-2">
+                                <button type="submit" class="btn btn-primary mt-2">Add</button>&nbsp;&nbsp;
+                                <button type="button" *ngIf="!isEdit" class="btn btn-primary mt-2" (click)="clear()">Clear</button>&nbsp;&nbsp;
+                                <button type="button" class="btn btn-primary mt-2" (click)="redirectToList()">Cancel</button>
+                            </div>
+
+                    </div>
+            
+                </div>
+            </div>
+
+
+        </div>
+        </div>
+    </form>
+</div>

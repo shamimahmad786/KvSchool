@@ -1,0 +1,13 @@
+{
+    "teacherEntryForm": {
+        "name":"Name",
+        "gender":"Gender",
+        "dob":"Date of Birth",
+        "socialCat":"Social Category",
+        "emailId":"Email Adderss",
+        "mobileNo":"Mobile Number",
+        "male":"Male",
+        "female":"Female",
+        "transgender":"Transgender"
+    }
+}

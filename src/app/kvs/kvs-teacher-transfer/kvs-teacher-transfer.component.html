@@ -1,0 +1,2072 @@
+<div *ngIf="showNationalSelector" class="shadow-sm bg-white p-3 rounded">
+    <div class="row">
+        <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">Region Name :
+            </span>
+            <mat-form-field>
+                <mat-label>Select Region</mat-label>
+                <mat-select (selectionChange)="getStationByRegionId($event.value)" [(ngModel)]="regionCode">
+                    <!-- <mat-option value="">Select</mat-option> -->
+                    <mat-option *ngFor="let data of regionList" value="{{data.regionCode}}">{{data.regionName}}
+                    </mat-option>
+                    <!-- <mat-option value="NA">NA</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">Station Name :
+            </span>
+            <mat-form-field>
+                <mat-label>Select Station</mat-label>
+                <mat-select (selectionChange)="getKvSchoolByStationId($event.value)" [(ngModel)]="stationCode1">
+                    <!-- <mat-option value="">Select</mat-option> -->
+                    <mat-option *ngFor="let data of stationList" value="{{data.statinCode}}">{{data.stationName}}
+                    </mat-option>
+                    <!-- <mat-option value="NA">NA</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">School Name :
+            </span>
+            <mat-form-field>
+                <mat-label>Select School</mat-label>
+                <mat-select (selectionChange)="onSchoolSelect($event.value)" [(ngModel)]="businessUnitTypeCode">
+                    <!-- <mat-option value="Teaching">Select</mat-option> -->
+                    <mat-option *ngFor="let data of kvSchoolList" value="{{data.udiseSchCode}}-{{data.kvCode}}">
+                        {{data.kvName}}</mat-option>
+                    <!-- <mat-option value="NA">NA</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <div class="mt-3">
+                <span style="font-weight: bolder; color: #427e72;">Udise Code :
+                </span>{{kvSchoolDetails?.rowValue[0].udise_sch_code}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="shadow-sm bg-white p-3 rounded mt-3">
+
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
+        </mat-form-field>
+
+        <!-- below code is for select filter -->
+
+        <!-- &nbsp;&nbsp;
+        <mat-form-field>
+            <mat-label>Select Filter</mat-label>
+            <mat-select (selectionChange)="applyFilterOnSelect($event.value)">
+                <mat-option value="Teaching">Teaching</mat-option>
+                <mat-option value="Non-Teaching">Non-Teaching</mat-option>
+                <mat-option value="NA">NA</mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+    </div>
+    <div class="example-container mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="sno">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.sno}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="empcode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Employee Code </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.empcode}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.name | titlecase}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="dob">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row?.dob  | date: 'dd-MM-YYYY'}} </mat-cell>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="staffType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Staff Type </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.staffType}} </mat-cell>
+            </ng-container> -->
+
+            <ng-container matColumnDef="gender">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
+                    <span *ngIf="row.approved === 'TRI'" class=' bx-badge-check-initiated bxStyle1 mr-2'>Transfer
+                        Initiated</span>
+                    <span *ngIf="row.approved === 'TRS'" class=' bx-badge-check-submitted bxStyle1 mr-2'>Transfer
+                        Submitted</span>
+                    <span *ngIf="row.approved === 'TRA'" class=' bx-badge-check-verified bxStyle1 mr-2'>Transfer
+                        Verified</span>
+                    <span *ngIf="row.approved === 'TRR'" class=' bx-badge-check-rejected bxStyle1 mr-2'>Exempted</span>
+                    <span *ngIf="row.approved === 'TRE'" class=' bx-badge-check-edited bxStyle1 mr-2'>Transfer
+                        Edited</span>
+
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="systchcode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Transfer Id</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <span *ngIf="row.systchcode != 'null' && row.systchcode != '' ">{{row.systchcode}}</span>
+                    <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
+                        <button [disabled]="disabledCreateButton" type="button" class="btn btn12 btn-outline-primary"
+                            (click)="createUser(row.teacherId)">Create
+                            User</button>
+                    </span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
+                    <!-- <i class='bx bx-show bxStyle1 mr-2' title="View" (click)="onViewClick(row.teacherId)">{{row.a}} </i>
+                    <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"
+                        (click)="onEditClick(row.teacherId)">{{row.b}}</i> -->
+                    <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'"
+                        class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"
+                        (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
+                        <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'"
+                        class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application"
+                        (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i>
+                    <!-- <i class='bx bx-box bxStyle1' title="Dropbox" (click)="onDropboxClick(row.teacherId)">{{row.d}}</i> -->
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+    </div>
+
+    <div class="mt-3 pb-4">
+        <!-- <h5 style="float: left;">Legend: </h5> -->
+        <div style="float: left;">
+            <!-- <i class='bx bx-show bxStyle1 view-btn' style="margin-right: 4px; margin-left: 10px;"></i>View -->
+            <!-- <i class='bx bx-edit-alt bxStyle1 edit-btn' style="margin-right: 4px; margin-left: 10px;"></i>Edit -->
+            <i class='bx bx-box bxStyle1 dropbox-btn-transfer' style="margin-right: 4px; margin-left: 10px;"></i>Delete initiated teacher transfer (For re-initiation, kindly login to teacher and initiate the transfer again)
+            <!-- <i class='bx bx-key bxStyle1 reset-btn' style="margin-right: 4px; margin-left: 10px;"></i>Reset Password -->
+            <i class='bx bx-message-square-check bxStyle1 ' style="margin-right: 4px; margin-left: 10px;"></i>Verify and Edit transfer submitted by teacher.
+        </div>
+    </div>
+</div>
+
+
+<div mat-dialog-content>
+    <ng-template #transferVerifyModal let-modal style="min-width: 100%;">
+
+        <div class="" style="min-width: 100%; ">
+
+            <div class="row">
+                <div class="table-responsive">
+
+                    <table class="table-striped">
+
+                        <h2 class="px-2 mt-2 text-green">Profile Details</h2>
+
+                        <tr>
+                            <th>Udise School Code</th>
+                            <td>{{teacherTransferDetails?.currentUdiseSchCode}}</td>
+
+                            <th>Present KV Name</th>
+                            <td>{{kvNameCode}}</td>
+
+                            <th>Employee Code</th>
+                            <td>{{teacherTransferDetails?.teacherEmployeeCode}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Employee Id</th>
+                            <td>{{teacherTransferDetails?.teacherId}}</td>
+
+                            <th>Name</th>
+                            <td>{{teacherTransferDetails?.teacherName | titlecase}}</td>
+
+                            <th>Gender</th>
+                            <td>{{teacherTransferDetails?.teacherGender | genderPipe}}</td>
+
+                        </tr>
+                        <tr>
+                            <th>Date of Birth</th>
+                            <td>{{teacherTransferDetails?.teacherDob  | date: 'dd-MM-YYYY'}}</td>
+
+                            <th>Email</th>
+                            <td>{{teacherTransferDetails?.teacherEmail}}</td>
+
+                            <th>Mobile Number</th>
+                            <td>{{teacherTransferDetails?.teacherMobile}}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <!-- <th>Nationality</th>
+                            <td>{{teacherTransferDetails.teacherNationality | nationality}}</td> -->
+
+                            <!-- <th>Marital Status</th>
+                            <td>{{teacherTransferDetails.maritalStatus | maritalStatus}}</td> -->
+
+                            <th>Present Station Name</th>
+                            <td>{{stationNameCode}}</td>
+
+                            <th>Present Station in Present Post Date</th>
+                            <td>{{teacherTransferDetails?.workExperiencePositionTypePresentStationStartDate  | date: 'dd-MM-YYYY'}}</td>
+
+                            <th>Present KV in Present Post Date</th>
+                            <td>{{teacherTransferDetails?.workExperienceWorkStartDatePresentKv  | date: 'dd-MM-YYYY'}}</td>
+
+                        </tr>
+                        <tr>
+
+
+
+                            <th>Present post name</th>
+                            <td>{{teacherTransferDetails?.lastPromotionPositionType}}</td>
+
+
+                            <th>Present post date</th>
+                            <td>{{teacherTransferDetails?.lastPromotionPositionDate  | date: 'dd-MM-YYYY'}}</td>
+
+                            <th>Subject Name</th>
+                            <td>{{teacherTransferDetails?.workExperienceAppointedForSubject}}</td>
+
+                        </tr>
+
+                        <tr>
+
+
+                            <!-- <th>Staff Type</th>
+                            <td>{{teacherTransferDetails?.teachingNonteaching | staffType}}</td> -->
+
+                            <th>Nature of Appointment</th>
+                            <td>Regular</td>
+
+                        </tr>
+
+                        <tr>
+
+
+
+                        </tr>
+
+                    </table>
+                    <table class="table-striped poptbl">
+                        <h2 class="px-2 mt-2 text-green">Experience</h2>
+
+                        <tr>
+                            <th>KV Code</th>
+                            <th>School Name</th>
+                            <th>Shift</th>
+                            <th>Station Name</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Transfer Ground</th>
+                            <th>Station Type</th>
+                        </tr>
+                        <tr *ngFor="let data of teacherExperienceList">
+                            <td>{{data.kvCode}}</td>
+                            <td>{{data.udiseSchoolName}}</td>
+                            <td>{{data.shiftType}}</td>
+                            <td>{{data.stationName}}</td>
+                            <td>{{data?.workStartDate  | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{data?.workEndDate  | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{data.groundForTransfer}}</td>
+                            <td>{{data.stationType == '0'?'NA':'Hard'}}</td>
+                        </tr>
+                    </table>
+                    <h2 class="px-2 mt-2 text-green">Displacement Count</h2>
+                    <table class="table table-bordered poptbl">
+                        <thead>
+
+                            <tr style="background-color: #cccccc;">
+                                <th width="3%"> S.No. </th>
+                                <th colspan="2"> Question Description </th>
+                                <th> User Input </th>
+                                <th> Points </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">1.</span>
+                                </td>
+                                <td width="75%" class="align-middle " colspan="3">
+                                    <h4 class="titleSet mb-0">
+
+                                        Stay at a station in the same post as on 30 June, 2022
+                                    </h4>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet ">1A </h4>
+                                        </li>
+                                        <li class="w80 ml-2">No of days in current station since posted.
+                                        </li>
+                                        <li class="w20" style="font-weight: 800;">
+                                            {{teacherTransferDetails?.numberOfWorkingDays}}
+                                            <!-- <input type="text" class="form-control form-control-sm "
+                                                formControlName="numberOfWorkingDays"
+                                                name="numberOfWorkingDays" id="numberOfWorkingDays"
+                                                [(ngModel)]="totalWorkingDaysF" disabled> -->
+                                        </li>
+                                    </ul>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet ">1B </h4>
+                                        </li>
+                                        <li class="w80"> Posting period of absence on any account.<span
+                                                class="required-asterisk">*</span></li>
+                                        <li class="w20" style="font-weight: 800;">
+                                            {{teacherTransferDetails?.absenceDaysOne}}
+                                            <!-- <input type="text" class="form-control form-control-sm"
+                                                formControlName="absenceDaysOne" name="absenceDaysOne"
+                                                id="absenceDaysOne" [(ngModel)]="absence1" maxlength="5"
+                                                (change)="absenceCal(); displacementTotalPoint()"> -->
+                                        </li>
+                                    </ul>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet ">1C </h4>
+                                        </li>
+                                        <li class="w80"> If any employee returns to a station X on
+                                            request after being transferred from X within three years,
+                                            the stay of such an employee at X shall be no. of years
+                                            spent at X before being transferred plus no. of years spent
+                                            after coming at X. However, if an employee returns to
+                                            station after a Posting Period of 02 years in Very Hard
+                                            (existed earlier) and 03 years from Hard/ NER station the
+                                            stay shall be counted afresh.<span class="required-asterisk">*</span></li>
+                                        <li class="w20" style="font-weight: 800;">
+                                            {{teacherTransferDetails?.absenceDaysTwo}}
+                                            <!-- <input type="text" id="absenceDaysTwo"
+                                                class="form-control form-control-sm topSetInput"
+                                                formControlName="absenceDaysTwo" name="absenceDaysTwo"
+                                                [(ngModel)]="absence2"
+                                                (change)="displacementTotalPoint()" disabled> -->
+                                        </li>
+                                    </ul>
+
+                                    <ul class="orderList  border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet ">1D </h4>
+                                        </li>
+                                        <li class="w80"> Total days (present). 1A+1C-(1B)</li>
+                                        <li class="w20" style="font-weight: 800;">
+                                            {{teacherTransferDetails?.actualNumberOfWorkingDays}}
+                                            <!-- <input type="text" disabled id="actualNumberOfWorkingDays"
+                                                class="form-control form-control-sm"
+                                                formControlName="actualNumberOfWorkingDays"
+                                                name="actualNumberOfWorkingDays"> -->
+                                        </li>
+                                    </ul>
+
+                                    <ul class="DateOfBirth mt-3">
+
+                                        <li>
+                                            <label>Present Station Posting Date</label>
+                                            <div style="font-weight: 800;">
+                                                {{teacherTransferDetails?.workExperiencePositionTypePresentStationStartDate  | date: 'dd-MM-YYYY'}}
+                                            </div>
+
+                                            <!-- <input type="text" class="form-control form-control-sm mb-1"
+                                                disabled
+                                                id="workExperiencePositionTypePresentStationStartDate"
+                                                formControlName="workExperiencePositionTypePresentStationStartDate"
+                                                name="workExperiencePositionTypePresentStationStartDate"> -->
+                                        </li>
+                                        <li>
+                                            <label>Present Station Name</label>
+                                            <div style="font-weight: 800;">
+                                                {{teacherTransferDetails?.presentStationName}}
+                                            </div>
+
+                                            <!-- <input type="text" class="form-control form-control-sm mb-1"
+                                                disabled formControlName="presentStationName"
+                                                name="presentStationName" id="presentStationName"> -->
+                                        </li>
+                                        <li>
+                                            <label>Present Station Code</label>
+                                            <div style="font-weight: 800;">
+                                                {{teacherTransferDetails?.presentStationCode}}
+                                            </div>
+
+                                            <!-- <input type="text" class="form-control form-control-sm mb-1"
+                                                disabled formControlName="presentStationCode"
+                                                name="presentStationCode" id="presentStationCode"> -->
+                                        </li>
+                                    </ul>
+                                    <div *ngIf="!showMe">
+                                    </div>
+                                </td>
+                                <td width="7%" class=" text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails?.q1DPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q1DPt"
+                                        formControlName="q1DPt" name="q1DPt" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">2.</span>
+                                </td>
+                                <td class="align-middle " width="70%" colspan="2">
+                                    <h4 class="titleSet">
+
+                                        Annual Performance Appraisal Report (APAR) Grading for the last
+                                        02(two)
+                                        years.<span class="required-asterisk">*</span>
+                                    </h4>
+
+
+                                    <div *ngIf="!showMe1">
+                                        <p class="ps-2"> +2 for each below average grading (0-4)</p>
+                                    </div>
+
+                                </td>
+
+                                <td class="align-middle float-right" width="15%">
+                                    <ul class="ul-inline p-0 m-0">
+                                        <li style=" width:25%" style="font-weight: 800;">
+                                            {{teacherTransferDetails.apprGradeYr1}}
+                                            <!-- <input type="text" id="apprGradeYr1"
+                                                class="form-control form-control-sm mb-1 InputDisabled"
+                                                formControlName="apprGradeYr1" name="apprGradeYr1"
+                                                placeholder="2020" disabled> -->
+                                        </li>
+                                        <li style=" width:75%" style="font-weight: 800;">
+                                            {{teacherTransferDetails.apprGrade1}}
+                                            <!-- <input type="number"
+                                                class="form-control form-control-sm mb-1 "
+                                                formControlName="apprGrade1" name="apprGrade1"
+                                                step=".01" [(ngModel)]="appG1" id="apprGrade1"
+                                                (change)="appraisalAvg(); displacementTotalPoint()"> -->
+                                        </li>
+                                        <hr>
+                                        <li style=" width:25%" style="font-weight: 800;">
+                                            {{teacherTransferDetails.apprGradeYr2}}
+                                            <!-- <input type="text"
+                                                class="form-control form-control-sm mb-1 InputDisabled"
+                                                formControlName="apprGradeYr2" name="apprGradeYr2"
+                                                id="apprGradeYr2" placeholder="2021" disabled> -->
+                                        </li>
+                                        <li style=" width:75%" style="font-weight: 800;">
+                                            {{teacherTransferDetails.apprGrade2}}
+                                            <!-- <input type="number"
+                                                class="form-control form-control-sm mb-1"
+                                                id="apprGrade2" formControlName="apprGrade2"
+                                                name="apprGrade2" step=".01" [(ngModel)]="appG2"
+                                                (change)="appraisalAvg(); displacementTotalPoint()"> -->
+                                        </li>
+                                    </ul>
+                                    <!-- <span class="help-block text-danger" *ngIf="!transferForm.get('displacementCount.apprGrade1').valid 
+                                    && transferForm.get('displacementCount.apprGrade1').touched">Enter
+                                        Number less than or equal to 10 !</span> -->
+
+                                </td>
+
+                                <td width="7%" class=" text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q2DPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q2DPt"
+                                        id="q2DPt" formControlName="q2DPt" name="q2DPt" disabled> -->
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">3.</span>
+                                </td>
+                                <td class="align-middle" colspan="2" width="75%">
+                                    <h4 class="titleSet">
+
+                                        Employee below 40 years of age (as on 30th June, 2021) who have
+                                        completed one tenure at hard/very hard (existed earlier)/ NE
+                                        stations.
+                                        (Indicate 'Yes' for tenure completed & 'No' for tenure not
+                                        completed.)
+
+                                    </h4>
+
+                                    <ul class="DateOfBirth mt-3">
+                                        <li>
+                                            <label>Date Of Birth</label>
+                                            <div style="font-weight: 800;">
+                                                {{teacherTransferDetails?.teacherDob  | date: 'dd-MM-YYYY'}}
+                                            </div>
+
+                                            <!-- <input type="text" id="teacherDob"
+                                                formControlName="teacherDob" name="teacherDob"
+                                                class="form-control form-control-sm mb-1" disabled> -->
+                                        </li>
+                                        <li>
+                                            <label>Hard Station Name</label>
+                                            <div style="font-weight: 800;">
+                                                {{teacherTransferDetails.hardStationName}}
+                                            </div>
+
+                                            <!-- <input type="text" id="hardStationName"
+                                                formControlName="hardStationName" name="hardStationName"
+                                                class="form-control form-control-sm mb-1" disabled> -->
+                                        </li>
+                                        <li>
+                                            <label>Hard Station Work Start Date</label>
+                                            <div style="font-weight: 800;">
+                                                {{teacherTransferDetails.hardStationWorkStartDate}}
+                                            </div>
+
+                                            <!-- <input type="text" id="hardStationWorkStartDate"
+                                                formControlName="hardStationWorkStartDate"
+                                                name="hardStationWorkStartDate"
+                                                class="form-control form-control-sm mb-1" disabled> -->
+                                        </li>
+                                        <li>
+                                            <label>Hard Station Work End Date</label>
+                                            <div style="font-weight: 800;">
+                                                {{teacherTransferDetails.hardStationWorkEndDate}}
+                                            </div>
+
+                                            <!-- <input type="text" id="hardStationWorkEndDate"
+                                                formControlName="hardStationWorkEndDate"
+                                                name="hardStationWorkEndDate"
+                                                class="form-control form-control-sm " disabled> -->
+                                        </li>
+
+
+                                    </ul>
+
+                                    <div *ngIf="!showMe2">
+                                        <p class="ps-2">
+                                            Only those employee who are below 40 years of age as on 30th
+                                            June 2021 should fill this column.
+                                        </p>
+                                    </div>
+
+                                </td>
+
+                                <td class="text-left" width="15%">
+                                    <div class="form-check form-check-inline" style="font-weight: 800;">
+                                        {{teacherTransferDetails.q3DYn == '1'?'Yes':'No'}}
+                                        <!-- <input class="form-check-input" type="radio" id="inlineRadio15"
+                                            value="1" id="q3DYn" formControlName="q3DYn" name="q3DYn"
+                                            disabled> -->
+
+                                    </div>
+                                    <!-- <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="inlineRadio25"
+                                            value="0" id="q3DYn" formControlName="q3DYn" name="q3DYn"
+                                            disabled>
+                                        <label class="form-check-label" for="inlineRadio26">No</label>
+                                    </div> -->
+                                </td>
+                                <td width="7%" class=" text-center">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">4.</span>
+                                </td>
+                                <td class="align-middle" width="75%" colspan="2">
+                                    <h4 class="titleSet">
+
+                                        Select whichever is applicable<span class="required-asterisk">*</span>
+                                    </h4>
+
+                                </td>
+                                <td class="align-middle text-center" width="15%">
+                                    <div *ngIf="teacherTransferDetails.personalStatusLtr == '1'"
+                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                        <!-- {{teacherTransferDetails.test}} -->
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox1" [value]="1" id="personalStatusLtr"
+                                            formControlName="personalStatusLtr" name="personalStatusLtr"
+                                            (change)="personalStatusCheckBox($event, '1'); displacementTotalPoint()"> -->
+                                        <label class="form-check-label" for="inlineCheckbox1">LTR</label>
+                                    </div>
+                                    <div *ngIf="teacherTransferDetails.personalStatusDfp == '1'"
+                                        class="form-check form-check-inline" style="font-weight: 800;">
+
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox2" [value]="2" id="personalStatusDfp"
+                                            formControlName="personalStatusDfp" name="personalStatusDfp"
+                                            (change)="personalStatusCheckBox($event, '2'); displacementTotalPoint()"> -->
+                                        <label class="form-check-label" for="inlineCheckbox2">DFP</label>
+                                    </div>
+                                    <div *ngIf="teacherTransferDetails.personalStatusMdg == '1'"
+                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox2" value="3" id="personalStatusMdg"
+                                            formControlName="personalStatusMdg" name="personalStatusMdg"
+                                            (change)="personalStatusCheckBox($event, '3'); displacementTotalPoint()"> -->
+                                        <label class="form-check-label" for="inlineCheckbox3">MDG</label>
+                                    </div>
+                                    <div *ngIf="teacherTransferDetails.personalStatusWid == '1'"
+                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox2" value="4" id="personalStatusWid"
+                                            formControlName="personalStatusWid" name="personalStatusWid"
+                                            (change)="personalStatusCheckBox($event, '4'); displacementTotalPoint()"> -->
+                                        <label class="form-check-label" for="inlineCheckbox4">Widow</label>
+                                    </div>
+                                    <div *ngIf="teacherTransferDetails.personalStatusSp == '1'"
+                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox2" value="5" id="personalStatusSp"
+                                            formControlName="personalStatusSp" name="personalStatusSp"
+                                            (change)="personalStatusCheckBox($event, '5'); displacementTotalPoint()"> -->
+                                        <label class="form-check-label" for="inlineCheckbox4">SP</label>
+                                    </div>
+                                    <div *ngIf="teacherTransferDetails.personalStatusLtr != '1' &&
+                                    teacherTransferDetails.personalStatusDfp != '1' &&
+                                    teacherTransferDetails.personalStatusMdg != '1' &&
+                                    teacherTransferDetails.personalStatusWid != '1' &&
+                                    teacherTransferDetails.personalStatusSp != '1'"
+                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox2" value="" id="personalStatusDefault"
+                                            formControlName="personalStatusDefault"
+                                            name="personalStatusDefault"
+                                            (change)="personalStatusCheckBox($event, '6'); displacementTotalPoint()"> -->
+                                        <label class="form-check-label" for="inlineCheckbox4">Not
+                                            Applicable</label>
+                                    </div>
+                                </td>
+                                <td width="7%" class=" text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q4DPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q4DPt"
+                                        formControlName="q4DPt" name="q4DPt" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                </td>
+
+                                <td class="align-middle" width="90%" colspan="3">
+                                    <h4 class="titleSet">
+
+                                        Spouse
+                                    </h4>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">A.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the
+                                            same station
+                                            or within 100
+                                            km.</li>
+                                        <li class="w20 ">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.spouseStatus == '1'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="1" id="spouseStatus"
+                                                    formControlName="spouseStatus" name="spouseStatus"
+                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
+                                                    disabled> ( -50 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">B.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2"> Spouse if a Central Government/Central
+                                            Govt. Autonomous
+                                            body/Central
+                                            Govt. Public Sector Undertaking/ Defense Employee and
+                                            Central Armed
+                                            Police Forces employee posted at the same station or
+                                            within 100 km.</li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.spouseStatus == '2'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input" type="radio"
+                                                    id="inlineRadio13" value="2" id="spouseStatus"
+                                                    formControlName="spouseStatus" name="spouseStatus"
+                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
+                                                    disabled> ( -40 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">C.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2"> Spouse if a State Covernment / State Govt.
+                                            Autonomous body / State Govt. Public Sectors
+                                            Undertaking Employee & posted at the same station or within
+                                            100km..</li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.spouseStatus == '3'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="3" id="spouseStatus"
+                                                    formControlName="spouseStatus" name="spouseStatus"
+                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
+                                                    disabled>( -30 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">D.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2">Woman employee not covered under 4(A),
+                                            4(B), 4(C) above,
+                                            or an unmarried
+                                            lady, is eligible for these points. </li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.spouseStatus == '4'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="4" id="spouseStatus"
+                                                    formControlName="spouseStatus" name="spouseStatus"
+                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
+                                                    disabled>( -20 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="orderList ">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">D.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2">None of the above. </li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.spouseStatus == '5'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="5" id="spouseStatus"
+                                                    formControlName="spouseStatus" name="spouseStatus"
+                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
+                                                    disabled>( 0 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </td>
+                                <td width="7%" class=" text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q5DPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q5DPt"
+                                        formControlName="q5DPt" name="q5DPt" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">6.</span>
+                                </td>
+                                <td class="align-middle" width="75%" colspan="2">
+                                    <h4 class="titleSet">
+                                        Physically challenged employee
+                                    </h4>
+                                </td>
+
+                                <td class="align-middle" width="15%">
+                                    <div class="form-check form-check-inline" style="font-weight: 800;">
+                                        {{teacherTransferDetails.teacherDisabilityYn == '1'?'Yes':'No'}}
+                                        <!-- <input class="form-check-input" type="radio" id="inlineRadio15"
+                                            value="1" id="teacherDisabilityYn"
+                                            formControlName="teacherDisabilityYn"
+                                            name="teacherDisabilityYn"
+                                            (click)="pHEmployee('1'); displacementTotalPoint()"
+                                            disabled> -->
+                                        <!-- <label class="form-check-label" for="inlineRadio15">Yes</label> -->
+                                    </div>
+                                    <!-- <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="inlineRadio25"
+                                            value="0" id="teacherDisabilityYn"
+                                            formControlName="teacherDisabilityYn"
+                                            name="teacherDisabilityYn"
+                                            (click)="pHEmployee('0'); displacementTotalPoint()"
+                                            disabled>
+                                        <label class="form-check-label" for="inlineRadio26">No</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        ( -60 )</div> -->
+                                </td>
+                                <td width="7%" class=" text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q9DPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
+                                        formControlName="q9DPt" name="q9DPt" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">7.</span>
+                                </td>
+                                <td class="align-middle" width="90%" colspan="3">
+                                    <h4 class="titleSet">
+                                        Members of Recognized Associations of KVS staff.<span
+                                            class="required-asterisk">*</span>
+                                    </h4>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">A.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2">Members of JCM at KVS Regional Office
+                                            (RJCM).</li>
+                                        <li class="w20 ">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.associationMemberYn == '1'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="1"
+                                                    id="associationMemberYn"
+                                                    formControlName="associationMemberYn"
+                                                    name="associationMemberYn"
+                                                    (click)="associatedMember('1'); displacementTotalPoint()">
+                                                ( -25 )-->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">B.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2">Members of JCM at KVS Headquarters (NJCM).
+                                        </li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.associationMemberYn == '2'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input" type="radio"
+                                                    id="inlineRadio13" value="2"
+                                                    id="associationMemberYn"
+                                                    formControlName="associationMemberYn"
+                                                    name="associationMemberYn"
+                                                    (click)="associatedMember('2'); displacementTotalPoint()"> 
+                                                ( -25 )-->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="orderList">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">C.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2"> None.</li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.associationMemberYn == '3'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="3"
+                                                    id="associationMemberYn"
+                                                    formControlName="associationMemberYn"
+                                                    name="associationMemberYn"
+                                                    (click)="associatedMember('0'); displacementTotalPoint()">( 
+                                                0 )-->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td width="7%" class=" text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q10DPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q10DPt"
+                                        formControlName="q10DPt" name="q10DPt" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">8.</span>
+                                </td>
+                                <td class="align-middle" width="75%" colspan="3">
+                                    <h4 class="titleSet">
+                                        Award winning employees:
+                                    </h4>
+                                    <div *ngIf="!noAward" class="col-md-12 mb-2">
+                                        <ul *ngIf="presidentAward" class="orderList border-bottom">
+                                            <li class="w5 me-3">
+                                                <h4 class="titleSet"> <span class="text-green">A.</span>
+                                                </h4>
+                                            </li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> National Award given by the
+                                                President
+                                                of India.</li>
+                                        </ul>
+
+                                        <ul *ngIf="nationalAward" class="orderList border-bottom">
+                                            <li class="w5 me-3">
+                                                <h4 class="titleSet"> <span class="text-green">B.</span>
+                                                </h4>
+                                            </li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS National Incentive
+                                                Award.</li>
+                                        </ul>
+
+                                        <ul *ngIf="regionalAward" class="orderList">
+                                            <li class="w5 me-3">
+                                                <h4 class="titleSet"> <span class="text-green">C.</span>
+                                                </h4>
+                                            </li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS Regional Incentive
+                                                Award.</li>
+                                        </ul>
+                                    </div>
+                                    <div *ngIf="noAward" class="col-md-12 mb-2">
+                                        <ul class="orderList">
+                                            <li class="w5 me-3">
+                                                <h4 class="titleSet"> <span class="text-green">A.</span>
+                                                </h4>
+                                            </li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> No awards available.</li>
+                                        </ul>
+
+                                    </div>
+                                </td>
+
+                                <td width="7%" class="text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q11DPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q11DPt"
+                                        formControlName="q11DPt" name="q11DPt" disabled> -->
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">9.</span>
+                                </td>
+                                <td class="align-middle" width="75%" colspan="2">
+                                    <h4 class="titleSet">
+                                        Whether child of the employee is appearing in class X or XII
+                                        Exam in the
+                                        Academic year ending March 2023 and whether the employee is
+                                        seeking
+                                        exemption from displacement.<span class="required-asterisk">*</span>
+                                    </h4>
+                                </td>
+
+                                <td class="align-middle" width="15%">
+                                    <div class="form-check form-check-inline" style="font-weight: 800;">
+                                        {{teacherTransferDetails.child_10_12_yn == '1'?'Yes':'No'}}
+                                        <!-- <input class="form-check-input" type="radio" id="inlineRadio15"
+                                            value="1" id="child_10_12_yn"
+                                            formControlName="child_10_12_yn" name="child_10_12_yn"
+                                            (change)="displacementTotalPoint() ">
+                                        <label class="form-check-label">Yes</label> -->
+                                    </div>
+                                    <!-- <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" value="0"
+                                            id="child_10_12_yn" formControlName="child_10_12_yn"
+                                            name="child_10_12_yn" (change)="displacementTotalPoint()">
+                                        <label class="form-check-label">No</label>
+                                    </div> -->
+                                </td>
+                                <td width="7%" class="text-center">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">10.</span></td>
+                                <td class="align-middle" width="75%" colspan="2">
+                                    <h4 class="titleSet">
+                                        Employee who serves as the main care-giver to the persons with
+                                        disability in the family (spouse or dependent son/ daughter of
+                                        the
+                                        employee) would have a bearing on the systematic rehabilitation
+                                        of
+                                        persons with disabilities, as per KVS Transfer
+                                        guideline.<span class="required-asterisk">*</span>
+
+                                    </h4>
+                                </td>
+
+                                <td class="align-middle" width="15%">
+                                    <div class="form-check form-check-inline" style="font-weight: 800;">
+                                        {{teacherTransferDetails.careGiverYn == '1'?'Yes':'No'}}
+                                        <!-- <input class="form-check-input" type="radio" id="inlineRadio15"
+                                            value="1" id="careGiverYn" formControlName="careGiverYn"
+                                            name="careGiverYn"> -->
+                                        <!-- <label class="form-check-label">Yes</label> -->
+                                    </div>
+                                    <!-- <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" value="0"
+                                            id="careGiverYn" formControlName="careGiverYn"
+                                            name="careGiverYn" (change)="displacementTotalPoint()">
+                                        <label class="form-check-label">No</label>
+                                    </div> -->
+
+                                    <div class="text-center purple" *ngIf="gkFile12 == 1">
+                                        <div class="input-group">
+                                            <!-- {{teacherTransferDetails.test}} -->
+                                            <!-- <input type="file" class="form-control form-control-sm"
+                                                (change)="displacementTotalPoint()"> -->
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td width="7%" class="text-center">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td width="75%" colspan="2" style="font-weight: 800;">
+                                    Total
+                                </td>
+                                <td width="15%"></td>
+                                <td width="7%" style="font-weight: 800;">
+                                    {{teacherTransferDetails.totalDisplacementCount}}
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <h2 class="px-2 mt-2 text-green">Station Choice</h2>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>17.</th>
+                            <th>Have you been recruited under special recruitment for NER ?</th>
+                            <td>{{teacherTransferDetails.recruitedSpclDriveNer == '1'?'Yes':'No'}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>18.</th>
+                            <th>Employee for eligible to apply either for shift change in the same Vidyalaya ( Column
+                                18A ) or INTRA STATION ( Column 18B ) or INTER STATION ( Column 18C )</th>
+                            <td *ngIf="teacherTransferDetails.shiftChangeSameSchool == '1'">Shift change in the same
+                                school</td>
+                            <td *ngIf="teacherTransferDetails.shiftChangeSameSchool == '2'">Intra station</td>
+                            <td *ngIf="teacherTransferDetails.shiftChangeSameSchool == '3'">Inter station</td>
+                            <td *ngIf="teacherTransferDetails.shiftChangeSameSchool == '0'">None</td>
+                        </tr>
+
+                        <tr *ngIf="teacherTransferDetails.shiftChangeSameSchool == '1'">
+                            <th></th>
+                            <th>Shift Preference</th>
+                        </tr>
+
+                        <tr *ngIf="teacherTransferDetails.shiftChangeSameSchool == '2'">
+                            <th></th>
+                            <th>School Preference</th>
+                            <td>{{teacherTransferDetails.choiceKv1UdiseCodePresentStation}},
+                                {{teacherTransferDetails.choiceKv2UdiseCodePresentStation}},
+                                {{teacherTransferDetails.choiceKv3UdiseCodePresentStation}},
+                                {{teacherTransferDetails.choiceKv4UdiseCodePresentStation}},
+                                {{teacherTransferDetails.choiceKv5UdiseCodePresentStation}}</td>
+                        </tr>
+
+                        <tr *ngIf="teacherTransferDetails.shiftChangeSameSchool == '3'">
+                            <th></th>
+                            <th>Station Preference</th>
+                            <td>{{teacherTransferDetails.choiceKv1StationName}},{{teacherTransferDetails.choiceKv2StationName}}
+                                ,{{teacherTransferDetails.choiceKv3StationName}},{{teacherTransferDetails.choiceKv4StationName}}
+                                ,{{teacherTransferDetails.choiceKv5StationName}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>19.</th>
+                            <th>Kindly fill maximum five stations choice other than present station, incase you are
+                                transferred on displacement.</th>
+                            <td>{{teacherTransferDetails.displacement1StationName}},
+                                {{teacherTransferDetails.displacement2StationName}},
+                                {{teacherTransferDetails.displacement3StationName}},
+                                {{teacherTransferDetails.displacement4StationName}},
+                                {{teacherTransferDetails.displacement5StationName}}</td>
+                        </tr>
+                    </table>
+                    <h2 class="px-2 mt-2 text-green poptbl">Transfer Count</h2>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th></th>
+                            <th>Wheather the employee is willing to apply for request transfer as per choice
+                                shift / KVs / Stations filled in column
+                                10A / 10B / 10C of part A of application form.</th>
+                            <td style="font-weight: 800;">{{teacherTransferDetails.applyTransferYn == '1'?'Yes':'No'}}
+                            </td>
+                        </tr>
+
+                        <thead *ngIf="teacherTransferDetails.applyTransferYn == '1'">
+                            <tr style="background-color: #cccccc;">
+                                <th width="3%"> Sno. </th>
+                                <th colspan="2"> Question Description </th>
+                                <th> Userinput </th>
+                                <th> Points </th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="teacherTransferDetails.applyTransferYn == '1'">
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">1.</span>
+                                </td>
+                                <td width="75%" class="align-middle " colspan="3">
+                                    <h4 class="titleSet mb-0">
+
+                                        Stay at a station in the same post as on 30 June, 2021
+                                    </h4>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet ">A. </h4>
+                                        </li>
+                                        <li class="w80 ml-2"> Total working days.</li>
+                                        <li class="w20" style="font-weight: 800;">
+                                            {{teacherTransferDetails.numberOfWorkingDays}}
+                                            <!-- <input type="text" disabled
+                                                class="form-control form-control-sm "
+                                                id="numberOfWorkingDays"
+                                                formControlName="numberOfWorkingDays"
+                                                name="numberOfWorkingDays"
+                                                [(ngModel)]="totalWorkingDaysTC" disabled> -->
+                                        </li>
+                                    </ul>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet ">B. </h4>
+                                        </li>
+                                        <li class="w80"> Periods of continuous absence of 30 days or
+                                            more (45 days or more for
+                                            Hard/NER stations) shall not be counted.</li>
+                                        <li class="w20" style="font-weight: 800;">
+                                            {{teacherTransferDetails.absenceDaysTcone}}
+                                            <!-- <input type="text" class="form-control form-control-sm"
+                                                id="absenceDaysTcone" formControlName="absenceDaysTcone"
+                                                name="absenceDaysTcone" [(ngModel)]="absenceTc" maxlength="5"
+                                                (change)="absenceCalTransferCount(); transferTotalPoint()"> -->
+                                        </li>
+                                    </ul>
+
+                                    <ul class="orderList  border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet ">C. </h4>
+                                        </li>
+                                        <li class="w80"> Total days (present).</li>
+                                        <li class="w20" style="font-weight: 800;">
+                                            {{teacherTransferDetails.actualNumberOfWorkingTcdays}}
+                                            <!-- <input type="text" disabled
+                                                class="form-control form-control-sm"
+                                                id="actualNumberOfWorkingTcdays"
+                                                formControlName="actualNumberOfWorkingTcdays"
+                                                name="actualNumberOfWorkingTcdays"> -->
+                                        </li>
+                                    </ul>
+
+                                    <ul class="DateOfBirth mt-3">
+
+                                        <li>
+                                            <label>Present Station Posting Date</label>
+                                            <div style="font-weight: 800;">
+                                                {{teacherTransferDetails?.workExperiencePositionTypePresentStationStartDate  | date: 'dd-MM-YYYY'}}
+                                            </div>
+                                            <!-- <input type="text" class="form-control form-control-sm mb-1"
+                                                disabled
+                                                id="workExperiencePositionTypePresentStationStartDate"
+                                                formControlName="workExperiencePositionTypePresentStationStartDate"
+                                                name="workExperiencePositionTypePresentStationStartDate"> -->
+                                        </li>
+                                        <li>
+                                            <label>Present Station Name</label>
+                                            <div style="font-weight: 800;">
+                                                {{teacherTransferDetails.presentStationName}}
+                                            </div>
+                                            <!-- <input type="text" class="form-control form-control-sm mb-1"
+                                                disabled id="presentStationName"
+                                                formControlName="presentStationName"
+                                                name="presentStationName"> -->
+                                        </li>
+                                        <li>
+                                            <label>Present Station Code</label>
+                                            <div style="font-weight: 800;">
+                                                {{teacherTransferDetails.presentStationCode}}
+                                            </div>
+                                            <!-- <input type="text" class="form-control form-control-sm mb-1"
+                                                disabled id="presentStationCode"
+                                                formControlName="presentStationCode"
+                                                name="presentStationCode"> -->
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td width="7%" class=" text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q1TPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q1TPt"
+                                        formControlName="q1TPt" name="q1TPt" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">2.</span>
+                                </td>
+                                <td class="align-middle " width="70%" colspan="2">
+                                    <h4 class="titleSet">
+
+                                        Annual Performance Appraisal Report (APAR) Grading for the last
+                                        02(two)
+                                        years.
+                                    </h4>
+
+                                </td>
+
+                                <td class="align-middle float-right" width="15%">
+                                    <ul class="ul-inline p-0 m-0">
+                                        <li style=" width:25%; font-weight: 800;">
+                                            {{teacherTransferDetails.apprGradeYr1}}
+                                            <!-- <input type="text"
+                                                class="form-control form-control-sm mb-1 InputDisabled"
+                                                id="apprGradeYr1" formControlName="apprGradeYr1"
+                                                name="apprGradeYr1" placeholder="2020" disabled> -->
+                                        </li>
+                                        <li style=" width:75%; font-weight: 800;">
+                                            {{teacherTransferDetails.apprGrade1}}
+                                            <!-- <input type="text"
+                                                class="form-control form-control-sm mb-1 "
+                                                id="apprGrade1" formControlName="apprGrade1"
+                                                name="apprGrade1" [(ngModel)]="appG1" maxlength="2"
+                                                (change)="appraisalAvg()" disabled> -->
+                                        </li>
+                                        <hr>
+                                        <li style=" width:25%; font-weight: 800;">
+                                            {{teacherTransferDetails.apprGradeYr2}}
+                                            <!-- <input type="text"
+                                                class="form-control form-control-sm mb-1 InputDisabled"
+                                                id="apprGradeYr2" formControlName="apprGradeYr2"
+                                                name="apprGradeYr2" placeholder="2021" disabled> -->
+                                        </li>
+                                        <li style=" width:75%; font-weight: 800;">
+                                            {{teacherTransferDetails.apprGrade2}}
+                                            <!-- <input type="text"
+                                                class="form-control form-control-sm mb-1"
+                                                id="apprGrade2" formControlName="apprGrade2"
+                                                name="apprGrade2" [(ngModel)]="appG2" maxlength="2"
+                                                (change)="appraisalAvg()" disabled> -->
+                                        </li>
+                                    </ul>
+
+
+                                </td>
+
+                                <td width="7%" class=" text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q2TPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q2TPt"
+                                        formControlName="q2TPt" name="q2TPt" disabled> -->
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">3.</span>
+                                </td>
+                                <td class="align-middle" width="75%" colspan="3">
+                                    <h4 class="titleSet">
+                                        Award winning employees:
+                                    </h4>
+
+
+
+                                    <div *ngIf="!noAward" class="col-md-12 mb-2">
+                                        <ul *ngIf="presidentAward" class="orderList border-bottom">
+                                            <li class="w5 me-3">
+                                                <h4 class="titleSet"> <span class="text-green">A.</span>
+                                                </h4>
+                                            </li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> National Award given by the
+                                                President
+                                                of India.</li>
+                                        </ul>
+
+                                        <ul *ngIf="nationalAward" class="orderList border-bottom">
+                                            <li class="w5 me-3">
+                                                <h4 class="titleSet"> <span class="text-green">B.</span>
+                                                </h4>
+                                            </li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS National Incentive
+                                                Award.</li>
+                                        </ul>
+
+                                        <ul *ngIf="regionalAward" class="orderList">
+                                            <li class="w5 me-3">
+                                                <h4 class="titleSet"> <span class="text-green">C.</span>
+                                                </h4>
+                                            </li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS Regional Incentive
+                                                Award.</li>
+                                        </ul>
+                                    </div>
+                                    <div *ngIf="noAward" class="col-md-12 mb-2">
+                                        <ul class="orderList">
+                                            <li class="w5 me-3">
+                                                <h4 class="titleSet"> <span class="text-green">A.</span>
+                                                </h4>
+                                            </li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> No awards available.</li>
+                                        </ul>
+
+                                    </div>
+                                </td>
+
+                                <td width="7%" class="text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q3TPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q3TPt"
+                                        formControlName="q3TPt" name="q3TPt" disabled> -->
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">4.</span>
+                                </td>
+
+                                <td class="align-middle" width="90%" colspan="3">
+                                    <h4 class="titleSet">
+
+                                        Spouse
+                                    </h4>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">A.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the
+                                            same station
+                                            or within 100
+                                            km.</li>
+                                        <li class="w20 ">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.spouseKvsYn == '1'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="1" id="spouseKvsYn"
+                                                    formControlName="spouseKvsYn" name="spouseKvsYn"
+                                                    disabled> ( 50 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">B.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2"> Spouse if a Central Government/Central
+                                            Govt. Autonomous
+                                            body/Central
+                                            Govt. Public Sector Undertaking/ Defense Employee and
+                                            Central Armed
+                                            Police Forces employee posted at the same station or
+                                            within 100 km.</li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.spouseCentralGvotYn == '2'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input" type="radio"
+                                                    id="inlineRadio13" value="2"
+                                                    id="spouseCentralGvotYn"
+                                                    formControlName="spouseCentralGvotYn"
+                                                    name="spouseCentralGvotYn" disabled> ( 40 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="orderList ">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">C.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2"> Spouse if a State Covernment / State Govt.
+                                            Autonomous body / State Govt. Public Sectors
+                                            Undertaking Employee & posted at the same station or within
+                                            100km.</li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.spouseStateGvotYn == '3'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="3" id="spouseStateGvotYn"
+                                                    formControlName="spouseStateGvotYn"
+                                                    name="spouseStateGvotYn" disabled>( 30 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="orderList ">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">D.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2">None of the above. </li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.spouseNa == '5'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="5" id="spouseNa"
+                                                    formControlName="spouseNa" name="spouseNa"
+                                                    disabled>( 0 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td width="7%" class=" text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q4TPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q4TPt"
+                                        formControlName="q4TPt" name="q4TPt" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                </td>
+                                <td class="align-middle" width="75%" colspan="2">
+                                    <h4 class="titleSet">
+
+                                        <ol type="A">
+                                            <li>
+                                                LTR/DFP/MDG/Widow/Single Parent(SP) Cases (Select
+                                                whichever is
+                                                applicable) (50)
+                                            </li>
+                                            <li>
+                                                <fieldset [disabled]="transfer5b">
+                                                    Whether last transfer is based on above ground (4a).
+                                                    <div class="form-check form-check-inline" style="font-weight: 800;">
+                                                        {{teacherTransferDetails.isLastTransferGroundPersonalStatusYn ==
+                                                        '1'?'Yes':'No'}}
+                                                        <!-- <input class="form-check-input" type="radio"
+                                                            id="inlineRadio13" value="1"
+                                                            id="isLastTransferGroundPersonalStatusYn"
+                                                            formControlName="isLastTransferGroundPersonalStatusYn"
+                                                            name="isLastTransferGroundPersonalStatusYn"
+                                                            (change)="lastTransferBasedYn($event)">
+                                                        <label class="form-check-label"
+                                                            for="inlineRadio13">Yes</label> -->
+                                                    </div>
+                                                    <!-- <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            id="isLastTransferGroundPersonalStatusYn"
+                                                            formControlName="isLastTransferGroundPersonalStatusYn"
+                                                            name="isLastTransferGroundPersonalStatusYn"
+                                                            id="inlineRadio13" value="0"
+                                                            (change)="lastTransferBasedYn($event)">
+                                                        <label class="form-check-label"
+                                                            for="inlineRadio13">No</label>
+                                                    </div> -->
+                                                </fieldset>
+                                            </li>
+                                        </ol>
+                                    </h4>
+
+
+                                </td>
+                                <td class="align-middle text-center" width="15%">
+                                    <div *ngIf="teacherTransferDetails.personalStatusLtr == '1'"
+                                        class="form-check form-check-inline">
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox1" [value]="1" id="tpersonalStatusLtr"
+                                            formControlName="tpersonalStatusLtr"
+                                            name="tpersonalStatusLtr" disabled> -->
+                                        <label class="form-check-label" for="inlineCheckbox1"
+                                            style="font-weight: 800;">LTR</label>
+                                    </div>
+                                    <div *ngIf="teacherTransferDetails.personalStatusDfp == '1'"
+                                        class="form-check form-check-inline">
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox2" [value]="2" id="tpersonalStatusDfp"
+                                            formControlName="tpersonalStatusDfp"
+                                            name="tpersonalStatusDfp" disabled> -->
+                                        <label class="form-check-label" for="inlineCheckbox2"
+                                            style="font-weight: 800;">DFP</label>
+                                    </div>
+                                    <div *ngIf="teacherTransferDetails.personalStatusMdg == '1'"
+                                        class="form-check form-check-inline">
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox2" value="3" id="tpersonalStatusMdg"
+                                            formControlName="tpersonalStatusMdg"
+                                            name="tpersonalStatusMdg" disabled> -->
+                                        <label class="form-check-label" for="inlineCheckbox3"
+                                            style="font-weight: 800;">MDG</label>
+                                    </div>
+                                    <div *ngIf="teacherTransferDetails.personalStatusWid == '1'"
+                                        class="form-check form-check-inline">
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox2" value="4" id="tpersonalStatusWid"
+                                            formControlName="tpersonalStatusWid"
+                                            name="tpersonalStatusWid" disabled> -->
+                                        <label class="form-check-label" for="inlineCheckbox4"
+                                            style="font-weight: 800;">Widow</label>
+                                    </div>
+                                    <div *ngIf="teacherTransferDetails.personalStatusSp == '1'"
+                                        class="form-check form-check-inline">
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox2" value="5" id="tpersonalStatusSp"
+                                            formControlName="tpersonalStatusSp" name="tpersonalStatusSp"
+                                            disabled> -->
+                                        <label class="form-check-label" for="inlineCheckbox4"
+                                            style="font-weight: 800;">SP</label>
+                                    </div>
+                                    <div *ngIf="teacherTransferDetails.personalStatusLtr != '1'
+                                                && teacherTransferDetails.personalStatusDfp != '1'
+                                                && teacherTransferDetails.personalStatusMdg != '1'
+                                                && teacherTransferDetails.personalStatusWid != '1'
+                                                && teacherTransferDetails.personalStatusSp != '1'"
+                                        class="form-check form-check-inline">
+                                        <!-- <input class="form-check-input" type="checkbox"
+                                            id="inlineCheckbox2" value="" id="tpersonalStatusDefault"
+                                            formControlName="tpersonalStatusDefault"
+                                            name="tpersonalStatusDefault"
+                                            (change)="personalStatusCheckBox($event, '6'); displacementTotalPoint()"
+                                            disabled> -->
+                                        <label class="form-check-label" for="inlineCheckbox4"
+                                            style="font-weight: 800;">Not
+                                            Applicable</label>
+                                    </div>
+                                </td>
+                                <td width="7%" class=" text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q6TPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q6TPt"
+                                        formControlName="q6TPt" name="q6TPt" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">6.</span>
+                                </td>
+                                <td class="align-middle" width="75%" colspan="2">
+                                    <h4 class="titleSet">
+                                        Completion of tenure in Hard/NER stations (03 years) at present
+                                        station.
+                                    </h4>
+                                    <ul class="DateOfBirth mt-3">
+                                    </ul>
+                                </td>
+
+                                <td class="align-middle text-center" width="15%">
+                                    <div class="form-check form-check-inline" style="font-weight: 800;">
+                                        {{teacherTransferDetails.q7TYyn == '1'?'Yes':'No'}}
+                                        <!-- <input class="form-check-input" type="radio" id="inlineRadio13"
+                                            value="1" id="q7TYyn" formControlName="q7TYyn" name="q7TYyn"
+                                            (click)="transferCount7($event)" disabled>
+                                        <label class="form-check-label" for="inlineRadio13">Yes
+                                            (+55)</label> -->
+                                    </div>
+                                    <!-- <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="inlineRadio24"
+                                            value="0" id="q7TYyn" formControlName="q7TYyn" name="q7TYyn"
+                                            (click)="transferCount7($event)" disabled>
+                                        <label class="form-check-label" for="inlineRadio24">No</label>
+                                    </div> -->
+                                </td>
+                                <td width="7%" class="align-middle text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q7TPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm " id="q7TPt"
+                                        formControlName="q7TPt" name="q7TPt" placeholder="0"
+                                        style="width:40px; margin:0px auto;" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">7.</span>
+                                </td>
+                                <td width="75%" class="align-middle" colspan="2">
+                                    <h4 class="titleSet">
+
+                                        <ol type="A">
+                                            <li>
+                                                Physically challenged employee. Further, if an employee
+                                                has
+                                                already
+                                                secured a request transfer in previous year(s) on the
+                                                basis of
+                                                these
+                                                additional points the points shall not given again.
+                                            </li>
+                                            <li>
+                                                Whether last transfer is based on above ground (8A).
+                                                <div class="form-check form-check-inline" style="font-weight: 800;">
+                                                    {{teacherTransferDetails.isLastTransferGroundTeacherDisabilityYn ==
+                                                    '1'?'Yes':'No'}}
+                                                    <!-- <input class="form-check-input" type="radio"
+                                                        id="inlineRadio13" value="1"
+                                                        id="isLastTransferGroundTeacherDisabilityYn"
+                                                        formControlName="isLastTransferGroundTeacherDisabilityYn"
+                                                        name="isLastTransferGroundTeacherDisabilityYn"
+                                                        (change)="lastTransferBasedOnDisablityYn($event)">
+                                                    <label class="form-check-label"
+                                                        for="inlineRadio13">Yes</label> -->
+                                                </div>
+                                                <!-- <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        id="isLastTransferGroundTeacherDisabilityYn"
+                                                        formControlName="isLastTransferGroundTeacherDisabilityYn"
+                                                        name="isLastTransferGroundTeacherDisabilityYn"
+                                                        id="inlineRadio13" value="0"
+                                                        (change)="lastTransferBasedOnDisablityYn($event)">
+                                                    <label class="form-check-label"
+                                                        for="inlineRadio13">No</label>
+                                                </div> -->
+                                            </li>
+                                        </ol>
+                                    </h4>
+                                </td>
+                                <td width="15%" class="align-middle text-center">
+                                    <div class="form-check form-check-inline" style="font-weight: 800;">
+                                        {{teacherTransferDetails.teacherDisabilityYn == '1'?'Yes':'No'}}
+                                        <!-- <input class="form-check-input" type="radio" id="inlineRadio13"
+                                            value="1" id="teacherDisabilityYnT"
+                                            formControlName="teacherDisabilityYnT"
+                                            name="teacherDisabilityYnT" (click)="transferCount8($event)"
+                                            disabled>
+                                        <label class="form-check-label" for="inlineRadio13">Yes
+                                            (+60)</label> -->
+                                    </div>
+                                    <!-- <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="inlineRadio24"
+                                            value="0" id="teacherDisabilityYnT"
+                                            formControlName="teacherDisabilityYnT"
+                                            name="teacherDisabilityYnT" (click)="transferCount8($event)"
+                                            disabled>
+                                        <label class="form-check-label" for="inlineRadio24">No</label>
+                                    </div> -->
+                                </td>
+                                <td width="7%" class="align-middle text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q8TPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" id="q8TPt"
+                                        formControlName="q8TPt" name="q8TPt" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">8.</span>
+                                </td>
+                                <td width="75%" class="align-middle" colspan="2">
+                                    <h4 class="titleSet">
+                                        Woman Employee
+
+                                    </h4>
+
+                                </td>
+                                <td width="15%" class="align-middle text-center">
+                                    <div class="form-check form-check-inline" style="font-weight: 800;">
+                                        {{teacherTransferDetails.unmarriedWomanYn == '4'?'Yes':'No'}}
+                                        <!-- <input class="form-check-input" type="radio" id="inlineRadio13"
+                                            value="4" id="unmarriedWomanYn"
+                                            formControlName="unmarriedWomanYn" name="unmarriedWomanYn"
+                                            (click)="transferCount9($event)" disabled>
+                                        <label class="form-check-label" for="inlineRadio13">Yes
+                                            (+20)</label> -->
+                                    </div>
+                                    <!-- <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="inlineRadio24"
+                                            value="0" id="unmarriedWomanYn"
+                                            formControlName="unmarriedWomanYn" name="unmarriedWomanYn"
+                                            (click)="transferCount9($event)" disabled>
+                                        <label class="form-check-label" for="inlineRadio24">No</label>
+                                    </div> -->
+                                </td>
+                                <td width="7%" class="align-middle text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q9TPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm " id="q9TPt"
+                                        formControlName="q9TPt" name="q9TPt" placeholder="0"
+                                        style="width:40px; margin:0px auto;" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">9.</span>
+                                </td>
+                                <td class="align-middle" width="90%" colspan="3">
+                                    <h4 class="titleSet">
+                                        Members of Recognized Associations of KVS staff.
+                                    </h4>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">A.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2">Members of JCM at KVS Regional Office
+                                            (RJCM).</li>
+                                        <li class="w20 ">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.associationMemberYn == '1'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="1"
+                                                    id="associationMemberYnT"
+                                                    formControlName="associationMemberYnT"
+                                                    name="associationMemberYnT" disabled> ( 25 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="orderList border-bottom">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">B.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2">Members of JCM at KVS Headquarters (NJCM).
+                                        </li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.associationMemberYn == '2'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input" type="radio"
+                                                    id="inlineRadio13" value="2"
+                                                    id="associationMemberYnT"
+                                                    formControlName="associationMemberYnT"
+                                                    name="associationMemberYnT" disabled> ( 25 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="orderList">
+                                        <li class="w5 me-3">
+                                            <h4 class="titleSet"> <span class="text-green">C.</span>
+                                            </h4>
+                                        </li>
+                                        <li class="w80 ml-2"> None.</li>
+                                        <li class="w20">
+                                            <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
+                                                {{teacherTransferDetails.associationMemberYn == '3'?'Yes':'No'}}
+                                                <!-- <input class="form-check-input " type="radio"
+                                                    id="inlineRadio13" value="3"
+                                                    id="associationMemberYnT"
+                                                    formControlName="associationMemberYnT"
+                                                    name="associationMemberYnT" disabled>( 0 ) -->
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td width="7%" class="align-middle text-center" style="font-weight: 800;">
+                                    {{teacherTransferDetails.q10TPt}}
+                                    <!-- <input type="text" class="form-control form-control-sm " id="q10TPt"
+                                        formControlName="q10TPt" name="q10TPt" placeholder="0"
+                                        style="width:40px; margin:0px auto;" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center"> <span class="text-green">10.</span></td>
+                                <td width="75%" class="align-middle" colspan="2">
+                                    <h4 class="titleSet">
+                                        For employee having a differently abled dependent child as per
+                                        DOP&T
+                                        Norms. In case you don't
+                                        get
+                                        transfer as per you choice(s) of the form, would you
+                                        like your
+                                        transfer to another class A or B city to facilitate the
+                                        treatment of
+                                        your child. if yes, please indicate two such stations.
+                                    </h4>
+                                </td>
+                                <td width="15%" class="align-middle text-center">
+                                    <div class="form-check form-check-inline" style="font-weight: 800;">
+                                        {{teacherTransferDetails.childDifferentAbleYn == '1'?'Yes':'No'}}
+                                        <!-- <input class="form-check-input" type="radio" id="inlineRadio13"
+                                            value="1" id="childDifferentAbleYn"
+                                            formControlName="childDifferentAbleYn"
+                                            name="childDifferentAbleYn" (click)="declaration5($event)"
+                                            (change)="transferTotalPoint()">
+                                        <label class="form-check-label" for="inlineRadio13">Yes</label> -->
+                                    </div>
+                                    <!-- <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="inlineRadio24"
+                                            value="0" id="childDifferentAbleYn"
+                                            formControlName="childDifferentAbleYn"
+                                            (click)="declaration5($event)" name="childDifferentAbleYn"
+                                            (change)="transferTotalPoint()">
+                                        <label class="form-check-label" for="inlineRadio24">NO</label>
+                                    </div> -->
+                                </td>
+                                <td width="7%" class="align-middle text-center">
+                                    <!-- <input type="text" class="form-control form-control-sm "
+                                        placeholder="0" style="width:40px; margin:0px auto;" disabled> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td width="75%" colspan="2" style="font-weight: 800;">
+                                    Total
+                                </td>
+                                <td width="15%"></td>
+                                <td width="7%" style="font-weight: 800;">
+                                    {{teacherTransferDetails.totalTransferCount}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2 class="px-2 mt-2 text-green poptbl">Declaration</h2>
+                    <table>
+                        <tr style="background-color: #eceaea;">
+                            <th width="2%">1.</th>
+                            <th>Whether the employee is seeking benefit of spouse who is working at the same station or
+                                within the distance of 100Km where employee is posted/transfer is being sought for.</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.spouseKvsYn ==
+                                '1'?'Yes': teacherTransferDetails.spouseCentralGvotYn == '2'?'Yes': teacherTransferDetails.spouseStateGvotYn == '3'?'Yes' : 'No' }}</td>
+                        </tr>
+                    </table>
+                    <table
+                        *ngIf="teacherTransferDetails.spouseKvsYn == '1'  || teacherTransferDetails.spouseCentralGvotYn == '2' || teacherTransferDetails.spouseStateGvotYn == '3'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Spouse employee code</th>
+                            <td>{{teacherTransferDetails.spouseEmpCode}}</td>
+                            <th>Post held by Spouse</th>
+                            <td>{{teacherTransferDetails.spousePost}}</td>
+                            <th>Name of Station</th>
+                            <td>{{teacherTransferDetails.spouseStationName}}</td>
+                        </tr>
+                    </table>
+                    <table
+                        *ngIf="(documentUploadArray[5]?.docName == 'Spouse_Declaration.pdf' && teacherTransferDetails.spouseKvsYn == '1') ||
+                    (documentUploadArray[5]?.docName == 'Spouse_Declaration.pdf' && teacherTransferDetails.spouseCentralGvotYn == '2') ||
+                    (documentUploadArray[5]?.docName == 'Spouse_Declaration.pdf' && teacherTransferDetails.spouseStateGvotYn == '3') ">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Download Spouse Declaration Document Uploaded : <a style="outline: none;"
+                                    href="{{documentUploadArray[5]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr style="background-color: #eceaea;">
+                            <th width="2%">2.</th>
+                            <th>Whether the employee is seeking benefit of medical ground (MDG Ground).</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.personalStatusMdg ==
+                                '1'?'Yes':'No'}}
+                            </td>
+                        </tr>
+                    </table>
+                    <table *ngIf="teacherTransferDetails.personalStatusMdg == '1'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Name of Patient</th>
+                            <td>{{teacherTransferDetails.patientName}}</td>
+                            <th>Type of alignment</th>
+                            <td>{{teacherTransferDetails.patientAilment}}</td>
+                            <th>Name of the Hospital and the place where treatement is being undertaken</th>
+                            <td>{{teacherTransferDetails.patientHospital}}</td>
+                        </tr>
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Name of Medical officer</th>
+                            <td>{{teacherTransferDetails.patientMedicalOfficerName}}</td>
+                            <th>Designation of Medical officer</th>
+                            <td>{{teacherTransferDetails.patientMedicalOfficerDesignation}}</td>
+                        </tr>
+                    </table>
+                    <table
+                        *ngIf="documentUploadArray[0]?.docName == 'Medical_Certificate.pdf' && teacherTransferDetails.personalStatusMdg == '1'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Download MDG Ground Declaration Document Uploaded : <a style="outline: none;"
+                                    href="{{documentUploadArray[0]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr style="background-color: #eceaea;">
+                            <th width="2%">3.</th>
+                            <th>Whether the employee is seeking benefit of single parent (SP Ground)</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.personalStatusSp ==
+                                '1'?'Yes':'No'}}
+                            </td>
+                        </tr>
+                    </table>
+                    <table
+                        *ngIf="documentUploadArray[6]?.docName == 'Single_Parent_Declaration.pdf' && teacherTransferDetails.personalStatusSp == '1'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Download SP Ground Declaration Document Uploaded : <a style="outline: none;"
+                                    href="{{documentUploadArray[6]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr style="background-color: #eceaea;">
+                            <th width="2%">4.</th>
+                            <th>Whether the employee is seeking benefit of Death of Family Person (DFP Ground)</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.personalStatusDfp ==
+                                '1'?'Yes':'No'}}
+                            </td>
+                        </tr>
+                    </table>
+                    <table
+                        *ngIf="documentUploadArray[7]?.docName == 'DFP_Declaration.pdf' && teacherTransferDetails.personalStatusDfp == '1'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Download DFP Ground Declaration Document Uploaded : <a style="outline: none;"
+                                    href="{{documentUploadArray[7]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr style="background-color: #eceaea;">
+                            <th width="2%">5.</th>
+                            <th>Whether your son/daughter is/are studying in board exam during the academic year ending
+                                March 2023</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.child_10_12_yn ==
+                                '1'?'Yes':'No'}}
+                            </td>
+                        </tr>
+                    </table>
+                    <table *ngIf="teacherTransferDetails.child_10_12_yn == '1'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Name of son/daughter</th>
+                            <td>{{teacherTransferDetails.child1012Name}}</td>
+                            <th>School name where son/daughter studying</th>
+                            <td>{{teacherTransferDetails.child1012School}}</td>
+
+                        </tr>
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Board Name</th>
+                            <td>{{teacherTransferDetails.child1012Board}}</td>
+                            <th>Class in which the son/daughter studying in the academic session 2021-2022</th>
+                            <td>{{teacherTransferDetails.child1012Class}}</td>
+                        </tr>
+                    </table>
+                    <table
+                        *ngIf="documentUploadArray[1]?.docName == 'Board_examination_Proof.pdf' && teacherTransferDetails.child_10_12_yn == '1'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Download Board Examination Declaration Document Uploaded : <a style="outline: none;"
+                                    href="{{documentUploadArray[1]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr style="background-color: #eceaea;">
+                            <th width="2%">6.</th>
+                            <th>Whether your are main care-giver to the person with disability in the family (i.e spouse
+                                or own son/own daughter)</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.careGiverYn ==
+                                '1'?'Yes':'No'}}
+                            </td>
+                        </tr>
+                    </table>
+                    <table *ngIf="teacherTransferDetails.careGiverYn == '1'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Name of the family member who is having disability</th>
+                            <td>{{teacherTransferDetails.careGiverName}}</td>
+                            <th>Relation with care giver</th>
+                            <td>{{teacherTransferDetails.careGiverRelation}}</td>
+                        </tr>
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Name the type of disability as per the transfer guideline</th>
+                            <td>{{teacherTransferDetails.careGiverDisabilityName}}</td>
+                            <th>Percentage of disability</th>
+                            <td>{{teacherTransferDetails.careGiverDisabilityPrcnt}}</td>
+                        </tr>
+                    </table>
+                    <table
+                        *ngIf="documentUploadArray[2]?.docName == 'Disability_Certificate.pdf' && teacherTransferDetails.careGiverYn == '1'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Download Care Giver Declaration Document Uploaded : <a style="outline: none;"
+                                    href="{{documentUploadArray[2]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr style="background-color: #eceaea;">
+                            <th width="2%">7.</th>
+                            <th>Whether you have a differently-able child</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.childDifferentAbleYn ==
+                                '1'?'Yes':'No'}}
+                            </td>
+                        </tr>
+                    </table>
+                    <table *ngIf="teacherTransferDetails.childDifferentAbleYn == '1'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Name of the son/daughter who is having disability</th>
+                            <td>{{teacherTransferDetails.childDifferentName}}</td>
+                            <th>Name the type of disability as per the transfer guideline</th>
+                            <td>{{teacherTransferDetails.childDifferentDisabilityName}}</td>
+                            <th>Percentage of disability</th>
+                            <td>{{teacherTransferDetails.childDifferentDisabilityPrcnt}}</td>
+                        </tr>
+                    </table>
+                    <table
+                        *ngIf="documentUploadArray[3]?.docName == 'Differentially_Abled_Certificate.pdf' && teacherTransferDetails.childDifferentAbleYn == '1'">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Download Differently-able Child Declaration Document Uploaded : <a
+                                    style="outline: none;" href="{{documentUploadArray[3]?.url}}"><i
+                                        class='bx bx-show'></i></a></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr style="background-color: #eceaea;">
+                            <th width="2%">8.</th>
+                            <th>Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM)</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.associationMemberYn ==
+                                '3'?'No':'Yes'}}
+                            </td>
+                        </tr>
+                    </table>
+                    <table *ngIf="documentUploadArray[8]?.docName == 'NJCM_RJCM_Declaration.pdf' && (teacherTransferDetails.associationMemberYn == '1'
+                                || teacherTransferDetails.associationMemberYn == '2')">
+                        <tr>
+                            <th width="4%"></th>
+                            <th>Download RJCM/NJCM Declaration Document Uploaded : <a style="outline: none;"
+                                    href="{{documentUploadArray[8]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <form [formGroup]="remarksForm">
+                        <div class="row mt-2 pb-5 mx-2">
+                            <div class="col-md-3">
+                                <label class="form-label form-label-custom">Select Exemption Type: <span
+                                        class="required-asterisk">*</span><span style="color: red;">(If
+                                        Exempted)</span></label>
+                                <fieldset [disabled]="!showNationalSelector">
+                                    <select class="form-select form-select-sm" aria-label="Default select example"
+                                        formControlName="exemptionType" name="exemptionType" id="exemptionType">
+                                        <option value="" selected disabled>Select</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="exampleFormControlTextarea1" class="form-label form-label-custom">Give
+                                    your remarks: <span class="required-asterisk">*</span><span style="color: red;">(If
+                                        Exempted)</span></label>
+                                <fieldset [disabled]="!showNationalSelector">
+                                    <textarea class="form-control" id="exemptionRemarks"
+                                        formControlName="exemptionRemarks" name="exemptionRemarks" rows="1"></textarea>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-4 mt-4">
+                                <div class="p-2 floatRight">
+                                    <button class="btn btn-secondary btn-sm"
+                                        (click)="modal.dismiss('Cross click');">Cancel</button>
+                                    <button *ngIf="!showNationalSelector" class="btn btn-primary btn-sm"
+                                        (click)="modal.dismiss('Cross click'); onEdit(teacherTransferDetails.teacherId)">Edit</button>
+                                    <button [disabled]="!remarksForm.valid" *ngIf="showNationalSelector"
+                                        class="btn btn-danger btn-sm" style="margin-left: 3px;"
+                                        (click)="modal.dismiss('Cross click'); onApproved('R',teacherTransferDetails.teacherId)">Exempt</button>
+                                    <button *ngIf="!showNationalSelector" class="btn btn-success btn-sm"
+                                        style="margin-left: 3px;"
+                                        (click)="modal.dismiss('Cross click'); onApproved('A',teacherTransferDetails.teacherId)">
+                                        Confirm & Verify</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+
+        </div>
+    </ng-template>
+</div>

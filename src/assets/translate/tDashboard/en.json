@@ -1,0 +1,12 @@
+{
+    "tDashboard": {
+        "login": "Login",
+        "home": "Home",
+        "about": "About Us",
+        "dashboard": "Teacher Dashboard",
+        "Dashboard&Reports": "Dashboard & Reports",
+        "EmployeeProfile": "Employee Profile",
+        "EmployeeTransfer": "Employee Transfer",
+        "AdminModule": "Admin Module"
+    }
+}

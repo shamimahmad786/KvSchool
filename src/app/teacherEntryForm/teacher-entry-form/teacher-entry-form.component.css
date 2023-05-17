@@ -1,0 +1,460 @@
+/* input.ng-invalid.ng-touched{
+    border-left: 3px solid red;
+} */
+/* input.ng-invalid{
+    border-left: 3px solid red;
+}
+input.ng-valid{
+    border-left: 3px solid green;
+} */
+/* input.ng-touched{
+    border-left: 3px solid green;
+} */
+
+/* select.ng-invalid.ng-touched{
+    border-left: 3px solid red;
+} */
+/* select.ng-invalid{
+    border-left: 3px solid red;
+} */
+/* select.ng-valid.ng-touched{
+    border-left: 3px solid green;
+} */
+/* select.ng-valid{
+    border-left: 3px solid green;
+}
+textarea.ng-valid{
+    border-left: 3px solid green;
+}
+textarea.ng-invalid{
+    border-left: 3px solid red;
+} */
+
+.add-btn {
+    min-width: 72px;
+}
+
+input {
+    text-transform: capitalize;
+}
+
+::-webkit-input-placeholder {
+    text-transform: none;
+}
+
+:-moz-placeholder {
+    text-transform: none;
+}
+
+::-moz-placeholder {
+    text-transform: none;
+}
+
+:-ms-input-placeholder {
+    text-transform: none;
+}
+
+.mt-10 {
+    margin-top: 10px;
+    min-height: 620px;
+}
+
+.mt-83 {
+    margin-top: 0px;
+}
+
+.FontTitle {
+    font-size: 20px;
+    font-family: 'roboto', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.mat-horizontal-content-container {
+    overflow: hidden;
+    padding: 0px ! important;
+}
+
+ul.ulLeft {
+    padding: 0px;
+    margin: 0px;
+}
+
+ul.ulLeft li {
+    display: inline-flex;
+    margin-right: 25px;
+}
+
+#heading {
+    text-transform: uppercase;
+    color: #24695c;
+    font-weight: normal
+}
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 0px
+}
+
+.card {
+    border: none ! important;
+    margin-bottom: 0px;
+}
+
+#msform fieldSet {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 0px;
+    position: relative
+}
+
+.form-card {
+    text-align: left
+}
+
+#msform .fieldSet:not(:first-of-type) {
+    display: none
+}
+
+/*----------------------- new css add here-----------------------------*/
+
+
+
+
+.stationCode,
+.LIneInde{list-style: none; padding:0px; margin:0px; box-sizing: border-box;}
+.stationCode li { display: inline-table; margin-right: 15px;  width:31%;}
+/* .stationCode li:nth-child(even) {  margin-right: 3%; } */
+.stationName{ font-size:0.9rem ! important; font-weight:600 ! important; letter-spacing: 0.9px ! important;}
+.LIneInde li{ display: table-cell;}
+
+/*----------------------- new css end here-----------------------------*/
+/* #msform input,
+#msform textarea {
+    padding: 8px 15px 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    background-color: #ECEFF1;
+    font-size: 16px;
+    letter-spacing: 1px
+} */
+
+/* #msform input:focus,
+#msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #24695c;
+    outline-width: 0
+} */
+
+#msform .action-button {
+    width: 100px;
+    background: #24695c;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 0px 10px 5px;
+    float: right
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+    background-color: #24695c
+}
+
+#msform .action-button:disabled {
+    width: 100px;
+    background: #7faca3;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 0px 10px 5px;
+    float: right
+}
+
+#msform .action-button:hover:disabled,
+#msform .action-button:focus:disabled {
+    background-color: #7faca3
+}
+
+#msform .action-save {
+    width: 100px;
+    background: #0f6191;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 0px 10px 5px;
+    float: right
+}
+
+#msform .action-save:hover,
+#msform .action-save:focus {
+    background-color: #0b7cbd !important
+}
+
+#msform .action-save:disabled {
+    width: 100px;
+    background: #8ea7b6;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 0px 10px 5px;
+    float: right
+}
+
+#msform .action-save:hover:disabled,
+#msform .action-save:focus:disabled {
+    background-color: #8ea7b6 !important
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #ba895d !important;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+    float: right
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+    background-color: #ba895d !important
+}
+
+.card {
+    z-index: 0;
+    border: none;
+    position: relative
+}
+
+.fs-title {
+    font-size: 25px;
+    color: #24695c;
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-align: left
+}
+
+.purple-text {
+    color: #24695c;
+    font-weight: normal
+}
+
+.steps {
+    color: #24695c;
+    text-align: right
+}
+
+.fieldlabels {
+    color: gray;
+    text-align: left
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+#progressbar .active {
+    color: #24695c
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 16.66%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+}
+
+#progressbar #profile:before {
+    font-family: FontAwesome;
+    content: "\f007"
+}
+
+#progressbar #disability:before {
+    font-family: FontAwesome;
+    content: "\f193";
+    font-weight: 700;
+}
+
+#progressbar #information:before {
+    font-family: FontAwesome;
+    content: "\f129"
+}
+
+#progressbar #experience:before {
+    font-family: FontAwesome;
+    content: "\f0b1"
+}
+
+#progressbar #transfer:before {
+    font-family: FontAwesome;
+    content: "\f02d"
+}
+
+#progressbar #training:before {
+    font-family: FontAwesome;
+    content: "\f091"
+}
+
+#progressbar #upload:before {
+    font-family: FontAwesome;
+    content: "\f093"
+}
+
+#progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "\f00c"
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #24695c
+}
+
+.progress {
+    height: 20px
+}
+
+.progress-bar {
+    background-color: #ba895d !important;
+}
+
+.fit-image {
+    width: 50%;
+    margin: 0px auto;
+}
+
+.titleSet {
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    margin-bottom: 5px;
+}
+
+
+.table>thead {
+    vertical-align: bottom;
+    background: #e9f0ee;
+    border-bottom: none;
+}
+
+.table>:not(:first-child) {
+    border-top: 1px solid #009688 ! important;
+}
+
+#csv-input {
+    display: none;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+i.bx.bx-minus-circle {
+    /* background: #e9f0ee; */
+    color: #d93025 ! important;
+    padding: 3px;
+    margin-right: 10px;
+    border-radius: 4px;
+    transition: transform 0.15s ease-in-out;
+}
+
+i.bx.bx-minus-circle:hover {
+    background: #d93025;
+    color: white ! important;
+    padding: 3px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+
+
+.required-asterisk {
+    color: red;
+    font-weight: bold;
+    margin-left: 3px;
+    font-size: 1.2em;
+}
+
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+    text-align: left;
+    padding: 6px 3px ! important;
+}
+
+h2.px-2.mt-2.text-green {
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background: #fafafa;
+}
+
+tr {
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+}

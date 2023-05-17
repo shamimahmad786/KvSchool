@@ -1,0 +1,19 @@
+ 
+  table {
+    width: 100%;
+  }
+  th.mat-header-cell:first-of-type{
+    padding-left: 1px!important;
+    text-align: center;
+  }
+  th.mat-header-cell{
+    padding-left:23px!important;
+  }
+  td.mat-cell{
+    padding-left: 24px!important;
+  }
+  .mat_label{
+      font-weight: 500;
+  }
+
+

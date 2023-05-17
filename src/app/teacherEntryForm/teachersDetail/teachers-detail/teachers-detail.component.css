@@ -1,0 +1,52 @@
+.mat-header-cell {
+  color: rgb(23 68 60);
+  font-size: 14px;
+}
+.IconBx i {
+  font-size: 20px;
+  color: #545e7d;
+  cursor: pointer;
+}
+
+tr {
+  border-bottom: 1px solid rgba(0,0,0,.12);
+}
+tr:hover {
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  background-color: silver;
+}
+
+tr:nth-child(even) {background:#fafafa;}
+tr:nth-child(odd) {background:#fff}
+
+table tr td,
+table tr th{
+  padding: 8px ! important;
+  font-family: 'Montserrat',sans-serif;
+  color: rgb(19 19 19 / 87%) ! important;
+  letter-spacing: 0.7px;
+  font-size: 14px;
+}
+table tr th{font-weight: 600;}
+
+table tr td { font-weight: 500; }
+.form-label-custom { font-size: 15px;  font-weight: 500;  color: #427e72;  letter-spacing: 0.7px;  line-height: 21px;}
+/* .notiActive{width:10px; height:10px; background-color: #427e72; border-radius: 50px; margin-right:5px;} */
+.notiDisactive{width:10px; height:10px; background-color:#e9f0ee; border-radius: 50px; margin-right:5px;}
+.notiActive {background: #427e72; width: 8px; height: 8px; border-radius: 50px; position: absolute; margin-top:-5px;}
+
+
+.AnchoR:hover{
+  cursor:pointer;}
+
+  .mat-column-gender {
+    flex: 0 0 8% !important;
+    width: 8% !important;
+    }
+
+
+    .floatRight{
+      float: right;
+  }
+
+  

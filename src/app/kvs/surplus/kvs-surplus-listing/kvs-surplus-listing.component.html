@@ -1,0 +1,266 @@
+<div class="card p-4 shadow-sm">
+    <form [formGroup]="teacherSurplusForm" (ngSubmit)="onSubmit($event)">
+        <div class="form-card">
+            <div class="row">
+                <div class="col-7">
+                    <h2 class="mb-0" style="font-weight: 500; color: #427e72;">Identify Surplus Count</h2>
+                </div>
+                <div class="col-5">
+                    <!-- <h2 class="steps">{{responseData?.teacherId}} |
+                        {{responseData?.teacherName}}</h2> -->
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-9 mb-3" *ngIf="onvalid == '0'">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="titleSet">Mode of recruitment</h4>
+                            <input type="text" placeholder="Direct Recruitment etc"
+                                class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="titleSet">Appointment / service order no</h4>
+                            <input type="text" placeholder="Order No" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="titleSet">Date of effect of service order no</h4>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-9 mb-3" *ngIf="onvalid == '1'">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="titleSet">Date of signing the agreement with employer
+                            </h4>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="titleSet">Contract Valid from date / to date</h4>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <div class="row">
+                <div class="col-md-12" >
+                    <!-- <h4 class="titleSet mb-0">
+                        Details of Posting
+                    </h4> -->
+                    <table class="table mt-1" formArrayName="detailsOfPosting">
+                        <thead>
+                            <tr style="background-color: #d2e2df;">
+                                <th width="20%">
+                                    School Name
+                                </th>
+                                <th>
+                                    Academic Year
+                                </th>
+                                <th>Position</th>
+                                <th>Subject</th>
+                                <th>In Place</th>
+                                <th>Sanctioned Post</th>
+
+                                <th>Surplus Post</th>
+                                <th>Vacant Post</th>
+                                <!-- <th>
+                                    <button class="btn btn-sm btn-green-logout me-2" (click)="addQuantity(undefined)">
+                                        Add</button>
+                                </th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let quantity of detailsOfPosting().controls; let i=index" formGroupName="{{i}}">
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" name="schoolName"
+                                        formControlName="schoolName" id="schoolName" disabled>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" name="accademicYear"
+                                        formControlName="accademicYear" id="accademicYear" disabled>
+                                </td>
+                                <td><input type="text" class="form-control form-control-sm "
+                                        id="organizationTeacherTypeName" name="organizationTeacherTypeName"
+                                        formControlName="organizationTeacherTypeName" disabled>
+                                </td>
+                                <td><input type="text" class="form-control form-control-sm " name="subjectName"
+                                        id="subjectName" formControlName="subjectName" disabled>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm " name="noOfExistingStaff"
+                                        id="noOfExistingStaff" formControlName="noOfExistingStaff" disabled>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm " name="noOfSanctionPost"
+                                        id="noOfSanctionPost" formControlName="noOfSanctionPost" (blur)="calculateSurplusCount($event,i)">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm " name="surplusCount"
+                                        id="surplusCount" formControlName="surplusCount" disabled>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm " name="vacantCount"
+                                        id="vacantCount" formControlName="vacantCount" disabled>
+                                </td>
+                                <!-- <td class="IconBx">
+                                    <i (click)="removeQuantity(i)"
+                                        class="bx bx-minus-circle bxStyle1 mr-2"
+                                        style="color: #f9384b;"></i>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <!-- <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="titleSet mb-0">
+                                Subject and Class taught details for current academic year
+                            </h4>
+                            <table class="table mt-1" formArrayName="subjectTaught">
+                                <thead>
+                                    <tr>
+                                        <th width="30%">
+                                            Class</th>
+                                        <th width="30%">
+                                            Subject</th>
+                                        <th width="30%">
+                                            Medium Instruction</th>
+                                        <th>
+                                            <button class="btn btn-sm btn-green-logout me-2"
+                                                (click)="addsubjectTaught(undefined)">
+                                                Add</button>
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let subTaught of subjectTaught().controls; let i=index"
+                                        formGroupName="{{i}}">
+                                        <td>
+                                            <select class="form-select form-select-sm"
+                                                aria-label="Default select example"
+                                                formControlName="classTaught"
+                                                name="classTaught">
+                                                <option selected>Select Class</option>
+                                                <option value="1">I</option>
+                                                <option value="2">II</option>
+                                                <option value="3">III</option>
+                                                <option value="4">IV</option>
+                                                <option value="5">V</option>
+                                                <option value="6">VI</option>
+                                                <option value="7">VII</option>
+                                                <option value="8">VIII</option>
+                                                <option value="9">IX</option>
+                                                <option value="10">X</option>
+                                                <option value="11">XI</option>
+                                                <option value="12">XII</option>
+
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-select form-select-sm"
+                                                aria-label="Default select example"
+                                                formControlName="subjectTaught"
+                                                name="subjectTaught">
+                                                <option selected>Subject</option>
+                                                <option
+                                                    *ngFor="let data of formDataList.subjects"
+                                                    value="{{data.subjectId}}">
+                                                    {{data.subjectType}}</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-select form-select-sm"
+                                                aria-label="Default select example"
+                                                formControlName="moiTaught"
+                                                name="moiTaught">
+                                                <option selected>Subject</option>
+                                                <option value="1">English</option>
+                                                <option value="2">Hindi</option>
+                                            </select>
+                                        </td>
+                                        <td class="IconBx">
+                                            <i (click)="removesubjectTaught(i)"
+                                                class="bx bx-minus-circle bxStyle1 mr-2"
+                                                style="color: #f9384b;"></i>
+                                           
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="titleSet mb-0">Promotion Details</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <table class="table mt-1" formArrayName="promotionDetails">
+                                <thead>
+                                    <tr>
+                                        <th> Date of Promotion </th>
+                                        <th> New Post </th>
+                                        <th> <button
+                                                class="btn btn-sm btn-green-logout me-2"
+                                                (click)="addQuantityPromotion(undefined)">
+                                                Add</button> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let promotion of promotionDetails().controls; let i=index"
+                                        formGroupName="{{i}}">
+                                        <td><input type="date" name="workStartDate"
+                                                class="form-control form-control-sm "
+                                                formControlName="workStartDate">
+                                            <span class="help-block text-danger"
+                                                *ngIf="promotion.controls.workStartDate.errors?.required">
+                                                Select work start date!</span>
+                                        </td>
+                                        <td>
+                                            <select class="form-select form-select-sm"
+                                                aria-label="Default select example"
+                                                name="positionType"
+                                                formControlName="positionType"
+                                                value="positionHeld">
+                                                <option selected> Position Held</option>
+                                                <option
+                                                    *ngFor="let data of teacherTypeDataNameCode; let i=index;"
+                                                    value="{{data.teacherTypeId}}">
+                                                    {{data.nameCode}}
+                                                </option>
+
+                                            </select>
+                                            <span class="help-block text-danger"
+                                                *ngIf="promotion.controls.positionType.errors?.required">
+                                                Select position type!</span>
+                                        </td>
+                                        <td class="IconBx">
+                                            <i (click)="removeQuantityPromotion(i)"
+                                                class="bx bx-minus-circle bxStyle1 mr-2"
+                                                style="color: #f9384b;"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- <input type="button" name="next" class="next action-button mt-2" value="Next" /> -->
+        <!-- <input type="button" name="previous" class="previous action-button-previous mt-2" value="Previous" /> -->
+        <input type="submit" id="submit6" value="Save" class=" action-save me-2 mt-2" />
+    </form>
+</div>

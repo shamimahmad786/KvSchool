@@ -1,0 +1,79 @@
+.main-wrapper {
+    background: url(/assets/images/login-page-bg.png) no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.inner-wrapper {
+    /*max-width: 85%;
+    width: 85%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+}
+
+.left-content {}
+
+.invalid-feedback {
+    color: red;
+}
+
+.left-content h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36px;
+    text-align: center;
+    color: #722123;
+}
+
+.left-content h6 {
+    font-weight: 600;
+}
+
+.left-content p {
+    font-size: 14px;
+}
+
+.right-form {}
+
+.right-form .card.login-form {
+    padding: 30px 20px 20px 30px;
+    border-radius: 24px;
+}
+
+.right-form .card.login-form h1 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 116%;
+    color: #722123;
+}
+
+.right-form .card.login-form p {
+    font-size: 14px;
+}
+
+.right-form .card.login-form input {
+    background-color: transparent;
+    border: 0px;
+    border-bottom: 1px solid #151515;
+    border-radius: 0px;
+    padding-left: 0px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #151515;
+    padding: 15px 0;
+}
+
+.right-form .card.login-form .captcha {}
+
+.right-form .card.login-form .captcha input {}
+
+.right-form .card.login-form .captcha span {}
+
+.right-form .card.login-form .login-btn {
+    background: #722123;
+    border-radius: 8px;
+    border: 0;
+    padding: 10px 15px;
+}

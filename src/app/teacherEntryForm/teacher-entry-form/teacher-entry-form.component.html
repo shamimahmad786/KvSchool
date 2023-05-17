@@ -1,0 +1,557 @@
+<div class="container-fluid px-4">
+    <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+        
+        <div class="row">
+            <div formGroupName="basicInfoForm" class="col-md-4">
+                <div class="card mt-83">
+                    <div class=" bg-profile-head">
+                        <h5 class="mb-0 p-2 FontTitle  text-white">Basic Information</h5>
+                    </div>
+                    <fieldset [disabled]="allowEdit">
+                    <div class="m-3 prof-fields">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                        <input  type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                        <label for="imageUpload"></label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                        <div id="imagePreview" style="background-image:url(assets/assets/img/s.jpg);">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-md-12">
+                                <div class="avatar-upload">
+                                    <div class="">
+                                        <input 
+                                    formControlName="file"
+                                    id="file" 
+                                    type="file" 
+                                    class="form-control"
+                                    (change)="onFileChange($event)">
+                                        <label for="imageUpload"></label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                        <div class="preview" *ngIf="fileSource">
+                                            <img [src]="fileSource" style="width:100px; height:100px">
+                                          </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                          
+                            <!-- <div formGroupName="basicInfoForm" > -->
+                            <div class="col-md-12 form-group">
+                                <label class="labelSet">Name</label>                    
+                                <input formControlName="name" type="text" class="form-control" [(ngModel)]="singleTeacherData.name">
+                                <span class="help-block text-danger"
+                                    *ngIf="!teacherForm.get('basicInfoForm.name').valid && teacherForm.get('basicInfoForm.name').touched">Enter
+                                    your name !</span>
+                            </div>
+                            <div class="col-md-12 mt-3 form-group">
+                                <label class="labelSet">Gender</label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="gender" class="form-check-input" type="radio"
+                                        id="exampleRadios1" value="1">
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="gender" class="form-check-input" type="radio"
+                                        id="exampleRadios2" value="2">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Female
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="gender" class="form-check-input" type="radio"
+                                        id="exampleRadios2" value="3">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Transgender
+                                    </label>
+                                </div>
+                                <span class="help-block text-danger" *ngIf="!teacherForm.get('basicInfoForm.gender').valid 
+                                && teacherForm.get('basicInfoForm.gender').touched">
+                                    Selct your gender !</span>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <label class="labelSet">Date of birth</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <mat-datepicker-toggle mdSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </div>
+                                    <input class="form-control" [matDatepicker]="picker" placeholder="Enter your DoB"
+                                        formControlName="dob" (dateChange)="updateDOB($event)" [(ngModel)]="singleTeacherData.dob">
+
+                                </div>
+                                <span class="help-block text-danger" *ngIf="!teacherForm.get('basicInfoForm.dob').valid 
+                                && teacherForm.get('basicInfoForm.dob').touched">
+                                    Select your DoB !</span>
+                                <!-- <input [matDatepicker]="picker" formControlName="dob" type="text" class="form-control"
+                                    placeholder="Day/Month/Year"> -->
+
+                            </div>
+                            <div class="row col-md-12 mt-3">
+                                <div class="col-md-6 mt-3">
+                                    <label class="labelSet">Teacher Id/Code</label>                    
+                                    <input formControlName="teacherId" type="text" class="form-control" [(ngModel)]="singleTeacherData.teacherId">
+                                    <span class="help-block text-danger"
+                                        *ngIf="!teacherForm.get('basicInfoForm.teacherId').valid && teacherForm.get('basicInfoForm.teacherId').touched">Enter
+                                        teacher Id !</span>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <label class="labelSet">Social Category</label>
+                                    <select class="form-select" aria-label="Default select example"
+                                        formControlName="socialcategory" [(ngModel)]="singleTeacherData.socialCat">
+                                        <option value="" disabled selected>Select one</option>
+                                        <option *ngFor="let data of formDataResp.socialCat; let i=index;"
+                                            value="{{data.catId}}">{{data.cat}}</option>
+                                        <!-- <option value="2">SC</option>
+                                        <option value="3">ST</option>
+                                        <option value="4">OBC</option>
+                                        <option value="5">ORC</option>
+                                        <option value="6">OTHERS</option> -->
+                                    </select>
+                                    <span class="help-block text-danger" *ngIf="!teacherForm.get('basicInfoForm.socialcategory').valid 
+                                    && teacherForm.get('basicInfoForm.socialcategory').touched">
+                                        Select your social category !</span>
+                                </div>                                
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <label class="labelSet">Email Id</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="name@example.com" formControlName="email" [(ngModel)]="singleTeacherData.email">
+                                <span class="help-block text-danger" *ngIf="!teacherForm.get('basicInfoForm.email').valid 
+                                    && teacherForm.get('basicInfoForm.email').touched">
+                                    Enter your email address !</span>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <label class="labelSet">Mobile Id</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="Enter mobile number" formControlName="mobNumber" [(ngModel)]="singleTeacherData.mobile">
+                                <span class="help-block text-danger" *ngIf="!teacherForm.get('basicInfoForm.mobNumber').valid 
+                                && teacherForm.get('basicInfoForm.mobNumber').touched">
+                                    Enter your mobile number !</span>
+                            </div>
+                            <!-- <div class="col-md-6 mt-3">
+                                <label class="labelSet">Aadhar Number</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="Enter aadhar number" formControlName="mobNumber" [(ngModel)]="singleTeacherData.mobile">
+                                <span class="help-block text-danger" *ngIf="!teacherForm.get('basicInfoForm.mobNumber').valid 
+                                && teacherForm.get('basicInfoForm.mobNumber').touched">
+                                    Enter your Aadhar Number !</span>
+                            </div> -->
+                        <!-- </div> -->
+                        </div>
+                    </div>
+                </fieldset>
+                </div>
+            </div>
+
+
+            <div class="col-md-8">
+                <div class="card">
+                    <div class=" bg-profile-head">
+                        <h5 class="mb-0 p-2 FontTitle text-white">Educational and Professional</h5>
+                    </div>
+                    <div class="card-body">
+                        <mat-horizontal-stepper>
+                            <mat-step formGroupName="eduAndProfessionalOne">
+                                <div class="card">
+                                    <ng-template matStepLabel class="active">Educational and Professional</ng-template>
+                                    
+                                    <div class="m-3 prof-fields">
+                                        <fieldset [disabled]="allowEdit">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="labelSet">Type of Employee</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="typeOfTeacher" formControlName="typeOfTeacher" [(ngModel)]="singleTeacherData.tchType">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of masterDataByStateCodeList; let i=index;"
+                                                        value="{{data.teacher_type_id}}">{{data.organization_teacher_type_name}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.typeOfTeacher').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.typeOfTeacher').touched">
+                                                    Select type of teacher !</span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="labelSet">Nature of Appointment</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="natureOfAppointment" [(ngModel)]="singleTeacherData.natureOfAppt">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of formDataResp.natureOfAppointment; let i=index;"
+                                                        value="{{data.apntmntId}}">{{data.apntmntType}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.natureOfAppointment').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.natureOfAppointment').touched">
+                                                    Select appointment !</span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="labelSet">Date of Joining in Service</label>
+                                                <!-- <input type="text" class="form-control" placeholder="Day/Month/Year"
+                                            formControlName="doj"> -->
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <mat-datepicker-toggle mdSuffix [for]="pickers"></mat-datepicker-toggle>
+                                                        <mat-datepicker #pickers></mat-datepicker>
+                                                    </div>
+                                                    <input class="form-control" [matDatepicker]="pickers" placeholder="Date"
+                                                        formControlName="doj" [(ngModel)]="singleTeacherData.dojService">
+                                                </div>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.doj').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.doj').touched">
+                                                    Enter DoJ !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Highest Academic Qualification</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="hAcdQalification" [(ngModel)]="singleTeacherData.qualAcad">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of masterDataList; let i=index;"
+                                                        value="{{data.acad_qual_id}}">{{data.acad_qual_name}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.hAcdQalification').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.hAcdQalification').touched">
+                                                    Select Academic Qualification !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Highest Proffessional Qualification</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="hProfQalification" [(ngModel)]="singleTeacherData.qualProf">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of formDataResp.profQualification; let i=index;"
+                                                        value="{{data.profQualId}}">{{data.profQualType}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.hProfQalification').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.hProfQalification').touched">
+                                                    Select Professional Qualification !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Classes Taught</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="classTaught" [(ngModel)]="singleTeacherData.classTaught">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of formDataResp.classTaught; let i=index;"
+                                                        value="{{data.clsTaughtId}}">{{data.clsTaughtType}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.classTaught').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.classTaught').touched">
+                                                    Select class taught !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Appointed for Subject</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="appointedForSub" [(ngModel)]="singleTeacherData.apptSub">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of formDataResp.subjects; let i=index;"
+                                                        value="{{data.subjectId}}">{{data.subjectType}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.appointedForSub').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.appointedForSub').touched">
+                                                    Select appointed for subject !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Main Subject Taught 1</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="mainSubject1" [(ngModel)]="singleTeacherData.subTaught1">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of formDataResp.subjects; let i=index;"
+                                                        value="{{data.subjectId}}">{{data.subjectType}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.mainSubject1').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.mainSubject1').touched">
+                                                    Select subject taught !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Main Subject Taught 2</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="mainSubject2" [(ngModel)]="singleTeacherData.subTaught2">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of formDataResp.subjects; let i=index;"
+                                                        value="{{data.subjectId}}">{{data.subjectType}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.mainSubject2').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.mainSubject2').touched">
+                                                    Select subject taught !</span>
+                                            </div>
+                                            <!-- <div class="col-md-12 mt-4">
+                                                <div class="card note-text p-1">
+                                                    <span>Total days in-service training recieved in last academic
+                                                        year</span>
+                                                    <small>(Only for teachers teaching in elementary)</small>
+                                                </div>
+                                            </div> -->
+                                            <div class="col-md-3 mt-3">
+                                                <label class="labelSet">BRC (in days)</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="Enter days" formControlName="brcDays" [(ngModel)]="singleTeacherData.trnBrc">
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.brcDays').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.brcDays').touched">
+                                                    Enter BRC (in days)!</span>
+                                            </div>
+                                            <div class="col-md-3 mt-3">
+                                                <label class="labelSet">CRC (in days)</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="Enter days" formControlName="crcDays" [(ngModel)]="singleTeacherData.trnCrc">
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.crcDays').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.crcDays').touched">
+                                                    Enter CRC (in days) !</span>
+                                            </div>
+                                            <div class="col-md-3 mt-3">
+                                                <label class="labelSet">DIET (in days)</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="Enter days" formControlName="dietDays" [(ngModel)]="singleTeacherData.trnDiet">
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.dietDays').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.dietDays').touched">
+                                                    Enter DIET (in days) !</span>
+                                            </div>
+                                            <div class="col-md-3 mt-3">
+                                                <label class="labelSet">Others (in days)</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="Enter days" formControlName="othDays" [(ngModel)]="singleTeacherData.trnOther">
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.othDays').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.othDays').touched">
+                                                    Enter Other (in days)!</span>
+                                            </div>
+                                            <div class="col-md-3 mt-3">
+                                                <label class="labelSet">Training Received</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="trngRcvd" [(ngModel)]="singleTeacherData.trngRcvd">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of formDataResp.training; let i=index;"
+                                                        value="{{data.trngId}}">{{data.trngType}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.trngRcvd').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.trngRcvd').touched">
+                                                    Select training received !</span>
+                                            </div>
+                                            <div class="col-md-3 mt-3">
+                                                <label class="labelSet">Training Needs</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="trngNeed" [(ngModel)]="singleTeacherData.trngNeeded">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of formDataResp.training; let i=index;"
+                                                        value="{{data.trngId}}">{{data.trngType}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.trngNeed').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.trngNeed').touched">
+                                                    Select training needs !</span>
+                                            </div>
+                                            <div class="col-md-6 mt-3">
+                                                <label class="labelSet">No. of working days spent on non-teaching assignments</label>
+                                                <input type="text" class="form-control" style="max-width:235px;"
+                                                    id="exampleFormControlInput1" placeholder="Enter days"
+                                                    formControlName="workingDaysOnNonTeachingAssg" [(ngModel)]="singleTeacherData.nontchDays">
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalOne.workingDaysOnNonTeachingAssg').valid 
+                                        && teacherForm.get('eduAndProfessionalOne.workingDaysOnNonTeachingAssg').touched">
+                                                    Enter days !</span>
+                                            </div>
+        
+                                        </div>
+                                    </fieldset>
+                                  
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                            
+                                                <button class="btn btn-green" matStepperNext type="button" >Next</button>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-step>
+        
+                            <mat-step formGroupName="eduAndProfessionalTwo">
+                                <div class="card">
+                                    <ng-template matStepLabel>Educational and Professional</ng-template>
+                                    <div class="m-3 prof-fields">
+                                        <fieldset [disabled]="allowEdit">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="labelSet">Maths Studied Upto</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="mathsStudy" formControlName="mathsStudy" [(ngModel)]="singleTeacherData.mathUpto">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of masterDataList; let i=index;"
+                                                        value="{{data.acad_qual_id}}">{{data.acad_qual_name}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalTwo.mathsStudy').valid 
+                                        && teacherForm.get('eduAndProfessionalTwo.mathsStudy').touched">
+                                                    Select maths studied upto !</span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="labelSet">Science Studied Upto</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="scienceStudy" [(ngModel)]="singleTeacherData.scienceUpto">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of masterDataList; let i=index;"
+                                                        value="{{data.acad_qual_id}}">{{data.acad_qual_name}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalTwo.scienceStudy').valid 
+                                                && teacherForm.get('eduAndProfessionalTwo.scienceStudy').touched">
+                                                    Select science studied upto !</span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="labelSet">English Studied Upto (as per schedule VIII)</label>
+                                                <!-- <input type="text" class="form-control" placeholder="Day/Month/Year"
+                                                    formControlName="engStudyVIII"> -->
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="engStudyVIII" [(ngModel)]="singleTeacherData.englishUpto">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of masterDataList; let i=index;"
+                                                        value="{{data.acad_qual_id}}">{{data.acad_qual_name}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalTwo.engStudyVIII').valid 
+                                                    && teacherForm.get('eduAndProfessionalTwo.engStudyVIII').touched">
+                                                    Select english studied upto !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Language (as per schedule VIII) Studied Upto</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="lagStudyVIII" [(ngModel)]="singleTeacherData.langStudyUpto">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of masterDataList; let i=index;"
+                                                    value="{{data.acad_qual_id}}">{{data.acad_qual_name}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalTwo.lagStudyVIII').valid 
+                                                && teacherForm.get('eduAndProfessionalTwo.lagStudyVIII').touched">
+                                                    Select language studied upto !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Social Studies Studied Upto</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="socialStudy" [(ngModel)]="singleTeacherData.soc_studyUpto">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of masterDataList; let i=index;"
+                                                        value="{{data.acad_qual_id}}">{{data.acad_qual_name}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalTwo.socialStudy').valid 
+                                                && teacherForm.get('eduAndProfessionalTwo.socialStudy').touched">
+                                                    Select social studies studied upto !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Working in Present School Since (year)</label>
+                                                <input type="text" class="form-control" placeholder="Year"
+                                                    formControlName="wrkngInPrsntSchYear" [(ngModel)]="singleTeacherData.yoj_presSch">
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalTwo.wrkngInPrsntSchYear').valid 
+                                                    && teacherForm.get('eduAndProfessionalTwo.wrkngInPrsntSchYear').touched">
+                                                    Enter a valid year (1950 to 2021) !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Type of Disability, If any</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    formControlName="typeOfDisanility" [(ngModel)]="singleTeacherData.disabilityType">
+                                                    <option value="null" disabled selected>Select one</option>
+                                                    <option *ngFor="let data of formDataResp.disability; let i=index;"
+                                                        value="{{data.disabilityId}}">{{data.disabilityType}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalTwo.typeOfDisanility').valid 
+                                                && teacherForm.get('eduAndProfessionalTwo.typeOfDisanility').touched">
+                                                    Select type of disability !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Trained for Teaching CWSN</label>
+                                                <br>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="trndFortchngCWSN"
+                                                        id="exampleRadios2" value="1" checked
+                                                        formControlName="trndFortchngCWSN" [(ngModel)]="singleTeacherData.trainedCwsn">
+                                                    <label class="form-check-label" for="exampleRadios1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="trndFortchngCWSN"
+                                                        id="exampleRadios2" value="0" formControlName="trndFortchngCWSN" [(ngModel)]="singleTeacherData.trainedCwsn">
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        No
+                                                    </label>
+                                                </div>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalTwo.trndFortchngCWSN').valid 
+                                                && teacherForm.get('eduAndProfessionalTwo.trndFortchngCWSN').touched">
+                                                    Select yes or no !</span>
+                                            </div>
+                                            <div class="col-md-4 mt-3">
+                                                <label class="labelSet">Trained in Use of computer and Teaching Through Computer</label>
+                                                <br>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="trndForCmptrtchng"
+                                                        id="exampleRadios3" value="1" checked
+                                                        formControlName="trndForCmptrtchng" [(ngModel)]="singleTeacherData.trainedComp">
+                                                    <label class="form-check-label" for="exampleRadios1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="trndForCmptrtchng"
+                                                        id="exampleRadios3" value="0" formControlName="trndForCmptrtchng" [(ngModel)]="singleTeacherData.trainedComp">
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        No
+                                                    </label>
+                                                </div>
+                                                <span class="help-block text-danger" *ngIf="!teacherForm.get('eduAndProfessionalTwo.trndForCmptrtchng').valid 
+                                                && teacherForm.get('eduAndProfessionalTwo.trndForCmptrtchng').touched">
+                                                    Select yes or no !</span>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                            <!-- <button class="btn btn-success" type="button">Save</button> -->
+                                            <button class="btn btn-sm btn-green-logout py-2" matStepperPrevious type="button">Back</button>
+                                            <button class="btn btn-green" type="submit"
+                                                >Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-step>
+                        </mat-horizontal-stepper>
+
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 
+<style>
+    .mat-step-header .mat-step-label.mat-step-label-active { color: rgb(63 81 181)! important;}
+</style> -->

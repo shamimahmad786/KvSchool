@@ -1,0 +1,594 @@
+<header>
+    <div class="top-pan">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <ul class="list-unstyled list-inline float-left topbargovt mb-0 p-0">
+                        <li class="list-inline-item border-right">
+                            भारत सरकार<br>
+                            Government of India
+                        </li>
+                        <li class="list-inline-item">
+                            इलेक्ट्रॉनिक्स और सूचना प्रौद्योगिकी मंत्रालय<br>
+                            Ministry of Electronics &amp; Information Technology
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <ul class="accblty mb-0 p-0">
+                        <li>
+                            <a href="#" title="Skip to main content">Skip to main content</a>
+                        </li>
+                        <li>
+                            <a href="#" title="Screen Reader Access">Screen Reader Access</a>
+                        </li>
+                        <li>
+                            <a href="#" title="Text Resize">Text Resize :</a>
+                            <a class="px-2">A-</a>
+                            <a class="px-2">A</a>
+                            <a class="px-2">A+</a>
+                        </li>
+                        <li>
+                            <a [class.active]="defaultLang == 'en'" (click)="selectedLang('en')">EN</a>
+                        </li>
+                        <li>
+                            <a [class.active]="defaultLang == 'hn'" (click)="selectedLang('hn')">HN</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light1 shadow-sm">
+            <div class="container-fluid">
+                <a class="" href="#"><img src="./assets/assets/img/emblem.png"/></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul id="main_nav" class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item">
+                            <a class="nav-link active" routerlinkactive="active" aria-current="page" href="#">{{'tDashboard.home' | translate}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerlinkactive="active" href="#">{{'tDashboard.about' | translate}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://10.25.26.251:8385/meauth/oauth/authorize?response_type=code&user_oauth_approval=true&client_id=teacher&redirect_uri=http://10.25.26.10:4200/teacher/profile&scopes=read" target="_blank">{{'tDashboard.login' | translate}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="defaultLang == 'en'" (click)="selectedLang('en')">EN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="defaultLang == 'hn'" (click)="selectedLang('hn')">HN</a>
+                        </li>
+                    </ul>
+      
+                </div>
+            </div>
+        </nav> -->
+</header>
+<section style="background-color: #fff; padding-top:20px;">
+    <div class="container-fluid">
+        <div
+            class="aboutBg rounded-top">
+            <!-- Header-Fixed Section -->
+
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-9 col-sm-9"><img src="assets/assets/img/srm-logo.png" class="emblem-resp" alt=""></div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="d-flex flex-row-reverse nic-resp">
+                            <img src="assets/assets/img//nic-logo.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="abt-wrap">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-6 abt-cont">
+                            <h1 class="mt-5">About
+                                <br>
+                                School Resource Platform</h1>
+                            <p class="pb-3">It's a  platform for Employees in School. It is designed to take into account the entire teacher life cycle, from the time teachers inception in TEIs to their retirement as educators.</p>
+
+                            <div class="d-grid gap-2 d-md-block text-center mt-5">
+                                <!-- <button class="reset btn-round me-3" type="button">Teacher’s Login</button> -->
+                                <a class="reset btn-round " [href]="loginUrlIndividual" target="_blank">{{'tDashboard.login' | translate}}</a>
+                                <!-- <a class="reset btn-round " [href]="loginUrlIndividual" target="_blank">{{'tDashboard.login' | translate}}</a> -->
+                                <!-- <a class="reset btn-round " [href]="loginUrlIndividual" target="_blank">{{'tDashboard.login' | translate}}</a> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="curveBg">
+                  <div class="row">
+                      <div class="col-lg-8 col-md-12">
+                          <ul class="stats">
+                              <li>
+                                  <h2 class="mb-1">1507708</h2>
+                                  <h3 class="mb-1">Number of Schools</h3>
+                              </li>
+                              <li>
+                                  <h2 class="mb-1">9687577</h2>
+                                  <h3 class="mb-1">Number of Teachers</h3>
+                              </li>
+                              <li>
+                                  <h2 class="mb-1">264527575</h2>
+                                  <h3 class="mb-1">Number of Students</h3>
+                              </li>
+                          </ul>
+                      </div>
+                      <div class="col-lg-4 col-md-12">
+                          <div class="backEffect py-4 pe-3">
+                              <nav  class="navbar navbar-expand-lg navbar-light bg-light1 ">
+                                  
+                                      
+                                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                                          <span class="navbar-toggler-icon"></span>
+                                      </button>
+                                      <div class="collapse navbar-collapse" id="navbarScroll">
+                                          <ul id="main_nav" class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                                              <li class="nav-item">
+                                                  <a class="nav-link active" routerlinkactive="active" aria-current="page" href="#">{{'tDashboard.home' | translate}}</a>
+                                              </li>
+                                              <li class="nav-item">
+                                                  <a class="nav-link" routerlinkactive="active" href="#">{{'tDashboard.about' | translate}}</a>
+                                              </li>
+                                              <li class="nav-item">
+                                                  <a class="nav-link" href="https://demopgi.udiseplus.gov.in/SpringAuthSecurity/oauth/authorize?response_type=code&user_oauth_approval=true&client_id=teacher&redirect_uri=https://demopgi.udiseplus.gov.in/school/teacher/profile&scopes=read" target="_blank">{{'tDashboard.login' | translate}}</a>
+                                              </li>
+                                              
+                                          </ul>
+                            
+                                      </div>
+                             
+                              </nav>
+                          </div>
+                      </div>
+                  </div>
+              </div>  -->
+        <div class="curveBg">
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <ul class="stats">
+                        <li>
+                            <h2>1507708</h2>
+                            <h3>Number of Schools</h3>
+                        </li>
+                        <li>
+                            <h2>9687577</h2>
+                            <h3>Number of Teachers</h3>
+                        </li>
+                        <li>
+                            <h2>264527575</h2>
+                            <h3>Number of Students</h3>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <ul class="nav justify-content-center nav-mt">
+                        <li class="nav-item">
+                            <a class="nav-link active" routerlinkactive="active" aria-current="page" href="#">{{'tDashboard.home' | translate}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerlinkactive="active" href="#">{{'tDashboard.about' | translate}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://pgi.udiseplus.gov.in/SpringAuthSecurity/oauth/authorize?response_type=code&user_oauth_approval=true&client_id=teacher&redirect_uri=https://pgi.udiseplus.gov.in/school/teacher/profile&scopes=read" target="_blank">{{'tDashboard.login' | translate}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid gk">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="heading headMt">About
+                    <span>Teacher Resource Platform</span>
+                </h2>
+                <p class="bodyText">Teacher Information System shall facilitate an end-to-end management of teacher lifecycle. For the entire lifecycle, a teacher has multiple entry, exit points and instances from the education ecosystem. A unique number, associated with a teacher, will be used to map the entire journey of a teacher spanning across different stages of teacher life. This will ensure teacher records created can be issued to the correct individual with consented access.
+
+
+
+                    Effective implementation of ICT in various processes such as Employee  Administration, Transfer , Vacancy Management, Linkage of PMIS etc. with Teacher can not only bring in efficiency in the overall service delivery of the school education department but also the much-required transparency in the processes.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="module gk">
+                    <h2 class="heading">Module
+                        <span>of Teacher’s</span>
+                    </h2>
+                    <ul class="list-group list-group-flush mt-4">
+                        <li class="list-group-item">
+                            <a href="#" title="">Employee's Profile</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" title="">Employee's Transfer</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" title="">Employee's Profile</a>
+                        </li>
+                        <!-- <li class="list-group-item"><a href="#" title="">Teacher’s Transfer</a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section style="background-color: #fff; padding-bottom:50px;">
+    <div class="container-fluid OrgNi">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="onBoard jk">
+                    <h2 class="heading1">Organization’s on Board</h2>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item shadow-sm">
+                            <img src="assets/assets/img/kvs-logo.png" width="110" height="88" alt="">
+                            <h3 class="font58585">Kendriya Vidyalaya Sangathan<br>
+                                (KVS)</h3>
+                        </div>
+                        <div class="item shadow-sm">
+                            <img src="assets/assets/img/kvs-logo.png" width="110" height="88" alt="">
+                            <h3 class="font58585">Kendriya Vidyalaya Sangathan<br>
+                                (KVS)</h3>
+                        </div>
+                        <div class="item shadow-sm">
+                            <img src="assets/assets/img/kvs-logo.png" width="110" height="88" alt="">
+                            <h3 class="font58585">Kendriya Vidyalaya Sangathan<br>
+                                (KVS)</h3>
+                        </div>
+                        <div class="item shadow-sm">
+                            <img src="assets/assets/img/kvs-logo.png" width="110" height="88" alt="">
+                            <h3 class="font58585">Kendriya Vidyalaya Sangathan<br>
+                                (KVS)</h3>
+                        </div>
+                        <div class="item shadow-sm">
+                            <img src="assets/assets/img/kvs-logo.png" width="110" height="88" alt="">
+                            <h3 class="font58585">Kendriya Vidyalaya Sangathan<br>
+                                (KVS)</h3>
+                        </div>
+                        <div class="item shadow-sm">
+                            <img src="assets/assets/img/kvs-logo.png" width="110" height="88" alt="">
+                            <h3 class="font58585">Kendriya Vidyalaya Sangathan<br>
+                                (KVS)</h3>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- <section style="background-color: #fff; padding-bottom:50px;">
+    <div class="container-fluid OrgNi ">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="onBoard jk">
+                    <h2 class="heading1">Organization’s on Board</h2>
+
+                    <ul class="UlBox">
+                        <li class="box">
+                            <img src="assets/assets/img/kvs-logo.png" width="110" height="88" alt="">
+                            <h3>Kendriya Vidyalaya Sangathan<br>
+                                (KVS)</h3>
+                        </li>
+                        <li class="box">
+                            <img src="assets/assets/img/kvs-logo.png" width="110" height="88" alt="">
+                            <h3>Kendriya Vidyalaya Sangathan<br>
+                                (KVS)</h3>
+                        </li>
+                        <li class="box">
+                            <img src="assets/assets/img/kvs-logo.png" width="110" height="88" alt="">
+                            <h3>Kendriya Vidyalaya Sangathan<br>
+                                (KVS)</h3>
+                        </li>
+                        <li class="box">
+                            <img src="assets/assets/img/kvs-logo.png" width="110" height="88" alt="">
+                            <h3>Kendriya Vidyalaya Sangathan<br>
+                                (KVS)</h3>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+<!-- 
+  <section>
+    <div class="row g-0">
+        <div class="col-sm-6 col-md-6 abt-teacher">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 p30">
+                        <h6 class="titleOur">Our</h6>
+                        <h2 class="titleOurTeacher">
+                            Teacher's</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non eros quam. Morbi convallis in velit in posuere. Vestibulum efficitur eleifend leo ac congue. Duis aliquam ante ex, eu gravida quam convallis eget. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos, aliquam imperdiet mauris.</p>
+                        <div class="d-grid gap-2 d-md-block mt-5">
+                            <button class="btn btn-white rounded-pill" type="button">Teacher’s Login</button>
+                            <button class="btn btn-outline-white rounded-pill" type="button"><a class="nav-link" href="http://10.25.26.251:8385/meauth/oauth/authorize?response_type=code&user_oauth_approval=true&client_id=teacher&redirect_uri=http://10.25.26.10:4200/teacher/profile&scopes=read" target="_blank">{{'tDashboard.login' | translate}}</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <div class="row g-0">
+                <div class="col-sm-12" style="background-color: #dec235!important;">
+                    <div class="teacher-onboard">
+                        <ul class="TeacherOn m-0 p-0  mt-4">
+                            <li>
+                                <div class="onboard-img">
+                                    <img src="assets/assets/img/teacher-onboard.png" width="350" height="300" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="onboard-number">
+                                    <h6 class="totalOur pt-3">Total</h6>
+                                    <h2 class="totalOurTeacher">
+                                        Teacher’s on Board</h2>
+                                    <h4 class="totalCount">32566</h4>
+                                </div>
+                            </li>
+  
+                        </ul>
+  
+  
+                    </div>
+  
+                </div>
+                <div class="col-md-12 bg-success">
+                    <div class="teacher-active">
+                        <div class="row">
+                            <div class="col-md-6 p256">
+                                <h6 class="totalOur mt-4 mb-1" style="color:#CFEBFE">Total</h6>
+                                <h2 class="totalOurTeacher">
+                                    Teacher’s on Board</h2>
+                                <h4 class="totalCount" style="color: #EACF43;">32566</h4>
+  
+                            </div>
+                            <div class="col-md-6">
+                                <div class="pab"><img src="assets/assets/img/teacher-active.png" width="440px" alt=""></div>
+                            </div>
+                        </div>
+  
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section> -->
+<!-- our Teacher Details -->
+<!-- 
+  <section class="our-teacher">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="ourTeacherDetails">
+                    Our Teacher's Details
+                </h2>
+                <p class="teacherPara">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, ipsum. Molestiae vel a veniam quam corporis distinctio laboriosam. Excepturi, ipsum. Molestiae vel a veniam
+                </p>
+            </div>
+            <div class="col-md-8 offset-md-2 mt-5">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="shadow p-2 text-center mb-4 rounded">
+                            <img src="assets/assets/img/icon/twa.png"/>
+                            <h4 class="TeacherApproval mb-1">Teachers Waiting for Approval</h4>
+                            <h3 class="TaAmount mb-0">45625</h3>
+                        </div>
+                    </div>
+  
+                    <div class="col-md-4">
+                        <div class="shadow p-2 text-center mb-4 rounded">
+                            <img src="assets/assets/img/icon/mwt.png"/>
+                            <h4 class="TeacherApproval mb-1">Management wise Teacher's
+                            </h4>
+                            <h3 class="TaAmount mb-0">45625</h3>
+                        </div>
+                    </div>
+  
+                    <div class="col-md-4">
+                        <div class="shadow p-2 text-center mb-4 rounded">
+                            <img src="assets/assets/img/icon/cwt.png"/>
+                            <h4 class="TeacherApproval mb-1">Category wise Teacher's
+                            </h4>
+                            <h3 class="TaAmount mb-0">45625</h3>
+                        </div>
+                    </div>
+  
+                    <div class="col-md-4">
+                        <div class="shadow p-2 text-center mb-4 rounded">
+                            <img src="assets/assets/img/icon/ywt.png"/>
+                            <h4 class="TeacherApproval mb-1">Year wise Teacher's</h4>
+                            <h3 class="TaAmount mb-0">45625</h3>
+                        </div>
+                    </div>
+  
+                    <div class="col-md-4">
+                        <div class="shadow p-2 text-center mb-4 rounded">
+                            <img src="assets/assets/img/icon/gwt.png"/>
+                            <h4 class="TeacherApproval mb-1">Gender wise Teacher's</h4>
+                            <h3 class="TaAmount mb-0">45625</h3>
+                        </div>
+                    </div>
+  
+                    <div class="col-md-4">
+                        <div class="shadow p-2 text-center mb-4 rounded">
+                            <img src="assets/assets/img/icon/swt.png"/>
+                            <h4 class="TeacherApproval mb-1">Stage wise Teacher's</h4>
+                            <h3 class="TaAmount mb-0">45625</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section> -->
+
+<!-- 
+  <section class="our-mangement">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <h6 class="LetUsShow mt-3">Let us show you some states</h6>
+                <h5 class="ManagementWiseTe">Management wise Teacher's</h5>
+                <p class="teachermama">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, ipsum. Molestiae vel a veniam quam corporis distinctio laboriosam. Excepturi, ipsum. Molestiae vel a veniam
+                </p>
+            </div>
+            <div class="col-md-4">
+                <ul class="GovSector shadow-sm bg-white text-center p-0">
+                    <li>
+                        <div class="d-flex align-items-center b11 p-3 ">
+                            <div class="flex-shrink-0">
+                                <img src="assets/assets/img/icon/govt-school.png"/>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h2 class="mb-0 govGk">Goverment</h2>
+                                <h5 class="mb-0 AmoiuvGk">2.5 Lakh</h5>
+                            </div>
+                        </div>
+                    </li>
+  
+                    <li>
+                        <div class="d-flex align-items-center b12 p-3">
+                            <div class="flex-shrink-0">
+                                <img src="assets/assets/img/icon/private-school.png"/>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h2 class="mb-0 govGk">Private</h2>
+                                <h5 class="mb-0 AmoiuvGk">4.3 Lakh</h5>
+                            </div>
+                        </div>
+                    </li>
+  
+                    <li>
+                        <div class="d-flex align-items-center b13 p-3">
+                            <div class="flex-shrink-0">
+                                <img src="assets/assets/img/icon/aided-school.png"/>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h2 class="mb-0 govGk">Aided</h2>
+                                <h5 class="mb-0 AmoiuvGk">1.3 Lakh</h5>
+                            </div>
+                        </div>
+                    </li>
+  
+                    <li>
+                        <div class="d-flex align-items-center b14 p-3">
+                            <div class="flex-shrink-0">
+                                <img src="assets/assets/img/icon/other-school.png"/>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h2 class="mb-0 govGk">others</h2>
+                                <h5 class="mb-0 AmoiuvGk">0.5 Lakh</h5>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+  
+            <div class="col-md-4">
+                <img src="assets/assets/img/graph.jpg" class="gkRight img-fluid"/>
+            </div>
+        </div>
+    </div>
+  </section> -->
+    <section class="footerSet"> <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 ms-3 me-3 border-end pe-3">
+                            <img src="assets/assets/img/nic-logo.png" class="mb-3" alt="...">
+                            <p class="mb-0 footerPara mb-2">
+                                This site is designed, developed, maintained and hosted by<br/>
+                                National Informatics Centre (NIC),
+                                <br/>
+                                Ministry of Electronics & Information Technology.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <ul class="footerUl">
+                                <li>
+                                    <a href="">Home</a>
+                                </li>
+                                <li>
+                                    <a href="">About UDISE+</a>
+                                </li>
+                                <li>
+                                    <a href="">Get UDISE Code</a>
+                                </li>
+                                <li>
+                                    <a href="">Publication & Statistics</a>
+                                </li>
+                                <li>
+                                    <a href="">FAQ's</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="footerUl">
+                                <li>
+                                    <a href="">Ministry of Education</a>
+                                </li>
+                                <li>
+                                    <a href="">School GIS</a>
+                                </li>
+                                <li>
+                                    <a href="">Digital Repository</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="footerUl">
+                                <li>
+                                    <a href="">Website Policy</a>
+                                </li>
+                                <li>
+                                    <a href="">Site Map</a>
+                                </li>
+                                <li>
+                                    <a href="">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+            <div class="row">
+                <p class="mb-0 footerPara mt-3 text-center">
+                    This Website belongs to Department of School Education & Literacy, Ministry of Education, Government of India.
+                </p>
+            </div>
+        </div>
+
+    </footer>
+</section>

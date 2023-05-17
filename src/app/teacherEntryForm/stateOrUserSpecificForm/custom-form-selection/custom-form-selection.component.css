@@ -1,0 +1,30 @@
+.dropdown-menu{ min-width: 26rem;}
+.dropDownUl{ list-style: none; margin:0px; padding:5px; }
+.dropDownUl li{ width:49%; display: inline-table; padding:5px 5px; cursor: pointer; }
+.dropDownUl li:hover{     background: rgba(192, 192, 192, 0.205);
+    color: #24695c;}
+.bx.bx-check {
+    color: silver;
+    font-weight: 300; display: none; float:right;
+}
+.dropDownUl li:hover .bx.bx-check
+{
+    display:block; color: #24695c;
+}
+
+ul.quantities{ list-style:none; padding:0; margin:0px; }
+.UlList li{display:inline-table}
+input[type=radio] {
+    width: 26px;
+    height: 25px; position: relative;
+    top: 8px; margin-right: 10px;
+}
+input[type=checkbox] {
+    width: 16px;
+    height: 16px; position: relative;
+    top: 2px; margin-right: 10px;
+}
+.ControlButton{ position:relative; top:8px; margin-left:10px;}
+.font90{width:85%; position: relative;}
+.fontStyleGk{font-size: 14px; color:#242424; font-weight: 500; letter-spacing: 0.5; }
+.question{ font-weight: 600; font-size: 18px; color:#24695c;}

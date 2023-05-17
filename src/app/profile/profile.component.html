@@ -1,0 +1,384 @@
+<!-- <div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="page-header">General</h3>
+            </div>
+            <div
+                class="col-sm-6">
+              
+                <ul class="bookmark">
+                    <li>
+                        <i class='bx bx-message-square-dots bxStyle'></i>
+                    </li>
+                    <li>
+                        <i class='bx bx-notification bxStyle'></i>
+                    </li>
+                    <li>
+                        <i class='bx bx-star bxStyle'></i>
+                    </li>
+                </ul>
+   
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="container-fluid ">
+    <div class='row'>
+        <div class="col-xl-4 xl-50 col-sm-6 box-col-6">
+            <h2 class="mb-0  p-2"> &nbsp;</h2>
+            <div class="shadow mb-5 bg-body rounded-3" style="min-height:250px;">
+                <div class="p-4 ">
+                    <div class="row">
+                        <div class="col-md-12 mb-2 ">
+                            <div class="d-flex align-items-center text-green ">
+                                <div class="flex-shrink-0">
+                                    <img src="assets/assets/img/kvs-logo.png" alt="..." width="70px">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h4 class="mb-0 KVid">{{kvSchoolDetails?.kv_name}}</h4>
+                                    <h6 class="KVTt">{{kvSchoolDetails?.station_name}}</h6>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12 mt-4">
+                            <h4 class="font98797">KV/Institution Code:
+                                <span>{{kvSchoolDetails?.udise_sch_code}}
+                            </span>
+                            </h4>
+
+                        </div>
+                        <div class="col-md-12">
+                            <h4 class="font98797">Region name (Code):
+                                <span>{{kvSchoolDetails?.region_name}}({{kvSchoolDetails?.region_code}})
+                            </span>
+                            </h4>
+
+                        </div>
+                        <div class="col-md-12">
+                            <h4 class="font98797">Station name (Code):
+                                <span>{{kvSchoolDetails?.station_name}}({{kvSchoolDetails?.station_code}})
+                            </span>
+                                <!-- <span class="text-green" style="font-size: larger;"></span> -->
+                            </h4>
+                        </div>
+                        <!-- <div class="col-md-12">
+                            <h4 class="font98797">District / State:
+                                <span>{{kvSchoolDetails?.district_name}}
+                              /
+                              {{kvSchoolDetails?.state_name}}
+                            </span>
+
+                            </h4>
+                        </div> -->
+                        <!-- <div class="col-md-12">
+                                    <h4 class="font98797">State name (Code): <span></span></h4>
+                                  </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8 xl-100 box-col-12">
+
+            <h2 class="mb-0 text-end p-2">Total staff :
+                <span class="fw-bolder text-green font-weight-bold">{{totalTeachers}}</span>
+            </h2>
+            <div class="">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="shadow rounded-3 bg-white" style="min-height:250px;">
+                            <div class="bg12 clearfix p-3">
+                                <div class="float-start">
+                                    <h2 class="TotalValue text-white">{{teachingStaff}}</h2>
+                                    <h4 class="TotalContent text-white mb-0 ">
+                                        Total Teaching Staff</h4>
+                                </div>
+                                <div class="float-end">
+                                    <img src="assets/assets/img/tea12.png" alt="" srcset="" width="54px">
+                                </div>
+                            </div>
+                            <ul class="teacherStaff p-3">
+                                <li>
+                                    <div class="clearfix">
+                                        <div class="float-start">
+                                            <h2 class="font896">Regular</h2>
+                                        </div>
+                                        <div class="float-end CircleBlue">
+                                            <span class="circle ">
+                                            {{permanentEmpTch}}
+                                          </span>
+                                        </div>
+                                    </div>
+
+
+                                </li>
+                                <li>
+                                    <div class="clearfix">
+                                        <div class="float-start">
+                                            <h2 class="font896">Male</h2>
+                                        </div>
+                                        <div class="float-end CircleBlue">
+                                            <span class="circle ">
+                                            {{teachingMale}}
+                                          </span>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="clearfix">
+                                        <div class="float-start">
+                                            <h2 class="font896">Female</h2>
+                                        </div>
+                                        <div class="float-end CircleBlue">
+                                            <span class="circle ">
+                                            {{teachingFemale}}
+                                          </span>
+                                        </div>
+                                    </div>
+
+                                </li>
+
+
+                            </ul>
+                            <!-- <ul class="teacherStaff">
+                                          <li>
+                                            <h2>Regular</h2>
+                                            <h1>{{permanentEmpTch}}</h1>
+                                          </li>
+                                          <li>
+                                            <h2> Contractual</h2>
+                                            <h1>{{contractualEmpTch}}</h1>
+                                          </li>
+                                          <li *ngIf="otherEmpTch != '0'">
+                                            <h2>Other</h2>
+                                            <h1>{{otherEmpTch}}</h1>
+                                          </li>
+                          
+                                          <li>
+                                            <h2> Total </h2>
+                                            <h1 style="color: blue;">{{teachingStaff}}</h1>
+                                          </li>
+                                        </ul> -->
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="shadow rounded-3 bg-white" style="min-height:250px;">
+
+                            <div class="bg13 clearfix p-3">
+                                <div class="float-start">
+                                    <h2 class="TotalValue text-white">{{nonTeachingStaff}}</h2>
+                                    <h4 class="TotalContent text-white mb-0 ">Total Non Teaching Staff</h4>
+                                </div>
+                                <div class="float-end">
+                                    <img src="assets/assets/img/tea13.png" alt="" srcset="" width="54px">
+                                </div>
+                            </div>
+                            <ul class="teacherStaff p-3">
+                                <li>
+                                    <div class="clearfix">
+                                        <div class="float-start">
+                                            <h2 class="font896">Regular</h2>
+                                        </div>
+                                        <div class="float-end Circlegreen">
+                                            <span class="circle ">
+                                            {{permanentEmpNonTch}}
+                                          </span>
+                                        </div>
+                                    </div>
+
+
+                                </li>
+                                <li>
+                                    <div class="clearfix">
+                                        <div class="float-start">
+                                            <h2 class="font896">Male</h2>
+                                        </div>
+                                        <div class="float-end Circlegreen">
+                                            <span class="circle ">
+                                            {{nonTeachingMale}}
+                                          </span>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="clearfix">
+                                        <div class="float-start">
+                                            <h2 class="font896">Female</h2>
+                                        </div>
+                                        <div class="float-end Circlegreen">
+                                            <span class="circle ">
+                                            {{nonTeachingFemale}}
+                                          </span>
+                                        </div>
+                                    </div>
+
+                                </li>
+
+
+                            </ul>
+                            <!-- <div class="text-center pt-4">
+                                          <img src="assets/assets/img/nonteaching.png" alt="" srcset="" width="54px">
+                                        </div>
+                          
+                                        <h4 class="TeacherHeading mb-0 border-bottom-dashed text-center p-3">Non Teaching Staff</h4>
+                                        <ul class="teacherStaff">
+                                          <li>
+                                            <h2 >Regular</h2>
+                                            <h1>{{permanentEmpNonTch}}</h1>
+                                          </li>
+                                          <li>
+                                            <h2> Contractual</h2>
+                                            <h1>{{contractualEmpNonTch}}</h1>
+                                          </li>
+                                          <li *ngIf="otherEmpNonTch != '0'">
+                                            <h2>Other</h2>
+                                            <h1>{{otherEmpNonTch}}</h1>
+                                          </li>
+                                          <li>
+                                            <h2> Total </h2>
+                                            <h1 style="color: blue;">{{nonTeachingStaff}}</h1>
+                                          </li>
+                                        </ul> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="SchoolStatus">
+                <li>
+                    <div>
+                        <img src="assets/assets/img/total-staff.png" class="mb-2" />
+                        <h4 class="font26589 mb-1">Total Staff</h4>
+                        <h2 class="font64989985 mb-0">{{totalTeachers}}</h2>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="assets/assets/img/verified-staff.png" class="mb-2" />
+                        <h4 class="font26589 mb-1">Verified Staff </h4>
+                        <h2 class="font64989985 mb-0">{{verifiedCOunt}}</h2>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="assets/assets/img/pending-school.png" class="mb-2" />
+                        <h4 class="font26589 mb-1">Pending at School </h4>
+                        <h2 class="font64989985 mb-0">{{schoolPendingCount}}</h2>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="assets/assets/img/pending-staff.png" class="mb-2" />
+                        <h4 class="font26589 mb-1">Pending at Staff</h4>
+                        <h2 class="font64989985 mb-0">{{teacherPendingCount}}</h2>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="assets/assets/img/initiated-school.png" class="mb-2" />
+                        <h4 class="font26589 mb-1">Initiated by School </h4>
+                        <h2 class="font64989985 mb-0">{{schoolInitiated}}</h2>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="assets/assets/img/not-initiated.png" class="mb-2" />
+                        <h4 class="font26589 mb-1">Not Initiated</h4>
+                        <h2 class="font64989985 mb-0">{{notInitiatedCount}}</h2>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- <div class="row">
+      <div
+          class="col-xl-12 xl-50 col-sm-12 box-col-12">
+         
+          <div class="shadow-sm bg-white mt-3">
+              <div class="p-4 ">
+                  <div class="row">
+                      <div class="col-md-12 mb-2 ">
+                          <h4 class="KVTt border-bottom-dashed pb-2 text-green">School Status :</h4>
+                      </div>
+                      <div class="col-md-2">
+                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Total Staff :
+                              <span style="color: blue; font-size: x-large;">{{totalTeachers}}</span>
+                          </h4>
+                      </div>
+                      <div class="col-md-2">
+                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Verified Staff :
+                              <span style="color: green; font-size: x-large;">{{verifiedCOunt}}</span>
+                          </h4>
+                      </div>
+                      <div class="col-md-2">
+                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Pending at School :
+                              <span style="color: purple; font-size: x-large;">{{schoolPendingCount}}</span>
+                          </h4>
+                      </div>
+                      <div class="col-md-2">
+                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Pending at Staff :
+                              <span style="color: orange; font-size: x-large;">{{teacherPendingCount}}</span>
+                          </h4>
+                      </div>
+                      <div class="col-md-2">
+                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Initiated by School :
+                              <span style="color: #1a73e8; font-size: x-large;">{{schoolInitiated}}</span>
+                          </h4>
+                      </div>
+                      <div class="col-md-2">
+                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Not Initiated :
+                              <span style="color: red; font-size: x-large;">{{notInitiatedCount}}</span>
+                          </h4>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div> -->
+</div>
+<!-- <script>
+refresh(): void {
+window.location.reload();
+}
+</script> -->
+
+<div mat-dialog-content class="modal-xl">
+    <ng-template #processFlow let-modal style="min-width: 100%; ">
+
+        <!-- <div class="modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="clearfix">
+                        <div class="float-left">
+                            <h2 class="mb-0 text-green">Reasons of rejection from school</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="" style="min-width: 100%;">
+            <app-application-flow></app-application-flow>
+            <hr>
+            <div class="" style="text-align: right; margin-right: 13px; margin-bottom: 6px;">
+                <button type="button" class="btn btn-success btn-sm" (click)="modal.dismiss('Cross click')">Ok</button>
+            </div>
+        </div>
+        <!-- <button type="button" class="btn btn-success btn-sm" style="margin-left: 3px;"
+        (click)="modal.dismiss('Cross click')">Ok</button> -->
+
+    </ng-template>
+</div>
