@@ -84,3 +84,7 @@ span.dropdown.GkDropbx .dropdown-menu {
 li {
     list-style: none;
 }
+
+.nav-item{
+    margin-top: 1px;
+}

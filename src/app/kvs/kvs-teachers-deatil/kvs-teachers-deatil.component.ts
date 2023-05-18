@@ -323,11 +323,11 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
   }
 
-  createUser(val) {
+  createUser(val,teacherId) {
     
     // alert("create user--->"+JSON.stringify(this.teacherList));
     debugger;
-
+// alert(teacherId);
     for (let i = 0; i < this.teacherList.length; i++) {
       if (this.teacherList[i].teacherEmployeeCode == val) {
 
@@ -364,6 +364,28 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
                   "businessUnitTypeCode": this.businessUnitTypeCode,
                   "verifyFlag": this.verifySingleTeacherList.verifyFlag
                 }
+
+                // To be commented Shamim
+
+                const flagData = {
+                  'teacherId': teacherId,
+                  'form1Status': 'SI',
+                  'form2Status': 'SI',
+                  'form3Status': 'SI',
+                  'form4Status': 'SI',
+                  'form5Status': 'SI',
+                  'form6Status': 'SI',
+                  'form7Status': 'SI',
+                  'finalStatus': 'SI',
+                }
+              
+                this.outSideService.updateFlagByTeacherId(flagData).subscribe((res) => {
+                  this.users[i].approved = res.response.finalStatus;
+                })
+
+                // End
+
+
                 
                 this.outSideService.createUserOnVerify(createUser).subscribe((response) => {
                   if(response.status == '1' || response.status == 1){

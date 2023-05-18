@@ -89,13 +89,13 @@
         </li> -->
 
         <!-- Dashboard ---Starts -->
-        <li *ngIf="showNational" class="nav-item">
+        <!-- <li *ngIf="showNational" class="nav-item">
             <a class="nav-link navStyle " routerLink="/teacher/nationalDashboard" routerLinkActive="active">
                 <i class='bx bxs-school bxStyle'></i>
                 <span class="TitleSetheader">
                     Dashboard</span>
             </a>
-        </li>
+        </li> -->
         <li *ngIf="showRegion" class="nav-item">
             <a class="nav-link navStyle " routerLink="/teacher/regionDashboard" routerLinkActive="active">
                 <i class='bx bxs-school bxStyle'></i>
@@ -291,13 +291,13 @@
 
         <li class="nav-item" *ngIf="showNational">
 
-            <a class="nav-link nav-link navStyle" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+            <a class="nav-link  navStyle active"   data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
                 <i class='bx bxs-notepad bxStyle'></i>
                 <span class="TitleSetheader">Masters</span>
-                <i class='bx bx-chevron-down bxStyle dropIcon'></i>
+                <i class='bx bx-chevron-up bxStyle dropIcon'></i>
             </a>
 
-            <ul class="collapse p-0 m-0" id="collapseExample">
+            <ul class="collapse show p-0 m-0" id="collapseExample">
                 <li class="nav-item">
                     <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionMaster">
                         <i class='bx bx-location-plus bxStyle'></i>
