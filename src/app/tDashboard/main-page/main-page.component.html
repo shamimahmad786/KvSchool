@@ -2,10 +2,10 @@
     <div class="top-pan">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-6 col-md-6">
                     <ul class="list-unstyled list-inline float-left topbargovt mb-0 p-0">
 
-                        <li class="list-inline-item border-right text-white pt-0 pb-0">
+                        <li class="list-inline-item border-right text-white ">
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0">
                                     <img src="assets/assets/img/sm-emblem-w.png" />
@@ -26,8 +26,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-6 col-md-12 text-right">
-                    <ul class="accblty align-items-center d-flex mb-0 mt-2 justify-content-end">
+                <div class="col-lg-6 col-md-6 text-right">
+                    <ul class="accblty align-items-center d-flex mb-0 mt-1 justify-content-end">
                         <!-- <li>
                             <a href="#" title="Skip to main content">Skip to main content</a>
                         </li> -->
@@ -38,11 +38,11 @@
                             <mat-slide-toggle class="example-margin" (change)="onToggle($event)" color="warn">
                             </mat-slide-toggle>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="font-bdr">A-</a>
                             <a class="font-bdr">A</a>
                             <a class="font-bdr">A+</a>
-                        </li>
+                        </li> -->
                         <li class="language-switch mr-0">
                             <button mat-button [matMenuTriggerFor]="menu" class="bg-white">{{languageName}}
                                 <mat-icon>keyboard_arrow_down</mat-icon></button>
@@ -97,7 +97,7 @@
     <div class="header pt-2 pb-2">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-6 ">
                     <div class="d-flex align-items-center">
                         <div class="flex-shrink-0">
                             <img src="assets/assets/img/kvs-logo22.png" class="" alt="...">
@@ -109,7 +109,7 @@
                     </div>
                     <!-- <img src="assets/assets/img/emblem_2.png" class="emblem-resp" alt=""> -->
                 </div>
-                <div class="col-lg-8 col-md-8">
+                <div class="col-md-6">
                     <div class="navbar-top d-flex justify-content-end mt-2">
                         <!-- <button class="ms-1" mat-button>{{'tDashboard.EmployeeProfile'| translate}}</button>
                         <button class="ms-1" mat-button>{{'tDashboard.EmployeeTransfer'| translate}}</button>
@@ -137,7 +137,7 @@
     <div class="home-main">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6 col-md-6 pt-5">
+                <div class="col-lg-6 col-md-6 pt-0">
                     <h1 class="title">About <br/>Teacher Platform</h1>
                     <p class="description">It's a platform for Employees in Number of KV/RO/ZIET/HQ. It is designed to take into account the entire teacher life cycle, from the time teachers inception in TEIs to their retirement as educators.</p>
 
@@ -172,8 +172,10 @@
                         </li>
                     </ul> -->
 
-                    <div class="row mt-5">
+                    <div class="row onboard">
+                        <h2 class="sub-title">Onboard</h2>
                         <div class="col-sm-5">
+                            
                             <table class="teacher_table">
                                 <tr>
                                     <td><img src="assets/images/icons/total-kvs.png" alt="" class="me-2" > Total KVS</td>
@@ -224,8 +226,8 @@
                     </table>
 
                 </div>
-                <div class="col-lg-6 text-center">
-                    <img src="assets/assets/img/teacher-img-home.png" alt="teacher-image" class="img-fluid"/>
+                <div class="col-lg-6 col-md-6 text-center">
+                    <img src="assets/assets/img/teacher-img-home.png" alt="teacher-image" class="img-kv"/>
                 </div>
             </div>
         </div>
@@ -482,7 +484,7 @@
                 <div class="col-md-6">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1 ms-3 me-3 border-end pe-3">
-                            <img src="assets/assets/img/nic-logo.png" class="mb-3" alt="...">
+                            <img src="assets/images/login/nic.svg" class="mb-1" alt="...">
                             <p class="mb-0 footerPara mb-2">
                                 This site is designed, developed, maintained and hosted by<br /> National Informatics Centre (NIC),
                                 <br /> Ministry of Electronics & Information Technology.
@@ -501,10 +503,10 @@
                                     <a href="">Home</a>
                                 </li>
                                 <li>
-                                    <a href="">About UDISE+</a>
+                                    <a href="">About KVS</a>
                                 </li>
                                 <li>
-                                    <a href="">Get UDISE Code</a>
+                                    <a href="">Get KV Code</a>
                                 </li>
                                 <li>
                                     <a href="">Publication & Statistics</a>
