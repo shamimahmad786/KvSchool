@@ -1,0 +1,27 @@
+.titleSetSanction {
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    /* font-weight: 600; */
+    letter-spacing: 0.8px;
+    /* padding: 10px; */
+    text-align: right;
+}
+
+.titleSetSanction1 {
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    padding: 10px;
+    color: #24695c;
+    text-align: left;
+    border-bottom: 1px solid;
+}
+
+input.ng-invalid.ng-touched {
+    border-left: 3px solid red;
+}
+
+input.ng-valid.ng-touched {
+    border-left: 3px solid green;
+}

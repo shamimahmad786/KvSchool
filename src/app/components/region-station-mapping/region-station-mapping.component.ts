@@ -53,6 +53,7 @@ export class RegionStationMappingComponent implements OnInit {
     this.outSideService.fetchRegionList().subscribe((res)=>{
       if(res){
         res.forEach(element => {
+         
           if(element.isActive){
             this.regionList.push({ regionCode: element.regionCode, regionName: element.regionName})
           }
@@ -134,7 +135,9 @@ export class RegionStationMappingComponent implements OnInit {
         this.dataSource.sort = this.sort;
       }, 100)
       this.regionStationMF.get('regionCode').setValue('');
+      this.buildRegionMappingForm();
       this.formDirective.resetForm();
+      
   }
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;

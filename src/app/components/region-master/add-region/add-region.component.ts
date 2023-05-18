@@ -28,7 +28,7 @@ export class AddRegionComponent implements OnInit,OnDestroy {
   buildregionForm(){
     this.regionForm = this.fb.group({
       regioncode: ['', [Validators.required,Validators.pattern(/^[1-9][0-9]{1}$/)]],
-      regionname: ['',[Validators.required,CustomValidator.IsText1]],
+      regionname: ['',[Validators.required,CustomValidator.IsText1,Validators.minLength(3)]],
       status:[true,[Validators.required]],
       id:['']
     });
@@ -63,7 +63,7 @@ export class AddRegionComponent implements OnInit,OnDestroy {
           }
         },
         error => {
-          console.log(error);
+          // console.log(error);
           Swal.fire({
             'icon':'error',
              'title':'Opps...',
@@ -84,7 +84,7 @@ export class AddRegionComponent implements OnInit,OnDestroy {
           }
         },
         error => {
-          console.log(error);
+          // console.log(error);
           Swal.fire({
             'icon':'error',
              'title':'Opps...',

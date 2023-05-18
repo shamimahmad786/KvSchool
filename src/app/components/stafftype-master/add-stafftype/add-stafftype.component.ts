@@ -28,7 +28,7 @@ export class AddStafftypeComponent implements OnInit {
   }
   buildstaffTypeForm(){
     this.staffTypeForm = this.fb.group({
-      staffType: ['',[Validators.required,CustomValidator.IsText1]],
+      staffType: ['',[Validators.required,CustomValidator.IsText1,Validators.minLength(3)]],
       id:[],
       status:[true]
     });
@@ -69,7 +69,7 @@ export class AddStafftypeComponent implements OnInit {
           Swal.fire({
             'icon':'error',
              'title':'Opps...',
-             'text':error.error
+             'text':error.error.message
           }
           )
         })
@@ -90,7 +90,7 @@ export class AddStafftypeComponent implements OnInit {
           Swal.fire({
             'icon':'error',
              'title':'Opps...',
-             'text':error.error
+             'text':error.error.message
           }
           )
         })

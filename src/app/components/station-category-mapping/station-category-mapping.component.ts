@@ -129,7 +129,7 @@ export class StationCategoryMappingComponent implements OnInit {
         this.dataSource.sort = this.sort;
       }, 100)
       this.stationCategoryMF.get('stationCode').setValue('');
-      this.formDirective.resetForm();
+      this.formDirective?.resetForm();
     
   }
   ngAfterViewInit() {

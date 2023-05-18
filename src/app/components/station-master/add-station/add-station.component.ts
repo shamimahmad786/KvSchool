@@ -29,7 +29,7 @@ export class AddStationComponent implements OnInit,OnDestroy {
   buildStationForm(){
     this.stationForm = this.fb.group({
       stationCode: ['', [Validators.required,Validators.pattern(/^[1-9][0-9]{2}$/)]],
-      stationName: ['',[Validators.required,CustomValidator.IsText1]],
+      stationName: ['',[Validators.required,CustomValidator.IsText1,Validators.minLength(3)]],
       status:[true,[Validators.required]],
       id:['']
     });

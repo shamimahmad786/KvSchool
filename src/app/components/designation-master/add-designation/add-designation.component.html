@@ -1,51 +1,55 @@
-
 <div class="container-fluid px-4">
     <form [formGroup]="designationForm" (ngSubmit)="submit()">
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card mt-83">
                     <div class=" bg-profile-head">
                         <h5 class="mb-0 p-2 FontTitle  text-white">{{(isEdit)?'Edit Designation':'Add New Designation'}}</h5>
                     </div>
-                 
+
                     <div class="m-3 prof-fields">
                         <div class="row">
-                                   
+
                             <div class="col-md-5 form-group">
-                                <label class="titleSet">Post Code</label>                    
-                                <input type="text"  formControlName="postCode" class="form-control">
+                                <label class="titleSet">Post Code</label>
+                                <input type="text" formControlName="postCode" class="form-control" maxlength="4">
                                 <!-- <span class="help-block text-danger"
                                     *ngIf="!designationForm.get('postCode').valid && designationForm.get('postCode').touched">Please Enter Region Code !</span> -->
-                                    <mat-error  *ngIf="isSubmitted && errorHandling('postCode', 'required')">
-                                        Please Enter Post Code!
-                                    </mat-error>
-                                    <mat-error *ngIf="isSubmitted && errorHandling('postCode','textField')">Please Enter a Valid Post Code.
-                                    </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('postCode', 'required')">
+                                    Please Enter Post Code!
+                                </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('postCode','textField')">Please Enter a Valid Post Code.
+                                </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('postCode','pattern')">Please Enter a Valid Post Code.(Alpha Numeric)
+                                </mat-error>
                             </div>
                             <div class="col-md-5 form-group">
-                                <label class="titleSet">Post Name</label>                    
+                                <label class="titleSet">Post Name</label>
                                 <input type="text" formControlName="postName" class="form-control">
                                 <!-- <span class="help-block text-danger"
                                     *ngIf="isSubmitted && !designationForm.get('postName').valid && designationForm.get('postName').touched">Please Enter Region Name !</span> -->
-                                    <mat-error  *ngIf="isSubmitted && errorHandling('postName', 'required')">
-                                        Please Enter Post Name!
-                                    </mat-error>
-                                    <mat-error *ngIf="isSubmitted && errorHandling('postName','textField')">Pleae Enter a Valid Post Name!(Only white space is allowed).
-                                    </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('postName', 'required')">
+                                    Please Enter Post Name!
+                                </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('postName', 'minlength')">
+                                    Please Enter Minimum 3 characters word for Post Name!
+                                </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('postName','textField')">Pleae Enter a Valid Post Name!(Only white space is allowed).
+                                </mat-error>
                             </div>
                             <div class="col-md-5 form-group mt-3">
                                 <!-- <mat-form-field style="width: 100%;"> -->
-                                    <label class="titleSet">Select Status</label>
-                                    <mat-select formControlName="status" class="form-control">
-                                        <mat-option>Select Status</mat-option>
-                                        <mat-option *ngFor="let status of statusList" [value]="status.value">{{status.status}}</mat-option>
-                                    </mat-select>
+                                <label class="titleSet">Select Status</label>
+                                <mat-select formControlName="status" class="form-control">
+                                    <mat-option>Select Status</mat-option>
+                                    <mat-option *ngFor="let status of statusList" [value]="status.value">{{status.status}}</mat-option>
+                                </mat-select>
 
                                 <!-- </mat-form-field> -->
                                 <mat-error *ngIf="isSubmitted && errorHandling('status', 'required')">
                                     Please select the status!
-                                  </mat-error>
+                                </mat-error>
                                 <!-- <span class="help-block text-danger"
                                 *ngIf="!designationForm.get('status').valid && designationForm.get('status').touched">Please select the status!</span> -->
                             </div>
@@ -55,13 +59,13 @@
                                 <button type="button" class="btn btn-primary mt-2" (click)="redirectToList()">Cancel</button>
                             </div>
 
+                        </div>
+
                     </div>
-            
                 </div>
+
+
             </div>
-
-
-        </div>
         </div>
     </form>
 </div>
