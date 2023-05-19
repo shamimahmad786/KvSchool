@@ -50,7 +50,7 @@
             </mat-form-field>
          </div>
         <div class="example-container mat-elevation-z8">
-            <table mat-table *ngIf="dataSource.data.length > 0" [dataSource]="dataSource" matSort>
+            <table mat-table *ngIf="dataSource?.data?.length > 0" [dataSource]="dataSource" matSort>
                 <!-- Position Column -->
                 <ng-container matColumnDef="sno">
                     <th mat-header-cell *matHeaderCellDef> S.No. </th>

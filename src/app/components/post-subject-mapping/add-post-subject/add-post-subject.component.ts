@@ -71,7 +71,6 @@ export class AddPostSubjectComponent implements OnInit {
           if(res=="SUCCESS"){
             Swal.fire(
               'New Staff-Type-Post Mapped Successfully!',
-              '',
               'success'
             )
             this.router.navigate(['/teacher/postSubjectMapping']);
@@ -81,8 +80,7 @@ export class AddPostSubjectComponent implements OnInit {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'title':'Opps...',
-             'text':error.error
+             'text':error.error.message
           }
           )
         })

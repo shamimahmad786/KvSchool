@@ -66,7 +66,6 @@ export class AddRegionComponent implements OnInit,OnDestroy {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'title':'Opps...',
              'text':error.error.message
           }
           )
@@ -87,7 +86,6 @@ export class AddRegionComponent implements OnInit,OnDestroy {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'title':'Opps...',
              'text':error.error.message
           }
           )

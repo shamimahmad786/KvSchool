@@ -90,7 +90,7 @@ export class AddSchoolStationComponent implements OnInit {
       if(res.length>0){
         res.forEach(element => {
           if(element.isActive){
-            this.stationList.push({ stationCode: element.stationCode, stationName: element.stationName })
+            this.stationList.push({ stationCode: element.stationCode, stationName: element.stationName+"("+element.stationCode+")" })
           }
         });
         this.dropdownStationList=this.stationList;
@@ -105,12 +105,16 @@ export class AddSchoolStationComponent implements OnInit {
     }else{
       this.isSubmitted = false;
       let payload=this.schoolStationMForm.getRawValue();
+      let filterStationName=payload.stationCode[0].stationName.split("(",1);
+      let filterSchoolName=payload.schoolCode[0].schoolName.split("(",1);
+      let filterSchool=[];
+         filterSchool.push({'schoolCode':payload.schoolCode[0].schoolCode,'schoolName':filterSchoolName[0]})
       let request={
         // schoolName: payload.schoolCode[0].schoolName,
         // schoolId: payload.schoolCode[0].schoolCode,
-        schoolMasterReqVoList:payload.schoolCode,
+        schoolMasterReqVoList:filterSchool,
         stationCode: payload.stationCode[0].stationCode,
-        stationName: payload.stationCode[0].stationName,
+        stationName:filterStationName[0],
         fromDate:this.datePipe.transform(payload.fromDate ,'yyyy-MM-dd'),
         toDate:this.datePipe.transform(payload.toDate ,'yyyy-MM-dd'),
         status:payload.status,
@@ -132,8 +136,7 @@ export class AddSchoolStationComponent implements OnInit {
         console.log(error);
         Swal.fire({
           'icon':'error',
-           'title':'Opps...',
-           'text':error.error
+           'text':error.error.message
         }
         )
       })

@@ -68,8 +68,7 @@ export class AddStafftypeComponent implements OnInit {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'title':'Opps...',
-             'text':error.error
+             'text':error.error.message
           }
           )
         })
@@ -89,8 +88,7 @@ export class AddStafftypeComponent implements OnInit {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'title':'Opps...',
-             'text':error.error
+             'text':error.error.message
           }
           )
         })

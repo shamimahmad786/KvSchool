@@ -128,8 +128,8 @@ export class StationCategoryMappingComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, 100)
-      this.stationCategoryMF.get('stationCode').setValue('');
-      this.formDirective.resetForm();
+      // this.stationCategoryMF.get('stationCode').setValue('');
+      // this.formDirective.resetForm();
     
   }
   ngAfterViewInit() {

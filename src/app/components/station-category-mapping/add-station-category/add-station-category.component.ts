@@ -92,7 +92,7 @@ export class AddStationCategoryComponent implements OnInit {
       if(res.length>0){
         res.forEach(element => {
           if(element.isActive){
-            this.stationList.push({ stationCode: element.stationCode, stationName: element.stationName })
+            this.stationList.push({ stationCode: element.stationCode, stationName: element.stationName+"("+element.stationCode+")" })
           }
         });
         this.dropdownStationList=this.stationList;
@@ -132,8 +132,7 @@ export class AddStationCategoryComponent implements OnInit {
         console.log(error);
         Swal.fire({
           'icon':'error',
-           'title':'Opps...',
-           'text':error.error
+           'text':error.error.message
         }
         )
       })

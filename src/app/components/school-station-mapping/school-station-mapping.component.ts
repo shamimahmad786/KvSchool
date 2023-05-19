@@ -133,8 +133,8 @@ export class SchoolStationMappingComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, 100)
-      this.schoolStationMF.get('stationName').setValue('');
-      this.formDirective.resetForm();
+      // this.schoolStationMF.get('stationName').setValue('');
+      // this.formDirective.resetForm();
   }
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;

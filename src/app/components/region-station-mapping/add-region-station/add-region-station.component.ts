@@ -76,7 +76,7 @@ export class AddRegionStationComponent implements OnInit {
       if(res){
         res.forEach(element => {
           if(element.isActive){
-            this.regionList.push({ regionCode: element.regionCode, regionName: element.regionName})
+            this.regionList.push({ regionCode: element.regionCode, regionName: element.regionName+"("+element.regionCode+")"})
           }
         });
          this.dropdownRegionList=this.regionList;
@@ -89,7 +89,7 @@ export class AddRegionStationComponent implements OnInit {
       if(res.length>0){
         res.forEach(element => {
           if(element.isActive){
-            this.stationList.push({ stationCode: element.stationCode, stationName: element.stationName })
+            this.stationList.push({ stationCode: element.stationCode, stationName: element.stationName+"("+element.stationCode+")"})
           }
         });
         this.dropdownStationList=this.stationList;
@@ -105,12 +105,16 @@ export class AddRegionStationComponent implements OnInit {
       this.isSubmitted = false;
       let payload=this.regionMForm.getRawValue();
       console.log(payload)
+      let filterRegionName=payload.regionCode[0].regionName.split("(",1);
+      let filterStationName=payload.stationCode[0].stationName.split("(",1);
+      let newStationData=[];
+        newStationData.push({'stationCode':payload.stationCode[0].stationCode,'stationName':filterStationName[0]})
       let request={
-        regionName: payload.regionCode[0].regionName,
+        regionName: filterRegionName[0],
         regionCode: payload.regionCode[0].regionCode,
         // stationCode: payload.stationCode[0].stationCode,
         // stationName: payload.stationCode[0].stationName,
-        station:payload.stationCode,
+        station:newStationData,
         fromDate:this.datePipe.transform(payload.fromDate ,'yyyy-MM-dd'),
         toDate:this.datePipe.transform(payload.toDate,'yyyy-MM-dd'),
         status:payload.status,
@@ -130,8 +134,7 @@ export class AddRegionStationComponent implements OnInit {
         console.log(error);
         Swal.fire({
           'icon':'error',
-           'title':'Opps...',
-           'text':error.error
+           'text':error.error.message
         }
         )
       })

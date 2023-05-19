@@ -69,9 +69,8 @@ export class AddStationComponent implements OnInit,OnDestroy {
         error => {
           console.log(error);
           Swal.fire({
-            'icon':'error',
-             'title':'Opps...',
-             'text':error.error
+            'icon':'error',       
+             'text':error.error.message
           }
           )
         })
@@ -90,8 +89,7 @@ export class AddStationComponent implements OnInit,OnDestroy {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'title':'Opps...',
-             'text':error.error
+             'text':error.error.message
           }
           )
         })

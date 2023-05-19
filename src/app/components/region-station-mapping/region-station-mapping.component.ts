@@ -133,8 +133,8 @@ export class RegionStationMappingComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, 100)
-      this.regionStationMF.get('regionCode').setValue('');
-      this.formDirective.resetForm();
+      // this.regionStationMF.get('regionCode').setValue('');
+      // this.formDirective.resetForm();
   }
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
