@@ -328,6 +328,8 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
     // alert("create user--->"+JSON.stringify(this.teacherList));
     debugger;
 // alert(teacherId);
+debugger;
+// alert("called");
     for (let i = 0; i < this.teacherList.length; i++) {
       if (this.teacherList[i].teacherEmployeeCode == val) {
 
@@ -367,31 +369,39 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
                 // To be commented Shamim
 
-                const flagData = {
-                  'teacherId': teacherId,
-                  'form1Status': 'SI',
-                  'form2Status': 'SI',
-                  'form3Status': 'SI',
-                  'form4Status': 'SI',
-                  'form5Status': 'SI',
-                  'form6Status': 'SI',
-                  'form7Status': 'SI',
-                  'finalStatus': 'SI',
-                }
+                // const flagData = {
+                //   'teacherId': teacherId,
+                //   'form1Status': 'SI',
+                //   'form2Status': 'SI',
+                //   'form3Status': 'SI',
+                //   'form4Status': 'SI',
+                //   'form5Status': 'SI',
+                //   'form6Status': 'SI',
+                //   'form7Status': 'SI',
+                //   'finalStatus': 'SI',
+                // }
               
-                this.outSideService.updateFlagByTeacherId(flagData).subscribe((res) => {
-                  this.users[i].approved = res.response.finalStatus;
-                })
+                // this.outSideService.updateFlagByTeacherId(flagData).subscribe((res) => {
+                //   this.users[i].approved = res.response.finalStatus;
+                // })
 
                 // End
 
 
                 
                 this.outSideService.createUserOnVerify(createUser).subscribe((response) => {
+                  debugger;
+                  debugger;
+
+                  // alert(JSON.stringify(response));
+                  debugger;
                   if(response.status == '1' || response.status == 1){
+                    // alert(this.kvTeacher.length);
                     for(let i=0; i<this.kvTeacher.length; i++){
-                      if(this.kvTeacher.empcode == response.username){
-                        this.kvTeacher.teacherAccountId = response.userHash;
+// console.log(this.kvTeacher[i].teacherEmployeeCode.trim() +"-----------"+ response.username.trim())
+
+                      if(this.kvTeacher[i].teacherEmployeeCode.trim() == response.username.trim()){
+                        this.kvTeacher[i].teacherAccountId = response.userHash;
                       }
                     }
                     
@@ -400,7 +410,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
                         this.teacherList[i].teacherSystemGeneratedCode = response.username;
                       }
                       
-                      if (this.users[i].teacherEmployeeCode == response.username) {
+                      if (this.users[i].empcode == response.username) {
                         this.users[i].systchcode = response.username;
                         const data = {
                           "teacherAccountId": response.userHash,
@@ -408,7 +418,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
                           "teacherSystemGeneratedCode": response.username
                         }
                         const flagData = {
-                          'teacherId': val,
+                          'teacherId': teacherId,
                           'form1Status': 'SI',
                           'form2Status': 'SI',
                           'form3Status': 'SI',
