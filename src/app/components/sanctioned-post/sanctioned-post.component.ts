@@ -131,10 +131,7 @@ export class SanctionedPostComponent implements OnInit {
               '',
               'success'
             );
-            (this.sanctionedPost.controls['sanctionedPostDetails'] as FormArray).clear();
-            this.stationList=[];
-            this.schoolList=[];
-            this.sanctionedPost.get('schoolCode').setValue('');
+     
           }
         })
       } 

@@ -40,7 +40,7 @@ export class CustomValidator {
         }
         return null;
       }
-
+      
       public isInteger(evt: any) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;

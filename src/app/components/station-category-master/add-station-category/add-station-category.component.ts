@@ -29,7 +29,7 @@ export class AddStationCategoryComponent implements OnInit,OnDestroy {
 
   buildStationForm(){
     this.stationCategoryForm = this.fb.group({
-      categoryName: ['',[Validators.required,CustomValidator.IsText1]],
+      categoryName: ['',[Validators.required,CustomValidator.IsText1,Validators.minLength(3)]],
       status:[true,Validators.required]
     });
   }

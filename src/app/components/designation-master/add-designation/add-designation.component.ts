@@ -28,8 +28,8 @@ export class AddDesignationComponent implements OnInit,OnDestroy {
   }
   buildregionForm(){
     this.designationForm = this.fb.group({
-      postCode: ['', [Validators.required,CustomValidator.IsText1]],
-      postName: ['',[Validators.required,CustomValidator.IsText1]],
+      postCode: ['', [Validators.required,Validators.pattern(/^[a-z0-9A-Z]{3}$/)]],
+      postName: ['',[Validators.required,CustomValidator.IsText1,Validators.minLength(3)]],
       status:[true,[Validators.required]],
       id:['']
     });

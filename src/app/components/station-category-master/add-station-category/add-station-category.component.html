@@ -1,57 +1,59 @@
-
 <div class="container-fluid px-4">
     <form [formGroup]="stationCategoryForm" (ngSubmit)="submit()">
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card mt-83">
                     <div class=" bg-profile-head">
                         <h5 class="mb-0 p-2 FontTitle  text-white">{{isEdit?'Edit Station Category Master':'Add New Station Category Master'}}</h5>
                     </div>
-                 
+
                     <div class="m-3 prof-fields">
                         <div class="row">
-                                   
+
                             <div class="col-md-5 form-group">
-                                <label class="titleSet">Station Category Name</label>                    
-                                <input type="text"  formControlName="categoryName" class="form-control">
+                                <label class="titleSet">Station Category Name</label>
+                                <input type="text" formControlName="categoryName" class="form-control">
                                 <!-- <span class="help-block text-danger"
                                     *ngIf="!stationCategoryForm.get('categoryName').valid && stationCategoryForm.get('categoryName').touched">Please Enter Station Category Name !</span> -->
-                                    <mat-error *ngIf="isSubmitted && errorHandling('categoryName', 'required')">
-                                        Please Enter Station Category Name!
-                                    </mat-error>
-                                    <mat-error *ngIf="isSubmitted && errorHandling('categoryName','textField')">Pleae Enter a Valid Name!(Only white space is allowed.)
-                                    </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('categoryName', 'required')">
+                                    Please Enter Station Category Name!
+                                </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('categoryName', 'minlength')">
+                                    Please Enter Minimum 3 characters word for Category Name!
+                                </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('categoryName','textField')">Pleae Enter a Valid Name!(Only white space is allowed.)
+                                </mat-error>
                             </div>
                             <div class="col-md-5 form-group">
                                 <!-- <mat-form-field style="width: 100%;"> -->
-                                    <label class="titleSet">Select Status</label>
-                                    <mat-select formControlName="status" class="form-control">
-                                        <mat-option>Select Status</mat-option>
-                                        <mat-option *ngFor="let status of statusList" [value]="status.value">{{status.status}}</mat-option>
-                                    </mat-select>
+                                <label class="titleSet">Select Status</label>
+                                <mat-select formControlName="status" class="form-control">
+                                    <mat-option>Select Status</mat-option>
+                                    <mat-option *ngFor="let status of statusList" [value]="status.value">{{status.status}}</mat-option>
+                                </mat-select>
 
                                 <!-- </mat-form-field> -->
                                 <mat-error *ngIf="isSubmitted && errorHandling('status', 'required')">
                                     Please select the status!
-                                  </mat-error>
+                                </mat-error>
                                 <!-- <span class="help-block text-danger"
                                 *ngIf="!regionForm.get('status').valid && regionForm.get('status').touched">Please select the status!</span> -->
                             </div>
-                            
+
                             <div>
                                 <button type="submit" class="btn btn-primary mt-2">{{isEdit?'Update':'Add Station'}}</button>&nbsp;&nbsp;
                                 <button type="button" *ngIf="!isEdit" class="btn btn-primary mt-2" (click)="clear()">Clear</button>&nbsp;&nbsp;
                                 <button type="button" class="btn btn-primary mt-2" (click)="redirectToList()">Cancel</button>
                             </div>
 
+                        </div>
+
                     </div>
-            
                 </div>
+
+
             </div>
-
-
-        </div>
         </div>
     </form>
 </div>

@@ -53,6 +53,7 @@ export class RegionStationMappingComponent implements OnInit {
     this.outSideService.fetchRegionList().subscribe((res)=>{
       if(res){
         res.forEach(element => {
+         
           if(element.isActive){
             this.regionList.push({ regionCode: element.regionCode, regionName: element.regionName})
           }

@@ -50,9 +50,9 @@ function getCredential() {
     alert("get credential");
     debugger;
     $.ajax({
-        url: "http://10.25.26.251:8090/meuser/api/userCradential/get-usercradential",
+        // url: "http://10.25.26.251:8090/meuser/api/userCradential/get-usercradential",
         // url: "https://pgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
-        // url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
+        url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
         // url: "https://kvsonlinetransfer.kvs.gov.in/UserService/api/userCradential/get-usercradential",
         type: 'post',
         async: false,
@@ -74,8 +74,8 @@ function getKey() {
         //   url: "https://pgi.udiseplus.gov.in/UserService/api/user/getKey",
         //   url: "https://pgi.udiseplus.gov.in/UserService/api/user/getKey",
         //   url: "http://kvsonlinetransfer.kvs.gov.in/UserService/api/user/getKey",
-        // url: "https://demopgi.udiseplus.gov.in/UserService/api/user/getKey",
-        url: "http://10.25.26.251:8090/meuser/api/user/getKey",
+        url: "https://demopgi.udiseplus.gov.in/UserService/api/user/getKey",
+        // url: "http://10.25.26.251:8090/meuser/api/user/getKey",
         type: "POST",
         cache: false,
         async: false,
@@ -107,8 +107,8 @@ function changePassword(userId, password, newPassword, confirmPassword) {
         //   url: "https://pgi.udiseplus.gov.in/UserService/api/user/renamePassword",
         //   url: "https://pgi.udiseplus.gov.in/UserService/api/user/renamePassword",
         //   url: "http://kvsonlinetransfer.kvs.gov.in/UserService/api/user/renamePassword",
-        // url: "https://demopgi.udiseplus.gov.in/UserService/api/user/renamePassword",
-        url: "http://10.25.26.251:8090/meuser/api/user/renamePassword",
+        url: "https://demopgi.udiseplus.gov.in/UserService/api/user/renamePassword",
+        // url: "http://10.25.26.251:8090/meuser/api/user/renamePassword",
         type: "POST",
         async: false,
         contentType: "text/plain; charset=utf-8",
@@ -130,8 +130,8 @@ function changePassword(userId, password, newPassword, confirmPassword) {
 
 function getUdiseCode() {
     $.ajax({
-        url: "http://localhost:8090/meuser/api/userCradential/get-usercradential",
-        // url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
+        // url: "http://localhost:8090/meuser/api/userCradential/get-usercradential",
+        url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
         type: 'post',
         async: false,
         contentType: "text/plain",

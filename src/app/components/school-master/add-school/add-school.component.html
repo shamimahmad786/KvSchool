@@ -1,51 +1,53 @@
-
 <div class="container-fluid px-4">
     <form [formGroup]="schoolForm" (ngSubmit)="submit()">
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card mt-83">
                     <div class=" bg-profile-head">
                         <h5 class="mb-0 p-2 FontTitle  text-white">{{isEdit?'Edit School':'Add New School'}}</h5>
                     </div>
-                 
+
                     <div class="m-3 prof-fields">
                         <div class="row">
-                                   
+
                             <div class="col-md-5 form-group">
-                                <label class="titleSet">School Code</label>                    
+                                <label class="titleSet">School Code</label>
                                 <input type="text" formControlName="schoolCode" class="form-control" maxlength="4">
                                 <!-- <span class="help-block text-danger"
                                     *ngIf="!schoolForm.get('schoolCode').valid && schoolForm.get('schoolCode').touched">Please Enter School Code !</span> -->
-                                    <mat-error *ngIf="isSubmitted && errorHandling('schoolCode', 'required')">
-                                        Please Enter School Code!
-                                    </mat-error>
-                                    <mat-error *ngIf="isSubmitted && errorHandling('schoolCode','pattern')">Please Enter Valid School Code.(4 digit number)
-                                    </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('schoolCode', 'required')">
+                                    Please Enter School Code!
+                                </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('schoolCode','pattern')">Please Enter Valid School Code.(4 digit number)
+                                </mat-error>
                             </div>
                             <div class="col-md-5 form-group">
-                                <label class="titleSet">School Name</label>                    
-                                <input type="text" formControlName="schoolName" class="form-control">
+                                <label class="titleSet">School Name</label>
+                                <input type="text" formControlName="schoolName" class="form-control" maxlength="50">
                                 <!-- <span class="help-block text-danger"
                                     *ngIf="!schoolForm.get('schoolName').valid && schoolForm.get('schoolName').touched">Please Enter School Name !</span> -->
-                                    <mat-error *ngIf="isSubmitted && errorHandling('schoolName', 'required')">
-                                        Please Enter School Name!
-                                    </mat-error>
-                                    <mat-error *ngIf="isSubmitted && errorHandling('schoolName','textField')">Pleae Enter a Valid Name!(Only dot, white space,() & numbers are allowed.)
-                                    </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('schoolName', 'required')">
+                                    Please Enter School Name!
+                                </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('schoolName', 'minlength')">
+                                    Please Enter Minimum 3 characters word for School Name!
+                                </mat-error>
+                                <mat-error *ngIf="isSubmitted && errorHandling('schoolName','textField')">Pleae Enter a Valid Name!(Only dot, white space,() & numbers are allowed.)
+                                </mat-error>
                             </div>
                             <div class="col-md-5 form-group mt-3">
                                 <!-- <mat-form-field style="width: 100%;"> -->
-                                    <label class="titleSet">Select Status</label>
-                                    <mat-select formControlName="status" class="form-control">
-                                        <mat-option value="">Select Status</mat-option>
-                                        <mat-option *ngFor="let status of statusList" [value]="status.value">{{status.status}}</mat-option>
-                                    </mat-select>
+                                <label class="titleSet">Select Status</label>
+                                <mat-select formControlName="status" class="form-control">
+                                    <mat-option value="">Select Status</mat-option>
+                                    <mat-option *ngFor="let status of statusList" [value]="status.value">{{status.status}}</mat-option>
+                                </mat-select>
 
                                 <!-- </mat-form-field> -->
                                 <mat-error *ngIf="isSubmitted && errorHandling('status', 'required')">
                                     Please select the status!
-                                  </mat-error>
+                                </mat-error>
                                 <!-- <span class="help-block text-danger"
                                 *ngIf="!regionForm.get('status').valid && regionForm.get('status').touched">Please select the status!</span> -->
                             </div>
@@ -58,14 +60,13 @@
                                     Please select the status!
                                 </mat-error> -->
                                 <div class="mt-1">
-                                    <mat-radio-group 
-                                    formControlName="shift">
-                                      <mat-radio-button [value]="shift.value" style="padding: 5px;" *ngFor="let shift of shiftList">{{shift.type}}</mat-radio-button>
-                                      <!-- <mat-radio-button value="2">Second Shift</mat-radio-button> -->
+                                    <mat-radio-group formControlName="shift">
+                                        <mat-radio-button [value]="shift.value" style="padding: 5px;" *ngFor="let shift of shiftList">{{shift.type}}</mat-radio-button>
+                                        <!-- <mat-radio-button value="2">Second Shift</mat-radio-button> -->
                                     </mat-radio-group>
                                 </div>
-    
-                                  
+
+
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-primary mt-2">{{isEdit?'Update ':'Add School'}}</button>&nbsp;&nbsp;
@@ -73,13 +74,13 @@
                                 <button type="button" class="btn btn-primary mt-2" (click)="redirectToList()">Cancel</button>
                             </div>
 
+                        </div>
+
                     </div>
-            
                 </div>
+
+
             </div>
-
-
-        </div>
         </div>
     </form>
 </div>

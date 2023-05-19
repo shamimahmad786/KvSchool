@@ -29,7 +29,7 @@ export class AddSchoolComponent implements OnInit,OnDestroy{
   buildSchoolForm(){
     this.schoolForm = this.fb.group({
       schoolCode: ['', [Validators.required,Validators.pattern(/^[1-9][0-9]{3}$/)]],
-      schoolName: ['',[Validators.required,CustomValidator.IsTextSchool]],
+      schoolName: ['',[Validators.required,CustomValidator.IsTextSchool,Validators.minLength(3)]],
       status:[true,[Validators.required]],
       shift:['SHIFT1'],
       id:['']
