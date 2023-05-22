@@ -7,7 +7,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         // alert("At interceptor");
-       // debugger
+       debugger
     //    alert("at interceptor--->"+JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token);
        debugger;
         if (JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token != undefined) {
@@ -111,6 +111,7 @@ export class AuthInterceptorService implements HttpInterceptor {
                             'username': 'XYZ'
                         }
                     });
+                    // alert("before modify request")
                 return next.handle(modifiedReq);
 
             } else if (req.url.indexOf('1') !== -1) {

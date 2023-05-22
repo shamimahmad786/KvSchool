@@ -180,13 +180,20 @@
 
 
         <!-- Temporary Comment By Shamim -->
-        <!-- <li class="nav-item has-submenu">
-            <a class="nav-link nav-link navStyle" href="#">
+        <li class="nav-item ">
+
+            <a class="nav-link  navStyle" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="true" aria-controls="collapseExample1">
                 <i class='bx bxl-dropbox bxStyle'></i>
                 <span class="TitleSetheader">DropBox</span>
                 <i class='bx bx-chevron-down bxStyle dropIcon'></i>
             </a>
-            <ul class="submenu collapse">
+
+            <!-- <a class="nav-link nav-link navStyle" href="javascript:void(0)">
+                <i class='bx bxl-dropbox bxStyle'></i>
+                <span class="TitleSetheader">DropBox</span>
+                <i class='bx bx-chevron-down bxStyle dropIcon'></i>
+            </a> -->
+            <ul class="collapse m-0 p-0" id="collapseExample1">
                 <li>
                     <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teacherOutbox">
                         <i class='bx bx-archive-out bxStyle'></i>
@@ -195,7 +202,7 @@
                 </li>
 
             </ul>
-        </li> -->
+        </li>
         <!-- End  -->
 
 
@@ -291,7 +298,7 @@
 
         <li class="nav-item" *ngIf="showNational">
 
-            <a class="nav-link  navStyle active"   data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+            <a class="nav-link  navStyle active" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
                 <i class='bx bxs-notepad bxStyle'></i>
                 <span class="TitleSetheader">Masters</span>
                 <i class='bx bx-chevron-up bxStyle dropIcon'></i>
