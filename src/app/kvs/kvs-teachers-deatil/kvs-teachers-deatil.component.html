@@ -942,10 +942,10 @@
                         <h2 class="px-2 mt-2 text-green">Profile Details</h2>
 
                         <tr>
-                            <th>Udise School Code</th>
+                            <th>KV / Institution Code</th>
                             <td>{{verifyTchTeacherProfileData?.currentUdiseSchCode}}</td>
 
-                            <th>Present KV Name</th>
+                            <th>Present KV / Institution Name</th>
                             <td>{{kvNameCode}}</td>
 
                             <th>Employee Code</th>
@@ -1015,7 +1015,7 @@
                             <td>{{verifyTchTeacherProfileData?.teachingNonteaching | staffType}}</td>
 
                             <th>Nature of Appointment</th>
-                            <td>{{verifyTchTeacherProfileData?.natureOfAppointment | natureOfAppointment}}</td>
+                            <td>Reular</td>
                         </tr>
 
                         <!-- <tr>
@@ -1103,23 +1103,16 @@
                             <th>None of these</th>
                             <td>{{verifyTchTeacherProfileData?.spouseStatus == '4' ? 'Yes':'No'}}</td>
 
-                            <th>Spouse Employee Code</th>
-                            <td>{{verifyTchTeacherProfileData?.spouseEmpCode}}</td>
+                            <!-- <th>Spouse Employee Code</th>
+                            <td>{{verifyTchTeacherProfileData?.spouseEmpCode}}</td> -->
 
                             <th>Spouse Name</th>
                             <td>{{verifyTchTeacherProfileData?.spouseName}}</td>
-
-                        </tr>
-
-                        <tr>
-
-                            <th>Spouse Position</th>
-                            <td>{{verifyTchTeacherProfileData?.spousePost}}</td>
-
                             <th>Spouse Station</th>
                             <td>{{verifyTchTeacherProfileData?.spouseStationName}}</td>
-
                         </tr>
+
+                      
                     </table>
                     <!-- <table class="table-striped px-3">
                         <h2 class="px-2 mt-2 text-green">Academic Qualification</h2>
@@ -1195,7 +1188,7 @@
 
                         <tr style="background-color: #cccccc;">
                             <th>School Name</th>
-                            <th>Shift</th>
+                            <!-- <th>Shift</th> -->
                             <th>From</th>
                             <th>To</th>
                             <th>Nature of Appointment</th>
@@ -1205,16 +1198,127 @@
                         </tr>
                         <tr *ngFor="let data of verifyTchTeacherWorkExp">
                             <td>{{data.udiseSchoolName}}</td>
-                            <td>{{data.shiftType}}</td>
+                            <!-- <td>{{data.shiftType}}</td> -->
                             <td>{{data.workStartDate}}</td>
                             <td>{{data.workEndDate}}</td>
-                            <td>{{data.natureOfAppointment | natureOfAppointment}}</td>
+                            <td>Regular</td>
                             <td>{{data.positionType}}</td>
                             <td>{{data.appointedForSubject}}</td>
                             <td>{{data.groundForTransfer}}</td>
                         </tr>
                     </table>
+                    <table class="table-striped px-3">
+                        <h2 class="px-2 mt-2 text-green">Choice Of Station(Displacement) </h2>
 
+                        <tr style="background-color: #cccccc;">
+                            <th width="30%">Station name</th>
+                            <th>Station Name</th>
+                            <th>Station Name</th>
+                            <th>Station Name</th>
+                            <th width="20%;">Station Name</th>
+                           
+                        </tr>
+                        <tr>
+                            <td>{{teacherStationChioce?.displacement1StationName}}</td> 
+                            <td>{{teacherStationChioce?.displacement2StationName}}</td>
+                            <td>{{teacherStationChioce?.displacement3StationName}}</td>
+                            <td>{{teacherStationChioce?.displacement4StationName}}</td>
+                            <td>{{teacherStationChioce?.displacement5StationName}}</td>
+                            
+                        </tr>
+                    </table>
+                    <table class=" table-striped">
+
+                        <h2 class="px-2 mt-2 text-green">Choice Of Station(Transfer)</h2>
+                        <tr style="background-color: #cccccc;">
+                            <th width="30%">Station name</th>
+                            <th>Station Name</th>
+                            <th>Station Name</th>
+                            <th>Station Name</th>
+                            <th width="20%;">Station Name</th>
+                           
+                        </tr>
+                        <tr>
+                            <td>{{teacherStationChioce?.choiceKv1StationName}}</td> 
+                            <td>{{teacherStationChioce?.choiceKv2StationName}}</td>
+                            <td>{{teacherStationChioce?.choiceKv3StationName}}</td>
+                            <td>{{teacherStationChioce?.choiceKv4StationName}}</td>
+                            <td>{{teacherStationChioce?.choiceKv5StationName}}</td>
+                            
+                        </tr>
+                        
+                    </table>
+                    <table class=" table-striped">
+
+                        <h2 class="px-2 mt-2 text-green">Miscellaneous</h2>
+
+                        <tr>
+                            <th>Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for.</th>
+                            <td>{{teacherStationChioce?.spouseKvsYnD == '1' ?'Yes':'No'}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Whether the employee is seeking benefit of medical ground (MDG Ground).</th>
+                            <td>{{teacherStationChioce?.personalStatusMdgD == '1' ?'Yes':'No'}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <th>Whether the employee is seeking benefit of single parent (SP Ground).</th>
+                            <td>{{teacherStationChioce?.personalStatusSpD == '1' ?'Yes':'No'}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+
+                            <th>Whether the employee is seeking benefit of Death of Family Person (DFP Ground).</th>
+                            <td>{{teacherStationChioce?.personalStatusDfpD == '1' ?'Yes':'No'}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+
+                            <th>Whether your are main care-giver to the person with disability in the family (i.e spouse or own son/own daughter).</th>
+                            <td>{{teacherStationChioce?.careGiverFaimlyYnD == '1' ?'Yes':'No'}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                                                                                                               
+                        <!-- <tr>
+                            <th> Whether you have a differently-abled child.</th>
+                            <td>{{teacherStationChioce?.childDifferentAbleYnD == '1' ?'Yes':'No'}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr> -->
+                        <tr>
+
+                            <th> Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).</th>
+                            <td *ngIf="teacherStationChioce?.memberJCM == '1'">RJCM</td>
+                            <td *ngIf="teacherStationChioce?.memberJCM == '2'">NJCM</td>
+                            <td *ngIf="teacherStationChioce?.memberJCM == '0'">None</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
                     <form [formGroup]="remarksForm">
                         <!-- <div class="row mt-2">
                         <div class="col-md-12  px-3">

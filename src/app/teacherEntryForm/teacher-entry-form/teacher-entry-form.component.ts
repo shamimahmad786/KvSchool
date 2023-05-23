@@ -235,6 +235,7 @@ export class TeacherEntryFormComponent implements OnInit {
   selectedKvname:any;
   kvIfConditions: boolean = false;
   careGiver: boolean = false;
+  optionDisable: boolean = false;
   udiseSchCode: any;
   schName: any;
   stationName: any;
@@ -329,6 +330,7 @@ export class TeacherEntryFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.formDataList = this.formData.formData();
     this.transferGroundList = this.formDataList.transferGround
     loadScroller();
@@ -632,7 +634,8 @@ transferRelatedForm: new FormGroup({
     this.getQualMasterByTchType();
     this.getKvRegion();
     this.getTransferProfile();
-
+    debugger
+  
     setTimeout(() => {
       if(this.responseData !=null){
         
@@ -700,7 +703,7 @@ transferRelatedForm: new FormGroup({
         teacherId: this.tempTeacherId,
         workExperienceId: '',
         experienceType: '',
-        shiftType: ["", [Validators.required]],
+        shiftType: '',
         groundForTransfer: ["", [Validators.required]],
         currentlyActiveYn: '',
         udiseSchoolName: ["", [Validators.required]],
@@ -1759,9 +1762,15 @@ debugger
       })
     } else if (activeButton == "submit2") {
 
-
+debugger
       this.outSideService.getUpdatedFlag(this.tempTeacherId).subscribe((res) => {
         this.flagUpdatedList = res.response
+      })
+      this.teacherForm.patchValue({
+        transferRelatedForm: {
+          spouseStationName:  this.teacherForm.value.personalInfoForm.spouseStationName,
+          
+        }
       })
       this.teacherForm.patchValue({
         declarationRelatedForm: {
@@ -1838,7 +1847,29 @@ debugger
               )
 
               // alert(this.responseData.spouseStatus);
-
+              if(this.responseData.spouseStatus== null || this.responseData.spouseStatus=='5' || this.responseData.spouseStatus=='')
+              {
+               
+                (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').disable();
+                this.optionDisable=true;
+                this.gkFilebenefit=false
+                this.teacherForm.patchValue({
+                  transferRelatedForm: {
+                    spouseKvsYnD: '0',
+                    
+                  }
+                })
+              }
+              else{
+                (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').enable();
+                this.optionDisable=false;
+                this.gkFilebenefit=true
+                this.teacherForm.patchValue({
+                  transferRelatedForm: {
+                    spouseKvsYnD: '1'
+                  }
+                })
+              }
               if(this.responseData.spouseStatus=="1" || this.responseData.spouseStatus==1){
                 this.teacherForm.patchValue({
                   transferRelatedForm: {
@@ -1932,6 +1963,29 @@ debugger
               '',
               'success'
             )
+            if(this.responseData.spouseStatus== null || this.responseData.spouseStatus=='5' || this.responseData.spouseStatus=='')
+            {
+             
+              (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').disable();
+              this.optionDisable=true;
+              this.gkFilebenefit=false
+              this.teacherForm.patchValue({
+                transferRelatedForm: {
+                  spouseKvsYnD: '0',
+                  
+                }
+              })
+            }
+            else{
+              (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').enable();
+              this.optionDisable=false;
+              this.gkFilebenefit=true
+              this.teacherForm.patchValue({
+                transferRelatedForm: {
+                  spouseKvsYnD: '1'
+                }
+              })
+            }
           } else if (this.responseStatus == '0') {
             Swal.fire(
               this.responseStatus.message
@@ -1945,6 +1999,7 @@ debugger
       console.log(this.teacherForm);
       this.getStatus(this.tempTeacherId);      
       // transferRelatedForm
+      this.responseData.spouseName=this.teacherForm.value.personalInfoForm.spouseName
       this.teacherForm.patchValue({
                 transferRelatedForm: {
                   teacherId:this.tempTeacherId,
@@ -3793,6 +3848,7 @@ getTransferProfile(){
   const data={"teacherId":this.tempTeacherId}
   this.outSideService.getTransferData(data).subscribe((res) => {
     // alert("Transfer Data Response--->"+JSON.stringify(res));
+    debugger
 this.teacherForm.patchValue({
   transferRelatedForm: {
     id:res.response.id,
@@ -3859,6 +3915,12 @@ if(this.teacherForm.value.transferRelatedForm.spouseKvsYnD==1)
   this.gkFilebenefit=true
   
 }
+if(this.teacherForm.value.transferRelatedForm.spouseKvsYnD=='' || this.teacherForm.value.transferRelatedForm.spouseKvsYnD== null)
+{
+  this.spouseKvsYnDradioButton=0;
+  this.gkFilebenefit=false
+  
+}
 if(this.teacherForm.value.transferRelatedForm.spouseKvsYnD==0)
 {
   this.spouseKvsYnDradioButton=0;
@@ -3869,6 +3931,10 @@ if(this.teacherForm.value.transferRelatedForm.spouseKvsYnD==0)
   this.personalStatusMdgDradioButton=1;
   this.gkFilemMedical=true
 } if(this.teacherForm.value.transferRelatedForm.personalStatusMdgD==0)
+{
+  this.personalStatusMdgDradioButton=0;
+  this.gkFilemMedical=false
+}if(this.teacherForm.value.transferRelatedForm.personalStatusMdgD=='' || this.teacherForm.value.transferRelatedForm.personalStatusMdgD == null)
 {
   this.personalStatusMdgDradioButton=0;
   this.gkFilemMedical=false
@@ -3883,6 +3949,10 @@ if(this.teacherForm.value.transferRelatedForm.spouseKvsYnD==0)
 {
   this.careGiverFaimlyYnDradioButton=0;
   this.careGiver=false
+}if(this.teacherForm.value.transferRelatedForm.careGiverFaimlyYnD=='' || this.teacherForm.value.transferRelatedForm.careGiverFaimlyYnD== null)
+{
+  this.careGiverFaimlyYnDradioButton=0;
+  this.careGiver=false
 }
 
  if(this.teacherForm.value.transferRelatedForm.careGiverYnD==1)
@@ -3890,6 +3960,10 @@ if(this.teacherForm.value.transferRelatedForm.spouseKvsYnD==0)
   this.childDifferentAbleYnDradioButton=1;
   this.abledChild=true
 } if(this.teacherForm.value.transferRelatedForm.careGiverYnD==0)
+{
+  this.childDifferentAbleYnDradioButton=0;
+  this.abledChild=false
+}if(this.teacherForm.value.transferRelatedForm.careGiverYnD=='' || this.teacherForm.value.transferRelatedForm.careGiverYnD== null)
 {
   this.childDifferentAbleYnDradioButton=0;
   this.abledChild=false
@@ -3903,13 +3977,21 @@ if(this.teacherForm.value.transferRelatedForm.spouseKvsYnD==0)
 {
   this.personalStatusDfpDradioButton=0;
   this.dfpGround=false
+}if(this.teacherForm.value.transferRelatedForm.personalStatusDfpD=='' || this.teacherForm.value.transferRelatedForm.personalStatusDfpD== null)
+{
+  this.personalStatusDfpDradioButton=0;
+  this.dfpGround=false
 }
 
  if(this.teacherForm.value.transferRelatedForm.personalStatusSpD==1)
 {
   this.personalStatusSpDradioButton=1;
   this.spGround=true
-} 
+} if(this.teacherForm.value.transferRelatedForm.personalStatusSpD=='' || this.teacherForm.value.transferRelatedForm.personalStatusSpD== null )
+{
+  this.personalStatusSpDradioButton=0;
+  this.spGround=false
+}
 if(this.teacherForm.value.transferRelatedForm.personalStatusSpD==0)
 {
   this.personalStatusSpDradioButton=0;
@@ -3920,6 +4002,11 @@ if(this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD==1)
 {
   this.childDifferentAbleYnDradioButton=1;
   this.abledChild=true
+}
+if(this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD=='' || this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD== null)
+{
+  this.childDifferentAbleYnDradioButton=0;
+  this.abledChild=false
 }
 if(this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD==0)
 {
@@ -3932,14 +4019,55 @@ if(this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD==0)
 {
   this.inlineRadio13radioButton=1;
  // this.abledChild=true
-} else if(this.teacherForm.value.transferRelatedForm.memberJCM==2){
+} if(this.teacherForm.value.transferRelatedForm.memberJCM==2){
   this.inlineRadio13radioButton=2;
-}if(this.teacherForm.value.transferRelatedForm.memberJCM==0)
+}
+if(this.teacherForm.value.transferRelatedForm.memberJCM=='' || this.teacherForm.value.transferRelatedForm.memberJCM== null)
 {
   this.inlineRadio13radioButton=0;
   //this.abledChild=false
 }
 
+if(this.teacherForm.value.transferRelatedForm.memberJCM==0)
+{
+  this.inlineRadio13radioButton=0;
+  //this.abledChild=false
+}
+//this.responseData.spouseName=this.responseData.spouseStationName
+
+this.teacherForm.patchValue({
+  transferRelatedForm: {
+    spouseStationName: this.responseData.spouseStationName,
+    
+  }
+})
+
+
+if(this.responseData.spouseStatus== null || this.responseData.spouseStatus=='5' || this.responseData.spouseStatus=='')
+{
+ 
+  (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').disable();
+  this.optionDisable=true;
+  this.gkFilebenefit=false
+  this.spouseKvsYnDradioButton=0;
+  this.teacherForm.patchValue({
+    transferRelatedForm: {
+      spouseKvsYnD: '0',
+      
+    }
+  })
+}
+else{
+  (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').enable();
+  this.optionDisable=false;
+  this.gkFilebenefit=true
+  this.spouseKvsYnDradioButton=1;
+  this.teacherForm.patchValue({
+    transferRelatedForm: {
+      spouseKvsYnD: '1'
+    }
+  })
+}
 // --------------------------- end here --------------------------------------------------------------------
   })
 
