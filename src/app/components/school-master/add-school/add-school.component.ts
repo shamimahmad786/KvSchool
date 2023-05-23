@@ -71,7 +71,7 @@ export class AddSchoolComponent implements OnInit,OnDestroy{
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })

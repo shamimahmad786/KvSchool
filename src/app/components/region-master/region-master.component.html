@@ -11,6 +11,7 @@
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Region Code or Region Name">
             </mat-form-field>
         </div>
+
         <div class="example-container mat-elevation-z8">
             <table mat-table *ngIf="dataSource?.data?.length > 0" [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table">
 

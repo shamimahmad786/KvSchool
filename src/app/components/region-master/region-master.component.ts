@@ -9,6 +9,7 @@ import { element } from 'protractor';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 
 
+
 const ELEMENT_DATA: any = [];
 
 @Component({
@@ -73,4 +74,5 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
    sessionStorage.setItem("regionEdit",JSON.stringify(data));
    this.router.navigate(['/teacher/regionMaster/edit'])
   }
+
 }
