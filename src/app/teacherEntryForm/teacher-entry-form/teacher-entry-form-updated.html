@@ -21,11 +21,11 @@
                                 <li id="experience">
                                     <strong>Experience</strong>
                                 </li>
-                                <li id="transfer">
+                                <li id="qualification">
                                     <strong>Station Choice</strong>
                                 </li>
                                 <li id="training">
-                                    <strong>Declaration</strong>
+                                    <strong>Miscellaneous</strong>
                                 </li>
 
                                 <!-- <li id="upload">
@@ -819,10 +819,10 @@
                                         <div class="col-md-6">
                                             <div class="form-card form-card shadow p-3">
                                                 <div class="row">
-                                                    <div class="col-7">
+                                                    <!-- <div class="col-7">
                                                         <h2 class="mb-0">Any kind of disability:</h2>
-                                                    </div>
-                                                    <div class="col-5">
+                                                    </div> -->
+                                                    <div class="col-12">
                                                         <h2 class="steps">{{responseData?.teacherId}} | {{responseData?.teacherName}}
                                                         </h2>
                                                     </div>
@@ -880,7 +880,7 @@
 
                                                     </div> -->
 
-                                                    <div class="col-md-5 mt-2" *ngIf="isVisible">
+                                                    <div class="col-md-6 mt-2" *ngIf="isVisible">
                                                         <h4 class="titleSet">Upload PH Certificate (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (blur)="handleFileInput($event.target.files, '4')">
@@ -914,67 +914,38 @@
 
 
                                                 <!-------------------Married status on without marride condition statr  here---------------------->
-                                                <div class="row mt-3">
-
-                                                    <!-- <div class="col-md-6">
-    <h4 class="titleSet">Wherther single parrent ?</h4>
-
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" value="11" id="singleparentyes"
-            name="singleParentStatusYn" type="radio"
-            formControlName="singleParentStatusYn"
-            [(ngModel)]="responseData.singleParentStatusYn">
-        <label class="form-check-label font16 ff"
-            for="inlineRadio1">Yes</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" value="12" id="singleparentno"
-            name="singleParentStatusYn" type="radio"
-            formControlName="singleParentStatusYn"
-            [(ngModel)]="responseData.singleParentStatusYn">
-        <label class="form-check-label font16 ff"
-            for="inlineRadio2">No</label>
-    </div>
-    <span class="help-block text-danger"
-        *ngIf="!teacherForm.get('personalInfoForm.singleParentStatusYn').valid ">
-        Select whichever applicable!</span>
-</div> -->
-
-
-                                                    <div class="col-md-6 mb-3">
+                                                <hr />
+                                                <div class="row mt-4">
+                                                    <div class="col-3">
                                                         <h4 class="titleSet">Marital Status<span class="required-asterisk">*</span></h4>
+                                                    </div>
+                                                    <div class="col-2">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" id="maritalStatusF" value="1" (click)="maritalStatusCheck($event)" [(ngModel)]="responseData.maritalStatus" name="maritalStatusF" formControlName="maritalStatusF">
                                                             <label class="form-check-label font16 ff">Married</label>
+
                                                         </div>
+                                                    </div>
+                                                    <div class="col-2">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" value="4" (click)="maritalStatusCheck($event)" [(ngModel)]="responseData.maritalStatus" id="maritalStatusF" name="maritalStatusF" formControlName="maritalStatusF">
                                                             <label class="form-check-label font16 ff">Single</label>
                                                         </div>
+                                                    </div>
+
+
+                                                    <div class="col-1">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" value="7" (click)="maritalStatusCheck($event)" [(ngModel)]="responseData.maritalStatus" id="maritalStatusF" name="maritalStatusF" formControlName="maritalStatusF">
                                                             <label class="form-check-label font16 ff">Widow/Widower</label>
                                                         </div>
-                                                        <span class="help-block text-danger" *ngIf="!teacherForm.get('personalInfoForm.maritalStatusF').valid  && teacherForm.get('personalInfoForm.maritalStatusF').touched">
-        Select the applicable!</span>
                                                     </div>
-
-
-
-
-
-
-
+                                                    <span class="help-block text-danger" *ngIf="!teacherForm.get('personalInfoForm.maritalStatusF').valid  && teacherForm.get('personalInfoForm.maritalStatusF').touched">
+                                                        Select the applicable!</span>
 
                                                 </div>
 
-
-
                                                 <!----------------end here------------------------------------->
-                                                <hr />
-
-
-
                                                 <div class="row" *ngIf="marriedStatusYN">
                                                     <div class="col-md-12">
 
@@ -1243,12 +1214,12 @@
                                                             <th width="20%">
                                                                 Institution Name
                                                             </th>
-                                                            <th>
+                                                            <!-- <th>
                                                                 Type
-                                                            </th>
-                                                            <th>
+                                                            </th> -->
+                                                            <!-- <th>
                                                                 Shift
-                                                            </th>
+                                                            </th> -->
                                                             <th>
                                                                 From</th>
                                                             <th>
@@ -1287,27 +1258,27 @@
 
 
 
-                                                            <td>
+                                                            <!-- <td>
 
                                                                 <div class="input-group mb-3">
                                                                     <input type="text" class="form-control form-control-sm" name="experienceType" formControlName="experienceType" [value]="this.teacherForm.get('detailsOfPosting').at(i).get('experienceType').value | experienceType" disabled>
 
                                                                 </div>
 
-                                                            </td>
+                                                            </td> -->
 
 
-                                                            <td>
+                                                            <!-- <td>
                                                                 <select formControlName="shiftType" name="shiftType" id="shiftType" class="form-select form-select-sm">
-                                                                    <!-- <option>Select</option> -->
+                                                                
                                                                     <option selected disabled>Select</option>
                                                                     <option value="1">I</option>
                                                                     <option value="2">II</option>
-                                                                    <!-- <option value="0">NA</option> -->
+                                                                 
                                                                 </select>
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.shiftType.errors?.required">
                                                                     Select Shift!</span>
-                                                            </td>
+                                                            </td> -->
                                                             <td><input id="wordStartDate-{{i}}" type="date" class="form-control form-control-sm " name="workStartDate" (blur)="experienceDataManagement($event,i)" formControlName="workStartDate" style="text-transform: none">
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.workStartDate.errors?.required">
                                                                     Select Work Start Date!</span>
@@ -1595,7 +1566,7 @@
                                     <div class="form-card">
                                         <div class="row">
                                             <div class="col-7">
-                                                <h2 class="mb-0"> Transfer Related:</h2>
+                                                <h2 class="mb-0"> Station Choice:</h2>
                                             </div>
                                             <div class="col-5">
                                                 <h2 class="steps">{{responseData?.teacherId}} | {{responseData?.teacherName}}
@@ -1892,7 +1863,7 @@
                                 <input [disabled]="(!teacherForm.get('transferRelatedForm.applyTransferYn').valid ||
                                     !teacherForm.get('transferRelatedForm.displacement1StationCode').valid ||
                                     !teacherForm.get('transferRelatedForm.displacement1StationName').valid || 
-                                    (teacherForm.get('transferRelatedForm.applyTransferYn').value == '3' && !teacherForm.get('transferRelatedForm.choiceKv1StationName').valid)
+                                    (teacherForm.get('transferRelatedForm.applyTransferYn').value == '3' && !teacherForm.get('transferRelatedForm.choiceKv1StationName').valid) || !allowEdit
                                     )" type="submit" id="submit3" value="Save" class=" action-save me-2 mt-2" />
 
                             </div>
@@ -1901,7 +1872,7 @@
                                     <div class="form-card">
                                         <div class="row">
                                             <div class="col-7">
-                                                <h2 class="mb-0">Training and Awards:</h2>
+                                                <h2 class="mb-0">Miscellaneous:</h2>
                                             </div>
                                             <div class="col-5">
                                                 <h2 class="steps">{{responseData?.teacherId}} | {{responseData?.teacherName}}
@@ -1947,14 +1918,19 @@
                                             </div>
                                             <div *ngIf="gkFilebenefit" class="mb-4">
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                    <!-- <div class="col-md-3">
                                                         <h4 class="titleSet">Spouse employee code</h4>
                                                         <input type="text" class="form-control mb-3" id="spouseEmpCode" formControlName="spouseEmpCode" name="spouseEmpCode" (blur)="getSpouseDetails($event)">
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-md-3">
+                                                        <h4 class="titleSet">Spouse name</h4>
+                                                        <input type="text" class="form-control mb-3" id="spouseName" name="spouseName" value=" {{responseData.spouseName}}">
+                                                    </div>
+
+                                                    <!-- <div class="col-md-3">
                                                         <h4 class="titleSet">Post held by Spouse</h4>
                                                         <input type="text" class="form-control  mb-3" id="spousePost" formControlName="spousePost" name="spousePost">
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-md-3">
                                                         <h4 class="titleSet">Name of Station</h4>
                                                         <input type="text" class="form-control  mb-3" id="spouseStationName" formControlName="spouseStationName" name="spouseStationName" disabled>
@@ -2524,7 +2500,7 @@
                                 </fieldset>
                                 <input type="button" name="next" class="next action-button mt-2" value="Next" (click)="onVerifyClick()" />
                                 <input type="button" name="previous" class="previous action-button-previous mt-2" value="Previous" />
-                                <input [disabled]="!allowEdit" [disabled]="                            
+                                <input [disabled]="                            
                                 ((!teacherForm.get('transferRelatedForm.patientName').valid ||
                                 !teacherForm.get('transferRelatedForm.patientAilment').valid ||
                                 !teacherForm.get('transferRelatedForm.patientHospital').valid ||
@@ -2536,7 +2512,7 @@
                                 !teacherForm.get('transferRelatedForm.careGiverDisabilityPrcnt').valid) && careGiver) || 
                                 ((!teacherForm.get('transferRelatedForm.childDifferentName').valid || 
                                 !teacherForm.get('transferRelatedForm.childDifferentDisabilityName').valid || 
-                                !teacherForm.get('transferRelatedForm.childDifferentDisabilityPrcnt').valid) && abledChild)" type="submit" id="submit4" value="Save" class=" action-save me-2 mt-2" />
+                                !teacherForm.get('transferRelatedForm.childDifferentDisabilityPrcnt').valid) && abledChild) || !allowEdit " type="submit" id="submit4" value="Save" class=" action-save me-2 mt-2" />
 
                                 <!-- <input 
                                         type="submit" id="submit4" value="Save"
@@ -2561,7 +2537,7 @@
                                                     <h2 class="px-2 mt-2 text-green">Profile Details</h2>
 
                                                     <tr>
-                                                        <th>Udise School Code</th>
+                                                        <th>KV / Institution Code</th>
                                                         <td>{{verifyTchTeacherProfileData?.currentUdiseSchCode}}</td>
 
                                                         <th>Present KV/Institution Name</th>
@@ -2596,9 +2572,9 @@
                                                     </tr>
                                                     <tr>
 
-                                                        <th>Nationality</th>
+                                                        <!-- <th>Nationality</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherNationality | nationality}}
-                                                        </td>
+                                                        </td> -->
 
                                                         <th>Marital Status</th>
                                                         <td>{{verifyTchTeacherProfileData?.maritalStatus | maritalStatus}}
@@ -2607,14 +2583,14 @@
                                                         <th>Present Station Name</th>
                                                         <td>{{stationNameCode}}</td>
 
-
+                                                        <th>Present Station in Present Post Date</th>
+                                                        <td>{{verifyTchTeacherProfileData?.workExperiencePositionTypePresentStationStartDate | date: 'dd-MM-YYYY'}}
+                                                        </td>
 
                                                     </tr>
                                                     <tr>
 
-                                                        <th>Present Station in Present Post Date</th>
-                                                        <td>{{verifyTchTeacherProfileData?.workExperiencePositionTypePresentStationStartDate | date: 'dd-MM-YYYY'}}
-                                                        </td>
+
 
                                                         <th>Present KV/Institution in Present Post Date</th>
                                                         <td>{{verifyTchTeacherProfileData?.workExperienceWorkStartDatePresentKv | date: 'dd-MM-YYYY'}}
@@ -2624,13 +2600,13 @@
                                                         <td>{{verifyTchTeacherProfileData?.lastPromotionPositionType}}
                                                         </td>
 
-
-                                                    </tr>
-                                                    <tr>
-
                                                         <th>Present post date</th>
                                                         <td>{{verifyTchTeacherProfileData?.lastPromotionPositionDate | date: 'dd-MM-YYYY'}}
                                                         </td>
+                                                    </tr>
+                                                    <tr>
+
+
 
                                                         <th>Subject Name</th>
                                                         <td>{{verifyTchTeacherProfileData?.workExperienceAppointedForSubject}}
@@ -2640,69 +2616,54 @@
                                                         <td>{{verifyTchTeacherProfileData?.teachingNonteaching | staffType}}
                                                         </td>
 
-
-                                                    </tr>
-                                                    <tr>
-
                                                         <th>Nature of Appointment</th>
-                                                        <td>{{verifyTchTeacherProfileData?.natureOfAppointment | natureOfAppointment}}
+                                                        <td>Regular
                                                         </td>
-                                                        <th></th>
-                                                        <td></td>
-                                                        <th></th>
-                                                        <td></td>
-
                                                     </tr>
-
                                                     <h2 class="px-2 mt-2 text-green">Information</h2>
                                                     <tr>
-                                                        <th>Boold Group</th>
+                                                        <!-- <th>Boold Group</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherBloodGroup | bloodGroup}}
-                                                        </td>
+                                                        </td> -->
 
-                                                        <th>Pan Number</th>
-                                                        <td>{{verifyTchTeacherProfileData?.teacherPanNumber}}</td>
+                                                        <!-- <th>Pan Number</th>
+                                                        <td>{{verifyTchTeacherProfileData?.teacherPanNumber}}</td> -->
 
                                                         <th>Correspondence Address</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceAddress}}
                                                         </td>
-                                                    </tr>
-                                                    <tr>
                                                         <th>Correspondence State</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceState}}
                                                         </td>
-
                                                         <th>Correspondence District</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceDistrict}}
                                                         </td>
+                                                    </tr>
+                                                    <tr>
+
+
 
                                                         <th>Correspondence Pin Code</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondencePin}}
                                                         </td>
-
-                                                    </tr>
-                                                    <tr>
                                                         <th>Permanent Address</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherPermanentAddress}}
                                                         </td>
-
                                                         <th>Permanent State</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherParmanentState}}</td>
+
+                                                    </tr>
+                                                    <tr>
+
 
                                                         <th>Permanent District</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherPermanentDistrict}}
                                                         </td>
-
-                                                    </tr>
-                                                    <tr>
-
                                                         <th>Permanent Pin Code</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherPermanentPin}}</td>
-                                                        <th></th>
-                                                        <td></td>
-                                                        <th></th>
-                                                        <td></td>
+
                                                     </tr>
+
 
                                                     <h2 class="px-2 mt-2 text-green">Disability</h2>
                                                     <tr>
@@ -2741,55 +2702,45 @@
                                                         <td>{{verifyTchTeacherProfileData?.spouseStatus == '4' ? 'Yes':'No'}}
                                                         </td>
 
-                                                        <th>Spouse Employee Code</th>
-                                                        <td>{{verifyTchTeacherProfileData?.spouseEmpCode}}</td>
+                                                        <!-- <th>Spouse Employee Code</th>
+                                                        <td>{{verifyTchTeacherProfileData?.spouseEmpCode}}</td> -->
 
                                                         <th>Spouse Name</th>
                                                         <td>{{verifyTchTeacherProfileData?.spouseName}}</td>
-
-                                                    </tr>
-                                                    <tr>
-
-                                                        <th>Spouse Position</th>
-                                                        <td>{{verifyTchTeacherProfileData?.spousePost}}</td>
-
                                                         <th>Spouse Station</th>
                                                         <td>{{verifyTchTeacherProfileData?.spouseStationName}}</td>
-
-                                                        <th></th>
-                                                        <td></td>
-
                                                     </tr>
+
                                                 </table>
                                                 <table class="table-striped">
                                                     <h2 class="px-2 mt-2 text-green">Experience</h2>
 
                                                     <tr style="background-color: #cccccc;">
                                                         <th>School Name</th>
-                                                        <th>Shift</th>
+                                                        <!-- <th>Shift</th> -->
                                                         <th>From</th>
                                                         <th>To</th>
-                                                        <th>Nature of Appointment</th>
+                                                        <!-- <th>Nature of Appointment</th> -->
                                                         <th>Position Held</th>
                                                         <th>Appointed for Subject</th>
                                                         <th>Transfer Ground</th>
                                                     </tr>
                                                     <tr *ngFor="let data of verifyTchTeacherWorkExp">
                                                         <td>{{data?.udiseSchoolName}}</td>
-                                                        <td>{{data?.shiftType}}</td>
+                                                        <!-- <td>{{data?.shiftType}}</td> -->
                                                         <td>{{data?.workStartDate | date: 'dd-MM-YYYY'}}</td>
                                                         <td>{{data?.workEndDate | date: 'dd-MM-YYYY'}}</td>
-                                                        <td>{{data?.natureOfAppointment | natureOfAppointment}}</td>
+                                                        <!-- <td>{{data?.natureOfAppointment | natureOfAppointment}}</td> -->
                                                         <td>{{data?.positionType}}</td>
                                                         <td>{{data?.appointedForSubject}}</td>
                                                         <td>{{data?.groundForTransfer}}</td>
                                                     </tr>
                                                 </table>
                                                 <table class="table-striped px-3">
-                                                    <h2 class="px-2 mt-2 text-green">Transfer detail</h2>
+                                                    <h2 class="px-2 mt-2 text-green">Choice Of Station(Displacement)</h2>
 
                                                     <tr style="background-color: #cccccc;">
-                                                        <th>Station name</th>
+                                                        <th width="30%">Station name</th>
                                                         <th>Station Name</th>
                                                         <th>Station Name</th>
                                                         <th>Station Name</th>
@@ -2807,9 +2758,9 @@
                                                 </table>
                                                 <table class=" table-striped">
 
-                                                    <h2 class="px-2 mt-2 text-green">Station Deatil</h2>
+                                                    <h2 class="px-2 mt-2 text-green">Choice Of Station(Transfer)</h2>
                                                     <tr style="background-color: #cccccc;">
-                                                        <th>Station name</th>
+                                                        <th width="30%">Station name</th>
                                                         <th>Station Name</th>
                                                         <th>Station Name</th>
                                                         <th>Station Name</th>
@@ -2825,6 +2776,68 @@
 
                                                     </tr>
 
+                                                </table>
+
+                                                <table class=" table-striped">
+
+                                                    <h2 class="px-2 mt-2 text-green">Miscellaneous</h2>
+
+                                                    <tr>
+                                                        <th>Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for.</th>
+                                                        <td>{{teacherStationChioce?.spouseKvsYnD == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Whether the employee is seeking benefit of medical ground (MDG Ground).</th>
+                                                        <td>{{teacherStationChioce?.personalStatusMdgD == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Whether the employee is seeking benefit of single parent (SP Ground).</th>
+                                                        <td>{{teacherStationChioce?.personalStatusSpD == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th>Whether the employee is seeking benefit of Death of Family Person (DFP Ground).</th>
+                                                        <td>{{teacherStationChioce?.personalStatusDfpD == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th>Whether your are main care-giver to the person with disability in the family (i.e spouse or own son/own daughter).</th>
+                                                        <td>{{teacherStationChioce?.careGiverFaimlyYnD == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th> Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).</th>
+                                                        <td *ngIf="teacherStationChioce?.memberJCM == '1'">RJCM</td>
+                                                        <td *ngIf="teacherStationChioce?.memberJCM == '2'">NJCM</td>
+                                                        <td *ngIf="teacherStationChioce?.memberJCM == '0'">None</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
                                                 </table>
                                                 <!-- <table class="table-striped">
                                                     <h2 class="px-2 mt-2 text-green">Professional Qualification</h2>
@@ -3799,7 +3812,7 @@
             <div class="col-md-12">
                 <div class="clearfix">
                     <div class="float-left">
-                        <h2 class="mb-0 text-green">Select Station1</h2>
+                        <h2 class="mb-0 text-green">Select Station</h2>
                     </div>
                 </div>
             </div>

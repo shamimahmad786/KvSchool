@@ -57,7 +57,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
   trainingFormShow: boolean = false;
   experienceFormShow: boolean = false;
   uploadFormShow: boolean = false;
-
+  teacherStationChioce:any;
   kvSchoolDetails: any;
   stationNameCode: any = null;
   stationCode: any;
@@ -308,6 +308,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
       this.verifyTchTeacherProfileData = res.response.teacherProfile
       this.verifyTchTeacherAcdQualification = res.response.educationalQualification
       this.verifyTchTeacherProfQualification = res.response.profestinalQualification
+      this.teacherStationChioce= res.response.teacherTrainingProfile
       this.verifyTchTeacherAward = res.response.awards
       this.verifyTchTeacherTraining = res.response.training
       for(let i=0; i<res.response.experience.length; i++){

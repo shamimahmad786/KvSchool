@@ -310,7 +310,7 @@ ul.ulLeft li {
 
 #progressbar #information:before {
     font-family: FontAwesome;
-    content: "\f129"
+    content: "\f05a"
 }
 
 #progressbar #experience:before {
@@ -322,10 +322,13 @@ ul.ulLeft li {
     font-family: FontAwesome;
     content: "\f02d"
 }
-
+#progressbar #qualification:before {
+    font-family: FontAwesome;
+    content: "\f279"
+}
 #progressbar #training:before {
     font-family: FontAwesome;
-    content: "\f091"
+    content: "\f0ee"
 }
 
 #progressbar #upload:before {
@@ -343,7 +346,7 @@ ul.ulLeft li {
     height: 50px;
     line-height: 45px;
     display: block;
-    font-size: 20px;
+    font-size: 27px;
     color: #ffffff;
     background: lightgray;
     border-radius: 50%;
