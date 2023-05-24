@@ -461,3 +461,16 @@ tr:nth-child(even) {
 tr {
     border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
+
+.action-save1{
+    width: 100px;
+    background: #8ea7b6;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 0px 10px 5px;
+    float: right;
+}
