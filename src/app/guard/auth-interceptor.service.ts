@@ -9,7 +9,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         // alert("At interceptor");
        // debugger
     //    alert("at interceptor--->"+JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token);
-       debugger;
+      // debugger;
         if (JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token != undefined) {
             // alert("in if");
             if (req.url.indexOf('getProfileImage') !== -1 || req.url.indexOf('uploadProfileImage') !== -1 || req.url.indexOf('deleteDocumentByTeacherIdAndName') !== -1 ||

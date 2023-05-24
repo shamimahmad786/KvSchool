@@ -18,7 +18,9 @@ import * as moment from 'moment';
 import { TeacherAppPdfService } from 'src/app/kvs/makePdf/teacher-app-pdf.service';
 // import{ExperienceType} from 'src/app/utilities/myPipe/myPipe'
 
-
+declare const onNextClick:any;
+declare const onPreviousClick:any;
+declare const onNextButtonClick:any;
 declare var progressBarTest: any;
 
 declare const loadScroller: any;
@@ -323,7 +325,17 @@ export class TeacherEntryFormComponent implements OnInit {
       this.isVisibleBirth = true;
     }
   }
-
+  nextClick(index) {
+    onNextClick(index);
+  }
+  onPreviousClick(index){
+    onPreviousClick(index);
+  }
+  onNextButtonClick(index)
+  {
+    debugger
+    onNextButtonClick(index);
+  }
   constructor(private pdfServive: TeacherAppPdfService, private date: DatePipe, private dataService: DataService, private modalService: NgbModal, private outSideService: OutsideServicesService, private route: ActivatedRoute, private fb: FormBuilder, private formData: FormDataService) {
 
 
@@ -634,7 +646,7 @@ transferRelatedForm: new FormGroup({
     this.getQualMasterByTchType();
     this.getKvRegion();
     this.getTransferProfile();
-    debugger
+  
   
     setTimeout(() => {
       if(this.responseData !=null){
@@ -719,7 +731,7 @@ transferRelatedForm: new FormGroup({
 
   }
   addQuantity(data) {
-    debugger
+    //debugger
     this.detailsOfPosting().push(this.newQuantity(data));
   }
   removeQuantity(val) {
@@ -763,7 +775,7 @@ transferRelatedForm: new FormGroup({
     this.subjectListNameCode2 = [];
     if (this.tempTeacherId) {
       this.outSideService.fetchTchExpByTchId(this.tempTeacherId).subscribe((res) => {
-        debugger
+      //  debugger
         this.tchExpList = res.response;
 
         for (let i = 0; i < this.tchExpList.length; i++) {
@@ -1709,6 +1721,8 @@ debugger
               '',
               'success'
             )
+            debugger
+            this.nextClick(2)
           } else if (this.responseStatus == '0') {
             Swal.fire(
               'Your data not saved!'
@@ -1845,7 +1859,7 @@ debugger
                 '',
                 'success'
               )
-
+              this.nextClick(3)
               // alert(this.responseData.spouseStatus);
               if(this.responseData.spouseStatus== null || this.responseData.spouseStatus=='5' || this.responseData.spouseStatus=='')
               {
@@ -1963,6 +1977,7 @@ debugger
               '',
               'success'
             )
+            this.nextClick(3)
             if(this.responseData.spouseStatus== null || this.responseData.spouseStatus=='5' || this.responseData.spouseStatus=='')
             {
              
@@ -2028,6 +2043,7 @@ console.log(this.teacherForm.value.transferRelatedForm)
           '',
           'success'
         )
+        this.nextClick(5)
       } else if (this.responseStatus == '0') {
         Swal.fire(
           this.responseStatus.message
@@ -2062,6 +2078,7 @@ this.outSideService.saveTransProfile(this.teacherForm.value.transferRelatedForm)
       '',
       'success'
     )
+    this.nextClick(6)
   } else if (this.responseStatus == '0') {
     Swal.fire(
       this.responseStatus.message
@@ -2102,6 +2119,7 @@ this.getStatus(this.tempTeacherId);
               '',
               'success'
             )
+            this.nextClick(4)
             this.getTchExpByTchId();
           } else if (responsePosting == '0') {
             Swal.fire(
@@ -2120,6 +2138,7 @@ this.getStatus(this.tempTeacherId);
       }
 
     } else if (activeButton == "submit33") {
+      debugger
       if (this.teacherForm.controls.profileForm.status == 'VALID') {
         if (this.teacherForm.controls.acadProfQual.status == 'VALID') {
           if (this.teacherForm.controls.profQual.status == 'VALID') {
@@ -3849,6 +3868,22 @@ getTransferProfile(){
   this.outSideService.getTransferData(data).subscribe((res) => {
     // alert("Transfer Data Response--->"+JSON.stringify(res));
     debugger
+    if(!res.response)
+    {
+      this.teacherForm.patchValue({
+        transferRelatedForm: {
+          spouseKvsYnD: '0',
+          personalStatusMdgD: '0',
+          careGiverFaimlyYnD: '0',
+          careGiverYnD: '0',
+          personalStatusDfpD: '0',
+          personalStatusSpD: '0',
+          childDifferentAbleYnD: '0',
+          memberJCM: '0',
+        }
+      })
+    }
+   
 this.teacherForm.patchValue({
   transferRelatedForm: {
     id:res.response.id,
@@ -3895,6 +3930,7 @@ childDifferentDisabilityPrcnt:res.response.childDifferentDisabilityPrcnt,
   },
 
 })
+debugger
 // ----------------------------- emp transfer radio button start  here ------------------------------------
 this.empTransferradioButton= this.teacherForm.value.transferRelatedForm.applyTransferYn
 if(this.empTransferradioButton==3)
