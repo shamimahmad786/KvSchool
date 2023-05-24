@@ -154,13 +154,15 @@ $(document).ready(function() {
 });
 
 function loadScroller() {
+    debugger
     var current_fs, next_fs, previous_fs; //fieldsets
     var opacity;
     var current = 1;
     var steps = $("fieldset").length;
     setProgressBar(current);
 
-    $(".next").click(function() {
+    $(".action-save").click(function() {
+        debugger
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
         //Add Class Active
@@ -182,6 +184,33 @@ function loadScroller() {
         });
         setProgressBar(++current);
     });
+    $(".next").click(function() {
+        debugger
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
+        //Add Class Active
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({ opacity: 0 }, {
+            step: function(now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+                current_fs.css({
+                    'display': 'none',
+                    'position': 'relative'
+                });
+                next_fs.css({ 'opacity': opacity });
+            },
+            duration: 500
+        });
+        setProgressBar(++current);
+
+//_____________________________________
+
+});
+
     $(".previous").click(function() {
         current_fs = $(this).parent();
         previous_fs = $(this).parent().prev();
@@ -237,44 +266,45 @@ $(document).ready(function() {
     var current_fs, next_fs, previous_fs; //fieldsets
     var opacity;
     debugger
-    $(".next").on("click", function() {
-        event.preventDefault()
-        current_fs = $(this).parent();
-        next_fs = $(this).parent().next();
-        setProgressBar(current);
-        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-        next_fs.show();
-        current_fs.animate({ opacity: 0 }, {
-            step: function(now) {
-                opacity = 1 - now;
-                current_fs.css({
-                    'display': 'none',
-                    'position': 'relative'
-                });
-                next_fs.css({ 'opacity': opacity });
-            },
-            duration: 500
-        });
+    // $(".next").on("click", function() {
+    //     debugger
+    //     event.preventDefault()
+    //     current_fs = $(this).parent();
+    //     next_fs = $(this).parent().next();
+    //     setProgressBar(current);
+    //     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+    //     next_fs.show();
+    //     current_fs.animate({ opacity: 0 }, {
+    //         step: function(now) {
+    //             opacity = 1 - now;
+    //             current_fs.css({
+    //                 'display': 'none',
+    //                 'position': 'relative'
+    //             });
+    //             next_fs.css({ 'opacity': opacity });
+    //         },
+    //         duration: 500
+    //     });
 
-    });
-    $(".previous").on("click", function() {
-        current_fs = $(this).parent();
-        previous_fs = $(this).parent().prev();
-        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-        previous_fs.show();
-        current_fs.animate({ opacity: 0 }, {
-            step: function(now) {
-                opacity = 1 - now;
-                current_fs.css({
-                    'display': 'none',
-                    'position': 'relative'
-                });
-                previous_fs.css({ 'opacity': opacity });
-            },
-            duration: 500
-        });
-        setProgressBar(--current);
-    });
+    // });
+    // $(".previous").on("click", function() {
+    //     current_fs = $(this).parent();
+    //     previous_fs = $(this).parent().prev();
+    //     $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+    //     previous_fs.show();
+    //     current_fs.animate({ opacity: 0 }, {
+    //         step: function(now) {
+    //             opacity = 1 - now;
+    //             current_fs.css({
+    //                 'display': 'none',
+    //                 'position': 'relative'
+    //             });
+    //             previous_fs.css({ 'opacity': opacity });
+    //         },
+    //         duration: 500
+    //     });
+    //     setProgressBar(--current);
+    // });
 
     $(".submit").click(function() {
         return false;
@@ -282,7 +312,51 @@ $(document).ready(function() {
 
 });
 
+function onPreviousClick(current){
 
+    $("#progressbar").find(".active").removeClass("active");
+    for(var i=0;i<current;i++){
+        $("#progressbar").find("li").eq(i).addClass("active");
+    }
+
+    
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var opacity;
+    // var current = 1;
+    var steps = $("fieldset").length;
+    prevIndex=(+current);
+    current_fs = $(".msform").children().eq(prevIndex-1);
+    prev_fs = $(".msform").children().eq(current);
+    // current_fs = $(this).parent();
+    // next_fs = $(this).parent().next();
+
+
+
+    //Add Class Active
+    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+    //show the next fieldset
+    current_fs.show();
+    // current_fs.hide();
+    //hide the current fieldset with style
+    prev_fs.animate({ opacity: 0 }, {
+        step: function (now) {
+            // for making fielset appear animation
+            opacity = 1 - now;
+            prev_fs.css({
+                'display': 'none',
+                'position': 'relative'
+            });
+            current_fs.css({ 'opacity': opacity });
+        },
+        duration: 500
+    });
+
+    $(".submit").click(function () {
+        return false;
+    });
+
+    setProgressBar(current);
+}
 
 function loadScroller12(step) {
     current = 1;
@@ -295,7 +369,74 @@ function nextClickCalled(index) {
     current = index;
     setProgressBar(current);
 }
+function onNextClick(current){
+  
+     var current_fs, next_fs, previous_fs; //fieldsets
+     var opacity;
+    
+     var steps = $("fieldset").length;
+     prevIndex=(+current)-2;
+     current_fs = $(".msform").children().eq(prevIndex);
+     next_fs = $(".msform").children().eq(current-1);
+     $("#progressbar").find(".active").removeClass("active");
+     for(var i=0;i<current;i++){
+         $("#progressbar").find("li").eq(i).addClass("active");
+     }
+     next_fs.show();
+     current_fs.animate({ opacity: 0 }, {
+         step: function (now) {
+             opacity = 1 - now;
+             current_fs.css({
+                 'display': 'none',
+                 'position': 'relative'
+             });
+             next_fs.css({ 'opacity': opacity });
+         },
+         duration: 500
+     });
+ 
+     $(".submit").click(function () {
+         return false;
+     });
+ 
+     setProgressBar(current);
+     
+ }
 
+
+ function onNextButtonClick(current){
+  debugger
+  var current_fs, next_fs, previous_fs; //fieldsets
+  var opacity;
+ 
+  var steps = $("fieldset").length;
+  prevIndex=(+current)-2;
+  current_fs = $(".msform").children().eq(prevIndex);
+  next_fs = $(".msform").children().eq(current-1);
+  $("#progressbar").find(".active").removeClass("active");
+  for(var i=0;i<current;i++){
+      $("#progressbar").find("li").eq(i).addClass("active");
+  }
+  next_fs.show();
+  current_fs.animate({ opacity: 0 }, {
+      step: function (now) {
+          opacity = 1 - now;
+          current_fs.css({
+              'display': 'none',
+              'position': 'relative'
+          });
+          next_fs.css({ 'opacity': opacity });
+      },
+      duration: 500
+  });
+
+  $(".submit").click(function () {
+      return false;
+  });
+
+  setProgressBar(current);
+    
+}
 function nextClik() {
     var current_fs, next_fs, previous_fs; //fieldsets
     var opacity;

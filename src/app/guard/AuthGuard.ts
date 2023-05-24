@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
     }
     // alert("get called--->"+sessionStorage.getItem("authTeacherDetails"));
     // alert("called");
-    debugger;
+   // debugger;
     if (sessionStorage.getItem("authTeacherDetails") == null) {
       // alert("in get credential")
       var returnType = getCredential();
