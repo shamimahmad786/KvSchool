@@ -3,7 +3,10 @@
         <div class=" bg-profile-head">
             <h5 class="mb-0 p-2 FontTitle  text-white">Station Master</h5>
         </div>
-        <div class="col-lg-12 align-right">
+        <div class="col-lg-11 align-right">
+            <button mat-raised-button color="primary" class="float-end mt-2" (click)="stationMasterPdf()">Export to PDF</button>
+        </div>
+        <div class="col-lg-1 align-right">
             <button mat-raised-button color="primary" class="float-end mt-2" (click)="redirectto()">Add</button>
         </div>
         <div *ngIf="dataSource">

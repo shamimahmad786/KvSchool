@@ -9,6 +9,7 @@ import { OutsideServicesService } from 'src/app/service/outside-services.service
 import { Observable } from 'rxjs';
 
 import {map, startWith} from 'rxjs/operators';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 @Component({
   selector: 'app-station-category-mapping',
   templateUrl: './station-category-mapping.component.html',
@@ -30,7 +31,7 @@ export class StationCategoryMappingComponent implements OnInit {
   filteredOptions: Observable<string[]>;
 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
-  constructor(private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
+  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
     this.dateAdapter.setLocale('en-GB');
   }
 
@@ -121,7 +122,7 @@ export class StationCategoryMappingComponent implements OnInit {
             this.testData = { "sno": "", "stationname": "", "categoryname": "", "fromdate": "","todate":"","status":"" };
    
           }
-    
+    console.log( this.listRegionStation)
       }
       setTimeout(() => {
         this.dataSource = new MatTableDataSource(this.listRegionStation);
@@ -141,5 +142,11 @@ export class StationCategoryMappingComponent implements OnInit {
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
+  stationCategoryMappingpdf()
+  {
+    setTimeout(() => {
+      this.pdfService.stationCategoryMappingList(this.listRegionStation);
+    }, 1000);
 
+  }
 }

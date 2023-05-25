@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 
 const ELEMENT_DATA: any = [];
@@ -24,7 +25,7 @@ export class StafftypeMasterComponent implements OnInit,AfterViewInit {
 
   listStaffType: any=[];
 
-  constructor(private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
+  constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
     this.getRegionList();
@@ -69,5 +70,11 @@ export class StafftypeMasterComponent implements OnInit,AfterViewInit {
    edit(data){
     sessionStorage.setItem("staffTypeEdit",JSON.stringify(data));
     this.router.navigate(['/teacher/stafftypeMaster/edit'])
+   }
+  staffTypeMasterpdf()
+   {
+    setTimeout(() => {
+      this.pdfService.staffTypemasterList(this.listStaffType);
+    }, 1000);
    }
 }
