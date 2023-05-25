@@ -18,8 +18,8 @@ const ELEMENT_DATA: any = [
 })
 export class SchoolMasterComponent implements OnInit {
   dataSource = ELEMENT_DATA;
-  displayedColumns:any = ['sno', 'schoolcode', 'schoolname', 'status','shift','action'];
-  testData = {sno: '', schoolcode: '', schoolname: '', status: '',shift:'',id:''};
+  displayedColumns:any = ['sno', 'schoolcode', 'schoolname', 'schooltype', 'status','shift','action'];
+  testData = {sno: '', schoolcode: '', schoolname: '', status: '',schooltype:'',shift:'',id:''};
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   schoolList: any=[];
@@ -44,10 +44,9 @@ export class SchoolMasterComponent implements OnInit {
           this.testData.status = res[i].schoolStatus;
           this.testData.shift = res[i].shift;
           this.testData.id = res[i].id;
-    
+          this.testData.schooltype=res[i].schoolType;
           this.schoolList.push(this.testData);
-          this.testData = {sno: '', schoolcode: '', schoolname: '', status: '',shift:'',id:''};
-  
+          this.testData = {sno: '', schoolcode: '', schoolname: '',schooltype:'', status: '',shift:'',id:''};
         }
         setTimeout(() => {
           this.dataSource = new MatTableDataSource(this.schoolList);

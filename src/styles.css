@@ -94,7 +94,52 @@ body {
 
 /* @import '~ngx-toastr/toastr-bs4-alert'; */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+// Poppins Font-Family and Font-weight */
+
+@font-face {
+    font-family: 'light';
+    src: url(assets/Poppins/Poppins-Light.ttf);
+    font-style: normal;
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'regular';
+    src: url(assets/Poppins/Poppins-Regular.ttf);
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'medium';
+    src: url(assets/Poppins/Poppins-Regular.ttf);
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'semiBold';
+    src: url(assets/Poppins/Poppins-SemiBold.ttf);
+    font-style: normal;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'bold';
+    src: url(assets/Poppins/Poppins-Bold.ttf);
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'black';
+    src: url(assets/Poppins/Poppins-Black.ttf);
+    font-style: normal;
+    font-weight: 900;
+}
+
 html,
 body {
     height: 100%;
@@ -102,13 +147,12 @@ body {
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: regular;
 }
 
 body {
     font-size: 14px;
     overflow-x: hidden;
-    font-family: "Montserrat", sans-serif;
     color: #242934;
 }
 
@@ -189,5 +233,8 @@ ag-grid-angular {
     font-weight: 600;
     font-size: 22px;
     line-height: 36px;
-    color: #722123;
+    color: #106384;
 }
+
+
+/* #b1b1b1  */

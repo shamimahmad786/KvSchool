@@ -51,7 +51,8 @@
 
                         ],
                         "scripts": [
-                            "node_modules/bootstrap-notify/bootstrap-notify.js"
+                            "node_modules/bootstrap-notify/bootstrap-notify.js",
+                            "./node_modules/jquery/dist/jquery.min.js"
                         ]
                     },
                     "configurations": {

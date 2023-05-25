@@ -74,70 +74,89 @@
         </div>
     </nav> -->
 
-<nav class="sidebar sb-sidenav accordion sb-sidenav-light bg-white shadow-sm" style="position:relative" id="sidenavAccordion">
-    <!-- <nav class="sidebar card py-2 mb-4"> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Workinh <nav class="sidebar sb-sidenav accordion sb-sidenav-light bg-white shadow-sm" style="position:relative" id="sidenavAccordion">
     <a id="sidebarToggle" class="sidebarToggle" style="text-align: right;position: absolute;text-align: right;right: -30px !important;">
         <i class='bx bx-chevrons-left'></i>
     </a>
-    <ul class="nav flex-column" id="nav_accordion">
-        <!-- <h4 class="TeacherTitle">Teachers Dashboard</h4> -->
-        <!-- <li class="nav-item">
+    <ul class="nav flex-column" id="nav_accordion"> -->
+
+
+
+<!-- <h4 class="TeacherTitle">Teachers Dashboard</h4> -->
+<!-- <li class="nav-item">
             <a class="nav-link navStyle mt-2" routerLinkActive="active">
                 <i class='bx bx-home-circle bxStyle'></i>
                 <span class="TitleSetheader">Dashboard</span>
             </a>
         </li> -->
 
-        <!-- Dashboard ---Starts -->
-        <!-- <li *ngIf="showNational" class="nav-item">
+<!-- Dashboard ---Starts -->
+<!-- <li *ngIf="showNational" class="nav-item">
             <a class="nav-link navStyle " routerLink="/teacher/nationalDashboard" routerLinkActive="active">
                 <i class='bx bxs-school bxStyle'></i>
                 <span class="TitleSetheader">
                     Dashboard</span>
             </a>
         </li> -->
-        <li *ngIf="showRegion" class="nav-item">
-            <a class="nav-link navStyle " routerLink="/teacher/regionDashboard" routerLinkActive="active">
-                <i class='bx bxs-school bxStyle'></i>
-                <span class="TitleSetheader">
+<!-- working <li *ngIf="showRegion" class="nav-item">
+    <a class="nav-link navStyle " routerLink="/teacher/regionDashboard" routerLinkActive="active">
+        <i class='bx bxs-school bxStyle'></i>
+        <span class="TitleSetheader">
                     Dashboard</span>
-            </a>
-        </li>
-        <li *ngIf="showStation" class="nav-item">
-            <a class="nav-link navStyle " routerLink="/teacher/stationDashboard" routerLinkActive="active">
-                <i class='bx bxs-school bxStyle'></i>
-                <span class="TitleSetheader">
+    </a>
+</li>
+<li *ngIf="showStation" class="nav-item">
+    <a class="nav-link navStyle " routerLink="/teacher/stationDashboard" routerLinkActive="active">
+        <i class='bx bxs-school bxStyle'></i>
+        <span class="TitleSetheader">
                     Dashboard</span>
-            </a>
-        </li>
-        <li *ngIf="showSchool" class="nav-item">
-            <a class="nav-link navStyle " routerLink="/teacher/profile" routerLinkActive="active">
-                <i class='bx bxs-school bxStyle'></i>
-                <span class="TitleSetheader">
+    </a>
+</li>
+<li *ngIf="showSchool" class="nav-item">
+    <a class="nav-link navStyle " routerLink="/teacher/profile" routerLinkActive="active">
+        <i class='bx bxs-school bxStyle'></i>
+        <span class="TitleSetheader">
                     Dashboard</span>
-            </a>
-        </li>
-        <!-- Dashboard ---Ends -->
+    </a>
+</li> -->
+<!-- Dashboard ---Ends -->
 
-        <li class="nav-item" *ngIf="kvIfConditions == false">
-            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teachersDetail">
-                <i class='bx bx-user-pin bxStyle'></i>
-                <span class="TitleSetheader">Employee Details</span>
-            </a>
-        </li>
-        <!-- <ng-container >  this is national-->
-
-        <li *ngIf="kvIfConditions == true && this.businessUnitTypeId !='2'" class="nav-item">
-            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/kvsTchDetails">
-                <i class='bx bx-user-pin bxStyle'></i>
-                <span class="TitleSetheader">Employee Details </span>
-            </a>
-        </li>
+<!-- Working <li class="nav-item" *ngIf="kvIfConditions == false">
+    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teachersDetail">
+        <i class='bx bx-user-pin bxStyle'></i>
+        <span class="TitleSetheader">Employee Details</span>
+    </a>
+</li>
 
 
+<li *ngIf="kvIfConditions == true && this.businessUnitTypeId !='2'" class="nav-item">
+    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/kvsTchDetails">
+        <i class='bx bx-user-pin bxStyle'></i>
+        <span class="TitleSetheader">Employee Details </span>
+    </a>
+</li> -->
 
-        <!-- </ng-container> -->
-        <!-- <li class="nav-item has-submenu">
+
+
+<!-- </ng-container> -->
+<!-- <li class="nav-item has-submenu">
             <a class="nav-link navStyle">
                 <i class='bx bxl-dropbox bxStyle'></i>
                 <span class="TitleSetheader">Profile</span>
@@ -179,34 +198,34 @@
         </li> -->
 
 
-        <!-- Temporary Comment By Shamim -->
-        <li class="nav-item ">
+<!-- Temporary Comment By Shamim -->
+<!-- working <li class="nav-item ">
 
-            <a class="nav-link  navStyle" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="true" aria-controls="collapseExample1">
-                <i class='bx bxl-dropbox bxStyle'></i>
-                <span class="TitleSetheader">DropBox</span>
-                <i class='bx bx-chevron-down bxStyle dropIcon'></i>
-            </a>
+    <a class="nav-link  navStyle" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="true" aria-controls="collapseExample1">
+        <i class='bx bxl-dropbox bxStyle'></i>
+        <span class="TitleSetheader">DropBox</span>
+        <i class='bx bx-chevron-down bxStyle dropIcon'></i>
+    </a> -->
 
-            <!-- <a class="nav-link nav-link navStyle" href="javascript:void(0)">
+<!-- <a class="nav-link nav-link navStyle" href="javascript:void(0)">
                 <i class='bx bxl-dropbox bxStyle'></i>
                 <span class="TitleSetheader">DropBox</span>
                 <i class='bx bx-chevron-down bxStyle dropIcon'></i>
             </a> -->
-            <ul class="collapse m-0 p-0" id="collapseExample1">
-                <li>
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teacherOutbox">
-                        <i class='bx bx-archive-out bxStyle'></i>
-                        <span class="TitleSetheader">Outbox</span>
-                    </a>
-                </li>
-
-            </ul>
+<!-- working <ul class="collapse m-0 p-0" id="collapseExample1">
+        <li>
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teacherOutbox">
+                <i class='bx bx-archive-out bxStyle'></i>
+                <span class="TitleSetheader">Outbox</span>
+            </a>
         </li>
-        <!-- End  -->
+
+    </ul>
+</li> -->
+<!-- End  -->
 
 
-        <!-- <li class="nav-item">
+<!-- <li class="nav-item">
             <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/surveyMaster">
                 <i class='bx bx-user-pin bxStyle'></i>
                 <span class="TitleSetheader">Survey Master</span>
@@ -221,18 +240,18 @@
 
 
 
-        <!-- Temporary commented by Shamim -->
-        <!-- <li class="nav-item">
+<!-- Temporary commented by Shamim -->
+<!-- <li class="nav-item">
             <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/kvsTchTransfer">
                 <i class='bx bx-transfer bxStyle'></i>
                 <span class="TitleSetheader">Employee Transfer</span>
             </a>
         </li> -->
-        <!-- End -->
+<!-- End -->
 
 
 
-        <!-- <li *ngIf="showNational" class="nav-item">
+<!-- <li *ngIf="showNational" class="nav-item">
             <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/kvSanctionedPost">
                 <i class='bx bx-calculator bxStyle'></i>
                 <span class="TitleSetheader">Sanctioned Post</span>
@@ -251,7 +270,7 @@
 
 
 
-        <!-- <li *ngIf="showNational" class="nav-item">
+<!-- <li *ngIf="showNational" class="nav-item">
             <a class="nav-link navStyle " routerLink="/teacher/nationalReport" routerLinkActive="active">
                 <i class='bx bxs-report bxStyle'></i>
                 <span class="TitleSetheader">
@@ -266,7 +285,7 @@
             </a>
         </li> -->
 
-        <!-- <li class="nav-item has-submenu">
+<!-- <li class="nav-item has-submenu">
             <a class="nav-link nav-link navStyle" href="#">
                 <i class='bx bxl-dropbox bxStyle'></i>
                 <span class="TitleSetheader">Surplus Deployment</span>
@@ -296,102 +315,306 @@
         </li> -->
 
 
-        <li class="nav-item" *ngIf="showNational">
+<!-- Working <li class="nav-item" *ngIf="showNational">
 
-            <a class="nav-link  navStyle active" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
-                <i class='bx bxs-notepad bxStyle'></i>
-                <span class="TitleSetheader">Masters</span>
-                <i class='bx bx-chevron-up bxStyle dropIcon'></i>
+    <a class="nav-link  navStyle active" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+        <i class='bx bxs-notepad bxStyle'></i>
+        <span class="TitleSetheader">Masters</span>
+        <i class='bx bx-chevron-up bxStyle dropIcon'></i>
+    </a>
+
+    <ul class="collapse show p-0 m-0" id="collapseExample">
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionMaster">
+                <i class='bx bx-location-plus bxStyle'></i>
+                <span class="TitleSetheader">Region Master</span>
             </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationMaster">
+                <i class='bx bx-polygon bxStyle'></i>
+                <span class="TitleSetheader">Station Master</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/schoolMaster">
+                <i class='bx bxs-school bxStyle'></i>
+                <span class="TitleSetheader">School Master</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMaster">
+                <i class='bx bxs-vector bxStyle'></i>
+                <span class="TitleSetheader">Station Category Master</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stafftypeMaster">
+                <i class='bx bxs-vector bxStyle'></i>
+                <span class="TitleSetheader">Staff Type Master</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/designationMaster">
+                <i class='bx bxs-vector bxStyle'></i>
+                <span class="TitleSetheader">Designation Master</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/subjectMaster">
+                <i class='bx bxs-vector bxStyle'></i>
+                <span class="TitleSetheader">Subject Master</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionStationMapping">
+                <i class='bx bx-station bxStyle'></i>
+                <span class="TitleSetheader">Region Station Mapping</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMapping">
+                <i class='bx bx-station bxStyle'></i>
+                <span class="TitleSetheader">Station Category Mapping</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/schoolStationMapping">
+                <i class='bx bx-station bxStyle'></i>
+                <span class="TitleSetheader">School Station Mapping</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stafftypePostMapping">
+                <i class='bx bx-station bxStyle'></i>
+                <span class="TitleSetheader">Staff-Type-Post Mapping</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/postSubjectMapping">
+                <i class='bx bx-station bxStyle'></i>
+                <span class="TitleSetheader">Post-Subject Mapping</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/sanctioned-post">
+                <i class='bx bx-station bxStyle'></i>
+                <span class="TitleSetheader">Sanctioned-Post Mapping</span>
+            </a>
+        </li>
+    </ul>
+</li>
 
-            <ul class="collapse show p-0 m-0" id="collapseExample">
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionMaster">
-                        <i class='bx bx-location-plus bxStyle'></i>
-                        <span class="TitleSetheader">Region Master</span>
+<li class="nav-item">
+    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/changePassword">
+        <i class='bx bxs-key bxStyle'></i>
+        <span class="TitleSetheader"> Change Password </span>
+    </a>
+</li>
+
+</ul>
+</nav> -->
+
+<section class="main-wrapper">
+    <div class="sidebar">
+        <div class="logo-box">
+            <img src="assets/img/logo.svg" class="img-fluid">
+        </div>
+        <div class="side-navigation">
+            <ul class="list-unstyled">
+                <!-- <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center active"> <img src="assets/img/dash.svg"> Dashboard
+                </button>
+                </li> -->
+
+
+
+                <li *ngIf="showRegion" class="nav-item">
+                    <a class="btn btn-toggle align-items-center active " routerLink="/teacher/regionDashboard">
+                        <img src="assets/img/dash.svg"> Dashboard
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationMaster">
-                        <i class='bx bx-polygon bxStyle'></i>
-                        <span class="TitleSetheader">Station Master</span>
+
+                <li *ngIf="showStation" class="nav-item">
+                    <a class="btn btn-toggle align-items-center active " routerLink="/teacher/stationDashboard">
+                        <img src="assets/img/dash.svg"> Dashboard
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/schoolMaster">
-                        <i class='bx bxs-school bxStyle'></i>
-                        <span class="TitleSetheader">School Master</span>
+
+                <li *ngIf="showSchool" class="nav-item">
+                    <a class="btn btn-toggle align-items-center active " routerLink="/teacher/profile">
+                        <img src="assets/img/dash.svg"> Dashboard
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMaster">
-                        <i class='bx bxs-vector bxStyle'></i>
-                        <span class="TitleSetheader">Station Category Master</span>
+
+                <li class="nav-item" *ngIf="kvIfConditions == false">
+                    <a class="btn btn-toggle align-items-center collapsed" routerLink="/teacher/teachersDetail">
+                        <img src="assets/img/details.svg"> Employee Details
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stafftypeMaster">
-                        <i class='bx bxs-vector bxStyle'></i>
-                        <span class="TitleSetheader">Staff Type Master</span>
+
+                <li *ngIf="kvIfConditions == true && this.businessUnitTypeId !='2'" class="nav-item">
+                    <a class="btn btn-toggle align-items-center collapsed" routerLink="/teacher/kvsTchDetails">
+                        <img src="assets/img/details.svg"> Employee Details
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/designationMaster">
-                        <i class='bx bxs-vector bxStyle'></i>
-                        <span class="TitleSetheader">Designation Master</span>
+
+
+                <!-- <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false"> <img src="assets/img/details.svg">
+                    Employee Details </button>
+                </li> -->
+                <!-- <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false"> <img src="assets/img/dropbox.svg">
+                    Dropbox </button>
+                    <div class="collapse" id="orders-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark rounded">New</a></li>
+                            <li><a href="#" class="link-dark rounded">Processed</a></li>
+                            <li><a href="#" class="link-dark rounded">Shipped</a></li>
+                            <li><a href="#" class="link-dark rounded">Returned</a></li>
+                        </ul>
+                    </div>
+                </li> -->
+
+                <li class="mb-1" *ngIf="kvIfConditions == false">
+                    <button class="btn btn-toggle align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false"> <img src="assets/img/dropbox.svg">
+                        Dropbox </button>
+                    <div class="collapse" id="orders-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/teacherOutbox">
+                                <i class='bx bx-archive-out bxStyle'></i>
+                                <span class="TitleSetheader">Outbox</span>
+                            </a>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="nav-item" *ngIf="showNational">
+
+                    <button class="btn btn-toggle align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false"> <img src="assets/img/dropbox.svg">
+                        Master </button>
+                    <div class="collapse show" id="orders-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small collapse show" id="collapseExample">
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionMaster">
+                                    <i class='bx bx-location-plus bxStyle'></i>
+                                    <span class="TitleSetheader">Region Master</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationMaster">
+                                    <i class='bx bx-polygon bxStyle'></i>
+                                    <span class="TitleSetheader">Station Master</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/schoolMaster">
+                                    <i class='bx bxs-school bxStyle'></i>
+                                    <span class="TitleSetheader">School Master</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMaster">
+                                    <i class='bx bxs-vector bxStyle'></i>
+                                    <span class="TitleSetheader">Station Category Master</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stafftypeMaster">
+                                    <i class='bx bxs-vector bxStyle'></i>
+                                    <span class="TitleSetheader">Staff Type Master</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/designationMaster">
+                                    <i class='bx bxs-vector bxStyle'></i>
+                                    <span class="TitleSetheader">Designation Master</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/subjectMaster">
+                                    <i class='bx bxs-vector bxStyle'></i>
+                                    <span class="TitleSetheader">Subject Master</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionStationMapping">
+                                    <i class='bx bx-station bxStyle'></i>
+                                    <span class="TitleSetheader">Region Station Mapping</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMapping">
+                                    <i class='bx bx-station bxStyle'></i>
+                                    <span class="TitleSetheader">Station Category Mapping</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/schoolStationMapping">
+                                    <i class='bx bx-station bxStyle'></i>
+                                    <span class="TitleSetheader">School Station Mapping</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stafftypePostMapping">
+                                    <i class='bx bx-station bxStyle'></i>
+                                    <span class="TitleSetheader">Staff-Type-Post Mapping</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/postSubjectMapping">
+                                    <i class='bx bx-station bxStyle'></i>
+                                    <span class="TitleSetheader">Post-Subject Mapping</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/sanctioned-post">
+                                    <i class='bx bx-station bxStyle'></i>
+                                    <span class="TitleSetheader">Sanctioned-Post Mapping</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false"> <img src="assets/img/trasnfer.svg">
+                    Employee Transfer </button>
+                </li> -->
+
+
+                <!-- <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false"> <img src="assets/img/password.svg">
+                    Change Password </button>
+                </li> -->
+
+                <li class="mb-1">
+                    <a class="btn btn-toggle align-items-center" routerLinkActive="active" routerLink="/teacher/changePassword">
+                        <img src="assets/img/password.svg"> Change Password
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/subjectMaster">
-                        <i class='bx bxs-vector bxStyle'></i>
-                        <span class="TitleSetheader">Subject Master</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionStationMapping">
-                        <i class='bx bx-station bxStyle'></i>
-                        <span class="TitleSetheader">Region Station Mapping</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMapping">
-                        <i class='bx bx-station bxStyle'></i>
-                        <span class="TitleSetheader">Station Category Mapping</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/schoolStationMapping">
-                        <i class='bx bx-station bxStyle'></i>
-                        <span class="TitleSetheader">School Station Mapping</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stafftypePostMapping">
-                        <i class='bx bx-station bxStyle'></i>
-                        <span class="TitleSetheader">Staff-Type-Post Mapping</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/postSubjectMapping">
-                        <i class='bx bx-station bxStyle'></i>
-                        <span class="TitleSetheader">Post-Subject Mapping</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/sanctioned-post">
-                        <i class='bx bx-station bxStyle'></i>
-                        <span class="TitleSetheader">Sanctioned-Post Mapping</span>
-                    </a>
+
+                <li class="mb-1">
+                    <button (click)="authlogout()" class="btn btn-toggle align-items-center" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false"> <img src="assets/img/logout.svg">
+                    Logout</button>
                 </li>
             </ul>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/changePassword">
-                <i class='bx bxs-key bxStyle'></i>
-                <span class="TitleSetheader"> Change Password </span>
-            </a>
-        </li>
-
-    </ul>
-</nav>
+        </div>
+    </div>
+</section>

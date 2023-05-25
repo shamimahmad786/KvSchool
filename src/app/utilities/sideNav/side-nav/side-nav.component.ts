@@ -2,13 +2,14 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import * as $ from 'jquery';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
-
+  logoutLink = environment.LOGOUT_URL
   applicationId: any;
   kvicons: any;
   kvIfConditions: boolean = false;
@@ -18,7 +19,7 @@ export class SideNavComponent implements OnInit {
   showRegion:boolean = false;
   showStation:boolean = false;
   showSchool:boolean = false;
-  constructor() {
+  constructor(private router: Router) {
 
   }
 
@@ -51,5 +52,20 @@ export class SideNavComponent implements OnInit {
   checkFunction(){
     alert("called");
   }
+
+  
+  authlogout(){
+    
+
+    
+
+if(sessionStorage.getItem("loginType")=="jwt"){
+      this.router.navigate(['/mainPage']);
+}else if(sessionStorage.getItem("loginType")=="auth"){
+  window.location.href=this.logoutLink;
+}
+sessionStorage.clear();
+}
+
 
 }
