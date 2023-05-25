@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import {map, startWith} from 'rxjs/operators';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 
 @Component({
   selector: 'app-school-station-mapping',
@@ -32,7 +33,7 @@ export class SchoolStationMappingComponent implements OnInit {
  
 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
-  constructor(private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
+  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
     this.dateAdapter.setLocale('en-GB');
   }
 
@@ -127,6 +128,7 @@ export class SchoolStationMappingComponent implements OnInit {
             this.listRegionStation.push(this.testData);
             this.testData = { "sno": "", "stationname": "", "schoolname": "","shift":"", "fromdate": "","todate":"","status":"" };
           }
+          console.log(this.listRegionStation)
       }
       setTimeout(() => {
         this.dataSource = new MatTableDataSource(this.listRegionStation);
@@ -144,5 +146,13 @@ export class SchoolStationMappingComponent implements OnInit {
     filterValue = filterValue.trim(); 
     filterValue = filterValue.toLowerCase(); 
     this.dataSource.filter = filterValue;
+  }
+  
+  schoolStationMappingPdf()
+  {
+    setTimeout(() => {
+      this.pdfService.schoolStationMappingList(this.listRegionStation);
+    }, 1000);
+
   }
 }

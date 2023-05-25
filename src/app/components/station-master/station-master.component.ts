@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatTableDataSource } from '@angular/material/table';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 const ELEMENT_DATA: any = [
   {sno: '', stationcode: '', stationname: '', status: ''}
 
@@ -24,7 +25,7 @@ export class StationMasterComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   stationList: any=[];
  
-  constructor(private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
+  constructor(private pdfService: MasterReportPdfService, private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
    this.getStationMaterList();
@@ -72,4 +73,12 @@ export class StationMasterComponent implements OnInit {
     this.router.navigate(['/teacher/stationMaster/edit']);
    }
 
+   stationMasterPdf()
+   {
+    setTimeout(() => {
+      this.pdfService.stationMasterList(this.stationList);
+    }, 1000);
+
+  }
+   
 }

@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 const ELEMENT_DATA: any = [
   {sno: '', stationcode: '', stationname: '', status: ''}
@@ -24,7 +25,7 @@ export class SchoolMasterComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   schoolList: any=[];
  
-  constructor(private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
+  constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
    this.getSchoolMaterList();
@@ -49,6 +50,7 @@ export class SchoolMasterComponent implements OnInit {
           this.testData = {sno: '', schoolcode: '', schoolname: '', status: '',shift:'',id:''};
   
         }
+        console.log(this.schoolList);
         setTimeout(() => {
           this.dataSource = new MatTableDataSource(this.schoolList);
           this.dataSource.paginator = this.paginator;
@@ -70,5 +72,10 @@ export class SchoolMasterComponent implements OnInit {
     sessionStorage.setItem("schoolEdit",JSON.stringify(data));
     this.router.navigate(['/teacher/schoolMaster/edit'])
    }
-
+   schoolMasterPdf()
+   {
+    setTimeout(() => {
+      this.pdfService.schoolMasterList(this.schoolList);
+    }, 1000);
+   }
 }

@@ -6,6 +6,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 
 
@@ -29,7 +30,7 @@ export class StationCategoryMasterComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) {
+  constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) {
 
   }
 
@@ -53,6 +54,7 @@ export class StationCategoryMasterComponent implements OnInit {
             this.stationCategoryList.push(this.testData);
             this.testData =  {sno: '', categoryname: '', status: '',id:''};
           }  
+          console.log(this.stationCategoryList)
           setTimeout(() => {
             this.dataSource = new MatTableDataSource(this.stationCategoryList);
             this.dataSource.paginator = this.paginator;
@@ -74,7 +76,13 @@ export class StationCategoryMasterComponent implements OnInit {
     sessionStorage.setItem("stationCategoryEdit",JSON.stringify(data));
     this.router.navigate(['/teacher/stationCategoryMaster/edit'])
    }
-
+   stationCategoryMasterList
+   stationCategoryMasterpdf()
+   {
+    setTimeout(() => {
+      this.pdfService.stationCategoryMasterList(this.stationCategoryList);
+    }, 1000);
+   }
 }
 
 

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { element } from 'protractor';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 
 
 const ELEMENT_DATA: any = [];
@@ -28,11 +29,12 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
 
   listRegion: any=[];
 
-  constructor(private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
+  constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
    this.getRegionList();
   }
+ 
   redirectto(){
     this.router.navigate(['/teacher/regionMaster/add']);
   }
@@ -51,7 +53,8 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
             this.testData = { "sno": "", "regioncode": "", "regionname": "", "status": "","id":"" };
    
           }
-    
+    console.log( this.listRegion)
+    this.regionMasterPdf()
       }
       setTimeout(() => {
         this.dataSource = new MatTableDataSource(this.listRegion);
@@ -60,6 +63,13 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
       }, 100)
     })
   }
+
+  regionMasterPdf() {
+  setTimeout(() => {
+       this.pdfService.regionMasterList(this.listRegion);
+     }, 1000);
+ 
+   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
