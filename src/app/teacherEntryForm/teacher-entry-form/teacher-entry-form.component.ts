@@ -525,7 +525,7 @@ export class TeacherEntryFormComponent implements OnInit {
         'disabilityCertAuth': new FormControl('', Validators.required),
         'disabilityCertNo': new FormControl('', Validators.required),
       }),
-//-------------------------- newform transferRelatedForm  add  start  here---------------------------------
+//-------------------------- newform transferRelatedForm  add  start  here--------------------------------- 
 transferRelatedForm: new FormGroup({
   'id':new FormControl(''),
   'teacherId':new FormControl('', Validators.required),
@@ -2785,9 +2785,25 @@ console.log(this.teacherForm)
     var str = this.selectedUdiseCode
     console.log(str)
     var splitted = str.split("-", 2);
+    var spouseStation=this.teacherForm.value.transferRelatedForm?.spouseStationName;
     debugger
+
+    // spouseKvsYnD,spouseEmpCode,spousePost,spouseStationName
+    // alert(JSON.stringify(this.teacherForm.value.transferRelatedForm));
+    // alert(this.teacherForm.value.transferRelatedForm.spouseKvsYnD);
+    // alert(this.teacherForm.value.transferRelatedForm.spouseEmpCode);
+    // alert(this.teacherForm.value.transferRelatedForm.spousePost);
+    // alert(this.teacherForm.value.transferRelatedForm.spouseStationName);
+
     if (this.position == '1') {
-      
+   if(splitted[1] != this.teacherForm.value.transferRelatedForm?.spouseStationName){
+    Swal.fire(
+      'You have not selected spouse station in first choice so you are not eligible to get spouse point in transfer and spouse station is available in only first choice',
+      '',
+      'error'
+    )
+      }
+
      // choiceKv1StationName
       if (this.teacherForm.value.transferRelatedForm.choiceKv2StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv3StationName == splitted[1] ||
@@ -2814,6 +2830,22 @@ console.log(this.teacherForm)
       }
 
     } else if (this.position == '2') {
+debugger;
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+        this.teacherForm.patchValue({
+          transferRelatedForm: {
+            choiceKv2StationCode: '',
+            choiceKv2StationName: ''
+            
+          }
+        })
+        return
+          }
       if (this.teacherForm.value.transferRelatedForm.choiceKv1StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv3StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv4StationName == splitted[1] ||
@@ -2838,6 +2870,23 @@ console.log(this.teacherForm)
         })
       }
     } else if (this.position == '3') {
+
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+
+        this.teacherForm.patchValue({
+          transferRelatedForm: {
+            choiceKv3StationCode: '',
+            choiceKv3StationName: ''
+          }
+        })
+return
+          }
+
       if (this.teacherForm.value.transferRelatedForm.choiceKv2StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv1StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv4StationName == splitted[1] ||
@@ -2862,6 +2911,23 @@ console.log(this.teacherForm)
         })
       }
     } else if (this.position == '4') {
+
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+
+        this.teacherForm.patchValue({
+          transferRelatedForm: {
+            choiceKv4StationCode: '',
+            choiceKv4StationName: ''
+          }
+        })
+return
+          }
+
       if (this.teacherForm.value.transferRelatedForm.choiceKv2StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv3StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv1StationName == splitted[1] ||
@@ -2886,6 +2952,22 @@ console.log(this.teacherForm)
         })
       }
     } else if (this.position == '5') {
+
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+        this.teacherForm.patchValue({
+          transferRelatedForm: {
+            choiceKv5StationCode: '',
+            choiceKv5StationName: ''
+          }
+        })
+        return
+          }
+
       if (this.teacherForm.value.transferRelatedForm.choiceKv2StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv3StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv4StationName == splitted[1] ||

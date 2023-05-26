@@ -19,6 +19,7 @@ export class MainPageComponent implements OnInit {
   browserLang:any;
   noOfSchool:any;
   noOfStaff:any;
+  dashboarData:any;
 
   // loginUrlCommon = environment.LOGIN_URL_COMMON;environment.LOGIN_URL_INDIVIDUAL
   loginUrlCommon=environment.LOGIN_URL_INDIVIDUAL;
@@ -32,7 +33,6 @@ export class MainPageComponent implements OnInit {
     public translate: TranslateService,
     private ser: OutsideServicesService,
     @Inject(DOCUMENT) private document:Document,
-
     ) {
 
     this.langSer.selectedLang.subscribe(res=>{
@@ -60,6 +60,7 @@ export class MainPageComponent implements OnInit {
     //   this.noOfSchool = res.response.rowValue[0].no_of_school;
     //   this.noOfStaff = res.response.rowValue[0].no_of_staff;
     // })
+    this.dashboardData();
   }
 
   selectedLang(lang){
@@ -98,4 +99,18 @@ export class MainPageComponent implements OnInit {
   teacherLogin(){
     // window.location.href=this.loginUrlCommon2;
   }
+
+
+  dashboardData(){
+
+    
+  this.ser.getkvsDashboardReport().subscribe((res) => {
+this.dashboarData=res.response[0];
+  })
+
+  }
+
+
+
+
 }

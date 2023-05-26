@@ -1322,6 +1322,10 @@ updateSanctionedData(data){
 
 }
 
+getkvsDashboardReport(){
+  return this._http.post<any>(environment.BASE_URL_DATA_DASHBOARD+ "getkvsDashboardReport","")
+}
+
 
 }
 
