@@ -54,7 +54,6 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
    
           }
     console.log( this.listRegion)
-    this.regionMasterPdf()
       }
       setTimeout(() => {
         this.dataSource = new MatTableDataSource(this.listRegion);

@@ -19,6 +19,9 @@ export class MasterReportPdfService {
   regionStationMappingListArray:any;
   stationCategoryMappingListArray:any;
   schoolStationMappingListArray:any;
+  stafftypePostMappingListArray:any;
+  postSubjectMappingListArray:any;
+  sanctionPostMappingListArray:any;
   regionHead = [['S.No', 'Region Code', 'Region Name', 'Status']]
   stationHead = [['S.No', 'Station Code', 'Station Name', 'Status']]
   schoolHead = [['S.No', 'School Code', 'School Name', 'Shift', 'Status']]
@@ -29,6 +32,9 @@ export class MasterReportPdfService {
   regionStationMappingHead = [['S.No', 'Region Name','Station Name','From Date','To Date','Status']]
   stationCategoryMappingHead = [['S.No', 'Station Name','Category Name','From Date','To Date','Status']]
   schoolStationMappingHead = [['S.No', 'Station Name','School Name','From Date','To Date','status']]
+  staffTypePostMappingHead = [['S.No', 'Staff-Type','Post Code','Post Name']]
+  postSubjectMappingHead = [['S.No', 'Post Code','Post name','Subject Code','Subject Name']]
+  sanctionPostMappingHead = [['S.No', 'Staff Type','Post Name','Post Code','Subject Name','Subject Code','Sanctioned Post','Occupied Post','Vacant Post','Surplus Post']]
   yPoint: any;
   currentDate: any;
   constructor(private date: DatePipe) {
@@ -96,8 +102,8 @@ export class MasterReportPdfService {
         var pageHeight = pageSize.height
           ? pageSize.height
           : pageSize.getHeight();
-        doc.text(str, data.settings.margin.left, pageHeight - 10);
-
+        doc.text(str,130, pageHeight - 7);
+        doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
         doc.setTextColor(0, 0, 0);
         doc.setFontSize(12);
         doc.setFont('Times-Roman', 'bold');
@@ -172,7 +178,7 @@ export class MasterReportPdfService {
         doc.setTextColor(138, 24, 34);
         doc.setFontSize(14);
         doc.setFont('Times-Roman', 'bold');
-        doc.text('Master table : Station (M02)', 15, 28);
+        doc.text('Report : Station (M02)', 15, 28);
 
         // Footer
         var str = "Page " + data.doc.internal.getNumberOfPages();
@@ -183,8 +189,8 @@ export class MasterReportPdfService {
         var pageHeight = pageSize.height
           ? pageSize.height
           : pageSize.getHeight();
-        doc.text(str, data.settings.margin.left, pageHeight - 10);
-
+        doc.text(str,130, pageHeight - 7);
+        doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
         doc.setTextColor(0, 0, 0);
         doc.setFontSize(12);
         doc.setFont('Times-Roman', 'bold');
@@ -264,7 +270,7 @@ export class MasterReportPdfService {
         doc.setTextColor(138, 24, 34);
         doc.setFontSize(14);
         doc.setFont('Times-Roman', 'bold');
-        doc.text('Master table : School (M03)', 15, 28);
+        doc.text('Report : School (M03)', 15, 28);
 
         // Footer
         var str = "Page " + data.doc.internal.getNumberOfPages();
@@ -275,8 +281,8 @@ export class MasterReportPdfService {
         var pageHeight = pageSize.height
           ? pageSize.height
           : pageSize.getHeight();
-        doc.text(str, data.settings.margin.left, pageHeight - 10);
-
+        doc.text(str,130, pageHeight - 7);
+        doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
         doc.setTextColor(0, 0, 0);
         doc.setFontSize(12);
         doc.setFont('Times-Roman', 'bold');
@@ -348,7 +354,7 @@ export class MasterReportPdfService {
           doc.setTextColor(138, 24, 34);
           doc.setFontSize(14);
           doc.setFont('Times-Roman', 'bold');
-          doc.text('Master table : Station Category (M04)', 15, 28);
+          doc.text('Report : Station Category (M04)', 15, 28);
   
           // Footer
           var str = "Page " + data.doc.internal.getNumberOfPages();
@@ -359,8 +365,8 @@ export class MasterReportPdfService {
           var pageHeight = pageSize.height
             ? pageSize.height
             : pageSize.getHeight();
-          doc.text(str, data.settings.margin.left, pageHeight - 10);
-  
+          doc.text(str,130, pageHeight - 7);
+          doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
           doc.setTextColor(0, 0, 0);
           doc.setFontSize(12);
           doc.setFont('Times-Roman', 'bold');
@@ -433,7 +439,7 @@ export class MasterReportPdfService {
           doc.setTextColor(138, 24, 34);
           doc.setFontSize(14);
           doc.setFont('Times-Roman', 'bold');
-          doc.text('Master table : Station Category (M04)', 15, 28);
+          doc.text('Report : Staff Type (M05)', 15, 28);
   
           // Footer
           var str = "Page " + data.doc.internal.getNumberOfPages();
@@ -444,8 +450,8 @@ export class MasterReportPdfService {
           var pageHeight = pageSize.height
             ? pageSize.height
             : pageSize.getHeight();
-          doc.text(str, data.settings.margin.left, pageHeight - 10);
-  
+          doc.text(str,130, pageHeight - 7);
+          doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
           doc.setTextColor(0, 0, 0);
           doc.setFontSize(12);
           doc.setFont('Times-Roman', 'bold');
@@ -521,7 +527,7 @@ export class MasterReportPdfService {
            doc.setTextColor(138, 24, 34);
            doc.setFontSize(14);
            doc.setFont('Times-Roman', 'bold');
-           doc.text('Master table : Station Category (M05)', 15, 28);
+           doc.text('Report : Designation (M06)', 15, 28);
    
            // Footer
            var str = "Page " + data.doc.internal.getNumberOfPages();
@@ -532,8 +538,8 @@ export class MasterReportPdfService {
            var pageHeight = pageSize.height
              ? pageSize.height
              : pageSize.getHeight();
-           doc.text(str, data.settings.margin.left, pageHeight - 10);
-   
+           doc.text(str,130, pageHeight - 7);
+           doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
            doc.setTextColor(0, 0, 0);
            doc.setFontSize(12);
            doc.setFont('Times-Roman', 'bold');
@@ -607,7 +613,7 @@ export class MasterReportPdfService {
           doc.setTextColor(138, 24, 34);
           doc.setFontSize(14);
           doc.setFont('Times-Roman', 'bold');
-          doc.text('Master table : Subject (M06)', 15, 28);
+          doc.text('Report : Subject (M07)', 15, 28);
   
           // Footer
           var str = "Page " + data.doc.internal.getNumberOfPages();
@@ -618,8 +624,8 @@ export class MasterReportPdfService {
           var pageHeight = pageSize.height
             ? pageSize.height
             : pageSize.getHeight();
-          doc.text(str, data.settings.margin.left, pageHeight - 10);
-  
+          doc.text(str,130, pageHeight - 7);
+          doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
           doc.setTextColor(0, 0, 0);
           doc.setFontSize(12);
           doc.setFont('Times-Roman', 'bold');
@@ -697,7 +703,7 @@ export class MasterReportPdfService {
           doc.setTextColor(138, 24, 34);
           doc.setFontSize(14);
           doc.setFont('Times-Roman', 'bold');
-          doc.text('Table : Region Station Mapping (M07)', 15, 28);
+          doc.text('Report : Region Station Mapping (M08)', 15, 28);
   
           // Footer
           var str = "Page " + data.doc.internal.getNumberOfPages();
@@ -708,8 +714,8 @@ export class MasterReportPdfService {
           var pageHeight = pageSize.height
             ? pageSize.height
             : pageSize.getHeight();
-          doc.text(str, data.settings.margin.left, pageHeight - 10);
-  
+          doc.text(str,130, pageHeight - 7);
+          doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
           doc.setTextColor(0, 0, 0);
           doc.setFontSize(12);
           doc.setFont('Times-Roman', 'bold');
@@ -787,7 +793,7 @@ export class MasterReportPdfService {
         doc.setTextColor(138, 24, 34);
         doc.setFontSize(14);
         doc.setFont('Times-Roman', 'bold');
-        doc.text('Table :Station Category Mapping (M08)', 15, 28);
+        doc.text('Report :Station Category Mapping (M09)', 15, 28);
 
         // Footer
         var str = "Page " + data.doc.internal.getNumberOfPages();
@@ -798,8 +804,8 @@ export class MasterReportPdfService {
         var pageHeight = pageSize.height
           ? pageSize.height
           : pageSize.getHeight();
-        doc.text(str, data.settings.margin.left, pageHeight - 10);
-
+        doc.text(str,130, pageHeight - 7);
+        doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
         doc.setTextColor(0, 0, 0);
         doc.setFontSize(12);
         doc.setFont('Times-Roman', 'bold');
@@ -886,8 +892,7 @@ schoolStationMappingList(schoolStationMappingList:any){
       doc.setTextColor(138, 24, 34);
       doc.setFontSize(14);
       doc.setFont('Times-Roman', 'bold');
-      doc.text('Table :School Station Mapping (M09)', 15, 28);
-
+      doc.text('Report :School Station Mapping (M010)', 15, 28);
       // Footer
       var str = "Page " + data.doc.internal.getNumberOfPages();
 
@@ -897,8 +902,8 @@ schoolStationMappingList(schoolStationMappingList:any){
       var pageHeight = pageSize.height
         ? pageSize.height
         : pageSize.getHeight();
-      doc.text(str, data.settings.margin.left, pageHeight - 10);
-
+        doc.text(str,130, pageHeight - 7);
+        doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
       doc.setTextColor(0, 0, 0);
       doc.setFontSize(12);
       doc.setFont('Times-Roman', 'bold');
@@ -922,5 +927,249 @@ schoolStationMappingList(schoolStationMappingList:any){
     },
   })
   doc.save('schoolStationMapping.pdf')
+ }
+ staffTypePostMappingList(stafftypePostMappingList:any)
+ {
+  this.stafftypePostMappingListArray = [];
+ 
+    for(let i=0; i<stafftypePostMappingList.length; i++){
+      var stafftypePostMappingListTemp = [];
+      stafftypePostMappingListTemp.push(stafftypePostMappingList[i]?.sno)
+      stafftypePostMappingListTemp.push(stafftypePostMappingList[i]?.staffType)
+      stafftypePostMappingListTemp.push(stafftypePostMappingList[i]?.postCode)
+      stafftypePostMappingListTemp.push(stafftypePostMappingList[i]?.postName)
+      this.stafftypePostMappingListArray.push(stafftypePostMappingListTemp)
+    }
+    this.currentDate = "(" + this.currentDate + ")"
+    // var tchId = "" + teacherProfile.teacherId + ""
+    const doc = new jsPDF('l', 'mm', 'a4');
+    doc.setTextColor(138, 24, 34);
+    doc.setFontSize(14);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Station Category Master', 130, 45);    
+
+    
+    (doc as any).autoTable({
+      head: this.staffTypePostMappingHead,   
+      body: this.stafftypePostMappingListArray,
+      theme: 'grid',
+      startY: 40,
+      didDrawPage: function (data) {
+       const currentDate = new Date().toString();
+       var index = currentDate.lastIndexOf(':') +3
+       const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
+        // Header
+        doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 4, 100, 20);
+        doc.setDrawColor(0, 0, 0);
+        doc.setTextColor(0, 0, 0);
+        doc.setLineWidth(1);
+        doc.line(15, 35, 280, 35);
+
+        doc.setTextColor(138, 24, 34);
+        doc.setFontSize(14);
+        doc.setFont('Times-Roman', 'bold');
+        doc.text('Report :Staff Type post Mapping (M011)', 15, 28);
+
+        // Footer
+        var str = "Page " + data.doc.internal.getNumberOfPages();
+
+        doc.setFontSize(10);
+        // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+        var pageSize = doc.internal.pageSize;
+        var pageHeight = pageSize.height
+          ? pageSize.height
+          : pageSize.getHeight();
+        doc.text(str,130, pageHeight - 7);
+        doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
+       // doc.setDrawColor(0, 0, 0);
+       // doc.setTextColor(0, 0, 0);
+        //doc.setLineWidth(1);
+
+
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(12);
+        doc.setFont('Times-Roman', 'bold');
+        doc.text('Report Generation Date & Time',  data.settings.margin.left+210, pageHeight - 10)
+    
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(12);
+        doc.setFont('Times-Roman', 'normal');
+        doc.text(convtCurrentDate,  data.settings.margin.left+210, pageHeight - 5)       
+      },
+
+      didDrawCell: data => {
+        this.yPoint = data.cursor.y
+      },
+      headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
+      alternateRowStyles: { fillColor: [255, 251, 245] },
+      valign: 'top',
+      margin: {
+        top: 40,
+        bottom: 15,
+      },
+    })
+    doc.save('staffTypepostMapping.pdf')
+ }
+
+ postSubjectMappingList(postSubjectMappingList:any)
+ {
+  this.postSubjectMappingListArray = [];
+ 
+  for(let i=0; i<postSubjectMappingList.length; i++){
+    var postSubjectMappingListTemp = [];
+    postSubjectMappingListTemp.push(postSubjectMappingList[i]?.sno)
+    postSubjectMappingListTemp.push(postSubjectMappingList[i]?.postCode)
+    postSubjectMappingListTemp.push(postSubjectMappingList[i]?.postName)
+    postSubjectMappingListTemp.push(postSubjectMappingList[i]?.subjectCode)
+    postSubjectMappingListTemp.push(postSubjectMappingList[i]?.subjectName)
+    this.postSubjectMappingListArray.push(postSubjectMappingListTemp)
+  }
+  this.currentDate = "(" + this.currentDate + ")"
+  // var tchId = "" + teacherProfile.teacherId + ""
+  const doc = new jsPDF('l', 'mm', 'a4');
+  doc.setTextColor(138, 24, 34);
+  doc.setFontSize(14);
+  doc.setFont('Times-Roman', 'bold');
+  doc.text('Station Category Master', 130, 45);    
+
+  
+  (doc as any).autoTable({
+    head: this.staffTypePostMappingHead,   
+    body: this.postSubjectMappingListArray,
+    theme: 'grid',
+    startY: 40,
+    didDrawPage: function (data) {
+     const currentDate = new Date().toString();
+     var index = currentDate.lastIndexOf(':') +3
+     const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
+      // Header
+      doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 4, 100, 20);
+      doc.setDrawColor(0, 0, 0);
+      doc.setTextColor(0, 0, 0);
+      doc.setLineWidth(1);
+      doc.line(15, 35, 280, 35);
+
+      doc.setTextColor(138, 24, 34);
+      doc.setFontSize(14);
+      doc.setFont('Times-Roman', 'bold');
+      doc.text('Report :Post Subject Mapping (M012)', 15, 28);
+
+      // Footer
+      var str = "Page " + data.doc.internal.getNumberOfPages();
+
+      doc.setFontSize(10);
+      // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+      var pageSize = doc.internal.pageSize;
+      var pageHeight = pageSize.height
+        ? pageSize.height
+        : pageSize.getHeight();
+      doc.text(str,130, pageHeight - 7);
+      doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont('Times-Roman', 'bold');
+      doc.text('Report Generation Date & Time',  data.settings.margin.left+210, pageHeight - 10)
+  
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont('Times-Roman', 'normal');
+      doc.text(convtCurrentDate,  data.settings.margin.left+210, pageHeight - 5)       
+    },
+
+    didDrawCell: data => {
+      this.yPoint = data.cursor.y
+    },
+    headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
+    alternateRowStyles: { fillColor: [255, 251, 245] },
+    valign: 'top',
+    margin: {
+      top: 40,
+      bottom: 15,
+    },
+  })
+  doc.save('postSubjectMapping.pdf')
+ }
+ sanctionedPostMappingList(sanctionPostMappingList:any)
+ {
+  this.sanctionPostMappingListArray = [];
+ 
+  for(let i=0; i<sanctionPostMappingList.length; i++){
+    var sanctionPostMappingListTemp = [];
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.sno)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.staffType)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.postName)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.postCode)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.subjectName)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.subjectCode)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.sanctionedPost)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.occupiedPost)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.vacant)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.surplus)
+    this.sanctionPostMappingListArray.push(sanctionPostMappingListTemp)
+  }
+  this.currentDate = "(" + this.currentDate + ")"
+  // var tchId = "" + teacherProfile.teacherId + ""
+  const doc = new jsPDF('l', 'mm', 'a4');
+  doc.setTextColor(138, 24, 34);
+  doc.setFontSize(14);
+  doc.setFont('Times-Roman', 'bold');
+  doc.text('Station Category Master', 130, 45);    
+
+  
+  (doc as any).autoTable({
+    head: this.sanctionPostMappingHead,   
+    body: this.sanctionPostMappingListArray,
+    theme: 'grid',
+    startY: 40,
+    didDrawPage: function (data) {
+     const currentDate = new Date().toString();
+     var index = currentDate.lastIndexOf(':') +3
+     const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
+      // Header
+      doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 4, 100, 20);
+      doc.setDrawColor(0, 0, 0);
+      doc.setTextColor(0, 0, 0);
+      doc.setLineWidth(1);
+      doc.line(15, 35, 280, 35);
+
+      doc.setTextColor(138, 24, 34);
+      doc.setFontSize(14);
+      doc.setFont('Times-Roman', 'bold');
+      doc.text('Report :Sanctioned Post Mapping (M013)', 15, 28);
+
+      // Footer
+      var str = "Page " + data.doc.internal.getNumberOfPages();
+
+      doc.setFontSize(10);
+      // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+      var pageSize = doc.internal.pageSize;
+      var pageHeight = pageSize.height
+        ? pageSize.height
+        : pageSize.getHeight();
+      doc.text(str,130, pageHeight - 7);
+      doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont('Times-Roman', 'bold');
+      doc.text('Report Generation Date & Time',  data.settings.margin.left+210, pageHeight - 10)
+  
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont('Times-Roman', 'normal');
+      doc.text(convtCurrentDate,  data.settings.margin.left+210, pageHeight - 5)       
+    },
+
+    didDrawCell: data => {
+      this.yPoint = data.cursor.y
+    },
+    headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
+    alternateRowStyles: { fillColor: [255, 251, 245] },
+    valign: 'top',
+    margin: {
+      top: 40,
+      bottom: 15,
+    },
+  })
+  doc.save('sanctionedPostMapping.pdf')
  }
 }
