@@ -913,48 +913,37 @@
 
 
 
-                                                <!-------------------Married status on without marride condition statr  here---------------------->                                        
+                                                <!-------------------Married status on without marride condition statr  here---------------------->
                                                 <hr />
-                                                <div class="row mt-4" >                                                         
-                                                    <div class="col-3"> <h4 class="titleSet">Marital Status<span
-                                                        class="required-asterisk">*</span></h4> </div>
+                                                <div class="row mt-4">
+                                                    <div class="col-3">
+                                                        <h4 class="titleSet">Marital Status<span class="required-asterisk">*</span></h4>
+                                                    </div>
                                                     <div class="col-2">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio"
-                                                        id="maritalStatusF" value="1"
-                                                        (click)="maritalStatusCheck($event)"
-                                                        [(ngModel)]="responseData.maritalStatus"
-                                                        name="maritalStatusF"
-                                                        formControlName="maritalStatusF">
-                                                        <label
-                                                        class="form-check-label font16 ff">Married</label>
-                                                   
-                                                    </div></div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" id="maritalStatusF" value="1" (click)="maritalStatusCheck($event)" [(ngModel)]="responseData.maritalStatus" name="maritalStatusF" formControlName="maritalStatusF">
+                                                            <label class="form-check-label font16 ff">Married</label>
+
+                                                        </div>
+                                                    </div>
                                                     <div class="col-2">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" value="4"
-                                                        (click)="maritalStatusCheck($event)"
-                                                        [(ngModel)]="responseData.maritalStatus"
-                                                        id="maritalStatusF" name="maritalStatusF"
-                                                        formControlName="maritalStatusF">
-                                                        <label class="form-check-label font16 ff">Single</label>
-                                                    </div></div>
-                                                
-                                                
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" value="4" (click)="maritalStatusCheck($event)" [(ngModel)]="responseData.maritalStatus" id="maritalStatusF" name="maritalStatusF" formControlName="maritalStatusF">
+                                                            <label class="form-check-label font16 ff">Single</label>
+                                                        </div>
+                                                    </div>
+
+
                                                     <div class="col-1">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" value="7"
-                                                                (click)="maritalStatusCheck($event)"
-                                                                [(ngModel)]="responseData.maritalStatus"
-                                                                id="maritalStatusF" name="maritalStatusF"
-                                                                formControlName="maritalStatusF">
-                                                                <label class="form-check-label font16 ff">Widow/Widower</label>
-                                                        </div></div>
-                                                        <span class="help-block text-danger"
-                                                        *ngIf="!teacherForm.get('personalInfoForm.maritalStatusF').valid  && teacherForm.get('personalInfoForm.maritalStatusF').touched">
+                                                            <input class="form-check-input" type="radio" value="7" (click)="maritalStatusCheck($event)" [(ngModel)]="responseData.maritalStatus" id="maritalStatusF" name="maritalStatusF" formControlName="maritalStatusF">
+                                                            <label class="form-check-label font16 ff">Widow/Widower</label>
+                                                        </div>
+                                                    </div>
+                                                    <span class="help-block text-danger" *ngIf="!teacherForm.get('personalInfoForm.maritalStatusF').valid  && teacherForm.get('personalInfoForm.maritalStatusF').touched">
                                                         Select the applicable!</span>
-                                                
-                                                </div> 
+
+                                                </div>
 
                                                 <!----------------end here------------------------------------->
                                                 <div class="row" *ngIf="marriedStatusYN">
@@ -1147,7 +1136,8 @@
                                 !teacherForm.get('personalInfoForm.spouseStationName').valid))
                                 ||(!teacherForm.get('personalInfoForm.crspndncPinCode').valid ||
                                 (teacherForm.get('personalInfoForm.prmntPinCode').status != 'VALID' && teacherForm.get('personalInfoForm.prmntPinCode').status != 'DISABLED') || 
-                                (documentUploadArray[4]?.docName != 'Physically_Handicap_Certificate.pdf' &&  teacherForm.get('personalInfoForm.disabilityYN').value == '1')))" type="button" name="next" (click)="onNextButtonClick(3)"  class="next action-button" value="Next" />
+                                (documentUploadArray[4]?.docName != 'Physically_Handicap_Certificate.pdf' &&  teacherForm.get('personalInfoForm.disabilityYN').value == '1')))" type="button" name="next" (click)="onNextButtonClick(3)" class="next action-button"
+                                    value="Next" />
                                 <input type="button" name="previous" class="previous action-button-previous" (click)=" onPreviousClick(1)" value="Previous" />
                                 <input [disabled]="((!teacherForm.get('personalInfoForm.maritalStatusF').valid ) || (!teacherForm.get('personalInfoForm.disabilityYN').valid ) || (!teacherForm.get('personalInfoForm.disabilityType').valid &&
                                                                    teacherForm.get('personalInfoForm.disabilityYN').value == '1') || 
@@ -1934,8 +1924,7 @@
                                                     </div> -->
                                                     <div class="col-md-3">
                                                         <h4 class="titleSet">Spouse name</h4>
-                                                        <input type="text" class="form-control mb-3" id="spouseName"
-                                                             name="spouseName" value=" {{responseData.spouseName}}"  >
+                                                        <input type="text" class="form-control mb-3" id="spouseName" name="spouseName" value=" {{responseData.spouseName}}">
                                                     </div>
 
                                                     <!-- <div class="col-md-3">
@@ -2511,7 +2500,7 @@
                                 </fieldset>
                                 <input type="button" name="next" class="next action-button mt-2" value="Next" (click)="onVerifyClick()" />
                                 <input type="button" name="previous" class="previous action-button-previous mt-2" (click)=" onPreviousClick(4)" value="Previous" />
-                                <input  [disabled]="                            
+                                <input [disabled]="                            
                                 ((!teacherForm.get('transferRelatedForm.patientName').valid ||
                                 !teacherForm.get('transferRelatedForm.patientAilment').valid ||
                                 !teacherForm.get('transferRelatedForm.patientHospital').valid ||
@@ -2601,7 +2590,7 @@
                                                     </tr>
                                                     <tr>
 
-                                                      
+
 
                                                         <th>Present KV/Institution in Present Post Date</th>
                                                         <td>{{verifyTchTeacherProfileData?.workExperienceWorkStartDatePresentKv | date: 'dd-MM-YYYY'}}
@@ -2617,7 +2606,7 @@
                                                     </tr>
                                                     <tr>
 
-                                                      
+
 
                                                         <th>Subject Name</th>
                                                         <td>{{verifyTchTeacherProfileData?.workExperienceAppointedForSubject}}
@@ -2630,56 +2619,51 @@
                                                         <th>Nature of Appointment</th>
                                                         <td>Regular
                                                         </td>
-                                                    </tr>                                            
+                                                    </tr>
                                                     <h2 class="px-2 mt-2 text-green">Information</h2>
                                                     <tr>
-                                                        <th>Boold Group</th>
+                                                        <!-- <th>Boold Group</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherBloodGroup | bloodGroup}}
-                                                        </td>
+                                                        </td> -->
 
-                                                        <th>Pan Number</th>
-                                                        <td>{{verifyTchTeacherProfileData?.teacherPanNumber}}</td>
+                                                        <!-- <th>Pan Number</th>
+                                                        <td>{{verifyTchTeacherProfileData?.teacherPanNumber}}</td> -->
 
                                                         <th>Correspondence Address</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceAddress}}
                                                         </td>
-                                                    </tr>
-                                                    <tr>
                                                         <th>Correspondence State</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceState}}
                                                         </td>
-
                                                         <th>Correspondence District</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceDistrict}}
                                                         </td>
+                                                    </tr>
+                                                    <tr>
+
+
 
                                                         <th>Correspondence Pin Code</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondencePin}}
                                                         </td>
-
-                                                    </tr>
-                                                    <tr>
                                                         <th>Permanent Address</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherPermanentAddress}}
                                                         </td>
-
                                                         <th>Permanent State</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherParmanentState}}</td>
+
+                                                    </tr>
+                                                    <tr>
+
 
                                                         <th>Permanent District</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherPermanentDistrict}}
                                                         </td>
-
-                                                    </tr>
-                                                    <tr>
-
                                                         <th>Permanent Pin Code</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherPermanentPin}}</td>
-                                                        <th></th>
-                                                        <td></td>
-                                                        <th></th>
-                                                        <td></td>
+
                                                     </tr>
+
 
                                                     <h2 class="px-2 mt-2 text-green">Disability</h2>
                                                     <tr>
@@ -2726,7 +2710,7 @@
                                                         <th>Spouse Station</th>
                                                         <td>{{verifyTchTeacherProfileData?.spouseStationName}}</td>
                                                     </tr>
-                                                  
+
                                                 </table>
                                                 <table class="table-striped">
                                                     <h2 class="px-2 mt-2 text-green">Experience</h2>
@@ -2843,7 +2827,7 @@
                                                         <td></td>
                                                         <td></td>
 
-                                                    </tr>                                                                                                                                                                           
+                                                    </tr>
                                                     <tr>
                                                         <th> Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).</th>
                                                         <td *ngIf="teacherStationChioce?.memberJCM == '1'">RJCM</td>

@@ -491,7 +491,7 @@ export class TeacherEntryFormComponent implements OnInit {
     this.getAllMaster();
 
     this.newTeacherEntry = false;
-
+  
     this.teacherForm = new FormGroup({
       profileForm: new FormGroup({
         'empCode': new FormControl('', [Validators.required, Validators.pattern("[0-9]*$")]),
@@ -502,7 +502,7 @@ export class TeacherEntryFormComponent implements OnInit {
         'religion': new FormControl(''),
        // 'nationality': new FormControl('', Validators.required),
         'mobile': new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[8976][0-9]{9}")]),
-        'email': new FormControl('', [Validators.email, Validators.required]),
+        'email': new FormControl(''),
         'presentStationName': new FormControl('', Validators.required),
         'presentStationPostDate': new FormControl('', [Validators.required, this.dateNotBeforeToday.bind(this)]),
         'presentKvName': new FormControl('', Validators.required),
@@ -1631,6 +1631,7 @@ stationChoiceSpouse(e, val) {
   }
   //------------------------------------------------ end declarationRelatedForm here --------------------------------------
   onSubmit(event: Event) {
+    // alert("called submit");
 debugger
     var activeButton = document.activeElement.id;
     if (activeButton == "submit1") {
@@ -1638,6 +1639,13 @@ debugger
         this.outSideService.getUpdatedFlag(this.tempTeacherId).subscribe((res) => {
           this.flagUpdatedList = res.response
         })
+
+        this.teacherForm.patchValue({
+          profileForm: {
+            kvCode:  this.kvCode,
+          }
+        })
+
         this.responseData.lastPromotionId = this.lastPromotionId;
         this.responseData.workExperienceIdPresentKv = this.workExpId;
         this.responseData.udiseSchoolName = this.schName;
@@ -1776,6 +1784,8 @@ debugger
       })
     } else if (activeButton == "submit2") {
 
+
+  
 debugger
       this.outSideService.getUpdatedFlag(this.tempTeacherId).subscribe((res) => {
         this.flagUpdatedList = res.response
@@ -1838,6 +1848,7 @@ debugger
           this.responseData.spousePost = this.teacherForm.value.personalInfoForm.spousePost
           this.responseData.spouseStationCode = this.teacherForm.value.personalInfoForm.spouseStationCode
           this.responseData.spouseStationName = this.teacherForm.value.personalInfoForm.spouseStationName
+          this.responseData.kvCode=this.kvCode;
          // this.responseData.specialRecruitmentYn = this.teacherForm.value.personalInfoForm.specialRecruitmentYn
          
           this.outSideService.saveSingleTeacher(this.responseData).subscribe((response) => {
@@ -1955,7 +1966,7 @@ debugger
         this.responseData.spousePost = this.teacherForm.value.personalInfoForm.spousePost
         this.responseData.spouseStationCode = this.teacherForm.value.personalInfoForm.spouseStationCode
         this.responseData.spouseStationName = this.teacherForm.value.personalInfoForm.spouseStationName
-
+        this.responseData.kvCode=this.kvCode;
 
         this.outSideService.saveSingleTeacher(this.responseData).subscribe((response) => {
 
@@ -2138,7 +2149,8 @@ this.getStatus(this.tempTeacherId);
       }
 
     } else if (activeButton == "submit33") {
-      debugger
+   
+
       if (this.teacherForm.controls.profileForm.status == 'VALID') {
         if (this.teacherForm.controls.acadProfQual.status == 'VALID') {
           if (this.teacherForm.controls.profQual.status == 'VALID') {
@@ -3867,6 +3879,23 @@ getTransferProfile(){
   const data={"teacherId":this.tempTeacherId}
   this.outSideService.getTransferData(data).subscribe((res) => {
     // alert("Transfer Data Response--->"+JSON.stringify(res));
+
+    if(!res.response)
+    {
+      this.teacherForm.patchValue({
+        transferRelatedForm: {
+          spouseKvsYnD: '0',
+          personalStatusMdgD: '0',
+          careGiverFaimlyYnD: '0',
+          careGiverYnD: '0',
+          personalStatusDfpD: '0',
+          personalStatusSpD: '0',
+          childDifferentAbleYnD: '0',
+          memberJCM: '0',
+        }
+      })
+    }
+
     debugger
     if(!res.response)
     {

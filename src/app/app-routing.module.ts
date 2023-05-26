@@ -60,30 +60,25 @@ const routes: Routes = [
       {path:'changePassword', component:ChangePasswordComponent},
       {path:'reportGrid', component:ReportGridComponent},
       {path:'kvSanctionedPost', component:KvTchSanctionedPostComponent},
-
       {path: 'regionMaster', loadChildren: () => import('./components/region-master/region-master.module').then(m => m.RegionMasterModule) },
       {path: 'stationMaster', loadChildren: () => import('./components/station-master/station-master.module').then(m => m.StationMasterModule) },
       {path: 'schoolMaster', loadChildren: () => import('./components/school-master/school-master.module').then(m => m.SchoolMasterModule) },
       {path: 'stationCategoryMaster', loadChildren: () => import('./components/station-category-master/station-category-master.module').then(m => m.StationCategoryMasterModule) },
-
       {path: 'regionStationMapping', loadChildren: () => import('./components/region-station-mapping/region-station-mapping.module').then(m => m.RegionStationMappingModule) },
       {path: 'schoolStationMapping', loadChildren: () => import('./components/school-station-mapping/school-station-mapping.module').then(m => m.SchoolStationMappingModule) },
       {path: 'stationCategoryMapping', loadChildren: () => import('./components/station-category-mapping/station-category-mapping.module').then(m => m.StationCategoryMappingModule) },
-     
       { path: 'stafftypeMaster', loadChildren: () => import('./components/stafftype-master/stafftype-master.module').then(m => m.StafftypeMasterModule) },
       { path: 'subjectMaster', loadChildren: () => import('./components/subject-master/subject-master.module').then(m => m.SubjectMasterModule) },
       { path: 'designationMaster', loadChildren: () => import('./components/designation-master/designation-master.module').then(m => m.DesignationMasterModule) },
-
       { path: 'stafftypePostMapping', loadChildren: () => import('./components/stafftype-post-mapping/stafftype-post-mapping.module').then(m => m.StafftypePostMappingModule) },
       { path: 'postSubjectMapping', loadChildren: () => import('./components/post-subject-mapping/post-subject-mapping.module').then(m => m.PostSubjectMappingModule) },
       { path: 'sanctioned-post', loadChildren: () => import('./components/sanctioned-post/sanctioned-post.module').then(m => m.SanctionedPostModule) },
-
-
     ]},  
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  // imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true, scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

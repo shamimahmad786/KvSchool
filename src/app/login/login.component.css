@@ -1,6 +1,5 @@
 .main-wrapper {
     background: url(/assets/images/login/login-bg-wave.svg) left bottom no-repeat;
-   
     min-height: 100vh;
     background-color: #eeedff;
     width: 100%;
@@ -14,17 +13,19 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); */
-  min-height: calc(100vh - 150px);
+    min-height: calc(100vh - 150px);
 }
 
-.left-content {width: 85%;}
+.left-content {
+    width: 85%;
+}
 
 .invalid-feedback {
     color: red;
 }
 
 .left-content h1 {
-    font-size:36px;
+    font-size: 36px;
     font-weight: 800;
     line-height: 44px;
     text-align: left;
@@ -33,7 +34,11 @@
     margin: 0;
 }
 
-.left-content h3 {color: #13245D; font-size: 16px;}
+.left-content h3 {
+    color: #13245D;
+    font-size: 16px;
+}
+
 .left-content h6 {
     color: #13245D;
     font-size: 30px;
@@ -76,7 +81,6 @@
     font-weight: 500;
     color: #151515;
     padding: 15px 0;
-   
 }
 
 .right-form .card.login-form .captcha {}
@@ -90,23 +94,70 @@
     border-radius: 8px;
     border: 0;
     padding: 10px 15px;
-
 }
 
 
 /**************18th May 23************************/
-.right-form .card{display: block;}
-.right-form .card.login-form .login-btn {width: 150px; margin: 25px 0 0 0 !important; background: #13245D; color: #fff;}
-.right-form .card.login-form{text-align: center;}
-.login-logo{width: 120px; margin: auto;; margin-bottom: 30px;}
-.nic-logo {float: right;}
-input:focus {outline: none;  box-shadow: none !important;}
-p u {  color:#13245D;}
-.gov-logo{ float: left;} 
-.right-form input[type=text] { background: url(/assets/images/login/userid.svg) left center no-repeat; padding-left: 35px !important}
-.right-form input[type=password] { background: url(/assets/images/login/paswd.svg) left center no-repeat; padding-left: 35px !important}
-@media (max-width:767px){
-    .left-content {width: 100%; display: none;}
-    .left-content h1 {font-size: 24px; line-height: normal;}
-    .gov-logo{margin: 0 0 20px;}
+
+.right-form .card {
+    display: block;
+}
+
+.right-form .card.login-form .login-btn {
+    width: 150px;
+    margin: 25px 0 0 0 !important;
+    background: #13245D;
+    color: #fff;
+}
+
+.right-form .card.login-form {
+    text-align: center;
+}
+
+.login-logo {
+    width: 120px;
+    margin: auto;
+    ;
+    margin-bottom: 30px;
+}
+
+.nic-logo {
+    float: right;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none !important;
+}
+
+p u {
+    color: #13245D;
+}
+
+.gov-logo {
+    float: left;
+}
+
+.right-form input[type=text] {
+    background: url(/assets/images/login/userid.svg) left center no-repeat;
+    padding-left: 35px !important
+}
+
+.right-form input[type=password] {
+    background: url(/assets/images/login/paswd.svg) left center no-repeat;
+    padding-left: 35px !important
+}
+
+@media (max-width:767px) {
+    .left-content {
+        width: 100%;
+        display: none;
+    }
+    .left-content h1 {
+        font-size: 24px;
+        line-height: normal;
+    }
+    .gov-logo {
+        margin: 0 0 20px;
+    }
 }

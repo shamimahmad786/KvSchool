@@ -1,4 +1,4 @@
-.TeacherTitle {
+/* .TeacherTitle {
     color: #24695c;
     font-weight: 500;
     font-size: 17px;
@@ -34,7 +34,7 @@
 }
 
 .dropdown>.dropdown-toggle:active {
-    /*Without this, clicking will make it sticky*/
+    /*Without this, clicking will make it sticky
     pointer-events: none;
 }
 
@@ -87,4 +87,173 @@ li {
 
 .nav-item{
     margin-top: 1px;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.main-wrapper {
+    background: #F9F9F9;
+    display: flex;
+}
+
+
+/* Sidebar css */
+
+.main-wrapper .sidebar {
+    background: #fff;
+    width: 19rem!important;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 0.2s;
+}
+
+.main-wrapper .sidebar .logo-box {
+    border-bottom: 1px solid #b3b3b3;
+    padding: 20px 10px;
+}
+
+.main-wrapper .side-navigation {}
+
+.main-wrapper .side-navigation ul {
+    padding: 15px 15px 10px 15px;
+    margin: 0;
+}
+
+.main-wrapper .side-navigation ul li div ul {
+    padding: 8px 8px 8px 20px;
+}
+
+.main-wrapper .side-navigation ul li div ul li {}
+
+.main-wrapper .side-navigation ul li div ul li a {
+    display: block;
+    padding: 3px 0;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.main-wrapper .side-navigation ul li {
+    margin-bottom: 5px;
+}
+
+.main-wrapper .side-navigation ul li .btn {
+    border-radius: 6px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 8px 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #6b6b6b;
+    background-color: #F3F3F3;
+}
+
+.main-wrapper .side-navigation ul li .btn img {
+    max-width: 24px;
+    margin-right: 5px;
+}
+
+.main-wrapper .side-navigation ul li .btn:hover {
+    background: #efefef;
+}
+
+.main-wrapper .side-navigation ul li .btn.active {
+    background: #106384;
+    color: #fff;
+}
+
+.main-wrapper .side-navigation ul li .btn.active img {
+    filter: brightness(0) invert(1);
+}
+
+.side-toggler {
+    cursor: pointer;
+}
+
+.main-wrapper.side-toggled .sidebar {
+    transform: translateX(-20rem);
+    transition: 0.2s;
+}
+
+
+/* content css */
+
+.content-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+    min-height: 100vh;
+    padding-left: 18rem!important;
+    transition: 0.2s;
+}
+
+.main-wrapper.side-toggled .content-wrapper {
+    padding-left: 0rem!important;
+    transition: 0.2s;
+}
+
+.header {}
+
+.search {
+    position: relative;
+}
+
+.search .form-control {
+    padding-left: 33px;
+    border: 1px solid #e5e5e5;
+}
+
+.search .search-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(/assets/img/search-icon.svg) no-repeat;
+    background-size: 22px;
+    background-position: 5px 50%;
+    width: 41px;
+    color: transparent;
+}
+
+.themed-card {
+    background: linear-gradient(107.93deg, #106384 27.98%, #3588ab 102.19%);
+    border-radius: 14px;
+}
+
+.card-title {
+    font-size: 16px;
+}
+
+.card-desc {
+    font-size: 15px;
+    font-weight: 400;
+    color: #ffffffce;
+    margin-top: 4px;
+}
+
+.stat-card {
+    border-radius: 14px!important;
+}
+
+.stat-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #106384;
+}
+
+.stat-card h3 span {
+    color: #106384;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.card {
+    height: 220px;
+}
+
+::ng-deep #layoutSidenav_content {
+    /* padding: 0px!important; */
 }

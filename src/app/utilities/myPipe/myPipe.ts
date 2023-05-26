@@ -452,6 +452,7 @@ export class TrainingPipe implements PipeTransform {
   }
 }
 
+
 @Pipe({
   name: 'classTaughtPipe'
 })
@@ -614,6 +615,31 @@ export class ExperienceType implements PipeTransform {
     }
     else if (value == 2 || value == '2') {
       return "Zone";
+    }
+    else if (value == 3 || value == '3') {
+      return "Region";
+    }else if(value == 4 || value == '4'){
+      return "Head Quater";
+    }else{
+      return "";
+    }
+  }
+}
+
+@Pipe({
+  name: 'institutionType'
+})
+export class InstitutionType implements PipeTransform {
+
+  transform(value: any): any {
+
+    // alert(value)
+
+    if (value == 1 || value == '1') {
+      return "School";
+    }
+    else if (value == 2 || value == '2') {
+      return "ZIET";
     }
     else if (value == 3 || value == '3') {
       return "Region";

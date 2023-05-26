@@ -1,12 +1,35 @@
-<app-header></app-header>
-<div id="layoutSidenav">
-  <div id="layoutSidenav_nav">
-    <app-side-nav></app-side-nav>
-  </div>
-  <div id="layoutSidenav_content">
-    <router-outlet></router-outlet>
-    
-  </div>
-  
+<div class="main-wrapper">
+    <div class="sidebar">
+        <app-side-nav></app-side-nav>
+    </div>
+    <div class="content-wrapper m-4">
+        <div class="row">
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="inner d-flex align-items-center">
+                            <img src="assets/img/sidebar-toggle.svg" class="img-fluid me-3 side-toggler">
+                            <h1 class="fs-4 m-0">Dashboard</h1>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6 text-end">
+                        <div class="inner d-flex justify-content-end align-items-center">
+                            <div class="search me-3">
+                                <input type="text" placeholder="Type to search..." class="form-control">
+                                <input type="submit" class="btn search-btn">
+                            </div>
+                            <span class="me-3"><img src="assets/img/notification-bell.svg" class="img-fluid"></span>
+                            <span>
+                            <span class="fw-bolder">Sriya</span> <img src="assets/img/user.svg" class="img-fluid">
+                            </span>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+
+    </div>
+
 </div>
 <app-footer></app-footer>

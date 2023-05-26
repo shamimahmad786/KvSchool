@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="shadow-sm bg-white p-3 rounded">
-               
+
                 <div class="row ">
-                   
+
 
                     <!-- <div class="col-md-12">
                             <div class="example-header">
@@ -75,7 +75,7 @@
                         <mat-form-field>
                             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
                         </mat-form-field>
-                    
+
                         <!-- <mat-form-field>
                           <select (change)="applyFilterOnSelect($event.target.value)">
                               <option value="Teaching">Teaching</option>
@@ -91,7 +91,7 @@
                                 <!-- <mat-option value="NA">NA</mat-option> -->
                             </mat-select>
                         </mat-form-field>
-                    
+
                     </div>
                     <div class="example-container mat-elevation-z8">
                         <mat-table [dataSource]="dataSource" matSort>
@@ -99,45 +99,45 @@
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.sno}} </mat-cell>
                             </ng-container>
-                    
+
                             <ng-container matColumnDef="empcode">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Employee Code </mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.empcode}} </mat-cell>
                             </ng-container>
-                    
+
                             <ng-container matColumnDef="name">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.name | titlecase}}</mat-cell>
                             </ng-container>
-                    
+
                             <ng-container matColumnDef="gender">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
                                 <!-- <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender | genderPipe }} </mat-cell> -->
                                 <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender}} </mat-cell>
                             </ng-container>
-                    
+
                             <ng-container matColumnDef="dob">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.dob | date}} </mat-cell>
                             </ng-container>
-                    
+
                             <ng-container matColumnDef="staffType">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Staff Type </mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.staffType}} </mat-cell>
                             </ng-container>
-                    
+
                             <ng-container matColumnDef="schoolName">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Moved From </mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.schoolName}}</mat-cell>
                             </ng-container>
-                    
+
                             <ng-container matColumnDef="dropboxDate">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Moved On</mat-header-cell>
                                 <mat-cell *matCellDef="let row">{{row.dropboxDate}}</mat-cell>
                             </ng-container>
-                    
-                    
-                    
+
+
+
                             <!-- <ng-container matColumnDef="email">
                               <mat-header-cell *matHeaderCellDef mat-sort-header> Email Id </mat-header-cell>
                               <mat-cell *matCellDef="let row" [style.color]="row.color">
@@ -155,7 +155,7 @@
                                   </span>
                               </mat-cell>
                           </ng-container> -->
-                    
+
                             <!-- <ng-container matColumnDef="mobile">
                               <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile No. </mat-header-cell>
                               <mat-cell *matCellDef="let row" [style.color]="row.color">
@@ -173,9 +173,9 @@
                                   </span>
                               </mat-cell>
                           </ng-container> -->
-                    
-                    
-                    
+
+
+
                             <!-- <ng-container matColumnDef="status">
                               <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
                               <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
@@ -193,7 +193,7 @@
                                   </span>
                               </mat-cell>
                           </ng-container> -->
-                    
+
                             <!-- <ng-container matColumnDef="systchcode">
                               <mat-header-cell *matHeaderCellDef mat-sort-header>User Id </mat-header-cell>
                               <mat-cell *matCellDef="let row">
@@ -205,7 +205,7 @@
                                   </span>
                               </mat-cell>
                           </ng-container> -->
-                    
+
                             <ng-container matColumnDef="action">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
@@ -214,8 +214,7 @@
                                       (click)="onEditClick(row.teacherId)">{{row.b}}</i>
                                   <i *ngIf="row.approved == 'TA'" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"
                                       (click)="onVerifyClick(row.teacherId)">{{row.c}}</i> -->
-                                    <i *ngIf= "businessUnitTypeId != '2' && businessUnitTypeId != '3' && businessUnitTypeId != '4'" 
-                                    class='bx bx-import' title="Import to your school" (click)="getEmployee(row.teacherId)">{{row.d}}</i>
+                                    <i *ngIf="businessUnitTypeId != '2' && businessUnitTypeId != '3' && businessUnitTypeId != '4'" class='bx bx-import' title="Import to your school" (click)="getEmployee(row.teacherId)">{{row.d}}</i>
                                     <!-- <box-icon name='reset' animation='tada' color='#0e0e0e' >{{row.d}}</box-icon> -->
                                     <!-- <box-icon name='reset' animation='spin' flip='horizontal' color='#0e0e0e' ></box-icon> -->
                                     <!-- <i class='bx bx-box bxStyle1' title="Dropbox" (click)="onDropboxClick(row.teacherId)"></i> -->
@@ -270,7 +269,7 @@
                         </tr>
                         <tr>
                             <th>Employee Id</th>
-                            <td>{{singleRestoredTeacher.teacherId}}</td>
+                            <td>{{singleRestoredTeacher.teacherEmployeeCode}}</td>
                         </tr>
                         <tr>
                             <th>Date of Birth</th>
@@ -282,27 +281,22 @@
                         <div class="row">
                             <div class="row">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" value="1" name="flexRadioDefault"
-                                        id="flexRadioDefault1" (click)="onClick($event)">
+                                    <input class="form-check-input" type="radio" value="1" name="flexRadioDefault" id="flexRadioDefault1" (click)="onClick($event)">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Move the teacher to your school.
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" value="0" name="flexRadioDefault"
-                                        id="flexRadioDefault2" (click)="onClick($event)">
+                                    <input class="form-check-input" type="radio" value="0" name="flexRadioDefault" id="flexRadioDefault2" (click)="onClick($event)">
                                     <label class="form-check-label" for="flexRadioDefault2" checked>
                                         Do nothing.
                                     </label>
                                 </div>
                                 <div class="col-md-12" style="text-align: right;">
                                     <div class="">
-                                        <button *ngIf="showImportButton" class="btn btn-success btn-sm me-2 "
-                                            style="margin-left: 3px;"
-                                            (click)="moveToSchool(singleRestoredTeacher.teacherId); modal.dismiss('Cross click')">
+                                        <button *ngIf="showImportButton" class="btn btn-success btn-sm me-2 " style="margin-left: 3px;" (click)="moveToSchool(singleRestoredTeacher.teacherId); modal.dismiss('Cross click')">
                                             Submit</button>
-                                        <button *ngIf="!showImportButton" class="btn btn-danger btn-sm me-2 "
-                                            style="margin-left: 3px;" (click)="modal.dismiss('Cross click')">
+                                        <button *ngIf="!showImportButton" class="btn btn-danger btn-sm me-2 " style="margin-left: 3px;" (click)="modal.dismiss('Cross click')">
                                             Cancel</button>
                                     </div>
                                 </div>

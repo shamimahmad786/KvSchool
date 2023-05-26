@@ -150,13 +150,17 @@ export class TeacheroutboxComponent implements OnInit {
 
   moveToSchool(tchId){
     
+    // alert(tchId);
+    debugger;
+
     this.udiseSchoolCode = JSON.parse(sessionStorage.getItem("mappingData")).mappingData[0].udise_sch_code;
 
  
       var data = {
         "currentUdiseSchCode": this.udiseSchoolCode,
         "teacherId": tchId,
-        "businessUnitTypeCode": JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[0].business_unit_type_code
+        "businessUnitTypeCode": JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[0].business_unit_type_code,
+        "kvName":JSON.parse(sessionStorage.getItem("mappingData")).mappingData[0].kv_name
       }
 
 
@@ -169,7 +173,7 @@ export class TeacheroutboxComponent implements OnInit {
       }else{
       this.outSideService.changeTeacherSchool(data).subscribe((res) => {
         
-        
+        // alert(JSON.stringify(res));
         if(res.status == '1' || res.status == 1){
           this.users.splice(this.dropboxIndex, 1);
           Swal.fire(

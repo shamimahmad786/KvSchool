@@ -150,6 +150,7 @@ import { MatMenuModule } from '@angular/material/menu';
     ReportGridComponent,
     KvTchSanctionedPostComponent,
     ExperienceType
+    
   ],
   imports: [
     BrowserModule,

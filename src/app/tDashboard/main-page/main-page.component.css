@@ -3,7 +3,7 @@ body {
 }
 
 .top-pan {
-    background-color: #213EA0;
+    background-color: #106384;
     padding: 2px 0px;
     border-bottom: 1px solid #eeeeee;
 }
@@ -496,7 +496,7 @@ h5.ManagementWiseTe{ color:#1B2021; font-size: 1.8rem ! important;    letter-spa
 .gkRight{  float:right} */
 
 .footerSet {
-    background-color: #172B6F;
+    background-color: #106384;
     padding: 15px 0px 10px 0px
 }
 
@@ -533,7 +533,7 @@ h5.ManagementWiseTe{ color:#1B2021; font-size: 1.8rem ! important;    letter-spa
 }
 
 .footerSet .border-end {
-    border-right: 1px solid #3d4c7f !important;
+    border-right: 1px solid #b1b1b133 !important;
 }
 
 img.LogoEmblem {
@@ -1009,15 +1009,12 @@ img {
     font-weight: 600;
 }
 
-.home-main {}
-
 .home-main .title {
-    font-family: 'Playfair Display';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 38px;
-    line-height: 38px;
+    font-family: 'Bold', sans-serif;
+    font-size: 50px;
+    line-height: 54px;
     color: #303134;
+    padding-top: 20px;
 }
 
 .home-main .description {
@@ -1027,11 +1024,12 @@ img {
     line-height: 1.5;
 }
 
-.home-main .title {
+
+/* .home-main .title {
     font-size: 60px;
     line-height: 60px;
     padding-top: 40px;
-}
+} */
 
 .home-main {
     padding-top: 40px;
@@ -1043,7 +1041,7 @@ img {
 
 .img-kv {
     height: auto;
-    margin-top: 80px;
+    margin-top: 40px;
 }
 
 @media(max-width:1680px) {
