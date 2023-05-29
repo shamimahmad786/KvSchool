@@ -97,10 +97,11 @@ export class AuthInterceptorService implements HttpInterceptor {
                     ))
             }
         } else {
+            debugger;
             // alert("In else");
             // if (req.url.indexOf('translate') !== -1) {
             //     return next.handle(req);
-            if (req.url.indexOf('sign-in') !== -1 || req.url.indexOf('translate') !== -1 || req.url.indexOf('getStationByRegion') !== -1 || req.url.indexOf('getReportData') !== -1 || 
+            if (req.url.indexOf('getkvsDashboardReport') !== -1 || req.url.indexOf('sign-in') !== -1 || req.url.indexOf('translate') !== -1 || req.url.indexOf('getStationByRegion') !== -1 || req.url.indexOf('getReportData') !== -1 || 
             req.url.indexOf('getKVRegion') !== -1 || req.url.indexOf('getSchoolByStation') !== -1) {
 
                 const modifiedReq = req.clone(
