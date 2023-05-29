@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import Swal from 'sweetalert2';
 
@@ -17,7 +18,8 @@ export class SanctionedPostComponent implements OnInit {
   regionList: any=[];
   stationList: any=[];
   schoolList:any=[];
-  constructor(private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router) { }
+  sanctionPostMappingDataListArray: any=[];
+  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router) { }
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
   responseData: any;
   shiftAvailable: boolean = false;
@@ -25,6 +27,9 @@ export class SanctionedPostComponent implements OnInit {
   totalSurplusPost:number = 0;
   totalOccupiedPost:number = 0;
   totalVacantPost:number = 0;
+
+
+  testData = {sno: '', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
   ngOnInit(): void {
     this.getRegionList();
     this.buildSanctionForm();
@@ -66,12 +71,50 @@ export class SanctionedPostComponent implements OnInit {
           console.log(res)
         this.isEdit=false;
         this.setDataToSanctionedArray(res.content)
+        this.sanctionPostMappingDataListArray=[];
+        if(res.content.length>0){
+          for (let i = 0; i < res.content.length; i++) {
+            this.testData.sno = '' + (i + 1) + '';
+            this.testData.staffType = res.content[i].staffType;
+            this.testData.postName =  res.content[i].postName;
+            this.testData.postCode =  res.content[i].postCode;
+            this.testData.subjectName =  res.content[i].subjectName;
+            this.testData.subjectCode =  res.content[i].subjectCode;
+            this.testData.sanctionedPost =  res.content[i].sanctionedPost;
+            this.testData.occupiedPost =  res.content[i].occupiedPost;
+            this.testData.vacant =  res.content[i].vacant;
+            this.testData.surplus =  res.content[i].surplus;
+            this.sanctionPostMappingDataListArray.push(this.testData);
+            this.testData = {sno: '', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
+          }
+          console.log("sanctionPostMappingDataListArray")
+          console.log( this.sanctionPostMappingDataListArray)
+      }       
         })
       }else{
         this.outSideService.fetchSanctionPostList(request).subscribe((res)=>{
           console.log(res)
           this.isEdit=true;
           this.setDataToSanctionedArray(res.content)
+          this.sanctionPostMappingDataListArray=[];
+          if(res.content.length>0){
+            for (let i = 0; i < res.content.length; i++) {
+              this.testData.sno = '' + (i + 1) + '';
+              this.testData.staffType = res.content[i].staffType;
+              this.testData.postName =  res.content[i].postName;
+              this.testData.postCode =  res.content[i].postCode;
+              this.testData.subjectName =  res.content[i].subjectName;
+              this.testData.subjectCode =  res.content[i].subjectCode;
+              this.testData.sanctionedPost =  res.content[i].sanctionedPost;
+              this.testData.occupiedPost =  res.content[i].occupiedPost;
+              this.testData.vacant =  res.content[i].vacant;
+              this.testData.surplus =  res.content[i].surplus;
+              this.sanctionPostMappingDataListArray.push(this.testData);
+              this.testData = {sno: '', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
+            }
+            console.log("sanctionPostMappingDataListArray")
+      console.log( this.sanctionPostMappingDataListArray)
+        }     
           });
       }
 
@@ -160,6 +203,7 @@ export class SanctionedPostComponent implements OnInit {
     return this.sanctionedPost.get("sanctionedPostDetails") as FormArray
   }
   setDataToSanctionedArray(data) {
+  debugger
     (this.sanctionedPost.controls['sanctionedPostDetails'] as FormArray).clear();
     for (let i = 0; i < data.length; i++) {
       this.totalSanctionedPost += (data[i].sanctionedPost)?data[i].sanctionedPost:0;
@@ -176,6 +220,7 @@ export class SanctionedPostComponent implements OnInit {
   }
   addQuantity(data) {
     this.sanctionedPostDetails().push(this.newQuantity(data));
+    console.log(this.sanctionedPostDetails['content'])
   }
   newQuantity(data): FormGroup {
     return this.fb.group({
@@ -308,6 +353,11 @@ export class SanctionedPostComponent implements OnInit {
     }
   }
 
-
+  sanctionedPostMappingPdf()
+  {
+    setTimeout(() => {
+      this.pdfService.sanctionedPostMappingList(this.sanctionPostMappingDataListArray);
+    }, 1000);
+  }
 
 }

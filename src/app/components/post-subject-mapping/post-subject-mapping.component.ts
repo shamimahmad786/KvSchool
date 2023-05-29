@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class PostSubjectMappingComponent implements OnInit,AfterViewInit {
 
   stafftypePostMappingList: any=[];
 
-  constructor(private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
+  constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
   
   ngOnInit(): void {
     this.getRegionList();
@@ -44,6 +45,7 @@ export class PostSubjectMappingComponent implements OnInit,AfterViewInit {
           this.stafftypePostMappingList.push(this.testData);
           this.testData = { "sno": "", "postCode": "", "postName": "", "subjectCode": "" ,"subjectName":""};
         }
+        console.log(this.stafftypePostMappingList)
       }
       setTimeout(() => {
         this.dataSource = new MatTableDataSource(this.stafftypePostMappingList);
@@ -62,5 +64,10 @@ export class PostSubjectMappingComponent implements OnInit,AfterViewInit {
      filterValue = filterValue.toLowerCase(); 
      this.dataSource.filter = filterValue;
    }
-
+   postSubjectMapping()
+   {
+    setTimeout(() => {
+      this.pdfService.postSubjectMappingList(this.stafftypePostMappingList);
+    }, 1000);
+   }
 }

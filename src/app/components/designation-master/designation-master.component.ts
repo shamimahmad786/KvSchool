@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class DesignationMasterComponent implements OnInit,AfterViewInit {
 
   listDesignation: any=[];
 
-  constructor(private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
+  constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
     this.getDesignationList();
@@ -47,7 +48,7 @@ export class DesignationMasterComponent implements OnInit,AfterViewInit {
              this.testData = { "sno": "", "postCode": "", "postName": "", "status": "","id":"" };
     
            }
-     
+     console.log(this.listDesignation)
        }
        setTimeout(() => {
          this.dataSource = new MatTableDataSource(this.listDesignation);
@@ -69,5 +70,11 @@ export class DesignationMasterComponent implements OnInit,AfterViewInit {
     sessionStorage.setItem("designationEdit",JSON.stringify(data));
     this.router.navigate(['/teacher/designationMaster/edit'])
    }
-
+   
+   designationMasterpdf()
+   {
+    setTimeout(() => {
+      this.pdfService.designationMasterList(this.listDesignation);
+    }, 1000);
+   }
 }

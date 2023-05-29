@@ -1357,6 +1357,10 @@ downloadPdf(data,url){
   }); 
   return this._http.post(environment.BASE_URL_DATA_MASTER1+ "pdf/download/"+url,data,{responseType: 'blob'})
 }
+getkvsDashboardReport(){
+  return this._http.post<any>(environment.BASE_URL_DATA_DASHBOARD+ "getkvsDashboardReport","")
+}
+
 
 }
 

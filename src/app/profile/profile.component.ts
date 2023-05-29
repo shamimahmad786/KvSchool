@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
     debugger;
 
     if(sessionStorage.getItem('displayPopUp') == 'true' && JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[0].business_unit_type_id !='2'){
-      this.modalService.open(this.processFlow, { size: 'xl', backdrop: 'static', keyboard: false })
+      // this.modalService.open(this.processFlow, { size: 'xl', backdrop: 'static', keyboard: false })
     }
 
     for (let i = 0; i < JSON.parse(sessionStorage.getItem("authTeacherDetails")).applicationDetails.length; i++) {

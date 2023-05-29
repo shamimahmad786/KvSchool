@@ -18,7 +18,9 @@ import * as moment from 'moment';
 import { TeacherAppPdfService } from 'src/app/kvs/makePdf/teacher-app-pdf.service';
 // import{ExperienceType} from 'src/app/utilities/myPipe/myPipe'
 
-
+declare const onNextClick:any;
+declare const onPreviousClick:any;
+declare const onNextButtonClick:any;
 declare var progressBarTest: any;
 
 declare const loadScroller: any;
@@ -323,7 +325,17 @@ export class TeacherEntryFormComponent implements OnInit {
       this.isVisibleBirth = true;
     }
   }
-
+  nextClick(index) {
+    onNextClick(index);
+  }
+  onPreviousClick(index){
+    onPreviousClick(index);
+  }
+  onNextButtonClick(index)
+  {
+    debugger
+    onNextButtonClick(index);
+  }
   constructor(private pdfServive: TeacherAppPdfService, private date: DatePipe, private dataService: DataService, private modalService: NgbModal, private outSideService: OutsideServicesService, private route: ActivatedRoute, private fb: FormBuilder, private formData: FormDataService) {
 
 
@@ -479,7 +491,7 @@ export class TeacherEntryFormComponent implements OnInit {
     this.getAllMaster();
 
     this.newTeacherEntry = false;
-
+  
     this.teacherForm = new FormGroup({
       profileForm: new FormGroup({
         'empCode': new FormControl('', [Validators.required, Validators.pattern("[0-9]*$")]),
@@ -490,7 +502,7 @@ export class TeacherEntryFormComponent implements OnInit {
         'religion': new FormControl(''),
        // 'nationality': new FormControl('', Validators.required),
         'mobile': new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[8976][0-9]{9}")]),
-        'email': new FormControl('', [Validators.email, Validators.required]),
+        'email': new FormControl(''),
         'presentStationName': new FormControl('', Validators.required),
         'presentStationPostDate': new FormControl('', [Validators.required, this.dateNotBeforeToday.bind(this)]),
         'presentKvName': new FormControl('', Validators.required),
@@ -513,7 +525,7 @@ export class TeacherEntryFormComponent implements OnInit {
         'disabilityCertAuth': new FormControl('', Validators.required),
         'disabilityCertNo': new FormControl('', Validators.required),
       }),
-//-------------------------- newform transferRelatedForm  add  start  here---------------------------------
+//-------------------------- newform transferRelatedForm  add  start  here--------------------------------- 
 transferRelatedForm: new FormGroup({
   'id':new FormControl(''),
   'teacherId':new FormControl('', Validators.required),
@@ -634,7 +646,7 @@ transferRelatedForm: new FormGroup({
     this.getQualMasterByTchType();
     this.getKvRegion();
     this.getTransferProfile();
-    debugger
+  
   
     setTimeout(() => {
       if(this.responseData !=null){
@@ -719,7 +731,7 @@ transferRelatedForm: new FormGroup({
 
   }
   addQuantity(data) {
-    debugger
+    //debugger
     this.detailsOfPosting().push(this.newQuantity(data));
   }
   removeQuantity(val) {
@@ -763,7 +775,7 @@ transferRelatedForm: new FormGroup({
     this.subjectListNameCode2 = [];
     if (this.tempTeacherId) {
       this.outSideService.fetchTchExpByTchId(this.tempTeacherId).subscribe((res) => {
-        debugger
+      //  debugger
         this.tchExpList = res.response;
 
         for (let i = 0; i < this.tchExpList.length; i++) {
@@ -1619,6 +1631,7 @@ stationChoiceSpouse(e, val) {
   }
   //------------------------------------------------ end declarationRelatedForm here --------------------------------------
   onSubmit(event: Event) {
+    // alert("called submit");
 debugger
     var activeButton = document.activeElement.id;
     if (activeButton == "submit1") {
@@ -1626,6 +1639,13 @@ debugger
         this.outSideService.getUpdatedFlag(this.tempTeacherId).subscribe((res) => {
           this.flagUpdatedList = res.response
         })
+
+        this.teacherForm.patchValue({
+          profileForm: {
+            kvCode:  this.kvCode,
+          }
+        })
+
         this.responseData.lastPromotionId = this.lastPromotionId;
         this.responseData.workExperienceIdPresentKv = this.workExpId;
         this.responseData.udiseSchoolName = this.schName;
@@ -1709,6 +1729,8 @@ debugger
               '',
               'success'
             )
+            debugger
+            this.nextClick(2)
           } else if (this.responseStatus == '0') {
             Swal.fire(
               'Your data not saved!'
@@ -1762,6 +1784,8 @@ debugger
       })
     } else if (activeButton == "submit2") {
 
+
+  
 debugger
       this.outSideService.getUpdatedFlag(this.tempTeacherId).subscribe((res) => {
         this.flagUpdatedList = res.response
@@ -1824,6 +1848,7 @@ debugger
           this.responseData.spousePost = this.teacherForm.value.personalInfoForm.spousePost
           this.responseData.spouseStationCode = this.teacherForm.value.personalInfoForm.spouseStationCode
           this.responseData.spouseStationName = this.teacherForm.value.personalInfoForm.spouseStationName
+          this.responseData.kvCode=this.kvCode;
          // this.responseData.specialRecruitmentYn = this.teacherForm.value.personalInfoForm.specialRecruitmentYn
          
           this.outSideService.saveSingleTeacher(this.responseData).subscribe((response) => {
@@ -1845,7 +1870,7 @@ debugger
                 '',
                 'success'
               )
-
+              this.nextClick(3)
               // alert(this.responseData.spouseStatus);
               if(this.responseData.spouseStatus== null || this.responseData.spouseStatus=='5' || this.responseData.spouseStatus=='')
               {
@@ -1941,7 +1966,7 @@ debugger
         this.responseData.spousePost = this.teacherForm.value.personalInfoForm.spousePost
         this.responseData.spouseStationCode = this.teacherForm.value.personalInfoForm.spouseStationCode
         this.responseData.spouseStationName = this.teacherForm.value.personalInfoForm.spouseStationName
-
+        this.responseData.kvCode=this.kvCode;
 
         this.outSideService.saveSingleTeacher(this.responseData).subscribe((response) => {
 
@@ -1963,6 +1988,7 @@ debugger
               '',
               'success'
             )
+            this.nextClick(3)
             if(this.responseData.spouseStatus== null || this.responseData.spouseStatus=='5' || this.responseData.spouseStatus=='')
             {
              
@@ -2028,6 +2054,7 @@ console.log(this.teacherForm.value.transferRelatedForm)
           '',
           'success'
         )
+        this.nextClick(5)
       } else if (this.responseStatus == '0') {
         Swal.fire(
           this.responseStatus.message
@@ -2062,6 +2089,7 @@ this.outSideService.saveTransProfile(this.teacherForm.value.transferRelatedForm)
       '',
       'success'
     )
+    this.nextClick(6)
   } else if (this.responseStatus == '0') {
     Swal.fire(
       this.responseStatus.message
@@ -2102,6 +2130,7 @@ this.getStatus(this.tempTeacherId);
               '',
               'success'
             )
+            this.nextClick(4)
             this.getTchExpByTchId();
           } else if (responsePosting == '0') {
             Swal.fire(
@@ -2120,6 +2149,8 @@ this.getStatus(this.tempTeacherId);
       }
 
     } else if (activeButton == "submit33") {
+   
+
       if (this.teacherForm.controls.profileForm.status == 'VALID') {
         if (this.teacherForm.controls.acadProfQual.status == 'VALID') {
           if (this.teacherForm.controls.profQual.status == 'VALID') {
@@ -2754,9 +2785,25 @@ console.log(this.teacherForm)
     var str = this.selectedUdiseCode
     console.log(str)
     var splitted = str.split("-", 2);
+    var spouseStation=this.teacherForm.value.transferRelatedForm?.spouseStationName;
     debugger
+
+    // spouseKvsYnD,spouseEmpCode,spousePost,spouseStationName
+    // alert(JSON.stringify(this.teacherForm.value.transferRelatedForm));
+    // alert(this.teacherForm.value.transferRelatedForm.spouseKvsYnD);
+    // alert(this.teacherForm.value.transferRelatedForm.spouseEmpCode);
+    // alert(this.teacherForm.value.transferRelatedForm.spousePost);
+    // alert(this.teacherForm.value.transferRelatedForm.spouseStationName);
+
     if (this.position == '1') {
-      
+   if(splitted[1] != this.teacherForm.value.transferRelatedForm?.spouseStationName){
+    Swal.fire(
+      'You have not selected spouse station in first choice so you are not eligible to get spouse point in transfer and spouse station is available in only first choice',
+      '',
+      'error'
+    )
+      }
+
      // choiceKv1StationName
       if (this.teacherForm.value.transferRelatedForm.choiceKv2StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv3StationName == splitted[1] ||
@@ -2783,6 +2830,22 @@ console.log(this.teacherForm)
       }
 
     } else if (this.position == '2') {
+debugger;
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+        this.teacherForm.patchValue({
+          transferRelatedForm: {
+            choiceKv2StationCode: '',
+            choiceKv2StationName: ''
+            
+          }
+        })
+        return
+          }
       if (this.teacherForm.value.transferRelatedForm.choiceKv1StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv3StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv4StationName == splitted[1] ||
@@ -2807,6 +2870,23 @@ console.log(this.teacherForm)
         })
       }
     } else if (this.position == '3') {
+
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+
+        this.teacherForm.patchValue({
+          transferRelatedForm: {
+            choiceKv3StationCode: '',
+            choiceKv3StationName: ''
+          }
+        })
+return
+          }
+
       if (this.teacherForm.value.transferRelatedForm.choiceKv2StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv1StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv4StationName == splitted[1] ||
@@ -2831,6 +2911,23 @@ console.log(this.teacherForm)
         })
       }
     } else if (this.position == '4') {
+
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+
+        this.teacherForm.patchValue({
+          transferRelatedForm: {
+            choiceKv4StationCode: '',
+            choiceKv4StationName: ''
+          }
+        })
+return
+          }
+
       if (this.teacherForm.value.transferRelatedForm.choiceKv2StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv3StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv1StationName == splitted[1] ||
@@ -2855,6 +2952,22 @@ console.log(this.teacherForm)
         })
       }
     } else if (this.position == '5') {
+
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+        this.teacherForm.patchValue({
+          transferRelatedForm: {
+            choiceKv5StationCode: '',
+            choiceKv5StationName: ''
+          }
+        })
+        return
+          }
+
       if (this.teacherForm.value.transferRelatedForm.choiceKv2StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv3StationName == splitted[1] ||
         this.teacherForm.value.transferRelatedForm.choiceKv4StationName == splitted[1] ||
@@ -3848,7 +3961,40 @@ getTransferProfile(){
   const data={"teacherId":this.tempTeacherId}
   this.outSideService.getTransferData(data).subscribe((res) => {
     // alert("Transfer Data Response--->"+JSON.stringify(res));
+
+    if(!res.response)
+    {
+      this.teacherForm.patchValue({
+        transferRelatedForm: {
+          spouseKvsYnD: '0',
+          personalStatusMdgD: '0',
+          careGiverFaimlyYnD: '0',
+          careGiverYnD: '0',
+          personalStatusDfpD: '0',
+          personalStatusSpD: '0',
+          childDifferentAbleYnD: '0',
+          memberJCM: '0',
+        }
+      })
+    }
+
     debugger
+    if(!res.response)
+    {
+      this.teacherForm.patchValue({
+        transferRelatedForm: {
+          spouseKvsYnD: '0',
+          personalStatusMdgD: '0',
+          careGiverFaimlyYnD: '0',
+          careGiverYnD: '0',
+          personalStatusDfpD: '0',
+          personalStatusSpD: '0',
+          childDifferentAbleYnD: '0',
+          memberJCM: '0',
+        }
+      })
+    }
+   
 this.teacherForm.patchValue({
   transferRelatedForm: {
     id:res.response.id,
@@ -3895,6 +4041,7 @@ childDifferentDisabilityPrcnt:res.response.childDifferentDisabilityPrcnt,
   },
 
 })
+debugger
 // ----------------------------- emp transfer radio button start  here ------------------------------------
 this.empTransferradioButton= this.teacherForm.value.transferRelatedForm.applyTransferYn
 if(this.empTransferradioButton==3)

@@ -1,29 +1,4 @@
-<!-- <div class="container-fluid">
-    <div class="page-header">
-        <div class="row">
-            <div class="col-sm-6">
-                <h3 class="page-header">General</h3>
-            </div>
-            <div
-                class="col-sm-6">
-              
-                <ul class="bookmark">
-                    <li>
-                        <i class='bx bx-message-square-dots bxStyle'></i>
-                    </li>
-                    <li>
-                        <i class='bx bx-notification bxStyle'></i>
-                    </li>
-                    <li>
-                        <i class='bx bx-star bxStyle'></i>
-                    </li>
-                </ul>
-   
-            </div>
-        </div>
-    </div>
-</div> -->
-<div class="container-fluid ">
+<!-- <div class="container-fluid ">
     <div class='row'>
         <div class="col-xl-4 xl-50 col-sm-6 box-col-6">
             <h2 class="mb-0  p-2"> &nbsp;</h2>
@@ -61,21 +36,10 @@
                             <h4 class="font98797">Station name (Code):
                                 <span>{{kvSchoolDetails?.station_name}}({{kvSchoolDetails?.station_code}})
                             </span>
-                                <!-- <span class="text-green" style="font-size: larger;"></span> -->
-                            </h4>
-                        </div>
-                        <!-- <div class="col-md-12">
-                            <h4 class="font98797">District / State:
-                                <span>{{kvSchoolDetails?.district_name}}
-                              /
-                              {{kvSchoolDetails?.state_name}}
-                            </span>
 
                             </h4>
-                        </div> -->
-                        <!-- <div class="col-md-12">
-                                    <h4 class="font98797">State name (Code): <span></span></h4>
-                                  </div> -->
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -143,25 +107,7 @@
 
 
                             </ul>
-                            <!-- <ul class="teacherStaff">
-                                          <li>
-                                            <h2>Regular</h2>
-                                            <h1>{{permanentEmpTch}}</h1>
-                                          </li>
-                                          <li>
-                                            <h2> Contractual</h2>
-                                            <h1>{{contractualEmpTch}}</h1>
-                                          </li>
-                                          <li *ngIf="otherEmpTch != '0'">
-                                            <h2>Other</h2>
-                                            <h1>{{otherEmpTch}}</h1>
-                                          </li>
-                          
-                                          <li>
-                                            <h2> Total </h2>
-                                            <h1 style="color: blue;">{{teachingStaff}}</h1>
-                                          </li>
-                                        </ul> -->
+
                         </div>
 
                     </div>
@@ -221,29 +167,7 @@
 
 
                             </ul>
-                            <!-- <div class="text-center pt-4">
-                                          <img src="assets/assets/img/nonteaching.png" alt="" srcset="" width="54px">
-                                        </div>
-                          
-                                        <h4 class="TeacherHeading mb-0 border-bottom-dashed text-center p-3">Non Teaching Staff</h4>
-                                        <ul class="teacherStaff">
-                                          <li>
-                                            <h2 >Regular</h2>
-                                            <h1>{{permanentEmpNonTch}}</h1>
-                                          </li>
-                                          <li>
-                                            <h2> Contractual</h2>
-                                            <h1>{{contractualEmpNonTch}}</h1>
-                                          </li>
-                                          <li *ngIf="otherEmpNonTch != '0'">
-                                            <h2>Other</h2>
-                                            <h1>{{otherEmpNonTch}}</h1>
-                                          </li>
-                                          <li>
-                                            <h2> Total </h2>
-                                            <h1 style="color: blue;">{{nonTeachingStaff}}</h1>
-                                          </li>
-                                        </ul> -->
+
                         </div>
 
                     </div>
@@ -303,72 +227,12 @@
 
     </div>
 
-    <!-- <div class="row">
-      <div
-          class="col-xl-12 xl-50 col-sm-12 box-col-12">
-         
-          <div class="shadow-sm bg-white mt-3">
-              <div class="p-4 ">
-                  <div class="row">
-                      <div class="col-md-12 mb-2 ">
-                          <h4 class="KVTt border-bottom-dashed pb-2 text-green">School Status :</h4>
-                      </div>
-                      <div class="col-md-2">
-                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Total Staff :
-                              <span style="color: blue; font-size: x-large;">{{totalTeachers}}</span>
-                          </h4>
-                      </div>
-                      <div class="col-md-2">
-                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Verified Staff :
-                              <span style="color: green; font-size: x-large;">{{verifiedCOunt}}</span>
-                          </h4>
-                      </div>
-                      <div class="col-md-2">
-                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Pending at School :
-                              <span style="color: purple; font-size: x-large;">{{schoolPendingCount}}</span>
-                          </h4>
-                      </div>
-                      <div class="col-md-2">
-                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Pending at Staff :
-                              <span style="color: orange; font-size: x-large;">{{teacherPendingCount}}</span>
-                          </h4>
-                      </div>
-                      <div class="col-md-2">
-                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Initiated by School :
-                              <span style="color: #1a73e8; font-size: x-large;">{{schoolInitiated}}</span>
-                          </h4>
-                      </div>
-                      <div class="col-md-2">
-                          <h4 _ngcontent-ufw-c140="" class=" TeacherHeading mb-0 border-bottom-dashed text-center p-3">Not Initiated :
-                              <span style="color: red; font-size: x-large;">{{notInitiatedCount}}</span>
-                          </h4>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div> -->
 </div>
-<!-- <script>
-refresh(): void {
-window.location.reload();
-}
-</script> -->
+
 
 <div mat-dialog-content class="modal-xl">
     <ng-template #processFlow let-modal style="min-width: 100%; ">
 
-        <!-- <div class="modal-header">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="clearfix">
-                        <div class="float-left">
-                            <h2 class="mb-0 text-green">Reasons of rejection from school</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
         <div class="" style="min-width: 100%;">
             <app-application-flow></app-application-flow>
@@ -377,8 +241,146 @@ window.location.reload();
                 <button type="button" class="btn btn-success btn-sm" (click)="modal.dismiss('Cross click')">Ok</button>
             </div>
         </div>
-        <!-- <button type="button" class="btn btn-success btn-sm" style="margin-left: 3px;"
-        (click)="modal.dismiss('Cross click')">Ok</button> -->
 
     </ng-template>
-</div>
+</div> -->
+
+
+
+<section class="main-wrapper mt-3">
+    <div class="content-wrapper ">
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="card themed-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="left d-flex align-items-center w-50">
+                                    <img src="assets/img/card-logo.svg" class="img-fluid">
+                                    <h2 class="text-white ms-2 card-title">{{kvSchoolDetails?.kv_name}} <span class="d-block card-desc">{{kvSchoolDetails?.station_name}}</span></h2>
+                                </div>
+                                <div class="right w-50">
+                                    <h2 class="text-white card-title">KV/Institution Code<span class="d-block card-desc">{{kvSchoolDetails?.udise_sch_code}}</span></h2>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-3">
+                                <h2 class="text-white card-title w-50">Region Name Code <span class="d-block card-desc">{{kvSchoolDetails?.region_name}}({{kvSchoolDetails?.region_code}})</span></h2>
+                                <h2 class="text-white card-title w-50">Station name (Code) <span class="d-block card-desc">{{kvSchoolDetails?.station_name}}({{kvSchoolDetails?.station_code}})</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <img src="assets/img/card-icon.svg">
+                                        <h3 class="ms-2 card-title">{{teachingStaff}}<span class="d-block card-desc">Total Teaching Staff</span></h3>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div class="left-side w-50">
+                                            <div class="stat d-flex w-100 justify-content-between align-items-center mt-3">
+                                                <p class="mb-2">Male</p>
+                                                <p class="mb-2">{{teachingMale}}</p>
+                                            </div>
+                                            <div class="stat d-flex d-flex w-100 justify-content-between align-items-center">
+                                                <p class="mb-2">Female</p>
+                                                <p class="mb-2"> {{teachingFemale}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="right-side w-50 text-end">
+                                            <img src="assets/img/chart.svg">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <img src="assets/img/card-icon.svg">
+                                        <h3 class="ms-2 card-title">{{nonTeachingStaff}} <span class="d-block card-desc">Total Non Teaching Staff</span></h3>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div class="left-side w-50">
+                                            <div class="stat d-flex w-100 justify-content-between align-items-center mt-3">
+                                                <p class="mb-2">Male</p>
+                                                <p class="mb-2"> {{nonTeachingMale}}</p>
+                                            </div>
+                                            <div class="stat d-flex d-flex w-100 justify-content-between align-items-center">
+                                                <p class="mb-2">Female</p>
+                                                <p class="mb-2">{{nonTeachingFemale}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="right-side w-50 text-end">
+                                            <img src="assets/img/chart.svg">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="SchoolStatus ms-2">
+                        <li>
+                            <div>
+                                <img src="assets/assets/img/total-staff.png" class="mb-2" />
+                                <h4 class="font26589 mb-1">Total Staff</h4>
+                                <h2 class="font64989985 mb-0">{{totalTeachers}}</h2>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="assets/assets/img/verified-staff.png" class="mb-2" />
+                                <h4 class="font26589 mb-1">Verified Staff </h4>
+                                <h2 class="font64989985 mb-0">{{verifiedCOunt}}</h2>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="assets/assets/img/pending-school.png" class="mb-2" />
+                                <h4 class="font26589 mb-1">Pending at School </h4>
+                                <h2 class="font64989985 mb-0">{{schoolPendingCount}}</h2>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="assets/assets/img/pending-staff.png" class="mb-2" />
+                                <h4 class="font26589 mb-1">Pending at Staff</h4>
+                                <h2 class="font64989985 mb-0">{{teacherPendingCount}}</h2>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="assets/assets/img/initiated-school.png" class="mb-2" />
+                                <h4 class="font26589 mb-1">Initiated by School </h4>
+                                <h2 class="font64989985 mb-0">{{schoolInitiated}}</h2>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="assets/assets/img/not-initiated.png" class="mb-2" />
+                                <h4 class="font26589 mb-1">Not Initiated</h4>
+                                <h2 class="font64989985 mb-0">{{notInitiatedCount}}</h2>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</section>

@@ -30,6 +30,37 @@ export const environment = {
   BASE_URL_DATA_MAPPING:'http://10.25.26.251:8014/unee-api/v1/mapping/',
 
 
+
+  // Kvs Main
+
+  // BASE_URL_DATA_TEACHER: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/teacher/',
+  // BASE_URL_DATA_MASTER: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/master/',
+  // BASE_URL_DATA_QUESTION: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/question/',
+  // BASE_URL_DATA_SURVEY: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/survey/',
+  // BASE_URL_DATA_EXPERIENCE: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/experience/',
+  // BASE_URL_DATA_PROMOTION: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/promotion/',
+  // BASE_URL_DATA_QUALIFICATION: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/qualification/',
+  // BASE_URL_DATA_AWARDS: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/awards/', 
+  // BASE_URL_DATA_TRANSFER: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/transfer/',
+  // BASE_URL_DATA_DASHBOARD: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/dashboard/',
+  // BASE_URL_DATA_USER: 'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/user/',
+  // BASE_URL_DATA_SURPLUS_TRANSFER:'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TRANSFER/api/transfer/',
+  // BASE_URL_DATA_TEACHER_TRANSFER:'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/transprofile/',
+  // LOGOUT_URL:'https://kvsonlinetransfer.kvs.gov.in/SpringAuthSecurity/logout?returnTo=https://kvsonlinetransfer.kvs.gov.in/school',
+  // LOGIN_URL_INDIVIDUAL:'https://kvsonlinetransfer.kvs.gov.in/SpringAuthSecurity/oauth/authorize?response_type=code&user_oauth_approval=true&client_id=teacher&redirect_uri=https://kvsonlinetransfer.kvs.gov.in/school/teacher/profile&scopes=read',
+  // LOGIN_URL_COMMON:'https://kvsonlinetransfer.kvs.gov.in/SpringAuthSecurity/oauth/authorize?response_type=code&user_oauth_approval=true&client_id=teacher&redirect_uri=https://kvsonlinetransfer.kvs.gov.in/school/teacher/profile&scopes=read',
+  // LOGIN_URL_COMMON_LOCAL1:'',
+  // LOGIN_URL_COMMON_LOCAL2:'',
+  // AUTH_GUARD_HREF:'https://kvsonlinetransfer.kvs.gov.in/teacher/teacher/profile',
+  // AUTH_GUARD_HREF1:'https://kvsonlinetransfer.kvs.gov.in/SpringAuthSecurity/logout?returnTo=https://pgi.udiseplus.gov.in/school',
+  // BASE_URL_MEUSER:'https://kvsonlinetransfer.kvs.gov.in/UserService/api/user/',
+  // LOGIN_URL_JWT:'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/login/',
+  // BASE_URL_REPORT:'https://kvsonlinetransfer.kvs.gov.in/MOE-KVS-PDF/api/kvsreport/',
+  // BASE_URL_DATA_MASTER1:'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/unee-api/v1/master/',
+  // BASE_URL_DATA_MAPPING:'https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/unee-api/v1/mapping/',
+
+
+
   
 
   //Demo
