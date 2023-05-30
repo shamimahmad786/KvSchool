@@ -3,16 +3,21 @@
         <div class=" bg-profile-head">
             <h5 class="mb-0 p-2 FontTitle  text-white">Staff-Type-Post Mapping</h5>
         </div>
-        <div class="col-lg-11 align-right">
-            <button mat-raised-button color="primary" class="float-end mt-2" (click)="stafftypePostMappingPdf()">Download PDF</button>
-        </div>
-        <div class="col-lg-1 align-right">
+        <div class="col-lg-12 align-right" *ngIf="permissionSave">
             <button mat-raised-button color="primary" class="float-end mt-2" (click)="redirectto()">Mapping</button>
         </div>
-        <div *ngIf="dataSource">
-            <mat-form-field style="width: 30%;">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Staff Type or Post Code or Post Name">
-            </mat-form-field>
+        <div *ngIf="dataSource?.data?.length > 0">
+           <div class="row mt-2">
+            <div class="col-lg-5">
+                <mat-form-field style="width: 100%;">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Staff Type or Post Code or Post Name">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-7 align-right mb-4">
+                <button  class="float-end mt-2 btn btn-sm ms-1 btn-danger" (click)="downloadDocPdf()">Download Pdf</button>
+                <button  class="float-end mt-2 btn btn-sm ms-1 btn-success my-auto" (click)="downloadDocExcel()">Download Excel</button>
+            </div>
+           </div> 
         </div>
         <div class="example-container mat-elevation-z8">
             <table mat-table *ngIf="dataSource?.data?.length > 0" [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table">

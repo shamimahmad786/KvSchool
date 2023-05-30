@@ -68,7 +68,7 @@ export class AddStafftypePostComponent implements OnInit {
         designationId: payload.postCode,
         // postName: payload.postName,
       }
-     console.log(request)
+
         this.outSideService.addStaffTypePostMapping(request).subscribe((res)=>{
           if(res=="SUCCESS"){
             Swal.fire(
@@ -80,10 +80,10 @@ export class AddStafftypePostComponent implements OnInit {
           }
         },
         error => {
-          console.log(error);
+          // console.log(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })

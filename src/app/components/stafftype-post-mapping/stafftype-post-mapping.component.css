@@ -3,17 +3,22 @@
     width: 100%;
   }
   th.mat-header-cell:first-of-type{
-    padding-left: 1px!important;
-    text-align: center;
+    padding-left: 0px!important;
+    text-align: center!important;
   }
   th.mat-header-cell{
-    padding-left:23px!important;
+    padding-left: 0px!important;
+  }
+  td.mat-cell:first-of-type{
+    padding-left: 0px!important;
   }
   td.mat-cell{
-    padding-left: 24px!important;
+    padding-left: 0px!important;
   }
   .mat_label{
       font-weight: 500;
   }
-
-
+  .mat-column-sno{
+    width: 80px!important;
+    text-align: center;
+  }
