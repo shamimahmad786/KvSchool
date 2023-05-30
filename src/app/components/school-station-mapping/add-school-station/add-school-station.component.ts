@@ -68,7 +68,7 @@ export class AddSchoolStationComponent implements OnInit {
       stationCode: ['',[Validators.required]],
       fromDate:[new Date(),[Validators.required]],
       toDate:[''],
-      status:['',[Validators.required]],
+      status:[true,[Validators.required]],
     });
   }
   getSchoolList(){
@@ -118,7 +118,6 @@ export class AddSchoolStationComponent implements OnInit {
         fromDate:this.datePipe.transform(payload.fromDate ,'yyyy-MM-dd'),
         toDate:this.datePipe.transform(payload.toDate ,'yyyy-MM-dd'),
         status:payload.status,
-     
       
       }
       console.log(request)
@@ -133,7 +132,7 @@ export class AddSchoolStationComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+        // console.log(error);
         Swal.fire({
           'icon':'error',
            'text':error.error
@@ -156,12 +155,22 @@ export class AddSchoolStationComponent implements OnInit {
     this.schoolStationMForm.get('fromDate').setValue(new Date());
     this.schoolStationMForm.get('toDate').setValue('');
     this.schoolStationMForm.get('status').setValue('');
+    this.schoolStationMForm.get('status').enable();
   }
   errorHandling(controlName: string, errorName: string) {
     return this.schoolStationMForm.controls[controlName].hasError(errorName);
   }
   currentDate():Date{
     return new Date();
+  }
+  toDateChange(event){
+    if(event.value){
+      this.schoolStationMForm.get('status').setValue(false);
+      this.schoolStationMForm.get('status').disable();
+    }else{
+      this.schoolStationMForm.get('status').setValue(true);
+      this.schoolStationMForm.get('status').enable();
+    }
   }
 
 }
