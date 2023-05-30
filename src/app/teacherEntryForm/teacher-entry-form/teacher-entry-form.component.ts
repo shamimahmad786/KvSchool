@@ -3868,7 +3868,6 @@ this.getMaster(data,event.target.value);
 
     })
 
-
     this.outSideService.fetchConfirmedTchDetails(this.responseData.teacherId).subscribe((res) => {
       debugger
       console.log(res)

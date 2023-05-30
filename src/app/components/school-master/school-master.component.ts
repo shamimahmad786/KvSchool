@@ -7,8 +7,6 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
-import { saveAs } from 'file-saver';
-import Swal from 'sweetalert2';
 const ELEMENT_DATA: any = [
   {sno: '', stationcode: '', stationname: '', status: ''}
 
@@ -21,54 +19,37 @@ const ELEMENT_DATA: any = [
 })
 export class SchoolMasterComponent implements OnInit {
   dataSource = ELEMENT_DATA;
-  displayedColumns: any = ['sno', 'schoolcode', 'schoolname', 'status', 'shift', 'action'];
-  testData = { sno: '', schoolcode: '', schoolname: '', status: '', shift: '', id: '' };
+  displayedColumns:any = ['sno', 'schoolcode', 'schoolname', 'schooltype', 'status','shift','action'];
+  testData = {sno: '', schoolcode: '', schoolname: '', status: '',schooltype:'',shift:'',id:''};
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  schoolList: any = [];
-  permissionSave: any = false;
-  permissionEdit: any = false;
-  constructor(private pdfService: MasterReportPdfService,private datePipe: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
+  schoolList: any=[];
+ 
+  constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
    this.getSchoolMaterList();
-   this.getAuthPermission();
-  }
-  getAuthPermission() {
-    let req = {};
-    this.outSideService.getMasterDetail(req).subscribe((res) => {
-      if (res.length > 0) {
-        res.forEach(element => {
-          if (element.masterName == 'SCHOOL MASTER' && element.operation == 'SAVE') {
-            this.permissionSave = element.editAllowed;
-          }
-          if (element.masterName == 'SCHOOL MASTER' && element.operation == 'EDIT') {
-            this.permissionEdit = element.editAllowed
-          }
-        });
-      }
-    })
   }
   redirectto(){
     this.router.navigate(['/teacher/schoolMaster/add']);
   }
-  getSchoolMaterList() {
-    let request = {};
-    this.outSideService.fetchSchoolList(request).subscribe((res) => {
-      if (res.length > 0) {
+  getSchoolMaterList(){
+    let request={};
+    this.outSideService.fetchSchoolList(request).subscribe((res)=>{
+      if(res.length>0){
         for (let i = 0; i < res.length; i++) {
-
+       
           this.testData.sno = '' + (i + 1) + '';
           this.testData.schoolcode = res[i].schoolCode;
           this.testData.schoolname = res[i].schoolName;
           this.testData.status = res[i].schoolStatus;
           this.testData.shift = res[i].shift;
           this.testData.id = res[i].id;
-
+          this.testData.schooltype=res[i].schoolType;
           this.schoolList.push(this.testData);
-          this.testData = { sno: '', schoolcode: '', schoolname: '', status: '', shift: '', id: '' };
-
+          this.testData = {sno: '', schoolcode: '', schoolname: '',schooltype:'', status: '',shift:'',id:''};
         }
+        console.log(this.schoolList);
         setTimeout(() => {
           this.dataSource = new MatTableDataSource(this.schoolList);
           this.dataSource.paginator = this.paginator;
@@ -96,33 +77,4 @@ export class SchoolMasterComponent implements OnInit {
       this.pdfService.schoolMasterList(this.schoolList);
     }, 1000);
    }
-   downloadDocExcel() {
-    let req = {};
-    let url = 'download-school-master'
-    this.outSideService.downloadExcel(req, url).subscribe((res) => {
-      saveAs(res, 'school-master'+this.currentDate()+'.xlsx');
-    }, error => {
-      Swal.fire({
-        'icon': 'error',
-        'text': 'Something Went Wrong!'
-      })
-    })
-  }
-  downloadDocPdf() {
-    let req = {};
-    let url = 'school-master'
-    this.outSideService.downloadPdf(req, url).subscribe((res) => {
-      saveAs(res, 'school-master'+this.currentDate()+'.pdf');
-    }, error => {
-      Swal.fire({
-        'icon': 'error',
-        'text': 'Something Went Wrong!'
-      })
-    })
-  }
-  currentDate(){
-    let currentDate= this.datePipe.transform(new Date(),'dd-MM-yyyy_(hh/mm/ss)');
-    return currentDate;
-  }
-
 }
