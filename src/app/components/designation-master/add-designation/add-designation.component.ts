@@ -28,7 +28,7 @@ export class AddDesignationComponent implements OnInit,OnDestroy {
   }
   buildregionForm(){
     this.designationForm = this.fb.group({
-      postCode: ['', [Validators.required,Validators.pattern(/^[a-zA-Z]{4}$/)]],
+      postCode: ['', [Validators.required,Validators.pattern(/^[a-z0-9A-Z]{3}$/)]],
       postName: ['',[Validators.required,CustomValidator.IsText1,Validators.minLength(3)]],
       status:[true,[Validators.required]],
       id:['']
@@ -63,7 +63,7 @@ export class AddDesignationComponent implements OnInit,OnDestroy {
           }
         },
         error => {
-          // console.log(error);
+          console.log(error);
           Swal.fire({
             'icon':'error',
              'text':error.error.message
@@ -83,7 +83,7 @@ export class AddDesignationComponent implements OnInit,OnDestroy {
           }
         },
         error => {
-          // console.log(error);
+          console.log(error);
           Swal.fire({
             'icon':'error',
              'text':error.error.message

@@ -264,6 +264,7 @@ export class TeacherEntryFormComponent implements OnInit {
   careGiverFaimlyYnDradioButton:any;
   teacherStationChioce:any;
   childDifferentAbleYnDradioButton:any;
+  disciplinaryYnradioButton:any;
   deleteDeclairaionFormDocUpdate0: boolean = false;
   deleteDeclairaionFormDocUpdate1: boolean = false;
   deleteDeclairaionFormDocUpdate2: boolean = false;
@@ -528,6 +529,8 @@ export class TeacherEntryFormComponent implements OnInit {
 //-------------------------- newform transferRelatedForm  add  start  here--------------------------------- 
 transferRelatedForm: new FormGroup({
   'id':new FormControl(''),
+  'absenceDaysOne':new FormControl(''),
+  'disciplinaryYn':new FormControl(''),
   'teacherId':new FormControl('', Validators.required),
   'applyTransferYn': new FormControl('', Validators.required),
   'choiceKv1StationName': new FormControl('', Validators.required),
@@ -641,6 +644,7 @@ transferRelatedForm: new FormGroup({
     //this.getAwardsByTchId();
    //this.getAcdQualList();
     //this.getProfQualList();
+    debugger
     this.getTchExpByTchId();
     this.getPromotionByTchId();
     this.getQualMasterByTchType();
@@ -2063,14 +2067,23 @@ console.log(this.teacherForm.value.transferRelatedForm)
     })
   
     } else if (activeButton == "submit4") {
+      debugger
       this.getStatus(this.tempTeacherId);
       this.teacherForm.patchValue({
         transferRelatedForm: {
           teacherId:this.tempTeacherId,
         }
       });
-this.outSideService.saveTransProfile(this.teacherForm.value.transferRelatedForm).subscribe((res) => {
-  if (res.status == 1) {
+      if(this.teacherForm.value.transferRelatedForm.absenceDaysOne =='' || this.teacherForm.value.transferRelatedForm.absenceDaysOne ==null)
+      {
+        this.teacherForm.patchValue({
+          transferRelatedForm: {
+            absenceDaysOne:0,
+          }
+        });
+      }
+   this.outSideService.saveTransProfile(this.teacherForm.value.transferRelatedForm).subscribe((res) => {
+   if (res.status == 1) {
     this.transferRelatedFormTempId=res.response.id
     // this.teacherForm.value.transferRelatedForm.i
     this.teacherForm.patchValue({
@@ -3857,7 +3870,6 @@ this.getMaster(data,event.target.value);
 
     })
 
-
     this.outSideService.fetchConfirmedTchDetails(this.responseData.teacherId).subscribe((res) => {
       debugger
       console.log(res)
@@ -3960,48 +3972,35 @@ this.getMaster(data,event.target.value);
   }
 
 getTransferProfile(){
+  debugger
+  if(this.tempTeacherId==null){
+    this.teacherForm.patchValue({
+      transferRelatedForm: {
+        spouseKvsYnD: '0',
+        personalStatusMdgD: '0',
+        careGiverFaimlyYnD: '0',
+        careGiverYnD: '0',
+        personalStatusDfpD: '0',
+        personalStatusSpD: '0',
+        childDifferentAbleYnD: '0',
+        disciplinaryYn: '0',
+        memberJCM: '0',
+      }
+    })
+  }
   const data={"teacherId":this.tempTeacherId}
   this.outSideService.getTransferData(data).subscribe((res) => {
     // alert("Transfer Data Response--->"+JSON.stringify(res));
 
-    if(!res.response)
-    {
-      this.teacherForm.patchValue({
-        transferRelatedForm: {
-          spouseKvsYnD: '0',
-          personalStatusMdgD: '0',
-          careGiverFaimlyYnD: '0',
-          careGiverYnD: '0',
-          personalStatusDfpD: '0',
-          personalStatusSpD: '0',
-          childDifferentAbleYnD: '0',
-          memberJCM: '0',
-        }
-      })
-    }
-
-    debugger
-    if(!res.response)
-    {
-      this.teacherForm.patchValue({
-        transferRelatedForm: {
-          spouseKvsYnD: '0',
-          personalStatusMdgD: '0',
-          careGiverFaimlyYnD: '0',
-          careGiverYnD: '0',
-          personalStatusDfpD: '0',
-          personalStatusSpD: '0',
-          childDifferentAbleYnD: '0',
-          memberJCM: '0',
-        }
-      })
-    }
+  
    
 this.teacherForm.patchValue({
   transferRelatedForm: {
     id:res.response.id,
     teacherId:res.response.teacherId,
 applyTransferYn:res.response.applyTransferYn,
+disciplinaryYn:res.response.disciplinaryYn,
+absenceDaysOne:res.response.absenceDaysOne,
 choiceKv1StationName:res.response.choiceKv1StationName,
 choiceKv2StationName:res.response.choiceKv2StationName,
 choiceKv3StationName:res.response.choiceKv3StationName,
@@ -4164,25 +4163,40 @@ if(this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD==0)
 }
 
 
+
+if(this.teacherForm.value.transferRelatedForm.disciplinaryYn==1)
+{
+  this.disciplinaryYnradioButton=1;
+}
+if(this.teacherForm.value.transferRelatedForm.disciplinaryYn=='' || this.teacherForm.value.transferRelatedForm.disciplinaryYn== null)
+{
+  this.disciplinaryYnradioButton=1;
+}
+if(this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD==0)
+{
+  this.disciplinaryYnradioButton=1;
+}
+
+
+
+
  if(this.teacherForm.value.transferRelatedForm.memberJCM==1)
 {
   this.inlineRadio13radioButton=1;
- // this.abledChild=true
+ 
 } if(this.teacherForm.value.transferRelatedForm.memberJCM==2){
   this.inlineRadio13radioButton=2;
 }
 if(this.teacherForm.value.transferRelatedForm.memberJCM=='' || this.teacherForm.value.transferRelatedForm.memberJCM== null)
 {
   this.inlineRadio13radioButton=0;
-  //this.abledChild=false
+ 
 }
 
 if(this.teacherForm.value.transferRelatedForm.memberJCM==0)
 {
   this.inlineRadio13radioButton=0;
-  //this.abledChild=false
 }
-//this.responseData.spouseName=this.responseData.spouseStationName
 
 this.teacherForm.patchValue({
   transferRelatedForm: {

@@ -3,22 +3,19 @@
     width: 100%;
   }
   th.mat-header-cell:first-of-type{
-    padding-left: 0px!important;
-    text-align: center!important;
+    padding-left: 8px;
+    text-align: center;
   }
   th.mat-header-cell{
-    padding-left: 0px!important;
-  }
-  td.mat-cell:first-of-type{
-    padding-left: 0px!important;
+    padding-left: 24px;
   }
   td.mat-cell{
-    padding-left: 0px!important;
+    padding-left: 28px;
   }
-  .mat_label{
-      font-weight: 500;
+  .bg-1{
+    background-color: #fff;
   }
-  .mat-column-sno{
-    width: 80px!important;
+  th.mat-header-cell:first-of-type{
+    padding-left: 6px!Important;
     text-align: center;
   }

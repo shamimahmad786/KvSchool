@@ -61,8 +61,8 @@
                                         <mat-datepicker-toggle mdSuffix [for]="pickers1"></mat-datepicker-toggle>
                                         <mat-datepicker #pickers1></mat-datepicker>
                                     </div>
-                                    <input class="form-control" (dateChange)="toDateChange($event)" [matDatepicker]="pickers1" placeholder="To Date(DD/MM/YYYY)"
-                                        formControlName="toDate" #todate [max]="currentDate()" [min]="regionMForm.get('fromDate').value" (click)="pickers1.open()">
+                                    <input class="form-control" [matDatepicker]="pickers1" placeholder="To Date(DD/MM/YYYY)"
+                                        formControlName="toDate"  [max]="currentDate()" [min]="regionMForm.get('fromDate').value" (click)="pickers1.open()">
                                 </div>
                                 <span class="help-block text-danger"
                                 *ngIf="!regionMForm.get('toDate').valid && regionMForm.get('toDate').touched">Please Select To Date!</span>

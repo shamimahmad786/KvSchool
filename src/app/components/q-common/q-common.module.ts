@@ -43,7 +43,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [],
@@ -91,7 +90,6 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatPaginatorModule,
     NgxMatSelectSearchModule,
     NgMultiSelectDropDownModule.forRoot(),
-    MatSlideToggleModule,
   ],
   exports: [
     MatExpansionModule,
@@ -133,8 +131,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatProgressSpinnerModule,
     MatPaginatorModule,
     NgxMatSelectSearchModule,
-    NgMultiSelectDropDownModule,
-    MatSlideToggleModule,
+    NgMultiSelectDropDownModule
   ],
 
 })

@@ -304,7 +304,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
       
 
 
-      
+    debugger  
       this.verifyTchTeacherProfileData = res.response.teacherProfile
       this.verifyTchTeacherAcdQualification = res.response.educationalQualification
       this.verifyTchTeacherProfQualification = res.response.profestinalQualification

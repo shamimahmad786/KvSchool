@@ -9,9 +9,7 @@ import { Observable } from 'rxjs';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import {map, startWith} from 'rxjs/operators';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
-import { saveAs } from 'file-saver';
-import Swal from 'sweetalert2';
-import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-school-station-mapping',
   templateUrl: './school-station-mapping.component.html',
@@ -37,8 +35,7 @@ export class SchoolStationMappingComponent implements OnInit {
  
 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
-  permissionSave: any=false;
-  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>,private datePipe:DatePipe) { 
+  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
     this.dateAdapter.setLocale('en-GB');
   }
 
@@ -46,7 +43,7 @@ export class SchoolStationMappingComponent implements OnInit {
     this.businessUnitId=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_id;
     this.businessUnitTypeCode=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_code;
     this.buildSchoolStationMappingForm();
-    this.getAuthPermission();
+ 
     if(this.businessUnitId=="2"){
       this.searchList();
     this.getStationList();
@@ -55,18 +52,7 @@ export class SchoolStationMappingComponent implements OnInit {
       this.getStationListByRegion();
     }
   }
-  getAuthPermission(){
-    let req={};
-    this.outSideService.getMasterDetail(req).subscribe((res)=>{
-      if(res.length>0){
-        res.forEach(element => {
-          if(element.masterName=='SCHOOL STATION MAPPING' && element.operation=='SAVE'){
-            this.permissionSave=element.editAllowed;
-          }
-        });
-      }
-    })
-  }
+
   buildSchoolStationMappingForm(){
     this.schoolStationMF = this.fb.group({
       stationCode: [''],
@@ -78,7 +64,6 @@ export class SchoolStationMappingComponent implements OnInit {
     let req={}
     this.outSideService.fetchStationList(req).subscribe((res)=>{
       if(res){
-        this.stationList.push({ stationCode: 'Select All', stationName:'Select All'})
         res.forEach(element => {
           if(element.isActive){
             this.stationList.push({ stationCode: element.stationCode, stationName: element.stationName})
@@ -124,21 +109,15 @@ export class SchoolStationMappingComponent implements OnInit {
     }else{
       this.isSubmitted = false;
       let payload=this.schoolStationMF.getRawValue();
-    
-      if(payload.stationCode=='Select All'){
-        this.searchList();
-      }else{
-        let request={
-          stationCode: payload.stationCode,
-        }
-        this.outSideService.searchSchoolStationMList(request).subscribe((res)=>{
-             this.getSchoolStationList(res.content)
-        },
-        error => {
-          // console.log(error);
-        })
+      let request={
+        stationCode: payload.stationCode,
       }
-
+      this.outSideService.searchSchoolStationMList(request).subscribe((res)=>{
+           this.getSchoolStationList(res.content)
+      },
+      error => {
+        console.log(error);
+      })
     } 
   }
 
@@ -159,7 +138,7 @@ export class SchoolStationMappingComponent implements OnInit {
       this.getSchoolStationList(res.content)
         },
         error => {
-          // console.log(error);
+          console.log(error);
         })
   }
 
@@ -186,11 +165,7 @@ export class SchoolStationMappingComponent implements OnInit {
             this.listRegionStation.push(this.testData);
             this.testData = { "sno": "", "stationname": "", "schoolname": "","shift":"", "fromdate": "","todate":"","status":"" };
           }
-      }else{
-        Swal.fire({
-          'icon':'error',
-           'text':'No Mapping Found!'
-        })
+          console.log(this.listRegionStation)
       }
       setTimeout(() => {
         this.dataSource = new MatTableDataSource(this.listRegionStation);
@@ -216,33 +191,5 @@ export class SchoolStationMappingComponent implements OnInit {
       this.pdfService.schoolStationMappingList(this.listRegionStation);
     }, 1000);
 
-  }
-  downloadDocExcel(){
-    let req={};
-    let url='download-station-school-mapping'
-    this.outSideService.downloadExcel(req,url).subscribe((res)=>{
-     saveAs(res,'school-station-mapping-'+this.currentDate()+'.xlsx'); 
-    }, error => {
-      Swal.fire({
-        'icon':'error',
-        'text':'Something Went Wrong!'
-      })
-    })
-  }
-  downloadDocPdf(){
-    let req={};
-    let url='station-school-mapping'
-    this.outSideService.downloadPdf(req,url).subscribe((res)=>{
-    saveAs(res,'school-station-mapping-'+this.currentDate()+'.pdf');
-    }, error => {
-      Swal.fire({
-        'icon':'error',
-        'text':'Something Went Wrong!'
-      })
-    })
-  }
-  currentDate(){
-    let currentDate= this.datePipe.transform(new Date(),'dd-MM-yyyy_(hh/mm/ss)');
-    return currentDate;
   }
 }
