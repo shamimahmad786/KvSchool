@@ -1318,6 +1318,26 @@
                             <td></td>
                             <td></td>
                         </tr>
+                        <tr>
+                            <th> Whether disciplinary proceedings are in progress.</th>
+                            <td *ngIf="teacherStationChioce?.disciplinaryYn == '1'">Yes</td>
+                            <td *ngIf="teacherStationChioce?.disciplinaryYn == '0'">No</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th> Period of continuous absence(except maternity leave).</th>
+                            <td>{{teacherStationChioce?.absenceDaysOne}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </table>
                     <form [formGroup]="remarksForm">
                         <!-- <div class="row mt-2">

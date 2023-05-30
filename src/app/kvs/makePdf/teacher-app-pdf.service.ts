@@ -16,7 +16,7 @@ export class TeacherAppPdfService {
   trainingReceivedArray:any;
   awardReceivedArray:any;
   workExperienceArray:any;
-  workExpHead = [['School Name ', 'Shift', 'From','To', 'Nature of Appointment','Position Held','Appointed for Subject','Transfer Ground']]
+  workExpHead = [['School Name ', 'From','To','Position Held','Appointed for Subject','Transfer Ground']]
   //acdHead = [['Qualifications', 'Major Subject', 'Minor Subject', 'Board/University', 'School/College', 'Year of Passing']]
   teacherStationChiceHead = [['Station One', 'Station Two', 'Station three', 'Station Four', 'Station Five']]
   teacherStationChiceDisplacementHead = [['Station One', 'Station Two', 'Station three', 'Station Four', 'Station Five']]
@@ -51,8 +51,6 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     this.teacherTrainingArray.push(teacherTrainingData)
     console.log(this.teacherTrainingArray)
 
-
-
     var teacherTrainingDisplacementData= [];
     teacherTrainingDisplacementData.push(teacherStationChioc['displacement1StationName'])
     teacherTrainingDisplacementData.push(teacherStationChioc['displacement2StationName'])
@@ -60,66 +58,21 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     teacherTrainingDisplacementData.push(teacherStationChioc['displacement4StationName'])
     teacherTrainingDisplacementData.push(teacherStationChioc['displacement5StationName'])
     this.teacherTrainingDisplacementDataArray.push(teacherTrainingDisplacementData)
-   // this.acdQualificationArray = [];
-    // for(let i=0; i<acdQualification.length; i++){
-    //   var acdQualTemp = [];
-    //   acdQualTemp.push(acdQualification[i]?.degreeName)
-    //   acdQualTemp.push(acdQualification[i]?.qualificationDegreeMajor)
-    //   acdQualTemp.push(acdQualification[i]?.qualificationDegreeMinor)
-    //   acdQualTemp.push(acdQualification[i]?.boardUniversity)
-    //   acdQualTemp.push(acdQualification[i]?.institution)
-    //   acdQualTemp.push(acdQualification[i]?.yearOfPassing)
 
-    //   this.acdQualificationArray.push(acdQualTemp)
-    // }
-
-   // this.profQualificationArray = [];
-    // for(let i=0; i<profQual.length; i++){
-    //   var profQualTemp = [];
-    //   profQualTemp.push(profQual[i]?.degreeName)
-    //   profQualTemp.push(profQual[i]?.qualificationDegreeMajor)
-    //   profQualTemp.push(profQual[i]?.boardUniversity)
-    //   profQualTemp.push(profQual[i]?.institution)
-    //   profQualTemp.push(profQual[i]?.yearOfPassing)
-
-    //   this.profQualificationArray.push(profQualTemp)
-    // }
-
-   // this.awardReceivedArray = [];
-    // for(let i=0; i<awardReceived.length; i++){
-    //   var awardReceivedTemp = [];
-    //   awardReceivedTemp.push(awardReceived[i]?.awardName)
-    //   awardReceivedTemp.push(awardReceived[i]?.awardYear)
-    //   awardReceivedTemp.push(awardReceived[i]?.awardBy)
-    //   awardReceivedTemp.push(awardReceived[i]?.remarks)
-
-    //   this.awardReceivedArray.push(awardReceivedTemp)
-    // }
-
-   // this.trainingReceivedArray = [];
-    // for(let i=0; i<trainingReceived.length; i++){
-    //   var trainingReceivedTemp = [];
-    //   trainingReceivedTemp.push(trainingReceived[i]?.trainingName)
-    //   trainingReceivedTemp.push(trainingReceived[i]?.trainingYear)
-    //   trainingReceivedTemp.push(trainingReceived[i]?.trainingOrganizedBy)
-    //   trainingReceivedTemp.push(trainingReceived[i]?.place)
-
-    //   this.trainingReceivedArray.push(trainingReceivedTemp)
-    // }
-
+    
     this.workExperienceArray = [];
     for(let i=0; i<workExperience.length; i++){
       
       var workExperienceTemp = [];
       workExperienceTemp.push(workExperience[i]?.udiseSchoolName)
-      workExperienceTemp.push(workExperience[i]?.shiftType)
+     // workExperienceTemp.push(workExperience[i]?.shiftType)
       workExperienceTemp.push( this.date.transform(new Date( workExperience[i]?.workStartDate ), 'dd-MM-yyyy'))
       if(workExperience[i]?.workEndDate != null && workExperience[i]?.workEndDate != 'null'){
         workExperienceTemp.push( this.date.transform(new Date( workExperience[i]?.workEndDate ), 'dd-MM-yyyy'))
       }else{
         workExperienceTemp.push(workExperience[i]?.workEndDate)
       }
-      workExperienceTemp.push(workExperience[i]?.natureOfAppointment == '1'?'Regular':'Not Applicable')
+     // workExperienceTemp.push(workExperience[i]?.natureOfAppointment == '1'?'Regular':'Not Applicable')
       workExperienceTemp.push(workExperience[i]?.positionType)
       workExperienceTemp.push(workExperience[i]?.appointedForSubject)
       workExperienceTemp.push(workExperience[i].groundForTransfer)
@@ -151,7 +104,7 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Udise School Code', 15, 52)
+    doc.text('KV / Institution Code', 15, 52)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
@@ -167,7 +120,7 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Present KV Name', 140, 52)
+    doc.text('Present KV/Institution Name', 140, 52)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
@@ -299,18 +252,17 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Nationality', 140, 80)
+    doc.text('Nature of Appointment',140, 80)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
-    if(teacherProfile?.teacherNationality == null || teacherProfile?.teacherNationality == 'null' || teacherProfile?.teacherNationality == ''){
-      doc.text('Not Given', 205, 80)
+    if(teacherProfile?.natureOfAppointment == null || teacherProfile?.natureOfAppointment == 'null' || teacherProfile?.natureOfAppointment == ''){
+      doc.text('Regular', 205, 80)
     }else{
-      doc.text(teacherProfile?.teacherNationality == '1' ? 'Indian' : 'Other', 205, 80)
+      doc.text(teacherProfile?.natureOfAppointment == '1' ? 'Regular' : 'Not Available',  205, 80)
     }
 
-    
 
     //1.6
     doc.setTextColor(0, 0, 0);
@@ -445,19 +397,7 @@ console.log(teacherStationChioc['choiceKv1StationName'])
    
 
     //1.10
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Nature of Appointment', 15, 115)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    if(teacherProfile?.natureOfAppointment == null || teacherProfile?.natureOfAppointment == 'null' || teacherProfile?.natureOfAppointment == ''){
-      doc.text('Not Given', 85, 115)
-    }else{
-      doc.text(teacherProfile?.natureOfAppointment == '1' ? 'Regular' : 'Not Available', 85, 115)
-    }
+    
 
     
 
@@ -465,52 +405,52 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(138, 24, 34);
     doc.setFontSize(14);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Personal Information', 15, 125)
+    doc.text('Personal Information', 15, 118)
 
     //2.1
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Blood Group', 15, 132)
+    // doc.setTextColor(0, 0, 0);
+    // doc.setFontSize(12);
+    // doc.setFont('Times-Roman', 'bold');
+    // doc.text('Blood Group', 15, 132)
 
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    if(teacherProfile?.teacherBloodGroup == null || teacherProfile?.teacherBloodGroup == 'null' || teacherProfile?.teacherBloodGroup == ''){
-      doc.text('Not Given', 85, 132)
-    }else{
-      doc.text(bloodGroupPipe.transform(teacherProfile?.teacherBloodGroup), 85, 132)
-    }
+    // doc.setFont('Times-Roman', 'normal');
+    // doc.setTextColor(0, 0, 0);
+    // doc.setFontSize(10);
+    // if(teacherProfile?.teacherBloodGroup == null || teacherProfile?.teacherBloodGroup == 'null' || teacherProfile?.teacherBloodGroup == ''){
+    //   doc.text('Not Given', 85, 132)
+    // }else{
+    //   doc.text(bloodGroupPipe.transform(teacherProfile?.teacherBloodGroup), 85, 132)
+    // }
     
 
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Pan Number', 140, 132)
+    // doc.setTextColor(0, 0, 0);
+    // doc.setFontSize(12);
+    // doc.setFont('Times-Roman', 'bold');
+    // doc.text('Pan Number', 140, 132)
 
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    if(teacherProfile?.teacherPanNumber == null || teacherProfile?.teacherPanNumber == 'null' || teacherProfile?.teacherPanNumber == ''){
-      doc.text('Not Given', 205, 132)
-    }else{
-      doc.text(teacherProfile?.teacherPanNumber, 205, 132)
-    }
+    // doc.setFont('Times-Roman', 'normal');
+    // doc.setTextColor(0, 0, 0);
+    // doc.setFontSize(10);
+    // if(teacherProfile?.teacherPanNumber == null || teacherProfile?.teacherPanNumber == 'null' || teacherProfile?.teacherPanNumber == ''){
+    //   doc.text('Not Given', 205, 132)
+    // }else{
+    //   doc.text(teacherProfile?.teacherPanNumber, 205, 132)
+    // }
     
 
     //2.2
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Correspondence Address', 15, 141)
+    doc.text('Correspondence Address', 15, 125)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherCorrespondenceAddress == null || teacherProfile?.teacherCorrespondenceAddress == 'null' || teacherProfile?.teacherCorrespondenceAddress == ''){
-      doc.text('Not Given', 85, 141)
+      doc.text('Not Given', 85, 125)
     }else{
-      doc.text(teacherProfile?.teacherCorrespondenceAddress, 85, 141)
+      doc.text(teacherProfile?.teacherCorrespondenceAddress, 85, 125)
     }
 
     
@@ -529,15 +469,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Correspondence State', 15, 148)
+    doc.text('Correspondence State', 15, 132)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherCorrespondenceState == null || teacherProfile?.teacherCorrespondenceState == 'null' || teacherProfile?.teacherCorrespondenceState == ''){
-      doc.text('Not Given', 85, 148)
+      doc.text('Not Given', 85, 132)
     }else{
-      doc.text(teacherProfile?.teacherCorrespondenceState, 85, 148)
+      doc.text(teacherProfile?.teacherCorrespondenceState, 85, 132)
     }
 
     
@@ -545,15 +485,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Correspondence District', 140, 148)
+    doc.text('Correspondence District', 140, 132)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherCorrespondenceDistrict == null || teacherProfile?.teacherCorrespondenceDistrict == 'null' || teacherProfile?.teacherCorrespondenceDistrict == ''){
-      doc.text('Not Given', 205, 148)
+      doc.text('Not Given', 205, 132)
     }else{
-      doc.text(teacherProfile?.teacherCorrespondenceDistrict, 205, 148)
+      doc.text(teacherProfile?.teacherCorrespondenceDistrict, 205, 132)
     }
 
     
@@ -562,15 +502,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Correspondence Pin Code', 15, 155)
+    doc.text('Correspondence Pin Codes', 15, 139)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherCorrespondencePin == null || teacherProfile?.teacherCorrespondencePin == 'null' || teacherProfile?.teacherCorrespondencePin == ''){
-      doc.text('Not Given', 85, 155)
+      doc.text('Not Given', 85, 139)
     }else{
-      doc.text(teacherProfile?.teacherCorrespondencePin, 85, 155)
+      doc.text(teacherProfile?.teacherCorrespondencePin, 85, 139)
     }
 
    
@@ -589,15 +529,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Permanent Address', 15, 164)
+    doc.text('Permanent Address', 15, 148)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherPermanentAddress == null || teacherProfile?.teacherPermanentAddress == 'null' || teacherProfile?.teacherPermanentAddress == ''){
-      doc.text('Not Given', 85, 164)
+      doc.text('Not Given', 85, 148)
     }else{
-      doc.text(teacherProfile?.teacherPermanentAddress, 85, 164)
+      doc.text(teacherProfile?.teacherPermanentAddress, 85, 148)
     }
 
    
@@ -616,15 +556,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Permanent State', 15, 171)
+    doc.text('Permanent State', 15, 155)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherParmanentState == null || teacherProfile?.teacherParmanentState == 'null' || teacherProfile?.teacherParmanentState == ''){
-      doc.text('Not Given', 85, 171)
+      doc.text('Not Given', 85, 155)
     }else{
-      doc.text(teacherProfile?.teacherParmanentState, 85, 171)
+      doc.text(teacherProfile?.teacherParmanentState, 85, 155)
     }
 
     
@@ -632,15 +572,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Permanent District', 140, 171)
+    doc.text('Permanent District', 140, 155)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherPermanentDistrict == null || teacherProfile?.teacherPermanentDistrict == 'null' || teacherProfile?.teacherPermanentDistrict == ''){
-      doc.text('Not Given', 205, 171)
+      doc.text('Not Given', 205, 155)
     }else{
-      doc.text(teacherProfile?.teacherPermanentDistrict, 205, 171)
+      doc.text(teacherProfile?.teacherPermanentDistrict, 205, 155)
     }
 
    
@@ -649,15 +589,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Permanent Pin Code', 15, 178)
+    doc.text('Permanent Pin Code', 15, 162)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherPermanentPin == null || teacherProfile?.teacherPermanentPin == 'null' || teacherProfile?.teacherPermanentPin == ''){
-      doc.text('Not Given', 85, 178)
+      doc.text('Not Given', 85, 162)
     }else{
-      doc.text(teacherProfile?.teacherPermanentPin, 85, 178)
+      doc.text(teacherProfile?.teacherPermanentPin, 85, 162)
     }
 
     

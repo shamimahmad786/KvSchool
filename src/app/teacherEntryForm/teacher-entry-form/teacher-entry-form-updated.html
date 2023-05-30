@@ -2479,6 +2479,44 @@
 
                                                 </div>
                                             </div>
+                                            <div class="row mt-3" style="border-top: 1px dotted;">
+                                                <div class="col-md-4 mb-2 py-3">
+                                                    <h4 class="titleSet">
+                                                        <span class="text-green">7.</span> Period of continuous absence(except maternity leave).
+                                                    </h4>
+                                                </div>
+
+                                                <div class="col-md-1 mb-2 py-3">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control  mb-3" id="absenceDaysOne" formControlName="absenceDaysOne" value="0" name="absenceDaysOne" maxlength="50">
+                                                    </div>
+                                                  
+                                                </div>
+                                              
+                                            </div>
+
+                                            <div class="row mt-3" style="border-top: 1px dotted;">
+                                                <div class="col-md-10 mb-2 py-3">
+                                                    <h4 class="titleSet">
+                                                        <span class="text-green">8.</span> Whether disciplinary proceedings are in progress.
+                                                    </h4>
+                                                </div>
+                                                <div class="col-md-2 mb-2 py-3">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="disciplinaryYn" value="1" id="disciplinaryYn" formControlName="disciplinaryYn" name="disciplinaryYn" [checked]="disciplinaryYnradioButton == '1'">
+                                                        <label class="form-check-label" for="disciplinaryYn">Yes
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="disciplinaryYn" value="0" id="disciplinaryYn" formControlName="disciplinaryYn" name="disciplinaryYn" [checked]="disciplinaryYnradioButton == '0'">
+                                                        <label class="form-check-label" for="disciplinaryYn">No
+                                                        </label>
+                                                    </div>                       
+                                                </div>
+                                            </div>
+
+
+
 
                                             <div class="row mt-3" style="border-top: 1px dotted;">
                                                 <div class="col-md-12 mb-2 py-3">
@@ -2833,6 +2871,26 @@
                                                         <td *ngIf="teacherStationChioce?.memberJCM == '1'">RJCM</td>
                                                         <td *ngIf="teacherStationChioce?.memberJCM == '2'">NJCM</td>
                                                         <td *ngIf="teacherStationChioce?.memberJCM == '0'">None</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th> Whether disciplinary proceedings are in progress.</th>
+                                                        <td *ngIf="teacherStationChioce?.disciplinaryYn == '1'">Yes</td>
+                                                        <td *ngIf="teacherStationChioce?.disciplinaryYn == '0'">No</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th> Period of continuous absence(except maternity leave).</th>
+                                                        <td>{{teacherStationChioce?.absenceDaysOne}}</td>
+                                                        <td></td>
+                                                        <td></td>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
