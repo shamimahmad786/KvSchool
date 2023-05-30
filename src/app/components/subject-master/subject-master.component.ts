@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
-
+import { saveAs } from 'file-saver';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-subject-master',
   templateUrl: './subject-master.component.html',
@@ -22,40 +23,57 @@ export class SubjectMasterComponent implements OnInit,AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   listDesignation: any=[];
-
-  constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
+  permissionSave: any=false;
+  permissionEdit: any=false;
+  constructor(private pdfService: MasterReportPdfService,private datePipe: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
     this.getDesignationList();
+    this.getAuthPermission();
    }
+   getAuthPermission(){
+    let req={};
+    this.outSideService.getMasterDetail(req).subscribe((res)=>{
+      if(res.length>0){
+        res.forEach(element => {
+          if(element.masterName=='SUBJECT MASTER' && element.operation=='SAVE'){
+            this.permissionSave=element.editAllowed;
+          }
+          if(element.masterName=='SUBJECT MASTER' && element.operation=='EDIT'){
+            this.permissionEdit=element.editAllowed
+          }
+        });
+      }
+    })
+  }
    redirectto(){
      this.router.navigate(['/teacher/subjectMaster/add']);
    }
    getDesignationList(){
-     let req={}
-     this.outSideService.fetchSubjectList(req).subscribe((res)=>{
-       if(res.length>0){
-           for (let i = 0; i < res.length; i++) {
-        
-             this.testData.sno = '' + (i + 1) + '';
-             this.testData.subjectCode = res[i].subjectCode;
-             this.testData.subjectName = res[i].subjectName;
-             this.testData.status = res[i].status;
-             this.testData.id = res[i].id;
+    let req={}
+    this.outSideService.fetchSubjectList(req).subscribe((res)=>{
+      if(res.length>0){
+          for (let i = 0; i < res.length; i++) {
+       
+            this.testData.sno = '' + (i + 1) + '';
+            this.testData.subjectCode = res[i].subjectCode;
+            this.testData.subjectName = res[i].subjectName;
+            this.testData.status = res[i].status;
+            this.testData.id = res[i].id;
 
-             this.listDesignation.push(this.testData);
-             this.testData = { "sno": "", "subjectCode": "", "subjectName": "", "status": "","id":"" };
+            this.listDesignation.push(this.testData);
+            this.testData = { "sno": "", "subjectCode": "", "subjectName": "", "status": "","id":"" };
+   
+          }
     
-           }
-     console.log(this.listDesignation)
-       }
-       setTimeout(() => {
-         this.dataSource = new MatTableDataSource(this.listDesignation);
-         // this.dataSource.paginator = this.paginator;
-         // this.dataSource.sort = this.sort;
-       }, 100)
-     })
-   }
+      }
+      setTimeout(() => {
+        this.dataSource = new MatTableDataSource(this.listDesignation);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }, 100)
+    })
+  }
    ngAfterViewInit() {
      this.dataSource.paginator = this.paginator;
      this.dataSource.sort = this.sort;
@@ -76,5 +94,35 @@ export class SubjectMasterComponent implements OnInit,AfterViewInit {
     }, 1000);
 
    }
+   downloadDocExcel(){
+    let req={};
+    let url='download-subject-master'
+    this.outSideService.downloadExcel(req,url).subscribe((res)=>{
+     saveAs(res,'subject-master-'+this.currentDate()+'.xlsx');
+      
+    }, error => {
+      Swal.fire({
+        'icon':'error',
+         'text':'Something Went Wrong!'
+      })
+    })
+  }
+  downloadDocPdf(){
+    let req={};
+    let url='subject-master'
+    this.outSideService.downloadPdf(req,url).subscribe((res)=>{
+    saveAs(res,'subject-master-'+this.currentDate()+'.pdf');  
+    }, error => {
+      Swal.fire({
+        'icon':'error',
+        'text':'Something Went Wrong!'
+      })
+    })
+  }
+  currentDate(){
+    let currentDate= this.datePipe.transform(new Date(),'dd-MM-yyyy_(hh/mm/ss)');
+    return currentDate;
+  }
+
 
 }
