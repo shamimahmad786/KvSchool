@@ -1273,7 +1273,7 @@ fetchSubjectPostMapping(data){
     'Content-Type': 'text/plain; charset=utf-8',
   }); 
 
-  return this._http.post<any>(environment.BASE_URL_DATA_MAPPING+ "master/fetch-post-subject-mapping-list-with-staff-details", data, {headers})
+  return this._http.post<any>(environment.BASE_URL_DATA_MAPPING+ "master/fetch-post-subject-mapping-list", data, {headers})
 
 }
 fetchSanctionPostList(data){
