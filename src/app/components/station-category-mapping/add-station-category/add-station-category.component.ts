@@ -69,7 +69,7 @@ export class AddStationCategoryComponent implements OnInit {
       stationCode: ['',[Validators.required]],
       fromDate:[new Date(),[Validators.required]],
       toDate:[''],
-      status:['',[Validators.required]]
+      status:[true,[Validators.required]]
     });
   }
   getCategoryList(){
@@ -129,7 +129,7 @@ export class AddStationCategoryComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+        // console.log(error);
         Swal.fire({
           'icon':'error',
            'text':error.error
@@ -151,12 +151,22 @@ export class AddStationCategoryComponent implements OnInit {
     this.stationCategoryMForm.get('fromDate').setValue(new Date());
     this.stationCategoryMForm.get('toDate').setValue('');
     this.stationCategoryMForm.get('status').setValue('');
+    this.stationCategoryMForm.get('status').enable();
   }
   errorHandling(controlName: string, errorName: string) {
     return this.stationCategoryMForm.controls[controlName].hasError(errorName);
   }
   currentDate():Date{
     return new Date();
+  }
+  toDateChange(event){
+    if(event.value){
+      this.stationCategoryMForm.get('status').setValue(false);
+      this.stationCategoryMForm.get('status').disable();
+    }else{
+      this.stationCategoryMForm.get('status').setValue(true);
+      this.stationCategoryMForm.get('status').enable();
+    }
   }
 
 }

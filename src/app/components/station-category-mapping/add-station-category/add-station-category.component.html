@@ -70,7 +70,7 @@
                                         <mat-datepicker-toggle mdSuffix [for]="pickers1"></mat-datepicker-toggle>
                                         <mat-datepicker #pickers1></mat-datepicker>
                                     </div>
-                                    <input class="form-control" [matDatepicker]="pickers1" placeholder="To Date(DD/MM/YYYY)"
+                                    <input class="form-control" (dateChange)="toDateChange($event)" [matDatepicker]="pickers1" placeholder="To Date(DD/MM/YYYY)"
                                         formControlName="toDate" [min]="stationCategoryMForm.get('fromDate').value"  [max]="currentDate()"  (click)="pickers1.open()">
                                 </div>
                                 <span class="help-block text-danger"
