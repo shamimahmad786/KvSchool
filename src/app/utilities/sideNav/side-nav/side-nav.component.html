@@ -429,7 +429,7 @@
 
 
 
-                <li *ngIf="showRegion" class="nav-item">
+                <li *ngIf="false" class="nav-item">
                     <a class="btn btn-toggle align-items-center active " routerLink="/teacher/regionDashboard">
                         <img src="assets/img/dash.svg"> Dashboard
                     </a>
@@ -453,7 +453,9 @@
                     </a>
                 </li>
 
-                <li *ngIf="kvIfConditions == true && this.businessUnitTypeId !='2'" class="nav-item">
+                <!-- // commenting this teacher details -->
+
+                <li *ngIf="kvIfConditions == true && this.businessUnitTypeId !='2' && !showRegion" class="nav-item">
                     <a class="btn btn-toggle align-items-center collapsed" routerLink="/teacher/kvsTchDetails">
                         <img src="assets/img/details.svg"> Employee Details
                     </a>
@@ -491,85 +493,85 @@
                 </li>
 
 
-                <li class="nav-item" *ngIf="showNational">
+                <li class="nav-item" *ngIf="showNational || showRegion">
 
                     <button class="btn btn-toggle align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false"> <img src="assets/img/dropbox.svg">
                         Master </button>
                     <div class="collapse show" id="orders-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small collapse show" id="collapseExample">
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionMaster">
                                     <i class='bx bx-location-plus bxStyle'></i>
                                     <span class="TitleSetheader">Region Master</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationMaster">
                                     <i class='bx bx-polygon bxStyle'></i>
                                     <span class="TitleSetheader">Station Master</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/schoolMaster">
                                     <i class='bx bxs-school bxStyle'></i>
                                     <span class="TitleSetheader">School Master</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMaster">
                                     <i class='bx bxs-vector bxStyle'></i>
                                     <span class="TitleSetheader">Station Category Master</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stafftypeMaster">
                                     <i class='bx bxs-vector bxStyle'></i>
                                     <span class="TitleSetheader">Staff Type Master</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/designationMaster">
                                     <i class='bx bxs-vector bxStyle'></i>
                                     <span class="TitleSetheader">Designation Master</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/subjectMaster">
                                     <i class='bx bxs-vector bxStyle'></i>
                                     <span class="TitleSetheader">Subject Master</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational || showRegion">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/regionStationMapping">
                                     <i class='bx bx-station bxStyle'></i>
                                     <span class="TitleSetheader">Region Station Mapping</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMapping">
                                     <i class='bx bx-station bxStyle'></i>
                                     <span class="TitleSetheader">Station Category Mapping</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational || showRegion">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/schoolStationMapping">
                                     <i class='bx bx-station bxStyle'></i>
-                                    <span class="TitleSetheader">School Station Mapping</span>
+                                    <span class="TitleSetheader">Station School Mapping</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stafftypePostMapping">
                                     <i class='bx bx-station bxStyle'></i>
                                     <span class="TitleSetheader">Staff-Type-Post Mapping</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/postSubjectMapping">
                                     <i class='bx bx-station bxStyle'></i>
                                     <span class="TitleSetheader">Post-Subject Mapping</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="showNational">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/sanctioned-post">
                                     <i class='bx bx-station bxStyle'></i>
                                     <span class="TitleSetheader">Sanctioned-Post Mapping</span>

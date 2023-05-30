@@ -496,7 +496,7 @@ export class OutsideServicesService {
 
     });
     
-    return this._http.post<any>(environment.BASE_URL_DATA_MASTER+ "getStationByRegion", data, {headers})
+    return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "fetch/list-of-all-station-by-region", data, {headers})
   }
 
   fetchKvSchoolByStationCode(data){

@@ -29,7 +29,9 @@ export class RegionStationMappingComponent implements OnInit {
 
   listRegionStation: any=[];
   regionList: any=[];
-
+  businessUnitId:any;
+  businessTypeCode:any;
+  
 
   filteredOptions: Observable<string[]>;
 
@@ -41,7 +43,11 @@ export class RegionStationMappingComponent implements OnInit {
   ngOnInit(): void {
     this.buildRegionMappingForm();
     this.getRegionList();
-     this.search();
+    
+     this.businessUnitId=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_id;
+this.businessTypeCode=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_code;
+this.search();
+
   }
 
   buildRegionMappingForm(){
@@ -93,7 +99,13 @@ export class RegionStationMappingComponent implements OnInit {
   }
   search(){
     let request={};
+
+    if(this.businessUnitId=="3"){
+      request={"regionCode":this.businessTypeCode};
+    }
+
     this.outSideService.searchRegionStationMList(request).subscribe((res)=>{
+
       this.getRegionStationList(res.content)
       },
       error => {

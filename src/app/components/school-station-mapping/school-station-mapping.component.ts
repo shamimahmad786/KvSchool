@@ -18,6 +18,8 @@ import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.se
 export class SchoolStationMappingComponent implements OnInit {
   schoolStationMF: FormGroup;
   isSubmitted: boolean = false;
+  businessUnitId:any;
+  businessUnitTypeCode:any;
 
   dataSource:any;
   displayedColumns:any = ['sno','stationname','schoolname','shift','fromdate','todate','status'];
@@ -38,9 +40,17 @@ export class SchoolStationMappingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.businessUnitId=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_id;
+    this.businessUnitTypeCode=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_code;
     this.buildSchoolStationMappingForm();
+ 
+    if(this.businessUnitId=="2"){
+      this.searchList();
     this.getStationList();
-    this.searchList();
+    }else if(this.businessUnitId=="3"){
+      this.searchList();
+      this.getStationListByRegion();
+    }
   }
 
   buildSchoolStationMappingForm(){
@@ -66,6 +76,25 @@ export class SchoolStationMappingComponent implements OnInit {
       }
     })
   }
+
+  getStationListByRegion(){
+    let req={"regionCode":this.businessUnitTypeCode};
+    this.outSideService.fetchStationByRegionId(req).subscribe((res)=>{
+      if(res.rowValue){
+        res.rowValue.forEach(element => {
+          if(element.is_active){
+            this.stationList.push({ stationCode: element.station_code, stationName: element.station_name})
+          }
+        });
+        this.filteredOptions = this.schoolStationMF['controls'].stationCode.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter(value || '')),
+        );
+      }
+    })
+  }
+
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.stationList.filter(option => option.stationName.toLowerCase().includes(filterValue));
@@ -97,8 +126,14 @@ export class SchoolStationMappingComponent implements OnInit {
     this.isSubmitted=false;
     this.schoolStationMF.reset();
   }
+
   searchList(){
     let req={};
+
+    if(this.businessUnitId=="3"){
+      req={"regionCode":this.businessUnitTypeCode};
+    }
+
     this.outSideService.searchSchoolStationMList(req).subscribe((res)=>{
       this.getSchoolStationList(res.content)
         },
@@ -106,6 +141,8 @@ export class SchoolStationMappingComponent implements OnInit {
           console.log(error);
         })
   }
+
+
   errorHandling(controlName: string, errorName: string) {
     return this.schoolStationMF.controls[controlName].hasError(errorName);
   }
