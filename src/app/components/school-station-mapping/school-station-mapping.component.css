@@ -3,15 +3,22 @@
     width: 100%;
   }
   th.mat-header-cell:first-of-type{
-    padding-left: 8px;
+    padding-left: 0px!important;
     text-align: center;
   }
+  td.mat-cell:first-of-type{
+    padding-left: 0px!important;
+  }
   th.mat-header-cell{
-    padding-left: 24px;
+    padding-left: 10px!important;
   }
   td.mat-cell{
-    padding-left: 24px;
+    padding-left: 10px!important;
   }
   .mat_label{
       font-weight: 500;
+  }
+  .mat-column-sno{
+    width: 80px!important;
+    text-align: center;
   }

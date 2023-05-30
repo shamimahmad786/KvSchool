@@ -44,7 +44,6 @@ export class AddStafftypeComponent implements OnInit {
     }else{
       this.isSubmitted = false;
       let payload=this.staffTypeForm.getRawValue();
-      console.log(payload)
       let request:any={
         staffType: payload.staffType,
         status: payload.status
@@ -65,7 +64,7 @@ export class AddStafftypeComponent implements OnInit {
           }
         },
         error => {
-          console.log(error);
+          // console.log(error);
           Swal.fire({
             'icon':'error',
              'text':error.error.message
@@ -85,7 +84,7 @@ export class AddStafftypeComponent implements OnInit {
           }
         },
         error => {
-          console.log(error);
+          // console.log(error);
           Swal.fire({
             'icon':'error',
              'text':error.error.message

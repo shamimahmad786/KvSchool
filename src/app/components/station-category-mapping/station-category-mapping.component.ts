@@ -10,6 +10,9 @@ import { Observable } from 'rxjs';
 
 import {map, startWith} from 'rxjs/operators';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
+import { saveAs } from 'file-saver';
+import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-station-category-mapping',
   templateUrl: './station-category-mapping.component.html',
@@ -31,7 +34,9 @@ export class StationCategoryMappingComponent implements OnInit {
   filteredOptions: Observable<string[]>;
 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
-  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
+  permissionSave: any=false;
+
+  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>,private datePipe: DatePipe) { 
     this.dateAdapter.setLocale('en-GB');
   }
 
@@ -39,8 +44,20 @@ export class StationCategoryMappingComponent implements OnInit {
     this.buildSchoolStationMappingForm();
     this.getStationList();
     this.searchList();
+    this.getAuthPermission();
   }
-
+  getAuthPermission(){
+    let req={};
+    this.outSideService.getMasterDetail(req).subscribe((res)=>{
+      if(res.length>0){
+        res.forEach(element => {
+          if(element.masterName=='STATION CATEGORY MAPPING' && element.operation=='SAVE'){
+            this.permissionSave=element.editAllowed;
+          }
+        });
+      }
+    })
+  }
   buildSchoolStationMappingForm(){
     this.stationCategoryMF = this.fb.group({
       stationCode: ['', [Validators.required]],
@@ -51,6 +68,7 @@ export class StationCategoryMappingComponent implements OnInit {
     let req={}
     this.outSideService.fetchStationList(req).subscribe((res)=>{
       if(res){
+        this.stationList.push({ stationCode: 'Select All', stationName: 'Select All'})
         res.forEach(element => {
           if(element.isActive){
             this.stationList.push({ stationCode: element.stationCode, stationName: element.stationName})
@@ -74,15 +92,20 @@ export class StationCategoryMappingComponent implements OnInit {
     }else{
       this.isSubmitted = false;
       let payload=this.stationCategoryMF.getRawValue();
-      let request={
-        stationName: payload.stationCode,
+      if(payload.stationCode=='Select All'){
+         this.searchList();
+      }else{
+        let request={
+          stationName: payload.stationCode,
+        }
+        this.outSideService.searchStationCategoryMList(request).subscribe((res)=>{
+             this.getStationCategoryMList(res.content)
+        },
+        error => {
+          // console.log(error);
+        })
       }
-      this.outSideService.searchStationCategoryMList(request).subscribe((res)=>{
-           this.getRegionStationList(res.content)
-      },
-      error => {
-        // console.log(error);
-      })
+
     }  
   }
 
@@ -100,13 +123,13 @@ export class StationCategoryMappingComponent implements OnInit {
   searchList(){
     let request={};
     this.outSideService.searchStationCategoryMList(request).subscribe((res)=>{
-      this.getRegionStationList(res.content)
+      this.getStationCategoryMList(res.content)
     },
     error => {
       // console.log(error);
     })
   }
-  getRegionStationList(res:any){
+  getStationCategoryMList(res:any){
     this.listRegionStation=[];
       if(res.length>0){
           for (let i = 0; i < res.length; i++) {
@@ -116,13 +139,18 @@ export class StationCategoryMappingComponent implements OnInit {
             this.testData.categoryname = res[i].categoryName;
             this.testData.fromdate = res[i].fromDate;
             this.testData.todate = res[i].toDate;
-            this.testData.status = res[i].active;
+            this.testData.status = res[i].isActive;
       
             this.listRegionStation.push(this.testData);
             this.testData = { "sno": "", "stationname": "", "categoryname": "", "fromdate": "","todate":"","status":"" };
    
           }
-    console.log( this.listRegionStation)
+    
+      }else{
+        Swal.fire({
+          'icon':'error',
+           'text':'No Mapping Found!'
+        })
       }
       setTimeout(() => {
         this.dataSource = new MatTableDataSource(this.listRegionStation);
@@ -148,5 +176,33 @@ export class StationCategoryMappingComponent implements OnInit {
       this.pdfService.stationCategoryMappingList(this.listRegionStation);
     }, 1000);
 
+  }
+  downloadDocExcel(){
+    let req={};
+    let url='download-station-category-mapping'
+    this.outSideService.downloadExcel(req,url).subscribe((res)=>{
+     saveAs(res,'station-category-mapping-'+this.currentDate()+'.xlsx'); 
+    }, error => {
+      Swal.fire({
+        'icon':'error',
+        'text':'Something Went Wrong!'
+      })
+    })
+  }
+  downloadDocPdf(){
+    let req={};
+    let url='station-category-mapping'
+    this.outSideService.downloadPdf(req,url).subscribe((res)=>{
+    saveAs(res,'station-category-mapping-'+this.currentDate()+'.pdf');
+    }, error => {
+      Swal.fire({
+        'icon':'error',
+        'text':'Something Went Wrong!'
+      })
+    })
+  }
+  currentDate(){
+    let currentDate= this.datePipe.transform(new Date(),'dd-MM-yyyy_(hh/mm/ss)');
+    return currentDate;
   }
 }

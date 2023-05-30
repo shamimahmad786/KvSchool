@@ -53,7 +53,6 @@ export class AddStationCategoryComponent implements OnInit,OnDestroy {
       }
       if(this.isEdit){
          request.id=this.editId;
-         console.log(request)
         this.outSideService.editStationCategoryMaster(request).subscribe((res)=>{
           if(res=="SUCCESS"){
             Swal.fire(
@@ -65,7 +64,7 @@ export class AddStationCategoryComponent implements OnInit,OnDestroy {
           }
         },
         error => {
-          console.log(error);
+          // console.log(error);
           Swal.fire({
             'icon':'error',
              'text':error.error.message
@@ -84,7 +83,7 @@ export class AddStationCategoryComponent implements OnInit,OnDestroy {
           }
         },
         error => {
-          console.log(error);
+          // console.log(error);
           Swal.fire({
             'icon':'error',
              'text':error.error.message

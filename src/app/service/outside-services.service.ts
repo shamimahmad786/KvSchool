@@ -496,7 +496,7 @@ export class OutsideServicesService {
 
     });
     
-    return this._http.post<any>(environment.BASE_URL_DATA_MASTER+ "getStationByRegion", data, {headers})
+    return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "fetch/list-of-all-station-by-region", data, {headers})
   }
 
   fetchKvSchoolByStationCode(data){
@@ -1273,7 +1273,7 @@ fetchSubjectPostMapping(data){
     'Content-Type': 'text/plain; charset=utf-8',
   }); 
 
-  return this._http.post<any>(environment.BASE_URL_DATA_MAPPING+ "master/fetch-post-subject-mapping-list-with-staff-details", data, {headers})
+  return this._http.post<any>(environment.BASE_URL_DATA_MAPPING+ "master/fetch-post-subject-mapping-list", data, {headers})
 
 }
 fetchSanctionPostList(data){
@@ -1321,10 +1321,46 @@ updateSanctionedData(data){
   return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "update-school-sanctioned-post-detail", data, {headers})
 
 }
+getMasterDetail(data){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
 
+  return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "list-of-all-master-edit-allowed", data, {headers})
+}
+updateMasterDetail(data){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+
+  return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "update-master-edit-allowed", data, {headers})
+}
+//download report
+downloadExcel(data,url){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "excel/report/"+url,data,{responseType: 'blob'})
+}
+
+downloadPdf(data,url){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "pdf/download/"+url,data,{responseType: 'blob'})
+}
 getkvsDashboardReport(){
   return this._http.post<any>(environment.BASE_URL_DATA_DASHBOARD+ "getkvsDashboardReport","")
 }
+
 
 
 }

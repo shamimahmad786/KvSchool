@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../service/AuthService'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -39,8 +40,9 @@ export class LoginComponent implements OnInit {
   sessionStorage.removeItem('systemTeacherCode')
   console.log(this.loginForm.value)
   debugger
-  this.userDto={"username":"kv_9999","password":"system123#"};
+  // this.userDto={"username":"kv_9999","password":"system123#"};
   this.auth.login(this.loginForm.value).subscribe(res => {
+    
     //console.log(res);
     sessionStorage.setItem("loginType","jwt");
     // alert(res);
@@ -51,7 +53,9 @@ export class LoginComponent implements OnInit {
       if(this.businessUnitTypeId=="2"){
         this.router.navigate(['/teacher/regionMaster']);
       }else if(this.businessUnitTypeId=="3"){
-        this.router.navigate(['/teacher/regionDashboard']);
+        // this.router.navigate(['/teacher/regionDashboard']);
+        this.router.navigate(['/teacher/regionStationMapping']);
+        
       }else if(this.businessUnitTypeId=="4"){
         this.router.navigate(['/teacher/stationDashboard']);
       }else if(this.businessUnitTypeId=="5"){
@@ -65,7 +69,10 @@ export class LoginComponent implements OnInit {
    
   },
     error => { 
-      alert("login response--->"+JSON.stringify(error))
+      Swal.fire({
+        'icon':'error',
+         'text':error.error
+      })
 });
   }
 }

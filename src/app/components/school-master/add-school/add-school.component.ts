@@ -68,10 +68,10 @@ export class AddSchoolComponent implements OnInit,OnDestroy{
           }
         },
         error => {
-          console.log(error);
+          // console.log(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })
@@ -87,7 +87,7 @@ export class AddSchoolComponent implements OnInit,OnDestroy{
           }
         },
         error => {
-          console.log(error);
+          // console.log(error);
           Swal.fire({
             'icon':'error',
              'text':error.error.message
