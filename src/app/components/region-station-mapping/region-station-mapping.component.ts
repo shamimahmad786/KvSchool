@@ -11,6 +11,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
+import { saveAs } from 'file-saver';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-region-station-mapping',
   templateUrl: './region-station-mapping.component.html',
@@ -36,7 +38,8 @@ export class RegionStationMappingComponent implements OnInit {
   filteredOptions: Observable<string[]>;
 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
-  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
+  permissionSave: any=false;
+  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>,private datePipe: DatePipe) { 
     this.dateAdapter.setLocale('en-GB');
   }
 
@@ -45,11 +48,22 @@ export class RegionStationMappingComponent implements OnInit {
     this.getRegionList();
     
      this.businessUnitId=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_id;
-this.businessTypeCode=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_code;
-this.search();
-
+    this.businessTypeCode=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_code;
+    this.search();
+    this.getAuthPermission();
   }
-
+  getAuthPermission(){
+    let req={};
+    this.outSideService.getMasterDetail(req).subscribe((res)=>{
+      if(res.length>0){
+        res.forEach(element => {
+          if(element.masterName=='REGION STATION MAPPING' && element.operation=='SAVE'){
+            this.permissionSave=element.editAllowed;
+          }
+        });
+      }
+    })
+  }
   buildRegionMappingForm(){
     this.regionStationMF = this.fb.group({
       regionCode: ['', [Validators.required]],
@@ -59,6 +73,7 @@ this.search();
   getRegionList(){
     this.outSideService.fetchRegionList().subscribe((res)=>{
       if(res){
+        this.regionList.push({ regionCode: '', regionName: 'Select All'})
         res.forEach(element => {
          
           if(element.isActive){
@@ -84,32 +99,32 @@ this.search();
     }else{
       this.isSubmitted = false;
       let payload=this.regionStationMF.getRawValue();
-      let request={
-        regionName: payload.regionCode,
+      if(payload.regionCode=='Select All')
+      {
+        this.search()
+      }else{
+        let request={
+          regionName: payload.regionCode,
+        }
+        this.outSideService.searchRegionStationMList(request).subscribe((res)=>{
+             this.getRegionStationList(res.content)
+        },
+        error => {
+          // console.log(error);
+        })
       }
-      this.outSideService.searchRegionStationMList(request).subscribe((res)=>{
-           this.getRegionStationList(res.content)
-      },
-      error => {
-        console.log(error);
-      })
+
     }
 
     
   }
   search(){
     let request={};
-
-    if(this.businessUnitId=="3"){
-      request={"regionCode":this.businessTypeCode};
-    }
-
     this.outSideService.searchRegionStationMList(request).subscribe((res)=>{
-
       this.getRegionStationList(res.content)
       },
       error => {
-        console.log(error);
+        // console.log(error);
       })
   }
 
@@ -134,13 +149,16 @@ this.search();
             this.testData.stationname = res[i].stationName+"("+ res[i].stationCode+")";
             this.testData.fromdate = res[i].fromDate;
             this.testData.todate = res[i].toDate;
-            this.testData.status = res[i].active;
+            this.testData.status = res[i].isActive;
       
             this.listRegionStation.push(this.testData);
             this.testData = { "sno": "", "regionname": "", "stationname": "", "fromdate": "","todate":"","status":"" };
-   
           }
-    console.log(this.listRegionStation)
+      }else{
+        Swal.fire({
+          'icon':'error',
+           'text':'No Mapping Found!'
+        })
       }
       setTimeout(() => {
         this.dataSource = new MatTableDataSource(this.listRegionStation);
@@ -165,5 +183,34 @@ this.search();
       this.pdfService.regionStationMappingList(this.listRegionStation);
     }, 1000);
   }
+  downloadDocExcel(){
+    let req={};
+    let url='download-region-station-mapping'
+    this.outSideService.downloadExcel(req,url).subscribe((res)=>{
+     saveAs(res,'region-station-mapping-'+this.currentDate()+'.xlsx'); 
+    }, error => {
+      Swal.fire({
+        'icon':'error',
+        'text':'Something Went Wrong!'
+      })
+    })
+  }
+  downloadDocPdf(){
+    let req={};
+    let url='region-station-mapping'
+    this.outSideService.downloadPdf(req,url).subscribe((res)=>{
+    saveAs(res,'region-station-mapping-'+this.currentDate()+'.pdf');
+    }, error => {
+      Swal.fire({
+        'icon':'error',
+        'text':'Something Went Wrong!'
+      })
+    })
+  }
+  currentDate(){
+    let currentDate= this.datePipe.transform(new Date(),'dd-MM-yyyy_(hh/mm/ss)');
+    return currentDate;
+  }
+
 
 }

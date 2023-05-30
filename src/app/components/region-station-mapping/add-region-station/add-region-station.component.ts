@@ -68,7 +68,7 @@ export class AddRegionStationComponent implements OnInit {
       stationCode: ['',[Validators.required]],
       fromDate:[new Date(),[Validators.required]],
       toDate:[''],
-      status:['',[Validators.required]]
+      status:[true,[Validators.required]]
     });
   }
   getRegionList(){
@@ -119,7 +119,6 @@ export class AddRegionStationComponent implements OnInit {
         toDate:this.datePipe.transform(payload.toDate,'yyyy-MM-dd'),
         status:payload.status,
       }
-      console.log(request)
       this.outSideService.addRegionStationMapping(request).subscribe((res)=>{
         if(res=="SUCCESS"){
           Swal.fire(
@@ -131,12 +130,10 @@ export class AddRegionStationComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
         Swal.fire({
           'icon':'error',
            'text':error.error
-        }
-        )
+        })
       })
     }
 
@@ -154,6 +151,7 @@ export class AddRegionStationComponent implements OnInit {
     this.regionMForm.get('fromDate').setValue(new Date());
     this.regionMForm.get('toDate').setValue('');
     this.regionMForm.get('status').setValue('');
+    this.regionMForm.get('status').enable();
   }
   errorHandling(controlName: string, errorName: string) {
     return this.regionMForm.controls[controlName].hasError(errorName);
@@ -168,6 +166,16 @@ export class AddRegionStationComponent implements OnInit {
     d.setHours(d.getHours() + 5);
     d.setMinutes(d.getMinutes() + 30);
     return new Date(d)
+  }
+  toDateChange(event){
+    console.log(event.value)
+    if(event.value){
+      this.regionMForm.get('status').setValue(false);
+      this.regionMForm.get('status').disable();
+    }else{
+      this.regionMForm.get('status').setValue(true);
+      this.regionMForm.get('status').enable();
+    }
   }
 
 }
