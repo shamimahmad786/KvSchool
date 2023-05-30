@@ -2213,7 +2213,9 @@ this.getStatus(this.tempTeacherId);
                         'Your Data has been saved and sent for Verification!',
                         '',
                         'success'
-                      )
+                      ).then((result) => {
+                        this.pdfSentToClient();
+                      })
                     })
                     const flagData = {
                       'teacherId': this.tempTeacherId,
@@ -4311,5 +4313,12 @@ else if(this.selectSchoolType==3)
 //   alert("data-->"+experienceType);
 //  return this.pipe.transform(experienceType);
 // }
+
+
+pdfSentToClient(){
+  alert("download pdf")
+}
+
+
 
 }

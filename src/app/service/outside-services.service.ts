@@ -1132,6 +1132,9 @@ searchSchoolStationMList(data){
 
   return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "fetch/school-sation-mapping-list", data, {headers})
 }
+
+
+
 addStaffTypeMaster(data){
 
   var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
@@ -1273,7 +1276,7 @@ fetchSubjectPostMapping(data){
     'Content-Type': 'text/plain; charset=utf-8',
   }); 
 
-  return this._http.post<any>(environment.BASE_URL_DATA_MAPPING+ "master/fetch-post-subject-mapping-list", data, {headers})
+  return this._http.post<any>(environment.BASE_URL_DATA_MAPPING+ "master/fetch-post-subject-mapping-list-with-staff-details", data, {headers})
 
 }
 fetchSanctionPostList(data){
@@ -1319,8 +1322,8 @@ updateSanctionedData(data){
   }); 
 
   return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "update-school-sanctioned-post-detail", data, {headers})
-
 }
+
 getMasterDetail(data){
   var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
   var headers = new HttpHeaders({
@@ -1360,9 +1363,4 @@ downloadPdf(data,url){
 getkvsDashboardReport(){
   return this._http.post<any>(environment.BASE_URL_DATA_DASHBOARD+ "getkvsDashboardReport","")
 }
-
-
-
-}
-
 
