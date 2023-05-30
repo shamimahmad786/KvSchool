@@ -7,6 +7,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatTableDataSource } from '@angular/material/table';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
+import { saveAs } from 'file-saver';
+import Swal from 'sweetalert2';
 const ELEMENT_DATA: any = [
   {sno: '', stationcode: '', stationname: '', status: ''}
 
@@ -24,11 +26,28 @@ export class StationMasterComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   stationList: any=[];
- 
-  constructor(private pdfService: MasterReportPdfService, private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
+  permissionSave: boolean=false;
+  permissionEdit: boolean=false;
+  constructor(private pdfService: MasterReportPdfService, private datePipe: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
    this.getStationMaterList();
+   this.getAuthPermission();
+  }
+  getAuthPermission(){
+    let req={};
+    this.outSideService.getMasterDetail(req).subscribe((res)=>{
+      if(res.length>0){
+        res.forEach(element => {
+          if(element.masterName=='STATION MASTER' && element.operation=='SAVE'){
+            this.permissionSave=element.editAllowed;
+          }
+          if(element.masterName=='STATION MASTER' && element.operation=='EDIT'){
+            this.permissionEdit=element.editAllowed
+          }
+        });
+      }
+    })
   }
   redirectto(){
     this.router.navigate(['/teacher/stationMaster/add']);
@@ -79,6 +98,35 @@ export class StationMasterComponent implements OnInit {
       this.pdfService.stationMasterList(this.stationList);
     }, 1000);
 
+  }
+  downloadDocExcel(){
+    let req={};
+    let url='download-station-master'
+    this.outSideService.downloadExcel(req,url).subscribe((res)=>{
+     saveAs(res,'station-master-'+this.currentDate()+'.xlsx');
+      
+    }, error => {
+      Swal.fire({
+        'icon':'error',
+         'text':'Something Went Wrong!'
+      })
+    })
+  }
+  downloadDocPdf(){
+    let req={};
+    let url='station-master'
+    this.outSideService.downloadPdf(req,url).subscribe((res)=>{
+    saveAs(res,'station-master-'+this.currentDate()+'.pdf');  
+    }, error => {
+      Swal.fire({
+        'icon':'error',
+        'text':'Something Went Wrong!'
+      })
+    })
+  }
+  currentDate(){
+    let currentDate= this.datePipe.transform(new Date(),'dd-MM-yyyy_(hh/mm/ss)');
+    return currentDate;
   }
    
 }
