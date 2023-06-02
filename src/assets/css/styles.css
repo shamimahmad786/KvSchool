@@ -112,7 +112,7 @@ button#btnNavbarSearch:hover {
 }
 
 .bg-profile-head {
-    background: #24695c;
+    background: #106384;
 }
 
 #layoutAuthentication {
@@ -120,7 +120,9 @@ button#btnNavbarSearch:hover {
     flex-direction: column;
     min-height: 100vh;
 }
-
+.nav-link{
+    color: #1a1919 !important;
+}
 #layoutAuthentication #layoutAuthentication_content {
     min-width: 0;
     flex-grow: 1;

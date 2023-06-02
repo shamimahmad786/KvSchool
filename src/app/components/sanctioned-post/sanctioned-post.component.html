@@ -2,15 +2,15 @@
     <div class=" bg-profile-head">
         <h5 class="mb-0 p-2 FontTitle  text-white">Sanctioned Post Mapping</h5>
     </div>
-    <div class="row">
-        <div class="col-md-3 form-group mt-3">
+    <div class="d-flex flex-row  bd-highlight ">
+        <div class="p-1 w-25">
             <label class="titleSet">Select Region Name</label>
             <mat-select (selectionChange)="getStationList($event)" class="form-control" value="">
                 <mat-option value="">Select Region Name</mat-option>
                 <mat-option *ngFor="let reg of regionList" [value]="reg.regionCode">{{reg.regionName}}({{reg.regionCode}})</mat-option>
             </mat-select>
         </div>
-        <div class="col-md-3 form-group mt-3">
+        <div class="p-1 w-25">
             <label class="titleSet">Select Station Name</label>
             <mat-select (selectionChange)="getSchoolList($event)" class="form-control" value="">
                 <mat-option value="">Select Station Name</mat-option>
@@ -18,7 +18,54 @@
                     {{station.stationName}}({{station.stationCode}})</mat-option>
             </mat-select>
         </div>
-        <div class="col-md-3 form-group mt-3">
+        <div class="p-1 w-25">
+            <label class="titleSet">Select School Name</label>
+            <mat-select (selectionChange)="getSanctionPostList($event)" class="form-control" value="">
+                <mat-option value="">Select School Name</mat-option>
+                <mat-option *ngFor="let school of schoolList" [value]="school.schoolCode">
+                    {{school.schoolName}}({{school.schoolCode}})</mat-option>
+            </mat-select>
+        </div> 
+        
+      
+       
+        
+         <div class="p-5"></div> 
+            <div class="p-1">
+                <button mat-raised-button color="primary" class="float-end mt-2" (click)="sanctionedPostMappingPdf()">Download PDF</button>
+            </div>
+            <div class="p-1 ">
+                <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
+            </div>
+       
+
+        
+
+    </div>
+
+
+
+
+
+
+
+    <!-- <div class="row">
+        <div class="col-md-2 form-group mt-3">
+            <label class="titleSet">Select Region Name</label>
+            <mat-select (selectionChange)="getStationList($event)" class="form-control" value="">
+                <mat-option value="">Select Region Name</mat-option>
+                <mat-option *ngFor="let reg of regionList" [value]="reg.regionCode">{{reg.regionName}}({{reg.regionCode}})</mat-option>
+            </mat-select>
+        </div>
+        <div class="col-md-2 form-group mt-3">
+            <label class="titleSet">Select Station Name</label>
+            <mat-select (selectionChange)="getSchoolList($event)" class="form-control" value="">
+                <mat-option value="">Select Station Name</mat-option>
+                <mat-option *ngFor="let station of stationList" [value]="station.stationCode">
+                    {{station.stationName}}({{station.stationCode}})</mat-option>
+            </mat-select>
+        </div>
+        <div class="col-md-2 form-group mt-3">
             <label class="titleSet">Select School Name</label>
             <mat-select (selectionChange)="getSanctionPostList($event)" class="form-control" value="">
                 <mat-option value="">Select School Name</mat-option>
@@ -26,10 +73,13 @@
                     {{school.schoolName}}({{school.schoolCode}})</mat-option>
             </mat-select>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <button mat-raised-button color="primary" class="float-end mt-2" (click)="sanctionedPostMappingPdf()">Download PDF</button>
         </div>
-    </div>
+        <div class="col-md-2">
+            <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
+        </div>
+    </div> -->
 
 </div>
 <div class="fieldSet card mt-4 p-3">

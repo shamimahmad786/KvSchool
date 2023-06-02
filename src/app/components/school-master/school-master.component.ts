@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
+import { Workbook } from 'exceljs';
+import { saveAs } from 'file-saver';
 const ELEMENT_DATA: any = [
   {sno: '', stationcode: '', stationname: '', status: ''}
 
@@ -20,7 +22,7 @@ const ELEMENT_DATA: any = [
 export class SchoolMasterComponent implements OnInit {
   dataSource = ELEMENT_DATA;
   displayedColumns:any = ['sno', 'schoolcode', 'schoolname', 'schooltype', 'status','shift','action'];
-  testData = {sno: '', schoolcode: '', schoolname: '', status: '',schooltype:'',shift:'',id:''};
+  testData = {sno: '', schoolcode: '', schoolname: '', status: '',schooltype:'',shiftType:'',shift:'',id:''};
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   schoolList: any=[];
@@ -43,11 +45,23 @@ export class SchoolMasterComponent implements OnInit {
           this.testData.schoolcode = res[i].schoolCode;
           this.testData.schoolname = res[i].schoolName;
           this.testData.status = res[i].schoolStatus;
+          if(res[i].shift =='0' || res[i].shift ==0 )
+          {
+            this.testData.shiftType = 'First Shift';
+          }
+          if(res[i].shift =='1' || res[i].shift ==1 )
+          {
+            this.testData.shiftType ='First Shift';
+          }
+          if(res[i].shift =='2' || res[i].shift ==2 )
+          {
+            this.testData.shiftType ='Second Shift';
+          }
           this.testData.shift = res[i].shift;
           this.testData.id = res[i].id;
           this.testData.schooltype=res[i].schoolType;
           this.schoolList.push(this.testData);
-          this.testData = {sno: '', schoolcode: '', schoolname: '',schooltype:'', status: '',shift:'',id:''};
+          this.testData = {sno: '', schoolcode: '', schoolname: '',schooltype:'', status:'',shiftType:'',shift:'',id:''};
         }
         console.log(this.schoolList);
         setTimeout(() => {
@@ -80,4 +94,47 @@ export class SchoolMasterComponent implements OnInit {
       this.pdfService.schoolMasterList(this.schoolList);
     }, 1000);
    }
+   exportexcel(){
+    console.log(this.schoolList)
+    const workBook = new Workbook();
+    const workSheet = workBook.addWorksheet('SchoolMaster');
+    const excelData = [];
+    const ws1 = workSheet.addRow(['', 'SCHOOL MASTER', '']);
+    const dobCol = workSheet.getColumn(1);
+    dobCol.width = 15;
+    const dobCol1 = workSheet.getColumn(2);
+    dobCol1.width = 30;
+    const dobCol2 = workSheet.getColumn(3);
+    dobCol2.width = 10;
+    workSheet.getRow(1).font = { name: 'Arial', family: 4, size: 13, bold: true };
+    for (let i = 1; i < 4; i++) {
+      const col = ws1.getCell(i);
+      col.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb:  '9c9b98' },   
+      };
+    }
+   const ws = workSheet.addRow(['School Code', 'School Name','Status','Shift Type']);
+   workSheet.getRow(2).font = { name: 'Arial', family: 4, size: 10, bold: true };
+      for (let i = 1; i < 4; i++) {
+        const col = ws.getCell(i);
+        col.fill = {
+          type: 'pattern',
+          pattern: 'solid',
+          fgColor: { argb:  'd6d6d4' },
+        };
+      }
+      
+    this.schoolList.forEach((item) => {
+      const row = workSheet.addRow([item.schoolcode, item.schoolname,item.status,item.shiftType]);
+    });
+    workBook.xlsx.writeBuffer().then((data) => {
+      let blob = new Blob([data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
+      saveAs(blob, 'SchoolMaster.xlsx');
+    });
+ 
+  }
 }

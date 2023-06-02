@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import {map, startWith} from 'rxjs/operators';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
-
+import { Workbook } from 'exceljs';
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-school-station-mapping',
   templateUrl: './school-station-mapping.component.html',
@@ -24,7 +25,7 @@ export class SchoolStationMappingComponent implements OnInit {
   dataSource:any;
   displayedColumns:any = ['sno','stationname','schoolname','shift','fromdate','todate','status'];
 
-  testData = { "sno": "", "stationname": "", "schoolname": "","shift":"" ,"fromdate": "","todate":"","status":""}
+  testData = { "sno": "", "stationname": "", "schoolname": "","shiftType":"","shift":"" ,"fromdate": "","todate":"","status":""}
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -153,17 +154,29 @@ export class SchoolStationMappingComponent implements OnInit {
     this.listRegionStation=[];
       if(res.length>0){
           for (let i = 0; i < res.length; i++) {
-       
+       debugger
             this.testData.sno = '' + (i + 1) + '';
             this.testData.stationname = res[i].stationName+"("+res[i].stationCode+")";
             this.testData.schoolname = res[i].schoolName+"("+res[i].schoolCode+")";
+            if(res[i].shift =='0' || res[i].shift ==0 )
+            {
+            this.testData.shiftType = 'First Shift';
+            }
+           if(res[i].shift =='1' || res[i].shift ==1 )
+           {
+            this.testData.shiftType ='First Shift';
+           }
+           if(res[i].shift =='2' || res[i].shift ==2 )
+           {
+            this.testData.shiftType ='Second Shift';
+           }
             this.testData.shift=res[i].shift;
             this.testData.fromdate = res[i].fromDate;
             this.testData.todate = res[i].toDate;
             this.testData.status = res[i].active;
       
             this.listRegionStation.push(this.testData);
-            this.testData = { "sno": "", "stationname": "", "schoolname": "","shift":"", "fromdate": "","todate":"","status":"" };
+            this.testData = { "sno": "", "stationname": "", "schoolname": "","shiftType":"","shift":"", "fromdate": "","todate":"","status":"" };
           }
           console.log(this.listRegionStation)
       }
@@ -191,5 +204,48 @@ export class SchoolStationMappingComponent implements OnInit {
       this.pdfService.schoolStationMappingList(this.listRegionStation);
     }, 1000);
 
+  }
+  exportexcel(){
+    console.log(this.listRegionStation)
+    const workBook = new Workbook();
+    const workSheet = workBook.addWorksheet('SchoolStationMapping');
+    const excelData = [];
+    const ws1 = workSheet.addRow(['', 'SCHOOL STATION MAPPING', '']);
+    const dobCol = workSheet.getColumn(1);
+    dobCol.width = 15;
+    const dobCol1 = workSheet.getColumn(2);
+    dobCol1.width = 30;
+    const dobCol2 = workSheet.getColumn(3);
+    dobCol2.width = 10;
+    workSheet.getRow(1).font = { name: 'Arial', family: 4, size: 13, bold: true };
+    for (let i = 1; i < 4; i++) {
+      const col = ws1.getCell(i);
+      col.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb:  '9c9b98' },   
+      };
+    }
+   const ws = workSheet.addRow(['School Code', 'School Name','', 'Status','Shift Type']);
+   workSheet.getRow(2).font = { name: 'Arial', family: 4, size: 10, bold: true };
+      for (let i = 1; i < 4; i++) {
+        const col = ws.getCell(i);
+        col.fill = {
+          type: 'pattern',
+          pattern: 'solid',
+          fgColor: { argb:  'd6d6d4' },
+        };
+      }
+      
+    this.listRegionStation.forEach((item) => {
+      const row = workSheet.addRow([item.schoolcode, item.schoolname,item.status,item.shiftType,]);
+    });
+    workBook.xlsx.writeBuffer().then((data) => {
+      let blob = new Blob([data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
+      saveAs(blob, 'SchoolStationMapping.xlsx');
+    });
+ 
   }
 }
