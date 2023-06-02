@@ -66,7 +66,7 @@ export class AddDesignationComponent implements OnInit,OnDestroy {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })
@@ -86,7 +86,7 @@ export class AddDesignationComponent implements OnInit,OnDestroy {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })

@@ -30,7 +30,8 @@ export class AddSubjectComponent implements OnInit,OnDestroy {
   buildregionForm(){
     this.subjectForm = this.fb.group({
       subjectCode: ['', [Validators.required,CustomValidator.IsText1]],
-      subjectName: ['',[Validators.required,CustomValidator.IsText1,Validators.minLength(3)]],
+      // subjectName: ['',[Validators.required,CustomValidator.IsText1,Validators.minLength(3)]],
+      subjectName: [''],
       status:[true,[Validators.required]],
       id:['']
     });
@@ -67,7 +68,7 @@ export class AddSubjectComponent implements OnInit,OnDestroy {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })
@@ -87,7 +88,7 @@ export class AddSubjectComponent implements OnInit,OnDestroy {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })

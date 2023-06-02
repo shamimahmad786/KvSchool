@@ -91,7 +91,7 @@ export class MasterReportPdfService {
         doc.setTextColor(138, 24, 34);
         doc.setFontSize(14);
         doc.setFont('Times-Roman', 'bold');
-        doc.text('Master table : Region (M01)', 15, 28);
+        doc.text('Report : Region (M01)', 15, 28);
 
         // Footer
         var str = "Page " + data.doc.internal.getNumberOfPages();

@@ -44,7 +44,7 @@
 
                 <ng-container matColumnDef="shift">
                     <th mat-header-cell *matHeaderCellDef> Shift Type </th>
-                    <td mat-cell *matCellDef="let element"> {{(element.shift=='1' || element.shift=='0')?'First Shift':'Second Shift'}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.shift=='0'?'No Shift':(element.shift=='1'?'First Shift':'Second Shift')}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="action">

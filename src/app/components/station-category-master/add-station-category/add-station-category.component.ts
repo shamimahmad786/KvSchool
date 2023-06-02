@@ -41,6 +41,7 @@ export class AddStationCategoryComponent implements OnInit,OnDestroy {
   }
 
   submit(){
+  
     if (this.stationCategoryForm.invalid) {
       this.isSubmitted = true;
      this.stationCategoryForm.markAllAsTouched();
@@ -68,7 +69,7 @@ export class AddStationCategoryComponent implements OnInit,OnDestroy {
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })
@@ -84,10 +85,10 @@ export class AddStationCategoryComponent implements OnInit,OnDestroy {
           }
         },
         error => {
-          console.log(error);
+          alert(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })

@@ -68,6 +68,9 @@ export class SchoolMasterComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   edit(data){
+
+    // alert("on edit click--->"+JSON.stringify(data));
+
     sessionStorage.setItem("schoolEdit",JSON.stringify(data));
     this.router.navigate(['/teacher/schoolMaster/edit'])
    }

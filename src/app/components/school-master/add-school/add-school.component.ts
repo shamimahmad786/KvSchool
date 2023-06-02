@@ -31,6 +31,7 @@ export class AddSchoolComponent implements OnInit,OnDestroy{
       schoolCode: ['', [Validators.required,Validators.pattern(/^[1-9][0-9]{3}$/)]],
       schoolName: ['',[Validators.required,CustomValidator.IsTextSchool,Validators.minLength(3)]],
       status:[true,[Validators.required]],
+      schoolType:[''],
       shift:['SHIFT1'],
       id:['']
     });
@@ -39,6 +40,7 @@ export class AddSchoolComponent implements OnInit,OnDestroy{
     this.schoolForm.patchValue(data);
     this.schoolForm.get('schoolCode').setValue(data.schoolcode);
     this.schoolForm.get('schoolName').setValue(data.schoolname);
+    this.schoolForm.get('schoolType').setValue(data.schooltype);
     this.schoolForm.get('schoolCode').disable();
   }
 
@@ -49,13 +51,20 @@ export class AddSchoolComponent implements OnInit,OnDestroy{
     }else{
       this.isSubmitted = false;
       let payload=this.schoolForm.getRawValue();
+
+      // alert(JSON.stringify(payload));
+
       let request={
         schoolCode: payload.schoolCode,
         schoolName: payload.schoolName,
         status:payload.status,
         shift:payload.shift,
+        schoolType:payload.schoolType,
         id:payload.id
       }
+
+      // alert(JSON.stringify(request));
+
       if(this.isEdit){
         this.outSideService.editSchoolMaster(request).subscribe((res)=>{
           if(res=="SUCCESS"){
@@ -90,7 +99,7 @@ export class AddSchoolComponent implements OnInit,OnDestroy{
           console.log(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })

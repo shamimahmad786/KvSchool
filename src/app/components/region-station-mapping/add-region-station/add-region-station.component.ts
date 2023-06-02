@@ -24,6 +24,7 @@ export class AddRegionStationComponent implements OnInit {
   dropdownRegionList:any=[];
   selectedRegionItems = [];
   dropdownRegionSettings = {};
+  stationMapped:boolean=false;
 
   statusList=[{'value':true,'status':'Active'},{'value':false,'status':'InActive'}];
 
@@ -85,14 +86,16 @@ export class AddRegionStationComponent implements OnInit {
   }
   getStationList(){
     let request={};
-    this.outSideService.fetchStationList(request).subscribe((res)=>{
-      if(res.length>0){
-        res.forEach(element => {
-          if(element.isActive){
-            this.stationList.push({ stationCode: element.stationCode, stationName: element.stationName+"("+element.stationCode+")"})
+    this.outSideService.fetchUnmappedStationList(request).subscribe((res)=>{
+      if(res.rowValue.length>0){
+        res.rowValue.forEach(element => {
+          if(element.is_active){ 
+            this.stationList.push({ stationCode: element.station_code, stationName: element.station_name+"("+element.station_code+")"})
           }
         });
         this.dropdownStationList=this.stationList;
+      }else{
+        this.stationMapped=true;
       }
 
     })
@@ -134,7 +137,7 @@ export class AddRegionStationComponent implements OnInit {
         console.log(error);
         Swal.fire({
           'icon':'error',
-           'text':error.error.message
+           'text':error.error
         }
         )
       })

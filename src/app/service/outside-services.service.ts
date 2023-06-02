@@ -1086,6 +1086,21 @@ fetchStationList(data){
   return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "fetch/list-of-all-station", data, {headers})
 
 }
+
+
+fetchUnmappedStationList(data){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+
+  return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "fetch/list-of-unmaped-station", data, {headers})
+
+}
+
+
+
 fetchSchoolList(data){
   var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
   var headers = new HttpHeaders({
@@ -1095,6 +1110,16 @@ fetchSchoolList(data){
 
   return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "fetch/list-of-all-school", data, {headers})
 }
+fetchSchoolUnmappedList(data){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "fetch/list-of-all-unmapped-school", data, {headers})
+}
+
+
 fetchStationCategoryList(data){
   var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
   var headers = new HttpHeaders({

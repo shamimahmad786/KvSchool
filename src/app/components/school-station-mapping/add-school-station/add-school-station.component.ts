@@ -24,6 +24,7 @@ export class AddSchoolStationComponent implements OnInit {
   dropdownSchoolList:any=[];
   selectedSchoolItems = [];
   dropdownSchoolSettings = {};
+  schoolStaionMapped:boolean=false;
 
   statusList=[{'value':true,'status':'Active'},{'value':false,'status':'InActive'}]
 
@@ -73,14 +74,16 @@ export class AddSchoolStationComponent implements OnInit {
   }
   getSchoolList(){
     let req={};
-    this.outSideService.fetchSchoolList(req).subscribe((res)=>{
-      if(res){
-        res.forEach(element => {
-          if(element.schoolStatus){
-            this.schoolList.push({ schoolCode: element.schoolCode, schoolName: element.schoolName+"("+element.shift+")"})
+    this.outSideService.fetchSchoolUnmappedList(req).subscribe((res)=>{
+      if(res.rowValue.length>0){
+        res.rowValue.forEach(element => {
+          if(element.school_status){
+            this.schoolList.push({ schoolCode: element.school_code, schoolName: element.school_name+"("+element.shift+")"})
           }
         });
          this.dropdownSchoolList=this.schoolList;
+      }else{
+        this.schoolStaionMapped=true;
       }
     })
   }
@@ -136,7 +139,7 @@ export class AddSchoolStationComponent implements OnInit {
         console.log(error);
         Swal.fire({
           'icon':'error',
-           'text':error.error.message
+           'text':error.error
         }
         )
       })

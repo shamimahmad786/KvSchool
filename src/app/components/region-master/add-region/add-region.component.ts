@@ -71,7 +71,6 @@ export class AddRegionComponent implements OnInit,OnDestroy {
           )
         })
       }else{
-        //new region add
         this.outSideService.addRegionMaster(request).subscribe((res)=>{
           if(res=="SUCCESS"){
             Swal.fire(
@@ -86,7 +85,7 @@ export class AddRegionComponent implements OnInit,OnDestroy {
           // console.log(error);
           Swal.fire({
             'icon':'error',
-             'text':error.error.message
+             'text':error.error
           }
           )
         })
