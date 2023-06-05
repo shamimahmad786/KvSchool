@@ -24,7 +24,7 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns:any = ['sno', 'regioncode', 'regionname', 'status','action'];
 
-  testData = { "sno": "", "regioncode": "", "regionname": "", "status": "","id":"" }
+  testData = { "sno": "", "regioncode": "", "regionname": "", "status": "","statusType": "","id":"" }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -43,15 +43,21 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
     this.outSideService.fetchRegionList().subscribe((res)=>{
       if(res.length>0){
           for (let i = 0; i < res.length; i++) {
-       
             this.testData.sno = '' + (i + 1) + '';
             this.testData.regioncode = res[i].regionCode;
             this.testData.regionname = res[i].regionName;
             this.testData.status = res[i].isActive;
-            this.testData.id = res[i].id;
-
-            this.listRegion.push(this.testData);
-            this.testData = { "sno": "", "regioncode": "", "regionname": "", "status": "","id":"" };
+            if(res[i].isActive ==true )
+            {
+            this.testData.statusType = 'Active';
+            }
+           if(res[i].isActive ==false )
+            {
+            this.testData.statusType ='InActive';
+            }      
+          this.testData.id = res[i].id;
+          this.listRegion.push(this.testData);
+          this.testData = { "sno": "", "regioncode": "", "regionname": "", "status": "","statusType": "","id":"" };
    
           }
     console.log( this.listRegion)
@@ -84,6 +90,7 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
    this.router.navigate(['/teacher/regionMaster/edit'])
   }
   exportexcel(){
+    console.log(this.listRegion)
     const workBook = new Workbook();
     const workSheet = workBook.addWorksheet('RegionMaster');
     const excelData = [];
@@ -115,7 +122,7 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
       }
       
     this.listRegion.forEach((item) => {
-      const row = workSheet.addRow([item.regioncode, item.regionname,item.status]);
+      const row = workSheet.addRow([item.regioncode, item.regionname,item.statusType]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {

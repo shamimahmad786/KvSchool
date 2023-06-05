@@ -18,7 +18,7 @@ export class SubjectMasterComponent implements OnInit,AfterViewInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns:any = ['sno', 'subjectCode', 'subjectName', 'status','action'];
 
-  testData = { "sno": "", "subjectCode": "", "subjectName": "", "status": "","id":"" }
+  testData = { "sno": "", "subjectCode": "", "subjectName": "", "status": "","statusType": "","id":"" }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -42,10 +42,18 @@ export class SubjectMasterComponent implements OnInit,AfterViewInit {
              this.testData.subjectCode = res[i].subjectCode;
              this.testData.subjectName = res[i].subjectName;
              this.testData.status = res[i].status;
+             if(res[i].status ==true )
+             {
+             this.testData.statusType = 'Active';
+             }
+            if(res[i].status ==false )
+             {
+             this.testData.statusType ='InActive';
+             } 
              this.testData.id = res[i].id;
 
              this.listDesignation.push(this.testData);
-             this.testData = { "sno": "", "subjectCode": "", "subjectName": "", "status": "","id":"" };
+             this.testData = { "sno": "", "subjectCode": "", "subjectName": "", "status": "","statusType": "","id":"" };
     
            }
      console.log(this.listDesignation)
@@ -110,7 +118,7 @@ export class SubjectMasterComponent implements OnInit,AfterViewInit {
       }
       
     this.listDesignation.forEach((item) => {
-      const row = workSheet.addRow([item.subjectCode, item.subjectName,item.status]);
+      const row = workSheet.addRow([item.subjectCode, item.subjectName,item.statusType]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {

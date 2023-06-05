@@ -19,7 +19,7 @@ export class DesignationMasterComponent implements OnInit,AfterViewInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns:any = ['sno', 'postCode', 'postName', 'status','action'];
 
-  testData = { "sno": "", "postCode": "", "postName": "", "status": "" ,"id":""}
+  testData = { "sno": "", "postCode": "", "postName": "", "status": "" ,"statusType": "" ,"id":""}
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -43,10 +43,18 @@ export class DesignationMasterComponent implements OnInit,AfterViewInit {
              this.testData.postCode = res[i].postCode;
              this.testData.postName = res[i].postName;
              this.testData.status = res[i].status;
+             if(res[i].status ==true )
+             {
+             this.testData.statusType = 'Active';
+             }
+            if(res[i].status ==false )
+             {
+             this.testData.statusType ='InActive';
+             } 
              this.testData.id = res[i].id;
        
              this.listDesignation.push(this.testData);
-             this.testData = { "sno": "", "postCode": "", "postName": "", "status": "","id":"" };
+             this.testData = { "sno": "", "postCode": "", "postName": "", "status": "","statusType": "","id":"" };
     
            }
      console.log(this.listDesignation)
@@ -111,7 +119,7 @@ export class DesignationMasterComponent implements OnInit,AfterViewInit {
       }
       
     this.listDesignation.forEach((item) => {
-      const row = workSheet.addRow([item.postCode, item.postName,item.status]);
+      const row = workSheet.addRow([item.postCode, item.postName,item.statusType]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {

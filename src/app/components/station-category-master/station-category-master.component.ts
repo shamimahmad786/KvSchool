@@ -19,7 +19,7 @@ import { saveAs } from 'file-saver';
 
 export class StationCategoryMasterComponent implements OnInit {
   stationCategoryList: any=[];
-  testData = {sno: '', categoryname: '', status: '',id:''};
+  testData = {sno: '', categoryname: '', status: '',statusType: '',id:''};
 
   ngOnInit(): void {
     this.getListStationCategory();
@@ -50,10 +50,18 @@ export class StationCategoryMasterComponent implements OnInit {
             // this.testData.categoryid = res[i].id;
             this.testData.categoryname = res[i].category;
             this.testData.status = res[i].isActive;
+            if(res[i].isActive ==true )
+            {
+            this.testData.statusType = 'Active';
+            }
+           if(res[i].isActive ==false )
+            {
+            this.testData.statusType ='InActive';
+            } 
             this.testData.id=res[i].id;
       
             this.stationCategoryList.push(this.testData);
-            this.testData =  {sno: '', categoryname: '', status: '',id:''};
+            this.testData =  {sno: '', categoryname: '', status: '',statusType: '',id:''};
           }  
           console.log(this.stationCategoryList)
           setTimeout(() => {
@@ -117,7 +125,7 @@ export class StationCategoryMasterComponent implements OnInit {
       }
       
     this.stationCategoryList.forEach((item) => {
-      const row = workSheet.addRow([item.categoryname,item.status]);
+      const row = workSheet.addRow([item.categoryname,item.statusType]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {

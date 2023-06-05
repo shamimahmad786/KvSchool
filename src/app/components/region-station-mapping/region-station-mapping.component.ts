@@ -21,11 +21,11 @@ import { saveAs } from 'file-saver';
 export class RegionStationMappingComponent implements OnInit {
   regionStationMF: FormGroup;
   isSubmitted: boolean = false;
-
+  mdoDateResultArray: any = new Array()
   dataSource:any;
   displayedColumns:any = ['sno','regionname','stationname','fromdate','todate','status'];
 
-  testData = { "sno": "", "regionname": "", "stationname": "", "fromdate": "","todate":"","status":""}
+  testData = { "sno": "", "regionname": "", "stationname": "", "fromdate": "","todate":"","status":"","statusType":""}
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -137,9 +137,16 @@ this.search();
             this.testData.fromdate = res[i].fromDate;
             this.testData.todate = res[i].toDate;
             this.testData.status = res[i].active;
-      
+            if(res[i].active ==true )
+            {
+            this.testData.statusType = 'Active';
+            }
+           if(res[i].active ==false )
+            {
+            this.testData.statusType ='InActive';
+            } 
             this.listRegionStation.push(this.testData);
-            this.testData = { "sno": "", "regionname": "", "stationname": "", "fromdate": "","todate":"","status":"" };
+            this.testData = { "sno": "", "regionname": "", "stationname": "", "fromdate": "","todate":"","status":"","statusType":"" };
    
           }
     console.log(this.listRegionStation)
@@ -163,9 +170,23 @@ this.search();
   }
   regionStationMappingpdf()
   {
-    setTimeout(() => {
-      this.pdfService.regionStationMappingList(this.listRegionStation);
-    }, 1000);
+
+    var groupByEnrolementDate = function(xs:any, key:any) {
+      return xs.reduce(function(rv:any, x:any) {
+        (rv[x[key]] = rv[x[key]] || []).push(x);
+        return rv;
+      }, {});
+    };
+    var groubedByEnrolmentDateResult=groupByEnrolementDate(this.listRegionStation, 'regionname')
+  
+    this. mdoDateResultArray = Object.entries(groubedByEnrolmentDateResult)
+  //  console.log(groubedByEnrolmentDateResult)
+    console.log(this.mdoDateResultArray)
+    this.pdfService.regionStationMappingList(this.mdoDateResultArray);
+
+    // setTimeout(() => {
+    //   this.pdfService.regionStationMappingList(this.listRegionStation);
+    // }, 1000);
   }
   exportexcel(){
     console.log(this.listRegionStation)
@@ -180,7 +201,7 @@ this.search();
     const dobCol2 = workSheet.getColumn(3);
     dobCol2.width = 10;
     workSheet.getRow(1).font = { name: 'Arial', family: 4, size: 13, bold: true };
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < 6; i++) {
       const col = ws1.getCell(i);
       col.fill = {
         type: 'pattern',
@@ -190,7 +211,7 @@ this.search();
     }
    const ws = workSheet.addRow(['Region Name', 'Station Name','From Date','todate','Status']);
    workSheet.getRow(2).font = { name: 'Arial', family: 4, size: 10, bold: true };
-      for (let i = 1; i < 4; i++) {
+      for (let i = 1; i < 6; i++) {
         const col = ws.getCell(i);
         col.fill = {
           type: 'pattern',
@@ -200,7 +221,7 @@ this.search();
       }
       
     this.listRegionStation.forEach((item) => {
-      const row = workSheet.addRow([item.regionname, item.stationname,item.fromdate,item.todate,item.status]);
+      const row = workSheet.addRow([item.regionname, item.stationname,item.fromdate,item.todate,item.statusType]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {

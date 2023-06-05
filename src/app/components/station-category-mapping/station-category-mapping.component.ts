@@ -24,7 +24,7 @@ export class StationCategoryMappingComponent implements OnInit {
   dataSource:any;
   displayedColumns:any = ['sno','stationname','categoryname','fromdate','todate','status'];
 
-  testData = { "sno": "", "stationname": "", "categoryname": "", "fromdate": "","todate":"","status":""}
+  testData = { "sno": "", "stationname": "", "categoryname": "", "fromdate": "","todate":"","status":"","statusType":""}
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -119,9 +119,16 @@ export class StationCategoryMappingComponent implements OnInit {
             this.testData.fromdate = res[i].fromDate;
             this.testData.todate = res[i].toDate;
             this.testData.status = res[i].active;
-      
+            if(res[i].active ==true )
+            {
+            this.testData.statusType = 'Active';
+            }
+           if(res[i].active ==false )
+            {
+            this.testData.statusType ='InActive';
+            } 
             this.listRegionStation.push(this.testData);
-            this.testData = { "sno": "", "stationname": "", "categoryname": "", "fromdate": "","todate":"","status":"" };
+            this.testData = { "sno": "", "stationname": "", "categoryname": "", "fromdate": "","todate":"","status":"","statusType":"" };
    
           }
     console.log( this.listRegionStation)
@@ -158,13 +165,15 @@ export class StationCategoryMappingComponent implements OnInit {
     const excelData = [];
     const ws1 = workSheet.addRow(['', 'STATION CATEGORY MAPPING', '']);
     const dobCol = workSheet.getColumn(1);
-    dobCol.width = 15;
+    dobCol.width = 20;
     const dobCol1 = workSheet.getColumn(2);
     dobCol1.width = 30;
     const dobCol2 = workSheet.getColumn(3);
-    dobCol2.width = 10;
+    dobCol2.width = 12;
+    const dobCol3 = workSheet.getColumn(4);
+    dobCol3.width = 12;
     workSheet.getRow(1).font = { name: 'Arial', family: 4, size: 13, bold: true };
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < 6; i++) {
       const col = ws1.getCell(i);
       col.fill = {
         type: 'pattern',
@@ -174,7 +183,7 @@ export class StationCategoryMappingComponent implements OnInit {
     }
    const ws = workSheet.addRow(['Station Name', 'Category Name','From Date','To Date', 'Status']);
    workSheet.getRow(2).font = { name: 'Arial', family: 4, size: 10, bold: true };
-      for (let i = 1; i < 4; i++) {
+      for (let i = 1; i < 6; i++) {
         const col = ws.getCell(i);
         col.fill = {
           type: 'pattern',
@@ -184,7 +193,7 @@ export class StationCategoryMappingComponent implements OnInit {
       }
       
     this.listRegionStation.forEach((item) => {
-      const row = workSheet.addRow([item.stationname, item.categoryname,item.fromdate,item.todate,item.status]);
+      const row = workSheet.addRow([item.stationname, item.categoryname,item.fromdate,item.todate,item.statusType]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {

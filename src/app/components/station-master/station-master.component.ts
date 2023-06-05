@@ -22,7 +22,7 @@ const ELEMENT_DATA: any = [
 export class StationMasterComponent implements OnInit {
   dataSource = ELEMENT_DATA;
   displayedColumns:any = ['sno', 'stationcode', 'stationname', 'status','action'];
-  testData = {sno: '', stationcode: '', stationname: '', status: '',id:''};
+  testData = {sno: '', stationcode: '', stationname: '', status: '',statusType: '',id:''};
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   stationList: any=[];
@@ -45,10 +45,18 @@ export class StationMasterComponent implements OnInit {
           this.testData.stationcode = res[i].stationCode;
           this.testData.stationname = res[i].stationName;
           this.testData.status = res[i].isActive;
+          if(res[i].isActive ==true )
+          {
+          this.testData.statusType = 'Active';
+          }
+         if(res[i].isActive ==false )
+          {
+          this.testData.statusType ='InActive';
+          } 
           this.testData.id = res[i].id;
 
           this.stationList.push(this.testData);
-          this.testData = {sno: '', stationcode: '', stationname: '', status: '',id:''};
+          this.testData = {sno: '', stationcode: '', stationname: '', status: '',statusType: '',id:''};
   
         }
         setTimeout(() => {
@@ -115,7 +123,7 @@ export class StationMasterComponent implements OnInit {
       }
       
     this.stationList.forEach((item) => {
-      const row = workSheet.addRow([item.stationcode, item.stationname,item.status]);
+      const row = workSheet.addRow([item.stationcode, item.stationname,item.statusType]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {
