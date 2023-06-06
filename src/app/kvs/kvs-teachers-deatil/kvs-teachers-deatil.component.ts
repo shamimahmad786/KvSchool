@@ -12,6 +12,9 @@ import Swal from 'sweetalert2';
 import * as bcrypt from 'bcryptjs';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
+import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
+import { Workbook } from 'exceljs';
+import { saveAs } from 'file-saver';
 // import { type } from 'os';
 declare var $: any;
 
@@ -31,7 +34,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "", "approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
+  testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "","approvedStatus":"","approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
   users: any = [];
   kvTeacher: any;
   teacherList: any;
@@ -96,7 +99,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
   rejectedTeacher: any;
   isNationalLogin:boolean = false;
 
-  constructor(private date: DatePipe,private outSideService: OutsideServicesService, private router: Router, private modalService: NgbModal, private setDataService: DataService,private toastr: ToastrService) { }
+  constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private router: Router, private modalService: NgbModal, private setDataService: DataService,private toastr: ToastrService) { }
 
   @ViewChild('test', { static: true }) test: TemplateRef<any>;
   @ViewChild('DropBox', { static: true }) DropBox: TemplateRef<any>;
@@ -196,7 +199,63 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
       // this.setToMatTable(res.response);
     })
   }
-
+  dashboardMasterpdf()
+  {
+    console.log(this.users)
+   setTimeout(() => {
+     this.pdfService.dashboardMasterList(this.users,this.kvNameCode);
+   }, 1000);
+  }
+  exportexcel()
+  {
+      console.log(this.users)
+      const workBook = new Workbook();
+      const workSheet = workBook.addWorksheet('Dashboard');
+      const excelData = [];
+      const ws1 = workSheet.addRow(['', '', 'EMPLOYEE DETAILS OF '+ this.kvNameCode]);
+      const dobCol = workSheet.getColumn(1);
+      dobCol.width = 15;
+      const dobCol1 = workSheet.getColumn(2);
+      dobCol1.width = 25;
+      const dobCol2 = workSheet.getColumn(3);
+      dobCol2.width = 10;
+      const dobCol3 = workSheet.getColumn(4);
+      dobCol3.width = 20;
+      const dobCol4 = workSheet.getColumn(5);
+      dobCol4.width = 20;
+      const dobCol5 = workSheet.getColumn(6);
+      dobCol5.width = 20;
+      workSheet.getRow(1).font = { name: 'Arial', family: 4, size: 13, bold: true };
+      for (let i = 1; i < 7; i++) {
+        const col = ws1.getCell(i);
+        col.fill = {
+          type: 'pattern',
+          pattern: 'solid',
+          fgColor: { argb:  '9c9b98' },   
+        };
+      }
+     const ws = workSheet.addRow(['Employee Code','Name','Gender','Date of Birth','Staff Type','Status']);
+     workSheet.getRow(2).font = { name: 'Arial', family: 4, size: 10, bold: true };
+        for (let i = 1; i < 7; i++) {
+          const col = ws.getCell(i);
+          col.fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: { argb:  'd6d6d4' },
+          };
+        }
+        this.users.forEach((item) => {
+        const row = workSheet.addRow([item.empcode,item.name,item.gender,item.dob,item.staffType,item.approvedStatus]);
+      });
+      workBook.xlsx.writeBuffer().then((data) => {
+        let blob = new Blob([data], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        });
+        saveAs(blob, 'kvDetails.xlsx');
+      });
+   
+    }
+  
   getKvTeacherByUdiseCode() {
     if (this.businessUnitTypeId != '2' && this.businessUnitTypeId != '3' && this.businessUnitTypeId != '4') {
       this.udiseSchoolCode = JSON.parse(sessionStorage.getItem("mappingData")).mappingData[0].udise_sch_code;
@@ -227,11 +286,50 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
       this.testData.teacherId = data[i].teacherId;
       this.testData.systchcode = data[i].teacherSystemGeneratedCode;
       this.testData.approved = data[i].finalStatus;
+      if( data[i].finalStatus=='SI')
+      {
+        this.testData.approvedStatus = "School Initiated"
+      }
+      if( data[i].finalStatus=='SA')
+      {
+        this.testData.approvedStatus = "Verified"
+      }
+      if( data[i].finalStatus=='SR')
+      {
+        this.testData.approvedStatus = "Rejected"
+      }
+      if( data[i].finalStatus=='SES' || data[i].finalStatus=='SEM')
+      {
+        this.testData.approvedStatus = "School Edited"
+      }
+      if( data[i].finalStatus=='SE')
+      {
+        this.testData.approvedStatus = "School Editing(Pending)"
+      }
+      if( data[i].finalStatus=='TA')
+      {
+        this.testData.approvedStatus = "Pending(School)"
+      }
+      if( data[i].finalStatus=='TA')
+      {
+        this.testData.approvedStatus = "Pending(School)"
+      }
+      if( data[i].finalStatus!='TI' && data[i].finalStatus!='TA' &&  data[i].finalStatus!='SI' &&  data[i].finalStatus!='SA' &&  data[i].finalStatus!='SR'  &&  data[i].finalStatus!='SE'  &&  data[i].finalStatus!='SEM' &&  data[i].finalStatus!='SES' &&  data[i].finalStatus!='SES' )
+      {
+        this.testData.approvedStatus = "Not Initiated"
+      }
+      if( data[i].finalStatus=='TI')
+      {
+        this.testData.approvedStatus = "Pending(Employee)"
+      }
+
+
+
       this.testData.staffType = (data[i].teachingNonteaching == '1') ? 'Teaching' : (data[i].teachingNonteaching == '2') ? 'Non-Teaching' : 'NA';
       // (data[i].teachingNonteaching == '1') ? 'Teaching' : 'Non-Teaching';
 
       this.users.push(this.testData);
-      this.testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "", "approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
+      this.testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "","approvedStatus": "", "approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
     }
 
 
@@ -300,11 +398,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
   // Below Code is for teacher varification -- Start
   onVerifyClick(value) {
-    this.outSideService.fetchConfirmedTchDetails(value).subscribe((res) => {
-      
-
-
-    debugger  
+    this.outSideService.fetchConfirmedTchDetails(value).subscribe((res) => {  
       this.verifyTchTeacherProfileData = res.response.teacherProfile
       this.verifyTchTeacherAcdQualification = res.response.educationalQualification
       this.verifyTchTeacherProfQualification = res.response.profestinalQualification
