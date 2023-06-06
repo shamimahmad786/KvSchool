@@ -1566,7 +1566,7 @@
                                     <div class="form-card">
                                         <div class="row">
                                             <div class="col-7">
-                                                <h2 class="mb-0"> Station Choice:</h2>
+                                                <h2 class="mb-0"> Transfer Preference (Station Choice):</h2>
                                             </div>
                                             <div class="col-5">
                                                 <h2 class="steps">{{responseData?.teacherId}} | {{responseData?.teacherName}}
@@ -1615,7 +1615,7 @@
                                                     <p><span style="font-weight: 600;"> Note : </span>
                                                         <!-- Please tick the checkbox, if spouse resides within 100 Km of the mentioned station. -->
                                                         <span style="font-weight: 600;">
-                                                         Please select atleast one station<span class="required-asterisk">*</span>
+                                                         Please submit atleast one station<span class="required-asterisk">*</span>
                                                         </span>
                                                     </p>
                                                 </div>
@@ -1625,7 +1625,7 @@
                                                             <div class=" col-10">
 
                                                                 <div class="input-group mb-3">
-                                                                    <input type="text" class="form-control form-control-sm input" id="choiceKv1StationName" formControlName="choiceKv1StationName" name="choiceKv1StationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2" disabled
+                                                                    <input type="text" class="form-control form-control-sm input" id="choiceKv1StationName" formControlName="choiceKv1StationName" name="choiceKv1StationName" placeholder="Station Name (Preference One)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled
                                                                     />
                                                                     <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                                             class='bx bx-reset' title="Reset"
@@ -1643,7 +1643,7 @@
                                                         <div class="row">
                                                             <div class=" col-10">
                                                                 <div class="input-group mb-3">
-                                                                    <input type="text" class="form-control form-control-sm" id="choiceKv2StationName" formControlName="choiceKv2StationName" name="choiceKv2StationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                                                                    <input type="text" class="form-control form-control-sm" id="choiceKv2StationName" formControlName="choiceKv2StationName" name="choiceKv2StationName" placeholder="Station Name (Preference Two)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
                                                                     <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                                             class='bx bx-reset' title="Reset"
                                                                             (click)="restStationSelection(2)"></i></button>
@@ -1659,7 +1659,7 @@
                                                         <div class="row">
                                                             <div class=" col-10">
                                                                 <div class="input-group mb-3">
-                                                                    <input type="text" class="form-control form-control-sm" id="choiceKv3StationName" formControlName="choiceKv3StationName" name="choiceKv3StationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                                                                    <input type="text" class="form-control form-control-sm" id="choiceKv3StationName" formControlName="choiceKv3StationName" name="choiceKv3StationName" placeholder="Station Name (Preference Three)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
                                                                     <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                                             class='bx bx-reset' title="Reset"
                                                                             (click)="restStationSelection(3)"></i></button>
@@ -1675,7 +1675,7 @@
                                                         <div class="row">
                                                             <div class=" col-10">
                                                                 <div class="input-group mb-3">
-                                                                    <input type="text" class="form-control form-control-sm" id="choiceKv4StationName" formControlName="choiceKv4StationName" name="choiceKv4StationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                                                                    <input type="text" class="form-control form-control-sm" id="choiceKv4StationName" formControlName="choiceKv4StationName" name="choiceKv4StationName" placeholder="Station Name (Preference Four)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
                                                                     <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                                             class='bx bx-reset' title="Reset"
                                                                             (click)="restStationSelection(4)"></i></button>
@@ -1691,7 +1691,7 @@
                                                         <div class="row">
                                                             <div class=" col-10">
                                                                 <div class="input-group mb-3">
-                                                                    <input type="text" class="form-control form-control-sm" id="choiceKv5StationName" formControlName="choiceKv5StationName" name="choiceKv5StationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                                                                    <input type="text" class="form-control form-control-sm" id="choiceKv5StationName" formControlName="choiceKv5StationName" name="choiceKv5StationName" placeholder="Station Name (Preference Five)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
                                                                     <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                                             class='bx bx-reset' title="Reset"
                                                                             (click)="restStationSelection(5)"></i></button>
@@ -1712,7 +1712,7 @@
 
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <h4 class="titleSet mb-3">19. Kindly fill maximum five stations choice other than present station, incase you are transferred on displacement.<span style="font-weight: 600;">
+                                                <h4 class="titleSet mb-3">19. Kindly fill maximum five Transfer Preference (stations choice) other than present station, incase you are transferred on displacement.<span style="font-weight: 600;">
                                                         (Please select atleast one station)<span
                                                             class="required-asterisk">*</span></span>
                                                 </h4>
@@ -1726,7 +1726,7 @@
                                                         <div class="input-group mb-3">
 
                                                             <input type="text" class="input-group-text input" id="displacement1StationCode" formControlName="displacement1StationCode" name="displacement1StationCode" disabled style="width:70px; height:33px;">
-                                                            <input type="text" class="form-control form-control-sm" id="displacement1StationName" formControlName="displacement1StationName" name="displacement1StationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2"
+                                                            <input type="text" class="form-control form-control-sm" id="displacement1StationName" formControlName="displacement1StationName" name="displacement1StationName" placeholder="Station Name (Preference One)" aria-label="Recipient's username" aria-describedby="button-addon2"
                                                                 disabled>
                                                             <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
                                                                     title="Reset"
@@ -1742,7 +1742,7 @@
                                                             Name</label>
                                                         <div class="input-group mb-3">
                                                             <input type="text" class="input-group-text " id="displacement2StationCode" formControlName="displacement2StationCode" name="displacement2StationCode" disabled style="width:70px; height:33px;">
-                                                            <input type="text" class="form-control form-control-sm" id="displacement2StationName" formControlName="displacement2StationName" name="displacement2StationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2"
+                                                            <input type="text" class="form-control form-control-sm" id="displacement2StationName" formControlName="displacement2StationName" name="displacement2StationName" placeholder="Station Name (Preference Two)" aria-label="Recipient's username" aria-describedby="button-addon2"
                                                                 disabled>
                                                             <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
                                                                     title="Reset"
@@ -1758,7 +1758,7 @@
                                                             Name</label>
                                                         <div class="input-group mb-3">
                                                             <input type="text" class="input-group-text " id="displacement3StationCode" formControlName="displacement3StationCode" name="displacement3StationCode" disabled style="width:70px; height:33px;">
-                                                            <input type="text" class="form-control form-control-sm" id="displacement3StationName" formControlName="displacement3StationName" name="displacement3StationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2"
+                                                            <input type="text" class="form-control form-control-sm" id="displacement3StationName" formControlName="displacement3StationName" name="displacement3StationName" placeholder="Station Name (Preference Three)" aria-label="Recipient's username" aria-describedby="button-addon2"
                                                                 disabled>
                                                             <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
                                                                     title="Reset"
@@ -1776,7 +1776,7 @@
 
 
                                                             <input type="text" class="input-group-text " id="displacement4StationCode" formControlName="displacement4StationCode" name="displacement4StationCode" disabled style="width:70px; height:33px;">
-                                                            <input type="text" class="form-control form-control-sm" id="displacement4StationName" formControlName="displacement4StationName" name="displacement4StationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2"
+                                                            <input type="text" class="form-control form-control-sm" id="displacement4StationName" formControlName="displacement4StationName" name="displacement4StationName" placeholder="Station Name (Preference Four)" aria-label="Recipient's username" aria-describedby="button-addon2"
                                                                 disabled>
                                                             <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
                                                                     title="Reset"
@@ -1796,7 +1796,7 @@
                                                             Name</label>
                                                         <div class="input-group mb-3">
                                                             <input type="text" class="input-group-text " id="displacement5StationCode" formControlName="displacement5StationCode" name="displacement5StationCode" disabled style="width:70px; height:33px;">
-                                                            <input type="text" class="form-control form-control-sm" id="displacement5StationName" formControlName="displacement5StationName" name="displacement5StationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2"
+                                                            <input type="text" class="form-control form-control-sm" id="displacement5StationName" formControlName="displacement5StationName" name="displacement5StationName" placeholder="Station Name (Preference Five)" aria-label="Recipient's username" aria-describedby="button-addon2"
                                                                 disabled>
                                                             <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
                                                                     title="Reset"
@@ -1899,7 +1899,7 @@
                                                         <li>
                                                             <h4 class="titleSet ps-2">
 
-                                                                Whether the employee is seeking benefit of spouse who is working at the same station or within the distance of 100Km where employee is posted/transfer is being sought for.
+                                                                Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for.
                                                             </h4>
                                                         </li>
                                                     </ul>

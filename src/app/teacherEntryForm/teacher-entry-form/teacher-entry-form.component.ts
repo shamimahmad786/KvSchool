@@ -4316,7 +4316,7 @@ else if(this.selectSchoolType==3)
 
 
 pdfSentToClient(){
-  alert("download pdf")
+  // alert("download pdf")
 }
 
 

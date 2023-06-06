@@ -24,7 +24,7 @@ export class MasterReportPdfService {
   sanctionPostMappingListArray:any;
   regionHead = [['S.No', 'Region Code', 'Region Name', 'Status']]
   stationHead = [['S.No', 'Station Code', 'Station Name', 'Status']]
-  schoolHead = [['S.No', 'School Code', 'School Name', 'Shift', 'Status']]
+  schoolHead = [['S.No', 'School Code', 'School Name', 'Status','Shift' ]]
   stationCategoryHead = [['S.No', 'Category Name', 'Status']]
   staffTypeHead = [['S.No', 'Staff Type Name', 'Status']]
   designationHead = [['S.No', 'Designation Code','Designation Name', 'Status']]
@@ -657,24 +657,58 @@ export class MasterReportPdfService {
 
    regionStationMappingList(regionStationMappingList:any){
       this.regionStationMappingListArray = [];
-   
+   console.log("dsdsdsdsd")
+      // for(let i=0; i<regionStationMappingList.length; i++){
+      //   console.log(regionStationMappingList[i])
+      //   var regionStationMappinglistTemp = [];
+      //   regionStationMappinglistTemp.push(regionStationMappingList[i]?.sno)
+      //   regionStationMappinglistTemp.push(regionStationMappingList[i]?.regionname)
+      //   regionStationMappinglistTemp.push(regionStationMappingList[i]?.stationname)
+      //   regionStationMappinglistTemp.push(regionStationMappingList[i]?.fromdate)
+      //   regionStationMappinglistTemp.push(regionStationMappingList[i]?.todate)
+      //  // stationCategorylistTemp.push(stationCategorylist[i]?.schoolname)
+      //   if(regionStationMappingList[i]?.status==true)
+      //   {
+      //     regionStationMappinglistTemp.push('Active')
+      //   }
+      //   else{
+      //     regionStationMappinglistTemp.push('Inactive')
+      //   }
+      //   this.regionStationMappingListArray.push(regionStationMappinglistTemp)
+      // }
+
+var k =1;
       for(let i=0; i<regionStationMappingList.length; i++){
         var regionStationMappinglistTemp = [];
-        regionStationMappinglistTemp.push(regionStationMappingList[i]?.sno)
-        regionStationMappinglistTemp.push(regionStationMappingList[i]?.regionname)
-        regionStationMappinglistTemp.push(regionStationMappingList[i]?.stationname)
-        regionStationMappinglistTemp.push(regionStationMappingList[i]?.fromdate)
-        regionStationMappinglistTemp.push(regionStationMappingList[i]?.todate)
-       // stationCategorylistTemp.push(stationCategorylist[i]?.schoolname)
-        if(regionStationMappingList[i]?.status==true)
-        {
-          regionStationMappinglistTemp.push('Active')
+        //   var regionStationMappinglistsTemp = [];
+           regionStationMappinglistTemp.push(regionStationMappingList[i][0])
+      
+        for(let j=0; j<regionStationMappingList[i][1].length; j++){ 
+          var regionStationMappinglistsTemp = []
+          regionStationMappinglistsTemp.push(k)
+          if(j==0)
+          {
+            regionStationMappinglistsTemp.push(regionStationMappingList[i][0])
+          }else{
+            regionStationMappinglistsTemp.push('')
+          }
+          regionStationMappinglistsTemp.push(regionStationMappingList[i][1][j]?.stationname)
+          regionStationMappinglistsTemp.push(regionStationMappingList[i][1][j]?.fromdate)
+          regionStationMappinglistsTemp.push(regionStationMappingList[i][1][j]?.todate)
+          if(regionStationMappingList[i][1][j]?.status==true)
+            {
+              regionStationMappinglistsTemp.push('Active')
+            }
+            else{
+              regionStationMappinglistsTemp.push('Inactive')
+            }
+        this.regionStationMappingListArray.push(regionStationMappinglistsTemp)
+        k++;
         }
-        else{
-          regionStationMappinglistTemp.push('Inactive')
-        }
-        this.regionStationMappingListArray.push(regionStationMappinglistTemp)
       }
+console.log(this.regionStationMappingListArray)
+
+
       this.currentDate = "(" + this.currentDate + ")"
       // var tchId = "" + teacherProfile.teacherId + ""
       const doc = new jsPDF('l', 'mm', 'a4');

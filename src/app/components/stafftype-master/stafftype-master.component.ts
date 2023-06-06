@@ -20,7 +20,7 @@ export class StafftypeMasterComponent implements OnInit,AfterViewInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns:any = ['sno', 'stafftype','status','action'];
 
-  testData = { "sno": "", "stafftype": "", "status": "" ,"id":''}
+  testData = { "sno": "", "stafftype": "", "status": "" ,"statusType": "" ,"id":''}
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -44,10 +44,18 @@ export class StafftypeMasterComponent implements OnInit,AfterViewInit {
              this.testData.sno = '' + (i + 1) + '';
              this.testData.stafftype = res[i].staffType;
              this.testData.status = res[i].status;
+             if(res[i].status ==true )
+             {
+             this.testData.statusType = 'Active';
+             }
+            if(res[i].status ==false )
+             {
+             this.testData.statusType ='InActive';
+             } 
              this.testData.id = res[i].id;
        
              this.listStaffType.push(this.testData);
-             this.testData = { "sno": "", "stafftype": "", "status": "" ,"id":''};
+             this.testData = { "sno": "", "stafftype": "", "status": "" ,"statusType": "" ,"id":''};
     
            }
              console.log(this.listStaffType)
@@ -111,7 +119,7 @@ export class StafftypeMasterComponent implements OnInit,AfterViewInit {
       }
       
     this.listStaffType.forEach((item) => {
-      const row = workSheet.addRow([item.stafftype,item.status]);
+      const row = workSheet.addRow([item.stafftype,item.statusType]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {
