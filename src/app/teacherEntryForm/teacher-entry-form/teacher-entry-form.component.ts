@@ -3181,9 +3181,14 @@ return
   getStationByRegionId(event) {
     this.selectedUdiseCode = '';
     this.stationList = []
-    this.outSideService.fetchStationByRegionId(event.target.value).subscribe((res) => {
-      this.stationList = res.response;
+    var stationByInterCond = {
+      "extcall": "MOE_EXT_GETSTATION_BY_TEACHER_INTER",
+      "conditionvalue": [this.responseData.teacherId, event.target.value, event.target.value, this.responseData.teacherId]
+    }
+    this.outSideService.fetchStationByRegionId(stationByInterCond).subscribe((res) => {
+      this.stationList =res.response.rowValue
     })
+    console.log(this.stationList)
   }
 
   getKvSchoolByStationId(event) {

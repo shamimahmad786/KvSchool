@@ -495,8 +495,7 @@ export class OutsideServicesService {
       'Content-Type': 'text/plain; charset=utf-8',
 
     });
-    
-    return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "fetch/list-of-all-station-by-region", data, {headers})
+    return this._http.post<any>(environment.BASE_URL_DATA_MASTER+ "getMaster", data, {headers})
   }
 
   fetchKvSchoolByStationCode(data){
