@@ -47,7 +47,7 @@ export class SchoolMasterComponent implements OnInit {
           this.testData.status = res[i].schoolStatus;
           if(res[i].shift =='0' || res[i].shift ==0 )
           {
-            this.testData.shiftType = 'First Shift';
+            this.testData.shiftType = 'Not Applicable';
           }
           if(res[i].shift =='1' || res[i].shift ==1 )
           {

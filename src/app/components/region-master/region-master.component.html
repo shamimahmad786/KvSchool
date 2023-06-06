@@ -1,8 +1,8 @@
 <div class="container-fluid px-4">
     <div class=" bg-profile-head">
-        <h5 class="mb-0 p-2 FontTitle  text-white">Region Master</h5>
+        <h5 class="mb-0 p-2 FontTitle  text-white">Region/ZIET Master</h5>
     </div>
-    
+
     <div class="d-flex flex-row-reverse bd-highlight mb-3">
         <div class="p-1">
             <button mat-raised-button class="float-end mt-2 btn-success" (click)="redirectto()">Add</button>
@@ -12,21 +12,21 @@
         </div>
         <div class="p-1">
             <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
-        </div>        
+        </div>
     </div>
     <div class="row bg-1">
-        
+
         <!-- <div style="text-align: right;">
             <button class="btn btn-primary btn-sm" (click)="teacherPdf()">Export to PDF</button>
         </div> -->
-        
+
         <div *ngIf="dataSource">
             <mat-form-field style="width: 30%;">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Region Code or Region Name">
             </mat-form-field>
         </div>
         <div class="example-container mat-elevation-z8">
-            <table mat-table *ngIf="dataSource?.data?.length > 0"  id="excel-table" [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table">
+            <table mat-table *ngIf="dataSource?.data?.length > 0" id="excel-table" [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table">
 
                 <ng-container matColumnDef="sno">
                     <th mat-header-cell *matHeaderCellDef> S.No. </th>
