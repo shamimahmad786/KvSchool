@@ -62,30 +62,42 @@
 </div>
 <!---------------------------------------end  here --------------------------------------------------------->
 <div *ngIf="nationalLogin" class="shadow-sm bg-white p-3 rounded mt-3">
-    <div><button class="btn btn-sm btn-success floatRight mt-2" style="background-color: #24695c; border: #24695c;" (click)="newTeacher()">New Employee</button></div>
-    <div class="example-header">
-        <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
-        </mat-form-field>
-
-        <!-- <mat-form-field>
-            <select (change)="applyFilterOnSelect($event.target.value)">
-                <option value="Teaching">Teaching</option>
-                <option value="Non-Teaching">Non-Teaching</option>
-            </select>
-        </mat-form-field> -->
-        &nbsp;&nbsp;
-        <mat-form-field>
-            <mat-label>Select Filter</mat-label>
-            <mat-select (selectionChange)="applyFilterOnSelect($event.value)">
-                <mat-option value="Teaching">Teaching</mat-option>
-                <mat-option value="Non-Teaching">Non-Teaching</mat-option>
-                <!-- <mat-option value="NA">NA</mat-option> -->
-            </mat-select>
-        </mat-form-field>
-
+    
+    <div class="d-flex  bd-highlight ">
+        <div class="p-2">
+            <div class="example-header">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
+                </mat-form-field>
+                &nbsp;&nbsp;
+                <mat-form-field>
+                    <mat-label>Select Filter</mat-label>
+                    <mat-select (selectionChange)="applyFilterOnSelect($event.value)">
+                        <mat-option value="Teaching">Teaching</mat-option>
+                        <mat-option value="Non-Teaching">Non-Teaching</mat-option>
+                        <!-- <mat-option value="NA">NA</mat-option> -->
+                    </mat-select>
+                </mat-form-field>       
+            </div>
+        </div>
+        <div class="p-2"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-2">
+            <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
+        </div> 
+        <div class="p-2">
+            <button mat-raised-button class="float-end mt-2 btn-secondary" (click)="dashboardMasterpdf()">Download PDF</button>
+        </div>
+        <div class="p-2">
+            <button mat-raised-button class="float-end mt-2 btn-success" (click)="newTeacher()">New Employee</button>
+        </div>       
     </div>
-
     <!-------------------------Data Show in  table Start here--------------------------------->
     <div class="example-container mat-elevation-z8">
         <mat-table [dataSource]="dataSource" matSort>
