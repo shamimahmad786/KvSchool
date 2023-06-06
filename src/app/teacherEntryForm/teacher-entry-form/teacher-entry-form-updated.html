@@ -3807,7 +3807,7 @@
                 <div class="col-md-12">
                     <div class="clearfix">
                         <div class="float-left">
-                            <h2 class="mb-0 text-green">Select Your School</h2>
+                            <h2 class="mb-0 text-green">Select Your Region</h2>
                         </div>
                     </div>
                 </div>
@@ -3830,11 +3830,11 @@
                     <div class="col-md-6">
                         <!-- <h3>Station</h3> -->
                         <select class="form-select form-select-sm" aria-label="Default select example" [(ngModel)]="selectedSpouseStation">
-                            <option selected disabled> Select Station</option>
+                            <option selected disabled> Select Station</option>                         
                             <option *ngFor="let data of stationList; let i=index;"
-                                value="{{data.statinCode}}-{{data.stationName}}">
-                                {{data.stationName}}
-                            </option>
+                            value="{{data.station_code}}-{{data.station_name}}">
+                            {{data.station_name}}
+                        </option>
 
                         </select>
                     </div>
