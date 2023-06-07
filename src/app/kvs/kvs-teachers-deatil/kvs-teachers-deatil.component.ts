@@ -25,7 +25,7 @@ declare var $: any;
 })
 export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
-  displayedColumns = ['sno', 'empcode', 'name','gender', 'dob', 'staffType',  "status", 'systchcode', 'action'];
+  displayedColumns = ['sno', 'empcode', 'name','gender', 'dob',   "status", 'systchcode', 'action'];
   dataSource: MatTableDataSource<any>;
 
   dropboxForm: FormGroup;
@@ -33,8 +33,8 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
-  testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "","approvedStatus":"","approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
+  
+  testData = { "sno": "", "name": "", "postName": "", "email": "", "mobile": "", "subjectName": "","approvedStatus":"","approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
   users: any = [];
   kvTeacher: any;
   teacherList: any;
@@ -218,7 +218,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
       const dobCol1 = workSheet.getColumn(2);
       dobCol1.width = 25;
       const dobCol2 = workSheet.getColumn(3);
-      dobCol2.width = 10;
+      dobCol2.width = 35;
       const dobCol3 = workSheet.getColumn(4);
       dobCol3.width = 20;
       const dobCol4 = workSheet.getColumn(5);
@@ -226,7 +226,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
       const dobCol5 = workSheet.getColumn(6);
       dobCol5.width = 20;
       workSheet.getRow(1).font = { name: 'Arial', family: 4, size: 13, bold: true };
-      for (let i = 1; i < 7; i++) {
+      for (let i = 1; i < 6; i++) {
         const col = ws1.getCell(i);
         col.fill = {
           type: 'pattern',
@@ -234,9 +234,9 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
           fgColor: { argb:  '9c9b98' },   
         };
       }
-     const ws = workSheet.addRow(['Employee Code','Name','Gender','Date of Birth','Staff Type','Status']);
+     const ws = workSheet.addRow(['Employee Code','Name','Post Name','Subject  Name','Status']);
      workSheet.getRow(2).font = { name: 'Arial', family: 4, size: 10, bold: true };
-        for (let i = 1; i < 7; i++) {
+        for (let i = 1; i < 6; i++) {
           const col = ws.getCell(i);
           col.fill = {
             type: 'pattern',
@@ -245,7 +245,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
           };
         }
         this.users.forEach((item) => {
-        const row = workSheet.addRow([item.empcode,item.name,item.gender,item.dob,item.staffType,item.approvedStatus]);
+        const row = workSheet.addRow([item.empcode,item.name,item.postName,item.subjectName,item.approvedStatus]);
       });
       workBook.xlsx.writeBuffer().then((data) => {
         let blob = new Blob([data], {
@@ -273,6 +273,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
     
     this.users = [];
     this.kvTeacher = data;
+    debugger
     for (let i = 0; i < data.length; i++) {
       this.tempTeacherId = data[i].teacherId
       this.testData.sno = '' + (i + 1) + '';
@@ -280,8 +281,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
       var dateString = data[i].dob;
       dateString = new Date(dateString).toUTCString();
       dateString = dateString.split(' ').slice(0, 4).join(' ');
-      this.testData.dob = data[i].teacherDob;
-      this.testData.gender = (data[i].teacherGender == '1') ? 'Male' : 'Female';
+      this.testData.subjectName = data[i].subjectName;;
       this.testData.empcode = data[i].teacherEmployeeCode;
       this.testData.teacherId = data[i].teacherId;
       this.testData.systchcode = data[i].teacherSystemGeneratedCode;
@@ -327,9 +327,9 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
       this.testData.staffType = (data[i].teachingNonteaching == '1') ? 'Teaching' : (data[i].teachingNonteaching == '2') ? 'Non-Teaching' : 'NA';
       // (data[i].teachingNonteaching == '1') ? 'Teaching' : 'Non-Teaching';
-
+      this.testData.postName = data[i].postName+' ('+this.testData.staffType+')';
       this.users.push(this.testData);
-      this.testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "","approvedStatus": "", "approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
+      this.testData = { "sno": "", "name": "", "postName": "", "email": "", "mobile": "", "subjectName": "","approvedStatus": "", "approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
     }
 
 

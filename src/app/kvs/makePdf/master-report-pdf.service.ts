@@ -36,7 +36,7 @@ export class MasterReportPdfService {
   staffTypePostMappingHead = [['S.No', 'Staff-Type','Post Code','Post Name']]
   postSubjectMappingHead = [['S.No', 'Post Code','Post name','Subject Code','Subject Name']]
   sanctionPostMappingHead = [['S.No', 'Staff Type','Post Name','Post Code','Subject Name','Subject Code','Sanctioned Post','Occupied Post','Vacant Post','Surplus Post']]
-  dashboardHead=[['S.No', 'Employee Code','Name','Gender','Date of Birth','Staff Type','Status']]
+  dashboardHead=[['S.No', 'Employee Code','Name','Post Name','Subject Name','Status']]
   yPoint: any;
   currentDate: any;
   constructor(private date: DatePipe) {
@@ -1218,9 +1218,9 @@ schoolStationMappingList(schoolStationMappingList:any){
     dashboardlistTemp.push(dashboardMasterList[i]?.empcode)
     dashboardlistTemp.push(dashboardMasterList[i]?.name)
 
-    dashboardlistTemp.push(dashboardMasterList[i]?.gender)
-    dashboardlistTemp.push(dashboardMasterList[i]?.dob)
-    dashboardlistTemp.push(dashboardMasterList[i]?.staffType)
+    dashboardlistTemp.push(dashboardMasterList[i]?.postName)
+    dashboardlistTemp.push(dashboardMasterList[i]?.subjectName)
+   // dashboardlistTemp.push(dashboardMasterList[i]?.staffType)
     dashboardlistTemp.push(dashboardMasterList[i]?.approvedStatus)
 
    // stationCategorylistTemp.push(stationCategorylist[i]?.schoolname)

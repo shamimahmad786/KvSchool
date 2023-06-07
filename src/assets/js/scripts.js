@@ -154,7 +154,7 @@ $(document).ready(function() {
 });
 
 function loadScroller() {
-    debugger
+  
     var current_fs, next_fs, previous_fs; //fieldsets
     var opacity;
     var current = 1;
@@ -162,7 +162,7 @@ function loadScroller() {
     setProgressBar(current);
 
     $(".action-save").click(function() {
-        debugger
+       
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
         //Add Class Active
@@ -185,7 +185,7 @@ function loadScroller() {
         setProgressBar(++current);
     });
     $(".next").click(function() {
-        debugger
+      
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
         //Add Class Active
@@ -265,7 +265,7 @@ $(document).ready(function() {
 
     var current_fs, next_fs, previous_fs; //fieldsets
     var opacity;
-    debugger
+   
     // $(".next").on("click", function() {
     //     debugger
     //     event.preventDefault()
@@ -405,7 +405,7 @@ function onNextClick(current){
 
 
  function onNextButtonClick(current){
-  debugger
+ 
   var current_fs, next_fs, previous_fs; //fieldsets
   var opacity;
  
