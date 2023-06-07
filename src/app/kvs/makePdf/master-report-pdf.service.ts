@@ -42,7 +42,7 @@ export class MasterReportPdfService {
   constructor(private date: DatePipe) {
   }
 //------------------- region master --------------------------------------------------------------------------
-  regionMasterList(regionList:any) {
+  regionMasterList(regionList:any ,srvTime:any) {
     this.regionListArray = [];
 
     for(let i=0; i<regionList.length; i++){
@@ -80,7 +80,7 @@ export class MasterReportPdfService {
 
        // const currentDate = new Date();
 
-       const currentDate = new Date().toString();
+       const currentDate = srvTime.toString();
        var index = currentDate.lastIndexOf(':') +3
        const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
         // Header
@@ -132,7 +132,7 @@ export class MasterReportPdfService {
   }
 //------------------- station master --------------------------------------------------------------------------
 
-  stationMasterList(stationList:any) {
+  stationMasterList(stationList:any,serTime:any) {
     this.stationListArray = [];
 
     for(let i=0; i<stationList.length; i++){
@@ -152,7 +152,7 @@ export class MasterReportPdfService {
     console.log("station  list")
     console.log(this.stationListArray)
 
-    this.currentDate = "(" + this.currentDate + ")"
+    this.currentDate = "(" + serTime + ")"
     // var tchId = "" + teacherProfile.teacherId + ""
     const doc = new jsPDF('l', 'mm', 'a4');
     doc.setTextColor(138, 24, 34);
@@ -167,7 +167,7 @@ export class MasterReportPdfService {
       theme: 'grid',
       startY: 40,
       didDrawPage: function (data) {
-       const currentDate = new Date().toString();
+       const currentDate = serTime.toString();
        var index = currentDate.lastIndexOf(':') +3
        const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
         // Header
@@ -218,7 +218,7 @@ export class MasterReportPdfService {
     doc.save('stationMaster.pdf')
   }
   //------------------- school master --------------------------------------------------------------------------
-  schoolMasterList(schoollist:any)
+  schoolMasterList(schoollist:any,servTime:any)
   {
     this.schoolListArray = [];
 
@@ -244,7 +244,7 @@ export class MasterReportPdfService {
       }
       this.schoolListArray.push(schoolListTemp)
     }
-    this.currentDate = "(" + this.currentDate + ")"
+    this.currentDate = "(" + servTime + ")"
     // var tchId = "" + teacherProfile.teacherId + ""
     const doc = new jsPDF('l', 'mm', 'a4');
     doc.setTextColor(138, 24, 34);
@@ -259,7 +259,7 @@ export class MasterReportPdfService {
       theme: 'grid',
       startY: 40,
       didDrawPage: function (data) {
-       const currentDate = new Date().toString();
+       const currentDate = servTime.toString();
        var index = currentDate.lastIndexOf(':') +3
        const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
         // Header
@@ -310,7 +310,7 @@ export class MasterReportPdfService {
     doc.save('schoolMaster.pdf') 
   }
     //------------------- station Category master --------------------------------------------------------------------------
-    stationCategoryMasterList(stationCategorylist:any)
+    stationCategoryMasterList(stationCategorylist:any,servTime:any)
     {
       this.stationCategorylistArray = [];
   
@@ -328,7 +328,7 @@ export class MasterReportPdfService {
         }
         this.stationCategorylistArray.push(stationCategorylistTemp)
       }
-      this.currentDate = "(" + this.currentDate + ")"
+     // this.currentDate = "(" + this.currentDate + ")"
       // var tchId = "" + teacherProfile.teacherId + ""
       const doc = new jsPDF('l', 'mm', 'a4');
       doc.setTextColor(138, 24, 34);
@@ -343,7 +343,7 @@ export class MasterReportPdfService {
         theme: 'grid',
         startY: 40,
         didDrawPage: function (data) {
-         const currentDate = new Date().toString();
+         const currentDate = servTime.toString();
          var index = currentDate.lastIndexOf(':') +3
          const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
           // Header
@@ -395,7 +395,7 @@ export class MasterReportPdfService {
     }
 
  //------------------- staff Type master --------------------------------------------------------------------------
-    staffTypemasterList(staffTypelist:any)
+    staffTypemasterList(staffTypelist:any,servTime:any)
     {
       this.staffTypelistArray = [];
   
@@ -413,7 +413,7 @@ export class MasterReportPdfService {
         }
         this.staffTypelistArray.push(staffTypelistTemp)
       }
-      this.currentDate = "(" + this.currentDate + ")"
+      this.currentDate = "(" + servTime + ")"
       // var tchId = "" + teacherProfile.teacherId + ""
       const doc = new jsPDF('l', 'mm', 'a4');
       doc.setTextColor(138, 24, 34);
@@ -428,7 +428,7 @@ export class MasterReportPdfService {
         theme: 'grid',
         startY: 40,
         didDrawPage: function (data) {
-         const currentDate = new Date().toString();
+         const currentDate = servTime.toString();
          var index = currentDate.lastIndexOf(':') +3
          const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
           // Header
@@ -482,7 +482,7 @@ export class MasterReportPdfService {
      //------------------- designation master --------------------------------------------------------------------------
 
 
-     designationMasterList(designationlist:any)
+     designationMasterList(designationlist:any,servTime:any)
      {
        this.designationlistArray = [];
    
@@ -501,7 +501,7 @@ export class MasterReportPdfService {
          }
          this.designationlistArray.push(designationlistTemp)
        }
-       this.currentDate = "(" + this.currentDate + ")"
+       this.currentDate = "(" + servTime + ")"
        // var tchId = "" + teacherProfile.teacherId + ""
        const doc = new jsPDF('l', 'mm', 'a4');
        doc.setTextColor(138, 24, 34);
@@ -516,7 +516,7 @@ export class MasterReportPdfService {
          theme: 'grid',
          startY: 40,
          didDrawPage: function (data) {
-          const currentDate = new Date().toString();
+          const currentDate = servTime.toString();
           var index = currentDate.lastIndexOf(':') +3
           const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
            // Header
@@ -569,7 +569,7 @@ export class MasterReportPdfService {
  //------------------- subject master --------------------------------------------------------------------------
 
 
-     subjectMasterList(subjectMasterList:any){
+     subjectMasterList(subjectMasterList:any,servTime:any){
       this.subjectMasterListArray = [];
    
       for(let i=0; i<subjectMasterList.length; i++){
@@ -587,7 +587,7 @@ export class MasterReportPdfService {
         }
         this.subjectMasterListArray.push(designationlistTemp)
       }
-      this.currentDate = "(" + this.currentDate + ")"
+      this.currentDate = "(" + servTime + ")"
       // var tchId = "" + teacherProfile.teacherId + ""
       const doc = new jsPDF('l', 'mm', 'a4');
       doc.setTextColor(138, 24, 34);
@@ -602,7 +602,7 @@ export class MasterReportPdfService {
         theme: 'grid',
         startY: 40,
         didDrawPage: function (data) {
-         const currentDate = new Date().toString();
+         const currentDate = servTime.toString();
          var index = currentDate.lastIndexOf(':') +3
          const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
           // Header
@@ -657,7 +657,7 @@ export class MasterReportPdfService {
 
 // -------------------------------------Region Station Mapping------------------------------------
 
-   regionStationMappingList(regionStationMappingList:any){
+   regionStationMappingList(regionStationMappingList:any,servTime:any){
       this.regionStationMappingListArray = [];
    console.log("dsdsdsdsd")
       // for(let i=0; i<regionStationMappingList.length; i++){
@@ -711,7 +711,7 @@ var k =1;
 console.log(this.regionStationMappingListArray)
 
 
-      this.currentDate = "(" + this.currentDate + ")"
+      this.currentDate = "(" + servTime + ")"
       // var tchId = "" + teacherProfile.teacherId + ""
       const doc = new jsPDF('l', 'mm', 'a4');
       doc.setTextColor(138, 24, 34);
@@ -726,7 +726,7 @@ console.log(this.regionStationMappingListArray)
         theme: 'grid',
         startY: 40,
         didDrawPage: function (data) {
-         const currentDate = new Date().toString();
+         const currentDate = servTime.toString();
          var index = currentDate.lastIndexOf(':') +3
          const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
           // Header
@@ -870,7 +870,7 @@ console.log(this.regionStationMappingListArray)
         
 // -------------------------------------School Station  Mapping------------------------------------
 
-schoolStationMappingList(schoolStationMappingList:any){
+schoolStationMappingList(schoolStationMappingList:any,servTime:any){
   console.log("------------mapping list")
   console.log(schoolStationMappingList)
   this.schoolStationMappingListArray = [];
@@ -900,7 +900,7 @@ schoolStationMappingList(schoolStationMappingList:any){
  
     this.schoolStationMappingListArray.push(schoolStationMappinglistTemp)
   }
-  this.currentDate = "(" + this.currentDate + ")"
+  this.currentDate = "(" + servTime + ")"
   // var tchId = "" + teacherProfile.teacherId + ""
   const doc = new jsPDF('l', 'mm', 'a4');
   doc.setTextColor(138, 24, 34);
@@ -915,7 +915,7 @@ schoolStationMappingList(schoolStationMappingList:any){
     theme: 'grid',
     startY: 40,
     didDrawPage: function (data) {
-     const currentDate = new Date().toString();
+     const currentDate = servTime.toString();
      var index = currentDate.lastIndexOf(':') +3
      const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
       // Header
@@ -964,7 +964,7 @@ schoolStationMappingList(schoolStationMappingList:any){
   })
   doc.save('schoolStationMapping.pdf')
  }
- staffTypePostMappingList(stafftypePostMappingList:any)
+ staffTypePostMappingList(stafftypePostMappingList:any,servTime:any)
  {
   this.stafftypePostMappingListArray = [];
  
@@ -976,7 +976,7 @@ schoolStationMappingList(schoolStationMappingList:any){
       stafftypePostMappingListTemp.push(stafftypePostMappingList[i]?.postName)
       this.stafftypePostMappingListArray.push(stafftypePostMappingListTemp)
     }
-    this.currentDate = "(" + this.currentDate + ")"
+    this.currentDate = "(" + servTime + ")"
     // var tchId = "" + teacherProfile.teacherId + ""
     const doc = new jsPDF('l', 'mm', 'a4');
     doc.setTextColor(138, 24, 34);
@@ -991,7 +991,7 @@ schoolStationMappingList(schoolStationMappingList:any){
       theme: 'grid',
       startY: 40,
       didDrawPage: function (data) {
-       const currentDate = new Date().toString();
+       const currentDate = servTime.toString();
        var index = currentDate.lastIndexOf(':') +3
        const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
         // Header
@@ -1047,7 +1047,7 @@ schoolStationMappingList(schoolStationMappingList:any){
     doc.save('staffTypepostMapping.pdf')
  }
 
- postSubjectMappingList(postSubjectMappingList:any)
+ postSubjectMappingList(postSubjectMappingList:any,servTime:any)
  {
   this.postSubjectMappingListArray = [];
  
@@ -1060,7 +1060,7 @@ schoolStationMappingList(schoolStationMappingList:any){
     postSubjectMappingListTemp.push(postSubjectMappingList[i]?.subjectName)
     this.postSubjectMappingListArray.push(postSubjectMappingListTemp)
   }
-  this.currentDate = "(" + this.currentDate + ")"
+  this.currentDate = "(" + servTime + ")"
   // var tchId = "" + teacherProfile.teacherId + ""
   const doc = new jsPDF('l', 'mm', 'a4');
   doc.setTextColor(138, 24, 34);
@@ -1075,7 +1075,7 @@ schoolStationMappingList(schoolStationMappingList:any){
     theme: 'grid',
     startY: 40,
     didDrawPage: function (data) {
-     const currentDate = new Date().toString();
+     const currentDate = servTime.toString();
      var index = currentDate.lastIndexOf(':') +3
      const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
       // Header
@@ -1125,7 +1125,7 @@ schoolStationMappingList(schoolStationMappingList:any){
   })
   doc.save('postSubjectMapping.pdf')
  }
- sanctionedPostMappingList(sanctionPostMappingList:any)
+ sanctionedPostMappingList(sanctionPostMappingList:any,servTime:any)
  {
   this.sanctionPostMappingListArray = [];
  
@@ -1143,7 +1143,7 @@ schoolStationMappingList(schoolStationMappingList:any){
     sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.surplus)
     this.sanctionPostMappingListArray.push(sanctionPostMappingListTemp)
   }
-  this.currentDate = "(" + this.currentDate + ")"
+  this.currentDate = "(" + servTime + ")"
   // var tchId = "" + teacherProfile.teacherId + ""
   const doc = new jsPDF('l', 'mm', 'a4');
   doc.setTextColor(138, 24, 34);
@@ -1158,7 +1158,7 @@ schoolStationMappingList(schoolStationMappingList:any){
     theme: 'grid',
     startY: 40,
     didDrawPage: function (data) {
-     const currentDate = new Date().toString();
+     const currentDate = servTime.toString();
      var index = currentDate.lastIndexOf(':') +3
      const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
       // Header

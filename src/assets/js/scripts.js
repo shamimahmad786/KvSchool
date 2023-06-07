@@ -153,6 +153,40 @@ $(document).ready(function() {
     loadScroller();
 });
 
+
+
+function srvTime(){
+    var xmlHttp;
+    try {
+        //FF, Opera, Safari, Chrome
+        xmlHttp = new XMLHttpRequest();
+    }
+    catch (err1) {
+        //IE
+        try {
+            xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+        }
+        catch (err2) {
+            try {
+                xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+            }
+            catch (eerr3) {
+                //AJAX not supported, use CPU time.
+                alert("AJAX not supported");
+            }
+        }
+    }
+    xmlHttp.open('HEAD',window.location.href.toString(),false);
+    xmlHttp.setRequestHeader("Content-Type", "text/html");
+    xmlHttp.send('');
+    var date = new Date(xmlHttp.getResponseHeader("Date"));
+    return date;
+   
+}
+
+
+
+
 function loadScroller() {
   
     var current_fs, next_fs, previous_fs; //fieldsets

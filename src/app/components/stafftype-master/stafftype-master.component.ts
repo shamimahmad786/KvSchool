@@ -9,6 +9,7 @@ import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.se
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
+declare const srvTime: any;
 const ELEMENT_DATA: any = [];
 @Component({
   selector: 'app-stafftype-master',
@@ -25,6 +26,7 @@ export class StafftypeMasterComponent implements OnInit,AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   listStaffType: any=[];
+  returnTypeSrvTime: any;
 
   constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
@@ -82,8 +84,9 @@ export class StafftypeMasterComponent implements OnInit,AfterViewInit {
    }
   staffTypeMasterpdf()
    {
+    this.returnTypeSrvTime = srvTime();
     setTimeout(() => {
-      this.pdfService.staffTypemasterList(this.listStaffType);
+      this.pdfService.staffTypemasterList(this.listStaffType,this.returnTypeSrvTime);
     }, 1000);
    }
    exportexcel(){

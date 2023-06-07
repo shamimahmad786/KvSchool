@@ -11,6 +11,7 @@ import {map, startWith} from 'rxjs/operators';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
+declare const srvTime: any;
 @Component({
   selector: 'app-school-station-mapping',
   templateUrl: './school-station-mapping.component.html',
@@ -36,6 +37,7 @@ export class SchoolStationMappingComponent implements OnInit {
  
 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
+  returnTypeSrvTime: any;
   constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
     this.dateAdapter.setLocale('en-GB');
   }
@@ -207,8 +209,9 @@ export class SchoolStationMappingComponent implements OnInit {
   
   schoolStationMappingPdf()
   {
+    this.returnTypeSrvTime = srvTime();
     setTimeout(() => {
-      this.pdfService.schoolStationMappingList(this.listRegionStation);
+      this.pdfService.schoolStationMappingList(this.listRegionStation,this.returnTypeSrvTime);
     }, 1000);
 
   }

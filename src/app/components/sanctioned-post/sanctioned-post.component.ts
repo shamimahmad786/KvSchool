@@ -6,6 +6,7 @@ import { OutsideServicesService } from 'src/app/service/outside-services.service
 import Swal from 'sweetalert2';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
+declare const srvTime: any;
 @Component({
   selector: 'app-sanctioned-post',
   templateUrl: './sanctioned-post.component.html',
@@ -20,6 +21,7 @@ export class SanctionedPostComponent implements OnInit {
   stationList: any=[];
   schoolList:any=[];
   sanctionPostMappingDataListArray: any=[];
+  returnTypeSrvTime: any;
   constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router) { }
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
   responseData: any;
@@ -356,8 +358,9 @@ export class SanctionedPostComponent implements OnInit {
 
   sanctionedPostMappingPdf()
   {
+    this.returnTypeSrvTime = srvTime();
     setTimeout(() => {
-      this.pdfService.sanctionedPostMappingList(this.sanctionPostMappingDataListArray);
+      this.pdfService.sanctionedPostMappingList(this.sanctionPostMappingDataListArray,this.returnTypeSrvTime);
     }, 1000);
   }
   exportexcel(){

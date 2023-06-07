@@ -4018,9 +4018,7 @@ getTransferProfile(){
     })
   }
   const data={"teacherId":this.tempTeacherId}
-  this.outSideService.getTransferData(data).subscribe((res) => {
-    // alert("Transfer Data Response--->"+JSON.stringify(res));
-
+  this.outSideService.getTransferData(data).subscribe((res) => { 
   if(res.response!=null || res.response=='')
   {
 this.patientAilmentData=res.response.patientAilment  
@@ -4029,10 +4027,6 @@ this.singleParentGroundData =res.response.singleParentGround
 this.singleParentCertificateIssueDateData =  this.date.transform(res.response.singleParentCertificateIssueDate, 'yyyy-MM-dd');  
 this.deathOfFamilyGroundData=res.response.deathOfFamilyGround
 this.deathCertificateIssueDateData = this.date.transform(res.response.deathCertificateIssueDate, 'yyyy-MM-dd');  
-
-
-
-
 
 this.teacherForm.patchValue({
   transferRelatedForm: {
