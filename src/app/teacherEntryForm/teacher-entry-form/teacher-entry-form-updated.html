@@ -80,7 +80,7 @@
                                                 <h2 class="mb-0">Basic Profile:</h2>
                                             </div>
                                             <div class="col-8">
-                                                <h2 class="steps">{{responseData?.teacherId}} | {{responseData?.teacherName}}
+                                                <h2 class="steps">{{responseData?.teacherName}}
                                                 </h2>
                                             </div>
                                         </div>
@@ -199,7 +199,7 @@
 
 
                                                         <div class="col-md-6 mb-3">
-                                                            <h4 class="titleSet">Email</h4>
+                                                            <h4 class="titleSet">Email <span class="required-asterisk">*</span></h4>
                                                             <input type="email" class="form-control" name="email" formControlName="email" [(ngModel)]="responseData.teacherEmail" style="text-transform: none">
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.email').valid && teacherForm.get('profileForm.email').touched ">
                                                                 Enter your email id!</span>
@@ -595,43 +595,7 @@
                                                     <!-- <div class="col-5">
                                                         <h2 class="steps">{{responseData?.teacherId}} | {{responseData?.teacherName}}</h2>
                                                     </div> -->
-                                                </div>
-
-                                                <!-- <div class="row">
-                                                    <div class="col-md-6">
-                                                        <h4 class="titleSet">Blood Group</h4>
-                                                        <select class="form-select" aria-label="Default select example"
-                                                            name="bloodGroup" formControlName="bloodGroup"
-                                                            [(ngModel)]="responseData.teacherBloodGroup">
-                                                            <option selected>Select blood group
-                                                            </option>
-                                                            <option selected disabled>Select</option>
-                                                            <option value="1">A+</option>
-                                                            <option value="2">A-</option>
-                                                            <option value="3">B+</option>
-                                                            <option value="4">B-</option>
-                                                            <option value="5">AB+</option>
-                                                            <option value="6">AB-</option>
-                                                            <option value="7">O+</option>
-                                                            <option value="8">O-</option>
-                                                            <option value="9">Others</option>
-                                                        </select>
-                                                    </div> 
-                                                    <div class="col-md-6">
-
-                                                        <h4 class="titleSet">Pan Number</h4>
-                                                        <input type="text" class="form-control" name="panNo"
-                                                            formControlName="panNo" minlength="10" maxlength="10"
-                                                            [(ngModel)]="responseData.teacherPanNumber">
-                                                        <span class="help-block text-danger"
-                                                            *ngIf="!teacherForm.get('personalInfoForm.panNo').valid ">
-                                                            Enter a valid PAN number!</span>
-
-                                                    </div>
-                                                    <span class="help-block text-danger"
-                                                        *ngIf="!teacherForm.get('personalInfoForm.bloodGroup').valid ">
-                                                        Select your blood group!</span> 
-                                                </div> -->
+                                                </div>                                             
 
                                                 <div class="row">
 
@@ -706,6 +670,7 @@
                                                         </div>
                                                     </div>
                                                 </div> -->
+                                                <hr>
                                                 <div class="row">
 
                                                     <div class="col-md-12">
@@ -823,7 +788,7 @@
                                                         <h2 class="mb-0">Any kind of disability:</h2>
                                                     </div> -->
                                                     <div class="col-12">
-                                                        <h2 class="steps">{{responseData?.teacherId}} | {{responseData?.teacherName}}
+                                                        <h2 class="steps">{{responseData?.teacherName}}
                                                         </h2>
                                                     </div>
                                                 </div>
@@ -981,11 +946,11 @@
                                                         </div>
                                                     </div>
                                                     <div *ngIf="spouseNone && spouseKVSStation" class="col-md-6 mb-3">
-                                                        <h4 class="titleSet"> Employee Code<span class="required-asterisk">*</span> </h4>
+                                                        <h4 class="titleSet"> Spouse Code<span class="required-asterisk">*</span> </h4>
                                                         <input type="text" class="form-control" name="spouseEmpCode" [(ngModel)]="responseData.spouseEmpCode" (blur)="getSpouseDetails($event)" id="spouseEmpCode" formControlName="spouseEmpCode">
                                                     </div>
                                                     <div *ngIf="spouseNone" class="col-md-6 mb-3">
-                                                        <h4 class="titleSet"> Employee Name<span class="required-asterisk">*</span> </h4>
+                                                        <h4 class="titleSet"> Spouse Name<span class="required-asterisk">*</span> </h4>
                                                         <input type="text" class="form-control "  style="text-transform:uppercase" [(ngModel)]="responseData.spouseName" name="spouseName" id="spouseName" formControlName="spouseName">
                                                     </div>
                                                     <div *ngIf="spouseNone && spouseKVSStation" class="col-md-6 mb-3">
@@ -1161,10 +1126,10 @@
                                     <div class="form-card">
                                         <div class="row">
                                             <div class="col-7">
-                                                <h2 class="mb-0">Work Experience (All positions starting from initial joining in KVS):</h2>
+                                                <h2 class="mb-0">Work Experience :</h2>
                                             </div>
                                             <div class="col-5">
-                                                <h2 class="steps">{{responseData?.teacherId}} | {{responseData?.teacherName}}
+                                                <h2 class="steps">{{responseData?.teacherName}}
                                                 </h2>
                                             </div>
                                         </div>
@@ -1206,7 +1171,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h4 class="titleSet mb-0">
-                                                    Details of Posting
+                                                    Details of Posting From initial joining in KVS
                                                 </h4>
                                                 <table class="table mt-1" formArrayName="detailsOfPosting">
                                                     <thead>
@@ -1821,7 +1786,7 @@
                                                 <h2 class="mb-0">Miscellaneous:</h2>
                                             </div>
                                             <div class="col-5">
-                                                <h2 class="steps">{{responseData?.teacherId}} | {{responseData?.teacherName}}
+                                                <h2 class="steps">{{responseData?.teacherName}}
                                                 </h2>
                                             </div>
                                         </div>
@@ -2123,7 +2088,14 @@
                                             </div>
                                             <div *ngIf="dfpGround">
 
-                                                <div class="row"><div class="col-md-3 mb-2">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-3 mb-3">
+                                                        <label class="titleSet">Name of family members: <span
+                                                                class="required-asterisk">*</span></label>
+                                                                <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="nameOfFamilyMember" formControlName="nameOfFamilyMember" name="nameOfFamilyMember" >
+                                                         </div>                                                                                                                                                                                                       
+                                                    <div class="col-md-3 mb-2">
                                                     <label class="titleSet">DFP Ground<span class="required-asterisk">*</span>
                                                     </label>
     
@@ -2131,12 +2103,12 @@
                                                         <!-- <option selected>Select</option> -->
                                                         <option selected disabled>Select</option>
                                                         <option value="SPOUSE">SPOUSE</option>
-                                                        <option value="BOYS">BOYS</option>
+                                                        <option value="BOYS">BOY</option>
                                                         <option value="GIRL">GIRL</option> 
                                                     </select>  
                                                 </div>
                                                 <div class="col-md-3 mb-3">
-                                                    <label class="titleSet">Issue date certificate: <span
+                                                    <label class="titleSet">Date of Demise <span
                                                             class="required-asterisk">*</span></label>
                                                     <input type="date" class="form-control" name="deathCertificateIssueDate" formControlName="deathCertificateIssueDate" [(ngModel)]="deathCertificateIssueDateData" style="text-transform: none">
                                                 </div>
@@ -2362,7 +2334,7 @@
                                 !teacherForm.get('transferRelatedForm.patientMedicalOfficerName').valid ||
                                 !teacherForm.get('transferRelatedForm.patientMedicalOfficerDesignation').valid ||
                                 !teacherForm.get('transferRelatedForm.medicalCertificateIssueDate').valid) &&  gkFilemMedical) || ((!teacherForm.get('transferRelatedForm.singleParentGround').valid ||
-                                !teacherForm.get('transferRelatedForm.singleParentCertificateIssueDate').valid ) &&  spGround) || ((!teacherForm.get('transferRelatedForm.deathOfFamilyGround').valid ||
+                                !teacherForm.get('transferRelatedForm.singleParentCertificateIssueDate').valid ) &&  spGround) || ((!teacherForm.get('transferRelatedForm.nameOfFamilyMember').valid || !teacherForm.get('transferRelatedForm.deathOfFamilyGround').valid ||
                                 !teacherForm.get('transferRelatedForm.deathCertificateIssueDate').valid ) &&  dfpGround) ||
                                 ((!teacherForm.get('transferRelatedForm.careGiverName').valid ||
                                 !teacherForm.get('transferRelatedForm.careGiverRelation').valid || 
@@ -2474,9 +2446,9 @@
                                                         <td>{{verifyTchTeacherProfileData?.teachingNonteaching | staffType}}
                                                         </td>
 
-                                                        <th>Nature of Appointment</th>
+                                                        <!-- <th>Nature of Appointment</th>
                                                         <td>Regular
-                                                        </td>
+                                                        </td> -->
                                                     </tr>
                                                     <h2 class="px-2 mt-2 text-green">Information</h2>
                                                     <tr>

@@ -875,18 +875,117 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     })
 
 
+
+
+    let finalY4 = (doc as any).lastAutoTable.finalY;
+    doc.setTextColor(138, 24, 34);
+    doc.setFontSize(14);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Miscellaneous', 15, 101);
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for.', 15, 107)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['spouseKvsYnD'] == '1'?'Yes':'No', 245, 107)
+
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of medical ground (MDG Ground).', 15, 113)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['personalStatusMdgD'] == '1'?'Yes':'No', 245, 113) 
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of single parent (SP Ground).', 15, 118)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['personalStatusSpD'] == '1'?'Yes':'No', 245, 118) 
+
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of Death of Family Person (DFP Ground).', 15, 124)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['personalStatusDfpD'] == '1'?'Yes':'No', 245, 124) 
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether your are main care-giver to the person with disability in the family (i.e spouse or own son/own daughter).', 15, 130)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['careGiverFaimlyYnD'] == '1'?'Yes':'No', 245, 130) 
+
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).', 15, 136)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['memberJCM'] == '1'?'RJCM':'', 245, 136) 
+    doc.text(teacherStationChioc['memberJCM'] == '0'?'No':'', 245, 136) 
+    doc.text(teacherStationChioc['memberJCM'] == '2'?'NJCM':'', 245, 136) 
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether disciplinary proceedings are in progress.', 15, 142)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['disciplinaryYn'] == '1'?'Yes':'No', 245, 142) 
+    
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text(' Period of continuous absence(except maternity leave).', 15, 148)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10); 
+    doc.text(this.absencedays, 245, 148)  
+
+
+
+
+
+
+
     let finalY1 = (doc as any).lastAutoTable.finalY;
     
     doc.setTextColor(138, 24, 34);
     doc.setFontSize(14);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Work Experience', 15, finalY1);
+    doc.text('Work Experience', 15,154);
 
     (doc as any).autoTable({
       head: this.workExpHead,
       body: this.workExperienceArray,
       theme: 'grid',
-      startY: finalY1+5,
+      startY: 159,
       didDrawPage: function (data) {
 
         const currentDate = new Date();
@@ -1256,96 +1355,7 @@ console.log(teacherStationChioc['choiceKv1StationName'])
 
 
     //Save
-    let finalY4 = (doc as any).lastAutoTable.finalY;
-    doc.setTextColor(138, 24, 34);
-    doc.setFontSize(14);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Miscellaneous', 15, finalY4+10);
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for.', 15, 140)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['spouseKvsYnD'] == '1'?'Yes':'No', 245, 140)
-
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether the employee is seeking benefit of medical ground (MDG Ground).', 15, 145)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['personalStatusMdgD'] == '1'?'Yes':'No', 245, 145) 
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether the employee is seeking benefit of single parent (SP Ground).', 15, 150)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['personalStatusSpD'] == '1'?'Yes':'No', 245, 150) 
-
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether the employee is seeking benefit of Death of Family Person (DFP Ground).', 15, 155)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['personalStatusDfpD'] == '1'?'Yes':'No', 245, 155) 
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether your are main care-giver to the person with disability in the family (i.e spouse or own son/own daughter).', 15, 160)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['careGiverFaimlyYnD'] == '1'?'Yes':'No', 245, 160) 
-
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).', 15, 165)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['memberJCM'] == '1'?'RJCM':'', 245, 165) 
-    doc.text(teacherStationChioc['memberJCM'] == '0'?'No':'', 245, 165) 
-    doc.text(teacherStationChioc['memberJCM'] == '2'?'NJCM':'', 245, 165) 
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text(' Whether disciplinary proceedings are in progress.', 15, 170)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['disciplinaryYn'] == '1'?'Yes':'No', 245, 170) 
     
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text(' Period of continuous absence(except maternity leave).', 15, 175)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10); 
-    doc.text(this.absencedays, 245, 175)  
   
     doc.save(teacherProfile?.teacherName+'.pdf')
   }

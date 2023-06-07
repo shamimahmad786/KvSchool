@@ -112,7 +112,7 @@
 
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.name | titlecase}}</mat-cell>
+                <mat-cell *matCellDef="let row"> {{row.name | uppercase }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="gender">
@@ -137,14 +137,12 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
 
-                    <span *ngIf="row.approved === 'SI'" class=' bx-badge-check-sch bxStyle1 mr-2'> School
-                        Initiated</span>
-                    <span *ngIf="row.approved === 'SA'" class=' bx-badge-check-verified bxStyle1 mr-2'>Verified</span>
-                    <span *ngIf="row.approved === 'SR'" class=' bx-badge-check-rejected bxStyle1 mr-2'>Rejected</span>
-                    <span *ngIf="row.approved === 'SEM' || row.approved === 'SES'" class=' bx-badge-check-edited bxStyle1 mr-2'>School Edited</span>
-                    <span *ngIf="row.approved === 'SE'" class=' bx-badge-check-edited bxStyle1 mr-2'>School
-                        Editing(Pending)</span>
-                    <span *ngIf="row.approved === 'TA'" class=' bx-badge-check-pSch bxStyle1 mr-2'>Pending(School)</span>
+                    <span *ngIf="row.approved === 'SI'" class=' bx-badge-check-sch bxStyle1 mr-2'>SCHOOL INITIATED</span>
+                    <span *ngIf="row.approved === 'SA'" class=' bx-badge-check-verified bxStyle1 mr-2'>VERIFIED</span>
+                    <span *ngIf="row.approved === 'SR'" class=' bx-badge-check-rejected bxStyle1 mr-2'>REJECTED</span>
+                    <span *ngIf="row.approved === 'SEM' || row.approved === 'SES'" class=' bx-badge-check-edited bxStyle1 mr-2'>SCHOOL EDITED</span>
+                    <span *ngIf="row.approved === 'SE'" class=' bx-badge-check-edited bxStyle1 mr-2'>SCHOOL EDITING(PENDING)</span>
+                    <span *ngIf="row.approved === 'TA'" class=' bx-badge-check-pSch bxStyle1 mr-2'>PENDING(SCHOOL)</span>
                     <!-- <i class='bx bx-loader-circle bxStyle1 mr-2' title="edit"
                     >{{row.reInitiate}}</i> -->
 
@@ -152,8 +150,8 @@
                             (click)="onProcessingInfoClick(row.teacherId)"></box-icon> -->
 
                     <span *ngIf="row.approved != 'TI' && row.approved != 'TA' && row.approved != 'SI' && row.approved != 'SA' && row.approved != 'SR' && row.approved != 'SE' 
-                        && row.approved != 'SEM' && row.approved != 'SES'" class=' bx-message-square-x-ni bxStyle1 mr-2'>Not Initiated</span>
-                    <span *ngIf="row.approved == 'TI'" class=' bx-loader-circle-tch bxStyle1 mr-2'>Pending(Employee)
+                        && row.approved != 'SEM' && row.approved != 'SES'" class=' bx-message-square-x-ni bxStyle1 mr-2'> NOT INITIATED</span>
+                    <span *ngIf="row.approved == 'TI'" class=' bx-loader-circle-tch bxStyle1 mr-2'>PENDING(EMPLOYEE)
                     </span>
                 </mat-cell>
             </ng-container>
