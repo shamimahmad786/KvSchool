@@ -291,7 +291,7 @@ ul.ulLeft li {
 #progressbar li {
     list-style-type: none;
     font-size: 15px;
-    width: 16.66%;
+    width: 19.66%;
     float: left;
     position: relative;
     font-weight: 400;
@@ -322,10 +322,10 @@ ul.ulLeft li {
     font-family: FontAwesome;
     content: "\f02d"
 }
-#progressbar #qualification:before {
+/* #progressbar #qualification:before {
     font-family: FontAwesome;
     content: "\f279"
-}
+} */
 #progressbar #training:before {
     font-family: FontAwesome;
     content: "\f0ee"

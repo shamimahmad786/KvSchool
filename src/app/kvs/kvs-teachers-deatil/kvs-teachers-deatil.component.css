@@ -34,7 +34,7 @@
 .mat-column-name {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 18% !important;
+  flex: 0 0 10% !important;
   /* width:25% !important; */
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -92,7 +92,7 @@
     cursor:pointer;}
   
     .mat-column-gender {
-      flex: 0 0 8% !important;
+      flex: 0 0 24% !important;
       /* width: 8% !important; */
       }
   

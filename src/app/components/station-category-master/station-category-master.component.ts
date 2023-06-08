@@ -10,7 +10,7 @@ import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.se
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
-
+declare const srvTime: any;
 @Component({
   selector: 'app-station-category-master',
   templateUrl: './station-category-master.component.html',
@@ -20,6 +20,7 @@ import { saveAs } from 'file-saver';
 export class StationCategoryMasterComponent implements OnInit {
   stationCategoryList: any=[];
   testData = {sno: '', categoryname: '', status: '',statusType: '',id:''};
+  returnTypeSrvTime: any;
 
   ngOnInit(): void {
     this.getListStationCategory();
@@ -88,8 +89,9 @@ export class StationCategoryMasterComponent implements OnInit {
    stationCategoryMasterList
    stationCategoryMasterpdf()
    {
+    this.returnTypeSrvTime = srvTime();
     setTimeout(() => {
-      this.pdfService.stationCategoryMasterList(this.stationCategoryList);
+      this.pdfService.stationCategoryMasterList(this.stationCategoryList,this.returnTypeSrvTime);
     }, 1000);
    }
    exportexcel(){
