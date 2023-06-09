@@ -85,7 +85,7 @@
 
             <ng-container matColumnDef="dob">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row?.dob  | date: 'dd-MM-YYYY'}} </mat-cell>
+                <mat-cell *matCellDef="let row"> {{row?.dob | date: 'dd-MM-YYYY'}} </mat-cell>
             </ng-container>
 
             <!-- <ng-container matColumnDef="staffType">
@@ -101,7 +101,7 @@
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
-                    <span *ngIf="row.approved === 'TRI'" class=' bx-badge-check-initiated bxStyle1 mr-2'>Transfer
+                    <span *ngIf="row.approved === 1" class=' bx-badge-check-initiated bxStyle1 mr-2'>Transfer
                         Initiated</span>
                     <span *ngIf="row.approved === 'TRS'" class=' bx-badge-check-submitted bxStyle1 mr-2'>Transfer
                         Submitted</span>
@@ -129,16 +129,14 @@
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
-                    <!-- <i class='bx bx-show bxStyle1 mr-2' title="View" (click)="onViewClick(row.teacherId)">{{row.a}} </i>
-                    <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"
-                        (click)="onEditClick(row.teacherId)">{{row.b}}</i> -->
-                    <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'"
-                        class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"
-                        (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
-                        <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'"
-                        class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application"
-                        (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i>
-                    <!-- <i class='bx bx-box bxStyle1' title="Dropbox" (click)="onDropboxClick(row.teacherId)">{{row.d}}</i> -->
+
+                    <!-- <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
+                    <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'" class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application" (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i> -->
+
+                    <i *ngIf="row.approved == 1" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
+                    <i *ngIf="row.approved == 1" class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application" (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i>
+
+
                 </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -197,7 +195,7 @@
                         </tr>
                         <tr>
                             <th>Date of Birth</th>
-                            <td>{{teacherTransferDetails?.teacherDob  | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{teacherTransferDetails?.teacherDob | date: 'dd-MM-YYYY'}}</td>
 
                             <th>Email</th>
                             <td>{{teacherTransferDetails?.teacherEmail}}</td>
@@ -219,10 +217,10 @@
                             <td>{{stationNameCode}}</td>
 
                             <th>Present Station in Present Post Date</th>
-                            <td>{{teacherTransferDetails?.workExperiencePositionTypePresentStationStartDate  | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{teacherTransferDetails?.workExperiencePositionTypePresentStationStartDate | date: 'dd-MM-YYYY'}}</td>
 
                             <th>Present KV in Present Post Date</th>
-                            <td>{{teacherTransferDetails?.workExperienceWorkStartDatePresentKv  | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{teacherTransferDetails?.workExperienceWorkStartDatePresentKv | date: 'dd-MM-YYYY'}}</td>
 
                         </tr>
                         <tr>
@@ -234,7 +232,7 @@
 
 
                             <th>Present post date</th>
-                            <td>{{teacherTransferDetails?.lastPromotionPositionDate  | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{teacherTransferDetails?.lastPromotionPositionDate | date: 'dd-MM-YYYY'}}</td>
 
                             <th>Subject Name</th>
                             <td>{{teacherTransferDetails?.workExperienceAppointedForSubject}}</td>
@@ -277,8 +275,8 @@
                             <td>{{data.udiseSchoolName}}</td>
                             <td>{{data.shiftType}}</td>
                             <td>{{data.stationName}}</td>
-                            <td>{{data?.workStartDate  | date: 'dd-MM-YYYY'}}</td>
-                            <td>{{data?.workEndDate  | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{data?.workStartDate | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{data?.workEndDate | date: 'dd-MM-YYYY'}}</td>
                             <td>{{data.groundForTransfer}}</td>
                             <td>{{data.stationType == '0'?'NA':'Hard'}}</td>
                         </tr>
@@ -321,8 +319,7 @@
                                         <li class="w5 me-3">
                                             <h4 class="titleSet ">1B </h4>
                                         </li>
-                                        <li class="w80"> Posting period of absence on any account.<span
-                                                class="required-asterisk">*</span></li>
+                                        <li class="w80"> Posting period of absence on any account.<span class="required-asterisk">*</span></li>
                                         <li class="w20" style="font-weight: 800;">
                                             {{teacherTransferDetails?.absenceDaysOne}}
                                             <!-- <input type="text" class="form-control form-control-sm"
@@ -335,14 +332,10 @@
                                         <li class="w5 me-3">
                                             <h4 class="titleSet ">1C </h4>
                                         </li>
-                                        <li class="w80"> If any employee returns to a station X on
-                                            request after being transferred from X within three years,
-                                            the stay of such an employee at X shall be no. of years
-                                            spent at X before being transferred plus no. of years spent
-                                            after coming at X. However, if an employee returns to
-                                            station after a Posting Period of 02 years in Very Hard
-                                            (existed earlier) and 03 years from Hard/ NER station the
-                                            stay shall be counted afresh.<span class="required-asterisk">*</span></li>
+                                        <li class="w80"> If any employee returns to a station X on request after being transferred from X within three years, the stay of such an employee at X shall be no. of years spent at X before being transferred plus no. of years
+                                            spent after coming at X. However, if an employee returns to station after a Posting Period of 02 years in Very Hard (existed earlier) and 03 years from Hard/ NER station the stay shall be counted afresh.
+                                            <span class="required-asterisk">*</span>
+                                        </li>
                                         <li class="w20" style="font-weight: 800;">
                                             {{teacherTransferDetails?.absenceDaysTwo}}
                                             <!-- <input type="text" id="absenceDaysTwo"
@@ -372,7 +365,7 @@
                                         <li>
                                             <label>Present Station Posting Date</label>
                                             <div style="font-weight: 800;">
-                                                {{teacherTransferDetails?.workExperiencePositionTypePresentStationStartDate  | date: 'dd-MM-YYYY'}}
+                                                {{teacherTransferDetails?.workExperiencePositionTypePresentStationStartDate | date: 'dd-MM-YYYY'}}
                                             </div>
 
                                             <!-- <input type="text" class="form-control form-control-sm mb-1"
@@ -418,9 +411,8 @@
                                 <td class="align-middle " width="70%" colspan="2">
                                     <h4 class="titleSet">
 
-                                        Annual Performance Appraisal Report (APAR) Grading for the last
-                                        02(two)
-                                        years.<span class="required-asterisk">*</span>
+                                        Annual Performance Appraisal Report (APAR) Grading for the last 02(two) years.
+                                        <span class="required-asterisk">*</span>
                                     </h4>
 
 
@@ -484,11 +476,7 @@
                                 <td class="align-middle" colspan="2" width="75%">
                                     <h4 class="titleSet">
 
-                                        Employee below 40 years of age (as on 30th June, 2021) who have
-                                        completed one tenure at hard/very hard (existed earlier)/ NE
-                                        stations.
-                                        (Indicate 'Yes' for tenure completed & 'No' for tenure not
-                                        completed.)
+                                        Employee below 40 years of age (as on 30th June, 2021) who have completed one tenure at hard/very hard (existed earlier)/ NE stations. (Indicate 'Yes' for tenure completed & 'No' for tenure not completed.)
 
                                     </h4>
 
@@ -496,7 +484,7 @@
                                         <li>
                                             <label>Date Of Birth</label>
                                             <div style="font-weight: 800;">
-                                                {{teacherTransferDetails?.teacherDob  | date: 'dd-MM-YYYY'}}
+                                                {{teacherTransferDetails?.teacherDob | date: 'dd-MM-YYYY'}}
                                             </div>
 
                                             <!-- <input type="text" id="teacherDob"
@@ -541,8 +529,7 @@
 
                                     <div *ngIf="!showMe2">
                                         <p class="ps-2">
-                                            Only those employee who are below 40 years of age as on 30th
-                                            June 2021 should fill this column.
+                                            Only those employee who are below 40 years of age as on 30th June 2021 should fill this column.
                                         </p>
                                     </div>
 
@@ -577,8 +564,7 @@
 
                                 </td>
                                 <td class="align-middle text-center" width="15%">
-                                    <div *ngIf="teacherTransferDetails.personalStatusLtr == '1'"
-                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                    <div *ngIf="teacherTransferDetails.personalStatusLtr == '1'" class="form-check form-check-inline" style="font-weight: 800;">
                                         <!-- {{teacherTransferDetails.test}} -->
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox1" [value]="1" id="personalStatusLtr"
@@ -586,8 +572,7 @@
                                             (change)="personalStatusCheckBox($event, '1'); displacementTotalPoint()"> -->
                                         <label class="form-check-label" for="inlineCheckbox1">LTR</label>
                                     </div>
-                                    <div *ngIf="teacherTransferDetails.personalStatusDfp == '1'"
-                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                    <div *ngIf="teacherTransferDetails.personalStatusDfp == '1'" class="form-check form-check-inline" style="font-weight: 800;">
 
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox2" [value]="2" id="personalStatusDfp"
@@ -595,24 +580,21 @@
                                             (change)="personalStatusCheckBox($event, '2'); displacementTotalPoint()"> -->
                                         <label class="form-check-label" for="inlineCheckbox2">DFP</label>
                                     </div>
-                                    <div *ngIf="teacherTransferDetails.personalStatusMdg == '1'"
-                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                    <div *ngIf="teacherTransferDetails.personalStatusMdg == '1'" class="form-check form-check-inline" style="font-weight: 800;">
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox2" value="3" id="personalStatusMdg"
                                             formControlName="personalStatusMdg" name="personalStatusMdg"
                                             (change)="personalStatusCheckBox($event, '3'); displacementTotalPoint()"> -->
                                         <label class="form-check-label" for="inlineCheckbox3">MDG</label>
                                     </div>
-                                    <div *ngIf="teacherTransferDetails.personalStatusWid == '1'"
-                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                    <div *ngIf="teacherTransferDetails.personalStatusWid == '1'" class="form-check form-check-inline" style="font-weight: 800;">
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox2" value="4" id="personalStatusWid"
                                             formControlName="personalStatusWid" name="personalStatusWid"
                                             (change)="personalStatusCheckBox($event, '4'); displacementTotalPoint()"> -->
                                         <label class="form-check-label" for="inlineCheckbox4">Widow</label>
                                     </div>
-                                    <div *ngIf="teacherTransferDetails.personalStatusSp == '1'"
-                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                    <div *ngIf="teacherTransferDetails.personalStatusSp == '1'" class="form-check form-check-inline" style="font-weight: 800;">
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox2" value="5" id="personalStatusSp"
                                             formControlName="personalStatusSp" name="personalStatusSp"
@@ -623,8 +605,7 @@
                                     teacherTransferDetails.personalStatusDfp != '1' &&
                                     teacherTransferDetails.personalStatusMdg != '1' &&
                                     teacherTransferDetails.personalStatusWid != '1' &&
-                                    teacherTransferDetails.personalStatusSp != '1'"
-                                        class="form-check form-check-inline" style="font-weight: 800;">
+                                    teacherTransferDetails.personalStatusSp != '1'" class="form-check form-check-inline" style="font-weight: 800;">
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox2" value="" id="personalStatusDefault"
                                             formControlName="personalStatusDefault"
@@ -655,10 +636,8 @@
                                             <h4 class="titleSet"> <span class="text-green">A.</span>
                                             </h4>
                                         </li>
-                                        <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the
-                                            same station
-                                            or within 100
-                                            km.</li>
+                                        <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the same station or within 100 km.
+                                        </li>
                                         <li class="w20 ">
                                             <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
                                                 {{teacherTransferDetails.spouseStatus == '1'?'Yes':'No'}}
@@ -676,13 +655,7 @@
                                             <h4 class="titleSet"> <span class="text-green">B.</span>
                                             </h4>
                                         </li>
-                                        <li class="w80 ml-2"> Spouse if a Central Government/Central
-                                            Govt. Autonomous
-                                            body/Central
-                                            Govt. Public Sector Undertaking/ Defense Employee and
-                                            Central Armed
-                                            Police Forces employee posted at the same station or
-                                            within 100 km.</li>
+                                        <li class="w80 ml-2"> Spouse if a Central Government/Central Govt. Autonomous body/Central Govt. Public Sector Undertaking/ Defense Employee and Central Armed Police Forces employee posted at the same station or within 100 km.</li>
                                         <li class="w20">
                                             <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
                                                 {{teacherTransferDetails.spouseStatus == '2'?'Yes':'No'}}
@@ -701,10 +674,8 @@
                                             <h4 class="titleSet"> <span class="text-green">C.</span>
                                             </h4>
                                         </li>
-                                        <li class="w80 ml-2"> Spouse if a State Covernment / State Govt.
-                                            Autonomous body / State Govt. Public Sectors
-                                            Undertaking Employee & posted at the same station or within
-                                            100km..</li>
+                                        <li class="w80 ml-2"> Spouse if a State Covernment / State Govt. Autonomous body / State Govt. Public Sectors Undertaking Employee & posted at the same station or within 100km..
+                                        </li>
                                         <li class="w20">
                                             <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
                                                 {{teacherTransferDetails.spouseStatus == '3'?'Yes':'No'}}
@@ -723,10 +694,7 @@
                                             <h4 class="titleSet"> <span class="text-green">D.</span>
                                             </h4>
                                         </li>
-                                        <li class="w80 ml-2">Woman employee not covered under 4(A),
-                                            4(B), 4(C) above,
-                                            or an unmarried
-                                            lady, is eligible for these points. </li>
+                                        <li class="w80 ml-2">Woman employee not covered under 4(A), 4(B), 4(C) above, or an unmarried lady, is eligible for these points. </li>
                                         <li class="w20">
                                             <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
                                                 {{teacherTransferDetails.spouseStatus == '4'?'Yes':'No'}}
@@ -810,16 +778,15 @@
                                 </td>
                                 <td class="align-middle" width="90%" colspan="3">
                                     <h4 class="titleSet">
-                                        Members of Recognized Associations of KVS staff.<span
-                                            class="required-asterisk">*</span>
+                                        Members of Recognized Associations of KVS staff.<span class="required-asterisk">*</span>
                                     </h4>
                                     <ul class="orderList border-bottom">
                                         <li class="w5 me-3">
                                             <h4 class="titleSet"> <span class="text-green">A.</span>
                                             </h4>
                                         </li>
-                                        <li class="w80 ml-2">Members of JCM at KVS Regional Office
-                                            (RJCM).</li>
+                                        <li class="w80 ml-2">Members of JCM at KVS Regional Office (RJCM).
+                                        </li>
                                         <li class="w20 ">
                                             <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
                                                 {{teacherTransferDetails.associationMemberYn == '1'?'Yes':'No'}}
@@ -897,9 +864,7 @@
                                                 <h4 class="titleSet"> <span class="text-green">A.</span>
                                                 </h4>
                                             </li>
-                                            <li class="w80 ml-2" style="font-weight: 800;"> National Award given by the
-                                                President
-                                                of India.</li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> National Award given by the President of India.</li>
                                         </ul>
 
                                         <ul *ngIf="nationalAward" class="orderList border-bottom">
@@ -907,8 +872,8 @@
                                                 <h4 class="titleSet"> <span class="text-green">B.</span>
                                                 </h4>
                                             </li>
-                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS National Incentive
-                                                Award.</li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS National Incentive Award.
+                                            </li>
                                         </ul>
 
                                         <ul *ngIf="regionalAward" class="orderList">
@@ -916,8 +881,8 @@
                                                 <h4 class="titleSet"> <span class="text-green">C.</span>
                                                 </h4>
                                             </li>
-                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS Regional Incentive
-                                                Award.</li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS Regional Incentive Award.
+                                            </li>
                                         </ul>
                                     </div>
                                     <div *ngIf="noAward" class="col-md-12 mb-2">
@@ -945,11 +910,7 @@
                                 </td>
                                 <td class="align-middle" width="75%" colspan="2">
                                     <h4 class="titleSet">
-                                        Whether child of the employee is appearing in class X or XII
-                                        Exam in the
-                                        Academic year ending March 2023 and whether the employee is
-                                        seeking
-                                        exemption from displacement.<span class="required-asterisk">*</span>
+                                        Whether child of the employee is appearing in class X or XII Exam in the Academic year ending March 2023 and whether the employee is seeking exemption from displacement.<span class="required-asterisk">*</span>
                                     </h4>
                                 </td>
 
@@ -976,13 +937,8 @@
                                 <td class="align-middle text-center"> <span class="text-green">10.</span></td>
                                 <td class="align-middle" width="75%" colspan="2">
                                     <h4 class="titleSet">
-                                        Employee who serves as the main care-giver to the persons with
-                                        disability in the family (spouse or dependent son/ daughter of
-                                        the
-                                        employee) would have a bearing on the systematic rehabilitation
-                                        of
-                                        persons with disabilities, as per KVS Transfer
-                                        guideline.<span class="required-asterisk">*</span>
+                                        Employee who serves as the main care-giver to the persons with disability in the family (spouse or dependent son/ daughter of the employee) would have a bearing on the systematic rehabilitation of persons with disabilities, as per KVS Transfer guideline.
+                                        <span class="required-asterisk">*</span>
 
                                     </h4>
                                 </td>
@@ -1037,10 +993,9 @@
 
                         <tr>
                             <th>18.</th>
-                            <th>Employee for eligible to apply either for shift change in the same Vidyalaya ( Column
-                                18A ) or INTRA STATION ( Column 18B ) or INTER STATION ( Column 18C )</th>
-                            <td *ngIf="teacherTransferDetails.shiftChangeSameSchool == '1'">Shift change in the same
-                                school</td>
+                            <th>Employee for eligible to apply either for shift change in the same Vidyalaya ( Column 18A ) or INTRA STATION ( Column 18B ) or INTER STATION ( Column 18C )</th>
+                            <td *ngIf="teacherTransferDetails.shiftChangeSameSchool == '1'">Shift change in the same school
+                            </td>
                             <td *ngIf="teacherTransferDetails.shiftChangeSameSchool == '2'">Intra station</td>
                             <td *ngIf="teacherTransferDetails.shiftChangeSameSchool == '3'">Inter station</td>
                             <td *ngIf="teacherTransferDetails.shiftChangeSameSchool == '0'">None</td>
@@ -1054,40 +1009,30 @@
                         <tr *ngIf="teacherTransferDetails.shiftChangeSameSchool == '2'">
                             <th></th>
                             <th>School Preference</th>
-                            <td>{{teacherTransferDetails.choiceKv1UdiseCodePresentStation}},
-                                {{teacherTransferDetails.choiceKv2UdiseCodePresentStation}},
-                                {{teacherTransferDetails.choiceKv3UdiseCodePresentStation}},
-                                {{teacherTransferDetails.choiceKv4UdiseCodePresentStation}},
-                                {{teacherTransferDetails.choiceKv5UdiseCodePresentStation}}</td>
+                            <td>{{teacherTransferDetails.choiceKv1UdiseCodePresentStation}}, {{teacherTransferDetails.choiceKv2UdiseCodePresentStation}}, {{teacherTransferDetails.choiceKv3UdiseCodePresentStation}}, {{teacherTransferDetails.choiceKv4UdiseCodePresentStation}},
+                                {{teacherTransferDetails.choiceKv5UdiseCodePresentStation}}
+                            </td>
                         </tr>
 
                         <tr *ngIf="teacherTransferDetails.shiftChangeSameSchool == '3'">
                             <th></th>
                             <th>Station Preference</th>
-                            <td>{{teacherTransferDetails.choiceKv1StationName}},{{teacherTransferDetails.choiceKv2StationName}}
-                                ,{{teacherTransferDetails.choiceKv3StationName}},{{teacherTransferDetails.choiceKv4StationName}}
-                                ,{{teacherTransferDetails.choiceKv5StationName}}
+                            <td>{{teacherTransferDetails.choiceKv1StationName}},{{teacherTransferDetails.choiceKv2StationName}} ,{{teacherTransferDetails.choiceKv3StationName}},{{teacherTransferDetails.choiceKv4StationName}} ,{{teacherTransferDetails.choiceKv5StationName}}
                             </td>
                         </tr>
 
                         <tr>
                             <th>19.</th>
-                            <th>Kindly fill maximum five stations choice other than present station, incase you are
-                                transferred on displacement.</th>
-                            <td>{{teacherTransferDetails.displacement1StationName}},
-                                {{teacherTransferDetails.displacement2StationName}},
-                                {{teacherTransferDetails.displacement3StationName}},
-                                {{teacherTransferDetails.displacement4StationName}},
-                                {{teacherTransferDetails.displacement5StationName}}</td>
+                            <th>Kindly fill maximum five stations choice other than present station, incase you are transferred on displacement.</th>
+                            <td>{{teacherTransferDetails.displacement1StationName}}, {{teacherTransferDetails.displacement2StationName}}, {{teacherTransferDetails.displacement3StationName}}, {{teacherTransferDetails.displacement4StationName}}, {{teacherTransferDetails.displacement5StationName}}
+                            </td>
                         </tr>
                     </table>
                     <h2 class="px-2 mt-2 text-green poptbl">Transfer Count</h2>
                     <table class="table table-bordered">
                         <tr>
                             <th></th>
-                            <th>Wheather the employee is willing to apply for request transfer as per choice
-                                shift / KVs / Stations filled in column
-                                10A / 10B / 10C of part A of application form.</th>
+                            <th>Wheather the employee is willing to apply for request transfer as per choice shift / KVs / Stations filled in column 10A / 10B / 10C of part A of application form.</th>
                             <td style="font-weight: 800;">{{teacherTransferDetails.applyTransferYn == '1'?'Yes':'No'}}
                             </td>
                         </tr>
@@ -1128,9 +1073,7 @@
                                         <li class="w5 me-3">
                                             <h4 class="titleSet ">B. </h4>
                                         </li>
-                                        <li class="w80"> Periods of continuous absence of 30 days or
-                                            more (45 days or more for
-                                            Hard/NER stations) shall not be counted.</li>
+                                        <li class="w80"> Periods of continuous absence of 30 days or more (45 days or more for Hard/NER stations) shall not be counted.</li>
                                         <li class="w20" style="font-weight: 800;">
                                             {{teacherTransferDetails.absenceDaysTcone}}
                                             <!-- <input type="text" class="form-control form-control-sm"
@@ -1160,7 +1103,7 @@
                                         <li>
                                             <label>Present Station Posting Date</label>
                                             <div style="font-weight: 800;">
-                                                {{teacherTransferDetails?.workExperiencePositionTypePresentStationStartDate  | date: 'dd-MM-YYYY'}}
+                                                {{teacherTransferDetails?.workExperiencePositionTypePresentStationStartDate | date: 'dd-MM-YYYY'}}
                                             </div>
                                             <!-- <input type="text" class="form-control form-control-sm mb-1"
                                                 disabled
@@ -1203,9 +1146,7 @@
                                 <td class="align-middle " width="70%" colspan="2">
                                     <h4 class="titleSet">
 
-                                        Annual Performance Appraisal Report (APAR) Grading for the last
-                                        02(two)
-                                        years.
+                                        Annual Performance Appraisal Report (APAR) Grading for the last 02(two) years.
                                     </h4>
 
                                 </td>
@@ -1272,9 +1213,7 @@
                                                 <h4 class="titleSet"> <span class="text-green">A.</span>
                                                 </h4>
                                             </li>
-                                            <li class="w80 ml-2" style="font-weight: 800;"> National Award given by the
-                                                President
-                                                of India.</li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> National Award given by the President of India.</li>
                                         </ul>
 
                                         <ul *ngIf="nationalAward" class="orderList border-bottom">
@@ -1282,8 +1221,8 @@
                                                 <h4 class="titleSet"> <span class="text-green">B.</span>
                                                 </h4>
                                             </li>
-                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS National Incentive
-                                                Award.</li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS National Incentive Award.
+                                            </li>
                                         </ul>
 
                                         <ul *ngIf="regionalAward" class="orderList">
@@ -1291,8 +1230,8 @@
                                                 <h4 class="titleSet"> <span class="text-green">C.</span>
                                                 </h4>
                                             </li>
-                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS Regional Incentive
-                                                Award.</li>
+                                            <li class="w80 ml-2" style="font-weight: 800;"> KVS Regional Incentive Award.
+                                            </li>
                                         </ul>
                                     </div>
                                     <div *ngIf="noAward" class="col-md-12 mb-2">
@@ -1329,10 +1268,8 @@
                                             <h4 class="titleSet"> <span class="text-green">A.</span>
                                             </h4>
                                         </li>
-                                        <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the
-                                            same station
-                                            or within 100
-                                            km.</li>
+                                        <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the same station or within 100 km.
+                                        </li>
                                         <li class="w20 ">
                                             <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
                                                 {{teacherTransferDetails.spouseKvsYn == '1'?'Yes':'No'}}
@@ -1349,13 +1286,7 @@
                                             <h4 class="titleSet"> <span class="text-green">B.</span>
                                             </h4>
                                         </li>
-                                        <li class="w80 ml-2"> Spouse if a Central Government/Central
-                                            Govt. Autonomous
-                                            body/Central
-                                            Govt. Public Sector Undertaking/ Defense Employee and
-                                            Central Armed
-                                            Police Forces employee posted at the same station or
-                                            within 100 km.</li>
+                                        <li class="w80 ml-2"> Spouse if a Central Government/Central Govt. Autonomous body/Central Govt. Public Sector Undertaking/ Defense Employee and Central Armed Police Forces employee posted at the same station or within 100 km.</li>
                                         <li class="w20">
                                             <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
                                                 {{teacherTransferDetails.spouseCentralGvotYn == '2'?'Yes':'No'}}
@@ -1374,10 +1305,8 @@
                                             <h4 class="titleSet"> <span class="text-green">C.</span>
                                             </h4>
                                         </li>
-                                        <li class="w80 ml-2"> Spouse if a State Covernment / State Govt.
-                                            Autonomous body / State Govt. Public Sectors
-                                            Undertaking Employee & posted at the same station or within
-                                            100km.</li>
+                                        <li class="w80 ml-2"> Spouse if a State Covernment / State Govt. Autonomous body / State Govt. Public Sectors Undertaking Employee & posted at the same station or within 100km.
+                                        </li>
                                         <li class="w20">
                                             <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
                                                 {{teacherTransferDetails.spouseStateGvotYn == '3'?'Yes':'No'}}
@@ -1423,16 +1352,13 @@
 
                                         <ol type="A">
                                             <li>
-                                                LTR/DFP/MDG/Widow/Single Parent(SP) Cases (Select
-                                                whichever is
-                                                applicable) (50)
+                                                LTR/DFP/MDG/Widow/Single Parent(SP) Cases (Select whichever is applicable) (50)
                                             </li>
                                             <li>
                                                 <fieldset [disabled]="transfer5b">
                                                     Whether last transfer is based on above ground (4a).
                                                     <div class="form-check form-check-inline" style="font-weight: 800;">
-                                                        {{teacherTransferDetails.isLastTransferGroundPersonalStatusYn ==
-                                                        '1'?'Yes':'No'}}
+                                                        {{teacherTransferDetails.isLastTransferGroundPersonalStatusYn == '1'?'Yes':'No'}}
                                                         <!-- <input class="form-check-input" type="radio"
                                                             id="inlineRadio13" value="1"
                                                             id="isLastTransferGroundPersonalStatusYn"
@@ -1460,65 +1386,53 @@
 
                                 </td>
                                 <td class="align-middle text-center" width="15%">
-                                    <div *ngIf="teacherTransferDetails.personalStatusLtr == '1'"
-                                        class="form-check form-check-inline">
+                                    <div *ngIf="teacherTransferDetails.personalStatusLtr == '1'" class="form-check form-check-inline">
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox1" [value]="1" id="tpersonalStatusLtr"
                                             formControlName="tpersonalStatusLtr"
                                             name="tpersonalStatusLtr" disabled> -->
-                                        <label class="form-check-label" for="inlineCheckbox1"
-                                            style="font-weight: 800;">LTR</label>
+                                        <label class="form-check-label" for="inlineCheckbox1" style="font-weight: 800;">LTR</label>
                                     </div>
-                                    <div *ngIf="teacherTransferDetails.personalStatusDfp == '1'"
-                                        class="form-check form-check-inline">
+                                    <div *ngIf="teacherTransferDetails.personalStatusDfp == '1'" class="form-check form-check-inline">
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox2" [value]="2" id="tpersonalStatusDfp"
                                             formControlName="tpersonalStatusDfp"
                                             name="tpersonalStatusDfp" disabled> -->
-                                        <label class="form-check-label" for="inlineCheckbox2"
-                                            style="font-weight: 800;">DFP</label>
+                                        <label class="form-check-label" for="inlineCheckbox2" style="font-weight: 800;">DFP</label>
                                     </div>
-                                    <div *ngIf="teacherTransferDetails.personalStatusMdg == '1'"
-                                        class="form-check form-check-inline">
+                                    <div *ngIf="teacherTransferDetails.personalStatusMdg == '1'" class="form-check form-check-inline">
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox2" value="3" id="tpersonalStatusMdg"
                                             formControlName="tpersonalStatusMdg"
                                             name="tpersonalStatusMdg" disabled> -->
-                                        <label class="form-check-label" for="inlineCheckbox3"
-                                            style="font-weight: 800;">MDG</label>
+                                        <label class="form-check-label" for="inlineCheckbox3" style="font-weight: 800;">MDG</label>
                                     </div>
-                                    <div *ngIf="teacherTransferDetails.personalStatusWid == '1'"
-                                        class="form-check form-check-inline">
+                                    <div *ngIf="teacherTransferDetails.personalStatusWid == '1'" class="form-check form-check-inline">
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox2" value="4" id="tpersonalStatusWid"
                                             formControlName="tpersonalStatusWid"
                                             name="tpersonalStatusWid" disabled> -->
-                                        <label class="form-check-label" for="inlineCheckbox4"
-                                            style="font-weight: 800;">Widow</label>
+                                        <label class="form-check-label" for="inlineCheckbox4" style="font-weight: 800;">Widow</label>
                                     </div>
-                                    <div *ngIf="teacherTransferDetails.personalStatusSp == '1'"
-                                        class="form-check form-check-inline">
+                                    <div *ngIf="teacherTransferDetails.personalStatusSp == '1'" class="form-check form-check-inline">
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox2" value="5" id="tpersonalStatusSp"
                                             formControlName="tpersonalStatusSp" name="tpersonalStatusSp"
                                             disabled> -->
-                                        <label class="form-check-label" for="inlineCheckbox4"
-                                            style="font-weight: 800;">SP</label>
+                                        <label class="form-check-label" for="inlineCheckbox4" style="font-weight: 800;">SP</label>
                                     </div>
                                     <div *ngIf="teacherTransferDetails.personalStatusLtr != '1'
                                                 && teacherTransferDetails.personalStatusDfp != '1'
                                                 && teacherTransferDetails.personalStatusMdg != '1'
                                                 && teacherTransferDetails.personalStatusWid != '1'
-                                                && teacherTransferDetails.personalStatusSp != '1'"
-                                        class="form-check form-check-inline">
+                                                && teacherTransferDetails.personalStatusSp != '1'" class="form-check form-check-inline">
                                         <!-- <input class="form-check-input" type="checkbox"
                                             id="inlineCheckbox2" value="" id="tpersonalStatusDefault"
                                             formControlName="tpersonalStatusDefault"
                                             name="tpersonalStatusDefault"
                                             (change)="personalStatusCheckBox($event, '6'); displacementTotalPoint()"
                                             disabled> -->
-                                        <label class="form-check-label" for="inlineCheckbox4"
-                                            style="font-weight: 800;">Not
+                                        <label class="form-check-label" for="inlineCheckbox4" style="font-weight: 800;">Not
                                             Applicable</label>
                                     </div>
                                 </td>
@@ -1534,8 +1448,7 @@
                                 </td>
                                 <td class="align-middle" width="75%" colspan="2">
                                     <h4 class="titleSet">
-                                        Completion of tenure in Hard/NER stations (03 years) at present
-                                        station.
+                                        Completion of tenure in Hard/NER stations (03 years) at present station.
                                     </h4>
                                     <ul class="DateOfBirth mt-3">
                                     </ul>
@@ -1572,19 +1485,12 @@
 
                                         <ol type="A">
                                             <li>
-                                                Physically challenged employee. Further, if an employee
-                                                has
-                                                already
-                                                secured a request transfer in previous year(s) on the
-                                                basis of
-                                                these
-                                                additional points the points shall not given again.
+                                                Physically challenged employee. Further, if an employee has already secured a request transfer in previous year(s) on the basis of these additional points the points shall not given again.
                                             </li>
                                             <li>
                                                 Whether last transfer is based on above ground (8A).
                                                 <div class="form-check form-check-inline" style="font-weight: 800;">
-                                                    {{teacherTransferDetails.isLastTransferGroundTeacherDisabilityYn ==
-                                                    '1'?'Yes':'No'}}
+                                                    {{teacherTransferDetails.isLastTransferGroundTeacherDisabilityYn == '1'?'Yes':'No'}}
                                                     <!-- <input class="form-check-input" type="radio"
                                                         id="inlineRadio13" value="1"
                                                         id="isLastTransferGroundTeacherDisabilityYn"
@@ -1682,8 +1588,8 @@
                                             <h4 class="titleSet"> <span class="text-green">A.</span>
                                             </h4>
                                         </li>
-                                        <li class="w80 ml-2">Members of JCM at KVS Regional Office
-                                            (RJCM).</li>
+                                        <li class="w80 ml-2">Members of JCM at KVS Regional Office (RJCM).
+                                        </li>
                                         <li class="w20 ">
                                             <div class="form-check form-check-inline ms-3" style="font-weight: 800;">
                                                 {{teacherTransferDetails.associationMemberYn == '1'?'Yes':'No'}}
@@ -1746,15 +1652,8 @@
                                 <td class="align-middle text-center"> <span class="text-green">10.</span></td>
                                 <td width="75%" class="align-middle" colspan="2">
                                     <h4 class="titleSet">
-                                        For employee having a differently abled dependent child as per
-                                        DOP&T
-                                        Norms. In case you don't
-                                        get
-                                        transfer as per you choice(s) of the form, would you
-                                        like your
-                                        transfer to another class A or B city to facilitate the
-                                        treatment of
-                                        your child. if yes, please indicate two such stations.
+                                        For employee having a differently abled dependent child as per DOP&T Norms. In case you don't get transfer as per you choice(s) of the form, would you like your transfer to another class A or B city to facilitate the treatment of your child. if yes, please
+                                        indicate two such stations.
                                     </h4>
                                 </td>
                                 <td width="15%" class="align-middle text-center">
@@ -1797,14 +1696,11 @@
                     <table>
                         <tr style="background-color: #eceaea;">
                             <th width="2%">1.</th>
-                            <th>Whether the employee is seeking benefit of spouse who is working at the same station or
-                                within the distance of 100Km where employee is posted/transfer is being sought for.</th>
-                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.spouseKvsYn ==
-                                '1'?'Yes': teacherTransferDetails.spouseCentralGvotYn == '2'?'Yes': teacherTransferDetails.spouseStateGvotYn == '3'?'Yes' : 'No' }}</td>
+                            <th>Whether the employee is seeking benefit of spouse who is working at the same station or within the distance of 100Km where employee is posted/transfer is being sought for.</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.spouseKvsYn == '1'?'Yes': teacherTransferDetails.spouseCentralGvotYn == '2'?'Yes': teacherTransferDetails.spouseStateGvotYn == '3'?'Yes' : 'No' }}</td>
                         </tr>
                     </table>
-                    <table
-                        *ngIf="teacherTransferDetails.spouseKvsYn == '1'  || teacherTransferDetails.spouseCentralGvotYn == '2' || teacherTransferDetails.spouseStateGvotYn == '3'">
+                    <table *ngIf="teacherTransferDetails.spouseKvsYn == '1'  || teacherTransferDetails.spouseCentralGvotYn == '2' || teacherTransferDetails.spouseStateGvotYn == '3'">
                         <tr>
                             <th width="4%"></th>
                             <th>Spouse employee code</th>
@@ -1815,14 +1711,12 @@
                             <td>{{teacherTransferDetails.spouseStationName}}</td>
                         </tr>
                     </table>
-                    <table
-                        *ngIf="(documentUploadArray[5]?.docName == 'Spouse_Declaration.pdf' && teacherTransferDetails.spouseKvsYn == '1') ||
+                    <table *ngIf="(documentUploadArray[5]?.docName == 'Spouse_Declaration.pdf' && teacherTransferDetails.spouseKvsYn == '1') ||
                     (documentUploadArray[5]?.docName == 'Spouse_Declaration.pdf' && teacherTransferDetails.spouseCentralGvotYn == '2') ||
                     (documentUploadArray[5]?.docName == 'Spouse_Declaration.pdf' && teacherTransferDetails.spouseStateGvotYn == '3') ">
                         <tr>
                             <th width="4%"></th>
-                            <th>Download Spouse Declaration Document Uploaded : <a style="outline: none;"
-                                    href="{{documentUploadArray[5]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <th>Download Spouse Declaration Document Uploaded : <a style="outline: none;" href="{{documentUploadArray[5]?.url}}"><i class='bx bx-show'></i></a></th>
                             <td></td>
                         </tr>
                     </table>
@@ -1830,8 +1724,7 @@
                         <tr style="background-color: #eceaea;">
                             <th width="2%">2.</th>
                             <th>Whether the employee is seeking benefit of medical ground (MDG Ground).</th>
-                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.personalStatusMdg ==
-                                '1'?'Yes':'No'}}
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.personalStatusMdg == '1'?'Yes':'No'}}
                             </td>
                         </tr>
                     </table>
@@ -1853,12 +1746,10 @@
                             <td>{{teacherTransferDetails.patientMedicalOfficerDesignation}}</td>
                         </tr>
                     </table>
-                    <table
-                        *ngIf="documentUploadArray[0]?.docName == 'Medical_Certificate.pdf' && teacherTransferDetails.personalStatusMdg == '1'">
+                    <table *ngIf="documentUploadArray[0]?.docName == 'Medical_Certificate.pdf' && teacherTransferDetails.personalStatusMdg == '1'">
                         <tr>
                             <th width="4%"></th>
-                            <th>Download MDG Ground Declaration Document Uploaded : <a style="outline: none;"
-                                    href="{{documentUploadArray[0]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <th>Download MDG Ground Declaration Document Uploaded : <a style="outline: none;" href="{{documentUploadArray[0]?.url}}"><i class='bx bx-show'></i></a></th>
                             <td></td>
                         </tr>
                     </table>
@@ -1866,17 +1757,14 @@
                         <tr style="background-color: #eceaea;">
                             <th width="2%">3.</th>
                             <th>Whether the employee is seeking benefit of single parent (SP Ground)</th>
-                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.personalStatusSp ==
-                                '1'?'Yes':'No'}}
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.personalStatusSp == '1'?'Yes':'No'}}
                             </td>
                         </tr>
                     </table>
-                    <table
-                        *ngIf="documentUploadArray[6]?.docName == 'Single_Parent_Declaration.pdf' && teacherTransferDetails.personalStatusSp == '1'">
+                    <table *ngIf="documentUploadArray[6]?.docName == 'Single_Parent_Declaration.pdf' && teacherTransferDetails.personalStatusSp == '1'">
                         <tr>
                             <th width="4%"></th>
-                            <th>Download SP Ground Declaration Document Uploaded : <a style="outline: none;"
-                                    href="{{documentUploadArray[6]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <th>Download SP Ground Declaration Document Uploaded : <a style="outline: none;" href="{{documentUploadArray[6]?.url}}"><i class='bx bx-show'></i></a></th>
                             <td></td>
                         </tr>
                     </table>
@@ -1884,27 +1772,22 @@
                         <tr style="background-color: #eceaea;">
                             <th width="2%">4.</th>
                             <th>Whether the employee is seeking benefit of Death of Family Person (DFP Ground)</th>
-                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.personalStatusDfp ==
-                                '1'?'Yes':'No'}}
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.personalStatusDfp == '1'?'Yes':'No'}}
                             </td>
                         </tr>
                     </table>
-                    <table
-                        *ngIf="documentUploadArray[7]?.docName == 'DFP_Declaration.pdf' && teacherTransferDetails.personalStatusDfp == '1'">
+                    <table *ngIf="documentUploadArray[7]?.docName == 'DFP_Declaration.pdf' && teacherTransferDetails.personalStatusDfp == '1'">
                         <tr>
                             <th width="4%"></th>
-                            <th>Download DFP Ground Declaration Document Uploaded : <a style="outline: none;"
-                                    href="{{documentUploadArray[7]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <th>Download DFP Ground Declaration Document Uploaded : <a style="outline: none;" href="{{documentUploadArray[7]?.url}}"><i class='bx bx-show'></i></a></th>
                             <td></td>
                         </tr>
                     </table>
                     <table>
                         <tr style="background-color: #eceaea;">
                             <th width="2%">5.</th>
-                            <th>Whether your son/daughter is/are studying in board exam during the academic year ending
-                                March 2023</th>
-                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.child_10_12_yn ==
-                                '1'?'Yes':'No'}}
+                            <th>Whether your son/daughter is/are studying in board exam during the academic year ending March 2023</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.child_10_12_yn == '1'?'Yes':'No'}}
                             </td>
                         </tr>
                     </table>
@@ -1925,22 +1808,18 @@
                             <td>{{teacherTransferDetails.child1012Class}}</td>
                         </tr>
                     </table>
-                    <table
-                        *ngIf="documentUploadArray[1]?.docName == 'Board_examination_Proof.pdf' && teacherTransferDetails.child_10_12_yn == '1'">
+                    <table *ngIf="documentUploadArray[1]?.docName == 'Board_examination_Proof.pdf' && teacherTransferDetails.child_10_12_yn == '1'">
                         <tr>
                             <th width="4%"></th>
-                            <th>Download Board Examination Declaration Document Uploaded : <a style="outline: none;"
-                                    href="{{documentUploadArray[1]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <th>Download Board Examination Declaration Document Uploaded : <a style="outline: none;" href="{{documentUploadArray[1]?.url}}"><i class='bx bx-show'></i></a></th>
                             <td></td>
                         </tr>
                     </table>
                     <table>
                         <tr style="background-color: #eceaea;">
                             <th width="2%">6.</th>
-                            <th>Whether your are main care-giver to the person with disability in the family (i.e spouse
-                                or own son/own daughter)</th>
-                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.careGiverYn ==
-                                '1'?'Yes':'No'}}
+                            <th>Whether your are main care-giver to the person with disability in the family (i.e spouse or own son/own daughter)</th>
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.careGiverYn == '1'?'Yes':'No'}}
                             </td>
                         </tr>
                     </table>
@@ -1960,12 +1839,10 @@
                             <td>{{teacherTransferDetails.careGiverDisabilityPrcnt}}</td>
                         </tr>
                     </table>
-                    <table
-                        *ngIf="documentUploadArray[2]?.docName == 'Disability_Certificate.pdf' && teacherTransferDetails.careGiverYn == '1'">
+                    <table *ngIf="documentUploadArray[2]?.docName == 'Disability_Certificate.pdf' && teacherTransferDetails.careGiverYn == '1'">
                         <tr>
                             <th width="4%"></th>
-                            <th>Download Care Giver Declaration Document Uploaded : <a style="outline: none;"
-                                    href="{{documentUploadArray[2]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <th>Download Care Giver Declaration Document Uploaded : <a style="outline: none;" href="{{documentUploadArray[2]?.url}}"><i class='bx bx-show'></i></a></th>
                             <td></td>
                         </tr>
                     </table>
@@ -1973,8 +1850,7 @@
                         <tr style="background-color: #eceaea;">
                             <th width="2%">7.</th>
                             <th>Whether you have a differently-able child</th>
-                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.childDifferentAbleYn ==
-                                '1'?'Yes':'No'}}
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.childDifferentAbleYn == '1'?'Yes':'No'}}
                             </td>
                         </tr>
                     </table>
@@ -1989,12 +1865,10 @@
                             <td>{{teacherTransferDetails.childDifferentDisabilityPrcnt}}</td>
                         </tr>
                     </table>
-                    <table
-                        *ngIf="documentUploadArray[3]?.docName == 'Differentially_Abled_Certificate.pdf' && teacherTransferDetails.childDifferentAbleYn == '1'">
+                    <table *ngIf="documentUploadArray[3]?.docName == 'Differentially_Abled_Certificate.pdf' && teacherTransferDetails.childDifferentAbleYn == '1'">
                         <tr>
                             <th width="4%"></th>
-                            <th>Download Differently-able Child Declaration Document Uploaded : <a
-                                    style="outline: none;" href="{{documentUploadArray[3]?.url}}"><i
+                            <th>Download Differently-able Child Declaration Document Uploaded : <a style="outline: none;" href="{{documentUploadArray[3]?.url}}"><i
                                         class='bx bx-show'></i></a></th>
                             <td></td>
                         </tr>
@@ -2003,8 +1877,7 @@
                         <tr style="background-color: #eceaea;">
                             <th width="2%">8.</th>
                             <th>Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM)</th>
-                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.associationMemberYn ==
-                                '3'?'No':'Yes'}}
+                            <td width="10%" style="font-weight: 800;">{{teacherTransferDetails.associationMemberYn == '3'?'No':'Yes'}}
                             </td>
                         </tr>
                     </table>
@@ -2012,8 +1885,7 @@
                                 || teacherTransferDetails.associationMemberYn == '2')">
                         <tr>
                             <th width="4%"></th>
-                            <th>Download RJCM/NJCM Declaration Document Uploaded : <a style="outline: none;"
-                                    href="{{documentUploadArray[8]?.url}}"><i class='bx bx-show'></i></a></th>
+                            <th>Download RJCM/NJCM Declaration Document Uploaded : <a style="outline: none;" href="{{documentUploadArray[8]?.url}}"><i class='bx bx-show'></i></a></th>
                             <td></td>
                         </tr>
                     </table>
@@ -2025,8 +1897,7 @@
                                         class="required-asterisk">*</span><span style="color: red;">(If
                                         Exempted)</span></label>
                                 <fieldset [disabled]="!showNationalSelector">
-                                    <select class="form-select form-select-sm" aria-label="Default select example"
-                                        formControlName="exemptionType" name="exemptionType" id="exemptionType">
+                                    <select class="form-select form-select-sm" aria-label="Default select example" formControlName="exemptionType" name="exemptionType" id="exemptionType">
                                         <option value="" selected disabled>Select</option>
                                         <option value="A">A</option>
                                         <option value="B">B</option>
@@ -2040,22 +1911,15 @@
                                     your remarks: <span class="required-asterisk">*</span><span style="color: red;">(If
                                         Exempted)</span></label>
                                 <fieldset [disabled]="!showNationalSelector">
-                                    <textarea class="form-control" id="exemptionRemarks"
-                                        formControlName="exemptionRemarks" name="exemptionRemarks" rows="1"></textarea>
+                                    <textarea class="form-control" id="exemptionRemarks" formControlName="exemptionRemarks" name="exemptionRemarks" rows="1"></textarea>
                                 </fieldset>
                             </div>
                             <div class="col-md-4 mt-4">
                                 <div class="p-2 floatRight">
-                                    <button class="btn btn-secondary btn-sm"
-                                        (click)="modal.dismiss('Cross click');">Cancel</button>
-                                    <button *ngIf="!showNationalSelector" class="btn btn-primary btn-sm"
-                                        (click)="modal.dismiss('Cross click'); onEdit(teacherTransferDetails.teacherId)">Edit</button>
-                                    <button [disabled]="!remarksForm.valid" *ngIf="showNationalSelector"
-                                        class="btn btn-danger btn-sm" style="margin-left: 3px;"
-                                        (click)="modal.dismiss('Cross click'); onApproved('R',teacherTransferDetails.teacherId)">Exempt</button>
-                                    <button *ngIf="!showNationalSelector" class="btn btn-success btn-sm"
-                                        style="margin-left: 3px;"
-                                        (click)="modal.dismiss('Cross click'); onApproved('A',teacherTransferDetails.teacherId)">
+                                    <button class="btn btn-secondary btn-sm" (click)="modal.dismiss('Cross click');">Cancel</button>
+                                    <button *ngIf="!showNationalSelector" class="btn btn-primary btn-sm" (click)="modal.dismiss('Cross click'); onEdit(teacherTransferDetails.teacherId)">Edit</button>
+                                    <button [disabled]="!remarksForm.valid" *ngIf="showNationalSelector" class="btn btn-danger btn-sm" style="margin-left: 3px;" (click)="modal.dismiss('Cross click'); onApproved('R',teacherTransferDetails.teacherId)">Exempt</button>
+                                    <button *ngIf="!showNationalSelector" class="btn btn-success btn-sm" style="margin-left: 3px;" (click)="modal.dismiss('Cross click'); onApproved('A',teacherTransferDetails.teacherId)">
                                         Confirm & Verify</button>
                                 </div>
                             </div>

@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
+import {TransferService} from 'src/app/service/TransferService';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -65,9 +66,12 @@ export class KvsTeacherTransferComponent implements OnInit {
   teacherPost:any;
   teacherSub:any;
 
-  constructor(private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
+  constructor(private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router,private transferServ: TransferService) { }
 
   ngOnInit(): void {
+
+
+    this.getInitiatedTransferByKvCode();
 
     for (let i = 0; i < JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails.length; i++) {
       this.businessUnitTypeCode = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[i].business_unit_type_code;
@@ -113,8 +117,8 @@ export class KvsTeacherTransferComponent implements OnInit {
     if (this.businessUnitTypeId != '2' && this.businessUnitTypeId != '3' && this.businessUnitTypeId != '4') {
       // this.showNationalSelector = false;
       this.udiseSchoolCode = JSON.parse(sessionStorage.getItem("mappingData")).mappingData[0].udise_sch_code;
-      this.getTransferInitiatedTchByUdise();
-      this.getSchoolDetailsByKvCode();
+      // this.getTransferInitiatedTchByUdise(); commented by shamim
+      // this.getSchoolDetailsByKvCode(); commented by shamim
     }
 
     this.remarksForm = new FormGroup({
@@ -159,21 +163,26 @@ export class KvsTeacherTransferComponent implements OnInit {
   }
 
   setToMatTable(data) {
+
+    alert("Data after get--->"+JSON.stringify(data));
+
     this.users = [];
     for (let i = 0; i < data.length; i++) {
-      this.tempTeacherId = data[i].teacherId
+
+      // alert(data[i].transfer_id);
+
+      this.tempTeacherId = data[i].teacher_id
       this.testData.sno = '' + (i + 1) + '';
-      this.testData.name = data[i].teacherName;
+      this.testData.name = data[i].teacher_name;
       var dateString = data[i].dob;
       dateString = new Date(dateString).toUTCString();
       dateString = dateString.split(' ').slice(0, 4).join(' ');
-      this.testData.dob = data[i].teacherDob;
-      this.testData.gender = (data[i].teacherGender == '1') ? 'Male' : 'Female';
-      this.testData.empcode = data[i].teacherEmployeeCode;
-      this.testData.teacherId = data[i].teacherId;
-      this.testData.systchcode = data[i].transferApplicationNumber;
-      this.testData.approved = data[i].transferStatus;
-
+      this.testData.dob = data[i].teacher_dob;
+      this.testData.gender = (data[i].teacher_gender == '1') ? 'Male' : 'Female';
+      this.testData.empcode = data[i].teacher_employee_code;
+      this.testData.teacherId = data[i].teacher_id;
+      this.testData.systchcode = data[i].transfer_id;
+      this.testData.approved = data[i].transfer_status;
       this.users.push(this.testData);
       this.testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "", "approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "", "teacherId": "", "empcode": "", "staffType": "" }
     }
@@ -395,6 +404,22 @@ export class KvsTeacherTransferComponent implements OnInit {
       }
     })
     }
+
+
+    getInitiatedTransferByKvCode(){
+      const data={"kvCode":"9999"};
+  this.transferServ.getInitiatedTransferByKvCode(data).subscribe((res)=>{
+
+    // alert(JSON.stringify(res.response.rowValue));
+    if(res.status==1){
+      // alert(res.response.rowValue)
+      this.setToMatTable(res.response.rowValue);
+    }
+    
+
+  })
+    }
+
 
 
 }

@@ -17,7 +17,7 @@ declare const nextClickCalled: any;
 
 @Component({
   selector: 'app-kvs-transfer-edit',
-  templateUrl: './kvs-transfer-edit.component.html',
+  templateUrl: './kvs-transfer-edit-updated.component.html',
   styleUrls: ['./kvs-transfer-edit.component.css']
 })
 export class KvsTransferEditComponent implements OnInit {
@@ -159,6 +159,8 @@ export class KvsTransferEditComponent implements OnInit {
   disableMDG: boolean = false;
   disableSP: boolean = false;
   disableWidow: boolean = false;
+
+  transferStatus:any=1;
 
 
   constructor(private transferPdfService: TeacherTransferPdfService, private date: DatePipe, private formData: FormDataService, private dataService: DataService, private outSideService: OutsideServicesService, private fb: FormBuilder, private modalService: NgbModal) {
@@ -3975,4 +3977,9 @@ console.log("setData")
       }
     }
   }
+  
+  manageChoice(val){
+this.transferStatus=val;
+  }
+
 }

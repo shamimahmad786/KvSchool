@@ -107,4 +107,17 @@ export class AddPostSubjectComponent implements OnInit {
     console.log(postName)
     this.postSubjectMForm.get('postName').setValue(postName);
   }
+
+  getSubject(postId){
+          const data={"postId":postId};
+          this.outSideService.getSubjectByPost(data).subscribe((res)=>{
+            if(JSON.parse(JSON.stringify(res)).rowValue){
+              JSON.parse(JSON.stringify(res)).rowValue.forEach(element => {
+                if(element.status==true){
+                  this.subjectList.push(element)
+                }
+              });
+            }
+  });
+}
 }

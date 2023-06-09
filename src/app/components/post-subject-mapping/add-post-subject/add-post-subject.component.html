@@ -15,7 +15,7 @@
                                 <label class="titleSet">Select Post Code</label>
                                 <mat-select formControlName="postCode" class="form-control">
                                     <mat-option value="">Select Status</mat-option>
-                                    <mat-option *ngFor="let post of designationList" [value]="post.id" (click)="valueChangePost(post.postName)">{{post.postCode}}-({{post.postName}})</mat-option>
+                                    <mat-option *ngFor="let post of designationList" [value]="post.id" (click)="valueChangePost(post.postName); getSubject(post.id)">{{post.postCode}}-({{post.postName}})</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="isSubmitted && errorHandling('postCode', 'required')">
                                     Please select the Post Code!
