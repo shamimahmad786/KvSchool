@@ -25,7 +25,7 @@
 
     <div class="row">
         <div class="col-md-5 row" style="" *ngIf="transferStatus==1">
-            <h3 style="margin-bottom: 6%;"> <b>Note : Please submit atleast one station </b><span class="required-asterisk">*</span></h3>
+            <h3><b>Station Choice</b></h3>
             <div class="col-md-6">
                 <label for="basic-url" class="form-label stationName">Station Code &
                     Name(I)</label>
@@ -101,11 +101,12 @@
                             (click)="selectSchool('191')"></i></button>
                 </div>
             </div>
+            <h3> <b>Note :</b> Please submit atleast one station <span class="required-asterisk">*</span></h3>
         </div>
 
 
         <div [ngClass]="transferStatus === 1 ? 'offset-md-1 col-md-5 row'  : 'offset-md-1 col-md-10 row'">
-            <h3> <b>Note: Kindly fill maximum five stations choice other than present station, incase you are transferred on displacement.(Please select atleast one station)</b></h3>
+            <h3><b>Displacement Choice</b></h3>
             <div class="col-md-6">
                 <label for="basic-url" class="form-label stationName">Station Code &
                     Name(I)</label>
@@ -181,6 +182,7 @@
                             (click)="selectSchool('191')"></i></button>
                 </div>
             </div>
+            <h3> <b>Note: </b>Kindly fill maximum five stations choice other than present station, incase you are transferred on displacement.(Please select atleast one station)</h3>
         </div>
         <hr>
     </div>
