@@ -9,7 +9,7 @@
     </div> 
     <div class="row">
         <div class="col-md-12 ">
-            <button class="btn btn-success float-end" (click)="download()" style=" background: #24695c;">Download PDF</button>
+            <button mat-raised-button class="float-end  btn-secondary" (click)="download()">Download PDF</button>
             <button class="btn btn-success float-end mx-2" routerLink="/teacher/nationalReport" style=" background: #24695c;">Back</button>       
             
         </div>
@@ -56,7 +56,7 @@
     </div>
     <div class="row" style="margin-bottom: 2px;" *ngIf="reportId==1">
         <div class="col-sm-6 mb-3">
-            <mat-toolbar color="primary" style="height: 45px; font-size: 16px; font-weight: bold; color: #E6E8EA; background: #24695c;">
+            <mat-toolbar color="primary" style="height: 45px; font-size: 16px; font-weight: bold; color: #E6E8EA; background: #106384;">
                 <!-- <span><a mat-button (click)="breadCrumbMain()" style="color: white;"
       >Main</a
     ></span -->

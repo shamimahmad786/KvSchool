@@ -10,7 +10,7 @@ import { OutsideServicesService } from 'src/app/service/outside-services.service
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
-
+declare const srvTime: any;
 const ELEMENT_DATA: any = [];
 
 @Component({
@@ -29,6 +29,7 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   listRegion: any=[];
+  returnTypeSrvTime: any;
 
   constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
@@ -70,9 +71,12 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
     })
   }
 
-  regionMasterPdf() {
+  regionMasterPdf() { 
+   this.returnTypeSrvTime = srvTime();
+    console.log("data time")
+    console.log(this.returnTypeSrvTime)
   setTimeout(() => {
-       this.pdfService.regionMasterList(this.listRegion);
+       this.pdfService.regionMasterList(this.listRegion,this.returnTypeSrvTime);
      }, 1000);
  
    }

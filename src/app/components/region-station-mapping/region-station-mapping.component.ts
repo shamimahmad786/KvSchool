@@ -13,6 +13,7 @@ import {map, startWith} from 'rxjs/operators';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
+declare const srvTime: any;
 @Component({
   selector: 'app-region-station-mapping',
   templateUrl: './region-station-mapping.component.html',
@@ -38,6 +39,7 @@ export class RegionStationMappingComponent implements OnInit {
   filteredOptions: Observable<string[]>;
 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
+  returnTypeSrvTime: any;
   constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
     this.dateAdapter.setLocale('en-GB');
   }
@@ -170,7 +172,7 @@ this.search();
   }
   regionStationMappingpdf()
   {
-
+    this.returnTypeSrvTime = srvTime();
     var groupByEnrolementDate = function(xs:any, key:any) {
       return xs.reduce(function(rv:any, x:any) {
         (rv[x[key]] = rv[x[key]] || []).push(x);
@@ -182,7 +184,7 @@ this.search();
     this. mdoDateResultArray = Object.entries(groubedByEnrolmentDateResult)
   //  console.log(groubedByEnrolmentDateResult)
     console.log(this.mdoDateResultArray)
-    this.pdfService.regionStationMappingList(this.mdoDateResultArray);
+    this.pdfService.regionStationMappingList(this.mdoDateResultArray,this.returnTypeSrvTime);
 
     // setTimeout(() => {
     //   this.pdfService.regionStationMappingList(this.listRegionStation);

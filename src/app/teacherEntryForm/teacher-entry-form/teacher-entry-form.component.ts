@@ -70,7 +70,7 @@ export class TeacherEntryFormComponent implements OnInit {
   spouseTypeDataNameCode:any;
   spouseTypeData:any;
   empTransferradioButton:any;
-
+  singleParentCertificateIssueDateData:any;
   find: any;
   currentDateTime: any;
   selectStationName:any;
@@ -86,6 +86,7 @@ export class TeacherEntryFormComponent implements OnInit {
   showCancelEmpDupliicate: boolean = false;
   year: any = 'Enter year';
   flagUpdatedList: any;
+  patientAilmentData:any;
   headQuaterList: any = [];
   selectRegionList: any = [];
   zoneList: any = [];
@@ -241,8 +242,11 @@ export class TeacherEntryFormComponent implements OnInit {
   udiseSchCode: any;
   schName: any;
   stationName: any;
+  medicalCertificateIssueDateData:any;
   awardsList: any;
+  singleParentGroundData:any;
   trainingList: any;
+  deathCertificateIssueDateData:any;
   position:any;
   workExpId: any;
   tchPromotionList: any;
@@ -253,6 +257,7 @@ export class TeacherEntryFormComponent implements OnInit {
   districListByStateIdP: any;
   lastPromotionId: any;
   transferGroundList: any;
+  deathOfFamilyGroundData:any;
   transferRelatedFormTempId:any;
   spouseKvsYnDradioButton:any;
   personalStatusMdgDradioButton:any;
@@ -503,7 +508,7 @@ export class TeacherEntryFormComponent implements OnInit {
         'religion': new FormControl(''),
        // 'nationality': new FormControl('', Validators.required),
         'mobile': new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[8976][0-9]{9}")]),
-        'email': new FormControl(''),
+        'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
         'presentStationName': new FormControl('', Validators.required),
         'presentStationPostDate': new FormControl('', [Validators.required, this.dateNotBeforeToday.bind(this)]),
         'presentKvName': new FormControl('', Validators.required),
@@ -559,6 +564,12 @@ transferRelatedForm: new FormGroup({
   'spousePost': new FormControl(''),
   'spouseStationName': new FormControl(''),
   'careGiverFaimlyYnD': new FormControl(''),
+  'positionOfNjcmRjcm': new FormControl(''),
+  'medicalCertificateIssueDate': new FormControl('', Validators.required),
+  'singleParentGround': new FormControl('', Validators.required),
+  'deathOfFamilyGround': new FormControl('', Validators.required),
+  'deathCertificateIssueDate': new FormControl('', Validators.required),
+  'singleParentCertificateIssueDate': new FormControl('', Validators.required),
   'patientName': new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[A-Za-z ]*$")]),
   'patientAilment': new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[A-Za-z ]*$")]),
   'patientHospital': new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[A-Za-z ]*$")]),
@@ -802,6 +813,7 @@ transferRelatedForm: new FormGroup({
         }
         for (let i = 0; i < this.tchExpList.length; i++) {
           if (this.tchExpList[i].workExperienceId == this.workExpId) {
+            ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workStartDate').disable();
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workEndDate').disable();
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('groundForTransfer').disable();
             if (sessionStorage.getItem('shiftAvailable') == '0') {
@@ -2041,8 +2053,6 @@ console.log(this.teacherForm.value.transferRelatedForm)
 
       if (res.status == 1) {
         this.transferRelatedFormTempId=res.response.id
-
-        // this.teacherForm.value.transferRelatedForm.i
         this.teacherForm.patchValue({
           transferRelatedForm: {
             id: this.transferRelatedFormTempId,
@@ -2084,13 +2094,19 @@ console.log(this.teacherForm.value.transferRelatedForm)
       }
    this.outSideService.saveTransProfile(this.teacherForm.value.transferRelatedForm).subscribe((res) => {
    if (res.status == 1) {
+
     this.transferRelatedFormTempId=res.response.id
-    // this.teacherForm.value.transferRelatedForm.i
     this.teacherForm.patchValue({
-      declarationRelatedForm: {
+      transferRelatedForm: {
         id: this.transferRelatedFormTempId,
       }
     })
+    // this.teacherForm.value.transferRelatedForm.i
+    // this.teacherForm.patchValue({
+    //   declarationRelatedForm: {
+    //     id: this.transferRelatedFormTempId,
+    //   }
+    // })
 
     this.flagUpdatedList.form4Status = 'SE'
         this.flagUpdatedList.finalStatus = 'SE'
@@ -2102,6 +2118,7 @@ console.log(this.teacherForm.value.transferRelatedForm)
       '',
       'success'
     )
+    this.onVerifyClick();
     this.nextClick(6)
   } else if (this.responseStatus == '0') {
     Swal.fire(
@@ -2111,6 +2128,12 @@ console.log(this.teacherForm.value.transferRelatedForm)
 })
 
     } else if (activeButton == "submit5") {
+      this.responseData.spouseName=this.teacherForm.value.personalInfoForm.spouseName
+      this.teacherForm.patchValue({
+                transferRelatedForm: {
+                  teacherId:this.tempTeacherId,
+                }
+              });
 
 this.getStatus(this.tempTeacherId);
    debugger
@@ -2143,7 +2166,7 @@ this.getStatus(this.tempTeacherId);
               '',
               'success'
             )
-            this.nextClick(4)
+            this.nextClick(5)
             this.getTchExpByTchId();
           } else if (responsePosting == '0') {
             Swal.fire(
@@ -3867,6 +3890,7 @@ this.getMaster(data,event.target.value);
 
 
   onVerifyClick() {
+    debugger
 
     this.outSideService.getUpdatedFlag(this.tempTeacherId).subscribe((res) => {
       this.flagUpdatedList = res.response
@@ -3994,11 +4018,16 @@ getTransferProfile(){
     })
   }
   const data={"teacherId":this.tempTeacherId}
-  this.outSideService.getTransferData(data).subscribe((res) => {
-    // alert("Transfer Data Response--->"+JSON.stringify(res));
+  this.outSideService.getTransferData(data).subscribe((res) => { 
+  if(res.response!=null || res.response=='')
+  {
+this.patientAilmentData=res.response.patientAilment  
+this.medicalCertificateIssueDateData = this.date.transform(res.response.medicalCertificateIssueDate, 'yyyy-MM-dd');
+this.singleParentGroundData =res.response.singleParentGround
+this.singleParentCertificateIssueDateData =  this.date.transform(res.response.singleParentCertificateIssueDate, 'yyyy-MM-dd');  
+this.deathOfFamilyGroundData=res.response.deathOfFamilyGround
+this.deathCertificateIssueDateData = this.date.transform(res.response.deathCertificateIssueDate, 'yyyy-MM-dd');  
 
-  
-   
 this.teacherForm.patchValue({
   transferRelatedForm: {
     id:res.response.id,
@@ -4006,6 +4035,7 @@ this.teacherForm.patchValue({
 applyTransferYn:res.response.applyTransferYn,
 disciplinaryYn:res.response.disciplinaryYn,
 absenceDaysOne:res.response.absenceDaysOne,
+positionOfNjcmRjcm:res.response.positionOfNjcmRjcm,
 choiceKv1StationName:res.response.choiceKv1StationName,
 choiceKv2StationName:res.response.choiceKv2StationName,
 choiceKv3StationName:res.response.choiceKv3StationName,
@@ -4021,6 +4051,7 @@ displacement4StationCode:res.response.displacement4StationCode,
 displacement4StationName:res.response.displacement4StationName,
 displacement5StationCode:res.response.displacement5StationCode,
 displacement5StationName:res.response.displacement5StationName,
+singleParentGround:res.response.singleParentGround,
 spouseKvsYnD:res.response.spouseKvsYnD,
 childDifferentAbleYnD:res.response.childDifferentAbleYnD,
 careGiverFaimlyYnD:res.response.careGiverFaimlyYnD,
@@ -4033,7 +4064,7 @@ spouseEmpCode:res.response.spouseEmpCode,
 spousePost:res.response.spousePost,
 spouseStation:res.response.spouseStation,
 patientName:res.response.patientName,
-patientAilment:res.response.patientAilment,
+//patientAilment:res.response.patientAilment,
 patientHospital:res.response.patientHospital,
 patientMedicalOfficerName:res.response.patientMedicalOfficerName,
 patientMedicalOfficerDesignation:res.response.patientMedicalOfficerDesignation,
@@ -4047,6 +4078,7 @@ childDifferentDisabilityPrcnt:res.response.childDifferentDisabilityPrcnt,
   },
 
 })
+}
 debugger
 // ----------------------------- emp transfer radio button start  here ------------------------------------
 this.empTransferradioButton= this.teacherForm.value.transferRelatedForm.applyTransferYn

@@ -16,6 +16,7 @@ export class TeacherAppPdfService {
   trainingReceivedArray:any;
   awardReceivedArray:any;
   workExperienceArray:any;
+  absencedays: any;
   workExpHead = [['School Name ', 'From','To','Position Held','Appointed for Subject','Transfer Ground']]
   //acdHead = [['Qualifications', 'Major Subject', 'Minor Subject', 'Board/University', 'School/College', 'Year of Passing']]
   teacherStationChiceHead = [['Station One', 'Station Two', 'Station three', 'Station Four', 'Station Five']]
@@ -43,6 +44,7 @@ export class TeacherAppPdfService {
 console.log(teacherStationChioc['choiceKv1StationName'])
     const transferGround = new TransferGroundPipe();
     var teacherTrainingData= [];
+    this.absencedays =teacherStationChioc['absenceDaysOne'].toString();
     teacherTrainingData.push(teacherStationChioc['choiceKv1StationName'])
     teacherTrainingData.push(teacherStationChioc['choiceKv2StationName'])
     teacherTrainingData.push(teacherStationChioc['choiceKv3StationName'])
@@ -938,130 +940,130 @@ console.log(teacherStationChioc['choiceKv1StationName'])
 
 
 
-    let finalY2 = (doc as any).lastAutoTable.finalY;
+    // let finalY2 = (doc as any).lastAutoTable.finalY;
     
-    doc.setTextColor(138, 24, 34);
-    doc.setFontSize(14);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Order of Station Choice', 15, finalY2+10);
+    // doc.setTextColor(138, 24, 34);
+    // doc.setFontSize(14);
+    // doc.setFont('Times-Roman', 'bold');
+    // doc.text('Order of Station Choice', 15, finalY2+10);
 
-    (doc as any).autoTable({
-      head: this.teacherStationChiceHead,
-      body: this.teacherTrainingArray,
-      theme: 'grid',
-      startY: finalY2+15,
-      didDrawPage: function (data) {
+    // (doc as any).autoTable({
+    //   head: this.teacherStationChiceHead,
+    //   body: this.teacherTrainingArray,
+    //   theme: 'grid',
+    //   startY: finalY2+15,
+    //   didDrawPage: function (data) {
 
-        const currentDate = new Date();
-        const convtCurrentDate = "(" + currentDate + ")"
+    //     const currentDate = new Date();
+    //     const convtCurrentDate = "(" + currentDate + ")"
 
-        // Header
-        doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 10, 100, 20);
-        doc.setDrawColor(0, 0, 0);
-        doc.setTextColor(0, 0, 0);
-        doc.setLineWidth(1);
-        doc.line(15, 35, 280, 35);
+    //     // Header
+    //     doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 10, 100, 20);
+    //     doc.setDrawColor(0, 0, 0);
+    //     doc.setTextColor(0, 0, 0);
+    //     doc.setLineWidth(1);
+    //     doc.line(15, 35, 280, 35);
         
-        // Footer
-        var str = "Page " + data.doc.internal.getNumberOfPages();
+    //     // Footer
+    //     var str = "Page " + data.doc.internal.getNumberOfPages();
 
-        doc.setFontSize(10);
-        // jsPDF 1.4+ uses getWidth, <1.4 uses .width
-        var pageSize = doc.internal.pageSize;
-        var pageHeight = pageSize.height
-          ? pageSize.height
-          : pageSize.getHeight();
-        doc.text(str, data.settings.margin.left, pageHeight - 10);
+    //     doc.setFontSize(10);
+    //     // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+    //     var pageSize = doc.internal.pageSize;
+    //     var pageHeight = pageSize.height
+    //       ? pageSize.height
+    //       : pageSize.getHeight();
+    //     doc.text(str, data.settings.margin.left, pageHeight - 10);
 
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(12);
-        doc.setFont('Times-Roman', 'bold');
-        doc.text('Report Generation Date & Time',  data.settings.margin.left+160, pageHeight - 10)
+    //     doc.setTextColor(0, 0, 0);
+    //     doc.setFontSize(12);
+    //     doc.setFont('Times-Roman', 'bold');
+    //     doc.text('Report Generation Date & Time',  data.settings.margin.left+160, pageHeight - 10)
     
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(12);
-        doc.setFont('Times-Roman', 'normal');
-        doc.text(convtCurrentDate,  data.settings.margin.left+160, pageHeight - 5)
-
-        
-      },
-
-      didDrawCell: data => {
-        this.yPoint = data.cursor.y
-      },
-
-      headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
-      alternateRowStyles: { fillColor: [255, 251, 245] },
-      valign: 'top',
-      margin: {
-        top: 40,
-        bottom: 15,
-      },
-    })
-
-
-
-
-    let finalY3 = (doc as any).lastAutoTable.finalY;
-    
-    doc.setTextColor(138, 24, 34);
-    doc.setFontSize(14);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Order of Displacement Station Choice', 15, finalY3+10);
-
-    (doc as any).autoTable({
-      head: this.teacherStationChiceDisplacementHead ,
-      body: this.teacherTrainingDisplacementDataArray,
-      theme: 'grid',
-      startY: finalY3+15,
-      didDrawPage: function (data) {
-
-        const currentDate = new Date();
-        const convtCurrentDate = "(" + currentDate + ")"
-
-        // Header
-        doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 10, 100, 20);
-        doc.setDrawColor(0, 0, 0);
-        doc.setTextColor(0, 0, 0);
-        doc.setLineWidth(1);
-        doc.line(15, 35, 280, 35);
-        
-        // Footer
-        var str = "Page " + data.doc.internal.getNumberOfPages();
-
-        doc.setFontSize(10);
-        // jsPDF 1.4+ uses getWidth, <1.4 uses .width
-        var pageSize = doc.internal.pageSize;
-        var pageHeight = pageSize.height
-          ? pageSize.height
-          : pageSize.getHeight();
-        doc.text(str, data.settings.margin.left, pageHeight - 10);
-
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(12);
-        doc.setFont('Times-Roman', 'bold');
-        doc.text('Report Generation Date & Time',  data.settings.margin.left+160, pageHeight - 10)
-    
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(12);
-        doc.setFont('Times-Roman', 'normal');
-        doc.text(convtCurrentDate,  data.settings.margin.left+160, pageHeight - 5)
+    //     doc.setTextColor(0, 0, 0);
+    //     doc.setFontSize(12);
+    //     doc.setFont('Times-Roman', 'normal');
+    //     doc.text(convtCurrentDate,  data.settings.margin.left+160, pageHeight - 5)
 
         
-      },
+    //   },
 
-      didDrawCell: data => {
-        this.yPoint = data.cursor.y
-      },
+    //   didDrawCell: data => {
+    //     this.yPoint = data.cursor.y
+    //   },
 
-      headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
-      alternateRowStyles: { fillColor: [255, 251, 245] },
-      valign: 'top',
-      margin: {
-        top: 40,
-        bottom: 15,
-      },
-    })
+    //   headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
+    //   alternateRowStyles: { fillColor: [255, 251, 245] },
+    //   valign: 'top',
+    //   margin: {
+    //     top: 40,
+    //     bottom: 15,
+    //   },
+    // })
+
+
+
+
+    // let finalY3 = (doc as any).lastAutoTable.finalY;
+    
+    // doc.setTextColor(138, 24, 34);
+    // doc.setFontSize(14);
+    // doc.setFont('Times-Roman', 'bold');
+    // doc.text('Order of Displacement Station Choice', 15, finalY3+10);
+
+    // (doc as any).autoTable({
+    //   head: this.teacherStationChiceDisplacementHead ,
+    //   body: this.teacherTrainingDisplacementDataArray,
+    //   theme: 'grid',
+    //   startY: finalY3+15,
+    //   didDrawPage: function (data) {
+
+    //     const currentDate = new Date();
+    //     const convtCurrentDate = "(" + currentDate + ")"
+
+    //     // Header
+    //     doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 10, 100, 20);
+    //     doc.setDrawColor(0, 0, 0);
+    //     doc.setTextColor(0, 0, 0);
+    //     doc.setLineWidth(1);
+    //     doc.line(15, 35, 280, 35);
+        
+    //     // Footer
+    //     var str = "Page " + data.doc.internal.getNumberOfPages();
+
+    //     doc.setFontSize(10);
+    //     // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+    //     var pageSize = doc.internal.pageSize;
+    //     var pageHeight = pageSize.height
+    //       ? pageSize.height
+    //       : pageSize.getHeight();
+    //     doc.text(str, data.settings.margin.left, pageHeight - 10);
+
+    //     doc.setTextColor(0, 0, 0);
+    //     doc.setFontSize(12);
+    //     doc.setFont('Times-Roman', 'bold');
+    //     doc.text('Report Generation Date & Time',  data.settings.margin.left+160, pageHeight - 10)
+    
+    //     doc.setTextColor(0, 0, 0);
+    //     doc.setFontSize(12);
+    //     doc.setFont('Times-Roman', 'normal');
+    //     doc.text(convtCurrentDate,  data.settings.margin.left+160, pageHeight - 5)
+
+        
+    //   },
+
+    //   didDrawCell: data => {
+    //     this.yPoint = data.cursor.y
+    //   },
+
+    //   headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
+    //   alternateRowStyles: { fillColor: [255, 251, 245] },
+    //   valign: 'top',
+    //   margin: {
+    //     top: 40,
+    //     bottom: 15,
+    //   },
+    // })
 
 
     
@@ -1254,6 +1256,97 @@ console.log(teacherStationChioc['choiceKv1StationName'])
 
 
     //Save
+    let finalY4 = (doc as any).lastAutoTable.finalY;
+    doc.setTextColor(138, 24, 34);
+    doc.setFontSize(14);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Miscellaneous', 15, finalY4+10);
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for.', 15, 140)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['spouseKvsYnD'] == '1'?'Yes':'No', 245, 140)
+
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of medical ground (MDG Ground).', 15, 145)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['personalStatusMdgD'] == '1'?'Yes':'No', 245, 145) 
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of single parent (SP Ground).', 15, 150)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['personalStatusSpD'] == '1'?'Yes':'No', 245, 150) 
+
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of Death of Family Person (DFP Ground).', 15, 155)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['personalStatusDfpD'] == '1'?'Yes':'No', 245, 155) 
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether your are main care-giver to the person with disability in the family (i.e spouse or own son/own daughter).', 15, 160)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['careGiverFaimlyYnD'] == '1'?'Yes':'No', 245, 160) 
+
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).', 15, 165)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['memberJCM'] == '1'?'RJCM':'', 245, 165) 
+    doc.text(teacherStationChioc['memberJCM'] == '0'?'No':'', 245, 165) 
+    doc.text(teacherStationChioc['memberJCM'] == '2'?'NJCM':'', 245, 165) 
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text(' Whether disciplinary proceedings are in progress.', 15, 170)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['disciplinaryYn'] == '1'?'Yes':'No', 245, 170) 
+    
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text(' Period of continuous absence(except maternity leave).', 15, 175)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10); 
+    doc.text(this.absencedays, 245, 175)  
+  
     doc.save(teacherProfile?.teacherName+'.pdf')
   }
 }

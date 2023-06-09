@@ -153,8 +153,42 @@ $(document).ready(function() {
     loadScroller();
 });
 
+
+
+function srvTime(){
+    var xmlHttp;
+    try {
+        //FF, Opera, Safari, Chrome
+        xmlHttp = new XMLHttpRequest();
+    }
+    catch (err1) {
+        //IE
+        try {
+            xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+        }
+        catch (err2) {
+            try {
+                xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+            }
+            catch (eerr3) {
+                //AJAX not supported, use CPU time.
+                alert("AJAX not supported");
+            }
+        }
+    }
+    xmlHttp.open('HEAD',window.location.href.toString(),false);
+    xmlHttp.setRequestHeader("Content-Type", "text/html");
+    xmlHttp.send('');
+    var date = new Date(xmlHttp.getResponseHeader("Date"));
+    return date;
+   
+}
+
+
+
+
 function loadScroller() {
-    debugger
+  
     var current_fs, next_fs, previous_fs; //fieldsets
     var opacity;
     var current = 1;
@@ -162,7 +196,7 @@ function loadScroller() {
     setProgressBar(current);
 
     $(".action-save").click(function() {
-        debugger
+       
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
         //Add Class Active
@@ -185,7 +219,7 @@ function loadScroller() {
         setProgressBar(++current);
     });
     $(".next").click(function() {
-        debugger
+      
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
         //Add Class Active
@@ -265,7 +299,7 @@ $(document).ready(function() {
 
     var current_fs, next_fs, previous_fs; //fieldsets
     var opacity;
-    debugger
+   
     // $(".next").on("click", function() {
     //     debugger
     //     event.preventDefault()
@@ -405,7 +439,7 @@ function onNextClick(current){
 
 
  function onNextButtonClick(current){
-  debugger
+ 
   var current_fs, next_fs, previous_fs; //fieldsets
   var opacity;
  

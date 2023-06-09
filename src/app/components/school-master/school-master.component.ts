@@ -9,6 +9,7 @@ import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.se
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
+declare const srvTime: any;
 const ELEMENT_DATA: any = [
   {sno: '', stationcode: '', stationname: '', status: ''}
 
@@ -26,6 +27,7 @@ export class SchoolMasterComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   schoolList: any=[];
+  returnTypeSrvTime: any;
  
   constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
@@ -98,8 +100,9 @@ export class SchoolMasterComponent implements OnInit {
    }
    schoolMasterPdf()
    {
+    this.returnTypeSrvTime = srvTime();
     setTimeout(() => {
-      this.pdfService.schoolMasterList(this.schoolList);
+      this.pdfService.schoolMasterList(this.schoolList,this.returnTypeSrvTime);
     }, 1000);
    }
    exportexcel(){

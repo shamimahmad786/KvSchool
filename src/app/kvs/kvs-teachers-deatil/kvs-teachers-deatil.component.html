@@ -80,8 +80,7 @@
                 </mat-form-field>       
             </div>
         </div>
-        <div class="p-2"></div>
-        <div class="p-5"></div>
+        <div class="p-4"></div>
         <div class="p-5"></div>
         <div class="p-5"></div>
         <div class="p-5"></div>
@@ -117,20 +116,22 @@
             </ng-container>
 
             <ng-container matColumnDef="gender">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
-                <!-- <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender | genderPipe }} </mat-cell> -->
-                <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Post Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.postName }} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="dob">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.dob | date}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Subject Name</mat-header-cell>
+                <!-- <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender | genderPipe }} </mat-cell> -->
+                <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.subjectName}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="staffType">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Staff Type </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.staffType}} </mat-cell>
-            </ng-container>
+          
+
+            <!-- <ng-container matColumnDef="staffType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+                <mat-cell *matCellDef="let row"></mat-cell>
+            </ng-container> -->
 
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
