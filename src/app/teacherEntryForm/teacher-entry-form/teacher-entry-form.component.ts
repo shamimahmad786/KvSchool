@@ -4003,7 +4003,7 @@ this.getMaster(data,event.target.value);
 
 getTransferProfile(){
   debugger
-  if(this.tempTeacherId==null){
+ 
     this.teacherForm.patchValue({
       transferRelatedForm: {
         spouseKvsYnD: '0',
@@ -4017,7 +4017,7 @@ getTransferProfile(){
         memberJCM: '0',
       }
     })
-  }
+
   const data={"teacherId":this.tempTeacherId}
   this.outSideService.getTransferData(data).subscribe((res) => { 
   if(res.response!=null || res.response=='')
