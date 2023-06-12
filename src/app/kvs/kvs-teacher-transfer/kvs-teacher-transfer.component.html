@@ -1914,10 +1914,12 @@
                                     <textarea class="form-control" id="exemptionRemarks" formControlName="exemptionRemarks" name="exemptionRemarks" rows="1"></textarea>
                                 </fieldset>
                             </div>
+                          
                             <div class="col-md-4 mt-4">
                                 <div class="p-2 floatRight">
                                     <button class="btn btn-secondary btn-sm" (click)="modal.dismiss('Cross click');">Cancel</button>
                                     <button *ngIf="!showNationalSelector" class="btn btn-primary btn-sm" (click)="modal.dismiss('Cross click'); onEdit(teacherTransferDetails.teacherId)">Edit</button>
+                                    <!-- <button class="btn btn-primary btn-sm" (click)="modal.dismiss('Cross click'); onEdit()">Edit</button> -->
                                     <button [disabled]="!remarksForm.valid" *ngIf="showNationalSelector" class="btn btn-danger btn-sm" style="margin-left: 3px;" (click)="modal.dismiss('Cross click'); onApproved('R',teacherTransferDetails.teacherId)">Exempt</button>
                                     <button *ngIf="!showNationalSelector" class="btn btn-success btn-sm" style="margin-left: 3px;" (click)="modal.dismiss('Cross click'); onApproved('A',teacherTransferDetails.teacherId)">
                                         Confirm & Verify</button>

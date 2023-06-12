@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 import { TeacherTransferPdfService } from '../makePdf/teacher-transfer-pdf.service';
 
 declare const loadScroller12: any;
-declare const nextClickCalled: any;
+declare const onNextClick: any;
 
 @Component({
   selector: 'app-kvs-transfer-edit',
@@ -42,6 +42,7 @@ export class KvsTransferEditComponent implements OnInit {
   abledChild: boolean = false;
   isChecked: boolean = true;
   panelOpenState = false;
+  disabled  = true;
   step = 0;
   tempTeacherId: any;
   isCheckedNew: any;
@@ -50,7 +51,7 @@ export class KvsTransferEditComponent implements OnInit {
   teacherTypeDataNameCode: any;
   stationList: any;
 
-
+  empTransferradioButton:any;
   kvSchoolDetails: any;
   stationNameCode: any;
   stationCode: any;
@@ -161,6 +162,7 @@ export class KvsTransferEditComponent implements OnInit {
   disableWidow: boolean = false;
 
   transferStatus:any=1;
+  transferRelatedFormTempId: any;
 
 
   constructor(private transferPdfService: TeacherTransferPdfService, private date: DatePipe, private formData: FormDataService, private dataService: DataService, private outSideService: OutsideServicesService, private fb: FormBuilder, private modalService: NgbModal) {
@@ -168,7 +170,7 @@ export class KvsTransferEditComponent implements OnInit {
   }
 
   nextClick(index) {
-    nextClickCalled(index);
+    onNextClick(index);
   }
   setStep(index: number) {
     this.step = index;
@@ -356,7 +358,7 @@ export class KvsTransferEditComponent implements OnInit {
     this.fromStatus = sessionStorage.getItem('finalStatus')
     this.disableShiftType = ((sessionStorage.getItem('shiftYn')) == '0') ? true : false;
     this.tempTeacherId = sessionStorage.getItem('tempTchId')
-
+    
     this.getAllMaster();
     this.getStateMaster();
 
@@ -389,78 +391,29 @@ export class KvsTransferEditComponent implements OnInit {
         'teacherId': new FormControl
       }),
       stationChoice: new FormGroup({
-        'recruitedSpclDriveNer': new FormControl('', Validators.required),
-        'shiftChangeSameSchool': new FormControl('', Validators.required),
-
-        'choiceKv1UdiseCodePresentStation': new FormControl('', Validators.required),
-        'choiceKv2UdiseCodePresentStation': new FormControl,
-        'choiceKv3UdiseCodePresentStation': new FormControl,
-        'choiceKv4UdiseCodePresentStation': new FormControl,
-        'choiceKv5UdiseCodePresentStation': new FormControl,
-        'choiceKv1StationCode': new FormControl('', Validators.required),
-        'choiceKv2StationCode': new FormControl,
-        'choiceKv3StationCode': new FormControl,
-        'choiceKv4StationCode': new FormControl,
-        'choiceKv5StationCode': new FormControl,
-        'displacement1StationCode': new FormControl('', Validators.required),
-        'displacement2StationCode': new FormControl,
-        'displacement3StationCode': new FormControl,
-        'displacement4StationCode': new FormControl,
-        'displacement5StationCode': new FormControl,
-        'transferApplicationNumber': new FormControl,
-        'choiceKv1UdiseNamePresentStation': new FormControl('', Validators.required),
-        'choiceKv2UdiseNamePresentStation': new FormControl,
-        'choiceKv3UdiseNamePresentStation': new FormControl,
-        'choiceKv4UdiseNamePresentStation': new FormControl,
-        'choiceKv5UdiseNamePresentStation': new FormControl,
+        'applyTransferYn': new FormControl('', Validators.required),
+        'id':new FormControl(''),
+        'teacherId':new FormControl('', Validators.required),
+        'choiceKv1StationCode':  new FormControl,
+        'choiceKv2StationCode':  new FormControl,
+        'choiceKv3StationCode':  new FormControl,
+        'choiceKv4StationCode':  new FormControl,
+        'choiceKv5StationCode':  new FormControl,
         'choiceKv1StationName': new FormControl('', Validators.required),
         'choiceKv2StationName': new FormControl,
         'choiceKv3StationName': new FormControl,
         'choiceKv4StationName': new FormControl,
         'choiceKv5StationName': new FormControl,
+        'displacement1StationCode': new FormControl,
+        'displacement2StationCode': new FormControl,
+        'displacement3StationCode': new FormControl,
+        'displacement4StationCode': new FormControl,
+        'displacement5StationCode': new FormControl,
         'displacement1StationName': new FormControl('', Validators.required),
         'displacement2StationName': new FormControl,
         'displacement3StationName': new FormControl,
         'displacement4StationName': new FormControl,
-        'displacement5StationName': new FormControl,
-
-        'choiceKv1StationCodeUdiseCode1': new FormControl(),
-        'choiceKv1StationCodeUdiseCode2': new FormControl(),
-        'choiceKv1StationCodeUdiseCode3': new FormControl(),
-        'choiceKv2StationCodeUdiseCode1': new FormControl(),
-        'choiceKv2StationCodeUdiseCode2': new FormControl(),
-        'choiceKv2StationCodeUdiseCode3': new FormControl(),
-        'choiceKv3StationCodeUdiseCode1': new FormControl(),
-        'choiceKv3StationCodeUdiseCode2': new FormControl(),
-        'choiceKv3StationCodeUdiseCode3': new FormControl(),
-        'choiceKv4StationCodeUdiseCode1': new FormControl(),
-        'choiceKv4StationCodeUdiseCode2': new FormControl(),
-        'choiceKv4StationCodeUdiseCode3': new FormControl(),
-        'choiceKv5StationCodeUdiseCode1': new FormControl(),
-        'choiceKv5StationCodeUdiseCode2': new FormControl(),
-        'choiceKv5StationCodeUdiseCode3': new FormControl(),
-
-        'choiceKv1StationCodeUdiseName1': new FormControl(),
-        'choiceKv1StationCodeUdiseName2': new FormControl(),
-        'choiceKv1StationCodeUdiseName3': new FormControl(),
-        'choiceKv2StationCodeUdiseName1': new FormControl(),
-        'choiceKv2StationCodeUdiseName2': new FormControl(),
-        'choiceKv2StationCodeUdiseName3': new FormControl(),
-        'choiceKv3StationCodeUdiseName1': new FormControl(),
-        'choiceKv3StationCodeUdiseName2': new FormControl(),
-        'choiceKv3StationCodeUdiseName3': new FormControl(),
-        'choiceKv4StationCodeUdiseName1': new FormControl(),
-        'choiceKv4StationCodeUdiseName2': new FormControl(),
-        'choiceKv4StationCodeUdiseName3': new FormControl(),
-        'choiceKv5StationCodeUdiseName1': new FormControl(),
-        'choiceKv5StationCodeUdiseName2': new FormControl(),
-        'choiceKv5StationCodeUdiseName3': new FormControl(),
-
-        'stationWithin100km1': new FormControl(),
-        'stationWithin100km2': new FormControl(),
-        'stationWithin100km3': new FormControl(),
-        'stationWithin100km4': new FormControl(),
-        'stationWithin100km5': new FormControl(),
+        'displacement5StationName': new FormControl
       }),
       displacementCount: new FormGroup({
         'numberOfWorkingDays': new FormControl(),//1
@@ -641,6 +594,7 @@ export class KvsTransferEditComponent implements OnInit {
   //Add Posting Form --Start
 
   getTransferBasicProfileByTchId() {
+    debugger
     this.outSideService.fetchTransferBasicProfileByTchId(this.tempTeacherId).subscribe((res) => {
 
       this.profileData = res.response.profileDetails
@@ -726,7 +680,7 @@ console.log("setData")
 
     }, 300);
 
-
+    debugger
     if (setData != null) {
 
       sessionStorage.setItem('q5DPt', setData.q5DPt)
@@ -922,8 +876,7 @@ console.log("setData")
       }
     }
 
-
-
+   
 
     this.transferForm.patchValue({
       basicDetails: {
@@ -942,13 +895,8 @@ console.log("setData")
         natureOfAppointment: setData.natureOfAppointment
       },
       stationChoice: {
-        recruitedSpclDriveNer: setData.recruitedSpclDriveNer,
-        shiftChangeSameSchool: setData.shiftChangeSameSchool,
-        choiceKv1UdiseCodePresentStation: setData.choiceKv1UdiseCodePresentStation,
-        choiceKv2UdiseCodePresentStation: setData.choiceKv2UdiseCodePresentStation,
-        choiceKv3UdiseCodePresentStation: setData.choiceKv3UdiseCodePresentStation,
-        choiceKv4UdiseCodePresentStation: setData.choiceKv4UdiseCodePresentStation,
-        choiceKv5UdiseCodePresentStation: setData.choiceKv5UdiseCodePresentStation,
+        id: setData.id,  
+        applyTransferYn: setData.applyTransferYn,    
         choiceKv1StationCode: setData.choiceKv1StationCode,
         choiceKv2StationCode: setData.choiceKv2StationCode,
         choiceKv3StationCode: setData.choiceKv3StationCode,
@@ -958,13 +906,7 @@ console.log("setData")
         displacement2StationCode: setData.displacement2StationCode,
         displacement3StationCode: setData.displacement3StationCode,
         displacement4StationCode: setData.displacement4StationCode,
-        displacement5StationCode: setData.displacement5StationCode,
-        transferApplicationNumber: setData.transferApplicationNumber,
-        choiceKv1UdiseNamePresentStation: setData.choiceKv1UdiseNamePresentStation,
-        choiceKv2UdiseNamePresentStation: setData.choiceKv2UdiseNamePresentStation,
-        choiceKv3UdiseNamePresentStation: setData.choiceKv3UdiseNamePresentStation,
-        choiceKv4UdiseNamePresentStation: setData.choiceKv4UdiseNamePresentStation,
-        choiceKv5UdiseNamePresentStation: setData.choiceKv5UdiseNamePresentStation,
+        displacement5StationCode: setData.displacement5StationCode,      
         choiceKv1StationName: setData.choiceKv1StationName,
         choiceKv2StationName: setData.choiceKv2StationName,
         choiceKv3StationName: setData.choiceKv3StationName,
@@ -975,42 +917,6 @@ console.log("setData")
         displacement3StationName: setData.displacement3StationName,
         displacement4StationName: setData.displacement4StationName,
         displacement5StationName: setData.displacement5StationName,
-        choiceKv1StationCodeUdiseCode1: setData.choiceKv1StationCodeUdiseCode1,
-        choiceKv1StationCodeUdiseCode2: setData.choiceKv1StationCodeUdiseCode2,
-        choiceKv1StationCodeUdiseCode3: setData.choiceKv1StationCodeUdiseCode3,
-        choiceKv2StationCodeUdiseCode1: setData.choiceKv2StationCodeUdiseCode1,
-        choiceKv2StationCodeUdiseCode2: setData.choiceKv2StationCodeUdiseCode2,
-        choiceKv2StationCodeUdiseCode3: setData.choiceKv2StationCodeUdiseCode3,
-        choiceKv3StationCodeUdiseCode1: setData.choiceKv3StationCodeUdiseCode1,
-        choiceKv3StationCodeUdiseCode2: setData.choiceKv3StationCodeUdiseCode2,
-        choiceKv3StationCodeUdiseCode3: setData.choiceKv3StationCodeUdiseCode3,
-        choiceKv4StationCodeUdiseCode1: setData.choiceKv4StationCodeUdiseCode1,
-        choiceKv4StationCodeUdiseCode2: setData.choiceKv4StationCodeUdiseCode2,
-        choiceKv4StationCodeUdiseCode3: setData.choiceKv4StationCodeUdiseCode3,
-        choiceKv5StationCodeUdiseCode1: setData.choiceKv5StationCodeUdiseCode1,
-        choiceKv5StationCodeUdiseCode2: setData.choiceKv5StationCodeUdiseCode2,
-        choiceKv5StationCodeUdiseCode3: setData.choiceKv5StationCodeUdiseCode3,
-        choiceKv1StationCodeUdiseName1: setData.choiceKv1StationCodeUdiseName1,
-        choiceKv1StationCodeUdiseName2: setData.choiceKv1StationCodeUdiseName2,
-        choiceKv1StationCodeUdiseName3: setData.choiceKv1StationCodeUdiseName3,
-        choiceKv2StationCodeUdiseName1: setData.choiceKv2StationCodeUdiseName1,
-        choiceKv2StationCodeUdiseName2: setData.choiceKv2StationCodeUdiseName2,
-        choiceKv2StationCodeUdiseName3: setData.choiceKv2StationCodeUdiseName3,
-        choiceKv3StationCodeUdiseName1: setData.choiceKv3StationCodeUdiseName1,
-        choiceKv3StationCodeUdiseName2: setData.choiceKv3StationCodeUdiseName2,
-        choiceKv3StationCodeUdiseName3: setData.choiceKv3StationCodeUdiseName3,
-        choiceKv4StationCodeUdiseName1: setData.choiceKv4StationCodeUdiseName1,
-        choiceKv4StationCodeUdiseName2: setData.choiceKv4StationCodeUdiseName2,
-        choiceKv4StationCodeUdiseName3: setData.choiceKv4StationCodeUdiseName3,
-        choiceKv5StationCodeUdiseName1: setData.choiceKv5StationCodeUdiseName1,
-        choiceKv5StationCodeUdiseName2: setData.choiceKv5StationCodeUdiseName2,
-        choiceKv5StationCodeUdiseName3: setData.choiceKv5StationCodeUdiseName3,
-
-        stationWithin100km1: setData.stationWithin100km1,
-        stationWithin100km2: setData.stationWithin100km2,
-        stationWithin100km3: setData.stationWithin100km3,
-        stationWithin100km4: setData.stationWithin100km4,
-        stationWithin100km5: setData.stationWithin100km5,
       },
       displacementCount: {
         numberOfWorkingDays: setData.numberOfWorkingDays,//1
@@ -1165,12 +1071,13 @@ console.log("setData")
         childDifferentDisabilityName: setData.childDifferentDisabilityName,
         childDifferentDisabilityPrcnt: setData.childDifferentDisabilityPrcnt,
       }
+      
     });
 
 
 
 
-    (this.transferForm.controls['previousPostingDetails'] as FormArray).clear();
+    // (this.transferForm.controls['previousPostingDetails'] as FormArray).clear();
 
     for (let i = 0; i < this.teacherExperienceData.length; i++) {
       const tempExpData = JSON.parse(JSON.stringify(this.teacherExperienceData[i]))
@@ -1180,9 +1087,72 @@ console.log("setData")
       tempExpData.workStartDate = this.date.transform(new Date(tempExpData.workStartDate * 1), 'yyyy-MM-dd')
       this.addQuantity(tempExpData)
     }
+    this.getTransferProfile();
   }
 
+  getTransferProfile(){
+    debugger
+    if(this.tempTeacherId==null){
+      this.transferForm.patchValue({
+        stationChoice: {
+          applyTransferYn: '0',
 
+        }
+      })
+    }
+    const data={"teacherId":this.tempTeacherId}
+    this.outSideService.getTransferData(data).subscribe((res) => { 
+    if(res.response!=null || res.response=='')
+    {
+  this.transferForm.patchValue({
+  stationChoice: {
+  id:res.response.id,
+  teacherId:res.response.teacherId,
+  applyTransferYn:res.response.applyTransferYn,
+  choiceKv1StationCode:res.response.choiceKv1StationCode,
+  choiceKv2StationCode:res.response.choiceKv2StationCode,
+  choiceKv3StationCode:res.response.choiceKv3StationCode,
+  choiceKv4StationCode:res.response.choiceKv4StationCode,
+  choiceKv5StationCode:res.response.choiceKv5StationCode,
+  choiceKv1StationName:res.response.choiceKv1StationName,
+  choiceKv2StationName:res.response.choiceKv2StationName,
+  choiceKv3StationName:res.response.choiceKv3StationName,
+  choiceKv4StationName:res.response.choiceKv4StationName,
+  choiceKv5StationName:res.response.choiceKv5StationName,
+  displacement1StationCode:res.response.displacement1StationCode,
+  displacement1StationName:res.response.displacement1StationName,
+  displacement2StationName:res.response.displacement2StationName,
+  displacement2StationCode:res.response.displacement2StationCode,
+  displacement3StationName:res.response.displacement3StationName,
+  displacement3StationCode:res.response.displacement3StationCode,
+  displacement4StationCode:res.response.displacement4StationCode,
+  displacement4StationName:res.response.displacement4StationName,
+  displacement5StationCode:res.response.displacement5StationCode,
+  displacement5StationName:res.response.displacement5StationName,
+    },
+  
+  })
+  }
+  debugger
+  this.empTransferradioButton= res.response.applyTransferYn
+  if(this.empTransferradioButton==null || this.empTransferradioButton==""){
+   
+  this.empTransferradioButton=0;
+  this.disabled  = true;
+ }
+ if(this.empTransferradioButton==1 || this.empTransferradioButton=='1'){
+
+  this.empTransferradioButton=1;
+  this.disabled  = false;
+ }
+ if(this.empTransferradioButton==0 || this.empTransferradioButton=='0'){
+ 
+  this.empTransferradioButton=0;
+  this.disabled  = true;
+ }
+})
+  
+  }
 
   initiateTeacherTransfer() {
 
@@ -1301,89 +1271,54 @@ console.log("setData")
         }
       })
     } else if (activeButton == 'submit4') {
-      this.responseData.recruitedSpclDriveNer = this.transferForm.value.stationChoice.recruitedSpclDriveNer
-      this.responseData.shiftChangeSameSchool = this.transferForm.value.stationChoice.shiftChangeSameSchool
-      this.responseData.choiceKv1UdiseCodePresentStation = this.transferForm.value.stationChoice.choiceKv1UdiseCodePresentStation
-      this.responseData.choiceKv2UdiseCodePresentStation = this.transferForm.value.stationChoice.choiceKv2UdiseCodePresentStation
-      this.responseData.choiceKv3UdiseCodePresentStation = this.transferForm.value.stationChoice.choiceKv3UdiseCodePresentStation
-      this.responseData.choiceKv4UdiseCodePresentStation = this.transferForm.value.stationChoice.choiceKv4UdiseCodePresentStation
-      this.responseData.choiceKv5UdiseCodePresentStation = this.transferForm.value.stationChoice.choiceKv5UdiseCodePresentStation
-      this.responseData.choiceKv1StationCode = this.transferForm.value.stationChoice.choiceKv1StationCode
-      this.responseData.choiceKv2StationCode = this.transferForm.value.stationChoice.choiceKv2StationCode
-      this.responseData.choiceKv3StationCode = this.transferForm.value.stationChoice.choiceKv3StationCode
-      this.responseData.choiceKv4StationCode = this.transferForm.value.stationChoice.choiceKv4StationCode
-      this.responseData.choiceKv5StationCode = this.transferForm.value.stationChoice.choiceKv5StationCode
-      this.responseData.displacement1StationCode = this.transferForm.value.stationChoice.displacement1StationCode
-      this.responseData.displacement2StationCode = this.transferForm.value.stationChoice.displacement2StationCode
-      this.responseData.displacement3StationCode = this.transferForm.value.stationChoice.displacement3StationCode
-      this.responseData.displacement4StationCode = this.transferForm.value.stationChoice.displacement4StationCode
-      this.responseData.displacement5StationCode = this.transferForm.value.stationChoice.displacement5StationCode
-      this.responseData.transferApplicationNumber = this.transferForm.value.stationChoice.transferApplicationNumber
-      this.responseData.choiceKv1UdiseNamePresentStation = this.transferForm.value.stationChoice.choiceKv1UdiseNamePresentStation
-      this.responseData.choiceKv2UdiseNamePresentStation = this.transferForm.value.stationChoice.choiceKv2UdiseNamePresentStation
-      this.responseData.choiceKv3UdiseNamePresentStation = this.transferForm.value.stationChoice.choiceKv3UdiseNamePresentStation
-      this.responseData.choiceKv4UdiseNamePresentStation = this.transferForm.value.stationChoice.choiceKv4UdiseNamePresentStation
-      this.responseData.choiceKv5UdiseNamePresentStation = this.transferForm.value.stationChoice.choiceKv5UdiseNamePresentStation
-      this.responseData.choiceKv1StationName = this.transferForm.value.stationChoice.choiceKv1StationName
-      this.responseData.choiceKv2StationName = this.transferForm.value.stationChoice.choiceKv2StationName
-      this.responseData.choiceKv3StationName = this.transferForm.value.stationChoice.choiceKv3StationName
-      this.responseData.choiceKv4StationName = this.transferForm.value.stationChoice.choiceKv4StationName
-      this.responseData.choiceKv5StationName = this.transferForm.value.stationChoice.choiceKv5StationName
-      this.responseData.displacement1StationName = this.transferForm.value.stationChoice.displacement1StationName
-      this.responseData.displacement2StationName = this.transferForm.value.stationChoice.displacement2StationName
-      this.responseData.displacement3StationName = this.transferForm.value.stationChoice.displacement3StationName
-      this.responseData.displacement4StationName = this.transferForm.value.stationChoice.displacement4StationName
-      this.responseData.displacement5StationName = this.transferForm.value.stationChoice.displacement5StationName
-
-      this.responseData.choiceKv1StationCodeUdiseCode1 = this.transferForm.value.stationChoice.choiceKv1StationCodeUdiseCode1
-      this.responseData.choiceKv1StationCodeUdiseCode2 = this.transferForm.value.stationChoice.choiceKv1StationCodeUdiseCode2
-      this.responseData.choiceKv1StationCodeUdiseCode3 = this.transferForm.value.stationChoice.choiceKv1StationCodeUdiseCode3
-      this.responseData.choiceKv2StationCodeUdiseCode1 = this.transferForm.value.stationChoice.choiceKv2StationCodeUdiseCode1
-      this.responseData.choiceKv2StationCodeUdiseCode2 = this.transferForm.value.stationChoice.choiceKv2StationCodeUdiseCode2
-      this.responseData.choiceKv2StationCodeUdiseCode3 = this.transferForm.value.stationChoice.choiceKv2StationCodeUdiseCode3
-      this.responseData.choiceKv3StationCodeUdiseCode1 = this.transferForm.value.stationChoice.choiceKv3StationCodeUdiseCode1
-      this.responseData.choiceKv3StationCodeUdiseCode2 = this.transferForm.value.stationChoice.choiceKv3StationCodeUdiseCode2
-      this.responseData.choiceKv3StationCodeUdiseCode3 = this.transferForm.value.stationChoice.choiceKv3StationCodeUdiseCode3
-      this.responseData.choiceKv4StationCodeUdiseCode1 = this.transferForm.value.stationChoice.choiceKv4StationCodeUdiseCode1
-      this.responseData.choiceKv4StationCodeUdiseCode2 = this.transferForm.value.stationChoice.choiceKv4StationCodeUdiseCode2
-      this.responseData.choiceKv4StationCodeUdiseCode3 = this.transferForm.value.stationChoice.choiceKv4StationCodeUdiseCode3
-      this.responseData.choiceKv5StationCodeUdiseCode1 = this.transferForm.value.stationChoice.choiceKv5StationCodeUdiseCode1
-      this.responseData.choiceKv5StationCodeUdiseCode2 = this.transferForm.value.stationChoice.choiceKv5StationCodeUdiseCode2
-      this.responseData.choiceKv5StationCodeUdiseCode3 = this.transferForm.value.stationChoice.choiceKv5StationCodeUdiseCode3
-      this.responseData.choiceKv1StationCodeUdiseName1 = this.transferForm.value.stationChoice.choiceKv1StationCodeUdiseName1
-      this.responseData.choiceKv1StationCodeUdiseName2 = this.transferForm.value.stationChoice.choiceKv1StationCodeUdiseName2
-      this.responseData.choiceKv1StationCodeUdiseName3 = this.transferForm.value.stationChoice.choiceKv1StationCodeUdiseName3
-      this.responseData.choiceKv2StationCodeUdiseName1 = this.transferForm.value.stationChoice.choiceKv2StationCodeUdiseName1
-      this.responseData.choiceKv2StationCodeUdiseName2 = this.transferForm.value.stationChoice.choiceKv2StationCodeUdiseName2
-      this.responseData.choiceKv2StationCodeUdiseName3 = this.transferForm.value.stationChoice.choiceKv2StationCodeUdiseName3
-      this.responseData.choiceKv3StationCodeUdiseName1 = this.transferForm.value.stationChoice.choiceKv3StationCodeUdiseName1
-      this.responseData.choiceKv3StationCodeUdiseName2 = this.transferForm.value.stationChoice.choiceKv3StationCodeUdiseName2
-      this.responseData.choiceKv3StationCodeUdiseName3 = this.transferForm.value.stationChoice.choiceKv3StationCodeUdiseName3
-      this.responseData.choiceKv4StationCodeUdiseName1 = this.transferForm.value.stationChoice.choiceKv4StationCodeUdiseName1
-      this.responseData.choiceKv4StationCodeUdiseName2 = this.transferForm.value.stationChoice.choiceKv4StationCodeUdiseName2
-      this.responseData.choiceKv4StationCodeUdiseName3 = this.transferForm.value.stationChoice.choiceKv4StationCodeUdiseName3
-      this.responseData.choiceKv5StationCodeUdiseName1 = this.transferForm.value.stationChoice.choiceKv5StationCodeUdiseName1
-      this.responseData.choiceKv5StationCodeUdiseName2 = this.transferForm.value.stationChoice.choiceKv5StationCodeUdiseName2
-      this.responseData.choiceKv5StationCodeUdiseName3 = this.transferForm.value.stationChoice.choiceKv5StationCodeUdiseName3
-      this.responseData.stationWithin100km1 = this.transferForm.value.stationChoice.stationWithin100km1
-      this.responseData.stationWithin100km2 = this.transferForm.value.stationChoice.stationWithin100km2
-      this.responseData.stationWithin100km3 = this.transferForm.value.stationChoice.stationWithin100km3
-      this.responseData.stationWithin100km4 = this.transferForm.value.stationChoice.stationWithin100km4
-      this.responseData.stationWithin100km5 = this.transferForm.value.stationChoice.stationWithin100km5
+      debugger
+      console.log(console.log(this.transferForm.value.stationChoice))
+     
       this.responseData.transferStatus = 'TRE'
+      this.transferForm.patchValue({
+        stationChoice: {
+          teacherId:this.tempTeacherId,
+        }
+      });
+      // this.outSideService.saveInitiatedTeacherTransfer(this.responseData).subscribe((res) => {
 
-      this.outSideService.saveInitiatedTeacherTransfer(this.responseData).subscribe((res) => {
-
-        this.responseData = res.response;
-        this.transferStatusOperation = res.response.transferStatus;
-        this.setReceivedData(this.responseData)
-        this.formStatusLocale = 'TRE'
-        Swal.fire(
-          'Your data has been saved successfully!',
-          '',
-          'success'
-        )
-      })
+      //   this.responseData = res.response;
+      //   this.transferStatusOperation = res.response.transferStatus;
+      //   this.setReceivedData(this.responseData)
+      //   this.formStatusLocale = 'TRE'
+      //   Swal.fire(
+      //     'Your data has been saved successfully!',
+      //     '',
+      //     'success'
+      //   )
+      // })
+      this.outSideService.saveTransProfile(this.transferForm.value.stationChoice).subscribe((res) => {
+        if (res.status == 1) {
+     
+         this.transferRelatedFormTempId=res.response.id
+         this.transferForm.patchValue({
+          stationChoice: {
+             id: this.transferRelatedFormTempId,
+           }
+         })
+         // this.teacherForm.value.transferRelatedForm.i
+         // this.teacherForm.patchValue({
+         //   declarationRelatedForm: {
+         //     id: this.transferRelatedFormTempId,
+         //   }
+         // })
+     
+        
+     
+         Swal.fire(
+           'Your Data has been saved Successfully!',
+           '',
+           'success'
+         )
+       
+         this.nextClick(2)
+       }
+     })
     } else if (activeButton == 'submit5') {
 
       this.responseData.applyTransferYn = this.transferForm.value.transferCount.applyTransferYn
@@ -2254,19 +2189,25 @@ console.log("setData")
     })
   }
 
-  getKvRegion() {
+  // getKvRegion() {
 
-    var data = {
-      "teacherID": this.responseData.teacherId,
-      "nerFlag": this.transferForm.value.stationChoice.recruitedSpclDriveNer == '1' ? 'Y' : 'N',
-      "dfpFlag": this.transferForm.value.displacementCount.personalStatusDfp == '1' ? 'Y' : 'N',
-      "jcmFlag": this.transferForm.value.displacementCount.associationMemberYn == '1' ? 'Y' : 'N',
-    }
-    this.outSideService.fetchTransferRegion(data).subscribe((res) => {
+  //   var data = {
+  //     "teacherID": this.responseData.teacherId,
+  //     "nerFlag": this.transferForm.value.stationChoice.recruitedSpclDriveNer == '1' ? 'Y' : 'N',
+  //     "dfpFlag": this.transferForm.value.displacementCount.personalStatusDfp == '1' ? 'Y' : 'N',
+  //     "jcmFlag": this.transferForm.value.displacementCount.associationMemberYn == '1' ? 'Y' : 'N',
+  //   }
+  //   this.outSideService.fetchTransferRegion(data).subscribe((res) => {
+  //     this.regionList = res.response;
+  //   })
+  // }
+  getKvRegion() {
+    this.outSideService.fetchKvRegion(1).subscribe((res) => {
+      console.log("region list")
+      console.log( this.regionList)
       this.regionList = res.response;
     })
   }
-
   getStationByRegionId(event) {
     this.stationList = [];
     this.selectedUdiseCode = '';
@@ -2290,17 +2231,37 @@ console.log("setData")
     this.outSideService.fetchIntraStationSchool(stationByInterCond).subscribe((res) => {
       this.stationList = res.response.rowValue
     })
+    console.log(  this.stationList)
   }
-
   selectSchoolByUdise() {
 
     var str = this.selectedUdiseCode
+    console.log(str)
     var splitted = str.split("-", 2);
+    var spouseStation=this.transferForm.value.stationChoice?.spouseStationName;
+    debugger
+
+    // spouseKvsYnD,spouseEmpCode,spousePost,spouseStationName
+    // alert(JSON.stringify(this.teacherForm.value.transferRelatedForm));
+    // alert(this.teacherForm.value.transferRelatedForm.spouseKvsYnD);
+    // alert(this.teacherForm.value.transferRelatedForm.spouseEmpCode);
+    // alert(this.teacherForm.value.transferRelatedForm.spousePost);
+    // alert(this.teacherForm.value.transferRelatedForm.spouseStationName);
+
     if (this.position == '1') {
-      if (this.transferForm.value.stationChoice.choiceKv2StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv3StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv4StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv5StationCode == splitted[0]) {
+   if(splitted[1] != this.transferForm.value.stationChoice?.spouseStationName){
+    Swal.fire(
+      'You have not selected spouse station in first choice so you are not eligible to get spouse point in transfer and spouse station is available in only first choice',
+      '',
+      'error'
+    )
+      }
+
+     // choiceKv1StationName
+      if (this.transferForm.value.stationChoice.choiceKv2StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv3StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv4StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv5StationName == splitted[1]) {
         Swal.fire(
           'Station already selected !',
           '',
@@ -2322,10 +2283,26 @@ console.log("setData")
       }
 
     } else if (this.position == '2') {
-      if (this.transferForm.value.stationChoice.choiceKv1StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv3StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv4StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv5StationCode == splitted[0]) {
+debugger;
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+        this.transferForm.patchValue({
+          stationChoice: {
+            choiceKv2StationCode: '',
+            choiceKv2StationName: ''
+            
+          }
+        })
+        return
+          }
+      if (this.transferForm.value.stationChoice.choiceKv1StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv3StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv4StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv5StationName == splitted[1]) {
         Swal.fire(
           'Station already selected !',
           '',
@@ -2346,10 +2323,27 @@ console.log("setData")
         })
       }
     } else if (this.position == '3') {
-      if (this.transferForm.value.stationChoice.choiceKv2StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv1StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv4StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv5StationCode == splitted[0]) {
+
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+
+        this.transferForm.patchValue({
+          stationChoice: {
+            choiceKv3StationCode: '',
+            choiceKv3StationName: ''
+          }
+        })
+return
+          }
+
+      if (this.transferForm.value.stationChoice.choiceKv2StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv1StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv4StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv5StationName == splitted[1]) {
         Swal.fire(
           'Station already selected !',
           '',
@@ -2370,10 +2364,27 @@ console.log("setData")
         })
       }
     } else if (this.position == '4') {
-      if (this.transferForm.value.stationChoice.choiceKv2StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv3StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv1StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv5StationCode == splitted[0]) {
+
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+
+        this.transferForm.patchValue({
+          stationChoice: {
+            choiceKv4StationCode: '',
+            choiceKv4StationName: ''
+          }
+        })
+return
+          }
+
+      if (this.transferForm.value.stationChoice.choiceKv2StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv3StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv1StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv5StationName == splitted[1]) {
         Swal.fire(
           'Station already selected !',
           '',
@@ -2394,10 +2405,26 @@ console.log("setData")
         })
       }
     } else if (this.position == '5') {
-      if (this.transferForm.value.stationChoice.choiceKv2StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv3StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv4StationCode == splitted[0] ||
-        this.transferForm.value.stationChoice.choiceKv1StationCode == splitted[0]) {
+
+      if(splitted[1] == spouseStation){
+        Swal.fire(
+          'You are only eligible to select spouse station in first choice',
+          '',
+          'error'
+        )
+        this.transferForm.patchValue({
+          stationChoice: {
+            choiceKv5StationCode: '',
+            choiceKv5StationName: ''
+          }
+        })
+        return
+          }
+
+      if (this.transferForm.value.stationChoice.choiceKv2StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv3StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv4StationName == splitted[1] ||
+        this.transferForm.value.stationChoice.choiceKv1StationName == splitted[1]) {
         Swal.fire(
           'Station already selected !',
           '',
@@ -2537,50 +2564,298 @@ console.log("setData")
           }
         })
       }
-    } else if (this.position == '291') {
-      if (this.transferForm.value.transferCount.doptStationTwoCode == splitted[0]) {
-        Swal.fire(
-          'Station already selected !',
-          '',
-          'error'
-        )
-        this.transferForm.patchValue({
-          transferCount: {
-            doptStationOneCode: '',
-            doptStationOneName: ''
-          }
-        })
-      } else {
-        this.transferForm.patchValue({
-          transferCount: {
-            doptStationOneName: splitted[1],
-            doptStationOneCode: splitted[0]
-          }
-        })
-      }
-    } else if (this.position == '292') {
-      if (this.transferForm.value.transferCount.doptStationOneCode == splitted[0]) {
-        Swal.fire(
-          'Station already selected !',
-          '',
-          'error'
-        )
-        this.transferForm.patchValue({
-          transferCount: {
-            doptStationTwoCode: '',
-            doptStationTwoName: ''
-          }
-        })
-      } else {
-        this.transferForm.patchValue({
-          transferCount: {
-            doptStationTwoName: splitted[1],
-            doptStationTwoCode: splitted[0]
-          }
-        })
-      }
-    }
+    } 
   }
+//   selectSchoolByUdise() {
+// debugger
+//     var str = this.selectedUdiseCode
+//     var splitted = str.split("-", 2);
+//     if (this.position == '1') {
+//       if (this.transferForm.value.stationChoice.choiceKv2StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv3StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv4StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv5StationCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             choiceKv1StationCode: '',
+//             choiceKv1StationName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             choiceKv1StationName: splitted[1],
+//             choiceKv1StationCode: splitted[0]
+//           }
+//         })
+//       }
+
+//     } else if (this.position == '2') {
+//       if (this.transferForm.value.stationChoice.choiceKv1StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv3StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv4StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv5StationCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             choiceKv2StationCode: '',
+//             choiceKv2StationName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             choiceKv2StationName: splitted[1],
+//             choiceKv2StationCode: splitted[0]
+//           }
+//         })
+//       }
+//     } else if (this.position == '3') {
+//       if (this.transferForm.value.stationChoice.choiceKv2StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv1StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv4StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv5StationCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             choiceKv3StationCode: '',
+//             choiceKv3StationName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             choiceKv3StationName: splitted[1],
+//             choiceKv3StationCode: splitted[0]
+//           }
+//         })
+//       }
+//     } else if (this.position == '4') {
+//       if (this.transferForm.value.stationChoice.choiceKv2StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv3StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv1StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv5StationCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             choiceKv4StationCode: '',
+//             choiceKv4StationName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             choiceKv4StationName: splitted[1],
+//             choiceKv4StationCode: splitted[0]
+//           }
+//         })
+//       }
+//     } else if (this.position == '5') {
+//       if (this.transferForm.value.stationChoice.choiceKv2StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv3StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv4StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.choiceKv1StationCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             choiceKv5StationCode: '',
+//             choiceKv5StationName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             choiceKv5StationName: splitted[1],
+//             choiceKv5StationCode: splitted[0]
+//           }
+//         })
+//       }
+//     } 
+//     else if (this.position == '191') {
+//       if (this.transferForm.value.stationChoice.displacement2StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement3StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement4StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement5StationCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             displacement1StationCode: '',
+//             displacement1StationName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             displacement1StationName: splitted[1],
+//             displacement1StationCode: splitted[0]
+//           }
+//         })
+//       }
+//     } else if (this.position == '192') {
+//       if (this.transferForm.value.stationChoice.displacement1StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement3StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement4StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement5StationCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             displacement2StationCode: '',
+//             displacement2StationName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             displacement2StationName: splitted[1],
+//             displacement2StationCode: splitted[0]
+//           }
+//         })
+//       }
+//     } else if (this.position == '193') {
+//       if (this.transferForm.value.stationChoice.displacement2StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement1StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement4StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement5StationCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             displacement3StationCode: '',
+//             displacement3StationName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             displacement3StationName: splitted[1],
+//             displacement3StationCode: splitted[0]
+//           }
+//         })
+//       }
+//     } else if (this.position == '194') {
+//       if (this.transferForm.value.stationChoice.displacement2StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement3StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement1StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement5StationCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             displacement4StationCode: '',
+//             displacement4StationName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             displacement4StationName: splitted[1],
+//             displacement4StationCode: splitted[0]
+//           }
+//         })
+//       }
+//     } else if (this.position == '195') {
+//       if (this.transferForm.value.stationChoice.displacement2StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement3StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement4StationCode == splitted[0] ||
+//         this.transferForm.value.stationChoice.displacement1StationCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             displacement5StationCode: '',
+//             displacement5StationName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           stationChoice: {
+//             displacement5StationName: splitted[1],
+//             displacement5StationCode: splitted[0]
+//           }
+//         })
+//       }
+//     } else if (this.position == '291') {
+//       if (this.transferForm.value.transferCount.doptStationTwoCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           transferCount: {
+//             doptStationOneCode: '',
+//             doptStationOneName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           transferCount: {
+//             doptStationOneName: splitted[1],
+//             doptStationOneCode: splitted[0]
+//           }
+//         })
+//       }
+//     } else if (this.position == '292') {
+//       if (this.transferForm.value.transferCount.doptStationOneCode == splitted[0]) {
+//         Swal.fire(
+//           'Station already selected !',
+//           '',
+//           'error'
+//         )
+//         this.transferForm.patchValue({
+//           transferCount: {
+//             doptStationTwoCode: '',
+//             doptStationTwoName: ''
+//           }
+//         })
+//       } else {
+//         this.transferForm.patchValue({
+//           transferCount: {
+//             doptStationTwoName: splitted[1],
+//             doptStationTwoCode: splitted[0]
+//           }
+//         })
+//       }
+//     }
+//   }
 
   absenceCal() {
     var newCal = (this.totalWorkingDaysF * 1 + this.absence2 * 1)
@@ -3979,7 +4254,14 @@ console.log("setData")
   }
   
   manageChoice(val){
-this.transferStatus=val;
+//this.transferStatus=val;
+if(val==1)
+{
+this.disabled=false;
+}
+else{
+  this.disabled=true;
+}
   }
 
 }

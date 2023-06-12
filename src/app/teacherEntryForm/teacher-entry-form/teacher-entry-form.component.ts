@@ -508,7 +508,7 @@ export class TeacherEntryFormComponent implements OnInit {
         'religion': new FormControl(''),
        // 'nationality': new FormControl('', Validators.required),
         'mobile': new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[8976][0-9]{9}")]),
-        'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
+        'email': new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
         'presentStationName': new FormControl('', Validators.required),
         'presentStationPostDate': new FormControl('', [Validators.required, this.dateNotBeforeToday.bind(this)]),
         'presentKvName': new FormControl('', Validators.required),

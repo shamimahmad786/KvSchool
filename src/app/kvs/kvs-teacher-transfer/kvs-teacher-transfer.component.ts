@@ -163,7 +163,7 @@ export class KvsTeacherTransferComponent implements OnInit {
   }
 
   setToMatTable(data) {
-
+debugger
     alert("Data after get--->"+JSON.stringify(data));
 
     this.users = [];
@@ -194,10 +194,12 @@ export class KvsTeacherTransferComponent implements OnInit {
   }
 
   // Below Code : On Verify Click and its operations -- Start
-  onVerifyClick(teacherId) {    
+  onVerifyClick(teacherId) {  
+    console.log(teacherId)  
     const transferGround = new TransferGroundPipe();
     this.tempTeacherId = teacherId;
     this.getUploadedDocs();
+   // this.modalService.open(this.transferVerifyModal, { size: 'full', backdrop: 'static', keyboard: false });
     this.outSideService.fetchTransferBasicProfileByTchId(teacherId).subscribe((res) => {
       
       this.teacherExperienceList = res.response.teacherExperience;
@@ -275,6 +277,7 @@ export class KvsTeacherTransferComponent implements OnInit {
   }
 
   onEdit(tchId){
+    debugger
     sessionStorage.setItem('tempTchId',tchId)
     this.router.navigate(['/teacher/transferEdit'])
   }

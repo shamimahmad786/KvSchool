@@ -946,7 +946,7 @@
                                                         </div>
                                                     </div>
                                                     <div *ngIf="spouseNone && spouseKVSStation" class="col-md-6 mb-3">
-                                                        <h4 class="titleSet"> Spouse Code<span class="required-asterisk">*</span> </h4>
+                                                        <h4 class="titleSet"> Spouse Employee Code<span class="required-asterisk">*</span> </h4>
                                                         <input type="text" class="form-control" name="spouseEmpCode" [(ngModel)]="responseData.spouseEmpCode" (blur)="getSpouseDetails($event)" id="spouseEmpCode" formControlName="spouseEmpCode">
                                                     </div>
                                                     <div *ngIf="spouseNone" class="col-md-6 mb-3">
@@ -1177,7 +1177,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th width="20%">
-                                                                Institution Name
+                                                                Institution Name/Code
                                                             </th>
                                                             <!-- <th>
                                                                 Type
@@ -1909,21 +1909,22 @@
                                                         <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="patientName" formControlName="patientName" name="patientName" maxlength="50">
                                                     </div>
                                                     <div class="col-md-3 mb-3">
-                                                        <h4 class="titleSet">Type of alignment<span class="required-asterisk">*</span>
-                                                        </h4>
+                                                        <h4 class="titleSet">Type of ailment<span class="required-asterisk">*</span>
+                                                        </h4>   
 
                                                         <select class="form-select" aria-label="Default select example" name="patientAilment" formControlName="patientAilment" [(ngModel)]="patientAilmentData">
                                                             <!-- <option selected>Select</option> -->
                                                             <option selected disabled>Select</option>
-                                                            <option value="CANCER">CANCER</option>
-                                                            <option value="PARALYTIC STROKE">PARALYTIC STROKE</option>
-                                                            <option value="RENAL FAILURE">RENAL FAILURE</option>
-                                                            <option value="CORONARY ARTERY DISEASE AS EXPLAINED BELOW">CORONARY ARTERY DISEASE AS EXPLAINED BELOW</option>
-                                                            <option value="THALASSAEMIA">THALASSAEMIA</option>
-                                                            <option value="PARKINSONS DISEASE">PARKINSONS DISEASE</option>
-                                                            <option value="MOTOR NEURON DISEASE">MOTOR NEURON DISEASE</option>
                                                             <option value="ANY OTHER DISEASE WITH MORE THAN 50% MENTAL DISABILTY">ANY OTHER DISEASE WITH MORE THAN 50% MENTAL DISABILTY</option>
                                                             <option value="AIDS">AIDS</option>    
+                                                            <option value="CANCER">CANCER</option>
+                                                            <option value="CORONARY ARTERY DISEASE AS EXPLAINED BELOW">CORONARY ARTERY DISEASE AS EXPLAINED BELOW</option>                                                                        
+                                                            <option value="MOTOR NEURON DISEASE">MOTOR NEURON DISEASE</option>
+                                                            <option value="PARALYTIC STROKE">PARALYTIC STROKE</option>
+                                                            <option value="PARKINSONS DISEASE">PARKINSONS DISEASE</option>
+                                                            <option value="RENAL FAILURE">RENAL FAILURE</option>
+                                                            <option value="THALASSAEMIA">THALASSAEMIA</option>
+                                                            <option value="ANY OTHER">ANY OTHER</option> 
                                                         </select>
 
                                                        
@@ -1940,18 +1941,18 @@
 
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label class="titleSet">Name : <span
+                                                        <label class="titleSet">Name  <span
                                                                 class="required-asterisk">*</span></label>
                                                         <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="patientMedicalOfficerName" formControlName="patientMedicalOfficerName" name="patientMedicalOfficerName" maxlength="50">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label class="titleSet">Designation : <span
+                                                        <label class="titleSet">Designation  <span
                                                                 class="required-asterisk">*</span></label>
                                                         <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="patientMedicalOfficerDesignation" formControlName="patientMedicalOfficerDesignation" name="patientMedicalOfficerDesignation" maxlength="50">
                                                     </div>
 
                                                     <div class="col-md-3">
-                                                        <label class="titleSet">Issue date of medical certificate: <span
+                                                        <label class="titleSet">Issue date of medical certificate <span
                                                                 class="required-asterisk">*</span></label>
                                                         <input type="date" class="form-control" name="medicalCertificateIssueDate" formControlName="medicalCertificateIssueDate" [(ngModel)]="medicalCertificateIssueDateData" style="text-transform: none">
                                                     </div>
@@ -2014,19 +2015,21 @@
                                             </div>
                                             <div *ngIf="spGround">
                                             <div class="row"><div class="col-md-3 mb-2">
-                                                <label class="titleSet">SP Ground<span class="required-asterisk">*</span>
+                                                <label class="titleSet">Reason for being Single Parent<span class="required-asterisk">*</span>
                                                 </label>
 
                                                 <select class="form-select" aria-label="Default select example" name="singleParentGround" formControlName="singleParentGround" [(ngModel)]="singleParentGroundData">
                                                     <!-- <option selected>Select</option> -->
                                                     <option selected disabled>Select</option>
+                                                    <option value="ADOPTION">ADOPTION</option>
+                                                    <option value="DEATH OF SPOUSE">DEATH OF SPOUSE</option>
                                                     <option value="DIVORCE">DIVORCE</option>
-                                                    <option value="DEATH OF SPOUSE">DEATH OF SPOUSE</option>    
+                                                    <option value="LEGAL SEPARATION">LEGAL SEPARATION</option>    
                                                 </select>  
                                             </div>
                                          
                                             <div class="col-md-3 mb-3">
-                                                <label class="titleSet">Issue date certificate: <span
+                                                <label class="titleSet">Issue date certificate <span
                                                         class="required-asterisk">*</span></label>
                                                 <input type="date" class="form-control" name="singleParentCertificateIssueDate" formControlName="singleParentCertificateIssueDate" [(ngModel)]="singleParentCertificateIssueDateData" style="text-transform: none">
                                             </div>
@@ -2091,20 +2094,22 @@
                                                 <div class="row">
                                                     
                                                     <div class="col-md-3 mb-3">
-                                                        <label class="titleSet">Name of family members: <span
+                                                        <label class="titleSet">Name of family members <span
                                                                 class="required-asterisk">*</span></label>
                                                                 <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="nameOfFamilyMember" formControlName="nameOfFamilyMember" name="nameOfFamilyMember" >
                                                          </div>                                                                                                                                                                                                       
                                                     <div class="col-md-3 mb-2">
-                                                    <label class="titleSet">DFP Ground<span class="required-asterisk">*</span>
+                                                    <label class="titleSet"> Relation With the Employee<span class="required-asterisk">*</span>
                                                     </label>
     
                                                     <select class="form-select" aria-label="Default select example" name="deathOfFamilyGround" formControlName="deathOfFamilyGround" [(ngModel)]="deathOfFamilyGroundData">
                                                         <!-- <option selected>Select</option> -->
                                                         <option selected disabled>Select</option>
+                                                        <option value="DAUGHTER">DAUGHTER</option> 
+                                                        <option value="SON">SON</option>
                                                         <option value="SPOUSE">SPOUSE</option>
-                                                        <option value="BOYS">BOY</option>
-                                                        <option value="GIRL">GIRL</option> 
+                                                       
+                                                        
                                                     </select>  
                                                 </div>
                                                 <div class="col-md-3 mb-3">
@@ -2115,8 +2120,8 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload DFP Declaration In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                    <div class="col-md-5">
+                                                        <h4 class="titleSet">Upload DFP Certificate Issued by Compitent Authority In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '7')">
                                                             <button [disabled]="enableUploadButtonRelatedForm7" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(7)">Upload</button>
@@ -2251,7 +2256,7 @@
                                                     </div>
 
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload NJCM/RJCM Declaration In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload NJCM/RJCM Office Order In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '8')">
                                                             <button [disabled]="enableUploadButtonRelatedForm8" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(8)">Upload</button>
