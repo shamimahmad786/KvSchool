@@ -16,10 +16,18 @@ ul.DateOfBirth{ padding:0px; margin:0px; box-sizing: border-box;}
 .DateOfBirth li{display: inline-block; width: 23%; list-style: none; margin-right: 15px;}
 
 
+
 td.align-middle {
     padding: 15px;
 }
-
+.Disabled{
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.35;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
 .kvsTitle{
     background: #e9f0ee;
     transition: all 0.5s ease;
@@ -343,7 +351,7 @@ ul.MaxFiveValue{padding:0px; margin:0px; box-sizing: border-box;}
 #progressbar li {
     list-style-type: none;
     font-size: 15px;
-    width: 20%;
+    width: 33%;
     float: left;
     position: relative;
     font-weight: 400;

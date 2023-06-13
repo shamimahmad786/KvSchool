@@ -327,7 +327,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
       this.testData.staffType = (data[i].teachingNonteaching == '1') ? 'Teaching' : (data[i].teachingNonteaching == '2') ? 'Non-Teaching' : 'NA';
       // (data[i].teachingNonteaching == '1') ? 'Teaching' : 'Non-Teaching';
-      this.testData.postName = data[i].postName+' ('+this.testData.staffType+')';
+      this.testData.postName = data[i].postName;
       this.users.push(this.testData);
       this.testData = { "sno": "", "name": "", "postName": "", "email": "", "mobile": "", "subjectName": "","approvedStatus": "", "approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
     }
