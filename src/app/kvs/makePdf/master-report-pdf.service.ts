@@ -1153,8 +1153,11 @@ schoolStationMappingList(schoolStationMappingList:any,servTime:any){
   doc.setFontSize(12);
   doc.setFont('Times-Roman', 'bold');
   // doc.text('Station Category Master', 130, 45);    
+  if(stationName !="" && stationName !='undefined' && stationName !=null){
   doc.text('Region Name: '+regionName,15 , 45);
-
+  }else{
+    doc.text('Region Name: All',15 , 45);
+  }
   // alert(stationName);
 
   if(stationName !="" && stationName !='undefined' && stationName !=null){
