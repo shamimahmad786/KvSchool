@@ -5,8 +5,9 @@
     <div class="d-flex flex-row  bd-highlight ">
         <div class="p-1 w-25">
             <label class="titleSet">Select Region Name</label>
-            <mat-select (selectionChange)="getStationList($event)" class="form-control" value="">
+            <mat-select (selectionChange)="getStationList($event.value)" [(value)]="selectedRegion" class="form-control" value="">
                 <mat-option value="">Select Region Name</mat-option>
+                <mat-option value="0">All</mat-option>
                 <mat-option *ngFor="let reg of regionList" [value]="reg.regionCode">{{reg.regionName}}({{reg.regionCode}})</mat-option>
             </mat-select>
         </div>
@@ -14,9 +15,13 @@
             <label class="titleSet">Select Station Name</label>
             <mat-select (selectionChange)="getSchoolList($event)" class="form-control" value="">
                 <mat-option value="">Select Station Name</mat-option>
+                <!-- <ng-container *ngIf="regionSelection !=0">
+                    <mat-option value="0">All</mat-option>
+                </ng-container> -->
                 <mat-option *ngFor="let station of stationList" [value]="station.stationCode">
                     {{station.stationName}}({{station.stationCode}})</mat-option>
             </mat-select>
+            <span *ngIf="regionSelection ==0" style="color:red"> Please select Region</span>
         </div>
         <div class="p-1 w-25">
             <label class="titleSet">Select School Name</label>
@@ -25,21 +30,22 @@
                 <mat-option *ngFor="let school of schoolList" [value]="school.schoolCode">
                     {{school.schoolName}}({{school.schoolCode}})</mat-option>
             </mat-select>
-        </div> 
-        
-      
-       
-        
-         <div class="p-5"></div> 
-            <div class="p-1">
-                <button mat-raised-button color="primary" class="float-end mt-2" (click)="sanctionedPostMappingPdf()">Download PDF</button>
-            </div>
-            <div class="p-1 ">
-                <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
-            </div>
-       
+            <span *ngIf="regionSelection ==0" style="color:red"> Please select Region</span>
+        </div>
 
-        
+
+
+
+        <div class="p-5"></div>
+        <div class="p-1">
+            <button mat-raised-button color="primary" class="float-end mt-2" (click)="sanctionedPostMappingPdf()">Download PDF</button>
+        </div>
+        <div class="p-1 ">
+            <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
+        </div>
+
+
+
 
     </div>
 
@@ -99,6 +105,9 @@
                                     <th>
                                         S.No
                                     </th>
+                                    <th *ngIf="stationSelection==1">
+                                        Station/School Name
+                                    </th>
                                     <th>
                                         Staff Type
                                     </th>
@@ -139,6 +148,9 @@
                                             {{i+1}}
                                         </div>
                                     </td>
+                                    <td *ngIf="stationSelection==1">
+                                        <input type="text" style="width: 100%;" class="form-control form-control-sm " name="stationName" id="stationName" formControlName="stationName" disabled>
+                                    </td>
                                     <td>
                                         <input type="text" style="width: 100%;" class="form-control form-control-sm " name="staffType" id="staffType" formControlName="staffType" disabled>
                                     </td>
@@ -158,10 +170,10 @@
                                         <input type="text" class="form-control form-control-sm " name="shiftYn" id="shiftYn" formControlName="shiftYn" disabled>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control form-control-sm text-center" name="sanctionedPost" id="sanctionedPost" formControlName="sanctionedPost" (blur)="calculateVacantPost($event,i,'S')" (keypress)="keyPressNumbers($event)">
+                                        <input type="number" class="form-control form-control-sm text-center" name="sanctionedPost" id="sanctionedPost" formControlName="sanctionedPost" (blur)="calculateVacantPost($event,i,'S')" (keypress)="keyPressNumbers($event)" disabled>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control form-control-sm text-center" name="occupiedPost" id="occupiedPost" formControlName="occupiedPost" (blur)="calculateVacantPost($event,i,'O')" (keypress)="keyPressNumbers($event)">
+                                        <input type="number" class="form-control form-control-sm text-center" name="occupiedPost" id="occupiedPost" formControlName="occupiedPost" (blur)="calculateVacantPost($event,i,'O')" (keypress)="keyPressNumbers($event)" disabled>
                                     </td>
                                     <td>
                                         <input type="number" class="form-control form-control-sm text-center" name="vacantPost" id="vacantPost" formControlName="vacantPost" disabled>

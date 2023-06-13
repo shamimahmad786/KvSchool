@@ -1397,4 +1397,13 @@ getSubjectByPost(data){
   return this._http.post(environment.BASE_URL_DATA_MASTER1+ "getSubjectByPost",data,{headers})
 }
 
+fetchSanctionPost(data){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "fetchSanctionPost",data,{headers})
+}
+
 }

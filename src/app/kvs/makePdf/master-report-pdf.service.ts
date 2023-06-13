@@ -1125,14 +1125,17 @@ schoolStationMappingList(schoolStationMappingList:any,servTime:any){
   })
   doc.save('postSubjectMapping.pdf')
  }
- sanctionedPostMappingList(sanctionPostMappingList:any,servTime:any)
+ sanctionedPostMappingList(sanctionPostMappingList:any,servTime:any,regionName,stationName,schoolName)
  {
+
+  // console.log(JSON.stringify(sanctionPostMappingList));
+
   this.sanctionPostMappingListArray = [];
  
   for(let i=0; i<sanctionPostMappingList.length; i++){
     var sanctionPostMappingListTemp = [];
     sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.sno)
-    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.staffType)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.staffType=="1"?"Teaching":"Non Teaching")
     sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.postName)
     sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.postCode)
     sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.subjectName)
@@ -1147,16 +1150,28 @@ schoolStationMappingList(schoolStationMappingList:any,servTime:any){
   // var tchId = "" + teacherProfile.teacherId + ""
   const doc = new jsPDF('l', 'mm', 'a4');
   doc.setTextColor(138, 24, 34);
-  doc.setFontSize(14);
+  doc.setFontSize(12);
   doc.setFont('Times-Roman', 'bold');
-  doc.text('Station Category Master', 130, 45);    
+  // doc.text('Station Category Master', 130, 45);    
+  doc.text('Region Name: '+regionName,15 , 45);
+
+  // alert(stationName);
+
+  if(stationName !="" && stationName !='undefined' && stationName !=null){
+    doc.text('Station Name: '+stationName, 80, 45);
+  }
+
+  if(stationName !="" && stationName !='undefined' && stationName !=null){
+    doc.text('School Name: '+schoolName, 140, 45);
+  }
+  
 
   
   (doc as any).autoTable({
     head: this.sanctionPostMappingHead,   
     body: this.sanctionPostMappingListArray,
     theme: 'grid',
-    startY: 40,
+    startY: 50,
     didDrawPage: function (data) {
      const currentDate = servTime.toString();
      var index = currentDate.lastIndexOf(':') +3
@@ -1169,9 +1184,10 @@ schoolStationMappingList(schoolStationMappingList:any,servTime:any){
       doc.line(15, 35, 280, 35);
 
       doc.setTextColor(138, 24, 34);
-      doc.setFontSize(14);
+      doc.setFontSize(12);
       doc.setFont('Times-Roman', 'bold');
-      doc.text('Report :Sanctioned Post Mapping (M013)', 15, 28);
+      doc.text('Report :Sanctioned Post (M013)', 15, 28);
+
 
       // Footer
       var str = "Page " + data.doc.internal.getNumberOfPages();
