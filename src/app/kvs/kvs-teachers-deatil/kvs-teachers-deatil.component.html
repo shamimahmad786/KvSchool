@@ -19,7 +19,7 @@
             </span>
             <mat-form-field>
                 <mat-label>Select Station</mat-label>
-                <mat-select (selectionChange)="getKvSchoolByStationId($event.value)" [(ngModel)]="stationCode1">
+                <mat-select (selectionChange)="getKvSchoolByStationId($event.value)" [(ngModel)]="stationCode1" appearance="fill">
                     <!-- <mat-option value="">Select</mat-option> -->
                     <mat-option *ngFor="let data of stationList" value="{{data.statinCode}}">{{data.stationName}}
                     </mat-option>
@@ -63,8 +63,8 @@
 <!---------------------------------------end  here --------------------------------------------------------->
 <div *ngIf="nationalLogin" class="shadow-sm bg-white p-3 rounded mt-3">
     
-    <div class="d-flex  bd-highlight ">
-        <div class="p-2">
+    <div class="row">
+        <div class="col-md-6">
             <div class="example-header">
                 <mat-form-field>
                     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
@@ -80,14 +80,17 @@
                 </mat-form-field>       
             </div>
         </div>
-        <div class="p-4"></div>
-        <div class="p-5"></div>
-        <div class="p-5"></div>
-        <div class="p-5"></div>
-        <div class="p-5"></div>
-        <div class="p-5"></div>
-        <div class="p-5"></div>
-        <div class="p-2">
+      
+        <div class="col-md-6">
+            <button mat-raised-button class="float-end mt-2 me-2 btn-primary"
+                (click)="exportexcel()">Download Excel</button>
+
+            <button mat-raised-button class="float-end mt-2 me-2 btn-secondary"
+                (click)="dashboardMasterpdf()">Download PDF</button>
+            <button mat-raised-button class="float-end mt-2 me-2 btn-success"
+                (click)="newTeacher()">New Employee</button>
+        </div>
+        <!-- <div class="p-2">
             <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
         </div> 
         <div class="p-2">
@@ -95,35 +98,35 @@
         </div>
         <div class="p-2">
             <button mat-raised-button class="float-end mt-2 btn-success" (click)="newTeacher()">New Employee</button>
-        </div>       
+        </div>        -->
     </div>
     <!-------------------------Data Show in  table Start here--------------------------------->
     <div class="example-container mat-elevation-z8">
-        <mat-table [dataSource]="dataSource" matSort>
+        <mat-table [dataSource]="dataSource" matSort >
             <ng-container matColumnDef="sno">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.sno}} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">S.No. : </span> {{row.sno}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="empcode">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.empcode}} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Employee Code : </span>  {{row.empcode}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.name | uppercase }}</mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Name : </span>  {{row.name | uppercase }}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="gender">
+            <ng-container matColumnDef="postName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Post Name </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.postName }} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Post Name : </span>   {{row.postName }} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="dob">
+            <ng-container matColumnDef="subjectName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Subject Name</mat-header-cell>
-                <!-- <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender | genderPipe }} </mat-cell> -->
-                <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.subjectName}} </mat-cell>
+                <!-- <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.subjectName | genderPipe }} </mat-cell> -->
+                <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Subject Name : </span>   {{row.subjectName}} </mat-cell>
             </ng-container>
 
           
@@ -135,7 +138,7 @@
 
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
+                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"><span class="mobile-label">Status : </span> 
 
                     <span *ngIf="row.approved === 'SI'" class=' bx-badge-check-sch bxStyle1 mr-2'>SCHOOL INITIATED</span>
                     <span *ngIf="row.approved === 'SA'" class=' bx-badge-check-verified bxStyle1 mr-2'>VERIFIED</span>
@@ -158,7 +161,7 @@
 
             <ng-container matColumnDef="systchcode">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>User Id </mat-header-cell>
-                <mat-cell *matCellDef="let row">
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">User Id - </span>
                     <span *ngIf="row.systchcode != 'null' && row.systchcode != '' ">{{row.systchcode}}</span>
                     <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
                         <button [disabled]="disabledCreateButton" type="button"
@@ -171,7 +174,7 @@
 
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
-                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
+                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span class="mobile-label">Action : </span>
                     <i class='bx bx-show bxStyle1 mr-2 view-btn' title="View" (click)="onViewClick(row.teacherId)">{{row.a}} </i>
 
                     <i *ngIf="row.approved != 'TI' && row.approved != 'SI' && row.approved != 'SA' && !isNationalLogin" class='bx bx-edit-alt bxStyle1 mr-2 edit-btn' title="Edit" (click)="onEditClick(row.teacherId)">{{row.b}}</i>
@@ -191,7 +194,7 @@
                     </span>
                 </mat-cell>
             </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true; "></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;">
             </mat-row>
         </mat-table>

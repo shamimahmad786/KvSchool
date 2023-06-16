@@ -77,6 +77,7 @@ import { LoginComponent } from './login/login.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle'
 import { MatButtonModule} from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -183,6 +184,7 @@ import { MatMenuModule } from '@angular/material/menu';
     NgxMatSelectSearchModule,
     MatSlideToggleModule,
     MatMenuModule,
+    MatSortModule,
     MatButtonModule
     // TranslateModule.forRoot({
     //   loader: {
