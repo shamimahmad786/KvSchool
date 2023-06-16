@@ -25,14 +25,15 @@ declare var $: any;
 })
 export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
-  displayedColumns = ['sno', 'empcode', 'name','gender', 'dob',   "status", 'systchcode', 'action'];
+  displayedColumns = ['sno', 'empcode', 'name','postName', 'subjectName',   "status", 'systchcode', 'action'];
   dataSource: MatTableDataSource<any>;
 
   dropboxForm: FormGroup;
   remarksForm: FormGroup;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  // @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) sort!:MatSort;
   
   testData = { "sno": "", "name": "", "postName": "", "email": "", "mobile": "", "subjectName": "","approvedStatus":"","approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
   users: any = [];

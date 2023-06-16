@@ -401,8 +401,25 @@ body {
 .d-flexg {
   display: flex;
 }
+@media screen and (min-width: 1300px) and (max-width:1600px) {
+  .SchoolStatus li {
+    margin: 0px 5px 10px 5px !important;
+    width: 15.5%!important;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width:1300px) {
+  .SchoolStatus li {
+    margin: 0px 5px 10px 5px !important;
+    width: 23%!important;
+  }
+}
 
 @media screen and (min-width: 601px) and (max-width:1024px) {
+  .SchoolStatus li {
+    margin: 0px 5px 10px 5px !important;
+    width: 30%!important;
+  }
  .w100 {
     flex: 0 0 auto;
     width: 117% !important;
