@@ -495,7 +495,8 @@ export class OutsideServicesService {
       'Content-Type': 'text/plain; charset=utf-8',
 
     });
-    return this._http.post<any>(environment.BASE_URL_DATA_MASTER+ "getMaster", data, {headers})
+    // return this._http.post<any>(environment.BASE_URL_DATA_MASTER+ "getMaster", data, {headers})
+    return this._http.post<any>(environment.BASE_URL_DATA_MASTER1+ "fetch/list-of-all-station-by-region", data, {headers})
   }
 
   fetchKvSchoolByStationCode(data){
@@ -1404,6 +1405,15 @@ fetchSanctionPost(data){
     'Content-Type': 'text/plain; charset=utf-8',
   }); 
   return this._http.post(environment.BASE_URL_DATA_MASTER1+ "fetchSanctionPost",data,{headers})
+}
+
+getStationCategoryByRegion(data){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "fetch/get-station-category-by-region",data,{headers})
 }
 
 }

@@ -40,11 +40,13 @@ businessTypeCode:any;
 regionName:any;
 stationName:any;
 schoolName:any;
-
+sanctionPostFor:any;
 
 
   testData = {sno: '',stationName:'', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
   ngOnInit(): void {
+
+    this.isEdit=false;
     this.businessTypeId=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_id;
     this.businessTypeCode=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_code;
     this.getRegionList();
@@ -53,7 +55,7 @@ schoolName:any;
 this.selectedRegion=+this.businessTypeCode.trim();
 
 
-this.getStationList(this.selectedRegion);
+// this.getStationList(this.selectedRegion);
     }
   }
   buildSanctionForm(){
@@ -72,11 +74,26 @@ this.getStationList(this.selectedRegion);
           }
         });
       }
+      if(this.businessTypeId=="3"){
+        // alert("called"+this.regionList);
+        for(var i=0;i<this.regionList.length;i++){
+          // alert(this.regionList[i].regionCode+"----"+this.selectedRegion)
+      if(this.regionList[i].regionCode==this.selectedRegion){
+        // alert("matched")
+    this.regionName=this.regionList[i].regionName;
+      }
+        }
+        this.getStationList(this.selectedRegion);
+      }
+
+   
+// alert( this.regionName);
     })
+ 
   }
 
-  fetchSanctionPost(type,value,depValue){
-  const data={"type":type,"value":value,"depValue":depValue};
+  fetchSanctionPost(type,value,depValue,schoolShift){
+  const data={"type":type,"value":value,"depValue":depValue,"shift":schoolShift};
   this.outSideService.fetchSanctionPost(data).subscribe((res)=>{
     this.setDataToSanctionedArray(JSON.parse(JSON.stringify(res)).rowValue)
           this.sanctionPostMappingDataListArray=[];
@@ -98,20 +115,36 @@ this.getStationList(this.selectedRegion);
           }
 
   })
+
+  if(type==2 && this.businessTypeId=="3"){
+    this.isEdit=true;
+  }else{
+    this.isEdit=false;
+  }
+
+
 }
 
 
 
   getSanctionPostList(schoolCode){
-    this.schoolCode=schoolCode.value;
+    // alert("school name--->"+schoolCode)
+    var shift=this.schoolList[schoolCode.value].shift;
+    this.schoolCode=this.schoolList[schoolCode.value].schoolCode;
     this.sanctionedPost.get('schoolCode').setValue(schoolCode.value);
     let request={
       schoolCode:schoolCode.value,
     }
 
+    for(var i=0;i<this.schoolList.length;i++){
+if(this.schoolList[i].schoolCode==this.schoolCode){
+this.schoolName=this.schoolList[i].schoolName;
+}
+    }
 
-    this.fetchSanctionPost("2",this.schoolCode,this.stationCode);
 
+    this.fetchSanctionPost("2",this.schoolCode,this.stationCode,shift);
+    this.sanctionPostFor=this.schoolName +" School";
 
 
     // this.outSideService.schoolCodeExistOrNot(request).subscribe((res)=>{
@@ -191,6 +224,9 @@ this.getStationList(this.selectedRegion);
     }else{
        console.log(this.sanctionedPost.value);
        this.data=this.sanctionedPost.value.sanctionedPostDetails;
+
+       
+
        let sanctionedPostRequestVo2Data=[];
        
        if(!this.isEdit){
@@ -203,7 +239,8 @@ this.getStationList(this.selectedRegion);
           sanctionedPost:element.sanctionedPost,
           occupiedPost:element.occupiedPost,
           vacant:element.vacantPost,
-          surplus:element.surplusPost
+          surplus:element.surplusPost,
+          sactionedPostId:element.sanctionedPostid,
           })
         });
        }else{
@@ -223,22 +260,28 @@ this.getStationList(this.selectedRegion);
         let request = {
           sanctionedPostRequestVo2: sanctionedPostRequestVo2Data
         }
-        this.outSideService.saveSanctionedData(request).subscribe((res) => {
-          if (res == "SUCCESS") {
-            Swal.fire(
-              'Sanction-Post Save Successfully!',
-              '',
-              'success'
-            );
+
+        // this.outSideService.saveSanctionedData(request).subscribe((res) => {
+        //   if (res == "SUCCESS") {
+        //     Swal.fire(
+        //       'Sanction-Post Save Successfully!',
+        //       '',
+        //       'success'
+        //     );
      
-          }
-        })
+        //   }
+        // })
       } 
+
       if(sanctionedPostRequestVo2Data.length > 0 && this.isEdit == true){
         //update case
         let request = {
           listOfSanctionedPostUpdateRequestVo: sanctionedPostRequestVo2Data
         }
+
+
+        console.log(JSON.stringify(request));
+
         this.outSideService.updateSanctionedData(request).subscribe((res) => {
           console.log(res)
           if (res == "SUCCESS") {
@@ -297,7 +340,7 @@ this.getStationList(this.selectedRegion);
       postId:data?.post_id,
       staffTypeId:data?.staff_type_id,
       subjectId:data?.subject_id,
-      sanctionedPostid:data?.sanctioned_postid,
+      sanctionedPostid:data?.id,
 
     })
   }
@@ -385,14 +428,25 @@ this.getStationList(this.selectedRegion);
   }
   getStationList(regionId){
     this.stationList=[];
+    this.schoolList=[];
     this.regionCode=regionId;
-    
-    if(regionId.value==0){
+
+    for(var i=0;i<this.regionList.length;i++){
+      if(this.regionList[i].regionCode==regionId){
+this.regionName=this.regionList[i].regionName;
+      }
+    }
+ 
+    if(regionId==0){
+      // alert(this.regionName);
       this.regionSelection=regionId;
-      this.fetchSanctionPost("0",regionId,"");
+      this.fetchSanctionPost("0",regionId,"","");
+      this.sanctionPostFor="All Region";
       
     }else{
-      this.fetchSanctionPost("0",regionId,"");
+      // alert(this.regionName);
+      this.fetchSanctionPost("0",regionId,"","");
+      this.sanctionPostFor=this.regionName +" Region";
       this.regionSelection=regionId;
     let request = {
       regionCode: regionId
@@ -412,15 +466,26 @@ this.getStationList(this.selectedRegion);
   getSchoolList(stationCode){
     this.stationCode=stationCode.value;
     this.schoolList=[];
+
+    for(var i=0;i<this.stationList.length;i++){
+      if(this.stationList[i].stationCode==stationCode.value){
+           this.stationName=this.stationList[i].stationName;
+      }
+    }
+
     if(stationCode.value==0){
       this.stationSelection=1;
-      this.fetchSanctionPost("1",stationCode.value,this.regionCode);
+      this.fetchSanctionPost("1",stationCode.value,this.regionCode,"");
+      this.sanctionPostFor=this.stationName +" Station";
     }else{
-      this.fetchSanctionPost("1",stationCode.value,this.regionCode);
+      this.fetchSanctionPost("1",stationCode.value,this.regionCode,"");
+      this.sanctionPostFor=this.stationName +" Station";
    let request={
      stationCode:stationCode.value
    }
    this.outSideService.searchSchoolStationMList(request).subscribe((res)=>{
+    // alert(JSON.stringify(res))
+    this.schoolList=[];
      if (res.content.length > 0) {
       res.content.forEach(element => {
         this.schoolList.push(element)

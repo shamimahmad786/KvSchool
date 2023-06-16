@@ -24,7 +24,8 @@ export class SchoolStationMappingComponent implements OnInit {
   businessUnitTypeCode:any;
 
   dataSource:any;
-  displayedColumns:any = ['sno','stationname','schoolname','shift','fromdate','todate','status'];
+  // displayedColumns:any = ['sno','stationname','schoolname','shift','fromdate','todate','status'];
+  displayedColumns:any = ['sno','stationname','schoolname','shift','status'];
 
   testData = { "sno": "", "stationname": "", "schoolname": "","shiftType":"","shift":"" ,"fromdate": "","todate":"","status":"","statusType":""}
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -46,7 +47,7 @@ export class SchoolStationMappingComponent implements OnInit {
     this.businessUnitId=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_id;
     this.businessUnitTypeCode=JSON.parse(sessionStorage.authTeacherDetails).applicationDetails[0].business_unit_type_code;
     this.buildSchoolStationMappingForm();
- 
+ debugger;
     if(this.businessUnitId=="2"){
       this.searchList();
     this.getStationList();
@@ -76,13 +77,17 @@ export class SchoolStationMappingComponent implements OnInit {
           startWith(''),
           map(value => this._filter(value || '')),
         );
+        // alert(JSON.stringify(this.filteredOptions));
       }
     })
   }
 
   getStationListByRegion(){
+    // alert("called");
+    debugger;
     let req={"regionCode":this.businessUnitTypeCode};
     this.outSideService.fetchStationByRegionId(req).subscribe((res)=>{
+      // alert("get station list by region---->"+JSON.stringify(res));
       if(res.rowValue){
         res.rowValue.forEach(element => {
           if(element.is_active){
@@ -106,6 +111,10 @@ export class SchoolStationMappingComponent implements OnInit {
    this.schoolStationMF.get('stationCode').setValue(val);
   }
   search(){
+
+  
+
+    debugger;
     if (this.schoolStationMF.invalid) {
       this.isSubmitted = true;
      this.schoolStationMF.markAllAsTouched();
@@ -115,12 +124,23 @@ export class SchoolStationMappingComponent implements OnInit {
       let request={
         stationCode: payload.stationCode,
       }
-      this.outSideService.searchSchoolStationMList(request).subscribe((res)=>{
-           this.getSchoolStationList(res.content)
-      },
-      error => {
-        console.log(error);
-      })
+
+
+      
+      if(this.businessUnitId==3 && payload.stationCode==0){
+        this.searchList();
+      }else{
+        this.outSideService.searchSchoolStationMList(request).subscribe((res)=>{
+          this.getSchoolStationList(res.content)
+     },
+     error => {
+       console.log(error);
+     })
+      }
+
+      // alert("called-->"+JSON.stringify(request));
+
+    
     } 
   }
 
@@ -176,11 +196,12 @@ export class SchoolStationMappingComponent implements OnInit {
             this.testData.fromdate = res[i].fromDate;
             this.testData.todate = res[i].toDate;
             this.testData.status = res[i].active;
-            if(res[i].active ==true )
+            if(res[i].active == true )
             {
             this.testData.statusType = 'Active';
             }
-           if(res[i].active ==false )
+
+           if(res[i].active == false )
             {
             this.testData.statusType ='InActive';
             } 
@@ -236,7 +257,7 @@ export class SchoolStationMappingComponent implements OnInit {
         fgColor: { argb:  '9c9b98' },   
       };
     }
-   const ws = workSheet.addRow(['Station Name', 'School Name','From Date','To Date', 'Status','Shift Type']);
+   const ws = workSheet.addRow(['Station Name', 'School Name', 'Status','Shift Type']);
    workSheet.getRow(2).font = { name: 'Arial', family: 4, size: 10, bold: true };
       for (let i = 1; i < 7; i++) {
         const col = ws.getCell(i);
@@ -248,7 +269,7 @@ export class SchoolStationMappingComponent implements OnInit {
       }
       
     this.listRegionStation.forEach((item) => {
-      const row = workSheet.addRow([item.stationname, item.schoolname,item.fromdate,item.todate,item.statusType,item.shiftType,]);
+      const row = workSheet.addRow([item.stationname, item.schoolname,item.statusType,item.shiftType,]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {
