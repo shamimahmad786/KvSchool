@@ -4002,7 +4002,7 @@ this.getMaster(data,event.target.value);
   }
 
 getTransferProfile(){
-  debugger
+  debugger;
  
     this.teacherForm.patchValue({
       transferRelatedForm: {
@@ -4209,11 +4209,11 @@ if(this.teacherForm.value.transferRelatedForm.disciplinaryYn==1)
 }
 if(this.teacherForm.value.transferRelatedForm.disciplinaryYn=='' || this.teacherForm.value.transferRelatedForm.disciplinaryYn== null)
 {
-  this.disciplinaryYnradioButton=1;
+  this.disciplinaryYnradioButton=0;
 }
 if(this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD==0)
 {
-  this.disciplinaryYnradioButton=1;
+  this.disciplinaryYnradioButton=0;
 }
 
 
