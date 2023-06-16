@@ -103,3 +103,41 @@ body {
     padding-left: 0rem!important;
     transition: 0.2s;
 }
+
+
+@media screen  and (max-width: 800px) and (min-width:600px){
+    .main-wrapper .sidebar {
+        width: 10rem!important;
+        
+    }
+    .content-wrapper{
+        padding-left: 10rem!important;
+        transition: 0.2s;
+    }
+   
+}
+@media (min-width: 600px) 
+{
+    .navbar.gMobile{display: none !important;} 
+}
+
+@media (max-width: 599px) 
+{
+    .main-wrapper .sidebar{display: none;  width: 0rem!important;} 
+    .content-wrapper{ padding-left: 0rem!important;  transition: 0.2s;
+    }
+    img.img-fluid.me-3.side-toggler {
+        display: none;
+    }
+    .d-flex {
+        display: block !important;
+    }
+    .d-flexg{display: block;}
+    .content-wrapper.m-4{margin: 0px !important; }
+    .action-save{ margin:40px !important;}
+}
+@media (max-width:350px) {
+.navbar-brand {
+    width: 190px !important;
+}
+}

@@ -1,4 +1,51 @@
+.mat-column-sno {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 8% !important;
+    width: 8% !important;
+  }
 
+  .mat-column-empcode {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 12% !important;
+    width: 12% !important;
+  }
+
+  .mat-column-name {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+  }
+
+  .mat-column-dob {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 12% !important;
+    width: 12% !important;
+  }
+
+  .mat-column-gender {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 8% !important;
+    width: 8% !important;
+  }
+
+  .mat-column-status {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+  }
+
+  .mat-column-action {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+  }
 
   .bx-badge-check-verified{
     color: #188038 ! important;
@@ -674,4 +721,51 @@ i.bx.bx-minus-circle:hover {
     background-color: #1b4c43!important;
     color: rgba(255, 255, 255) ! important;
 }
+  
+/* mobile responsive table */
+.example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  
+  .mobile-label {
+    display: none;
+  }
+  
+  @media(max-width: 1024px) {
+    .mat-column-postName, .mat-column-subjectName, .mat-column-status, .mat-column-sno, .mat-column-empcode,.mat-column-name
+  { width: auto !important; }
+  
+    mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+       padding-left: 0px;
+  }
+    .mobile-label {
+      width: auto;
+      margin-right: 10px;
+      display: inline-block;
+          font-weight: bold;
+    }
+    mat-row, mat-footer-row {
+      min-height: 35px !important;
+  }
+    .mat-header-row {
+      display: none;
+    }
+  
+    .mat-row { 
+      flex-direction: column;
+      align-items: start;
+      padding: 4px 4px;
+    }
+    .d-flex {
+      display: table-caption !important ;
+  }
+  }
   

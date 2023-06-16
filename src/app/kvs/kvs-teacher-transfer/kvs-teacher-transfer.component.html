@@ -70,22 +70,22 @@
         <mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="sno">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.sno}} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">S.No. : </span> {{row.sno}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="empcode">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Employee Code </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.empcode}} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Employee Code : </span>  {{row.empcode}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.name | titlecase}}</mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Name : </span>  {{row.name | titlecase}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="dob">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row?.dob | date: 'dd-MM-YYYY'}} </mat-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Date of Birth : </span> {{row?.dob | date: 'dd-MM-YYYY'}} </mat-cell>
             </ng-container>
 
             <!-- <ng-container matColumnDef="staffType">
@@ -95,12 +95,12 @@
 
             <ng-container matColumnDef="gender">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
-                <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.gender}} </mat-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color"> <span class="mobile-label">Gender : </span> {{row.gender}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
+                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span class="mobile-label">Status : </span>
                     <span *ngIf="row.approved === 1" class=' bx-badge-check-initiated bxStyle1 mr-2'>Transfer
                         Initiated</span>
                     <span *ngIf="row.approved === 'TRS'" class=' bx-badge-check-submitted bxStyle1 mr-2'>Transfer
@@ -116,7 +116,7 @@
 
             <ng-container matColumnDef="systchcode">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Transfer Id</mat-header-cell>
-                <mat-cell *matCellDef="let row">
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Transfer Id : </span>
                     <span *ngIf="row.systchcode != 'null' && row.systchcode != '' ">{{row.systchcode}}</span>
                     <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
                         <button [disabled]="disabledCreateButton" type="button" class="btn btn12 btn-outline-primary"
@@ -129,7 +129,7 @@
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
-
+                    <span class="mobile-label">Action : </span>
                     <!-- <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
                     <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'" class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application" (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i> -->
 
