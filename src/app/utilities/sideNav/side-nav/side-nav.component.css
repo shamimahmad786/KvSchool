@@ -257,3 +257,14 @@ body {
 ::ng-deep #layoutSidenav_content {
     /* padding: 0px!important; */
 }
+
+@media screen  and (max-width: 800px) and (min-width:600px){
+    .main-wrapper .sidebar {
+        width: 10rem!important;
+    }
+    .content-wrapper{
+        padding-left: 10rem!important;
+        transition: 0.2s;
+    }
+   
+}
