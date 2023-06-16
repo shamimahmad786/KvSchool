@@ -63,8 +63,8 @@
 <!---------------------------------------end  here --------------------------------------------------------->
 <div *ngIf="nationalLogin" class="shadow-sm bg-white p-3 rounded mt-3">
     
-    <div class=" d-flex justify-content-between  bd-highlight">
-        <div class="p-2">
+    <div class="row">
+        <div class="col-md-6">
             <div class="example-header">
                 <mat-form-field>
                     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
@@ -81,7 +81,7 @@
             </div>
         </div>
       
-        <div class="p-2">
+        <div class="col-md-6">
             <button mat-raised-button class="float-end mt-2 me-2 btn-primary"
                 (click)="exportexcel()">Download Excel</button>
 
