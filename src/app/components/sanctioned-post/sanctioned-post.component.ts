@@ -41,6 +41,7 @@ regionName:any;
 stationName:any;
 schoolName:any;
 sanctionPostFor:any;
+shift:any;
 
 
   testData = {sno: '',stationName:'', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
@@ -95,6 +96,7 @@ this.selectedRegion=+this.businessTypeCode.trim();
   fetchSanctionPost(type,value,depValue,schoolShift){
   const data={"type":type,"value":value,"depValue":depValue,"shift":schoolShift};
   this.outSideService.fetchSanctionPost(data).subscribe((res)=>{
+    // alert(JSON.stringify(res));
     this.setDataToSanctionedArray(JSON.parse(JSON.stringify(res)).rowValue)
           this.sanctionPostMappingDataListArray=[];
           if(JSON.parse(JSON.stringify(res)).rowValue.length>0){
@@ -112,15 +114,23 @@ this.selectedRegion=+this.businessTypeCode.trim();
               this.sanctionPostMappingDataListArray.push(this.testData);
               this.testData = {sno: '',stationName:'', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
             }
+
+            
           }
 
+          if(type==2 && this.businessTypeId=="3"){
+            this.isEdit=true;
+          }else{
+            this.isEdit=false;
+          }
+
+          if(JSON.parse(JSON.stringify(res)).rowValue[0].freezed_sanction_post==1){
+            this.isEdit=false;
+          }
   })
 
-  if(type==2 && this.businessTypeId=="3"){
-    this.isEdit=true;
-  }else{
-    this.isEdit=false;
-  }
+  
+
 
 
 }
@@ -129,7 +139,7 @@ this.selectedRegion=+this.businessTypeCode.trim();
 
   getSanctionPostList(schoolCode){
     // alert("school name--->"+schoolCode)
-    var shift=this.schoolList[schoolCode.value].shift;
+     this.shift=this.schoolList[schoolCode.value].shift;
     this.schoolCode=this.schoolList[schoolCode.value].schoolCode;
     this.sanctionedPost.get('schoolCode').setValue(schoolCode.value);
     let request={
@@ -143,7 +153,7 @@ this.schoolName=this.schoolList[i].schoolName;
     }
 
 
-    this.fetchSanctionPost("2",this.schoolCode,this.stationCode,shift);
+    this.fetchSanctionPost("2",this.schoolCode,this.stationCode,this.shift);
     this.sanctionPostFor=this.schoolName +" School";
 
 
@@ -226,7 +236,7 @@ this.schoolName=this.schoolList[i].schoolName;
        this.data=this.sanctionedPost.value.sanctionedPostDetails;
 
        
-
+alert(JSON.stringify(this.data));
        let sanctionedPostRequestVo2Data=[];
        
        if(!this.isEdit){
@@ -280,7 +290,7 @@ this.schoolName=this.schoolList[i].schoolName;
         }
 
 
-        console.log(JSON.stringify(request));
+        alert(JSON.stringify(request));
 
         this.outSideService.updateSanctionedData(request).subscribe((res) => {
           console.log(res)
@@ -570,4 +580,31 @@ for(var i=0;i<this.schoolList.length;i++){
     });
  
   }
+
+
+  freezeSanctionPost(){
+
+
+    if(this.schoolCode !=null && this.shift !=null){
+      let request={"schoolCode":this.schoolCode,"shift":this.shift};
+      this.outSideService.freezeSanctionPost(request).subscribe((res)=>{
+  // alert(JSON.stringify(res));
+  if(JSON.parse(JSON.stringify(res)).status==1){
+    this.isEdit=false;
+    Swal.fire(
+      'Sanction-Post has been freezed  Successfully!',
+      '',
+      'success'
+    )
+
+  }
+       });
+
+    }
+
+     
+
+  
+    }
+
 }

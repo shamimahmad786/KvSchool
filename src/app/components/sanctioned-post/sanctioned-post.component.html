@@ -89,7 +89,7 @@
 
 </div>
 <div class="fieldSet card mt-4 p-3">
-    <form [formGroup]="sanctionedPost" (ngSubmit)="onSubmit()">
+    <form [formGroup]="sanctionedPost">
         <fieldset>
             <div class="form-card">
                 <div class="row">
@@ -205,7 +205,8 @@
             </div>
         </fieldset>
         <div style="text-align: center !important;">
-            <button [disabled]="!sanctionedPost.valid" class="btn btn-green float-end" type="submit">{{(isEdit==true)?'Update':'Save'}}</button>
+            <button [disabled]="!sanctionedPost.valid" class="btn btn-green float-end" (click)="onSubmit()" type="submit">{{(isEdit==true)?'Update':'Save'}}</button>
+            <button [disabled]="!sanctionedPost.valid" class="btn btn-green float-end" (click)="freezeSanctionPost()" style="margin-right: 1%;">Freeze</button>
         </div>
 
     </form>
