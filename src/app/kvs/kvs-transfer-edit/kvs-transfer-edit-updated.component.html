@@ -301,9 +301,9 @@
                                         <thead>
                                             <tr>
                                                 <th width="3%"> S.No. </th>
-                                                <th colspan="2"> Question Description </th>
-                                                <th> User Input </th>
-                                                <th> Points </th>
+                                                <th colspan="2" class="align-middle text-center"> Question Description </th>
+                                                <th> </th>
+                                                <th class="align-middle text-center"> Points </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -323,14 +323,14 @@
                                                         <li class="w5 me-3">
                                                             <h4 class="titleSet ">1A </h4>
                                                         </li>
-                                                        <li class="w80 ml-2">No of days in current station since posted.
+                                                        <li class="w80 ml-2">Stay at a station as on 30th June in complete years irrespective of Cadre Clarification.
                                                         </li>
-                                                        <li class="w20">
+                                                        <!-- <li class="w20">
                                                             <input type="text" class="form-control form-control-sm "
                                                                 formControlName="numberOfWorkingDays"
                                                                 name="numberOfWorkingDays" id="numberOfWorkingDays"
                                                                 [(ngModel)]="totalWorkingDaysF" disabled>
-                                                        </li>
+                                                        </li> -->
                                                     </ul>
                                                     <!-- <ul class="orderList border-bottom">
                                                         <li class="w5 me-3">
@@ -352,27 +352,35 @@
                                                     </ul> -->
                                                     <ul class="orderList border-bottom">
                                                         <li class="w5 me-3">
-                                                            <h4 class="titleSet ">1C </h4>
+                                                            <h4 class="titleSet ">1B </h4>
                                                         </li>
-                                                        <li class="w80"> If any employee returns to a station X on
-                                                            request after being transferred from X within three years,
-                                                            the stay of such an employee at X shall be no. of years
-                                                            spent at X before being transferred plus no. of years spent
-                                                            after coming at X. However, if an employee returns to
-                                                            station after a Posting Period of 02 years in Very Hard
-                                                            (existed earlier) and 03 years from Hard/ NER station the
-                                                            stay shall be counted afresh.<span
+                                                        <li class="w80"> Period of absence on any account shall also be counte for this purpose.<span
                                                                 class="required-asterisk">*</span></li>
 
 
 
-                                                        <li class="w20">
+                                                        <!-- <li class="w20">
                                                             <input type="text" id="absenceDaysTwo"
                                                                 class="form-control form-control-sm topSetInput"
                                                                 formControlName="absenceDaysTwo" name="absenceDaysTwo"
                                                                 [(ngModel)]="absence2"
                                                                 (blur)="displacementTotalPoint(); absenceCal()">
+                                                        </li> -->
+                                                    </ul>
+
+                                                    <ul class="orderList  border-bottom">
+                                                        <li class="w5 me-3">
+                                                            <h4 class="titleSet ">1C </h4>
                                                         </li>
+                                                        <li class="w80"> If an employee transferred from station "A" to station "B" returns to  the station "A" on request without 
+                                                            completing three years of stay at station "B" then the period of stay at station "A" will be calculated as total number of years served at  station "A" prior to his posting at "B" and the number of years served after his return to station "A" taken together. 
+                                                        </li>
+                                                        <!-- <li class="w20">
+                                                            <input type="text" disabled id="actualNumberOfWorkingDays"
+                                                                class="form-control form-control-sm"
+                                                                formControlName="actualNumberOfWorkingDays"
+                                                                name="actualNumberOfWorkingDays">
+                                                        </li> -->
                                                     </ul>
 
                                                     <ul class="orderList  border-bottom">
@@ -380,12 +388,12 @@
                                                             <h4 class="titleSet ">1D </h4>
                                                         </li>
                                                         <li class="w80"> Total days (present). 1A+1C</li>
-                                                        <li class="w20">
+                                                        <!-- <li class="w20">
                                                             <input type="text" disabled id="actualNumberOfWorkingDays"
                                                                 class="form-control form-control-sm"
                                                                 formControlName="actualNumberOfWorkingDays"
                                                                 name="actualNumberOfWorkingDays">
-                                                        </li>
+                                                        </li> -->
                                                     </ul>
 
                                                     <ul class="DateOfBirth mt-3">
@@ -411,15 +419,16 @@
                                                                 name="presentStationCode" id="presentStationCode">
                                                         </li>
                                                     </ul>
-                                                    <div *ngIf="!showMe">
-                                                        <!-- <p class="ps-2"> dolor sit amet consectetur
+                                                    <!-- <div *ngIf="!showMe">
+                                                         <p class="ps-2"> dolor sit amet consectetur
                                                             adipisicing elit. NulLorem ipsumla
                                                             repellat blanditiis rem deserunt amet! Praesentium nulla
                                                             aspernatur, ab vero saepe quasi alias? Nisi voluptates
                                                             soluta
-                                                            natus, sint similique libero cupiditate!</p> -->
+                                                            natus, sint similique libero cupiditate!</p> 
 
-                                                    </div>
+                                                    </div> -->
+                                                    
                                                 </td>
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
@@ -427,7 +436,7 @@
                                                         formControlName="q1DPt" name="q1DPt" disabled>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="align-middle text-center"> <span class="text-green">2.</span>
                                                 </td>
                                                 <td class="align-middle " width="70%" colspan="2">
@@ -490,19 +499,16 @@
                                                         id="q2DPt" formControlName="q2DPt" name="q2DPt" disabled>
                                                 </td>
 
-                                            </tr>
+                                            </tr> -->
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">3.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">2.</span>
                                                 </td>
-                                                <td class="align-middle" colspan="2" width="75%">
+                                                <td width="75%" class="align-middle " colspan="3">
                                                     <h4 class="titleSet">
 
-                                                        Employee below 40 years of age (as on 30th June, 2022) who have
-                                                        completed one tenure at hard/very hard (existed earlier)/ NE
-                                                        stations.
-                                                        (Indicate 'Yes' for tenure completed & 'No' for tenure not
-                                                        completed.)
+                                                        Employee below 40 years  (as on 30th June of the year) who have not
+                                                        completed one tenure at Hard/NER/Priority station (during entire service).
 
                                                     </h4>
 
@@ -537,7 +543,7 @@
 
                                                     </ul>
 
-                                                    <button (click)="toogleTag2()"
+                                                    <!-- <button (click)="toogleTag2()"
                                                         class="btn btn-sm btn-yellow mt-2">Clarification <i
                                                             class='bx bxs-chevron-down'></i></button>
                                                     <div *ngIf="!showMe2">
@@ -545,11 +551,11 @@
                                                             Only those employee who are below 40 years of age as on 30th
                                                             June 2022 should fill this column.
                                                         </p>
-                                                    </div>
+                                                    </div> -->
 
                                                 </td>
 
-                                                <td class="text-left" width="15%">
+                                                <!-- <td class="text-left" width="15%">
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" id="inlineRadio15"
                                                             value="1" id="q3DYn" formControlName="q3DYn" name="q3DYn"
@@ -562,30 +568,31 @@
                                                             disabled>
                                                         <label class="form-check-label" for="inlineRadio26">No</label>
                                                     </div>
-                                                </td>
-                                                <td width="7%" class=" text-center">
-                                                    <!-- <input type="text" class="form-control form-control-sm "
+                                                </td> -->
+                                               <td width="7%" class=" text-center">
+                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;"
-                                                        id="" formControlName="q3DPt" name="q3DPt" disabled> -->
-                                                </td>
+                                                        id="" formControlName="q3DPt" name="q3DPt" disabled> 
+                                                </td> 
                                             </tr>
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">4.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">3.</span>
                                                 </td>
-                                                <td class="align-middle" width="75%" colspan="2">
-                                                    <h4 class="titleSet">
+                                                <td width="75%" class="align-middle " colspan="3">
+                                                    <label> Physically Challenged employees.</label>
+                                                    <!-- <h4 class="titleSet">
 
                                                         Select whichever is applicable<span
                                                             class="required-asterisk">*</span> <button
                                                             (click)="toogleTag4()"
                                                             class="btn btn-sm btn-yellow ms-2">Clarification <i
                                                                 class='bx bxs-chevron-down'></i></button>
-                                                    </h4>
+                                                    </h4> -->
 
 
 
-                                                    <div *ngIf="!showMe4">
+                                                    <!-- <div *ngIf="!showMe4">
                                                         <p class="ps-2">
                                                             <span class="text-green">(A)</span>
                                                             If an employee qualifies for more than one, the points shall
@@ -593,10 +600,10 @@
                                                             limited
                                                             to a maximum of -50 only.
                                                         </p>
-                                                    </div>
+                                                    </div> -->
 
                                                 </td>
-                                                <td class="align-middle text-center" width="15%">
+                                                <!-- <td class="align-middle text-center" width="15%">
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="checkbox"
                                                             id="inlineCheckbox1" id="personalStatusLtrDc"
@@ -656,7 +663,7 @@
 
 
 
-                                                </td>
+                                                </td> -->
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="q4DPt"
@@ -665,54 +672,19 @@
                                             </tr>
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">4.</span>
                                                 </td>
-
-                                                <td class="align-middle" width="90%" colspan="3">
+                                                <td width="75%" class="align-middle " colspan="3">
                                                     <h4 class="titleSet">
-
-                                                        Spouse
+                                                    Clarification: If an employee qualifies for more than one ground, the points shall be limited to a maximum of (-) 14 only.
                                                     </h4>
-                                                    <ul *ngIf="responseData?.spouseStatus == '1' || responseData?.spouseStatus == '2' || responseData?.spouseStatus == '3' "
-                                                        class="orderList border-bottom">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green"></span>
-                                                            </h4>
-                                                        </li>
-                                                        <li class="w80 ml-2" style="font-weight: 500">Is spouse posted
-                                                            at the same station or within 100 km.<span
-                                                                class="required-asterisk">*</span> </li>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input"
-                                                                formControlName="stationWithin100kmDispYn"
-                                                                name="stationWithin100kmDispYn"
-                                                                id="stationWithin100kmDispYn" type="radio" value="1"
-                                                                (click)="spouseWithin100kmDisp($event);displacementTotalPoint()">
-                                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                                Yes
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input"
-                                                                formControlName="stationWithin100kmDispYn"
-                                                                name="stationWithin100kmDispYn"
-                                                                id="stationWithin100kmDispYn" type="radio" value="0"
-                                                                (click)="spouseWithin100kmDisp($event);displacementTotalPoint()">
-                                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                                No
-                                                            </label>
-                                                        </div>
-                                                    </ul>
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
                                                             <h4 class="titleSet"> <span class="text-green">A.</span>
                                                             </h4>
                                                         </li>
-                                                        <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the
-                                                            same station
-                                                            or within 100
-                                                            km.</li>
-                                                        <li class="w20 ">
+                                                        <li class="w80 ml-2"> Medical ground(MDG).</li>
+                                                        <!-- <li class="w20 ">
                                                             <div class="form-check form-check-inline ms-3">
 
                                                                 <input class="form-check-input " type="radio"
@@ -722,21 +694,15 @@
                                                                     disabled> ( -50 )
 
                                                             </div>
-                                                        </li>
+                                                        </li> -->
                                                     </ul>
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
                                                             <h4 class="titleSet"> <span class="text-green">B.</span>
                                                             </h4>
                                                         </li>
-                                                        <li class="w80 ml-2"> Spouse if a Central Government/Central
-                                                            Govt. Autonomous
-                                                            body/Central
-                                                            Govt. Public Sector Undertaking/ Defense Employee and
-                                                            Central Armed
-                                                            Police Forces employee posted at the same station or
-                                                            within 100 km.</li>
-                                                        <li class="w20">
+                                                        <li class="w80 ml-2"> Death of Family person(DFP).</li>
+                                                        <!-- <li class="w20">
                                                             <div class="form-check form-check-inline ms-3">
                                                                 <input class="form-check-input" type="radio"
                                                                     id="inlineRadio13" value="2" id="spouseStatusDisplacement"
@@ -745,88 +711,29 @@
                                                                     disabled> ( -40 )
 
                                                             </div>
-                                                        </li>
-                                                    </ul>
-
-                                                    <ul class="orderList ">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">C.</span>
-                                                            </h4>
-                                                        </li>
-                                                        <li class="w80 ml-2"> Spouse if a State Covernment / State Govt.
-                                                            Autonomous body / State Govt. Public Sectors
-                                                            Undertaking Employee & posted at the same station or within
-                                                            100km..</li>
-                                                        <li class="w20">
-                                                            <div class="form-check form-check-inline ms-3">
-                                                                <input class="form-check-input " type="radio"
-                                                                    id="inlineRadio13" value="3" id="spouseStatusDisplacement"
-                                                                    formControlName="spouseStatusDisplacement" name="spouseStatusDisplacement"
-                                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
-                                                                    disabled>( -30 )
-
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-
-                                                    <ul class="orderList">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">D.</span>
-                                                            </h4>
-                                                        </li>
-                                                        <li class="w80 ml-2">Woman employee not covered under 5(A),
-                                                            5(B), 5(C) above,
-                                                            or an unmarried
-                                                            lady, is eligible for these points. </li>
-                                                        <li class="w20">
-                                                            <div class="form-check form-check-inline ms-3">
-                                                                <input class="form-check-input " type="radio"
-                                                                    id="inlineRadio13" value="4" id="spouseStatusDisplacement"
-                                                                    formControlName="spouseStatusDisplacement" name="spouseStatusDisplacement"
-                                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
-                                                                    disabled>( -20 )
-
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="orderList ">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">E.</span>
-                                                            </h4>
-                                                        </li>
-                                                        <li class="w80 ml-2">None of the above. </li>
-                                                        <li class="w20">
-                                                            <div class="form-check form-check-inline ms-3">
-                                                                <input class="form-check-input " type="radio"
-                                                                    id="inlineRadio13" value="5" id="spouseStatusDisplacement"
-                                                                    formControlName="spouseStatusDisplacement" name="spouseStatusDisplacement"
-                                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
-                                                                    disabled>( 0 )
-
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-
-
-
+                                                        </li> -->
+                                                    </ul>                                
                                                 </td>
+                                       
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q5DPt"
-                                                        formControlName="q5DPt" name="q5DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q4DPt"
+                                                        formControlName="q4DPt" name="q4DPt" disabled>
                                                 </td>
                                             </tr>
 
+
+
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">6.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">5.</span>
                                                 </td>
-                                                <td class="align-middle" width="75%" colspan="2">
+                                                <td class="align-middle" width="75%" colspan="3">
                                                     <h4 class="titleSet">
-                                                        Physically challenged employee
+                                                        Less than three years to retire (LTR).
                                                     </h4>
                                                 </td>
 
-                                                <td class="align-middle" width="15%">
+                                                <!-- <td class="align-middle" width="15%">
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" id="inlineRadio15"
                                                             value="1" id="teacherDisabilityYn"
@@ -847,7 +754,460 @@
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         ( -60 )</div>
+                                                </td> -->
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
+                                                        formControlName="q9DPt" name="q9DPt" disabled>
                                                 </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                                </td>
+                                                <td class="align-middle" width="75%" colspan="3">
+                                                    <h4 class="titleSet">
+                                                        Spouse, if a KVS Employee and posted at the same station.
+                                                    </h4>
+                                                </td>
+
+                                                <!-- <td class="align-middle" width="15%">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio15"
+                                                            value="1" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('1'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio15">Yes</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio25"
+                                                            value="0" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('0'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio26">No</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        ( -60 )</div>
+                                                </td> -->
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
+                                                        formControlName="q9DPt" name="q9DPt" disabled>
+                                                </td>
+                                            </tr>
+
+
+
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                                </td>
+                                                <td class="align-middle" width="75%" colspan="3">
+                                                    <h4 class="titleSet">
+                                                        Spouse if a Central Government/Central
+                                                        Govt. Autonomous
+                                                        body/Central
+                                                        Govt. Public Sector Undertaking/ Defense Employee and
+                                                        Central Armed
+                                                        Police Forces employee posted at the same station.
+                                                    </h4>
+                                                </td>
+
+                                                <!-- <td class="align-middle" width="15%">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio15"
+                                                            value="1" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('1'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio15">Yes</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio25"
+                                                            value="0" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('0'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio26">No</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        ( -60 )</div>
+                                                </td> -->
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
+                                                        formControlName="q9DPt" name="q9DPt" disabled>
+                                                </td>
+                                            </tr>
+
+
+
+
+
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                                </td>
+                                                <td class="align-middle" width="75%" colspan="3">
+                                                    <h4 class="titleSet">
+                                                        Spouse if a Central Government/Central
+                                                        Govt. Autonomous
+                                                        body/Central
+                                                        Govt. Public Sector Undertaking/ Defense Employee and
+                                                        Central Armed
+                                                        Police Forces employee posted at the same station.
+                                                    </h4>
+                                                </td>
+
+                                                <!-- <td class="align-middle" width="15%">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio15"
+                                                            value="1" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('1'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio15">Yes</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio25"
+                                                            value="0" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('0'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio26">No</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        ( -60 )</div>
+                                                </td> -->
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
+                                                        formControlName="q9DPt" name="q9DPt" disabled>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                                </td>
+                                                <td class="align-middle" width="75%" colspan="3">
+                                                    <h4 class="titleSet">
+                                                        Spouse if a State Covernment / State Govt.
+                                                        Autonomous body / State Govt. Public Sectors
+                                                        Undertaking Employee & posted at the same station. 
+                                                    </h4>
+                                                </td>
+
+                                                <!-- <td class="align-middle" width="15%">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio15"
+                                                            value="1" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('1'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio15">Yes</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio25"
+                                                            value="0" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('0'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio26">No</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        ( -60 )</div>
+                                                </td> -->
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
+                                                        formControlName="q9DPt" name="q9DPt" disabled>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                                </td>
+                                                <td class="align-middle" width="75%" colspan="3">
+                                                    <h4 class="titleSet">
+                                                       Single Parent.
+                                                    </h4>
+                                                </td>
+
+                                                <!-- <td class="align-middle" width="15%">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio15"
+                                                            value="1" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('1'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio15">Yes</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio25"
+                                                            value="0" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('0'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio26">No</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        ( -60 )</div>
+                                                </td> -->
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
+                                                        formControlName="q9DPt" name="q9DPt" disabled>
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                                </td>
+                                                <td class="align-middle" width="75%" colspan="3">
+                                                    <h4 class="titleSet">
+                                                        Woman employee not covered under Sl. No. 6, 7, 8&9 above.
+                                                    </h4>
+                                                </td>
+
+                                                <!-- <td class="align-middle" width="15%">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio15"
+                                                            value="1" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('1'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio15">Yes</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio25"
+                                                            value="0" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('0'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio26">No</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        ( -60 )</div>
+                                                </td> -->
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
+                                                        formControlName="q9DPt" name="q9DPt" disabled>
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                                </td>
+                                                <td class="align-middle" width="75%" colspan="3">
+                                                    <h4 class="titleSet">
+                                                        Members of recognized associations of KVS staff who are also members of JCM at KVS regional offices and / or KVS Headquarters.
+                                                        Note: - Benefit will be given only if they are posted in KVs located at the station of Regional Office/ ZIET.
+                                                    </h4>
+                                                </td>
+
+                                                <!-- <td class="align-middle" width="15%">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio15"
+                                                            value="1" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('1'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio15">Yes</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio25"
+                                                            value="0" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('0'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio26">No</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        ( -60 )</div>
+                                                </td> -->
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
+                                                        formControlName="q9DPt" name="q9DPt" disabled>
+                                                </td>
+                                            </tr>
+
+
+
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">4.</span>
+                                                </td>
+
+                                                <td class="align-middle" width="90%" colspan="3">
+                                                   
+                                                  
+                                                    <ul class="orderList ">
+                                                        <li class="w5 me-3">
+                                                            <h4 class="titleSet"> <span class="text-green">A.</span>
+                                                            </h4>
+                                                        </li>
+                                                        <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the
+                                                            same station.</li>
+                                                        <!-- <li class="w20 ">
+                                                            <div class="form-check form-check-inline ms-3">
+
+                                                                <input class="form-check-input " type="radio"
+                                                                    id="inlineRadio13" value="1" id="spouseStatusDisplacement"
+                                                                    formControlName="spouseStatusDisplacement" name="spouseStatusDisplacement"
+                                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
+                                                                    disabled> ( -50 )
+
+                                                            </div>
+                                                        </li> -->
+                                                    </ul>
+                                                    <ul class="orderList ">
+                                                        <li class="w5 me-3">
+                                                            <h4 class="titleSet"> <span class="text-green">B.</span>
+                                                            </h4>
+                                                        </li>
+                                                        <li class="w80 ml-2"> Spouse if a Central Government/Central
+                                                            Govt. Autonomous
+                                                            body/Central
+                                                            Govt. Public Sector Undertaking/ Defense Employee and
+                                                            Central Armed
+                                                            Police Forces employee posted at the same station.</li>
+                                                        <!-- <li class="w20">
+                                                            <div class="form-check form-check-inline ms-3">
+                                                                <input class="form-check-input" type="radio"
+                                                                    id="inlineRadio13" value="2" id="spouseStatusDisplacement"
+                                                                    formControlName="spouseStatusDisplacement" name="spouseStatusDisplacement"
+                                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
+                                                                    disabled> ( -40 )
+
+                                                            </div>
+                                                        </li> -->
+                                                    </ul>
+
+                                                    <ul class="orderList ">
+                                                        <li class="w5 me-3">
+                                                            <h4 class="titleSet"> <span class="text-green">C.</span>
+                                                            </h4>
+                                                        </li>
+                                                        <li class="w80 ml-2"> Spouse if a State Covernment / State Govt.
+                                                            Autonomous body / State Govt. Public Sectors
+                                                            Undertaking Employee & posted at the same station or within
+                                                            100km..</li>
+                                                        <!-- <li class="w20">
+                                                            <div class="form-check form-check-inline ms-3">
+                                                                <input class="form-check-input " type="radio"
+                                                                    id="inlineRadio13" value="3" id="spouseStatusDisplacement"
+                                                                    formControlName="spouseStatusDisplacement" name="spouseStatusDisplacement"
+                                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
+                                                                    disabled>( -30 )
+
+                                                            </div>
+                                                        </li> -->
+                                                    </ul>
+
+                                                    <ul class="orderList">
+                                                        <li class="w5 me-3">
+                                                            <h4 class="titleSet"> <span class="text-green">D.</span>
+                                                            </h4>
+                                                        </li>
+                                                        <li class="w80 ml-2">Woman employee not covered under 5(A),
+                                                            5(B), 5(C) above,
+                                                            or an unmarried
+                                                            lady, is eligible for these points. </li>
+                                                        <!-- <li class="w20">
+                                                            <div class="form-check form-check-inline ms-3">
+                                                                <input class="form-check-input " type="radio"
+                                                                    id="inlineRadio13" value="4" id="spouseStatusDisplacement"
+                                                                    formControlName="spouseStatusDisplacement" name="spouseStatusDisplacement"
+                                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
+                                                                    disabled>( -20 )
+
+                                                            </div>
+                                                        </li> -->
+                                                    </ul>
+                                                    <ul class="orderList ">
+                                                        <li class="w5 me-3">
+                                                            <h4 class="titleSet"> <span class="text-green">E.</span>
+                                                            </h4>
+                                                        </li>
+                                                        <li class="w80 ml-2">None of the above. </li>
+                                                        <!-- <li class="w20">
+                                                            <div class="form-check form-check-inline ms-3">
+                                                                <input class="form-check-input " type="radio"
+                                                                    id="inlineRadio13" value="5" id="spouseStatusDisplacement"
+                                                                    formControlName="spouseStatusDisplacement" name="spouseStatusDisplacement"
+                                                                    (click)="updateSpouseValue($event); displacementTotalPoint()"
+                                                                    disabled>( 0 )
+
+                                                            </div>
+                                                        </li> -->
+                                                    </ul>
+
+
+
+                                                </td>
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q5DPt"
+                                                        formControlName="q5DPt" name="q5DPt" disabled>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">5.</span>
+                                                </td>
+                                                <td class="align-middle" width="75%" colspan="3">
+                                                    <h4 class="titleSet">
+                                                        Physically challenged employee
+                                                    </h4>
+                                                </td>
+
+                                                <!-- <td class="align-middle" width="15%">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio15"
+                                                            value="1" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('1'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio15">Yes</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="inlineRadio25"
+                                                            value="0" id="teacherDisabilityYn"
+                                                            formControlName="teacherDisabilityYn"
+                                                            name="teacherDisabilityYn"
+                                                            (click)="pHEmployee('0'); displacementTotalPoint()"
+                                                            disabled>
+                                                        <label class="form-check-label" for="inlineRadio26">No</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        ( -60 )</div>
+                                                </td> -->
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
@@ -856,7 +1216,7 @@
                                             </tr>
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">7.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">6.</span>
                                                 </td>
                                                 <td class="align-middle" width="90%" colspan="3">
                                                     <h4 class="titleSet">
@@ -870,7 +1230,7 @@
                                                         </li>
                                                         <li class="w80 ml-2">Members of JCM at KVS Regional Office
                                                             (RJCM).</li>
-                                                        <li class="w20 ">
+                                                        <!-- <li class="w20 ">
                                                             <div class="form-check form-check-inline ms-3">
 
                                                                 <input class="form-check-input " type="radio"
@@ -882,7 +1242,7 @@
                                                                 ( -25 )
 
                                                             </div>
-                                                        </li>
+                                                        </li> -->
                                                     </ul>
                                                     <ul class="orderList border-bottom">
                                                         <li class="w5 me-3">
@@ -891,7 +1251,7 @@
                                                         </li>
                                                         <li class="w80 ml-2">Members of JCM at KVS Headquarters (NJCM).
                                                         </li>
-                                                        <li class="w20">
+                                                        <!-- <li class="w20">
                                                             <div class="form-check form-check-inline ms-3">
                                                                 <input class="form-check-input" type="radio"
                                                                     id="inlineRadio13" value="2"
@@ -902,7 +1262,7 @@
                                                                 ( -25 )
 
                                                             </div>
-                                                        </li>
+                                                        </li> -->
                                                     </ul>
 
                                                     <ul class="orderList">
@@ -911,7 +1271,7 @@
                                                             </h4>
                                                         </li>
                                                         <li class="w80 ml-2"> None.</li>
-                                                        <li class="w20">
+                                                        <!-- <li class="w20">
                                                             <div class="form-check form-check-inline ms-3">
                                                                 <input class="form-check-input " type="radio"
                                                                     id="inlineRadio13" value="3"
@@ -922,7 +1282,7 @@
                                                                 0 )
 
                                                             </div>
-                                                        </li>
+                                                        </li> -->
                                                     </ul>
                                                 </td>
                                                 <td width="7%" class=" text-center">
@@ -933,22 +1293,22 @@
                                             </tr>
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">8.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">7.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
+                                                    <!-- <h4 class="titleSet">
                                                         Award winning employees: <button (click)="toogleTag4()"
                                                             class="btn btn-sm btn-yellow ms-2">Clarification <i
                                                                 class='bx bxs-chevron-down'></i></button>
-                                                    </h4>
+                                                    </h4> -->
 
-                                                    <div *ngIf="!showMe4">
+                                                    <!-- <div *ngIf="!showMe4">
                                                         <p>If an employee qualifies for all the awards then the maximum
                                                             concession
                                                             of -6 marks shall be given</p>
-                                                    </div>
+                                                    </div> -->
 
-                                                    <div *ngIf="!noAward" class="col-md-12 mb-2">
+                                                    <!-- <div *ngIf="!noAward" class="col-md-12 mb-2">
                                                         <ul *ngIf="presidentAward" class="orderList border-bottom">
                                                             <li class="w5 me-3">
                                                                 <h4 class="titleSet"> <span class="text-green">A.</span>
@@ -973,8 +1333,8 @@
                                                             </li>
                                                             <li class="w80 ml-2"> KVS Regional Incentive Award.</li>
                                                         </ul>
-                                                    </div>
-                                                    <div *ngIf="noAward" class="col-md-12 mb-2">
+                                                    </div> -->
+                                                    <!-- <div *ngIf="noAward" class="col-md-12 mb-2">
                                                         <ul class="orderList">
                                                             <li class="w5 me-3">
                                                                 <h4 class="titleSet"> <span class="text-green">A.</span>
@@ -982,7 +1342,7 @@
                                                             </li>
                                                             <li class="w80 ml-2"> No awards available.</li>
                                                         </ul>
-                                                    </div>
+                                                    </div> -->
                                                 </td>
 
                                                 <td width="7%" class="text-center">
@@ -994,9 +1354,9 @@
                                             </tr>
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">9.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">8.</span>
                                                 </td>
-                                                <td class="align-middle" width="75%" colspan="2">
+                                                <td class="align-middle" width="75%" colspan="3">
                                                     <h4 class="titleSet">
                                                         Whether child of the employee is appearing in class X or XII
                                                         Exam in the
@@ -1007,7 +1367,7 @@
                                                     </h4>
                                                 </td>
 
-                                                <td class="align-middle" width="15%">
+                                                <!-- <td class="align-middle" width="15%">
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" id="inlineRadio15"
                                                             value="1" id="child_10_12_yn"
@@ -1023,7 +1383,7 @@
                                                             (click)="declaration3($event)">
                                                         <label class="form-check-label">No</label>
                                                     </div>
-                                                </td>
+                                                </td> -->
                                                 <td width="7%" class="text-center">
                                                     <!-- <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;"
@@ -1032,8 +1392,8 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle text-center"> <span
-                                                        class="text-green">10.</span></td>
-                                                <td class="align-middle" width="75%" colspan="2">
+                                                        class="text-green">9.</span></td>
+                                                <td class="align-middle" width="75%" colspan="3">
                                                     <h4 class="titleSet">
                                                         Employee who serves as the main care-giver to the persons with
                                                         disability in the family (spouse or dependent son/ daughter of
@@ -1046,7 +1406,7 @@
                                                     </h4>
                                                 </td>
 
-                                                <td class="align-middle" width="15%">
+                                                <!-- <td class="align-middle" width="15%">
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" id="inlineRadio15"
                                                             value="1" id="careGiverYn" formControlName="careGiverYn"
@@ -1068,7 +1428,7 @@
 
                                                         </div>
                                                     </div>
-                                                </td>
+                                                </td> -->
                                                 <td width="7%" class="text-center">
                                                     <!-- <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;"

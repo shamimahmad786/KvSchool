@@ -30,9 +30,9 @@ export class MasterReportPdfService {
   staffTypeHead = [['S.No', 'Staff Type Name', 'Status']]
   designationHead = [['S.No', 'Designation Code','Designation Name', 'Status']]
   subjectHead = [['S.No', 'Subject Code','Subject Name', 'Status']]
-  regionStationMappingHead = [['S.No', 'Region Name','Station Name','From Date','To Date','Status']]
+  regionStationMappingHead = [['S.No', 'Region Name','Station Name','Status']]
   stationCategoryMappingHead = [['S.No', 'Station Name','Category Name','From Date','To Date','Status']]
-  schoolStationMappingHead = [['S.No', 'Station Name','School Name','From Date','To Date','status']]
+  schoolStationMappingHead = [['S.No', 'Station Name','School Name','shift','status']]
   staffTypePostMappingHead = [['S.No', 'Staff-Type','Post Code','Post Name']]
   postSubjectMappingHead = [['S.No', 'Post Code','Post name','Subject Code','Subject Name']]
   sanctionPostMappingHead = [['S.No', 'Staff Type','Post Name','Post Code','Subject Name','Subject Code','Sanctioned Post','Occupied Post','Vacant Post','Surplus Post']]
@@ -695,8 +695,8 @@ var k =1;
             regionStationMappinglistsTemp.push('')
           }
           regionStationMappinglistsTemp.push(regionStationMappingList[i][1][j]?.stationname)
-          regionStationMappinglistsTemp.push(regionStationMappingList[i][1][j]?.fromdate)
-          regionStationMappinglistsTemp.push(regionStationMappingList[i][1][j]?.todate)
+          // regionStationMappinglistsTemp.push(regionStationMappingList[i][1][j]?.fromdate)
+          // regionStationMappinglistsTemp.push(regionStationMappingList[i][1][j]?.todate)
           if(regionStationMappingList[i][1][j]?.status==true)
             {
               regionStationMappinglistsTemp.push('Active')
@@ -880,9 +880,18 @@ schoolStationMappingList(schoolStationMappingList:any,servTime:any){
     schoolStationMappinglistTemp.push(schoolStationMappingList[i]?.sno)
     schoolStationMappinglistTemp.push(schoolStationMappingList[i]?.stationname)
     schoolStationMappinglistTemp.push(schoolStationMappingList[i]?.schoolname)
-    schoolStationMappinglistTemp.push(schoolStationMappingList[i]?.fromdate)
-    schoolStationMappinglistTemp.push(schoolStationMappingList[i]?.todate)
+    schoolStationMappinglistTemp.push(schoolStationMappingList[i]?.shift);
+    // schoolStationMappinglistTemp.push(schoolStationMappingList[i]?.fromdate)
+    // schoolStationMappinglistTemp.push(schoolStationMappingList[i]?.todate)
    // stationCategorylistTemp.push(stationCategorylist[i]?.schoolname)
+if(schoolStationMappingList[i]?.shift==0){
+  schoolStationMappinglistTemp.push('Not Applicable');
+}else if(schoolStationMappingList[i]?.shift==1){
+  schoolStationMappinglistTemp.push('First Shift');
+}else if(schoolStationMappingList[i]?.shift==2){
+  schoolStationMappinglistTemp.push('Second Shift');
+}
+
     if(schoolStationMappingList[i]?.status==true)
     {
       schoolStationMappinglistTemp.push('Active')
@@ -1125,14 +1134,17 @@ schoolStationMappingList(schoolStationMappingList:any,servTime:any){
   })
   doc.save('postSubjectMapping.pdf')
  }
- sanctionedPostMappingList(sanctionPostMappingList:any,servTime:any)
+ sanctionedPostMappingList(sanctionPostMappingList:any,servTime:any,regionName,stationName,schoolName)
  {
+
+  // console.log(JSON.stringify(sanctionPostMappingList));
+
   this.sanctionPostMappingListArray = [];
  
   for(let i=0; i<sanctionPostMappingList.length; i++){
     var sanctionPostMappingListTemp = [];
     sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.sno)
-    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.staffType)
+    sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.staffType=="1"?"Teaching":"Non Teaching")
     sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.postName)
     sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.postCode)
     sanctionPostMappingListTemp.push(sanctionPostMappingList[i]?.subjectName)
@@ -1147,16 +1159,31 @@ schoolStationMappingList(schoolStationMappingList:any,servTime:any){
   // var tchId = "" + teacherProfile.teacherId + ""
   const doc = new jsPDF('l', 'mm', 'a4');
   doc.setTextColor(138, 24, 34);
-  doc.setFontSize(14);
+  doc.setFontSize(12);
   doc.setFont('Times-Roman', 'bold');
-  doc.text('Station Category Master', 130, 45);    
+  // doc.text('Station Category Master', 130, 45);    
+  if(stationName !="" && stationName !='undefined' && stationName !=null){
+  doc.text('Region Name: '+regionName,15 , 45);
+  }else{
+    doc.text('Region Name: All',15 , 45);
+  }
+  // alert(stationName);
+
+  if(stationName !="" && stationName !='undefined' && stationName !=null){
+    doc.text('Station Name: '+stationName, 80, 45);
+  }
+
+  if(stationName !="" && stationName !='undefined' && stationName !=null){
+    doc.text('School Name: '+schoolName, 140, 45);
+  }
+  
 
   
   (doc as any).autoTable({
     head: this.sanctionPostMappingHead,   
     body: this.sanctionPostMappingListArray,
     theme: 'grid',
-    startY: 40,
+    startY: 50,
     didDrawPage: function (data) {
      const currentDate = servTime.toString();
      var index = currentDate.lastIndexOf(':') +3
@@ -1169,9 +1196,10 @@ schoolStationMappingList(schoolStationMappingList:any,servTime:any){
       doc.line(15, 35, 280, 35);
 
       doc.setTextColor(138, 24, 34);
-      doc.setFontSize(14);
+      doc.setFontSize(12);
       doc.setFont('Times-Roman', 'bold');
-      doc.text('Report :Sanctioned Post Mapping (M013)', 15, 28);
+      doc.text('Report :Sanctioned Post (M013)', 15, 28);
+
 
       // Footer
       var str = "Page " + data.doc.internal.getNumberOfPages();

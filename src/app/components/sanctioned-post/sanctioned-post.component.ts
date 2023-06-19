@@ -30,12 +30,34 @@ export class SanctionedPostComponent implements OnInit {
   totalSurplusPost:number = 0;
   totalOccupiedPost:number = 0;
   totalVacantPost:number = 0;
+  regionSelection:any=1;
+  stationSelection:any;
+  regionCode:any;
+  stationCode:any;
+  selectedRegion:any;
+businessTypeId:any;
+businessTypeCode:any;
+regionName:any;
+stationName:any;
+schoolName:any;
+sanctionPostFor:any;
+shift:any;
 
 
-  testData = {sno: '', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
+  testData = {sno: '',stationName:'', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
   ngOnInit(): void {
+
+    this.isEdit=false;
+    this.businessTypeId=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_id;
+    this.businessTypeCode=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_code;
     this.getRegionList();
     this.buildSanctionForm();
+    if(this.businessTypeId=="3"){
+this.selectedRegion=+this.businessTypeCode.trim();
+
+
+// this.getStationList(this.selectedRegion);
+    }
   }
   buildSanctionForm(){
     this.sanctionedPost = this.fb.group({
@@ -53,83 +75,157 @@ export class SanctionedPostComponent implements OnInit {
           }
         });
       }
+      if(this.businessTypeId=="3"){
+        // alert("called"+this.regionList);
+        for(var i=0;i<this.regionList.length;i++){
+          // alert(this.regionList[i].regionCode+"----"+this.selectedRegion)
+      if(this.regionList[i].regionCode==this.selectedRegion){
+        // alert("matched")
+    this.regionName=this.regionList[i].regionName;
+      }
+        }
+        this.getStationList(this.selectedRegion);
+      }
+
+   
+// alert( this.regionName);
     })
+ 
   }
+
+  fetchSanctionPost(type,value,depValue,schoolShift){
+  const data={"type":type,"value":value,"depValue":depValue,"shift":schoolShift};
+  this.outSideService.fetchSanctionPost(data).subscribe((res)=>{
+    // alert(JSON.stringify(res));
+    this.setDataToSanctionedArray(JSON.parse(JSON.stringify(res)).rowValue)
+          this.sanctionPostMappingDataListArray=[];
+          if(JSON.parse(JSON.stringify(res)).rowValue.length>0){
+            for (let i = 0; i < JSON.parse(JSON.stringify(res)).rowValue.length; i++) {
+              this.testData.sno = '' + (i + 1) + '';
+              this.testData.staffType = JSON.parse(JSON.stringify(res)).rowValue[i].stafftype_id;
+              this.testData.postName =  JSON.parse(JSON.stringify(res)).rowValue[i].post_name;
+              this.testData.postCode =  JSON.parse(JSON.stringify(res)).rowValue[i].post_code;
+              this.testData.subjectName =  JSON.parse(JSON.stringify(res)).rowValue[i].subject_name;
+              this.testData.subjectCode =  JSON.parse(JSON.stringify(res)).rowValue[i].subject_code;
+              this.testData.sanctionedPost =  JSON.parse(JSON.stringify(res)).rowValue[i].sanctioned_post;
+              this.testData.occupiedPost =  JSON.parse(JSON.stringify(res)).rowValue[i].occupied_post;
+              this.testData.vacant =  JSON.parse(JSON.stringify(res)).rowValue[i].vacant;
+              this.testData.surplus =  JSON.parse(JSON.stringify(res)).rowValue[i].surplus;
+              this.sanctionPostMappingDataListArray.push(this.testData);
+              this.testData = {sno: '',stationName:'', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
+            }
+
+            
+          }
+
+          if(type==2 && this.businessTypeId=="3"){
+            this.isEdit=true;
+          }else{
+            this.isEdit=false;
+          }
+
+          if(JSON.parse(JSON.stringify(res)).rowValue[0].freezed_sanction_post==1){
+            this.isEdit=false;
+          }
+  })
+
+  
+
+
+
+}
+
+
+
   getSanctionPostList(schoolCode){
-    this.schoolCode=schoolCode.value;
+    // alert("school name--->"+schoolCode)
+     this.shift=this.schoolList[schoolCode.value].shift;
+    this.schoolCode=this.schoolList[schoolCode.value].schoolCode;
     this.sanctionedPost.get('schoolCode').setValue(schoolCode.value);
     let request={
       schoolCode:schoolCode.value,
     }
-    this.outSideService.schoolCodeExistOrNot(request).subscribe((res)=>{
-      console.log(res)
-      this.data='';
-      this.totalSanctionedPost = 0;
-      this.totalSurplusPost = 0;
-      this.totalOccupiedPost = 0;
-      this.totalVacantPost = 0;
-      if(res.message=="ENTRY-NOT-FOUND"){
-        let req={}
-        this.outSideService.fetchSubjectPostMapping(req).subscribe((res)=>{
-          console.log(res)
-        this.isEdit=false;
-        this.setDataToSanctionedArray(res.content)
-        this.sanctionPostMappingDataListArray=[];
-        if(res.content.length>0){
-          for (let i = 0; i < res.content.length; i++) {
-            this.testData.sno = '' + (i + 1) + '';
-            this.testData.staffType = res.content[i].staffType;
-            this.testData.postName =  res.content[i].postName;
-            this.testData.postCode =  res.content[i].postCode;
-            this.testData.subjectName =  res.content[i].subjectName;
-            this.testData.subjectCode =  res.content[i].subjectCode;
-            this.testData.sanctionedPost =  res.content[i].sanctionedPost;
-            this.testData.occupiedPost =  res.content[i].occupiedPost;
-            this.testData.vacant =  res.content[i].vacant;
-            this.testData.surplus =  res.content[i].surplus;
-            this.sanctionPostMappingDataListArray.push(this.testData);
-            this.testData = {sno: '', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
-          }
-          console.log("sanctionPostMappingDataListArray")
-          console.log( this.sanctionPostMappingDataListArray)
-      }       
-        })
-      }else{
-        this.outSideService.fetchSanctionPostList(request).subscribe((res)=>{
-          console.log(res)
-          this.isEdit=true;
-          this.setDataToSanctionedArray(res.content)
-          this.sanctionPostMappingDataListArray=[];
-          if(res.content.length>0){
-            for (let i = 0; i < res.content.length; i++) {
-              this.testData.sno = '' + (i + 1) + '';
-              this.testData.staffType = res.content[i].staffType;
-              this.testData.postName =  res.content[i].postName;
-              this.testData.postCode =  res.content[i].postCode;
-              this.testData.subjectName =  res.content[i].subjectName;
-              this.testData.subjectCode =  res.content[i].subjectCode;
-              this.testData.sanctionedPost =  res.content[i].sanctionedPost;
-              this.testData.occupiedPost =  res.content[i].occupiedPost;
-              this.testData.vacant =  res.content[i].vacant;
-              this.testData.surplus =  res.content[i].surplus;
-              this.sanctionPostMappingDataListArray.push(this.testData);
-              this.testData = {sno: '', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
-            }
-            console.log("sanctionPostMappingDataListArray")
-      console.log( this.sanctionPostMappingDataListArray)
-        }     
-          });
-      }
 
-    },
-    error => {
-      console.log(error);
-      this.data='';
-      this.totalSanctionedPost = 0;
-      this.totalSurplusPost = 0;
-      this.totalOccupiedPost = 0;
-      this.totalVacantPost = 0;
-    })
+    for(var i=0;i<this.schoolList.length;i++){
+if(this.schoolList[i].schoolCode==this.schoolCode){
+this.schoolName=this.schoolList[i].schoolName;
+}
+    }
+
+
+    this.fetchSanctionPost("2",this.schoolCode,this.stationCode,this.shift);
+    this.sanctionPostFor=this.schoolName +" School";
+
+
+    // this.outSideService.schoolCodeExistOrNot(request).subscribe((res)=>{
+    //   console.log(res)
+    //   this.data='';
+    //   this.totalSanctionedPost = 0;
+    //   this.totalSurplusPost = 0;
+    //   this.totalOccupiedPost = 0;
+    //   this.totalVacantPost = 0;
+    //   if(res.message=="ENTRY-NOT-FOUND"){
+    //     let req={}
+    //     this.outSideService.fetchSubjectPostMapping(req).subscribe((res)=>{
+    //       console.log(res)
+    //     this.isEdit=false;
+    //     this.setDataToSanctionedArray(res.content)
+    //     this.sanctionPostMappingDataListArray=[];
+    //     if(res.content.length>0){
+    //       for (let i = 0; i < res.content.length; i++) {
+    //         this.testData.sno = '' + (i + 1) + '';
+    //         this.testData.staffType = res.content[i].staffType;
+    //         this.testData.postName =  res.content[i].postName;
+    //         this.testData.postCode =  res.content[i].postCode;
+    //         this.testData.subjectName =  res.content[i].subjectName;
+    //         this.testData.subjectCode =  res.content[i].subjectCode;
+    //         this.testData.sanctionedPost =  res.content[i].sanctionedPost;
+    //         this.testData.occupiedPost =  res.content[i].occupiedPost;
+    //         this.testData.vacant =  res.content[i].vacant;
+    //         this.testData.surplus =  res.content[i].surplus;
+    //         this.sanctionPostMappingDataListArray.push(this.testData);
+    //         this.testData = {sno: '', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
+    //       }
+    //       console.log("sanctionPostMappingDataListArray")
+    //       console.log( this.sanctionPostMappingDataListArray)
+    //   }       
+    //     })
+    //   }else{
+    //     this.outSideService.fetchSanctionPostList(request).subscribe((res)=>{
+    //       console.log(res)
+    //       this.isEdit=true;
+    //       this.setDataToSanctionedArray(res.content)
+    //       this.sanctionPostMappingDataListArray=[];
+    //       if(res.content.length>0){
+    //         for (let i = 0; i < res.content.length; i++) {
+    //           this.testData.sno = '' + (i + 1) + '';
+    //           this.testData.staffType = res.content[i].staffType;
+    //           this.testData.postName =  res.content[i].postName;
+    //           this.testData.postCode =  res.content[i].postCode;
+    //           this.testData.subjectName =  res.content[i].subjectName;
+    //           this.testData.subjectCode =  res.content[i].subjectCode;
+    //           this.testData.sanctionedPost =  res.content[i].sanctionedPost;
+    //           this.testData.occupiedPost =  res.content[i].occupiedPost;
+    //           this.testData.vacant =  res.content[i].vacant;
+    //           this.testData.surplus =  res.content[i].surplus;
+    //           this.sanctionPostMappingDataListArray.push(this.testData);
+    //           this.testData = {sno: '', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
+    //         }
+    //         console.log("sanctionPostMappingDataListArray")
+    //   console.log( this.sanctionPostMappingDataListArray)
+    //     }     
+    //       });
+    //   }
+
+    // },
+    // error => {
+    //   console.log(error);
+    //   this.data='';
+    //   this.totalSanctionedPost = 0;
+    //   this.totalSurplusPost = 0;
+    //   this.totalOccupiedPost = 0;
+    //   this.totalVacantPost = 0;
+    // })
 
   }
   onSubmit(){
@@ -138,6 +234,9 @@ export class SanctionedPostComponent implements OnInit {
     }else{
        console.log(this.sanctionedPost.value);
        this.data=this.sanctionedPost.value.sanctionedPostDetails;
+
+       
+alert(JSON.stringify(this.data));
        let sanctionedPostRequestVo2Data=[];
        
        if(!this.isEdit){
@@ -150,7 +249,8 @@ export class SanctionedPostComponent implements OnInit {
           sanctionedPost:element.sanctionedPost,
           occupiedPost:element.occupiedPost,
           vacant:element.vacantPost,
-          surplus:element.surplusPost
+          surplus:element.surplusPost,
+          sactionedPostId:element.sanctionedPostid,
           })
         });
        }else{
@@ -170,22 +270,28 @@ export class SanctionedPostComponent implements OnInit {
         let request = {
           sanctionedPostRequestVo2: sanctionedPostRequestVo2Data
         }
-        this.outSideService.saveSanctionedData(request).subscribe((res) => {
-          if (res == "SUCCESS") {
-            Swal.fire(
-              'Sanction-Post Save Successfully!',
-              '',
-              'success'
-            );
+
+        // this.outSideService.saveSanctionedData(request).subscribe((res) => {
+        //   if (res == "SUCCESS") {
+        //     Swal.fire(
+        //       'Sanction-Post Save Successfully!',
+        //       '',
+        //       'success'
+        //     );
      
-          }
-        })
+        //   }
+        // })
       } 
+
       if(sanctionedPostRequestVo2Data.length > 0 && this.isEdit == true){
         //update case
         let request = {
           listOfSanctionedPostUpdateRequestVo: sanctionedPostRequestVo2Data
         }
+
+
+        alert(JSON.stringify(request));
+
         this.outSideService.updateSanctionedData(request).subscribe((res) => {
           console.log(res)
           if (res == "SUCCESS") {
@@ -206,12 +312,16 @@ export class SanctionedPostComponent implements OnInit {
     return this.sanctionedPost.get("sanctionedPostDetails") as FormArray
   }
   setDataToSanctionedArray(data) {
+    this.totalSanctionedPost=0;
+    this.totalVacantPost=0;
+    this.totalOccupiedPost=0;
+    this.totalSurplusPost=0;
   debugger
     (this.sanctionedPost.controls['sanctionedPostDetails'] as FormArray).clear();
     for (let i = 0; i < data.length; i++) {
-      this.totalSanctionedPost += (data[i].sanctionedPost)?data[i].sanctionedPost:0;
+      this.totalSanctionedPost += (data[i].sanctioned_post)?data[i].sanctioned_post:0;
       this.totalVacantPost += (data[i].vacant)?data[i].vacant:0;
-      this.totalOccupiedPost += (data[i].occupiedPost)?data[i].occupiedPost:0;
+      this.totalOccupiedPost += (data[i].occupied_post)?data[i].occupied_post:0;
       this.totalSurplusPost += (data[i].surplus)?data[i].surplus:0;
       this.addQuantity(data[i])
     }
@@ -227,19 +337,20 @@ export class SanctionedPostComponent implements OnInit {
   }
   newQuantity(data): FormGroup {
     return this.fb.group({
-      staffType:data?.staffType,
-      postName:data?.postName,
-      postCode:data?.postCode,
-      subjectName: data?.subjectName,
-      subjectCode: data?.subjectCode,
-      sanctionedPost: [data.sanctionedPost > 0 ? data.sanctionedPost : 0, [Validators.required, Validators.min(0), Validators.max(500), Validators.pattern("[0-9]*$")]],
-      occupiedPost: [data.occupiedPost > 0 ? data.occupiedPost : 0, [Validators.required, Validators.min(0), Validators.max(500), Validators.pattern("[0-9]*$")]],
+      staffType:data?.stafftype_id=="1"?'Teaching':'Non Teaching',
+      stationName:data?.station_name,
+      postName:data?.post_name,
+      postCode:data?.post_code,
+      subjectName: data?.subject_name,
+      subjectCode: data?.subject_code,
+      sanctionedPost: [data.sanctioned_post > 0 ? data.sanctioned_post : 0, [Validators.required, Validators.min(0), Validators.max(20000), Validators.pattern("[0-9]*$")]],
+      occupiedPost: [data.occupied_post > 0 ? data.occupied_post : 0, [Validators.required, Validators.min(0), Validators.max(20000), Validators.pattern("[0-9]*$")]],
       vacantPost: [data.vacant > 0 ? data.vacant : 0],
       surplusPost: [data.surplus > 0 ? data.surplus : 0],
-      postId:data?.postId,
-      staffTypeId:data?.staffTypeId,
-      subjectId:data?.subjectId,
-      sanctionedPostid:data?.sanctionedPostid,
+      postId:data?.post_id,
+      staffTypeId:data?.staff_type_id,
+      subjectId:data?.subject_id,
+      sanctionedPostid:data?.id,
 
     })
   }
@@ -326,8 +437,29 @@ export class SanctionedPostComponent implements OnInit {
     }
   }
   getStationList(regionId){
+    this.stationList=[];
+    this.schoolList=[];
+    this.regionCode=regionId;
+
+    for(var i=0;i<this.regionList.length;i++){
+      if(this.regionList[i].regionCode==regionId){
+this.regionName=this.regionList[i].regionName;
+      }
+    }
+ 
+    if(regionId==0){
+      // alert(this.regionName);
+      this.regionSelection=regionId;
+      this.fetchSanctionPost("0",regionId,"","");
+      this.sanctionPostFor="All Region";
+      
+    }else{
+      // alert(this.regionName);
+      this.fetchSanctionPost("0",regionId,"","");
+      this.sanctionPostFor=this.regionName +" Region";
+      this.regionSelection=regionId;
     let request = {
-      regionCode: regionId.value
+      regionCode: regionId
     }
     this.outSideService.searchRegionStationMList(request).subscribe((res) => {
       if (res.content.length > 0) {
@@ -336,19 +468,41 @@ export class SanctionedPostComponent implements OnInit {
         });
       }
     })
-       
   }
+  }
+
+
+
   getSchoolList(stationCode){
+    this.stationCode=stationCode.value;
+    this.schoolList=[];
+
+    for(var i=0;i<this.stationList.length;i++){
+      if(this.stationList[i].stationCode==stationCode.value){
+           this.stationName=this.stationList[i].stationName;
+      }
+    }
+
+    if(stationCode.value==0){
+      this.stationSelection=1;
+      this.fetchSanctionPost("1",stationCode.value,this.regionCode,"");
+      this.sanctionPostFor=this.stationName +" Station";
+    }else{
+      this.fetchSanctionPost("1",stationCode.value,this.regionCode,"");
+      this.sanctionPostFor=this.stationName +" Station";
    let request={
      stationCode:stationCode.value
    }
    this.outSideService.searchSchoolStationMList(request).subscribe((res)=>{
+    // alert(JSON.stringify(res))
+    this.schoolList=[];
      if (res.content.length > 0) {
       res.content.forEach(element => {
         this.schoolList.push(element)
       });
     }
    })
+  }
   }
   clearFormArray = (formArray: FormArray) => {
     while (formArray.length !== 0) {
@@ -358,9 +512,28 @@ export class SanctionedPostComponent implements OnInit {
 
   sanctionedPostMappingPdf()
   {
+    
+    for(var i=0;i<this.regionList.length;i++){
+                  if(this.regionList[i].regionCode==this.regionCode){
+                    this.regionName=this.regionList[i].regionName;
+                  }
+    }
+
+    for(var i=0;i<this.stationList.length;i++){
+      if(this.stationList[i].stationCode==this.stationCode){
+        this.stationName=this.stationList[i].stationName;
+      }
+}
+
+for(var i=0;i<this.schoolList.length;i++){
+  if(this.schoolList[i].schoolCode==this.schoolCode){
+    this.schoolName=this.schoolList[i].schoolName;
+  }
+}
+
     this.returnTypeSrvTime = srvTime();
     setTimeout(() => {
-      this.pdfService.sanctionedPostMappingList(this.sanctionPostMappingDataListArray,this.returnTypeSrvTime);
+      this.pdfService.sanctionedPostMappingList(this.sanctionPostMappingDataListArray,this.returnTypeSrvTime,this.regionName,this.stationName,this.schoolName);
     }, 1000);
   }
   exportexcel(){
@@ -369,6 +542,7 @@ export class SanctionedPostComponent implements OnInit {
     const workSheet = workBook.addWorksheet('SanctionedPostMapping');
     const excelData = [];
     const ws1 = workSheet.addRow(['', 'SANCTIONED POST MAPPING', '']);
+    // const ws2 = workSheet.addRow(['Region Name: '+this.regionName, 'Station Name: '+this.stationName, 'School Name: '+this.schoolName]);
     const dobCol = workSheet.getColumn(1);
     dobCol.width = 15;
     const dobCol1 = workSheet.getColumn(2);
@@ -396,7 +570,7 @@ export class SanctionedPostComponent implements OnInit {
       }
       
     this.sanctionPostMappingDataListArray.forEach((item) => {
-      const row = workSheet.addRow([item.staffType, item.postName,item.postCode,item.subjectName,item.subjectCode,item.sanctionedPost,item.occupiedPost,item.vacant,item.surplus]);
+      const row = workSheet.addRow([item.staffType=="1"?"Teaching":"Non Teaching", item.postName,item.postCode,item.subjectName,item.subjectCode,item.sanctionedPost,item.occupiedPost,item.vacant,item.surplus]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {
@@ -406,4 +580,31 @@ export class SanctionedPostComponent implements OnInit {
     });
  
   }
+
+
+  freezeSanctionPost(){
+
+
+    if(this.schoolCode !=null && this.shift !=null){
+      let request={"schoolCode":this.schoolCode,"shift":this.shift};
+      this.outSideService.freezeSanctionPost(request).subscribe((res)=>{
+  // alert(JSON.stringify(res));
+  if(JSON.parse(JSON.stringify(res)).status==1){
+    this.isEdit=false;
+    Swal.fire(
+      'Sanction-Post has been freezed  Successfully!',
+      '',
+      'success'
+    )
+
+  }
+       });
+
+    }
+
+     
+
+  
+    }
+
 }

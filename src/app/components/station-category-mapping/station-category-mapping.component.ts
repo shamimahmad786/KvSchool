@@ -31,6 +31,9 @@ export class StationCategoryMappingComponent implements OnInit {
   listRegionStation: any=[];
   stationList: any=[];
   filteredOptions: Observable<string[]>;
+  businessTypeId:any;
+  businessTypeCode:any;
+  stationCategoryRes:any;
 
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
   constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
@@ -38,9 +41,20 @@ export class StationCategoryMappingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.buildSchoolStationMappingForm();
-    this.getStationList();
-    this.searchList();
+    this.businessTypeId=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_id;
+    this.businessTypeCode=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_code;
+
+    if(this.businessTypeId==3){
+      this.buildSchoolStationMappingForm();
+      this.getStationListByRegion();
+      this.getStationCategoryByRegion();
+    }else{
+      this.buildSchoolStationMappingForm();
+      this.getStationList();
+      this.searchList();
+    }
+
+    
   }
 
   buildSchoolStationMappingForm(){
@@ -50,6 +64,7 @@ export class StationCategoryMappingComponent implements OnInit {
   }
 
   getStationList(){
+
     let req={}
     this.outSideService.fetchStationList(req).subscribe((res)=>{
       if(res){
@@ -64,28 +79,36 @@ export class StationCategoryMappingComponent implements OnInit {
         );
       }
     })
+  
+  
   }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.stationList.filter(option => option.stationName.toLowerCase().includes(filterValue));
   }
   search(){
+    let payload=this.stationCategoryMF.getRawValue();
+    if(payload.stationCode=='All'){
+this.getStationCategoryByRegion();
+    }else{
     if (this.stationCategoryMF.invalid) {
       this.isSubmitted = true;
      this.stationCategoryMF.markAllAsTouched();
     }else{
       this.isSubmitted = false;
-      let payload=this.stationCategoryMF.getRawValue();
+     
       let request={
         stationName: payload.stationCode,
       }
       this.outSideService.searchStationCategoryMList(request).subscribe((res)=>{
+        // alert(JSON.stringify(res));
            this.getRegionStationList(res.content)
       },
       error => {
         // console.log(error);
       })
-    }  
+    } 
+  } 
   }
 
   clear(){
@@ -102,6 +125,7 @@ export class StationCategoryMappingComponent implements OnInit {
   searchList(){
     let request={};
     this.outSideService.searchStationCategoryMList(request).subscribe((res)=>{
+      // alert("Station Category Mapping--->"+JSON.stringify(res));
       this.getRegionStationList(res.content)
     },
     error => {
@@ -203,4 +227,80 @@ export class StationCategoryMappingComponent implements OnInit {
     });
  
   }
+
+
+  getStationCategoryByRegion(){
+    let request={"regionCode":this.businessTypeCode};
+
+    // alert(JSON.stringify(request));
+
+    this.outSideService.getStationCategoryByRegion(request).subscribe((res)=>{
+      // alert("Station Category Mapping--->"+JSON.stringify(res));
+      debugger;
+      // this.getRegionStationList(res.content);
+
+      this.stationCategoryRes=JSON.parse(JSON.stringify(res)).rowValue;
+
+      // alert(JSON.stringify(this.stationCategoryRes));
+
+      this.listRegionStation=[];
+      if(JSON.parse(JSON.stringify(res)).rowValue.length>0){
+          for (let i = 0; i < this.stationCategoryRes.length; i++) {
+       
+            this.testData.sno = '' + (i + 1) + '';
+            this.testData.stationname = this.stationCategoryRes[i].station_name+"("+this.stationCategoryRes[i].station_code+")";
+            this.testData.categoryname = this.stationCategoryRes[i].category_name;
+            this.testData.fromdate = this.stationCategoryRes[i].from_date;
+            this.testData.todate = this.stationCategoryRes[i].to_date;
+            this.testData.status = this.stationCategoryRes[i].is_active;
+            if(this.stationCategoryRes[i].active ==true )
+            {
+            this.testData.statusType = 'Active';
+            }
+           if(this.stationCategoryRes[i].active ==false )
+            {
+            this.testData.statusType ='InActive';
+            } 
+            this.listRegionStation.push(this.testData);
+            this.testData = { "sno": "", "stationname": "", "categoryname": "", "fromdate": "","todate":"","status":"","statusType":"" };
+   
+          }
+    console.log( this.listRegionStation)
+      }
+      setTimeout(() => {
+        this.dataSource = new MatTableDataSource(this.listRegionStation);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }, 100)
+
+    },
+    error => {
+      // console.log(error);
+    })
+  }
+
+  getStationListByRegion(){
+
+    let request={"regionCode":this.businessTypeCode};
+// alert(JSON.stringify(request));
+
+    this.outSideService.searchRegionStationMList(request).subscribe((res)=>{
+      // this.getRegionStationList(res.content)
+      // alert("res---->"+JSON.stringify(res));
+      if(res.content){
+        res.content.forEach(element => {
+          if(element.active){
+            this.stationList.push({ stationCode: element.stationCode, stationName: element.stationName})
+          }
+        });
+        this.filteredOptions = this.stationCategoryMF['controls'].stationCode.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter(value || '')),
+        );
+      }
+
+    })
+
+  }
+
 }

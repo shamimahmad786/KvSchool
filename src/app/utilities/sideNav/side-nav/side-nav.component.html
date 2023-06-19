@@ -547,7 +547,7 @@
                                     <span class="TitleSetheader">Region Station Mapping</span>
                                 </a>
                             </li>
-                            <li class="nav-item" *ngIf="showNational">
+                            <li class="nav-item" *ngIf="showNational || showRegion">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/stationCategoryMapping">
                                     <i class='bx bx-map bxStyle'></i>
                                     <span class="TitleSetheader">Station Category Mapping</span>
@@ -571,7 +571,7 @@
                                     <span class="TitleSetheader">Post-Subject Mapping</span>
                                 </a>
                             </li>
-                            <li class="nav-item" *ngIf="showNational">
+                            <li class="nav-item" *ngIf="showNational || showRegion">
                                 <a class="nav-link navStyle" routerLinkActive="active" routerLink="/teacher/sanctioned-post">
                                     <i class='bx bx-book-content bxStyle'></i>
                                     <span class="TitleSetheader">Sanctioned-Post Mapping</span>
@@ -616,11 +616,11 @@
                     Change Password </button>
                 </li> -->
 
-                <li class="nav-item ng-star-inserted"> 
+                <!-- <li class="nav-item ng-star-inserted">  Temprory Commented
                     <a class="btn btn-toggle align-items-center collapsed" routerLinkActive="active" routerLink="/teacher/kvsTchTransfer">
                         <img src="assets/img/details.svg">Employee Transfer
                     </a>
-                </li>
+                </li> -->
 
                 <li class="mb-1">
                     <a class="btn btn-toggle align-items-center" routerLinkActive="active" routerLink="/teacher/changePassword">

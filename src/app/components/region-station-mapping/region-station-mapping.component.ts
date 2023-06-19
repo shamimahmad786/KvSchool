@@ -24,7 +24,8 @@ export class RegionStationMappingComponent implements OnInit {
   isSubmitted: boolean = false;
   mdoDateResultArray: any = new Array()
   dataSource:any;
-  displayedColumns:any = ['sno','regionname','stationname','fromdate','todate','status'];
+  // displayedColumns:any = ['sno','regionname','stationname','fromdate','todate','status'];
+  displayedColumns:any = ['sno','regionname','stationname','status'];
 
   testData = { "sno": "", "regionname": "", "stationname": "", "fromdate": "","todate":"","status":"","statusType":""}
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -211,7 +212,8 @@ this.search();
         fgColor: { argb:  '9c9b98' },   
       };
     }
-   const ws = workSheet.addRow(['Region Name', 'Station Name','From Date','todate','Status']);
+  //  const ws = workSheet.addRow(['Region Name', 'Station Name','From Date','todate','Status']);
+   const ws = workSheet.addRow(['Region Name', 'Station Name','Status']);
    workSheet.getRow(2).font = { name: 'Arial', family: 4, size: 10, bold: true };
       for (let i = 1; i < 6; i++) {
         const col = ws.getCell(i);
@@ -223,7 +225,7 @@ this.search();
       }
       
     this.listRegionStation.forEach((item) => {
-      const row = workSheet.addRow([item.regionname, item.stationname,item.fromdate,item.todate,item.statusType]);
+      const row = workSheet.addRow([item.regionname, item.stationname,item.statusType]);
     });
     workBook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], {

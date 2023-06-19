@@ -4,7 +4,7 @@
     </div>
     <div class="d-flex flex-row-reverse bd-highlight mb-3">
         <div class="p-1">
-            <button mat-raised-button class="float-end mt-2 btn-success" (click)="redirectto()">Add</button>
+            <!-- <button mat-raised-button class="float-end mt-2 btn-success" (click)="redirectto()">Add</button> -->
         </div>
         <div class="p-1">
             <button mat-raised-button class="float-end mt-2 btn-secondary" (click)="schoolStationMappingPdf()">Download PDF</button>
@@ -22,6 +22,10 @@
                             <mat-label class="mat_label">Select Station</mat-label>
                             <input type="text" placeholder="Station Code" aria-label="Station Code" matInput [formControl]="schoolStationMF['controls'].stationName" [matAutocomplete]="auto">
                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                <ng-container *ngIf="this.businessUnitId==3">
+                                    <mat-option value="All" (click)="setStationNameVal(0)">All</mat-option>
+                                </ng-container>
+
                                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option.stationName" (click)="setStationNameVal(option.stationCode)">
                                     {{option.stationName}}
                                 </mat-option>
@@ -76,7 +80,7 @@
                     <td mat-cell *matCellDef="let element"> {{element.shiftType}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="fromdate">
+                <!-- <ng-container matColumnDef="fromdate">
                     <th mat-header-cell *matHeaderCellDef> From Date</th>
                     <td mat-cell *matCellDef="let element"> {{element.fromdate|date:"dd/MM/YYYY"}} </td>
                 </ng-container>
@@ -84,7 +88,7 @@
                 <ng-container matColumnDef="todate">
                     <th mat-header-cell *matHeaderCellDef> To Date </th>
                     <td mat-cell *matCellDef="let element"> {{element.todate|date:"dd/MM/YYYY"}} </td>
-                </ng-container>
+                </ng-container> -->
 
                 <ng-container matColumnDef="status">
                     <th mat-header-cell *matHeaderCellDef> Status </th>
