@@ -1,0 +1,16 @@
+.fontUser{font-size:16px; font-family: 'roboto', sans-serif; }
+.FontTitle{font-size:25px; font-weight: 600;}
+.freezeList{padding:0px; margin:0px; box-sizing: border-box;}
+.freezeList li{text-decoration: none; list-style: none; width: 45%;     border: 1px solid #e9e9e9;
+     background-color: #1063840a; padding: 10px 8px 5px; border-radius: 5px;
+     display: inline-table; margin: 15px 15px;}
+.is-done, 
+.is-done1, .is-done2, .is-done3,.is-done4, .is-done5, .is-done6, .is-done7
+, .is-done8, .is-done9, .is-done10, .is-done11, .is-done12{
+    background-color: #4749b285 !important; color: #ffffff;
+}
+.form-check-input[type=checkbox] {
+    border-radius: 0.25em;
+    font-size: 19px;
+}
+.cardSet{width: 900px; margin:0px auto; background-color: #ffffff; padding: 35px;}

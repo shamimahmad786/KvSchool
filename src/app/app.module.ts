@@ -78,6 +78,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle'
 import { MatButtonModule} from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
+import { FreezeMastersComponent } from './components/freeze-masters/freeze-masters.component';
 
 
 
@@ -150,7 +151,8 @@ import { MatSortModule } from '@angular/material/sort';
     TopCardsComponent,
     ReportGridComponent,
     KvTchSanctionedPostComponent,
-    ExperienceType
+    ExperienceType,
+    FreezeMastersComponent
     
   ],
   imports: [

@@ -29,6 +29,7 @@ import { UpdateMobileEmailComponent } from './teacherEntryForm/teacherUpdateMobi
 import { ReportGridComponent } from './reports/report-grid/report-grid.component';
 import { KvTchSanctionedPostComponent } from './kvs/sanctionedPost/kv-tch-sanctioned-post/kv-tch-sanctioned-post.component';
 import {LoginComponent} from './login/login.component';
+import { FreezeMastersComponent } from './components/freeze-masters/freeze-masters.component';
 const routes: Routes = [
   {path:'', component: MainPageComponent},
   {path:'mainPage', component: MainPageComponent},
@@ -58,6 +59,7 @@ const routes: Routes = [
       {path: 'nationalReport', component:NationalReportComponent},
       {path: 'schoolReport', component:SchoolReportComponent},
       {path:'changePassword', component:ChangePasswordComponent},
+      {path:'freezeMaster', component:FreezeMastersComponent},
       {path:'reportGrid', component:ReportGridComponent},
       {path:'kvSanctionedPost', component:KvTchSanctionedPostComponent},
       {path: 'regionMaster', loadChildren: () => import('./components/region-master/region-master.module').then(m => m.RegionMasterModule) },
