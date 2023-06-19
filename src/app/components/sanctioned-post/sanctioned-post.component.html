@@ -11,7 +11,7 @@
                 <mat-option *ngFor="let reg of regionList" [value]="reg.regionCode">{{reg.regionName}}({{reg.regionCode}})</mat-option>
             </mat-select>
         </div>
-        <div class="p-1 w-25">
+        <div class="p-1 w-15">
             <label class="titleSet">Select Station Name</label>
             <mat-select (selectionChange)="getSchoolList($event)" class="form-control" value="">
                 <mat-option value="">Select Station Name</mat-option>
@@ -23,7 +23,7 @@
             </mat-select>
             <span *ngIf="regionSelection ==0" style="color:red"> Please select Region</span>
         </div>
-        <div class="p-1 w-25">
+        <div class="p-1 w-50">
             <label class="titleSet">Select School Name</label>
             <mat-select (selectionChange)="getSanctionPostList($event)" class="form-control" value="">
                 <mat-option value="">Select School Name</mat-option>
