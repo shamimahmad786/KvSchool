@@ -117,7 +117,6 @@ body {
     padding: 20px 10px;
 }
 
-.main-wrapper .side-navigation {}
 
 .main-wrapper .side-navigation ul {
     padding: 15px 15px 10px 15px;
@@ -132,9 +131,10 @@ body {
 
 .main-wrapper .side-navigation ul li div ul li a {
     display: block;
-    padding: 3px 0;
+    padding:8px 5px;
     text-decoration: none;
     font-size: 14px;
+    border-radius: 3px;
 }
 
 .main-wrapper .side-navigation ul li {
@@ -162,15 +162,25 @@ body {
     color:white;
 }
 
-.main-wrapper .side-navigation ul li .btn.active {
+/* .main-wrapper .side-navigation ul li .btn.active {
     background: #106384;
     color: #fff;
-}
+} */
 
 .main-wrapper .side-navigation ul li .btn.active img {
     filter: brightness(0) invert(1);
 }
-
+.active {
+    background: #106384 !important;
+    color: #fff !important;
+    border-radius: 3px;
+}
+.btn.active img {
+    filter: brightness(0) invert(1) !important;
+}
+.btn:hover img {
+    filter: brightness(0) invert(1) !important;
+}
 .side-toggler {
     cursor: pointer;
 }
@@ -196,7 +206,7 @@ body {
     transition: 0.2s;
 }
 
-.header {}
+
 
 .search {
     position: relative;

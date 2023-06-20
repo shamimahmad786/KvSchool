@@ -430,25 +430,25 @@
 
 
                 <li *ngIf="false" class="nav-item">
-                    <a class="btn btn-toggle align-items-center  active" routerLink="/teacher/regionDashboard" routerLinkActive="active" >
+                    <a class="btn btn-toggle align-items-center  active" routerLink="/teacher/regionDashboard"  routerLinkActive='active' >
                         <img src="assets/img/dash.svg"> Dashboard
                     </a>
                 </li>
 
                 <li *ngIf="showStation" class="nav-item">
-                    <a class="btn btn-toggle align-items-center  " routerLink="/teacher/stationDashboard">
+                    <a class="btn btn-toggle align-items-center  " routerLink="/teacher/stationDashboard"  routerLinkActive='active'>
                         <img src="assets/img/dash.svg"> Dashboard
                     </a>
                 </li>
 
                 <li *ngIf="showSchool" class="nav-item">
-                    <a class="btn btn-toggle align-items-center  " routerLink="/teacher/profile">
+                    <a class="btn btn-toggle align-items-center  " routerLink="/teacher/profile"  routerLinkActive='active'>
                         <img src="assets/img/dash.svg"> Dashboard
                     </a>
                 </li>
 
                 <li class="nav-item" *ngIf="kvIfConditions == false">
-                    <a class="btn btn-toggle align-items-center collapsed" routerLink="/teacher/teachersDetail">
+                    <a class="btn btn-toggle align-items-center collapsed" routerLink="/teacher/teachersDetail"  routerLinkActive='active'>
                         <img src="assets/img/details.svg"> Employee Details
                     </a>
                 </li>
@@ -456,7 +456,7 @@
                 <!-- // commenting this teacher details -->
 
                 <li *ngIf="kvIfConditions == true && this.businessUnitTypeId !='2' && !showRegion" class="nav-item">
-                    <a class="btn btn-toggle align-items-center collapsed" routerLink="/teacher/kvsTchDetails">
+                    <a class="btn btn-toggle align-items-center collapsed" routerLink="/teacher/kvsTchDetails"  routerLinkActive='active'>
                         <img src="assets/img/details.svg"> Employee Details
                     </a>
                 </li>
@@ -495,7 +495,7 @@
 
                 <li class="nav-item" *ngIf="showNational || showRegion">
 
-                    <button class="btn btn-toggle align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false"> <img src="assets/img/dropbox.svg">
+                    <button class="btn btn-toggle align-items-center collapsed" data-bs-toggle="collapse"  routerLinkActive="active" data-bs-target="#orders-collapse" aria-expanded="false"> <img src="assets/img/dropbox.svg">
                         Master </button>
                     <div class="collapse show" id="orders-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small collapse show" id="collapseExample">
