@@ -34,13 +34,14 @@ export class StationCategoryMappingComponent implements OnInit {
   businessTypeId:any;
   businessTypeCode:any;
   stationCategoryRes:any;
-
+  freezeStatus:false
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
   constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router,private dateAdapter: DateAdapter<Date>) { 
     this.dateAdapter.setLocale('en-GB');
   }
 
   ngOnInit(): void {
+    this.getFreezeStatus();
     this.businessTypeId=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_id;
     this.businessTypeCode=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_code;
 
@@ -62,7 +63,12 @@ export class StationCategoryMappingComponent implements OnInit {
       stationCode: ['', [Validators.required]],
     });
   }
-
+  getFreezeStatus()
+  {
+    this.outSideService.fetchFreezeStatus(9).subscribe((res)=>{  
+    this.freezeStatus=res['status'];
+    })
+  }
   getStationList(){
 
     let req={}

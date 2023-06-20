@@ -416,56 +416,56 @@ export class KvsTransferEditComponent implements OnInit {
         'displacement5StationName': new FormControl
       }),
       displacementCount: new FormGroup({
-        'numberOfWorkingDays': new FormControl(),//1
-        'absenceDaysOne': new FormControl(''),//1
-        'absenceDaysTwo': new FormControl('', [Validators.required]),//1
-        'actualNumberOfWorkingDays': new FormControl(),//1
+        //'numberOfWorkingDays': new FormControl(),//1
+       // 'absenceDaysOne': new FormControl(''),//1
+       // 'absenceDaysTwo': new FormControl('', [Validators.required]),//1
+      //  'actualNumberOfWorkingDays': new FormControl(),//1
         'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
         'presentStationName': new FormControl(), //1
         'presentStationCode': new FormControl(), //1
         'q1DPt': new FormControl(),//1
-        'apprGradeYr1': new FormControl(), //2
-        'apprGrade1': new FormControl('', [Validators.required, Validators.max(10), RxwebValidators.numeric({ allowDecimal: true, isFormat: true })]), //2
-        'apprGradeYr2': new FormControl(), //2
+       // 'apprGradeYr1': new FormControl(), //2
+       // 'apprGrade1': new FormControl('', [Validators.required, Validators.max(10), RxwebValidators.numeric({ allowDecimal: true, isFormat: true })]), //2
+        //'apprGradeYr2': new FormControl(), //2
         'apprGrade2': new FormControl('', [Validators.required, Validators.max(10), RxwebValidators.numeric({ allowDecimal: true, isFormat: true })]), //2
-        'q2DPt': new FormControl(),
+        //'q2DPt': new FormControl(),
         'teacherDob': new FormControl,//3
         'hardStationCode': new FormControl(), //3
         'hardStationName': new FormControl(), //3
         'hardStationWorkStartDate': new FormControl(), //3
         'hardStationWorkEndDate': new FormControl(), //3
-        'q3DYn': new FormControl(),//3
+       // 'q3DYn': new FormControl(),//3
         'q3DPt': new FormControl(),//3
-        'personalStatus': new FormControl('', [Validators.required]), //4
-        'personalStatusLtrDc': new FormControl(), //4
-        'personalStatusDfpDc': new FormControl(), //4
-        'personalStatusMdgDc': new FormControl(), //4
-        'personalStatusWidDc': new FormControl(), //4
-        'personalStatusSpDc': new FormControl(), //4
-        'personalStatusDefaultDc': new FormControl(),
+       // 'personalStatus': new FormControl('', [Validators.required]), //4
+        //'personalStatusLtrDc': new FormControl(), //4
+       // 'personalStatusDfpDc': new FormControl(), //4
+       // 'personalStatusMdgDc': new FormControl(), //4
+        //'personalStatusWidDc': new FormControl(), //4
+      //  'personalStatusSpDc': new FormControl(), //4
+     //   'personalStatusDefaultDc': new FormControl(),
         'q4DPt': new FormControl(),
-        'spouseStatus': new FormControl(),//5
-        'spouseKvsYn': new FormControl(),//5
-        'spouseStateGvotYn': new FormControl(),//5
-        'spouseCentralGvotYn': new FormControl(),//5
-        'unmarriedWomanYn': new FormControl(),//5
-        'spouseNa': new FormControl(),//5
+       // 'spouseStatus': new FormControl(),//5
+      //  'spouseKvsYn': new FormControl(),//5
+       // 'spouseStateGvotYn': new FormControl(),//5
+       // 'spouseCentralGvotYn': new FormControl(),//5
+      //  'unmarriedWomanYn': new FormControl(),//5
+       // 'spouseNa': new FormControl(),//5
         'q5DPt': new FormControl(),//5
-        'teacherDisabilityYn': new FormControl(), //6
+       // 'teacherDisabilityYn': new FormControl(), //6
         'q9DPt': new FormControl(),//6
-        'associationMemberYn': new FormControl('', [Validators.required]), //7
+       // 'associationMemberYn': new FormControl('', [Validators.required]), //7
         'q10DPt': new FormControl(),//7   
-        'presidentAward': new FormControl(), //8
-        'nationalAward': new FormControl(), //8
-        'regionalAward': new FormControl(), //8
+        //'presidentAward': new FormControl(), //8
+       // 'nationalAward': new FormControl(), //8
+       // 'regionalAward': new FormControl(), //8
         'q11DPt': new FormControl(),//8
-        'child_10_12_yn': new FormControl('', [Validators.required]), //9
+       // 'child_10_12_yn': new FormControl('', [Validators.required]), //9
         'q12DPt': new FormControl(),//9
-        'careGiverYn': new FormControl('', [Validators.required]), //10
+       // 'careGiverYn': new FormControl('', [Validators.required]), //10
         'q13DPt': new FormControl(), //10
         'totalDisplacementCount': new FormControl(),
         'stationWithin100kmDispYn': new FormControl('', Validators.required),
-        'spouseStatusDisplacement': new FormControl()
+        //'spouseStatusDisplacement': new FormControl()
       }),
       transferCount: new FormGroup({
         'applyTransferYn': new FormControl('', Validators.required),
@@ -731,9 +731,9 @@ console.log("setData")
         temp_unmarriedWomanYn = '0';
       }
 
-      if ((moment().diff(setData.teacherDob, 'years')) < 57) {
-        this.transferForm.get('displacementCount').get('personalStatusLtrDc').disable();
-      }
+      // if ((moment().diff(setData.teacherDob, 'years')) < 57) {
+      //   this.transferForm.get('displacementCount').get('personalStatusLtrDc').disable();
+      // }
 
       if (setData.personalStatusLtr == '9' || ((moment().diff(setData.teacherDob, 'years')) < 57)) {
         this.disableLTR = true;
@@ -919,55 +919,55 @@ console.log("setData")
         displacement5StationName: setData.displacement5StationName,
       },
       displacementCount: {
-        numberOfWorkingDays: setData.numberOfWorkingDays,//1
-        absenceDaysOne: setData.absenceDaysOne,//1
-        absenceDaysTwo: setData.absenceDaysTwo,//1
-        actualNumberOfWorkingDays: setData.actualNumberOfWorkingDays,//1
+      //  numberOfWorkingDays: setData.numberOfWorkingDays,//1
+      //  absenceDaysOne: setData.absenceDaysOne,//1
+       // absenceDaysTwo: setData.absenceDaysTwo,//1
+      //  actualNumberOfWorkingDays: setData.actualNumberOfWorkingDays,//1
         workExperiencePositionTypePresentStationStartDate: setData?.workExperiencePositionTypePresentStationStartDate, //1
         presentStationName: setData.presentStationName, //1
         presentStationCode: setData.presentStationCode, //1
         q1DPt: setData.q1DPt,//1
-        apprGradeYr1: setData.apprGradeYr1, //2
-        apprGrade1: setData.apprGrade1, //2
-        apprGradeYr2: setData.apprGradeYr2, //2
-        apprGrade2: setData.apprGrade2, //2
+       // apprGradeYr1: setData.apprGradeYr1, //2
+       // apprGrade1: setData.apprGrade1, //2
+      //  apprGradeYr2: setData.apprGradeYr2, //2
+       // apprGrade2: setData.apprGrade2, //2
         q2DPt: setData.q2DPt,//2
         teacherDob: setData?.teacherDob,//3
         hardStationCode: setData.hardStationCode, //3
         hardStationName: setData.hardStationName, //3
         hardStationWorkStartDate: setData?.hardStationWorkStartDate, //3
         hardStationWorkEndDate: setData?.hardStationWorkEndDate, //3
-        q3DYn: setData.q3DYn, //3
+       // q3DYn: setData.q3DYn, //3
         q3DPt: setData.q3DPt,//3
-        personalStatus: '1', //4
-        personalStatusLtrDc: setData.personalStatusLtrDc, //4
-        personalStatusDfpDc: setData.personalStatusDfpDc,//4
-        personalStatusMdgDc: setData.personalStatusMdgDc, //4
-        personalStatusWidDc: setData.personalStatusWidDc, //4
-        personalStatusSpDc: setData.personalStatusSpDc, //4
+       // personalStatus: '1', //4
+       // personalStatusLtrDc: setData.personalStatusLtrDc, //4
+     //   personalStatusDfpDc: setData.personalStatusDfpDc,//4
+     //   personalStatusMdgDc: setData.personalStatusMdgDc, //4
+     //   personalStatusWidDc: setData.personalStatusWidDc, //4
+     //   personalStatusSpDc: setData.personalStatusSpDc, //4
         q4DPt: setData.q4DPt, //4
-        spouseStatus: setData.spouseStatus, //5
-        spouseKvsYn: setData.spouseKvsYn, //5
-        spouseStateGvotYn: setData.spouseStateGvotYn, //5
-        spouseCentralGvotYn: setData.spouseCentralGvotYn, //5
+        //spouseStatus: setData.spouseStatus, //5
+       // spouseKvsYn: setData.spouseKvsYn, //5
+      //  spouseStateGvotYn: setData.spouseStateGvotYn, //5
+     //   spouseCentralGvotYn: setData.spouseCentralGvotYn, //5
         unmarriedWomanYn: (setData.unmarriedWomanYn == '4') ? '4' : '0', //5
-        spouseNa: setData.spouseNa,
+      //  spouseNa: setData.spouseNa,
         q5DPt: setData.q5DPt,//5
-        teacherDisabilityYn: setData.teacherDisabilityYn,//6
+       // teacherDisabilityYn: setData.teacherDisabilityYn,//6
         q9DPt: setData.q9DPt,//6
-        associationMemberYn: setData.associationMemberYn, //7  
+     //   associationMemberYn: setData.associationMemberYn, //7  
         q10DPt: setData.q10DPt,//7 
-        presidentAward: setData.presidentAward, //8
-        nationalAward: setData.nationalAward, //8
-        regionalAward: setData.regionalAward, //8
+      //  presidentAward: setData.presidentAward, //8
+       // nationalAward: setData.nationalAward, //8
+       // regionalAward: setData.regionalAward, //8
         q11DPt: awardPoint,//8
-        child_10_12_yn: setData.child_10_12_yn, //9
+       // child_10_12_yn: setData.child_10_12_yn, //9
         q12DPt: setData.q12DPt,//9
-        careGiverYn: setData.careGiverYn,  //10
+      //  careGiverYn: setData.careGiverYn,  //10
         q13DPt: setData.q13DPt,//10
         totalDisplacementCount: setData.totalDisplacementCount,
-        stationWithin100kmDispYn: setData?.stationWithin100kmDispYn,
-        spouseStatusDisplacement: setData?.spouseStatusDisplacement,
+      //  stationWithin100kmDispYn: setData?.stationWithin100kmDispYn,
+     //   spouseStatusDisplacement: setData?.spouseStatusDisplacement,
 
         personalStatusDefaultDc: ((setData.personalStatusLtrDc == null || setData.personalStatusLtrDc == undefined || setData.personalStatusLtrDc == "9") &&
           (setData.personalStatusDfpDc == null || setData.personalStatusDfpDc == undefined || setData.personalStatusDfpDc == "9") &&
@@ -1199,18 +1199,18 @@ console.log("setData")
     var activeButton = document.activeElement.id;
 
     if (activeButton == 'submit3') {
-      this.responseData.numberOfWorkingDays = this.transferForm.value.displacementCount.numberOfWorkingDays
-      this.responseData.absenceDaysOne = this.transferForm.value.displacementCount.absenceDaysOne
-      this.responseData.absenceDaysTwo = this.transferForm.value.displacementCount.absenceDaysTwo
-      this.responseData.actualNumberOfWorkingDays = this.transferForm.value.displacementCount.actualNumberOfWorkingDays
+     // this.responseData.numberOfWorkingDays = this.transferForm.value.displacementCount.numberOfWorkingDays
+   //   this.responseData.absenceDaysOne = this.transferForm.value.displacementCount.absenceDaysOne
+    //  this.responseData.absenceDaysTwo = this.transferForm.value.displacementCount.absenceDaysTwo
+     // this.responseData.actualNumberOfWorkingDays = this.transferForm.value.displacementCount.actualNumberOfWorkingDays
       this.responseData.workExperiencePositionTypePresentStationStartDate = this.transferForm.value.displacementCount.workExperiencePositionTypePresentStationStartDate
       this.responseData.presentStationName = this.transferForm.value.displacementCount.presentStationName
       this.responseData.presentStationCode = this.transferForm.value.displacementCount.presentStationCode
       this.responseData.q1DPt = this.transferForm.value.displacementCount.q1DPt
-      this.responseData.apprGradeYr1 = this.transferForm.value.displacementCount.apprGradeYr1
-      this.responseData.apprGrade1 = this.transferForm.value.displacementCount.apprGrade1
-      this.responseData.apprGradeYr2 = this.transferForm.value.displacementCount.apprGradeYr2
-      this.responseData.apprGrade2 = this.transferForm.value.displacementCount.apprGrade2
+     // this.responseData.apprGradeYr1 = this.transferForm.value.displacementCount.apprGradeYr1
+   //   this.responseData.apprGrade1 = this.transferForm.value.displacementCount.apprGrade1
+    //  this.responseData.apprGradeYr2 = this.transferForm.value.displacementCount.apprGradeYr2
+    //  this.responseData.apprGrade2 = this.transferForm.value.displacementCount.apprGrade2
       this.responseData.q2DPt = this.transferForm.value.displacementCount.q2DPt
       this.responseData.q2TPt = this.transferForm.value.transferCount.q2TPt
       this.responseData.teacherDob = this.transferForm.value.displacementCount.teacherDob
@@ -1218,36 +1218,38 @@ console.log("setData")
       this.responseData.hardStationName = this.transferForm.value.displacementCount.hardStationName
       this.responseData.hardStationWorkStartDate = this.transferForm.value.displacementCount.hardStationWorkStartDate
       this.responseData.hardStationWorkEndDate = this.transferForm.value.displacementCount.hardStationWorkEndDate
-      this.responseData.q3DYn = this.transferForm.value.displacementCount.q3DYn
+    //  this.responseData.q3DYn = this.transferForm.value.displacementCount.q3DYn
       this.responseData.q3DPt = this.transferForm.value.displacementCount.q3DPt
       this.responseData.personalStatus = this.transferForm.value.displacementCount.personalStatus
       this.responseData.personalStatusLtrDc = this.transferForm.value.displacementCount.personalStatusLtrDc
-      this.responseData.personalStatusDfpDc = this.transferForm.value.displacementCount.personalStatusDfpDc
-      this.responseData.personalStatusMdgDc = this.transferForm.value.displacementCount.personalStatusMdgDc
-      this.responseData.personalStatusWidDc = this.transferForm.value.displacementCount.personalStatusWidDc
-      this.responseData.personalStatusSpDc = this.transferForm.value.displacementCount.personalStatusSpDc
+     // this.responseData.personalStatusDfpDc = this.transferForm.value.displacementCount.personalStatusDfpDc
+     // this.responseData.personalStatusMdgDc = this.transferForm.value.displacementCount.personalStatusMdgDc
+    //  this.responseData.personalStatusWidDc = this.transferForm.value.displacementCount.personalStatusWidDc
+    //  this.responseData.personalStatusSpDc = this.transferForm.value.displacementCount.personalStatusSpDc
       this.responseData.q4DPt = this.transferForm.value.displacementCount.q4DPt
-      this.responseData.spouseStatus = this.transferForm.value.displacementCount.spouseStatus
-      this.responseData.spouseKvsYn = this.transferForm.value.displacementCount.spouseKvsYn
-      this.responseData.spouseStateGvotYn = this.transferForm.value.displacementCount.spouseStateGvotYn
-      this.responseData.spouseCentralGvotYn = this.transferForm.value.displacementCount.spouseCentralGvotYn
-      this.responseData.unmarriedWomanYn = this.transferForm.value.displacementCount.unmarriedWomanYn
+   //   this.responseData.spouseStatus = this.transferForm.value.displacementCount.spouseStatus
+     // this.responseData.spouseKvsYn = this.transferForm.value.displacementCount.spouseKvsYn
+   //   this.responseData.spouseStateGvotYn = this.transferForm.value.displacementCount.spouseStateGvotYn
+   //   this.responseData.spouseCentralGvotYn = this.transferForm.value.displacementCount.spouseCentralGvotYn
+    //  this.responseData.unmarriedWomanYn = this.transferForm.value.displacementCount.unmarriedWomanYn
       this.responseData.q5DPt = this.transferForm.value.displacementCount.q5DPt
-      this.responseData.teacherDisabilityYn = this.transferForm.value.displacementCount.teacherDisabilityYn
+     // this.responseData.teacherDisabilityYn = this.transferForm.value.displacementCount.teacherDisabilityYn
       this.responseData.q9DPt = this.transferForm.value.displacementCount.q9DPt
-      this.responseData.associationMemberYn = this.transferForm.value.displacementCount.associationMemberYn
+    //  this.responseData.associationMemberYn = this.transferForm.value.displacementCount.associationMemberYn
       this.responseData.q10DPt = this.transferForm.value.displacementCount.q10DPt
-      this.responseData.presidentAward = this.transferForm.value.displacementCount.presidentAward
-      this.responseData.nationalAward = this.transferForm.value.displacementCount.nationalAward
-      this.responseData.regionalAward = this.transferForm.value.displacementCount.regionalAward
+    //  this.responseData.presidentAward = this.transferForm.value.displacementCount.presidentAward
+    //  this.responseData.nationalAward = this.transferForm.value.displacementCount.nationalAward
+     // this.responseData.regionalAward = this.transferForm.value.displacementCount.regionalAward
       this.responseData.q11DPt = this.transferForm.value.displacementCount.q11DPt
-      this.responseData.child_10_12_yn = this.transferForm.value.displacementCount.child_10_12_yn
+   //   this.responseData.child_10_12_yn = this.transferForm.value.displacementCount.child_10_12_yn
       this.responseData.q12DPt = this.transferForm.value.displacementCount.q12DPt
-      this.responseData.careGiverYn = this.transferForm.value.displacementCount.careGiverYn
+     // this.responseData.careGiverYn = this.transferForm.value.displacementCount.careGiverYn
       this.responseData.q13DPt = this.transferForm.value.displacementCount.q13DPt
       this.responseData.totalDisplacementCount = this.transferForm.value.displacementCount.totalDisplacementCount
-      this.responseData.stationWithin100kmDispYn = this.transferForm.value.displacementCount.stationWithin100kmDispYn
-      this.responseData.spouseStatusDisplacement = this.transferForm.value.displacementCount.spouseStatusDisplacement
+     // this.responseData.stationWithin100kmDispYn = this.transferForm.value.displacementCount.stationWithin100kmDispYn
+     // this.responseData.spouseStatusDisplacement = this.transferForm.value.displacementCount.spouseStatusDisplacement
+     console.log(this.transferForm.value.displacementCount)
+     return;
       this.responseData.transferStatus = 'TRE'
       this.outSideService.saveInitiatedTeacherTransfer(this.responseData).subscribe((res) => {
         if (res.status == 1 || res.status == '1') {
@@ -1635,111 +1637,111 @@ console.log("setData")
     })
   }
 
-  updateSpouseValue(event) {
-    var val = event.target.value
-    if (val == '1') {
-      this.transferForm.patchValue({
-        displacementCount: {
-          q5DPt: -50,
-          spouseKvsYn: '1',
-          spouseCentralGvotYn: '0',
-          spouseStateGvotYn: '0',
-          unmarriedWomanYn: '0',
-          spouseNa: '0'
-        },
-        transferCount: {
-          q4TPt: 50,
+  // updateSpouseValue(event) {
+  //   var val = event.target.value
+  //   if (val == '1') {
+  //     this.transferForm.patchValue({
+  //       displacementCount: {
+  //         q5DPt: -50,
+  //         spouseKvsYn: '1',
+  //         spouseCentralGvotYn: '0',
+  //         spouseStateGvotYn: '0',
+  //         unmarriedWomanYn: '0',
+  //         spouseNa: '0'
+  //       },
+  //       transferCount: {
+  //         q4TPt: 50,
 
-          spouseKvsYn: '1',
-          spouseCentralGvotYn: '0',
-          spouseStateGvotYn: '0',
-          unmarriedWomanYn: '0',
-          spouseNa: '0'
-        }
-      })
-    } else if (val == '2') {
-      this.transferForm.patchValue({
-        displacementCount: {
-          q5DPt: -40,
-          spouseKvsYn: '0',
-          spouseCentralGvotYn: '2',
-          spouseStateGvotYn: '0',
-          unmarriedWomanYn: '0',
-          spouseNa: '0'
-        },
-        transferCount: {
-          q4TPt: 40,
-
-
-          spouseKvsYn: '0',
-          spouseCentralGvotYn: '2',
-          spouseStateGvotYn: '0',
-          unmarriedWomanYn: '0',
-          spouseNa: '0'
-        }
-      })
-    } else if (val == '3') {
-      this.transferForm.patchValue({
-        displacementCount: {
-          q5DPt: -30,
-          spouseKvsYn: '0',
-          spouseCentralGvotYn: '0',
-          spouseStateGvotYn: '3',
-          unmarriedWomanYn: '0',
-          spouseNa: '0'
-        },
-        transferCount: {
-          q4TPt: 30,
+  //         spouseKvsYn: '1',
+  //         spouseCentralGvotYn: '0',
+  //         spouseStateGvotYn: '0',
+  //         unmarriedWomanYn: '0',
+  //         spouseNa: '0'
+  //       }
+  //     })
+  //   } else if (val == '2') {
+  //     this.transferForm.patchValue({
+  //       displacementCount: {
+  //         q5DPt: -40,
+  //         spouseKvsYn: '0',
+  //         spouseCentralGvotYn: '2',
+  //         spouseStateGvotYn: '0',
+  //         unmarriedWomanYn: '0',
+  //         spouseNa: '0'
+  //       },
+  //       transferCount: {
+  //         q4TPt: 40,
 
 
-          spouseKvsYn: '0',
-          spouseCentralGvotYn: '0',
-          spouseStateGvotYn: '3',
-          unmarriedWomanYn: '0',
-          spouseNa: '0'
-        }
-      })
-    } else if (val == '4') {
-      this.transferForm.patchValue({
-        displacementCount: {
-          q5DPt: -20,
-          unmarriedWomanYn: '4',
-          spouseKvsYn: '0',
-          spouseCentralGvotYn: '0',
-          spouseStateGvotYn: '0',
-          spouseNa: '0'
-        },
-        transferCount: {
-          unmarriedWomanYn: '4',
-          spouseKvsYn: '0',
-          spouseCentralGvotYn: '0',
-          spouseStateGvotYn: '0',
-          spouseNa: '0',
+  //         spouseKvsYn: '0',
+  //         spouseCentralGvotYn: '2',
+  //         spouseStateGvotYn: '0',
+  //         unmarriedWomanYn: '0',
+  //         spouseNa: '0'
+  //       }
+  //     })
+  //   } else if (val == '3') {
+  //     this.transferForm.patchValue({
+  //       displacementCount: {
+  //         q5DPt: -30,
+  //         spouseKvsYn: '0',
+  //         spouseCentralGvotYn: '0',
+  //         spouseStateGvotYn: '3',
+  //         unmarriedWomanYn: '0',
+  //         spouseNa: '0'
+  //       },
+  //       transferCount: {
+  //         q4TPt: 30,
 
-          q4TPt: 0
-        }
-      })
-    } else if (val == '5') {
-      this.transferForm.patchValue({
-        displacementCount: {
-          q5DPt: 0,
-          unmarriedWomanYn: '0',
-          spouseKvsYn: '0',
-          spouseCentralGvotYn: '0',
-          spouseStateGvotYn: '0',
-          spouseNa: '5'
-        },
-        transferCount: {
-          q4TPt: 0,
-          unmarriedWomanYn: '0',
-          spouseKvsYn: '0',
-          spouseCentralGvotYn: '0',
-          spouseStateGvotYn: '0',
-          spouseNa: '5'
-        }
-      })
-    }
-  }
+
+  //         spouseKvsYn: '0',
+  //         spouseCentralGvotYn: '0',
+  //         spouseStateGvotYn: '3',
+  //         unmarriedWomanYn: '0',
+  //         spouseNa: '0'
+  //       }
+  //     })
+  //   } else if (val == '4') {
+  //     this.transferForm.patchValue({
+  //       displacementCount: {
+  //         q5DPt: -20,
+  //         unmarriedWomanYn: '4',
+  //         spouseKvsYn: '0',
+  //         spouseCentralGvotYn: '0',
+  //         spouseStateGvotYn: '0',
+  //         spouseNa: '0'
+  //       },
+  //       transferCount: {
+  //         unmarriedWomanYn: '4',
+  //         spouseKvsYn: '0',
+  //         spouseCentralGvotYn: '0',
+  //         spouseStateGvotYn: '0',
+  //         spouseNa: '0',
+
+  //         q4TPt: 0
+  //       }
+  //     })
+  //   } else if (val == '5') {
+  //     this.transferForm.patchValue({
+  //       displacementCount: {
+  //         q5DPt: 0,
+  //         unmarriedWomanYn: '0',
+  //         spouseKvsYn: '0',
+  //         spouseCentralGvotYn: '0',
+  //         spouseStateGvotYn: '0',
+  //         spouseNa: '5'
+  //       },
+  //       transferCount: {
+  //         q4TPt: 0,
+  //         unmarriedWomanYn: '0',
+  //         spouseKvsYn: '0',
+  //         spouseCentralGvotYn: '0',
+  //         spouseStateGvotYn: '0',
+  //         spouseNa: '5'
+  //       }
+  //     })
+  //   }
+  // }
 
   stationCoice(val) {
 
@@ -2920,253 +2922,253 @@ return
     })
   }
 
-  personalStatusCheckBox(e, id) {
+  // personalStatusCheckBox(e, id) {
 
-    if (e.target.checked) {
-      if (id == '1') {
-        this.transferForm.patchValue({
-          displacementCount: {
-            personalStatusLtrDc: '1',
-            q4DPt: -50,
-            personalStatus: '1',
-            personalStatusDefaultDc: null
-          }
-        })
-      } else if (id == '2') {
-        this.transferForm.patchValue({
-          displacementCount: {
-            personalStatusDfpDc: '1',
-            personalStatus: '1',
-            q4DPt: -50,
-            personalStatusDefaultDc: null
-          }
-        })
-      } else if (id == '3') {
-        this.transferForm.patchValue({
-          displacementCount: {
-            personalStatusMdgDc: '1',
-            personalStatus: '1',
-            q4DPt: -50,
-            personalStatusDefaultDc: null
-          }
-        })
-      } else if (id == '4') {
-        if (this.transferForm.value.displacementCount.spouseStatus != '' && this.transferForm.value.displacementCount.spouseStatus != null
-          && (this.transferForm.value.displacementCount.spouseStatus == '4' || this.transferForm.value.displacementCount.spouseStatus == 4)) {
-          this.transferForm.patchValue({
-            displacementCount: {
-              spouseStatusDisplacement: '5',
-              q5DPt: 0
-            }
-          })
-        }
-        this.transferForm.patchValue({
-          displacementCount: {
-            personalStatusWidDc: '1',
-            personalStatus: '1',
-            q4DPt: -50,
-            personalStatusDefaultDc: null
-          }
-        })
-      } else if (id == '5') {
-        if (this.transferForm.value.displacementCount.spouseStatus != '' && this.transferForm.value.displacementCount.spouseStatus != null
-          && (this.transferForm.value.displacementCount.spouseStatus == '4' || this.transferForm.value.displacementCount.spouseStatus == 4)) {
-          this.transferForm.patchValue({
-            displacementCount: {
-              spouseStatusDisplacement: '5',
-              q5DPt: 0
-            }
-          })
-        }
-        this.transferForm.patchValue({
-          displacementCount: {
-            personalStatusSpDc: '1',
-            personalStatus: '1',
-            q4DPt: -50,
-            personalStatusDefaultDc: null
-          }
-        })
-      } else if (id == '6') {
-        this.transferForm.patchValue({
-          displacementCount: {
-            personalStatusDefaultDc: '1',
-            personalStatus: '1',
-            q4DPt: 0,
-            personalStatusLtrDc: null,
-            personalStatusDfpDc: null,
-            personalStatusMdgDc: null,
-            personalStatusWidDc: null,
-            personalStatusSpDc: null
-          }
-        })
-        this.transferForm.patchValue({
-          displacementCount: {
-            spouseStatusDisplacement: this.transferForm.value.displacementCount.spouseStatus,
-            q5DPt: this.transferForm.value.displacementCount.spouseStatus == '1' ? -50 :
-              this.transferForm.value.displacementCount.spouseStatus == 1 ? -50 :
-                this.transferForm.value.displacementCount.spouseStatus == '2' ? -40 :
-                  this.transferForm.value.displacementCount.spouseStatus == 2 ? -40 :
-                    this.transferForm.value.displacementCount.spouseStatus == '3' ? -30 :
-                      this.transferForm.value.displacementCount.spouseStatus == 3 ? -30 :
-                        this.transferForm.value.displacementCount.spouseStatus == '4' ? -20 :
-                          this.transferForm.value.displacementCount.spouseStatus == 4 ? -20 : 0
-          }
-        })
-      }
-    } else if (!e.target.checked) {
-      if (id == '1') {
-        if (this.transferForm.value.displacementCount.personalStatusDfpDc == '1' || this.transferForm.value.displacementCount.personalStatusMdgDc == '1'
-          || this.transferForm.value.displacementCount.personalStatusWidDc == '1' || this.transferForm.value.displacementCount.personalStatusSpDc == '1') {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusLtrDc: null,
-              q4DPt: -50
-            }
-          })
-        } else {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusLtrDc: null,
-              personalStatus: '1',
-              q4DPt: 0,
-              personalStatusDefaultDc: '1'
-            }
-          })
-        }
-      } else if (id == '2') {
-        if (this.transferForm.value.displacementCount.personalStatusLtrDc == '1' || this.transferForm.value.displacementCount.personalStatusMdgDc == '1'
-          || this.transferForm.value.displacementCount.personalStatusWidDc == '1' || this.transferForm.value.displacementCount.personalStatusSpDc == '1') {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusDfpDc: null,
-              q4DPt: -50
-            }
-          })
-        } else {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusDfpDc: null,
-              personalStatus: '1',
-              q4DPt: 0,
-              personalStatusDefaultDc: '1'
-            }
-          })
-        }
+  //   if (e.target.checked) {
+  //     if (id == '1') {
+  //       this.transferForm.patchValue({
+  //         displacementCount: {
+  //           personalStatusLtrDc: '1',
+  //           q4DPt: -50,
+  //           personalStatus: '1',
+  //           personalStatusDefaultDc: null
+  //         }
+  //       })
+  //     } else if (id == '2') {
+  //       this.transferForm.patchValue({
+  //         displacementCount: {
+  //           personalStatusDfpDc: '1',
+  //           personalStatus: '1',
+  //           q4DPt: -50,
+  //           personalStatusDefaultDc: null
+  //         }
+  //       })
+  //     } else if (id == '3') {
+  //       this.transferForm.patchValue({
+  //         displacementCount: {
+  //           personalStatusMdgDc: '1',
+  //           personalStatus: '1',
+  //           q4DPt: -50,
+  //           personalStatusDefaultDc: null
+  //         }
+  //       })
+  //     } else if (id == '4') {
+  //       if (this.transferForm.value.displacementCount.spouseStatus != '' && this.transferForm.value.displacementCount.spouseStatus != null
+  //         && (this.transferForm.value.displacementCount.spouseStatus == '4' || this.transferForm.value.displacementCount.spouseStatus == 4)) {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             spouseStatusDisplacement: '5',
+  //             q5DPt: 0
+  //           }
+  //         })
+  //       }
+  //       this.transferForm.patchValue({
+  //         displacementCount: {
+  //           personalStatusWidDc: '1',
+  //           personalStatus: '1',
+  //           q4DPt: -50,
+  //           personalStatusDefaultDc: null
+  //         }
+  //       })
+  //     } else if (id == '5') {
+  //       if (this.transferForm.value.displacementCount.spouseStatus != '' && this.transferForm.value.displacementCount.spouseStatus != null
+  //         && (this.transferForm.value.displacementCount.spouseStatus == '4' || this.transferForm.value.displacementCount.spouseStatus == 4)) {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             spouseStatusDisplacement: '5',
+  //             q5DPt: 0
+  //           }
+  //         })
+  //       }
+  //       this.transferForm.patchValue({
+  //         displacementCount: {
+  //           personalStatusSpDc: '1',
+  //           personalStatus: '1',
+  //           q4DPt: -50,
+  //           personalStatusDefaultDc: null
+  //         }
+  //       })
+  //     } else if (id == '6') {
+  //       this.transferForm.patchValue({
+  //         displacementCount: {
+  //           personalStatusDefaultDc: '1',
+  //           personalStatus: '1',
+  //           q4DPt: 0,
+  //           personalStatusLtrDc: null,
+  //           personalStatusDfpDc: null,
+  //           personalStatusMdgDc: null,
+  //           personalStatusWidDc: null,
+  //           personalStatusSpDc: null
+  //         }
+  //       })
+  //       this.transferForm.patchValue({
+  //         displacementCount: {
+  //           spouseStatusDisplacement: this.transferForm.value.displacementCount.spouseStatus,
+  //           q5DPt: this.transferForm.value.displacementCount.spouseStatus == '1' ? -50 :
+  //             this.transferForm.value.displacementCount.spouseStatus == 1 ? -50 :
+  //               this.transferForm.value.displacementCount.spouseStatus == '2' ? -40 :
+  //                 this.transferForm.value.displacementCount.spouseStatus == 2 ? -40 :
+  //                   this.transferForm.value.displacementCount.spouseStatus == '3' ? -30 :
+  //                     this.transferForm.value.displacementCount.spouseStatus == 3 ? -30 :
+  //                       this.transferForm.value.displacementCount.spouseStatus == '4' ? -20 :
+  //                         this.transferForm.value.displacementCount.spouseStatus == 4 ? -20 : 0
+  //         }
+  //       })
+  //     }
+  //   } else if (!e.target.checked) {
+  //     if (id == '1') {
+  //       if (this.transferForm.value.displacementCount.personalStatusDfpDc == '1' || this.transferForm.value.displacementCount.personalStatusMdgDc == '1'
+  //         || this.transferForm.value.displacementCount.personalStatusWidDc == '1' || this.transferForm.value.displacementCount.personalStatusSpDc == '1') {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusLtrDc: null,
+  //             q4DPt: -50
+  //           }
+  //         })
+  //       } else {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusLtrDc: null,
+  //             personalStatus: '1',
+  //             q4DPt: 0,
+  //             personalStatusDefaultDc: '1'
+  //           }
+  //         })
+  //       }
+  //     } else if (id == '2') {
+  //       if (this.transferForm.value.displacementCount.personalStatusLtrDc == '1' || this.transferForm.value.displacementCount.personalStatusMdgDc == '1'
+  //         || this.transferForm.value.displacementCount.personalStatusWidDc == '1' || this.transferForm.value.displacementCount.personalStatusSpDc == '1') {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusDfpDc: null,
+  //             q4DPt: -50
+  //           }
+  //         })
+  //       } else {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusDfpDc: null,
+  //             personalStatus: '1',
+  //             q4DPt: 0,
+  //             personalStatusDefaultDc: '1'
+  //           }
+  //         })
+  //       }
 
-      } else if (id == '3') {
+  //     } else if (id == '3') {
 
-        if (this.transferForm.value.displacementCount.personalStatusDfpDc == '1' || this.transferForm.value.displacementCount.personalStatusLtrDc == '1'
-          || this.transferForm.value.displacementCount.personalStatusWidDc == '1' || this.transferForm.value.displacementCount.personalStatusSpDc == '1') {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusMdgDc: null,
-              q4DPt: -50
-            }
-          })
-        } else {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusMdgDc: null,
-              personalStatus: '1',
-              q4DPt: 0,
-              personalStatusDefaultDc: '1'
-            }
-          })
-        }
+  //       if (this.transferForm.value.displacementCount.personalStatusDfpDc == '1' || this.transferForm.value.displacementCount.personalStatusLtrDc == '1'
+  //         || this.transferForm.value.displacementCount.personalStatusWidDc == '1' || this.transferForm.value.displacementCount.personalStatusSpDc == '1') {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusMdgDc: null,
+  //             q4DPt: -50
+  //           }
+  //         })
+  //       } else {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusMdgDc: null,
+  //             personalStatus: '1',
+  //             q4DPt: 0,
+  //             personalStatusDefaultDc: '1'
+  //           }
+  //         })
+  //       }
 
-      } else if (id == '4') {
-        if (this.transferForm.value.displacementCount.personalStatusSpDc != '1' || this.transferForm.value.displacementCount.personalStatusSpDc != 1) {
-          this.transferForm.patchValue({
-            displacementCount: {
-              spouseStatusDisplacement: this.transferForm.value.displacementCount.spouseStatus,
-              q5DPt: this.transferForm.value.displacementCount.spouseStatus == '1' ? -50 :
-                this.transferForm.value.displacementCount.spouseStatus == 1 ? -50 :
-                  this.transferForm.value.displacementCount.spouseStatus == '2' ? -40 :
-                    this.transferForm.value.displacementCount.spouseStatus == 2 ? -40 :
-                      this.transferForm.value.displacementCount.spouseStatus == '3' ? -30 :
-                        this.transferForm.value.displacementCount.spouseStatus == 3 ? -30 :
-                          this.transferForm.value.displacementCount.spouseStatus == '4' ? -20 :
-                            this.transferForm.value.displacementCount.spouseStatus == 4 ? -20 : 0
-            }
-          })
-        }
-        if (this.transferForm.value.displacementCount.personalStatusDfpDc == '1' || this.transferForm.value.displacementCount.personalStatusMdgDc == '1'
-          || this.transferForm.value.displacementCount.personalStatusLtrDc == '1' || this.transferForm.value.displacementCount.personalStatusSpDc == '1') {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusWidDc: null,
-              q4DPt: -50
-            }
-          })
-        } else {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusWidDc: null,
-              personalStatus: '1',
-              q4DPt: 0,
-              personalStatusDefaultDc: '1'
-            }
-          })
-        }
+  //     } else if (id == '4') {
+  //       if (this.transferForm.value.displacementCount.personalStatusSpDc != '1' || this.transferForm.value.displacementCount.personalStatusSpDc != 1) {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             spouseStatusDisplacement: this.transferForm.value.displacementCount.spouseStatus,
+  //             q5DPt: this.transferForm.value.displacementCount.spouseStatus == '1' ? -50 :
+  //               this.transferForm.value.displacementCount.spouseStatus == 1 ? -50 :
+  //                 this.transferForm.value.displacementCount.spouseStatus == '2' ? -40 :
+  //                   this.transferForm.value.displacementCount.spouseStatus == 2 ? -40 :
+  //                     this.transferForm.value.displacementCount.spouseStatus == '3' ? -30 :
+  //                       this.transferForm.value.displacementCount.spouseStatus == 3 ? -30 :
+  //                         this.transferForm.value.displacementCount.spouseStatus == '4' ? -20 :
+  //                           this.transferForm.value.displacementCount.spouseStatus == 4 ? -20 : 0
+  //           }
+  //         })
+  //       }
+  //       if (this.transferForm.value.displacementCount.personalStatusDfpDc == '1' || this.transferForm.value.displacementCount.personalStatusMdgDc == '1'
+  //         || this.transferForm.value.displacementCount.personalStatusLtrDc == '1' || this.transferForm.value.displacementCount.personalStatusSpDc == '1') {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusWidDc: null,
+  //             q4DPt: -50
+  //           }
+  //         })
+  //       } else {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusWidDc: null,
+  //             personalStatus: '1',
+  //             q4DPt: 0,
+  //             personalStatusDefaultDc: '1'
+  //           }
+  //         })
+  //       }
 
-      } else if (id == '5') {
-        if (this.transferForm.value.displacementCount.personalStatusWidDc != '1' || this.transferForm.value.displacementCount.personalStatusWidDc != 1) {
-          this.transferForm.patchValue({
-            displacementCount: {
-              spouseStatusDisplacement: this.transferForm.value.displacementCount.spouseStatus,
-              q5DPt: this.transferForm.value.displacementCount.spouseStatus == '1' ? -50 :
-                this.transferForm.value.displacementCount.spouseStatus == 1 ? -50 :
-                  this.transferForm.value.displacementCount.spouseStatus == '2' ? -40 :
-                    this.transferForm.value.displacementCount.spouseStatus == 2 ? -40 :
-                      this.transferForm.value.displacementCount.spouseStatus == '3' ? -30 :
-                        this.transferForm.value.displacementCount.spouseStatus == 3 ? -30 :
-                          this.transferForm.value.displacementCount.spouseStatus == '4' ? -20 :
-                            this.transferForm.value.displacementCount.spouseStatus == 4 ? -20 : 0
-            }
-          })
-        }
-        if (this.transferForm.value.displacementCount.personalStatusDfpDc == '1' || this.transferForm.value.displacementCount.personalStatusMdgDc == '1'
-          || this.transferForm.value.displacementCount.personalStatusWidDc == '1' || this.transferForm.value.displacementCount.personalStatusLtrDc == '1') {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusSpDc: null,
-              q4DPt: -50
-            }
-          })
-        } else {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusSpDc: null,
-              personalStatus: '1',
-              q4DPt: 0,
-              personalStatusDefaultDc: '1'
-            }
-          })
-        }
-      }
-      else if (id == '6') {
+  //     } else if (id == '5') {
+  //       if (this.transferForm.value.displacementCount.personalStatusWidDc != '1' || this.transferForm.value.displacementCount.personalStatusWidDc != 1) {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             spouseStatusDisplacement: this.transferForm.value.displacementCount.spouseStatus,
+  //             q5DPt: this.transferForm.value.displacementCount.spouseStatus == '1' ? -50 :
+  //               this.transferForm.value.displacementCount.spouseStatus == 1 ? -50 :
+  //                 this.transferForm.value.displacementCount.spouseStatus == '2' ? -40 :
+  //                   this.transferForm.value.displacementCount.spouseStatus == 2 ? -40 :
+  //                     this.transferForm.value.displacementCount.spouseStatus == '3' ? -30 :
+  //                       this.transferForm.value.displacementCount.spouseStatus == 3 ? -30 :
+  //                         this.transferForm.value.displacementCount.spouseStatus == '4' ? -20 :
+  //                           this.transferForm.value.displacementCount.spouseStatus == 4 ? -20 : 0
+  //           }
+  //         })
+  //       }
+  //       if (this.transferForm.value.displacementCount.personalStatusDfpDc == '1' || this.transferForm.value.displacementCount.personalStatusMdgDc == '1'
+  //         || this.transferForm.value.displacementCount.personalStatusWidDc == '1' || this.transferForm.value.displacementCount.personalStatusLtrDc == '1') {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusSpDc: null,
+  //             q4DPt: -50
+  //           }
+  //         })
+  //       } else {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusSpDc: null,
+  //             personalStatus: '1',
+  //             q4DPt: 0,
+  //             personalStatusDefaultDc: '1'
+  //           }
+  //         })
+  //       }
+  //     }
+  //     else if (id == '6') {
 
-        if (this.transferForm.value.displacementCount.personalStatusDfpDc == '1' || this.transferForm.value.displacementCount.personalStatusMdgDc == '1'
-          || this.transferForm.value.displacementCount.personalStatusWidDc == '1' || this.transferForm.value.displacementCount.personalStatusLtrDc == '1'
-          || this.transferForm.value.displacementCount.personalStatusSpDc == '1') {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusDefaultDc: null,
-              q4DPt: -50
-            }
-          })
-        } else {
-          this.transferForm.patchValue({
-            displacementCount: {
-              personalStatusDefaultDc: '1',
-              personalStatus: '1',
-              q4DPt: 0
-            }
-          })
-        }
-      }
-    }
-  }
+  //       if (this.transferForm.value.displacementCount.personalStatusDfpDc == '1' || this.transferForm.value.displacementCount.personalStatusMdgDc == '1'
+  //         || this.transferForm.value.displacementCount.personalStatusWidDc == '1' || this.transferForm.value.displacementCount.personalStatusLtrDc == '1'
+  //         || this.transferForm.value.displacementCount.personalStatusSpDc == '1') {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusDefaultDc: null,
+  //             q4DPt: -50
+  //           }
+  //         })
+  //       } else {
+  //         this.transferForm.patchValue({
+  //           displacementCount: {
+  //             personalStatusDefaultDc: '1',
+  //             personalStatus: '1',
+  //             q4DPt: 0
+  //           }
+  //         })
+  //       }
+  //     }
+  //   }
+  // }
 
   personalStatusCheckBoxTc(e, id) {
     if (e.target.checked) {
