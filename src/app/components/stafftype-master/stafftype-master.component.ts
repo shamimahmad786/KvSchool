@@ -27,14 +27,21 @@ export class StafftypeMasterComponent implements OnInit,AfterViewInit {
 
   listStaffType: any=[];
   returnTypeSrvTime: any;
-
+  freezeStatus:false;
   constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
+    this.getFreezeStatus();
     this.getRegionList();
    }
    redirectto(){
      this.router.navigate(['/teacher/stafftypeMaster/add']);
+   }
+   getFreezeStatus()
+   {
+     this.outSideService.fetchFreezeStatus(5).subscribe((res)=>{  
+     this.freezeStatus=res['status'];
+     })
    }
    getRegionList(){
      let req={};

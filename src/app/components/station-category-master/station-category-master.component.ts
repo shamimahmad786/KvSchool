@@ -21,8 +21,9 @@ export class StationCategoryMasterComponent implements OnInit {
   stationCategoryList: any=[];
   testData = {sno: '', categoryname: '', status: '',statusType: '',id:''};
   returnTypeSrvTime: any;
-
+  freezeStatus:false
   ngOnInit(): void {
+    this.getFreezeStatus();
     this.getListStationCategory();
   }
   displayedColumns: string[] = ['sno','categoryname', 'status','action'];
@@ -40,7 +41,12 @@ export class StationCategoryMasterComponent implements OnInit {
     // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
   }
-
+  getFreezeStatus()
+  {
+    this.outSideService.fetchFreezeStatus(4).subscribe((res)=>{  
+    this.freezeStatus=res['status'];
+    })
+  }
   getListStationCategory(){
     let request={}
     this.outSideService.fetchStationCategoryList(request).subscribe((res)=>{

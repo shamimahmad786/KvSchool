@@ -35,7 +35,7 @@ export class RegionStationMappingComponent implements OnInit {
   regionList: any=[];
   businessUnitId:any;
   businessTypeCode:any;
-  
+  freezeStatus:false;
 
   filteredOptions: Observable<string[]>;
 
@@ -46,6 +46,7 @@ export class RegionStationMappingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getFreezeStatus();
     this.buildRegionMappingForm();
     this.getRegionList();
     
@@ -60,7 +61,12 @@ this.search();
       regionCode: ['', [Validators.required]],
     });
   }
-
+  getFreezeStatus()
+  {
+    this.outSideService.fetchFreezeStatus(8).subscribe((res)=>{  
+    this.freezeStatus=res['status'];
+    })
+  }
   getRegionList(){
     this.outSideService.fetchRegionList().subscribe((res)=>{
       if(res){

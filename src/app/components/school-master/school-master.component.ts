@@ -28,14 +28,22 @@ export class SchoolMasterComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   schoolList: any=[];
   returnTypeSrvTime: any;
+  freezeStatus = false;
  
   constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
+    this.getFreezeStatus();
    this.getSchoolMaterList();
   }
   redirectto(){
     this.router.navigate(['/teacher/schoolMaster/add']);
+  }
+  getFreezeStatus()
+  {
+    this.outSideService.fetchFreezeStatus(3).subscribe((res)=>{  
+    this.freezeStatus=res['status'];
+    })
   }
   getSchoolMaterList(){
     let request={};

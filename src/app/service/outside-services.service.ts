@@ -1424,17 +1424,32 @@ freezeSanctionPost(data){
   }); 
   return this._http.post(environment.BASE_URL_DATA_MASTER1+ "freeze-sanction-post",data,{headers})
 }
-
-
-
 updateFreezeMaster(data:any)
 {
-  return this._http.post("http://10.25.26.251:8014/unee-api/v1/master/freeze-master",data)
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  });
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "freeze-master",data,{headers})
 }
 
 getFreezeMaster(data:any)
 {
-  return this._http.post("http://10.25.26.251:8014/unee-api/v1/master/fetch/get-freeze-master", "")
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "fetch/get-freeze-master","",{headers})
 }
-
+fetchFreezeStatus(data:any)
+{
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "fetch/get-freeze-master-by-id",data,{headers})
+}
 }
