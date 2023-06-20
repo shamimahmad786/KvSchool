@@ -128,7 +128,7 @@ body {
     padding: 8px 8px 8px 20px;
 }
 
-.main-wrapper .side-navigation ul li div ul li {}
+
 
 .main-wrapper .side-navigation ul li div ul li a {
     display: block;
@@ -149,8 +149,7 @@ body {
     padding: 8px 10px;
     font-size: 15px;
     font-weight: 500;
-    color: #6b6b6b;
-    background-color: #F3F3F3;
+
 }
 
 .main-wrapper .side-navigation ul li .btn img {
@@ -159,7 +158,8 @@ body {
 }
 
 .main-wrapper .side-navigation ul li .btn:hover {
-    background: #efefef;
+    background: #106384;
+    color:white;
 }
 
 .main-wrapper .side-navigation ul li .btn.active {

@@ -1426,4 +1426,15 @@ freezeSanctionPost(data){
 }
 
 
+
+updateFreezeMaster(data:any)
+{
+  return this._http.post("http://10.25.26.251:8014/unee-api/v1/master/freeze-master",data)
+}
+
+getFreezeMaster(data:any)
+{
+  return this._http.post("http://10.25.26.251:8014/unee-api/v1/master/fetch/get-freeze-master", "")
+}
+
 }
