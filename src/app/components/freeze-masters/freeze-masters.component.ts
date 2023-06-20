@@ -229,7 +229,7 @@ export class FreezeMastersComponent implements OnInit {
       status: !data?.stationMaster,
     };
   }
-  if(masterType=='schoolInstitutionMaster')
+  if(masterType=='schoolInstitutionMaster') 
   {
     this. updateData = {
       id: this.freezeForm.controls['schoolInstitutionMasterId'].value,
