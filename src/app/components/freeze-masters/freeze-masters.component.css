@@ -10,7 +10,7 @@
     background-color: #5cabcb !important; color: #ffffff;
 }
 .form-check-input[type=checkbox] {
-    border-radius: 0.25em; 
+    border-radius: 0.25em;  
     font-size: 19px;
 }
 .cardSet{width:1150px; margin:0px auto; background-color: #ffffff; padding: 35px; border-radius:10px;}
