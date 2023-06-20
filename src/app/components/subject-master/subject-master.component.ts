@@ -25,14 +25,21 @@ export class SubjectMasterComponent implements OnInit,AfterViewInit {
 
   listDesignation: any=[];
   returnTypeSrvTime: any;
-
+  freezeStatus:false;
   constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
+    this.getFreezeStatus();
     this.getDesignationList();
    }
    redirectto(){
      this.router.navigate(['/teacher/subjectMaster/add']);
+   }
+   getFreezeStatus()
+   {
+     this.outSideService.fetchFreezeStatus(7).subscribe((res)=>{  
+     this.freezeStatus=res['status'];
+     })
    }
    getDesignationList(){
      let req={}

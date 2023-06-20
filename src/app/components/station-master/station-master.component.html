@@ -4,8 +4,8 @@
     </div>
 
     <div class="d-flex flex-row-reverse bd-highlight mb-3">
-        <div class="p-1">
-            <button mat-raised-button class="float-end mt-2 btn-success" (click)="redirectto()">Add</button>
+        <div class="p-1" *ngIf="!freezeStatus">
+            <button mat-raised-button class="float-end mt-2 btn-success"  (click)="redirectto()">Add</button>
         </div>
         <div class="p-1">
             <button mat-raised-button class="float-end mt-2 btn-secondary" (click)="stationMasterPdf()">Download PDF</button>
@@ -46,7 +46,12 @@
                     <td mat-cell *matCellDef="let element">{{(element.status==true)?'Active':'Inactive'}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="action">
+                <ng-container matColumnDef="action" *ngIf="freezeStatus">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell *matCellDef="let element"><i class="bx bx-edit" matTooltip="Edit" style="font-size: 23px;margin-left: 8px;opacity: 0.35;"></i></td>
+                </ng-container>
+
+                <ng-container matColumnDef="action" *ngIf="!freezeStatus">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                     <td mat-cell *matCellDef="let element"><i class="bx bx-edit" matTooltip="Edit" style="font-size: 23px;margin-left: 8px;" (click)="edit(element)"></i></td>
                 </ng-container>

@@ -1424,6 +1424,32 @@ freezeSanctionPost(data){
   }); 
   return this._http.post(environment.BASE_URL_DATA_MASTER1+ "freeze-sanction-post",data,{headers})
 }
+updateFreezeMaster(data:any)
+{
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  });
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "freeze-master",data,{headers})
+}
 
-
+getFreezeMaster(data:any)
+{
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "fetch/get-freeze-master","",{headers})
+}
+fetchFreezeStatus(data:any)
+{
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "fetch/get-freeze-master-by-id",data,{headers})
+}
 }

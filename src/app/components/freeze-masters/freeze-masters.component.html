@@ -1,26 +1,28 @@
 <div class="container-fluid px-4">
 
-    <div class=" cardSet">
+    <div class=" cardSet shadow">
 
         <h5 class="mb-0 p-2 FontTitle">Freeze Masters</h5>
         <hr />
         <div class>
-            <form [formGroup]="freezeForm">
+            <form [formGroup]="freezeForm" >
                 <ul class="freezeList">
+                 
                     <li [class.is-done]="data">
                         <div class="d-flex justify-content-between">
-                            <div class="fontUser">
+                            <div class="fontUser"> 
                                 Region/ZIET Master
                             </div>
-                            <div class>
+                            <div class>  
                                 <div class="form-check">
-                                    <mat-slide-toggle color="primary"
+                                    <mat-slide-toggle color="primary" type="button"
                                         formControlName="regionMaster"
-                                        (click)="onToggle()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'regionMaster')"
+                                        ></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
-                    <li [class.is-done1]="data1">
+                    <li [class.is-done]="data1">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Station Master
@@ -29,11 +31,11 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="stationMaster"
-                                        (click)="onToggle1()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'stationMaster')"></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
-                    <li [class.is-done2]="data2">
+                    <li [class.is-done]="data2">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 School/Institution Master
@@ -42,11 +44,11 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="schoolInstitutionMaster"
-                                        (click)="onToggle2()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'schoolInstitutionMaster')"></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
-                    <li [class.is-done3]="data3">
+                    <li [class.is-done]="data3">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Station Category Master
@@ -55,11 +57,11 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="stationCategoryMaster"
-                                        (click)="onToggle3()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'stationCategoryMaster')"></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
-                    <li [class.is-done4]="data4">
+                    <li [class.is-done]="data4">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Staff Type Master
@@ -68,11 +70,11 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="staffTypeMaster"
-                                        (click)="onToggle4()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'staffTypeMaster')"></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
-                    <li [class.is-done5]="data5">
+                    <li [class.is-done]="data5">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Designation Master
@@ -81,12 +83,12 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="designationMaster"
-                                        (click)="onToggle5()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'designationMaster')"></mat-slide-toggle>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li [class.is-done6]="data6">
+                    <li [class.is-done]="data6">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Subject Master
@@ -95,11 +97,11 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="subjectMaster"
-                                        (click)="onToggle6()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'subjectMaster')"></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
-                    <li [class.is-done7]="data7">
+                    <li [class.is-done]="data7">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Region Station Mapping
@@ -108,11 +110,11 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="regionStationMapping"
-                                        (click)="onToggle7()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'regionStationMapping')"></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
-                    <li [class.is-done8]="data8">
+                    <li [class.is-done]="data8">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Station Category Mapping
@@ -121,11 +123,11 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="stationCategoryMapping"
-                                        (click)="onToggle8()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'stationCategoryMapping')"></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
-                    <li [class.is-done9]="data9">
+                    <li [class.is-done]="data9">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Station School Mapping
@@ -134,12 +136,12 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="stationSchoolMapping"
-                                        (click)="onToggle9()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'stationSchoolMapping')"></mat-slide-toggle>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li [class.is-done10]="data10">
+                    <li [class.is-done]="data10">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Staff-Type-Post Mapping
@@ -148,11 +150,11 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="staffTypePostMapping"
-                                        (click)="onToggle10()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'staffTypePostMapping')"></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
-                    <li [class.is-done11]="data11">
+                    <li [class.is-done]="data11">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Post-Subject Mapping
@@ -160,12 +162,12 @@
                             <div class>
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
-                                        formControlName=" postSubjectMapping"
-                                        (click)="onToggle11()"></mat-slide-toggle>
+                                        formControlName="postSubjectMapping"
+                                        (click)="onToggle(this.freezeForm.value,'postSubjectMapping')"></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
-                    <li [class.is-done12]="data12">
+                    <li [class.is-done]="data12">
                         <div class="d-flex justify-content-between">
                             <div class="fontUser">
                                 Sanctioned-Post Mapping
@@ -174,16 +176,16 @@
                                 <div class="form-check">
                                     <mat-slide-toggle color="primary"
                                         formControlName="sanctionedPostMapping"
-                                        (click)="onToggle12()"></mat-slide-toggle>
+                                        (click)="onToggle(this.freezeForm.value,'sanctionedPostMapping')"></mat-slide-toggle>
                                 </div></div>
                         </div>
                     </li>
                 </ul>
-                <hr />
+                 <!-- <hr />
                 <div class="text-center">
-                    <button class="btn btn-primary" (click)="freezemaster()">
+                    <button class="btn btn-primary" (click)="freezemaster(this.freezeForm.value)">
                         Freeze Data</button>
-                </div>
+                </div>  -->
             </form>
 
         </div>
