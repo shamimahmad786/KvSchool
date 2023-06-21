@@ -79,6 +79,7 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { FreezeMastersComponent } from './components/freeze-masters/freeze-masters.component';
+import { MaterialModule } from './mat/material/material.module';
 
 
 
@@ -170,7 +171,7 @@ import { FreezeMastersComponent } from './components/freeze-masters/freeze-maste
     MatPaginatorModule,
     FormsModule,
     RxReactiveFormsModule,
-    // HttpClientModule,
+     HttpClientModule,
     // HttpClient,
     TModuleModule,
     NgbModule,
@@ -187,7 +188,8 @@ import { FreezeMastersComponent } from './components/freeze-masters/freeze-maste
     MatSlideToggleModule,
     MatMenuModule,
     MatSortModule,
-    MatButtonModule
+    MatButtonModule,
+    MaterialModule
     // TranslateModule.forRoot({
     //   loader: {
     //     provide: TranslateLoader,

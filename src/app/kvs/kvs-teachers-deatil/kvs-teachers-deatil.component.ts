@@ -32,8 +32,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
   remarksForm: FormGroup;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  // @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatSort) sort!:MatSort;
+ @ViewChild(MatSort) sort: MatSort;
   
   testData = { "sno": "", "name": "", "postName": "", "email": "", "mobile": "", "subjectName": "","approvedStatus":"","approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
   users: any = [];
