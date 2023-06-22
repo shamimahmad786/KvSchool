@@ -238,3 +238,14 @@ ag-grid-angular {
 
 
 /* #b1b1b1  */
+
+.btn-secondary {
+    color: #fff !important;
+    background-color: #106183 !important;
+}
+
+.btn-primary {
+    color: #fff !important;
+    background-color: #106183 !important;
+    border-color:#106183 !important;
+}

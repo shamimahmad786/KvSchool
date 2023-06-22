@@ -28,6 +28,7 @@ export class RegionMasterComponent implements OnInit,AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+
   listRegion: any=[];
   returnTypeSrvTime: any;
   freezeStatus = false;

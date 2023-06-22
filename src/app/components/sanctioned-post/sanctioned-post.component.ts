@@ -236,7 +236,7 @@ this.schoolName=this.schoolList[i].schoolName;
        this.data=this.sanctionedPost.value.sanctionedPostDetails;
 
        
-alert(JSON.stringify(this.data));
+// alert(JSON.stringify(this.data));
        let sanctionedPostRequestVo2Data=[];
        
        if(!this.isEdit){
@@ -290,7 +290,7 @@ alert(JSON.stringify(this.data));
         }
 
 
-        alert(JSON.stringify(request));
+        // alert(JSON.stringify(request));
 
         this.outSideService.updateSanctionedData(request).subscribe((res) => {
           console.log(res)
@@ -526,7 +526,7 @@ this.regionName=this.regionList[i].regionName;
 }
 debugger
 for(var i=0;i<this.schoolList.length;i++){
-  if(this.schoolList[i].schoolCode==this.schoolCode){
+  if(this.schoolList[i].schoolCode==this.schoolCode && this.schoolList[i].shift==this.shift){
     this.schoolName=this.schoolList[i].schoolName;
   }
 }

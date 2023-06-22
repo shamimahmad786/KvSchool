@@ -26,6 +26,7 @@ export class StationMasterComponent implements OnInit {
   testData = {sno: '', stationcode: '', stationname: '', status: '',statusType: '',id:''};
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  
   stationList: any=[];
   returnTypeSrvTime: any;
   freezeStatus = false;

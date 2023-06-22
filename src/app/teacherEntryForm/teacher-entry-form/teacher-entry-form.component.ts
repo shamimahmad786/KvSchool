@@ -1863,7 +1863,7 @@ debugger
           this.responseData.spouseStationName = this.teacherForm.value.personalInfoForm.spouseStationName
           this.responseData.kvCode=this.kvCode;
          // this.responseData.specialRecruitmentYn = this.teacherForm.value.personalInfoForm.specialRecruitmentYn
-         
+         debugger
           this.outSideService.saveSingleTeacher(this.responseData).subscribe((response) => {
 
             this.responseData = response.response;
@@ -3199,18 +3199,19 @@ return
   }
 
   getStationByRegionId(event) {
-    this.selectedUdiseCode = '';
-    this.stationList = []
+    // this.selectedUdiseCode = '';
+    // this.stationList = []
     // var stationByInterCond = {
     //   "extcall": "MOE_EXT_GETSTATION_BY_TEACHER_INTER",
     //   "conditionvalue": [this.responseData.teacherId, event.target.value, event.target.value, this.responseData.teacherId]
     // }
 
-    const data={'regionCode':event.target.value};
-alert(data);
+    const data={"regionCode":event.target.value};
 
     this.outSideService.fetchStationByRegionId(data).subscribe((res) => {
-      this.stationList =res.response.rowValue
+     
+      this.stationList =res.rowValue
+      // alert(JSON.stringify(this.stationList));
     })
     console.log(this.stationList)
   }

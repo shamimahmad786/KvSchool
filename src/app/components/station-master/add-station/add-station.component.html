@@ -1,17 +1,19 @@
-<div class="container-fluid px-4">
+<div class="cardSet50 px-4">
     <form [formGroup]="stationForm" (ngSubmit)="submit()">
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card mt-83">
-                    <div class=" bg-profile-head">
-                        <h5 class="mb-0 p-2 FontTitle  text-white">{{isEdit?'Edit Station':'Add New Station'}}</h5>
+                <div class="">
+                    
+
+                    <div class=" headingBack mb-4">
+                        <span class="fonttileHeading">{{isEdit?'Edit Station':'Add New Station'}}</span>
                     </div>
 
-                    <div class="m-3 prof-fields">
+                    <div class=" prof-fields bg-white shadow p-4 rounded-3">
                         <div class="row">
 
-                            <div class="col-md-5 form-group">
+                            <div class="col-md-4 form-group my-2">
                                 <label class="titleSet">Station Code</label>
                                 <input type="text" formControlName="stationCode" class="form-control" maxlength="3">
                                 <!-- <span class="help-block text-danger"
@@ -23,7 +25,7 @@
                                 </mat-error>
 
                             </div>
-                            <div class="col-md-5 form-group">
+                            <div class="col-md-4 form-group my-2">
                                 <label class="titleSet">Station Name</label>
                                 <input type="text" formControlName="stationName" class="form-control" maxlength="50">
                                 <!-- <span class="help-block text-danger"
@@ -37,7 +39,7 @@
                                 <mat-error *ngIf="isSubmitted && errorHandling('stationName','textField')">Pleae Enter a Valid Name(Only white space is allowed.)
                                 </mat-error>
                             </div>
-                            <div class="col-md-5 form-group mt-3">
+                            <div class="col-md-4 form-group my-2">
                                 <label class="titleSet">Select Status</label>
                                 <mat-select formControlName="status" class="form-control">
                                     <mat-option>Select Status</mat-option>
@@ -47,8 +49,8 @@
                                     Please select the status!
                                 </mat-error>
                             </div>
-                            <div>
-                                <button type="submit" class="btn btn-primary mt-2">{{isEdit?'Update':'Add Station'}}</button>&nbsp;&nbsp;
+                            <div class="mt-2 text-end">
+                                <button type="submit" class="btn btn btn-success mt-2">{{isEdit?'Update':'Add Station'}}</button>&nbsp;&nbsp;
                                 <button type="button" *ngIf="!isEdit" class="btn btn-primary mt-2" (click)="clear()">Clear</button>&nbsp;&nbsp;
                                 <button type="button" class="btn btn-primary mt-2" (click)="redirectToList()">Cancel</button>
                             </div>

@@ -3,33 +3,34 @@
 
 
     <mat-card-title>Reports- {{reportFullName}}</mat-card-title>
-     <div class="row">
+    <div class="row">
 
-        
-    </div> 
+
+    </div>
     <div class="row">
         <div class="col-md-12 ">
             <button mat-raised-button class="float-end  btn-secondary" (click)="download()">Download PDF</button>
-            <button class="btn btn-success float-end mx-2" routerLink="/teacher/nationalReport" style=" background: #24695c;">Back</button>       
-            
+            <button class="btn btn-success float-end mx-2" routerLink="/teacher/nationalReport" style=" background: #24695c;">Back</button>
+            <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
         </div>
     </div>
 
 
-    <div class="row" *ngIf="reportId==1">
-        <div class="col-sm-2">
+    <div class="row">
+        <div class="col-sm-2" *ngIf="reportId==1 || reportId==5">
             <mat-form-field>
                 <mat-select [formControl]="regionCtrl" placeholder="Region" (selectionChange)="regionChange($event.value)" #regionSelect disableOptionCentering>
+                    <!-- <mat-option>Select Region</mat-option> -->
                     <mat-option>
                         <ngx-mat-select-search [formControl]="regionFilterCtrl"></ngx-mat-select-search>
                     </mat-option>
                     <mat-option *ngFor="let region of filteredRegion | async" [value]="region">
-                        {{region.regionName}}
+                        {{region.region_name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2" *ngIf="reportId==1">
             <mat-form-field>
                 <mat-select [formControl]="stationCtrl" placeholder="Station" (selectionChange)="getSchoolByStation($event.value)" #stationSelect disableOptionCentering>
                     <mat-option>
@@ -41,7 +42,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2" *ngIf="reportId==1">
             <mat-form-field>
                 <mat-select [formControl]="schoolCtrl" placeholder="school" (selectionChange)="getStaffBySchool($event.value)" #schoolSelect disableOptionCentering>
                     <mat-option>
