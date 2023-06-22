@@ -2,6 +2,10 @@
 export const environment = {
   production: false,
   //Local
+
+
+
+  
   BASE_URL_DATA_TEACHER: 'http://10.25.26.251:8014/api/teacher/',
   BASE_URL_DATA_TEACHER_TRANSFER:'http://10.25.26.251:8014/api/transprofile/',
   BASE_URL_DATA_MASTER: 'http://10.25.26.251:8014/api/master/',

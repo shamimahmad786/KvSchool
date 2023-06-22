@@ -162,7 +162,9 @@
             <ng-container matColumnDef="systchcode">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>User Id </mat-header-cell>
                 <mat-cell *matCellDef="let row"> <span class="mobile-label">User Id - </span>
-                    <span *ngIf="row.systchcode != 'null' && row.systchcode != '' ">{{row.systchcode}}</span>
+                    <span *ngIf="row.systchcode != 'null' && row.systchcode != '' "><i class="fa fa-check-square fa-2x fa-fw" aria-hidden="true" style="
+                        color: green;
+                    "></i></span>
                     <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
                         <button [disabled]="disabledCreateButton" type="button"
                             class="btn btn-sm btn12 btn-outline-success" (click)="createUser(row.empcode,row.teacherId)">Create

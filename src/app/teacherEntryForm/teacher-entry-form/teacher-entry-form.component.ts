@@ -747,7 +747,7 @@ transferRelatedForm: new FormGroup({
 
   }
   addQuantity(data) {
-    //debugger
+    debugger
     this.detailsOfPosting().push(this.newQuantity(data));
   }
   removeQuantity(val) {
@@ -791,7 +791,7 @@ transferRelatedForm: new FormGroup({
     this.subjectListNameCode2 = [];
     if (this.tempTeacherId) {
       this.outSideService.fetchTchExpByTchId(this.tempTeacherId).subscribe((res) => {
-      //  debugger
+        debugger
         this.tchExpList = res.response;
 
         for (let i = 0; i < this.tchExpList.length; i++) {
@@ -1746,7 +1746,7 @@ debugger
               '',
               'success'
             )
-            debugger
+           // debugger
             this.nextClick(2)
           } else if (this.responseStatus == '0') {
             Swal.fire(
@@ -1800,10 +1800,6 @@ debugger
         }
       })
     } else if (activeButton == "submit2") {
-
-
-  
-debugger
       this.outSideService.getUpdatedFlag(this.tempTeacherId).subscribe((res) => {
         this.flagUpdatedList = res.response
       })
@@ -2038,7 +2034,7 @@ debugger
       }
 
     } else if (activeButton == "submit3") {
-      debugger
+     // debugger
       console.log(this.teacherForm);
       this.getStatus(this.tempTeacherId);      
       // transferRelatedForm
@@ -2078,7 +2074,7 @@ console.log(this.teacherForm.value.transferRelatedForm)
     })
   
     } else if (activeButton == "submit4") {
-      debugger
+      //debugger
       this.getStatus(this.tempTeacherId);
       this.teacherForm.patchValue({
         transferRelatedForm: {
@@ -3198,25 +3194,29 @@ return
     this.outSideService.fetchKvRegion(1).subscribe((res) => {
       console.log("region list")
       console.log( this.regionList)
-      this.regionList = res.response;
+      this.regionList = res.response.rowValue;
     })
   }
 
   getStationByRegionId(event) {
     this.selectedUdiseCode = '';
     this.stationList = []
-    var stationByInterCond = {
-      "extcall": "MOE_EXT_GETSTATION_BY_TEACHER_INTER",
-      "conditionvalue": [this.responseData.teacherId, event.target.value, event.target.value, this.responseData.teacherId]
-    }
-    this.outSideService.fetchStationByRegionId(stationByInterCond).subscribe((res) => {
+    // var stationByInterCond = {
+    //   "extcall": "MOE_EXT_GETSTATION_BY_TEACHER_INTER",
+    //   "conditionvalue": [this.responseData.teacherId, event.target.value, event.target.value, this.responseData.teacherId]
+    // }
+
+    const data={'regionCode':event.target.value};
+alert(data);
+
+    this.outSideService.fetchStationByRegionId(data).subscribe((res) => {
       this.stationList =res.response.rowValue
     })
     console.log(this.stationList)
   }
 
   getKvSchoolByStationId(event) {
-    debugger
+    //debugger
     this.selectedUdiseCode = '';
     this.kvSchoolList = []
     this.outSideService.fetchKvSchoolByStationCode(event.target.value).subscribe((res) => {
@@ -3230,7 +3230,7 @@ return
     this.selectedUdiseCode = event.target.value;
   }
   setSchoolType(event) {
-    debugger;
+   // debugger;
     this.selectStationName=''
     //HQ
     if(event.target.value=='4')
@@ -3326,7 +3326,7 @@ this.getMaster(data,event.target.value);
   }
 
   setTeacherPostingData(name, udiseCode,schoolType) {
-    debugger
+   // debugger
    console.log(this.teacherForm.get('detailsOfPosting'));
     ((this.teacherForm.get('detailsOfPosting') as FormArray).at(this.indexNew) as FormGroup).get('udiseSchoolName').patchValue(name);
     ((this.teacherForm.get('detailsOfPosting') as FormArray).at(this.indexNew) as FormGroup).get('experienceType').patchValue(schoolType);

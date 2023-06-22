@@ -524,7 +524,7 @@ this.regionName=this.regionList[i].regionName;
         this.stationName=this.stationList[i].stationName;
       }
 }
-
+debugger
 for(var i=0;i<this.schoolList.length;i++){
   if(this.schoolList[i].schoolCode==this.schoolCode){
     this.schoolName=this.schoolList[i].schoolName;
