@@ -5,7 +5,6 @@ import { RegionMasterRoutingModule } from './region-master-routing.module';
 import { RegionMasterComponent } from './region-master.component';
 import { QCommonModule } from '../q-common/q-common.module';
 import { AddRegionComponent } from './add-region/add-region.component';
-import { MaterialModule } from 'src/app/mat/material/material.module';
 
 
 
@@ -17,7 +16,7 @@ import { MaterialModule } from 'src/app/mat/material/material.module';
   imports: [
     CommonModule,
     RegionMasterRoutingModule,
-    QCommonModule, MaterialModule
+    QCommonModule
   ]
 })
 export class RegionMasterModule { }
