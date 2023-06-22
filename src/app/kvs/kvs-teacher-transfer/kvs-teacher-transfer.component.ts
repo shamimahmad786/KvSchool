@@ -164,7 +164,7 @@ export class KvsTeacherTransferComponent implements OnInit {
 
   setToMatTable(data) {
 debugger
-    alert("Data after get--->"+JSON.stringify(data));
+    // alert("Data after get--->"+JSON.stringify(data));
 
     this.users = [];
     for (let i = 0; i < data.length; i++) {

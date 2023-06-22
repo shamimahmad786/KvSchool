@@ -26,7 +26,9 @@ import { ReplaySubject, Subject } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { takeUntil, take } from 'rxjs/operators';
 // import { UntypedFormControl } from '@angular/forms';
-
+ 
+import { Workbook } from 'exceljs';
+import { saveAs } from 'file-saver';
 
 export interface Bank {
   id: string;
@@ -133,6 +135,7 @@ export class ReportGridComponent implements OnInit {
 
   protected _onDestroy = new Subject<void>();
   yPoint: any;
+  allResData: any;
 
   ngAfterViewInit() {
     // this.setInitialValue();
@@ -240,6 +243,8 @@ export class ReportGridComponent implements OnInit {
       this.reportFullName="List of Region";
     }else if(data=="4"){
       this.reportFullName="List of Station";
+    }else if(data=="5"){
+      this.reportFullName="Sanctioned Post for Region";
     }
     
   }
@@ -284,32 +289,18 @@ export class ReportGridComponent implements OnInit {
 
   getReportData(data){
   
-    
+    // alert(JSON.stringify(data));
 
     this.reportService.getReportData(data).subscribe((res) => { 
+
+      alert(JSON.stringify(res));
+      this.allResData=res
       this.rowData=res.rowValue;
       this.rows=res.rowValue
       
       if(this.reportId=="1"){
 
       if(data.reportType=="N" || (data.reportType=="R" && data.reportValue=="999")){
-
-
-        
-  //   this.columns = [
-  //     {title: "Region Name", dataKey: "region_name"},
-  //     {title: "Total No. of Station", dataKey: "no_of_station"}, 
-  //     {title: "Total No. of School", dataKey: "no_of_school"},
-  //     {title: "Total No. of Staff", dataKey: "total_staff_all"},
-  // ];
-  // var rows = [
-  //     {id: 1, name: "Shaw", address: {country: "Tanzania"}},
-  //     {id: 2, name: "Nelson", address: {country: "Kazakhstan"}},
-  //     {id: 3, name: "Garcia", address: {country: "Madagascar"}}
-  // ];
-
- 
-
 
 
         this.columnDefs = [
@@ -387,6 +378,19 @@ export class ReportGridComponent implements OnInit {
         {headerName: 'Total No. of School', field: 'no_of_school'},
         
       ];
+    }else if(this.reportId=="5"){
+      this.columnDefs = [
+        {headerName: 'Region Name', field: 'region_name'},
+        {headerName: 'Region Code', field: 'region_code'},
+        {headerName: 'School Name', field: 'kv_name'},
+        {headerName: 'School Code', field: 'school_code'},
+        {headerName: 'Post Name', field: 'post_name'},
+        {headerName: 'Post Code', field: 'post_code'},
+        {headerName: 'Subject Name', field: 'subject_name'},
+        {headerName: 'Subject Code', field: 'subject_code'},
+        {headerName: 'Sanctioned Post', field: 'sanctioned_post'},
+        {headerName: 'Occupied Post', field: 'occupied_post'},
+      ];
     }
 
       this.columns=this.columnDefs;
@@ -394,11 +398,75 @@ export class ReportGridComponent implements OnInit {
     })
   }
 
+  exportexcel(){
+    console.log(this.rows)
+  
+    const workBook = new Workbook();
+    const workSheet = workBook.addWorksheet('SanctionedPostforRegion');
+    const excelData = [];
+    const ws1 = workSheet.addRow(['','','','', 'SANCTIONED POST FOR '+this.regionName, '','','','','']);
+    const dobCol = workSheet.getColumn(1);
+    dobCol.width = 20;
+    const dobCol1 = workSheet.getColumn(2);
+    dobCol1.width = 10;
+    const dobCol2 = workSheet.getColumn(3);
+    dobCol2.width = 35;
+    const dobCol34 = workSheet.getColumn(4);
+    dobCol34.width =10;
+    const dobCol3 = workSheet.getColumn(5);
+    dobCol3.width =30;
+    const dobCol4 = workSheet.getColumn(6);
+    dobCol4.width =10;
+    const dobCol5 = workSheet.getColumn(7);
+    dobCol5.width =20;
+    const dobCol6 = workSheet.getColumn(8);
+    dobCol6.width =15;
+    const dobCol7 = workSheet.getColumn(9);
+    dobCol7.width =10;
+    const dobCol8 = workSheet.getColumn(10);
+    dobCol8.width =10;
+    workSheet.getRow(1).font = { name: 'Arial', family: 4, size: 13, bold: true };
+    for (let i = 1; i < 11; i++) {
+      const col = ws1.getCell(i);
+      col.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb:  '9c9b98' },   
+      };
+    }
+   const ws = workSheet.addRow(['Region Name', 'Region Code', 'School Name','School Code','Post Name','Post Code','Subject name','Subject Code','Sanctioned post','occupied post']);
+   workSheet.getRow(2).font = { name: 'Arial', family: 4, size: 10, bold: true };
+      for (let i = 1; i < 11; i++) {
+        const col = ws.getCell(i);
+        col.fill = {
+          type: 'pattern',
+          pattern: 'solid',
+          fgColor: { argb:  'd6d6d4' },
+        };
+      }
+      
+      this.rows.forEach((item) => {
+      const row = workSheet.addRow([item.region_name, item.region_code,item.kv_name,item.school_code,item.post_name,item.post_code,item.subject_name,item.subject_code,item.sanctioned_post,item.occupied_post]);
+    });
+    workBook.xlsx.writeBuffer().then((data) => {
+      let blob = new Blob([data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
+      saveAs(blob, 'SanctionedPostforRegion.xlsx');
+    });
+  }
+
+
+
+
   getRegionData(){
   
     this.reportService.fetchKvRegion(1).subscribe((res) => { 
       
-      this.regionData=res.response;
+      this.regionData=res.response.rowValue;
+
+      // alert(JSON.stringify(this.regionData));
+
       // this.regionData.push({"regionCode":999,"regionName":"All","regionId":999});
       this.regionData.splice(0, 0, {"regionCode":999,"regionName":"All","regionId":999})
       this.stateGroups=[{
@@ -527,10 +595,10 @@ export class ReportGridComponent implements OnInit {
   regionChange(event){
     
     
-this.regionName=event.regionName;
+this.regionName=event.region_name;
 if(this.regionName=="All"){
 this.menuHeader = [
-  { label: 'Region('+event.regionName+')', icon: 'keyboard_arrow_right' }
+  { label: 'Region('+event.region_name+')', icon: 'keyboard_arrow_right' }
 ];
 
  this.stationData=[];
@@ -539,7 +607,7 @@ this.menuHeader = [
  
 }else {
   this.menuHeader = [
-    { label: 'Region('+event.regionName+')', icon: 'keyboard_arrow_right' },
+    { label: 'Region('+event.region_name+')', icon: 'keyboard_arrow_right' },
     { label: 'Station(All)', icon: 'keyboard_arrow_right' }
   ];
   
@@ -569,7 +637,7 @@ this.menuHeader = [
 
     })
 this.regionCode=event.regionCode;
-    const datas={"reportId":this.reportId,"reportType":"R","reportValue":event.regionCode};
+    const datas={"reportId":this.reportId,"reportType":"R","reportValue":event.region_code};
     this.getReportData(datas);
 
   }
@@ -692,7 +760,12 @@ this.columns=JSON.parse(JSON.stringify(this.columns).replace(/field/g,"dataKey")
 
   var yPoint:any;
 
-  const reportName = this.reportFullName;
+  var reportName 
+  // alert(this.reportId);
+  if(this.reportId==5){
+    reportName = this.reportFullName+" "+this.regionName;
+  }
+  
   
   (doc as any).autoTable({
     

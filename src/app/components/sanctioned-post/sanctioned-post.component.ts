@@ -526,7 +526,7 @@ this.regionName=this.regionList[i].regionName;
 }
 
 for(var i=0;i<this.schoolList.length;i++){
-  if(this.schoolList[i].schoolCode==this.schoolCode){
+  if(this.schoolList[i].schoolCode==this.schoolCode && this.schoolList[i].shift==this.shift){
     this.schoolName=this.schoolList[i].schoolName;
   }
 }

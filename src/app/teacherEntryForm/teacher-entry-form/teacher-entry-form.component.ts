@@ -3203,14 +3203,19 @@ return
   }
 
   getStationByRegionId(event) {
-    this.selectedUdiseCode = '';
-    this.stationList = []
-    var stationByInterCond = {
-      "extcall": "MOE_EXT_GETSTATION_BY_TEACHER_INTER",
-      "conditionvalue": [this.responseData.teacherId, event.target.value, event.target.value, this.responseData.teacherId]
-    }
-    this.outSideService.fetchStationByRegionId(stationByInterCond).subscribe((res) => {
-      this.stationList =res.response.rowValue
+    // this.selectedUdiseCode = '';
+    // this.stationList = []
+    // var stationByInterCond = {
+    //   "extcall": "MOE_EXT_GETSTATION_BY_TEACHER_INTER",
+    //   "conditionvalue": [this.responseData.teacherId, event.target.value, event.target.value, this.responseData.teacherId]
+    // }
+
+    const data={"regionCode":event.target.value};
+
+    this.outSideService.fetchStationByRegionId(data).subscribe((res) => {
+     
+      this.stationList =res.rowValue
+      // alert(JSON.stringify(this.stationList));
     })
     console.log(this.stationList)
   }
