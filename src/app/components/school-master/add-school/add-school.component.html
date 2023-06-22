@@ -1,17 +1,17 @@
-<div class="container-fluid px-4">
+<div class="cardSet50 px-4">
     <form [formGroup]="schoolForm" (ngSubmit)="submit()">
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card mt-83">
-                    <div class=" bg-profile-head">
-                        <h5 class="mb-0 p-2 FontTitle  text-white">{{isEdit?'Edit School':'Add New School'}}</h5>
+                <div class="">
+                    <div class=" headingBack mb-4">
+                        <span class="fonttileHeading">{{(isEdit)?'Edit Region':'Add New Region'}}</span>
                     </div>
 
-                    <div class="m-3 prof-fields">
+                    <div class=" prof-fields bg-white shadow p-4 rounded-3">
                         <div class="row">
 
-                            <div class="col-md-5 form-group">
+                            <div class="col-md-4 form-group my-2">
                                 <label class="titleSet">School Code</label>
                                 <input type="text" formControlName="schoolCode" class="form-control" maxlength="4">
                                 <!-- <span class="help-block text-danger"
@@ -22,7 +22,7 @@
                                 <mat-error *ngIf="isSubmitted && errorHandling('schoolCode','pattern')">Please Enter Valid School Code.(4 digit number)
                                 </mat-error>
                             </div>
-                            <div class="col-md-5 form-group">
+                            <div class="col-md-4 form-group my-2">
                                 <label class="titleSet">School Name</label>
                                 <input type="text" formControlName="schoolName" class="form-control" maxlength="50">
                                 <!-- <span class="help-block text-danger"
@@ -36,7 +36,7 @@
                                 <mat-error *ngIf="isSubmitted && errorHandling('schoolName','textField')">Pleae Enter a Valid Name!(Only dot, white space,() & numbers are allowed.)
                                 </mat-error>
                             </div>
-                            <div class="col-md-5 form-group mt-3">
+                            <div class="col-md-4 form-group my-2 ">
                                 <!-- <mat-form-field style="width: 100%;"> -->
                                 <label class="titleSet">Select Status</label>
                                 <mat-select formControlName="status" class="form-control">
@@ -51,7 +51,7 @@
                                 <!-- <span class="help-block text-danger"
                                 *ngIf="!regionForm.get('status').valid && regionForm.get('status').touched">Please select the status!</span> -->
                             </div>
-                            <div class="col-md-5 form-group mt-3">
+                            <div class="col-md-4 form-group my-2 ">
                                 <label class="titleSet">Select Shift</label><br>
                                 <!-- <mat-select formControlName="shift" class="form-control">
                                     <mat-option *ngFor="let shift of shiftList" [value]="shift.value">{{shift.type}}</mat-option>
@@ -68,8 +68,8 @@
 
 
                             </div>
-                            <div>
-                                <button type="submit" class="btn btn-primary mt-2">{{isEdit?'Update ':'Add School'}}</button>&nbsp;&nbsp;
+                            <div class="mt-2 text-end">
+                                <button type="submit" class="btn btn-success mt-2">{{isEdit?'Update ':'Add School'}}</button>&nbsp;&nbsp;
                                 <button type="button" *ngIf="!isEdit" class="btn btn-primary mt-2" (click)="clear()">Clear</button>&nbsp;&nbsp;
                                 <button type="button" class="btn btn-primary mt-2" (click)="redirectToList()">Cancel</button>
                             </div>

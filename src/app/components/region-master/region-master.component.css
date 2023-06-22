@@ -1,17 +1,36 @@
- 
-  table {
-    width: 100%;
-  }
-  th.mat-header-cell:first-of-type{
-    padding-left: 8px;
-    text-align: center;
-  }
-  th.mat-header-cell{
-    padding-left: 24px;
-  }
-  td.mat-cell{
-    padding-left: 24px;
-  }
-  .bg-1{
-    background-color: #fff;
-  }
+table {
+  width: 100%;
+}
+th.mat-header-cell:first-of-type {
+  padding-left: 8px;
+  text-align: center;
+}
+th.mat-header-cell {
+  padding-left: 24px;
+}
+td.mat-cell {
+  padding-left: 24px;
+}
+.bg-1 {
+  background-color: #fff;
+}
+
+.mat-form-field:not(.mat-form-field-has-label) .mat-form-field-infix {
+  border-top-width: 0;
+}
+
+
+::ng-deep .mat-form-field-wrapper {
+   padding-bottom:5px !important; 
+}
+.mat-form-field-wrapper {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.mat-form-field-label-wrapper {
+  padding-top: 0px;
+}
+
+
