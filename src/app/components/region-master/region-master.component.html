@@ -1,5 +1,5 @@
 <div class="cardSet px-4">
-    <div class="d-flex justify-content-between  mb-4">
+    <div class="d-flex justify-content-between headingBack mb-4">
         <div class="mt-3">
             <span class="fonttileHeading">Region/ZIET Master</span>
         </div>
@@ -27,8 +27,8 @@
             <button class="btn btn-primary btn-sm" (click)="teacherPdf()">Export to PDF</button>
         </div> -->
 
-        <div *ngIf="dataSource d-flex justify-content-around">
-            <mat-form-field  appearance="outline" class="px-4 py-2">
+        <div *ngIf="dataSource " >
+            <mat-form-field  appearance="outline" class="px-4 py-2 searchInput">
                 <!-- <mat-label>Region Code or Region Name</mat-label> -->
                 <input matInput (keyup)="applyFilter($event.target.value)"
                     placeholder="Search Region Code or Region Name">

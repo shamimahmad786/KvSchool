@@ -80,6 +80,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { FreezeMastersComponent } from './components/freeze-masters/freeze-masters.component';
 import { MaterialModule } from './mat/material/material.module';
+import { StationMasterModule } from './components/station-master/station-master.module';
 
 
 
@@ -189,7 +190,9 @@ import { MaterialModule } from './mat/material/material.module';
     MatMenuModule,
     MatSortModule,
     MatButtonModule,
-    MaterialModule
+    MaterialModule,
+    
+
     // TranslateModule.forRoot({
     //   loader: {
     //     provide: TranslateLoader,

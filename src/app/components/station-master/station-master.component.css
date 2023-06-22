@@ -15,3 +15,7 @@
   .bg-1{
     background-color: #fff;
   }
+
+  .mat-column-sno {width: 15% !important; }
+  .mat-column-stationcode {width: 15% !important; }
+  .mat-column-stationname {width: 30% !important; }

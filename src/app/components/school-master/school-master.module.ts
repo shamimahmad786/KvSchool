@@ -16,7 +16,7 @@ import { InstitutionType,ExperienceType,AppointedForLevelPipe, BloodGroupPipe, C
   imports: [
     CommonModule,
     SchoolMasterRoutingModule,
-    QCommonModule
+    QCommonModule, 
   ]
 })
 export class SchoolMasterModule { }
