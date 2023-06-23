@@ -1,25 +1,30 @@
-<div class="container-fluid px-4">
-    <div class=" bg-profile-head">
-        <h5 class="mb-0 p-2 FontTitle  text-white">Station-Category Master</h5>
-    </div>
-    <div class="d-flex flex-row-reverse bd-highlight mb-3">
+<div class="cardSet px-4">
+    <div class="d-flex justify-content-between headingBack mb-4">
+        <div class="mt-3">
+            <span class="fonttileHeading">Station-Category Master</span>
+        </div>
+        <div class="d-flex d-flex-row">
+    
+    
         <div class="p-1" *ngIf="!freezeStatus">
-            <button mat-raised-button class="float-end mt-2 btn-success" (click)="redirectto()">Add</button>
+            <button mat-raised-button class="float-end mt-2 btn-success" (click)="redirectto()"> <i class="bi bi-plus-circle me-1"></i> Add</button>
         </div>
         <div class="p-1">
-            <button mat-raised-button class="float-end mt-2 btn-secondary" (click)="stationCategoryMasterpdf()">Download PDF</button>
+            <button mat-raised-button class="float-end mt-2 btn-secondary" (click)="stationCategoryMasterpdf()"> <i class="bi bi-file-pdf me-1"></i> Download PDF</button>
         </div>
         <div class="p-1">
-            <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
+            <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()"><i class="bi bi-file-earmark-excel me-1"></i> Download Excel</button>
         </div>        
     </div>
-    <div class="row bg-1"> 
+    </div>
+    <div class="shadow bg-white rounded-3"> 
         <div *ngIf="dataSource">
-            <mat-form-field style="width: 30%;">
+            <mat-form-field appearance="outline" class="px-4 py-2 searchInput">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Category Name">
+                <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
         </div>
-        <div class="mat-elevation-z8">
+        <div class="mat-elevation-z8 table-responsive">
             <table mat-table [dataSource]="dataSource" matSort>
 
                 <ng-container matColumnDef="sno">
