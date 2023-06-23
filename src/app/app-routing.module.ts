@@ -75,6 +75,7 @@ const routes: Routes = [
       { path: 'stafftypePostMapping', loadChildren: () => import('./components/stafftype-post-mapping/stafftype-post-mapping.module').then(m => m.StafftypePostMappingModule) },
       { path: 'postSubjectMapping', loadChildren: () => import('./components/post-subject-mapping/post-subject-mapping.module').then(m => m.PostSubjectMappingModule) },
       { path: 'sanctioned-post', loadChildren: () => import('./components/sanctioned-post/sanctioned-post.module').then(m => m.SanctionedPostModule) },
+      { path: 'sanctioned-all-post', loadChildren: () => import('./components/sanctioned-all-post/sanctioned-all-post.module').then(m => m.SanctionedAllPostModule) },
     ]},  
 ];
 
