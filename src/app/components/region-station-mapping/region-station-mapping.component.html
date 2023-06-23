@@ -22,6 +22,7 @@
                             <mat-label class="mat_label">Select Region</mat-label>
                             <input type="text" placeholder="Region Code" aria-label="Region Code" matInput [formControl]="regionStationMF['controls'].regionCode" [matAutocomplete]="auto">
                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                <!-- <mat-option value="All">All</mat-option> -->
                                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option.regionName">
                                     {{option.regionName}}
                                 </mat-option>

@@ -293,7 +293,7 @@ export class ReportGridComponent implements OnInit {
 
     this.reportService.getReportData(data).subscribe((res) => { 
 
-      alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
       this.allResData=res
       this.rowData=res.rowValue;
       this.rows=res.rowValue

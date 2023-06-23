@@ -95,15 +95,21 @@ this.search();
     }else{
       this.isSubmitted = false;
       let payload=this.regionStationMF.getRawValue();
+      // alert(payload.regionCode);
       let request={
         regionName: payload.regionCode,
       }
+
+      if(payload.regionCode=='All'){
+        this.search();
+      }else{
       this.outSideService.searchRegionStationMList(request).subscribe((res)=>{
            this.getRegionStationList(res.content)
       },
       error => {
         console.log(error);
       })
+    }
     }
 
     
@@ -117,6 +123,7 @@ this.search();
 
     this.outSideService.searchRegionStationMList(request).subscribe((res)=>{
 
+      // alert(JSON.stringify(res));
       this.getRegionStationList(res.content)
       },
       error => {
