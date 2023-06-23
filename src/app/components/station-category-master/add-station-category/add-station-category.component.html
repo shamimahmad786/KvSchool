@@ -1,17 +1,17 @@
-<div class="container-fluid px-4">
+<div class="cardSet50 px-4">
     <form [formGroup]="stationCategoryForm" (ngSubmit)="submit()">
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card mt-83">
-                    <div class=" bg-profile-head">
-                        <h5 class="mb-0 p-2 FontTitle  text-white">{{isEdit?'Edit Station Category Master':'Add New Station Category Master'}}</h5>
+                <div class="">
+                    <div class=" headingBack mb-4">
+                        <span class="fonttileHeading">{{isEdit?'Edit Station Category Master':'Add New Station Category Master'}}</span>
                     </div>
-
-                    <div class="m-3 prof-fields">
+                  
+                    <div class=" prof-fields bg-white shadow p-4 rounded-3">
                         <div class="row">
 
-                            <div class="col-md-5 form-group">
+                            <div class="col-md-4 my-2 form-group">
                                 <label class="titleSet">Station Category Name</label>
                                 <input type="text" formControlName="categoryName" class="form-control">
                                 <!-- <span class="help-block text-danger"
@@ -25,7 +25,7 @@
                                 <mat-error *ngIf="isSubmitted && errorHandling('categoryName','textField')">Pleae Enter a Valid Name!(Only white space is allowed.)
                                 </mat-error>
                             </div>
-                            <div class="col-md-5 form-group">
+                            <div class="col-md-4 my-2 form-group">
                                 <!-- <mat-form-field style="width: 100%;"> -->
                                 <label class="titleSet">Select Status</label>
                                 <mat-select formControlName="status" class="form-control">
@@ -42,7 +42,7 @@
                             </div>
 
                             <div>
-                                <button type="submit" class="btn btn-primary mt-2">{{isEdit?'Update':'Add Station'}}</button>&nbsp;&nbsp;
+                                <button type="submit" class="btn btn-success mt-2">{{isEdit?'Update':'Add Station'}}</button>&nbsp;&nbsp;
                                 <button type="button" *ngIf="!isEdit" class="btn btn-primary mt-2" (click)="clear()">Clear</button>&nbsp;&nbsp;
                                 <button type="button" class="btn btn-primary mt-2" (click)="redirectToList()">Cancel</button>
                             </div>
