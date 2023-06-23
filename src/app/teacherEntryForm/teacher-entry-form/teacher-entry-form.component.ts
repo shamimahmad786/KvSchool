@@ -3674,6 +3674,7 @@ this.getMaster(data,event.target.value);
   }
 
   selectSpouseStationFn() {
+    debugger
     var str = this.selectedSpouseStation
     var splitted = str.split("-", 2);
     this.teacherForm.patchValue({
