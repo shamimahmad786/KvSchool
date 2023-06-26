@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import Swal from 'sweetalert2';
@@ -22,7 +22,9 @@ export class SanctionedPostComponent implements OnInit {
   schoolList:any=[];
   sanctionPostMappingDataListArray: any=[];
   returnTypeSrvTime: any;
-  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router) { }
+  regionNameCode: any;
+  constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, public route:Router,
+    private router: ActivatedRoute) { }
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
   responseData: any;
   shiftAvailable: boolean = false;
@@ -46,27 +48,40 @@ shift:any;
 
   testData = {sno: '',stationName:'', staffType: '', postName: '', postCode: '',subjectName:'',subjectCode:'',sanctionedPost:'',occupiedPost:'',vacant:'',surplus:''};
   ngOnInit(): void {
-
+    this.regionName =localStorage.getItem('regionName');
+    this.stationName =localStorage.getItem('stationName');
+    this.schoolName = localStorage.getItem('schoolName');
+    this.buildSanctionForm();
+    this.router.queryParams.subscribe(params => {
+      this.schoolCode=params['SchoolCode'];
+      this.regionCode=params['RegionCode'];
+      this.stationCode=params['StationCode'];
+      this.shift=params['Shift'];
+      // this.getStationList( params['RegionCode']);
+      // this.getSanctionPostList(params['SchoolCode']);
+       //this.getSchoolList(params['StationCode']);
+    })
     this.isEdit=false;
     this.businessTypeId=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_id;
     this.businessTypeCode=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_code;
-    this.getRegionList();
-    this.buildSanctionForm();
+    // this.getRegionList();
+    
+
     if(this.businessTypeId=="3"){
-this.selectedRegion=+this.businessTypeCode.trim();
-
-
-// this.getStationList(this.selectedRegion);
+   this.selectedRegion=+this.businessTypeCode.trim();
+   // this.getStationList(this.selectedRegion);
     }
+    this.fetchSanctionPost("2",this.schoolCode,this.stationCode,this.shift);
   }
   buildSanctionForm(){
     this.sanctionedPost = this.fb.group({
       'sanctionedPostDetails': new FormArray([]),
-      'schoolCode':['',Validators.required],
+     'schoolCode':['',Validators.required],
     });
 
   }
   getRegionList(){
+    debugger
     this.outSideService.fetchRegionList().subscribe((res)=>{
       if(res.length>0){
         res.forEach(element => {
@@ -95,8 +110,10 @@ this.selectedRegion=+this.businessTypeCode.trim();
 
   fetchSanctionPost(type,value,depValue,schoolShift){
   const data={"type":type,"value":value,"depValue":depValue,"shift":schoolShift};
+  this.sanctionedPost.get('schoolCode').setValue(value);
   this.outSideService.fetchSanctionPost(data).subscribe((res)=>{
     // alert(JSON.stringify(res));
+  //  alert(JSON.stringify(res));
     this.setDataToSanctionedArray(JSON.parse(JSON.stringify(res)).rowValue)
           this.sanctionPostMappingDataListArray=[];
           if(JSON.parse(JSON.stringify(res)).rowValue.length>0){
@@ -118,7 +135,7 @@ this.selectedRegion=+this.businessTypeCode.trim();
             
           }
 
-          if(type==2 && this.businessTypeId=="3"){
+          if((type==2) && this.businessTypeId=="3"){
             this.isEdit=true;
           }else{
             this.isEdit=false;
@@ -138,6 +155,7 @@ this.selectedRegion=+this.businessTypeCode.trim();
 
 
   getSanctionPostList(schoolCode){
+    debugger
     // alert("school name--->"+schoolCode)
      this.shift=this.schoolList[schoolCode.value].shift;
     this.schoolCode=this.schoolList[schoolCode.value].schoolCode;
@@ -153,7 +171,7 @@ this.schoolName=this.schoolList[i].schoolName;
     }
 
 
-    this.fetchSanctionPost("2",this.schoolCode,this.stationCode,this.shift);
+    this.fetchSanctionPost("2",schoolCode,this.stationCode,this.shift);
     this.sanctionPostFor=this.schoolName +" School";
 
 
@@ -229,6 +247,7 @@ this.schoolName=this.schoolList[i].schoolName;
 
   }
   onSubmit(){
+    debugger
     if (this.sanctionedPost.invalid) {
      this.sanctionedPost.markAllAsTouched();
     }else{
@@ -437,6 +456,7 @@ this.schoolName=this.schoolList[i].schoolName;
     }
   }
   getStationList(regionId){
+    debugger
     this.stationList=[];
     this.schoolList=[];
     this.regionCode=regionId;
@@ -450,12 +470,12 @@ this.regionName=this.regionList[i].regionName;
     if(regionId==0){
       // alert(this.regionName);
       this.regionSelection=regionId;
-      this.fetchSanctionPost("0",regionId,"","");
+      this.fetchSanctionPost("2",regionId,"","");
       this.sanctionPostFor="All Region";
       
     }else{
       // alert(this.regionName);
-      this.fetchSanctionPost("0",regionId,"","");
+      this.fetchSanctionPost("2",regionId,"","");
       this.sanctionPostFor=this.regionName +" Region";
       this.regionSelection=regionId;
     let request = {
@@ -605,6 +625,10 @@ for(var i=0;i<this.schoolList.length;i++){
      
 
   
+    }
+    backToList(){
+
+      this.route.navigate(['/teacher/sanctioned-all-post']);
     }
 
 }

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import Swal from 'sweetalert2';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
@@ -25,6 +27,9 @@ export class SanctionedAllPostComponent implements OnInit {
   sanctionPostMappingDataListArray: any=[];
   returnTypeSrvTime: any;
   url: string;
+  appllicatioDetails: any;
+  regionCodeData: any;
+  modeselect: any;
   constructor(private pdfService: MasterReportPdfService,private fb: FormBuilder,private outSideService: OutsideServicesService, private router: Router) { }
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
   responseData: any;
@@ -38,84 +43,120 @@ export class SanctionedAllPostComponent implements OnInit {
   regionCode:any;
   stationCode:any;
   selectedRegion:any;
-businessTypeId:any;
-businessTypeCode:any;
-regionName:any;
-stationName:any;
-schoolName:any;
-sanctionPostFor:any;
-shift:any;
-allList:any;
-listDesignation: any=[];
-displayedColumns:any = ['sno', 'regionName', 'stationName', 'schoolName','status','action'];
-  testData = {sno: '',regionName:'', stationName: '', schoolName: '',schoolCode:'', status: ''};
+  businessTypeId:any;
+  businessTypeCode:any;
+  regionName:any;
+  stationName:any;
+  schoolName:any;
+  sanctionPostFor:any;
+  shift:any;
+  allList:any;
+  listDesignation: any=[];
+  displayedColumns:any = ['sno', 'regionName', 'stationName', 'schoolName','shift','status','action'];
+  testData = {sno: '',regionName:'',regionCode:'',stationCode:'', stationName: '', schoolName: '',schoolCode:'',shift:'',shiftType:'', status: ''};
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void { 
-   
-this.allList=[
-  {
-    "id": 1,
-    "regionName": "AHMEDABAD",
-    "stationName": "ANKLESHWAR(2)",
-    "schoolName": "Kendriya Vidyalaya Ongc Ankleshwar(1006)",
-    "schoolCode":"1006",
-    "status": 1
-  },
-  {
-    "id": 2,
-    "regionName": "BENGALURU",
-    "stationName": "BELLARY",
-    "schoolName":"Kendriya Vidyalaya Crpf Teligaon(2198)" ,
-    "schoolCode":"2055",
-    "status": 0
-  },
-  {
-    "id": 3,
-    "regionName": "BHOPAL",
-    "stationName": "BHOPAL",
-    "schoolName": "R O Bhopal(1901)",
-    "schoolCode":"1419",
-    "status": 1
+    this.businessTypeId=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_id;
+    this.businessTypeCode=JSON.parse(sessionStorage.getItem('authTeacherDetails')).applicationDetails[0].business_unit_type_code;
+    this.getRegionList();
+    if(this.businessTypeId==3){
+      this.getAllRegionStationSchoolList(this.businessTypeCode);
+    }else if(this.businessTypeId==2){
+      this.getAllRegionStationSchoolList(1);
+    }
+  
   }
-]
-  this.getDesignationList();
-  }
-
-  getDesignationList(){
-
-          for (let i = 0; i < this.allList.length; i++) {
-       
-            this.testData.sno = '' + (i + 1) + '';
-            this.testData.regionName = this.allList[i].regionName;
-            this.testData.stationName =this.allList[i].stationName;
-            this.testData.schoolName =this.allList[i].schoolName;
-            this.testData.schoolCode =this.allList[i].schoolCode;
-           
-            if(this.allList[i].status ==1 )
-            {
-            this.testData.status = 'Freez';
-            }
-           if(this.allList[i].status ==0 )
-            {
-            this.testData.status ='NotFreez';
-            } 
-           
-            this.listDesignation.push(this.testData);
-            this.testData = { "sno": "", "regionName": "", "stationName": "", "schoolName": "","schoolCode":"","status": "" };
-   
+  getAllRegionStationSchoolList(regionCode:any){
+          this.allList='';
+          this.listDesignation=[];
+          console.log(regionCode)
+          this.modeselect =+regionCode;
+          this.appllicatioDetails= JSON.parse(sessionStorage.getItem('authTeacherDetails'))
+          if(this.appllicatioDetails.applicationDetails['0'].business_unit_type_code==null){
+          this.regionCodeData=regionCode;
           }
-    console.log(this.listDesignation)
-    setTimeout(() => {
-      this.dataSource = new MatTableDataSource(this.listDesignation);
-   
-    }, 100)
-      }
-     
-      edit(elem:any)
-      {
-console.log(elem.schoolCode)
-this.url="/teacher/sanctioned-post"
-this.router.navigate([this.url], {queryParams:{RegionName:1,StationName:2,SchoolCode:elem.schoolCode}});
+          else{
+          this.regionCodeData=regionCode;
+          }
+          const data={
+            "businessUnitTypeId":this.appllicatioDetails.applicationDetails['0'].business_unit_type_id,
+            "regionCode": this.regionCodeData
+            }
+          console.log(data)
+          this.outSideService.fetchAllSactionedPostMapping(data).subscribe((res)=>{
+          this.allList=res['rowValue'];
+          console.log(this.allList)
+          for (let i = 0; i < this.allList.length; i++) {   
+          this.testData.sno = '' + (i + 1) + '';
+          this.testData.regionName = this.allList[i].region_name;
+          this.testData.regionCode = this.allList[i].region_code;
+          this.testData.stationName =this.allList[i].station_name;
+          this.testData.stationCode =this.allList[i].station_code;
+          this.testData.schoolName =this.allList[i].kv_name;
+          this.testData.schoolCode =this.allList[i].school_code;
+          this.testData.shift =this.allList[i].shift;
+          if(this.allList[i].shift==0){
+            this.testData.shiftType ='	Not Applicable';
+          }
+          else if(this.allList[i].shift==1){
+            this.testData.shiftType ='First Shift';
+          }
+          else if(this.allList[i].shift==2){
+            this.testData.shiftType ='Second Shift';
+          }
 
+          if(this.allList[i].freezed_sanction_post ==1 ){
+          this.testData.status = 'Freezed';
+          }
+         else{
+          this.testData.status ='UnFreezed';
+          }        
+          this.listDesignation.push(this.testData);
+          this.testData = { "sno": "", "regionName": "","regionCode":"" ,"stationCode":"","stationName": "", "schoolName": "","schoolCode":"","shift":"","shiftType":"","status": "" };
+         }
+         console.log(this.listDesignation)
+        setTimeout(() => {
+          this.dataSource = new MatTableDataSource(this.listDesignation);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }, 100)
+          })
       }
+    
+  getRegionList(){
+        this.outSideService.fetchRegionList().subscribe((res)=>{
+          if(res.length>0){
+            res.forEach(element => {
+              if(element.isActive==true){
+                this.regionList.push(element)
+              }
+            });
+          }
+          if(this.businessTypeId=="3"){
+            for(var i=0;i<this.regionList.length;i++){
+          if(this.regionList[i].regionCode==this.selectedRegion){
+              this.regionName=this.regionList[i].regionName;
+          }
+            }
+          }
+        })
+     
+      }
+      applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); 
+        filterValue = filterValue.toLowerCase();
+        this.dataSource.filter = filterValue;
+      }
+ edit(elem:any)
+ {
+console.log(elem)
+localStorage.setItem('regionName',elem.regionName);
+localStorage.setItem('stationName',elem.stationName);
+localStorage.setItem('schoolName',elem.schoolName);
+this.url="/teacher/sanctioned-post";
+
+this.router.navigate([this.url], {queryParams:{RegionCode:elem.regionCode,StationCode:elem.stationCode,SchoolCode:elem.schoolCode,Shift:elem.shift}});
+ }
 
 }

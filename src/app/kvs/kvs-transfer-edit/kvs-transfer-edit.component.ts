@@ -471,68 +471,62 @@ export class KvsTransferEditComponent implements OnInit {
        // 'careGiverYn': new FormControl('', [Validators.required]), //10
         'q13DPt': new FormControl(), //10
         'totalDisplacementCount': new FormControl(),
-        'stationWithin100kmDispYn': new FormControl('', Validators.required),
+        //'stationWithin100kmDispYn': new FormControl('', Validators.required),
         //'spouseStatusDisplacement': new FormControl()
       }),
       transferCount: new FormGroup({
-        'applyTransferYn': new FormControl('', Validators.required),
-        'numberOfWorkingDays': new FormControl(),//1
-        'absenceDaysTcone': new FormControl('', [Validators.required, Validators.min(0), RxwebValidators.numeric({ allowDecimal: false, isFormat: false })]),
-        'absenceDaysOne': new FormControl(),//1
-        'absenceDaysTwo': new FormControl(),//1
-        'actualNumberOfWorkingTcdays': new FormControl(),//1
-        'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
-        'presentStationName': new FormControl(), //1
-        'presentStationCode': new FormControl(), //1
-        'q1TPt': new FormControl(),//1
-        'apprGradeYr1': new FormControl(), //2
-        'apprGrade1': new FormControl(), //2
-        'apprGradeYr2': new FormControl(), //2
-        'apprGrade2': new FormControl(), //2
-        'q2TPt': new FormControl(),//2
-        'presidentAward': new FormControl(), //3
-        'nationalAward': new FormControl(), //3
-        'regionalAward': new FormControl(), //3
-        'q3TPt': new FormControl(),//3
-        'tSpouseStatus': new FormControl(),
-        'spouseKvsYn': new FormControl(),//5
-        'spouseStateGvotYn': new FormControl(),//4
-        'spouseCentralGvotYn': new FormControl(),//4
-        'unmarriedWomanYn': new FormControl(),//4
-        'spouseNa': new FormControl(),
-        'q4TPt': new FormControl(),//4
-        'personalStatusLtr': new FormControl(), //6
-        'personalStatusDfp': new FormControl(), //6
-        'personalStatusMdg': new FormControl(), //6
-        'personalStatusWid': new FormControl(), //6
-        'personalStatusSp': new FormControl(), //6
-        'personalStatusDefault': new FormControl(),//6
-        'isLastTransferGroundPersonalStatusYn': new FormControl(''),//6
-        'q6TPt': new FormControl(),//6
-        'q6TYyn': new FormControl(),//6
-        'personalStatus': new FormControl(), //6
-        'teacherDob': new FormControl,//7
-        'hardStationCode': new FormControl(), //7
-        'hardStationName': new FormControl(), //7
-        'hardStationWorkStartDate': new FormControl(), //7
-        'hardStationWorkEndDate': new FormControl(), //7
-        'q9TPt': new FormControl(),
-        'q7TPt': new FormControl(),
-        'q7TYyn': new FormControl(),
-        'q8TPt': new FormControl(),
-        'q8TYyn': new FormControl(),
-        'q10TPt': new FormControl(),
-        'q10TYyn': new FormControl(),
-        'childDifferentAbleYn': new FormControl('', Validators.required),
-        'teacherDisabilityYnT': new FormControl(),
-        'isLastTransferGroundTeacherDisabilityYn': new FormControl(''),
-        'associationMemberYnT': new FormControl(),
-        'totalTransferCount': new FormControl(),
-        'spouseStatusTransfer': new FormControl(),
-        'doptStationOneCode': new FormControl(),
-        'doptStationOneName': new FormControl(),
-        'doptStationTwoCode': new FormControl(),
-        'doptStationTwoName': new FormControl(),
+           //'numberOfWorkingDays': new FormControl(),//1
+       // 'absenceDaysOne': new FormControl(''),//1
+       // 'absenceDaysTwo': new FormControl('', [Validators.required]),//1
+      //  'actualNumberOfWorkingDays': new FormControl(),//1
+      'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
+      'presentStationName': new FormControl(), //1
+      'presentStationCode': new FormControl(), //1
+      'q1DPt': new FormControl(),//1
+     // 'apprGradeYr1': new FormControl(), //2
+     // 'apprGrade1': new FormControl('', [Validators.required, Validators.max(10), RxwebValidators.numeric({ allowDecimal: true, isFormat: true })]), //2
+      //'apprGradeYr2': new FormControl(), //2
+      'apprGrade2': new FormControl('', [Validators.required, Validators.max(10), RxwebValidators.numeric({ allowDecimal: true, isFormat: true })]), //2
+      //'q2DPt': new FormControl(),
+      'teacherDob': new FormControl,//3
+      'hardStationCode': new FormControl(), //3
+      'hardStationName': new FormControl(), //3
+      'hardStationWorkStartDate': new FormControl(), //3
+      'hardStationWorkEndDate': new FormControl(), //3
+     // 'q3DYn': new FormControl(),//3
+      'q2DPt': new FormControl(),//3
+      'q3DPt': new FormControl(),//3
+     // 'personalStatus': new FormControl('', [Validators.required]), //4
+      //'personalStatusLtrDc': new FormControl(), //4
+     // 'personalStatusDfpDc': new FormControl(), //4
+     // 'personalStatusMdgDc': new FormControl(), //4
+      //'personalStatusWidDc': new FormControl(), //4
+    //  'personalStatusSpDc': new FormControl(), //4
+   //   'personalStatusDefaultDc': new FormControl(),
+      'q4DPt': new FormControl(),
+     // 'spouseStatus': new FormControl(),//5
+    //  'spouseKvsYn': new FormControl(),//5
+     // 'spouseStateGvotYn': new FormControl(),//5
+     // 'spouseCentralGvotYn': new FormControl(),//5
+    //  'unmarriedWomanYn': new FormControl(),//5
+     // 'spouseNa': new FormControl(),//5
+      'q5DPt': new FormControl(),//5
+     // 'teacherDisabilityYn': new FormControl(), //6
+      'q6DPt': new FormControl(),//6
+      'q7DPt': new FormControl(),//6
+     // 'associationMemberYn': new FormControl('', [Validators.required]), //7
+      'q8DPt': new FormControl(),//7   
+      //'presidentAward': new FormControl(), //8
+     // 'nationalAward': new FormControl(), //8
+     // 'regionalAward': new FormControl(), //8
+      'q11DPt': new FormControl(),//8
+     // 'child_10_12_yn': new FormControl('', [Validators.required]), //9
+      'q12DPt': new FormControl(),//9
+     // 'careGiverYn': new FormControl('', [Validators.required]), //10
+      'q13DPt': new FormControl(), //10
+      'totalDisplacementCount': new FormControl(),
+      //'stationWithin100kmDispYn': new FormControl('', Validators.required),
+      //'spouseStatusDisplacement': new FormControl()
       }),
       // declaration: new FormGroup({
       //   'spouseKvsYnD': new FormControl(),
@@ -1267,18 +1261,10 @@ console.log(data)
     var activeButton = document.activeElement.id;
 
     if (activeButton == 'submit2') {
-     // this.responseData.numberOfWorkingDays = this.transferForm.value.displacementCount.numberOfWorkingDays
-   //   this.responseData.absenceDaysOne = this.transferForm.value.displacementCount.absenceDaysOne
-    //  this.responseData.absenceDaysTwo = this.transferForm.value.displacementCount.absenceDaysTwo
-     // this.responseData.actualNumberOfWorkingDays = this.transferForm.value.displacementCount.actualNumberOfWorkingDays
       this.responseData.workExperiencePositionTypePresentStationStartDate = this.transferForm.value.displacementCount.workExperiencePositionTypePresentStationStartDate
       this.responseData.presentStationName = this.transferForm.value.displacementCount.presentStationName
       this.responseData.presentStationCode = this.transferForm.value.displacementCount.presentStationCode
       this.responseData.q1DPt = this.transferForm.value.displacementCount.q1DPt
-     // this.responseData.apprGradeYr1 = this.transferForm.value.displacementCount.apprGradeYr1
-   //   this.responseData.apprGrade1 = this.transferForm.value.displacementCount.apprGrade1
-    //  this.responseData.apprGradeYr2 = this.transferForm.value.displacementCount.apprGradeYr2
-    //  this.responseData.apprGrade2 = this.transferForm.value.displacementCount.apprGrade2
       this.responseData.q2DPt = this.transferForm.value.displacementCount.q2DPt
       this.responseData.q2TPt = this.transferForm.value.transferCount.q2TPt
       this.responseData.teacherDob = this.transferForm.value.displacementCount.teacherDob
@@ -1286,37 +1272,18 @@ console.log(data)
       this.responseData.hardStationName = this.transferForm.value.displacementCount.hardStationName
       this.responseData.hardStationWorkStartDate = this.transferForm.value.displacementCount.hardStationWorkStartDate
       this.responseData.hardStationWorkEndDate = this.transferForm.value.displacementCount.hardStationWorkEndDate
-    //  this.responseData.q3DYn = this.transferForm.value.displacementCount.q3DYn
       this.responseData.q3DPt = this.transferForm.value.displacementCount.q3DPt
       this.responseData.personalStatus = this.transferForm.value.displacementCount.personalStatus
       this.responseData.personalStatusLtrDc = this.transferForm.value.displacementCount.personalStatusLtrDc
-     // this.responseData.personalStatusDfpDc = this.transferForm.value.displacementCount.personalStatusDfpDc
-     // this.responseData.personalStatusMdgDc = this.transferForm.value.displacementCount.personalStatusMdgDc
-    //  this.responseData.personalStatusWidDc = this.transferForm.value.displacementCount.personalStatusWidDc
-    //  this.responseData.personalStatusSpDc = this.transferForm.value.displacementCount.personalStatusSpDc
       this.responseData.q4DPt = this.transferForm.value.displacementCount.q4DPt
-   //   this.responseData.spouseStatus = this.transferForm.value.displacementCount.spouseStatus
-     // this.responseData.spouseKvsYn = this.transferForm.value.displacementCount.spouseKvsYn
-   //   this.responseData.spouseStateGvotYn = this.transferForm.value.displacementCount.spouseStateGvotYn 
-   //   this.responseData.spouseCentralGvotYn = this.transferForm.value.displacementCount.spouseCentralGvotYn
-    //  this.responseData.unmarriedWomanYn = this.transferForm.value.displacementCount.unmarriedWomanYn
       this.responseData.q5DPt = this.transferForm.value.displacementCount.q5DPt
-     // this.responseData.teacherDisabilityYn = this.transferForm.value.displacementCount.teacherDisabilityYn
       this.responseData.q6DPt = this.transferForm.value.displacementCount.q6DPt           
       this.responseData.q7DPt = this.transferForm.value.displacementCount.q7DPt 
-    //  this.responseData.associationMemberYn = this.transferForm.value.displacementCount.associationMemberYn
       this.responseData.q8DPt = this.transferForm.value.displacementCount.q8DPt
-    //  this.responseData.presidentAward = this.transferForm.value.displacementCount.presidentAward
-    //  this.responseData.nationalAward = this.transferForm.value.displacementCount.nationalAward
-     // this.responseData.regionalAward = this.transferForm.value.displacementCount.regionalAward
       this.responseData.q11DPt = this.transferForm.value.displacementCount.q11DPt
-   //   this.responseData.child_10_12_yn = this.transferForm.value.displacementCount.child_10_12_yn
       this.responseData.q12DPt = this.transferForm.value.displacementCount.q12DPt
-     // this.responseData.careGiverYn = this.transferForm.value.displacementCount.careGiverYn
       this.responseData.q13DPt = this.transferForm.value.displacementCount.q13DPt
       this.responseData.totalDisplacementCount = this.transferForm.value.displacementCount.totalDisplacementCount
-     // this.responseData.stationWithin100kmDispYn = this.transferForm.value.displacementCount.stationWithin100kmDispYn
-     // this.responseData.spouseStatusDisplacement = this.transferForm.value.displacementCount.spouseStatusDisplacement
      console.log(this.transferForm.value.displacementCount)
      return;
       this.responseData.transferStatus = 'TRE'
@@ -1392,79 +1359,50 @@ console.log(data)
      })
     } else if (activeButton == 'submit5') {
 
-      this.responseData.applyTransferYn = this.transferForm.value.transferCount.applyTransferYn
-      this.responseData.absenceDaysTcone = this.transferForm.value.transferCount.absenceDaysTcone
-      this.responseData.actualNumberOfWorkingTcdays = this.transferForm.value.transferCount.actualNumberOfWorkingTcdays
-      this.responseData.q1TPt = this.transferForm.value.transferCount.q1TPt
-      this.responseData.q2TPt = this.transferForm.value.transferCount.q2TPt
-      this.responseData.q3TPt = this.transferForm.value.transferCount.q3TPt
-      this.responseData.spouseKvsYn = this.transferForm.value.transferCount.spouseKvsYn
-      this.responseData.spouseStateGvotYn = this.transferForm.value.transferCount.spouseStateGvotYn
-      this.responseData.spouseCentralGvotYn = this.transferForm.value.transferCount.spouseCentralGvotYn
-      this.responseData.unmarriedWomanYn = this.transferForm.value.transferCount.unmarriedWomanYn
-      this.responseData.q4TPt = this.transferForm.value.transferCount.q4TPt
-      this.responseData.isLastTransferGroundPersonalStatusYn = this.transferForm.value.transferCount.isLastTransferGroundPersonalStatusYn
-      this.responseData.q6TPt = this.transferForm.value.transferCount.q6TPt
-      this.responseData.q6TYyn = this.transferForm.value.transferCount.q6TYyn
-      this.responseData.personalStatus = this.transferForm.value.transferCount.personalStatus
-      if (this.profileData.personalStatusLtr == '9') {
-        this.responseData.personalStatusLtr = this.transferForm.getRawValue().transferCount.personalStatusLtr
-      } else {
-        this.responseData.personalStatusLtr = this.transferForm.value.transferCount.personalStatusLtr
-      }
-
-      if (this.profileData.personalStatusDfp == '9') {
-        this.responseData.personalStatusDfp = this.transferForm.getRawValue().transferCount.personalStatusDfp
-      } else {
-        this.responseData.personalStatusDfp = this.transferForm.value.transferCount.personalStatusDfp
-      }
-
-      if (this.profileData.personalStatusMdg == '9') {
-        this.responseData.personalStatusMdg = this.transferForm.getRawValue().transferCount.personalStatusMdg
-      } else {
-        this.responseData.personalStatusMdg = this.transferForm.value.transferCount.personalStatusMdg
-      }
-
-      if (this.profileData.personalStatusWid == '9') {
-        this.responseData.personalStatusWid = this.transferForm.getRawValue().transferCount.personalStatusWid
-      } else {
-        this.responseData.personalStatusWid = this.transferForm.value.transferCount.personalStatusWid
-      }
-
-      if (this.profileData.personalStatusSp == '9') {
-        this.responseData.personalStatusSp = this.transferForm.getRawValue().transferCount.personalStatusSp
-      } else {
-        this.responseData.personalStatusSp = this.transferForm.value.transferCount.personalStatusSp
-      }
-      this.responseData.q9TPt = this.transferForm.value.transferCount.q9TPt
-      this.responseData.q7TPt = this.transferForm.value.transferCount.q7TPt
-      this.responseData.q7TYyn = this.transferForm.value.transferCount.q7TYyn
-      this.responseData.q8TPt = this.transferForm.value.transferCount.q8TPt
-      this.responseData.q8TYyn = this.transferForm.value.transferCount.q8TYyn
-      this.responseData.q10TPt = this.transferForm.value.transferCount.q10TPt
-      this.responseData.q10TYyn = this.transferForm.value.transferCount.q10TYyn
-      this.responseData.childDifferentAbleYn = this.transferForm.value.transferCount.childDifferentAbleYn
-      this.responseData.isLastTransferGroundTeacherDisabilityYn = this.transferForm.value.transferCount.isLastTransferGroundTeacherDisabilityYn
-      this.responseData.childDifferentDisabilityPrcnt = this.transferForm.value.declaration.childDifferentDisabilityPrcnt
-      this.responseData.totalTransferCount = this.transferForm.value.transferCount.totalTransferCount
-      this.responseData.doptStationOneCode = this.transferForm.value.transferCount.doptStationOneCode
-      this.responseData.doptStationOneName = this.transferForm.value.transferCount.doptStationOneName
-      this.responseData.doptStationTwoCode = this.transferForm.value.transferCount.doptStationTwoCode
-      this.responseData.doptStationTwoName = this.transferForm.value.transferCount.doptStationTwoName
-      this.responseData.transferStatus = 'TRE'
-
-      this.outSideService.saveInitiatedTeacherTransfer(this.responseData).subscribe((res) => {
-
-        this.responseData = res.response;
-        this.transferStatusOperation = res.response.transferStatus;
-      //  this.setReceivedData(this.responseData)
-        this.formStatusLocale = 'TRE'
-        Swal.fire(
-          'Your data has been saved successfully!',
-          '',
-          'success'
-        )
-      })
+     this.responseData.workExperiencePositionTypePresentStationStartDate = this.transferForm.value.transferCount.workExperiencePositionTypePresentStationStartDate
+     this.responseData.presentStationName = this.transferForm.value.transferCount.presentStationName
+     this.responseData.presentStationCode = this.transferForm.value.transferCount.presentStationCode
+     this.responseData.q1DPt = this.transferForm.value.transferCount.q1TPt
+     this.responseData.q2DPt = this.transferForm.value.transferCount.q2TPt
+     this.responseData.q2TPt = this.transferForm.value.transferCount.q2TPt
+     this.responseData.teacherDob = this.transferForm.value.transferCount.teacherDob
+     this.responseData.hardStationCode = this.transferForm.value.transferCount.hardStationCode
+     this.responseData.hardStationName = this.transferForm.value.transferCount.hardStationName
+     this.responseData.hardStationWorkStartDate = this.transferForm.value.transferCount.hardStationWorkStartDate
+     this.responseData.hardStationWorkEndDate = this.transferForm.value.transferCount.hardStationWorkEndDate
+     this.responseData.q3DPt = this.transferForm.value.transferCount.q3TPt
+     this.responseData.personalStatus = this.transferForm.value.transferCount.personalStatus
+     this.responseData.personalStatusLtrDc = this.transferForm.value.transferCount.personalStatusLtrDc
+     this.responseData.q4DPt = this.transferForm.value.transferCount.q4TPt
+     this.responseData.q5DPt = this.transferForm.value.transferCount.q5TPt
+     this.responseData.q6DPt = this.transferForm.value.transferCount.q6TPt           
+     this.responseData.q7DPt = this.transferForm.value.transferCount.q7TPt 
+     this.responseData.q8DPt = this.transferForm.value.transferCount.q8TPt
+     this.responseData.totalTransferCount = this.transferForm.value.transferCount.totalTransferCount
+    console.log(this.transferForm.value.transferCount)
+    return;
+     this.responseData.transferStatus = 'TRE'
+     this.outSideService.saveInitiatedTeacherTransfer(this.responseData).subscribe((res) => {
+       if (res.status == 1 || res.status == '1') {
+         this.responseData = res.response;
+         this.transferStatusOperation = res.response.transferStatus;
+         debugger
+      //   this.setReceivedData(this.responseData)
+         // nextTempClick();
+         this.formStatusLocale = 'TRE'
+         Swal.fire(
+           'Your data has been saved successfully!',
+           '',
+           'success'
+         )
+       } else {
+         Swal.fire(
+           'Data not saved',
+           'Please go to previous page and retry',
+           'error'
+         )
+       }
+     })
     }
     // } else if (activeButton == 'submit6') {
 

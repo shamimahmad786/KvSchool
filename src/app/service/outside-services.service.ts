@@ -1461,5 +1461,14 @@ fetchTcDcData(data:any)
   }); 
   return this._http.post(environment.BASE_URL_DATA_TEACHER+ "transfer/getTeacherTransferDetails",data,{headers})
 }
+fetchAllSactionedPostMapping(data:any)
+{
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_MASTER1+ "fetch/school-region-mapping-list",data,{headers})
+}
 
 }

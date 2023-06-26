@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-5">
                                         <h2 class="steps mb-0">{{responseData?.teacherId}} |
-                                            {{responseData?.teacherName}}</h2>
+                                            {{responseData?.teacherName | uppercase}}</h2>
 
                                     </div>
                                 </div>
@@ -279,7 +279,7 @@
                                     </div>
                                     <div class="col-5">
                                         <h2 class="steps mb-0">{{responseData?.teacherId}} |
-                                            {{responseData?.teacherName}}</h2>
+                                            {{responseData?.teacherName | uppercase}}</h2>
                                     </div>
                                 </div>
                                 <div class="p-3">
@@ -632,29 +632,13 @@
 
 
 
+                                          
+
+
+
+
                                             <tr>
                                                 <td class="align-middle text-center"> <span class="text-green">7.</span>
-                                                </td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Members of recognized associations of KVS staff who are also members of JCM at KVS regional offices and / or KVS Headquarters.
-                                                        Note: - Benefit will be given only if they are posted in KVs located at the station of Regional Office/ ZIET.
-                                                    </h4>
-                                                </td>
-
-                                          
-                                                <td width="7%" class=" text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q8DPt"
-                                                        formControlName="q8DPt" name="q8DPt" disabled>
-                                                </td>
-                                            </tr>
-
-
-
-
-                                            <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">8.</span>
                                                 </td>
 
                                                 <td class="align-middle" width="90%" colspan="3">
@@ -725,6 +709,24 @@
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="q7DPt"
                                                         formControlName="q7DPt" name="q7DPt" disabled>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">8.</span>
+                                                </td>
+                                                <td class="align-middle" width="75%" colspan="3">
+                                                    <h4 class="titleSet">
+                                                        Members of recognized associations of KVS staff who are also members of JCM at KVS regional offices and / or KVS Headquarters.
+                                                        Note: - Benefit will be given only if they are posted in KVs located at the station of Regional Office/ ZIET.
+                                                    </h4>
+                                                </td>
+
+                                          
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q8DPt"
+                                                        formControlName="q8DPt" name="q8DPt" disabled>
                                                 </td>
                                             </tr>
 
@@ -879,7 +881,7 @@
                                     </div>
                                     <div class="col-5">
                                         <h2 class="steps mb-0">{{responseData?.teacherId}} |
-                                            {{responseData?.teacherName}}</h2>
+                                            {{responseData?.teacherName | uppercase}}</h2>
                                     </div>
                                 </div>
                                 <!-- <div class="row p-3">
@@ -937,45 +939,8 @@
                                                 <td width="75%" class="align-middle " colspan="3">
                                                     <h4 class="titleSet mb-0">
 
-                                                        Stay at a station in the same post as on 30 June, 2022
-
-
-
-
+                                                       continuous Active Stay at station as on 30th june for all stations excluding periods of absence (any kind of leave other than Materbity Leave) of 30 days or more at normal station and 45 days or more at Hard/NER/Priorty stations, irrespective of casder.
                                                     </h4>
-                                                    <ul class="orderList border-bottom">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet ">1A </h4>
-                                                        </li>
-                                                        <li class="w80 ml-2">Stay at a station as on 30th June in complete years irrespective of Cadre Clarification.
-                                                        </li>
-                                                       
-                                                    </ul>
-                                                  
-                                                    <ul class="orderList border-bottom">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet ">1B </h4>
-                                                        </li>
-                                                        <li class="w80"> Period of absence on any account shall also be counte for this purpose.<span
-                                                                class="required-asterisk">*</span></li>
-                                                    </ul>
-
-                                                    <ul class="orderList  border-bottom">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet ">1C </h4>
-                                                        </li>
-                                                        <li class="w80"> If an employee transferred from station "A" to station "B" returns to  the station "A" on request without 
-                                                            completing three years of stay at station "B" then the period of stay at station "A" will be calculated as total number of years served at  station "A" prior to his posting at "B" and the number of years served after his return to station "A" taken together. 
-                                                        </li>
-                                                    </ul>
-
-                                                    <ul class="orderList  border-bottom">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet ">1D </h4>
-                                                        </li>
-                                                        <li class="w80"> Total days (present). 1A+1C</li>
-                                                    </ul>
-
                                                     <ul class="DateOfBirth mt-3">
 
                                                         <li>
@@ -1002,8 +967,8 @@
                                                 </td>
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q1DPt"
-                                                        formControlName="q1DPt" name="q1DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q1TPt"
+                                                        formControlName="q1TPt" name="q1TPt" disabled>
                                                 </td>
                                             </tr>                                         
 
@@ -1012,9 +977,26 @@
                                                 </td>
                                                 <td width="75%" class="align-middle " colspan="3">
                                                     <h4 class="titleSet">
+                                                        Physically challenged employee
+                                                    </h4>
+                                                  
 
-                                                        Employee below 40 years  (as on 30th June of the year) who have not
-                                                        completed one tenure at Hard/NER/Priority station (during entire service).
+                                                </td>
+                                               
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q3TPt"
+                                                        formControlName="q3TPt" name="q3TPt" disabled>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">3.</span>
+                                                </td>
+                                                <td width="75%" class="align-middle " colspan="3">
+                                                    <h4 class="titleSet">
+
+                                                       Completion of prescribed tenure in Hard/NER/Priority stations at present place of posting.
 
                                                     </h4>
 
@@ -1055,32 +1037,18 @@
                                                <td width="7%" class=" text-center">
                                                      <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;"
-                                                        id="" formControlName="q3DPt" name="q3DPt" disabled> 
+                                                        id="" formControlName="q2TPt" name="q2TPt" disabled> 
                                                 </td> 
                                             </tr>
 
-                                            <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">3.</span>
-                                                </td>
-                                                <td width="75%" class="align-middle " colspan="3">
-                                                    <label> Physically Challenged employees.</label>
-                                                  
-
-                                                </td>
-                                               
-                                                <td width="7%" class=" text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q4DPt"
-                                                        formControlName="q4DPt" name="q4DPt" disabled>
-                                                </td>
-                                            </tr>
+                                     
 
                                             <tr>
                                                 <td class="align-middle text-center"> <span class="text-green">4.</span>
                                                 </td>
                                                 <td width="75%" class="align-middle " colspan="3">
                                                     <h4 class="titleSet">
-                                                    Clarification: If an employee qualifies for more than one ground, the points shall be limited to a maximum of (-) 14 only.
+                                                    Clarification: If an employee qualifies on more than one ground, the points shall be limited to a maximum of (+) 35 only.
                                                     </h4>
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
@@ -1102,8 +1070,8 @@
                                        
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q4DPt"
-                                                        formControlName="q4DPt" name="q4DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q4TPt"
+                                                        formControlName="q4TPt" name="q4TPt" disabled>
                                                 </td>
                                             </tr>
 
@@ -1121,14 +1089,14 @@
                                              
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
-                                                        formControlName="q9DPt" name="q9DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q5TPt"
+                                                        formControlName="q5TPt" name="q5TPt" disabled>
                                                 </td>
                                             </tr>
 
 
-                                            <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">6.</span>
+                                            <!-- <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">611.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
                                                     <h4 class="titleSet">
@@ -1142,12 +1110,12 @@
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
                                                         formControlName="q9DPt" name="q9DPt" disabled>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
 
 
 
 
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="align-middle text-center"> <span class="text-green">7.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
@@ -1159,22 +1127,22 @@
                                                         Central Armed
                                                         Police Forces employee posted at the same station.
                                                     </h4>
-                                                </td>
+                                                </td> -->
 
                                                
-                                                <td width="7%" class=" text-center">
+                                                <!-- <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
                                                         formControlName="q9DPt" name="q9DPt" disabled>
-                                                </td>
-                                            </tr>
+                                                </td> 
+                                            </tr>-->
 
 
 
 
 
 
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="align-middle text-center"> <span class="text-green">8.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
@@ -1194,9 +1162,9 @@
                                                         formControlName="q9DPt" name="q9DPt" disabled>
                                                 </td>
                                             </tr>
+ -->
 
-
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="align-middle text-center"> <span class="text-green">9.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
@@ -1213,11 +1181,11 @@
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
                                                         formControlName="q9DPt" name="q9DPt" disabled>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
 
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">10.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">6.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
                                                     <h4 class="titleSet">
@@ -1227,14 +1195,14 @@
 
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
-                                                        formControlName="q9DPt" name="q9DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q6TPt"
+                                                        formControlName="q6TPt" name="q6TPt" disabled>
                                                 </td>
                                             </tr>
 
 
 
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="align-middle text-center"> <span class="text-green">11.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
@@ -1249,45 +1217,32 @@
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
                                                         formControlName="q9DPt" name="q9DPt" disabled>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
 
 
 
-                                            <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">12.</span>
-                                                </td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Members of recognized associations of KVS staff who are also members of JCM at KVS regional offices and / or KVS Headquarters.
-                                                        Note: - Benefit will be given only if they are posted in KVs located at the station of Regional Office/ ZIET.
-                                                    </h4>
-                                                </td>
-
-                                          
-                                                <td width="7%" class=" text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
-                                                        formControlName="q9DPt" name="q9DPt" disabled>
-                                                </td>
-                                            </tr>
+                                       
 
 
 
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">13.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">7.</span>
                                                 </td>
 
                                                 <td class="align-middle" width="90%" colspan="3">
-                                                   
+                                                
                                                   
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
                                                             <h4 class="titleSet"> <span class="text-green">A.</span>
                                                             </h4>
                                                         </li>
-                                                        <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the
-                                                            same station.</li>
+                                                        
+                                                        <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the 
+                                                            same station.</li>   
+                                                        <i  *ngIf="spouseAtSmaeStation"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            color: green;"></i>
                                                  
                                                     </ul>
                                                     <ul class="orderList ">
@@ -1301,6 +1256,9 @@
                                                             Govt. Public Sector Undertaking/ Defense Employee and
                                                             Central Armed
                                                             Police Forces employee posted at the same station.</li>
+
+                                                            <i  *ngIf="spouseAtCentralGovt"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            color: green;"></i>
                                                    
                                                     </ul>
 
@@ -1309,10 +1267,9 @@
                                                             <h4 class="titleSet"> <span class="text-green">C.</span>
                                                             </h4>
                                                         </li>
-                                                        <li class="w80 ml-2"> Spouse if a State Covernment / State Govt.
-                                                            Autonomous body / State Govt. Public Sectors
-                                                            Undertaking Employee & posted at the same station or within
-                                                            100km..</li>
+                                                        <li class="w80 ml-2"> Spouse if a Central Government/Central Govt. Autonomous body/Central Govt. Public Sector Undertaking/ Defense Employee and Central Armed Police Forces employee posted at the same station.</li>
+                                                            <i  *ngIf="spouseAtStateGovt"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            color: green;"></i>
                                                     
                                                     </ul>
 
@@ -1321,18 +1278,16 @@
                                                             <h4 class="titleSet"> <span class="text-green">D.</span>
                                                             </h4>
                                                         </li>
-                                                        <li class="w80 ml-2">Woman employee not covered under 5(A),
-                                                            5(B), 5(C) above,
-                                                            or an unmarried
-                                                            lady, is eligible for these points. </li>
-                                                    
+                                                        <li class="w80 ml-2">Spouse if a State Covernment / State Govt. Autonomous body / State Govt. Public Sectors Undertaking Employee & posted at the same station. </li>
+                                                            <i  *ngIf="wooomanEmp"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            color: green;"></i>
                                                     </ul>
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
                                                             <h4 class="titleSet"> <span class="text-green">E.</span>
                                                             </h4>
                                                         </li>
-                                                        <li class="w80 ml-2">None of the above. </li>
+                                                        <li class="w80 ml-2">Woman employee not covered under Sl. No. 6, 7, 8&9 above. </li>
                                                      
                                                     </ul>
 
@@ -1341,13 +1296,32 @@
                                                 </td>
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q5DPt"
-                                                        formControlName="q5DPt" name="q5DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q7TPt"
+                                                        formControlName="q7TPt" name="q7TPt" disabled>
                                                 </td>
                                             </tr>
 
+
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">14.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">8.</span>
+                                                </td>
+                                                <td class="align-middle" width="75%" colspan="3">
+                                                    <h4 class="titleSet">
+                                                        Members of recognized associations of KVS staff who are also members of JCM at KVS regional offices and / or KVS Headquarters.
+                                                        Note: - Benefit will be given only if they are posted in KVs located at the station of Regional Office/ ZIET.
+                                                    </h4>
+                                                </td>
+
+                                          
+                                                <td width="7%" class=" text-center">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q8TPt"
+                                                        formControlName="q8TPt" name="q8TPt" disabled>
+                                                </td>
+                                            </tr>
+
+                                            <!-- <tr>
+                                                <td class="align-middle text-center"> <span class="text-green">9.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
                                                     <h4 class="titleSet">
@@ -1358,13 +1332,13 @@
                                           
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
-                                                        formControlName="q9DPt" name="q9DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q7DPt"
+                                                        formControlName="q7DPt" name="q7DPt" disabled>
                                                 </td>
-                                            </tr>
-
+                                            </tr> -->
+<!-- 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">15.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">10.</span>
                                                 </td>
                                                 <td class="align-middle" width="90%" colspan="3">
                                                     <h4 class="titleSet">
@@ -1399,12 +1373,8 @@
                                                       
                                                     </ul>
                                                 </td>
-                                                <td width="7%" class=" text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q10DPt"
-                                                        formControlName="q10DPt" name="q10DPt" disabled>
-                                                </td>
-                                            </tr>
+                                               
+                                            </tr> -->
 <!-- 
                                             <tr>
                                                 <td class="align-middle text-center"> <span class="text-green">16.</span>
@@ -1421,7 +1391,7 @@
 
                                             </tr> -->
 
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="align-middle text-center"> <span class="text-green">16.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
@@ -1438,8 +1408,8 @@
                                                 <td width="7%" class="text-center">
                                                   
                                                 </td>
-                                            </tr>
-                                            <tr>
+                                            </tr> -->
+                                            <!-- <tr>
                                                 <td class="align-middle text-center"> <span
                                                         class="text-green">17.</span></td>
                                                 <td class="align-middle" width="75%" colspan="3">
@@ -1457,7 +1427,7 @@
                                                 <td width="7%" class="text-center">
                                                  
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
 
@@ -1481,19 +1451,11 @@
 
 
 
-                            <input [disabled]="( enableTransferFormYn && (!transferForm.get('transferCount.absenceDaysTcone').valid || 
-                            !transferForm.get('transferCount.childDifferentAbleYn').valid || 
-                            (!transfer5b && !transferForm.get('transferCount.isLastTransferGroundPersonalStatusYn').valid) ||
-                            (!transfer7b && !transferForm.get('transferCount.isLastTransferGroundTeacherDisabilityYn').valid) ||
-                            !transferForm.get('transferCount.applyTransferYn').valid))" type="button" name="next"
+                            <input  type="button" name="next"
                                 class="next action-button1 me-3" value="Next"
                                 (click)="nextClick(5)" />
 
-                            <input [disabled]="( enableTransferFormYn && (!transferForm.get('transferCount.absenceDaysTcone').valid || 
-                                !transferForm.get('transferCount.childDifferentAbleYn').valid || 
-                                (!transfer5b && !transferForm.get('transferCount.isLastTransferGroundPersonalStatusYn').valid) ||
-                                (!transfer7b && !transferForm.get('transferCount.isLastTransferGroundTeacherDisabilityYn').valid) ||
-                                !transferForm.get('transferCount.applyTransferYn').valid))" type="submit" name="next"
+                            <input  type="submit" name="next"
                                 id="submit5" class="action-button me-3" value="Save"  />
                             <input type="button" name="previous" class="previous action-button-previous"
                                 (click)=" nextClick(4)" value="Previous" />

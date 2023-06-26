@@ -342,7 +342,9 @@ export class TeacherEntryFormComponent implements OnInit {
     debugger
     onNextButtonClick(index);
   }
-  constructor(private pdfServive: TeacherAppPdfService, private date: DatePipe, private dataService: DataService, private modalService: NgbModal, private outSideService: OutsideServicesService, private route: ActivatedRoute, private fb: FormBuilder, private formData: FormDataService) {
+  constructor(private pdfServive: TeacherAppPdfService, private date: DatePipe, private dataService: DataService, 
+    private modalService: NgbModal, private outSideService: OutsideServicesService,
+     private route: ActivatedRoute, private fb: FormBuilder, private formData: FormDataService) {
 
 
   }
@@ -3674,7 +3676,6 @@ this.getMaster(data,event.target.value);
   }
 
   selectSpouseStationFn() {
-    debugger
     var str = this.selectedSpouseStation
     var splitted = str.split("-", 2);
     this.teacherForm.patchValue({
@@ -4359,7 +4360,6 @@ else if(this.selectSchoolType==3)
 pdfSentToClient(){
   // alert("download pdf")
 }
-
 
 
 }

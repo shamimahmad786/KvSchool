@@ -10,15 +10,25 @@
 
 
 
-    <!-- <div class="row">
-        <div class="col-md-2 form-group mt-3">
+  <div class="row">
+        <div class="col-md-4 form-group mt-3 mb-3">
             <label class="titleSet">Select Region Name</label>
-            <mat-select (selectionChange)="getStationList($event)" class="form-control" value="">
+            <mat-select (selectionChange)="getAllRegionStationSchoolList($event.value)" [disabled]="businessTypeId==3" [(ngModel)]="modeselect" class="form-control" value="">
                 <mat-option value="">Select Region Name</mat-option>
                 <mat-option *ngFor="let reg of regionList" [value]="reg.regionCode">{{reg.regionName}}({{reg.regionCode}})</mat-option>
             </mat-select>
         </div>
-        <div class="col-md-2 form-group mt-3">
+        <div class="col-md-8 form-group mt-5">
+            <div class="float-end">
+            <div *ngIf="dataSource">
+                <mat-form-field style="margin-right: 20px; width: 350px;">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Region Name Or Station Name Or School name">
+                </mat-form-field>
+            </div>
+        </div>
+        </div>
+
+         <!--  <div class="col-md-2 form-group mt-3">
             <label class="titleSet">Select Station Name</label>
             <mat-select (selectionChange)="getSchoolList($event)" class="form-control" value="">
                 <mat-option value="">Select Station Name</mat-option>
@@ -44,13 +54,7 @@
 
 </div>
 <div class="row bg-1">
-      
-       
-    <div *ngIf="dataSource">
-        <mat-form-field style="width: 30%;">
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Designation Code or Designation Name">
-        </mat-form-field>
-    </div>
+    
     <div class="example-container mat-elevation-z8">
         <table mat-table *ngIf="dataSource?.data?.length > 0" [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table">
 
@@ -74,7 +78,11 @@
 
             <ng-container matColumnDef="schoolName">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> School  name </th>
-                <td mat-cell *matCellDef="let element"> {{element.schoolName}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.schoolName}}({{element.schoolCode}} ) </td>
+            </ng-container>
+            <ng-container matColumnDef="shift">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Shift </th>
+                <td mat-cell *matCellDef="let element"> {{element.shiftType}} </td>
             </ng-container>
 
             <ng-container matColumnDef="status">
