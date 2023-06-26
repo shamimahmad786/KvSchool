@@ -21,6 +21,7 @@
         <div *ngIf="dataSource">
             <mat-form-field appearance="outline" class="px-4 py-2 searchInput">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Category Name">
+                <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
         </div>
         <div class="mat-elevation-z8 table-responsive">

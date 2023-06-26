@@ -83,6 +83,7 @@ shift:any;
   getRegionList(){
     debugger
     this.outSideService.fetchRegionList().subscribe((res)=>{
+      alert(JSON.stringify(res));
       if(res.length>0){
         res.forEach(element => {
           if(element.isActive==true){

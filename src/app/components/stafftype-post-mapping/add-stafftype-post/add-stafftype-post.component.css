@@ -1,0 +1,3 @@
+.cardSet50{width:80%; margin:0px auto;}
+@media (max-width: 576px) { .cardSet50{width:100%; margin:0px auto;}
+}
