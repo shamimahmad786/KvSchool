@@ -2127,6 +2127,8 @@ console.log(this.teacherForm.value.transferRelatedForm)
 })
 
     } else if (activeButton == "submit5") {
+
+      
       this.responseData.spouseName=this.teacherForm.value.personalInfoForm.spouseName
       this.teacherForm.patchValue({
                 transferRelatedForm: {
@@ -2137,6 +2139,7 @@ console.log(this.teacherForm.value.transferRelatedForm)
 this.getStatus(this.tempTeacherId);
    debugger
       for (let i = 0; i < this.teacherForm.value.detailsOfPosting.length; i++) {
+        ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workStartDate').enable();
         this.teacherForm.value.detailsOfPosting[i].teacherId = this.tempTeacherId
         if (this.teacherForm.value.detailsOfPosting[i].workExperienceId == this.workExpId) {
           this.teacherForm.value.detailsOfPosting[i].currentlyActiveYn = '1';
@@ -3359,6 +3362,8 @@ this.getMaster(data,event.target.value);
 
 
   experienceDataManagement(event, index) {
+    debugger
+    ((this.teacherForm.get('detailsOfPosting') as FormArray).at(0) as FormGroup).get('workStartDate').enable();
     for (let i = 0; i < this.teacherForm.value.detailsOfPosting.length - 1; i++) {
       var dateFrom = this.teacherForm.value.detailsOfPosting[i].workStartDate;
       var dateTo = this.teacherForm.value.detailsOfPosting[i].workEndDate;
@@ -3381,6 +3386,7 @@ this.getMaster(data,event.target.value);
         this.teacherForm.value.detailsOfPosting[index].workEndDate = "";
       }
     }
+    ((this.teacherForm.get('detailsOfPosting') as FormArray).at(0) as FormGroup).get('workStartDate').disable();
     return false;
   }
 

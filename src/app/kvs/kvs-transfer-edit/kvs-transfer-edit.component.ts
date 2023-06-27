@@ -421,112 +421,45 @@ export class KvsTransferEditComponent implements OnInit {
         'displacement5StationName': new FormControl
       }),
       displacementCount: new FormGroup({
-        //'numberOfWorkingDays': new FormControl(),//1
-       // 'absenceDaysOne': new FormControl(''),//1
-       // 'absenceDaysTwo': new FormControl('', [Validators.required]),//1
-      //  'actualNumberOfWorkingDays': new FormControl(),//1
         'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
         'presentStationName': new FormControl(), //1
         'presentStationCode': new FormControl(), //1
         'q1DPt': new FormControl(),//1
-       // 'apprGradeYr1': new FormControl(), //2
-       // 'apprGrade1': new FormControl('', [Validators.required, Validators.max(10), RxwebValidators.numeric({ allowDecimal: true, isFormat: true })]), //2
-        //'apprGradeYr2': new FormControl(), //2
-        'apprGrade2': new FormControl('', [Validators.required, Validators.max(10), RxwebValidators.numeric({ allowDecimal: true, isFormat: true })]), //2
-        //'q2DPt': new FormControl(),
-        'teacherDob': new FormControl,//3
-        'hardStationCode': new FormControl(), //3
-        'hardStationName': new FormControl(), //3
+        'teacherDob': new FormControl,//3    
         'hardStationWorkStartDate': new FormControl(), //3
         'hardStationWorkEndDate': new FormControl(), //3
-       // 'q3DYn': new FormControl(),//3
         'q2DPt': new FormControl(),//3
-        'q3DPt': new FormControl(),//3
-       // 'personalStatus': new FormControl('', [Validators.required]), //4
-        //'personalStatusLtrDc': new FormControl(), //4
-       // 'personalStatusDfpDc': new FormControl(), //4
-       // 'personalStatusMdgDc': new FormControl(), //4
-        //'personalStatusWidDc': new FormControl(), //4
-      //  'personalStatusSpDc': new FormControl(), //4
-     //   'personalStatusDefaultDc': new FormControl(),
-        'q4DPt': new FormControl(),
-       // 'spouseStatus': new FormControl(),//5
-      //  'spouseKvsYn': new FormControl(),//5
-       // 'spouseStateGvotYn': new FormControl(),//5
-       // 'spouseCentralGvotYn': new FormControl(),//5
-      //  'unmarriedWomanYn': new FormControl(),//5
-       // 'spouseNa': new FormControl(),//5
-        'q5DPt': new FormControl(),//5
-       // 'teacherDisabilityYn': new FormControl(), //6
+        'q3DPt': new FormControl(),//3     
+        'q4DPt': new FormControl(),   
+        'q5DPt': new FormControl(),//5   
         'q6DPt': new FormControl(),//6
-        'q7DPt': new FormControl(),//6
-       // 'associationMemberYn': new FormControl('', [Validators.required]), //7
-        'q8DPt': new FormControl(),//7   
-        //'presidentAward': new FormControl(), //8
-       // 'nationalAward': new FormControl(), //8
-       // 'regionalAward': new FormControl(), //8
-        'q11DPt': new FormControl(),//8
-       // 'child_10_12_yn': new FormControl('', [Validators.required]), //9
-        'q12DPt': new FormControl(),//9
-       // 'careGiverYn': new FormControl('', [Validators.required]), //10
+        'q7DPt': new FormControl(),//6    
+        'q8DPt': new FormControl(),//7        
+        'q11DPt': new FormControl(),//8     
+        'q12DPt': new FormControl(),//9    
         'q13DPt': new FormControl(), //10
         'totalDisplacementCount': new FormControl(),
-        //'stationWithin100kmDispYn': new FormControl('', Validators.required),
-        //'spouseStatusDisplacement': new FormControl()
+       
       }),
       transferCount: new FormGroup({
-           //'numberOfWorkingDays': new FormControl(),//1
-       // 'absenceDaysOne': new FormControl(''),//1
-       // 'absenceDaysTwo': new FormControl('', [Validators.required]),//1
-      //  'actualNumberOfWorkingDays': new FormControl(),//1
       'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
       'presentStationName': new FormControl(), //1
       'presentStationCode': new FormControl(), //1
       'q1DPt': new FormControl(),//1
-     // 'apprGradeYr1': new FormControl(), //2
-     // 'apprGrade1': new FormControl('', [Validators.required, Validators.max(10), RxwebValidators.numeric({ allowDecimal: true, isFormat: true })]), //2
-      //'apprGradeYr2': new FormControl(), //2
-      'apprGrade2': new FormControl('', [Validators.required, Validators.max(10), RxwebValidators.numeric({ allowDecimal: true, isFormat: true })]), //2
-      //'q2DPt': new FormControl(),
       'teacherDob': new FormControl,//3
-      'hardStationCode': new FormControl(), //3
-      'hardStationName': new FormControl(), //3
       'hardStationWorkStartDate': new FormControl(), //3
       'hardStationWorkEndDate': new FormControl(), //3
-     // 'q3DYn': new FormControl(),//3
       'q2DPt': new FormControl(),//3
       'q3DPt': new FormControl(),//3
-     // 'personalStatus': new FormControl('', [Validators.required]), //4
-      //'personalStatusLtrDc': new FormControl(), //4
-     // 'personalStatusDfpDc': new FormControl(), //4
-     // 'personalStatusMdgDc': new FormControl(), //4
-      //'personalStatusWidDc': new FormControl(), //4
-    //  'personalStatusSpDc': new FormControl(), //4
-   //   'personalStatusDefaultDc': new FormControl(),
       'q4DPt': new FormControl(),
-     // 'spouseStatus': new FormControl(),//5
-    //  'spouseKvsYn': new FormControl(),//5
-     // 'spouseStateGvotYn': new FormControl(),//5
-     // 'spouseCentralGvotYn': new FormControl(),//5
-    //  'unmarriedWomanYn': new FormControl(),//5
-     // 'spouseNa': new FormControl(),//5
       'q5DPt': new FormControl(),//5
-     // 'teacherDisabilityYn': new FormControl(), //6
       'q6DPt': new FormControl(),//6
-      'q7DPt': new FormControl(),//6
-     // 'associationMemberYn': new FormControl('', [Validators.required]), //7
-      'q8DPt': new FormControl(),//7   
-      //'presidentAward': new FormControl(), //8
-     // 'nationalAward': new FormControl(), //8
-     // 'regionalAward': new FormControl(), //8
-      'q11DPt': new FormControl(),//8
-     // 'child_10_12_yn': new FormControl('', [Validators.required]), //9
+      'q7DPt': new FormControl(),//6 
+      'q8DPt': new FormControl(),//7       
+      'q11DPt': new FormControl(),//8  
       'q12DPt': new FormControl(),//9
-     // 'careGiverYn': new FormControl('', [Validators.required]), //10
       'q13DPt': new FormControl(), //10
       'totalDisplacementCount': new FormControl(),
-      //'stationWithin100kmDispYn': new FormControl('', Validators.required),
-      //'spouseStatusDisplacement': new FormControl()
       }),
       // declaration: new FormGroup({
       //   'spouseKvsYnD': new FormControl(),

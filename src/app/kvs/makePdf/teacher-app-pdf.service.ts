@@ -629,9 +629,9 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     //New Page
     doc.addPage();
 
-    // doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 10, 100, 20);
-    // doc.setLineWidth(1);
-    // doc.line(15, 35, 280, 35);
+    doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 10, 100, 20);
+    doc.setLineWidth(1);
+    doc.line(15, 35, 280, 35);
 
     doc.setTextColor(138, 24, 34);
     doc.setFontSize(14);
@@ -674,21 +674,21 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(138, 24, 34);
     doc.setFontSize(14);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Spouse Details', 15, 62)
+    doc.text('Spouse Details', 15, 65)
 
     //4.1
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('KVS Employee', 15, 69)
+    doc.text('KVS Employee', 15, 72)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseStatus == null || teacherProfile?.spouseStatus == 'null' || teacherProfile?.spouseStatus == ''){
-      doc.text('Not Given', 85, 69)
+      doc.text('Not Given', 85, 72)
     }else{
-      doc.text(teacherProfile?.spouseStatus == '1' ? 'Yes' : 'No', 85, 69)
+      doc.text(teacherProfile?.spouseStatus == '1' ? 'Yes' : 'No', 85, 72)
     }
 
    
@@ -696,15 +696,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Central Government Employee', 145, 69)
+    doc.text('Central Government Employee', 145, 75)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseStatus == null || teacherProfile?.spouseStatus == 'null' || teacherProfile?.spouseStatus == ''){
-      doc.text('Not Given', 205, 69)
+      doc.text('Not Given', 205, 75)
     }else{
-      doc.text(teacherProfile?.spouseStatus == '2' ? 'Yes' : 'No', 205, 69)
+      doc.text(teacherProfile?.spouseStatus == '2' ? 'Yes' : 'No', 205, 75)
     }
 
    
@@ -713,15 +713,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('State Government Employee', 15, 76)
+    doc.text('State Government Employee', 15, 78)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseStatus == null || teacherProfile?.spouseStatus == 'null' || teacherProfile?.spouseStatus == ''){
-      doc.text('Not Given', 85, 76)
+      doc.text('Not Given', 85, 78)
     }else{
-      doc.text(teacherProfile?.spouseStatus == '3' ? 'Yes' : 'No', 85, 76)
+      doc.text(teacherProfile?.spouseStatus == '3' ? 'Yes' : 'No', 85, 78)
     }
 
     
@@ -729,15 +729,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('None of these', 145, 76)
+    doc.text('None of these', 145, 81)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseStatus == null || teacherProfile?.spouseStatus == 'null' || teacherProfile?.spouseStatus == ''){
-      doc.text('Not Given', 205, 76)
+      doc.text('Not Given', 205, 81)
     }else{
-      doc.text(teacherProfile?.spouseStatus == '4' ? 'Yes' : 'No', 205, 76)
+      doc.text(teacherProfile?.spouseStatus == '4' ? 'Yes' : 'No', 205, 81)
     }
 
     
@@ -746,15 +746,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Spouse Employee Code', 15, 83)
+    doc.text('Spouse Employee Code', 15, 84)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseEmpCode == null || teacherProfile?.spouseEmpCode == 'null' || teacherProfile?.spouseEmpCode == ''){
-      doc.text('Not Given', 85, 83)
+      doc.text('Not Given', 85, 84)
     }else{
-      doc.text(teacherProfile?.spouseEmpCode, 85, 83)
+      doc.text(teacherProfile?.spouseEmpCode, 85, 84)
     }
 
     
@@ -762,15 +762,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Spouse Name', 145, 83)
+    doc.text('Spouse Name', 145, 87)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseName == null || teacherProfile?.spouseName == 'null' || teacherProfile?.spouseName == ''){
-      doc.text('Not Given', 205, 83)
+      doc.text('Not Given', 205, 87)
     }else{
-      doc.text(teacherProfile?.spouseName, 205, 83)
+      doc.text(teacherProfile?.spouseName, 205, 87)
     }
 
    
@@ -795,15 +795,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Spouse Station', 145, 90)
+    doc.text('Spouse Station', 145, 93)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseStationName == null || teacherProfile?.spouseStationName == 'null' || teacherProfile?.spouseStationName == ''){
-      doc.text('Not Given', 205, 90)
+      doc.text('Not Given', 205, 93)
     }else{
-      doc.text(teacherProfile?.spouseStationName, 205, 90);
+      doc.text(teacherProfile?.spouseStationName, 205, 93);
     }
 
    
@@ -811,166 +811,110 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     //5
 
 
-
-
-
-
     
-   // doc.setTextColor(138, 24, 34);
-   // doc.setFontSize(14);
-    //doc.setFont('Times-Roman', 'bold');
-    //doc.text('Academic Qualification', 15, 100);    
-
-    (doc as any).autoTable({
-     // head: this.acdHead,
-     // body: this.acdQualificationArray,
-      theme: 'grid',
-      startY: 105,
-      // didDrawPage: function (data) {
-
-      //  // const currentDate = new Date();
-      //  // const convtCurrentDate = "(" + currentDate + ")"
-
-      //   // Header
-      //  // doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 10, 100, 20);
-      //  // doc.setDrawColor(0, 0, 0);
-      //  // doc.setTextColor(0, 0, 0);
-      //   //doc.setLineWidth(1);
-      //  // doc.line(15, 35, 280, 35);
-
-      //   // Footer
-      // //  var str = "Page " + data.doc.internal.getNumberOfPages();
-
-      //  // doc.setFontSize(10);
-      //   // jsPDF 1.4+ uses getWidth, <1.4 uses .width
-      //  // var pageSize = doc.internal.pageSize;
-      //   // var pageHeight = pageSize.height
-      //   //   ? pageSize.height
-      //   //   : pageSize.getHeight();
-      //  // doc.text(str, data.settings.margin.left, pageHeight - 10);
-
-      //   //doc.setTextColor(0, 0, 0);
-      //  // doc.setFontSize(12);
-      //  // doc.setFont('Times-Roman', 'bold');
-      //   //doc.text('Report Generation Date & Time',  data.settings.margin.left+160, pageHeight - 10)
-    
-      //  // doc.setTextColor(0, 0, 0);
-      //  // doc.setFontSize(12);
-      // //  doc.setFont('Times-Roman', 'normal');
-      //  // doc.text(convtCurrentDate,  data.settings.margin.left+160, pageHeight - 5)
-
-        
-      // },
-
-      // didDrawCell: data => {
-      //   //this.yPoint = data.cursor.y
-      // },
-     // headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
-     // alternateRowStyles: { fillColor: [255, 251, 245] },
-     // valign: 'top',
-      // margin: {
-      //   top: 40,
-      //   bottom: 15,
-      // },
-    })
-
-
-
-
-    let finalY4 = (doc as any).lastAutoTable.finalY;
     doc.setTextColor(138, 24, 34);
     doc.setFontSize(14);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Miscellaneous', 15, 101);
+    doc.text('Miscellaneous', 15, 104);
 
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
+    doc.setFontSize(11);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for.', 15, 107)
+    doc.text('Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for.', 15, 110)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
-    doc.text(teacherStationChioc['spouseKvsYnD'] == '1'?'Yes':'No', 245, 107)
+    doc.text(teacherStationChioc['spouseKvsYnD'] == '1'?'Yes':'No', 250, 110)
+
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(11);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of medical ground (MDG Ground).', 15, 116)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(10);
+    doc.text(teacherStationChioc['personalStatusMdgD'] == '1'?'Yes':'No', 250, 116) 
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of single parent (SP Ground).', 15, 121)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.text(teacherStationChioc['personalStatusSpD'] == '1'?'Yes':'No', 250, 121) 
+
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether the employee is seeking benefit of Death of Family Person (DFP Ground).', 15, 127)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.text(teacherStationChioc['personalStatusDfpD'] == '1'?'Yes':'No', 250, 127) 
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether your are main care-giver to the person with disability in the family (i.e spouse or own son/own daughter).', 15, 133)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.text(teacherStationChioc['careGiverFaimlyYnD'] == '1'?'Yes':'No', 250, 133) 
 
 
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether the employee is seeking benefit of medical ground (MDG Ground).', 15, 113)
+    doc.text('Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).', 15, 139)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['personalStatusMdgD'] == '1'?'Yes':'No', 245, 113) 
+    doc.setFontSize(12);
+    doc.text(teacherStationChioc['memberJCM'] == '1'?'RJCM':'', 250, 139) 
+    doc.text(teacherStationChioc['memberJCM'] == '0'?'No':'', 250, 139) 
+    doc.text(teacherStationChioc['memberJCM'] == '2'?'NJCM':'', 250, 139) 
 
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
+    doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether the employee is seeking benefit of single parent (SP Ground).', 15, 118)
+    doc.text('Whether disciplinary proceedings are in progress.', 15, 145)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['personalStatusSpD'] == '1'?'Yes':'No', 245, 118) 
-
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether the employee is seeking benefit of Death of Family Person (DFP Ground).', 15, 124)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['personalStatusDfpD'] == '1'?'Yes':'No', 245, 124) 
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether your are main care-giver to the person with disability in the family (i.e spouse or own son/own daughter).', 15, 130)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['careGiverFaimlyYnD'] == '1'?'Yes':'No', 245, 130) 
-
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).', 15, 136)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['memberJCM'] == '1'?'RJCM':'', 245, 136) 
-    doc.text(teacherStationChioc['memberJCM'] == '0'?'No':'', 245, 136) 
-    doc.text(teacherStationChioc['memberJCM'] == '2'?'NJCM':'', 245, 136) 
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether disciplinary proceedings are in progress.', 15, 142)
-
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(teacherStationChioc['disciplinaryYn'] == '1'?'Yes':'No', 245, 142) 
+    doc.setFontSize(12);
+    doc.text(teacherStationChioc['disciplinaryYn'] == '1'?'Yes':'No', 250, 145) 
     
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
+    doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text(' Period of continuous absence(except maternity leave).', 15, 148)
+    doc.text(' Period of continuous absence(except maternity leave).', 15, 151)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10); 
-    doc.text(this.absencedays, 245, 148)  
+    doc.setFontSize(12); 
+    doc.text(this.absencedays, 250, 151)  
 
 
 
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Report Generation Date & Time', 175, 200)
 
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.setFont('Times-Roman', 'normal');
+    doc.text(this.currentDate, 175, 205)
+
+    doc.addPage();
 
 
 
@@ -979,13 +923,13 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(138, 24, 34);
     doc.setFontSize(14);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Work Experience', 15,154);
+    doc.text('Work Experience', 15,45);
 
     (doc as any).autoTable({
       head: this.workExpHead,
       body: this.workExperienceArray,
       theme: 'grid',
-      startY: 159,
+      startY: 50,
       didDrawPage: function (data) {
 
         const currentDate = new Date();
