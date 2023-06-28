@@ -731,7 +731,7 @@ saveInitiatedTeacherTransfer(data){
     'Content-Type': 'text/plain; charset=utf-8',
   });    
   
-  return this._http.post<any>(environment.BASE_URL_DATA_TRANSFER + "saveTeacherTransfer", data, {headers})
+  return this._http.post<any>(environment.BASE_URL_DATA_TEACHER + "transfer/saveTransferDCTCPoints", data, {headers})
 }
 
 fetchInitiateTeacherTransfer(data){

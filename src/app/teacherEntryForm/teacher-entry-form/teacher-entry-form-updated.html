@@ -250,7 +250,7 @@
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <h4 class="titleSet">Date of Joining in Present KV/Inst. in Present Post <span class="required-asterisk">*</span></h4>
-                                                            <input type="date" class="form-control" name="presentKvDate" formControlName="presentKvDate" (blur)="profileDateManagement($event, 'a')" [(ngModel)]="responseData.workExperienceWorkStartDatePresentKv" style="text-transform: none">
+                                                            <input type="date" class="form-control" name="presentKvDate"  [max]="maxDate" formControlName="presentKvDate" (blur)="profileDateManagement($event, 'a')" [(ngModel)]="responseData.workExperienceWorkStartDatePresentKv" style="text-transform: none">
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.presentKvDate').valid && teacherForm.get('profileForm.presentKvDate').touched">
                                                                 <span class="help-block text-danger"
                                                                     *ngIf="teacherForm.get('profileForm.presentKvDate').errors['invalidDate'] ">
@@ -271,7 +271,7 @@
                                                             <h4 class="titleSet"> Date of Joining in Present Station in Present Post 
                                                                 <span class="required-asterisk">*</span>
                                                             </h4>
-                                                            <input type="date" class="form-control" name="presentStationPostDate" (blur)="profileDateManagement($event, 'b')" formControlName="presentStationPostDate" [(ngModel)]="responseData.workExperiencePositionTypePresentStationStartDate" style="text-transform: none">
+                                                            <input type="date" class="form-control" name="presentStationPostDate" [max]="maxDate" (blur)="profileDateManagement($event, 'b')" formControlName="presentStationPostDate" [(ngModel)]="responseData.workExperiencePositionTypePresentStationStartDate" style="text-transform: none">
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.presentStationPostDate').valid && teacherForm.get('profileForm.presentStationPostDate').touched">
                                                                 <span class="help-block text-danger"
                                                                     *ngIf="teacherForm.get('profileForm.presentStationPostDate').errors['invalidDate'] ">
@@ -302,7 +302,7 @@
                                                         <div class="col-md-6 mb-3">
                                                             <h4 class="titleSet">Date of Joining in KVS in Present Post
                                                                 <span class="required-asterisk">*</span></h4>
-                                                            <input type="date" class="form-control" (blur)="profileDateManagement($event, 'c')" name="presentPostDate" formControlName="presentPostDate" [(ngModel)]="responseData.lastPromotionPositionDate" style="text-transform: none">
+                                                            <input type="date" class="form-control" (blur)="profileDateManagement($event, 'c')" [max]="maxDate" name="presentPostDate" formControlName="presentPostDate" [(ngModel)]="responseData.lastPromotionPositionDate" style="text-transform: none">
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.presentPostDate').valid 
                                                                 && teacherForm.get('profileForm.presentPostDate').touched ">
                                                                 <span class="help-block text-danger"
@@ -603,7 +603,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6 mb-3">
                                                                 <h4 class="titleSet">
-                                                                    Correspondence Address</h4>
+                                                                    Correspondence Address <span class="required-asterisk">*</span></h4>
                                                                 <textarea class="form-control" rows="1" name="crspndncAddress" formControlName="crspndncAddress"  style="text-transform:uppercase" [(ngModel)]="responseData.teacherCorrespondenceAddress" (change)="addOrPinChange('A')"></textarea>
                                                                 <!-- <span class="help-block text-danger"
                                                                     *ngIf="!teacherForm.get('personalInfoForm.crspndncAddress').valid ">
@@ -677,7 +677,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6 mb-3">
                                                                 <h4 class="titleSet">
-                                                                    Home town address as per service record
+                                                                    Home town address as per service record <span class="required-asterisk">*</span>
                                                                 </h4>
                                                                 <textarea class="form-control" rows="1" name="prmntAddress" style="text-transform:uppercase" formControlName="prmntAddress" [(ngModel)]="responseData.teacherPermanentAddress"></textarea>
                                                                 <!-- <span class="help-block text-danger"
@@ -1088,7 +1088,7 @@
                                     </div>
 
                                 </fieldset>
-                                <input [disabled]="(!teacherForm.get('personalInfoForm.maritalStatusF').valid  || !teacherForm.get('personalInfoForm.disabilityYN').valid || (!teacherForm.get('personalInfoForm.disabilityType').valid &&
+                                <input [disabled]="(!teacherForm.get('personalInfoForm.maritalStatusF').valid || !teacherForm.get('personalInfoForm.crspndncAddress').valid  || !teacherForm.get('personalInfoForm.prmntAddress').valid || !teacherForm.get('personalInfoForm.disabilityYN').valid || (!teacherForm.get('personalInfoForm.disabilityType').valid &&
                                 teacherForm.get('personalInfoForm.disabilityYN').value == '1') ||
                                 ((teacherForm.get('personalInfoForm.spouseStatusF').value == '1') &&
                                 (!teacherForm.get('personalInfoForm.spouseEmpCode').valid ||
@@ -1104,7 +1104,7 @@
                                 (documentUploadArray[4]?.docName != 'Physically_Handicap_Certificate.pdf' &&  teacherForm.get('personalInfoForm.disabilityYN').value == '1')))" type="button" name="next" (click)="onNextButtonClick(3)" class="next action-button"
                                     value="Next" />
                                 <input type="button" name="previous" class="previous action-button-previous" (click)=" onPreviousClick(1)" value="Previous" />
-                                <input [disabled]="((!teacherForm.get('personalInfoForm.maritalStatusF').valid ) || (!teacherForm.get('personalInfoForm.disabilityYN').valid ) || (!teacherForm.get('personalInfoForm.disabilityType').valid &&
+                                <input [disabled]="((!teacherForm.get('personalInfoForm.maritalStatusF').valid ) || (!teacherForm.get('personalInfoForm.crspndncAddress').valid ) || (!teacherForm.get('personalInfoForm.prmntAddress').valid ) || (!teacherForm.get('personalInfoForm.disabilityYN').valid ) || (!teacherForm.get('personalInfoForm.disabilityType').valid &&
                                                                    teacherForm.get('personalInfoForm.disabilityYN').value == '1') || 
                                                                    ((teacherForm.get('personalInfoForm.spouseStatusF').value == '1') &&
                                                                    (!teacherForm.get('personalInfoForm.spouseEmpCode').valid ||
@@ -1245,11 +1245,11 @@
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.shiftType.errors?.required">
                                                                     Select Shift!</span>
                                                             </td> -->
-                                                            <td><input id="wordStartDate-{{i}}" type="date" class="form-control form-control-sm " name="workStartDate" (blur)="experienceDataManagement($event,i)" formControlName="workStartDate" style="text-transform: none">
+                                                            <td><input id="wordStartDate-{{i}}" type="date" class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (blur)="experienceDataManagement($event,i)" formControlName="workStartDate" style="text-transform: none">
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.workStartDate.errors?.required">
                                                                     Select Work Start Date!</span>
                                                             </td>
-                                                            <td><input id="wordEndDate-{{i}}" type="date" class="form-control form-control-sm " name="workEndDate" (blur)="experienceDataManagement($event,i)" formControlName="workEndDate" style="text-transform: none">
+                                                            <td><input id="wordEndDate-{{i}}" type="date" class="form-control form-control-sm " [max]="maxDate" name="workEndDate" (blur)="experienceDataManagement($event,i)" formControlName="workEndDate" style="text-transform: none">
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.workEndDate.errors?.required">
                                                                     Enter Work End Date!</span>
                                                             </td>

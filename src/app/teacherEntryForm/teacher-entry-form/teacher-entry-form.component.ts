@@ -294,7 +294,7 @@ export class TeacherEntryFormComponent implements OnInit {
   enableUploadButtonRelatedForm6: boolean = false;
   enableUploadButtonRelatedForm7: boolean = false;
   enableUploadButtonRelatedForm8: boolean = false;
-
+  maxDate:any
   myAppointmnet(event) {
     if (event.target.value == "1") {
       this.onvalid = event.target.value;
@@ -354,12 +354,22 @@ export class TeacherEntryFormComponent implements OnInit {
     this.formDataList = this.formData.formData();
     this.transferGroundList = this.formDataList.transferGround
     loadScroller();
-
+    const dtToday = new Date();
+    let month = String(dtToday.getMonth() + 1);
+    let day = String(dtToday.getDate());
+    let year = dtToday.getFullYear();
+    if (parseInt(month, 10) < 10) {
+        month = '0' + month.toString();
+    }
+    if (parseInt(day, 10) < 10) {
+        day = '0' + day.toString();
+    }
+     this.maxDate = `${year}-${month}-${day}`;
     this.route.queryParams.subscribe(
       (queryParams: Params) => {
         this.allowEdit = queryParams['allowEdit'];
         if (this.allowEdit == '1') {
-
+debugger
           this.allowEdit = true;
           if (sessionStorage.getItem('responseData') == null) {
             this.responseData = JSON.parse(sessionStorage.getItem('singleKvTeacher'))
@@ -536,6 +546,7 @@ export class TeacherEntryFormComponent implements OnInit {
 //-------------------------- newform transferRelatedForm  add  start  here--------------------------------- 
 transferRelatedForm: new FormGroup({
   'id':new FormControl(''),
+  'transferStatus':new FormControl(''),
   'absenceDaysOne':new FormControl(''),
   'disciplinaryYn':new FormControl(''),
   'teacherId':new FormControl('', Validators.required),
@@ -597,11 +608,11 @@ transferRelatedForm: new FormGroup({
         'disabilityPercentage': new FormControl(''),
         'disabilityCertAuth': new FormControl(''),
         'disabilityCertNo': new FormControl(''),
-        'crspndncAddress': new FormControl(''),
+        'crspndncAddress':  new FormControl('', Validators.required),
         'crspndncState': new FormControl(''),
         'crspndncDistrict': new FormControl(''),
         'crspndncPinCode': new FormControl('', [Validators.minLength(6), Validators.maxLength(6), Validators.pattern("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$")]),
-        'prmntAddress': new FormControl(''),
+        'prmntAddress': new FormControl('', Validators.required),
         'prmntState': new FormControl(''),
         'prmntDistrict': new FormControl(''),
         'prmntPinCode': new FormControl('', [Validators.minLength(6), Validators.maxLength(6), Validators.pattern("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$")]),
@@ -1816,7 +1827,16 @@ debugger
           spouseStationName: this.teacherForm.value.personalInfoForm.spouseStationName
         },
       });
+      if(!this.teacherForm.value.personalInfoForm.spouseStationCode){
+        this.teacherForm.patchValue({
+          personalInfoForm: {
+            spouseStationCode:  this.responseData.spouseStationCode,
+            
+          }
+        })
+      }
       if (this.teacherForm.value.personalInfoForm.disabilityYN == '1') {
+        debugger
         if (this.documentUploadArray[4]?.docName == 'Physically_Handicap_Certificate.pdf') {
           this.responseData.teacherDisabilityYn = this.teacherForm.value.personalInfoForm.disabilityYN;
           this.responseData.teacherDisabilityType = this.teacherForm.value.personalInfoForm.disabilityType;
@@ -1936,6 +1956,7 @@ debugger
           )
         }
       } else {
+        debugger
         this.responseData.teacherDisabilityYn = this.teacherForm.value.personalInfoForm.disabilityYN;
         this.responseData.teacherDisabilityType = this.teacherForm.value.personalInfoForm.disabilityType;
         this.responseData.teacherDisabilityPrcnt = this.teacherForm.value.personalInfoForm.disabilityPercentage;
@@ -2076,13 +2097,15 @@ console.log(this.teacherForm.value.transferRelatedForm)
     })
   
     } else if (activeButton == "submit4") {
-      //debugger
+      debugger   
       this.getStatus(this.tempTeacherId);
       this.teacherForm.patchValue({
         transferRelatedForm: {
           teacherId:this.tempTeacherId,
+          transferStatus:1,
         }
       });
+      
       if(this.teacherForm.value.transferRelatedForm.absenceDaysOne =='' || this.teacherForm.value.transferRelatedForm.absenceDaysOne ==null)
       {
         this.teacherForm.patchValue({
@@ -2439,6 +2462,7 @@ this.getStatus(this.tempTeacherId);
 
 
 console.log(this.teacherForm)
+debugger
 
     this.outSideService.fetchSpouseByEmpCode(event.target.value).subscribe((res) => {
       if (res.status == '0') {

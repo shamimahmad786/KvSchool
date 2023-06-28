@@ -320,6 +320,11 @@
                                                             <h4 class="titleSet ">1A </h4>
                                                         </li>
                                                         <li class="w80 ml-2">Stay at a station as on 30th June in complete years irrespective of Cadre Clarification.
+                                                            <td width="7%" class=" text-center">
+                                                                <input type="text" class="form-control form-control-sm "
+                                                                   placeholder="0"  value="{{this.dcStayAtStation}}" style=" margin:0px auto;"
+                                                                   id="" disabled> 
+                                                           </td> 
                                                         </li>
                                                        
                                                     </ul>
@@ -329,7 +334,14 @@
                                                             <h4 class="titleSet ">1B </h4>
                                                         </li>
                                                         <li class="w80"> Period of absence on any account shall also be counte for this purpose.<span
-                                                                class="required-asterisk">*</span></li>
+                                                                class="required-asterisk">*</span>
+                                                                <td width="7%" class=" text-center">
+                                                                    <input type="text" class="form-control form-control-sm "
+                                                                       placeholder="0"  value="{{this.dcPeriodAbsence}}" style=" margin:0px auto;"
+                                                                       id="" disabled> 
+                                                               </td> 
+                                                            
+                                                            </li>
                                                     </ul>
 
                                                     <ul class="orderList  border-bottom">
@@ -338,6 +350,11 @@
                                                         </li>
                                                         <li class="w80"> If an employee transferred from station "A" to station "B" returns to  the station "A" on request without 
                                                             completing three years of stay at station "B" then the period of stay at station "A" will be calculated as total number of years served at  station "A" prior to his posting at "B" and the number of years served after his return to station "A" taken together. 
+                                                            <td width="7%" class=" text-center">
+                                                                <input type="text" class="form-control form-control-sm "
+                                                                   placeholder="0"  value="{{this.dcReturnStation}}" style=" margin:0px auto;"
+                                                                   id="" disabled> 
+                                                           </td> 
                                                         </li>
                                                     </ul>
 
@@ -345,15 +362,17 @@
                                                         <li class="w5 me-3">
                                                             <h4 class="titleSet ">1D </h4>
                                                         </li>
-                                                        <li class="w80"> Total days (present). 1A+1C     <td width="7%" class=" text-center">
+                                                        <li class="w80"> Total days (present). 1A+1C    
+                                                        <td width="7%" class=" text-center">
                                                             <input type="text" class="form-control form-control-sm "
                                                                placeholder="0"  value="{{this.totaldaysPresent}}" style=" margin:0px auto;"
                                                                id="" disabled> 
-                                                       </td> </li> 
+                                                       </td> 
+                                                    </li> 
                                                       
                                                     </ul>
 
-                                                    <ul class="DateOfBirth mt-3">
+                                                    <!-- <ul class="DateOfBirth mt-3">
 
                                                         <li>
                                                             <label>Present Station Posting Date</label>
@@ -375,12 +394,12 @@
                                                                 disabled formControlName="presentStationCode"
                                                                 name="presentStationCode" id="presentStationCode">
                                                         </li>
-                                                    </ul>
+                                                    </ul> -->
                                                 </td>
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q1DPt"
-                                                        formControlName="q1DPt" name="q1DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="dcStayStationPoint"
+                                                        formControlName="dcStayStationPoint" name="dcStayStationPoint" disabled>
                                                 </td>
                                             </tr>                                         
 
@@ -395,7 +414,7 @@
 
                                                     </h4>
 
-                                                    <ul class="DateOfBirth mt-3">
+                                                    <!-- <ul class="DateOfBirth mt-3">
                                                         <li>
                                                             <label>Date Of Birth</label>
                                                             <input type="text" id="teacherDob"
@@ -424,7 +443,7 @@
                                                         </li>
 
 
-                                                    </ul>
+                                                    </ul> -->
 
                                                  
                                                 </td>
@@ -432,7 +451,7 @@
                                                <td width="7%" class=" text-center">
                                                      <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;"
-                                                        id="" formControlName="q2DPt" name="q2DPt" disabled> 
+                                                        id="" formControlName="dcTenureHardPoint" name="dcTenureHardPoint" disabled> 
                                                 </td> 
                                             </tr>
 
@@ -449,8 +468,8 @@
                                                
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q4DPt"
-                                                        formControlName="q3DPt" name="q3DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="dcPhysicalChallengedPoint"
+                                                        formControlName="dcPhysicalChallengedPoint" name="dcPhysicalChallengedPoint" disabled>
                                                 </td>
                                             </tr>
 
@@ -481,8 +500,8 @@
                                        
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q4DPt"
-                                                        formControlName="q4DPt" name="q4DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="dcMdDfGroungPoint"
+                                                        formControlName="dcMdDfGroungPoint" name="dcMdDfGroungPoint" disabled>
                                                 </td>
                                             </tr>
 
@@ -500,8 +519,8 @@
                                              
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q5DPt"
-                                                        formControlName="q5DPt" name="q5DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="dcLtrPoint"
+                                                        formControlName="dcLtrPoint" name="dcLtrPoint" disabled>
                                                 </td>
                                             </tr>
 
@@ -606,8 +625,8 @@
 
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q6DPt"
-                                                        formControlName="q6DPt" name="q6DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="dcSinglePoint"
+                                                        formControlName="dcSinglePoint" name="dcSinglePoint" disabled>
                                                 </td>
                                             </tr>
 
@@ -707,8 +726,8 @@
                                                 </td>
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q7DPt"
-                                                        formControlName="q7DPt" name="q7DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="dcSpousePoint"
+                                                        formControlName="dcSpousePoint" name="dcSpousePoint" disabled>
                                                 </td>
                                             </tr>
 
@@ -725,8 +744,8 @@
                                           
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q8DPt"
-                                                        formControlName="q8DPt" name="q8DPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="dcRjcmNjcmPoint"
+                                                        formControlName="dcRjcmNjcmPoint" name="dcRjcmNjcmPoint" disabled>
                                                 </td>
                                             </tr>
 
@@ -851,9 +870,9 @@
                                         <div class="col-md-2">
                                             <h4 class="titleSet mb-0">
                                                 <span class="text-green float-end">
-                                                    <input id="totalDisplacementCount"
-                                                        formControlName="totalDisplacementCount"
-                                                        name="totalDisplacementCount" disabled>
+                                                    <input id="dcTotalPoint"
+                                                        formControlName="dcTotalPoint"
+                                                        name="dcTotalPoint" disabled>
                                                 </span>
                                             </h4>
                                         </div>

@@ -168,6 +168,10 @@ export class KvsTransferEditComponent implements OnInit {
   transferRelatedFormTempId: any;
   responseTcDcData: any;
   totaldaysPresent: any;
+  spouseStationName: any;
+  dcStayAtStation: any;
+  dcPeriodAbsence: any;
+  dcReturnStation: any;
 
 
   constructor(private transferPdfService: TeacherTransferPdfService, private date: DatePipe, private formData: FormDataService, private dataService: DataService, private outSideService: OutsideServicesService, private fb: FormBuilder, private modalService: NgbModal) {
@@ -398,6 +402,7 @@ export class KvsTransferEditComponent implements OnInit {
       stationChoice: new FormGroup({
         'applyTransferYn': new FormControl('', Validators.required),
         'id':new FormControl(''),
+        'transferStatus':new FormControl(''),
         'teacherId':new FormControl('', Validators.required),
         'choiceKv1StationCode':  new FormControl,
         'choiceKv2StationCode':  new FormControl,
@@ -421,25 +426,25 @@ export class KvsTransferEditComponent implements OnInit {
         'displacement5StationName': new FormControl
       }),
       displacementCount: new FormGroup({
+        'kvCode': new FormControl(),
+        'teacherId': new FormControl(),
+        'transferId': new FormControl(),
+        'teacherEmployeeCode': new FormControl(),
         'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
         'presentStationName': new FormControl(), //1
         'presentStationCode': new FormControl(), //1
-        'q1DPt': new FormControl(),//1
+        'dcStayStationPoint': new FormControl(),//1
         'teacherDob': new FormControl,//3    
         'hardStationWorkStartDate': new FormControl(), //3
         'hardStationWorkEndDate': new FormControl(), //3
-        'q2DPt': new FormControl(),//3
-        'q3DPt': new FormControl(),//3     
-        'q4DPt': new FormControl(),   
-        'q5DPt': new FormControl(),//5   
-        'q6DPt': new FormControl(),//6
-        'q7DPt': new FormControl(),//6    
-        'q8DPt': new FormControl(),//7        
-        'q11DPt': new FormControl(),//8     
-        'q12DPt': new FormControl(),//9    
-        'q13DPt': new FormControl(), //10
-        'totalDisplacementCount': new FormControl(),
-       
+        'dcTenureHardPoint': new FormControl(),//3
+        'dcPhysicalChallengedPoint': new FormControl(),//3     
+        'dcMdDfGroungPoint': new FormControl(),   
+        'dcLtrPoint': new FormControl(),//5   
+        'dcSinglePoint': new FormControl(),//6
+        'dcSpousePoint': new FormControl(),//6    
+        'dcRjcmNjcmPoint': new FormControl(),//7        
+        'dcTotalPoint': new FormControl(),
       }),
       transferCount: new FormGroup({
       'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
@@ -538,6 +543,7 @@ export class KvsTransferEditComponent implements OnInit {
       this.teacherExperienceData = res.response.teacherExperience;
       this.transferStatusOperation = res.response.profileDetails.transferStatus;
       this.formStatusLocale = res.response.profileDetails.transferStatus;
+      this.spouseStationName=res.response.profileDetails.spouseStationName;
 
       if (this.responseData.hasOwnProperty('transferApplicationNumber')) {
         this.transferApplicationNumberVal = this.responseData?.transferApplicationNumber;
@@ -586,42 +592,43 @@ export class KvsTransferEditComponent implements OnInit {
   }
   setTcDcReceivedData(responseData:any)
   {
-
+    debugger
     const data = {
            "kvCode":responseData.kvCode,
            "teacherId": responseData.teacherId
        }
-       debugger
-console.log(data)
          this.outSideService.fetchTcDcData(data).subscribe((res) => {
+
          this.responseTcDcData=res;
-         console.log("tc dc data")
-         console.log(res) 
-         this.totaldaysPresent=this.responseTcDcData.dcStayAtStation+this.responseTcDcData.dcReturnStation
+         this.totaldaysPresent=this.responseTcDcData.dcStayAtStation+this.responseTcDcData.dcReturnStation-this.responseTcDcData.dcPeriodAbsence
+         this.dcStayAtStation =this.responseTcDcData.dcStayAtStation,
+         this.dcPeriodAbsence =this.responseTcDcData.dcPeriodAbsence,
+         this.dcReturnStation=this.responseTcDcData.dcReturnStation,
          this.transferForm.patchValue({
           displacementCount: {
-            q1DPt: this.responseTcDcData.dcStayStationPoint,
-            q2DPt: this.responseTcDcData.dcTenureHardPoint,
-            q3DPt: this.responseTcDcData.dcPhysicalChallengedPoint,
-            q4DPt: this.responseTcDcData.dcMdDfGroungPoint,
-            q5DPt: this.responseTcDcData.dcLtrPoint,
-            q8DPt: this.responseTcDcData.dcRjcmNjcmPoint,
-            totalDisplacementCount: this.responseTcDcData.dcTotalPoint
+            kvCode:responseData.kvCode,
+            teacherId:responseData.teacherId,
+            dcStayStationPoint: this.responseTcDcData.dcStayStationPoint,
+            dcTenureHardPoint: this.responseTcDcData.dcTenureHardPoint,
+            dcPhysicalChallengedPoint: this.responseTcDcData.dcPhysicalChallengedPoint,
+            dcMdDfGroungPoint: this.responseTcDcData.dcMdDfGroungPoint,
+            dcLtrPoint: this.responseTcDcData.dcLtrPoint,
+            dcRjcmNjcmPoint: this.responseTcDcData.dcRjcmNjcmPoint,
+            dcTotalPoint: this.responseTcDcData.dcTotalPoint
           },
         })
-        debugger
         if(this.responseTcDcData.dcSinglePoint=='-12')
         {
           this.transferForm.patchValue({
             displacementCount: {
-              q6DPt: this.responseTcDcData.dcSinglePoint
+              dcSinglePoint: this.responseTcDcData.dcSinglePoint
             },
           })
         }
         else{
           this.transferForm.patchValue({
             displacementCount: {
-              q7DPt: this.responseTcDcData.dcSpousePoint
+              dcSpousePoint: this.responseTcDcData.dcSpousePoint
             },
           })
           if(this.responseTcDcData.dcSpousePoint=='-10')
@@ -1194,33 +1201,37 @@ console.log(data)
     var activeButton = document.activeElement.id;
 
     if (activeButton == 'submit2') {
-      this.responseData.workExperiencePositionTypePresentStationStartDate = this.transferForm.value.displacementCount.workExperiencePositionTypePresentStationStartDate
-      this.responseData.presentStationName = this.transferForm.value.displacementCount.presentStationName
-      this.responseData.presentStationCode = this.transferForm.value.displacementCount.presentStationCode
-      this.responseData.q1DPt = this.transferForm.value.displacementCount.q1DPt
-      this.responseData.q2DPt = this.transferForm.value.displacementCount.q2DPt
-      this.responseData.q2TPt = this.transferForm.value.transferCount.q2TPt
-      this.responseData.teacherDob = this.transferForm.value.displacementCount.teacherDob
-      this.responseData.hardStationCode = this.transferForm.value.displacementCount.hardStationCode
-      this.responseData.hardStationName = this.transferForm.value.displacementCount.hardStationName
-      this.responseData.hardStationWorkStartDate = this.transferForm.value.displacementCount.hardStationWorkStartDate
-      this.responseData.hardStationWorkEndDate = this.transferForm.value.displacementCount.hardStationWorkEndDate
-      this.responseData.q3DPt = this.transferForm.value.displacementCount.q3DPt
-      this.responseData.personalStatus = this.transferForm.value.displacementCount.personalStatus
-      this.responseData.personalStatusLtrDc = this.transferForm.value.displacementCount.personalStatusLtrDc
-      this.responseData.q4DPt = this.transferForm.value.displacementCount.q4DPt
-      this.responseData.q5DPt = this.transferForm.value.displacementCount.q5DPt
-      this.responseData.q6DPt = this.transferForm.value.displacementCount.q6DPt           
-      this.responseData.q7DPt = this.transferForm.value.displacementCount.q7DPt 
-      this.responseData.q8DPt = this.transferForm.value.displacementCount.q8DPt
-      this.responseData.q11DPt = this.transferForm.value.displacementCount.q11DPt
-      this.responseData.q12DPt = this.transferForm.value.displacementCount.q12DPt
-      this.responseData.q13DPt = this.transferForm.value.displacementCount.q13DPt
-      this.responseData.totalDisplacementCount = this.transferForm.value.displacementCount.totalDisplacementCount
+      // this.responseData.workExperiencePositionTypePresentStationStartDate = this.transferForm.value.displacementCount.workExperiencePositionTypePresentStationStartDate
+      // this.responseData.presentStationName = this.transferForm.value.displacementCount.presentStationName
+      // this.responseData.presentStationCode = this.transferForm.value.displacementCount.presentStationCode
+      // this.responseData.q1DPt = this.transferForm.value.displacementCount.q1DPt
+      // this.responseData.q2DPt = this.transferForm.value.displacementCount.q2DPt
+      // this.responseData.q2TPt = this.transferForm.value.transferCount.q2TPt
+      // this.responseData.teacherDob = this.transferForm.value.displacementCount.teacherDob
+      // this.responseData.hardStationCode = this.transferForm.value.displacementCount.hardStationCode
+      // this.responseData.hardStationName = this.transferForm.value.displacementCount.hardStationName
+      // this.responseData.hardStationWorkStartDate = this.transferForm.value.displacementCount.hardStationWorkStartDate
+      // this.responseData.hardStationWorkEndDate = this.transferForm.value.displacementCount.hardStationWorkEndDate
+      // this.responseData.q3DPt = this.transferForm.value.displacementCount.q3DPt
+      // this.responseData.personalStatus = this.transferForm.value.displacementCount.personalStatus
+      // this.responseData.personalStatusLtrDc = this.transferForm.value.displacementCount.personalStatusLtrDc
+      // this.responseData.q4DPt = this.transferForm.value.displacementCount.q4DPt
+      // this.responseData.q5DPt = this.transferForm.value.displacementCount.q5DPt
+      // this.responseData.q6DPt = this.transferForm.value.displacementCount.q6DPt           
+      // this.responseData.q7DPt = this.transferForm.value.displacementCount.q7DPt 
+      // this.responseData.q8DPt = this.transferForm.value.displacementCount.q8DPt
+      // this.responseData.q11DPt = this.transferForm.value.displacementCount.q11DPt
+      // this.responseData.q12DPt = this.transferForm.value.displacementCount.q12DPt
+      // this.responseData.q13DPt = this.transferForm.value.displacementCount.q13DPt
+      // this.responseData.totalDisplacementCount = this.transferForm.value.displacementCount.totalDisplacementCount
      console.log(this.transferForm.value.displacementCount)
-     return;
+
+
+  
+
+    // return;
       this.responseData.transferStatus = 'TRE'
-      this.outSideService.saveInitiatedTeacherTransfer(this.responseData).subscribe((res) => {
+      this.outSideService.saveInitiatedTeacherTransfer(this.transferForm.value.displacementCount).subscribe((res) => {
         if (res.status == 1 || res.status == '1') {
           this.responseData = res.response;
           this.transferStatusOperation = res.response.transferStatus;
@@ -1245,10 +1256,11 @@ console.log(data)
       debugger
       console.log(console.log(this.transferForm.value.stationChoice))
      
-      this.responseData.transferStatus = 'TRE'
+    //  this.responseData.transferStatus = 'TRE'
       this.transferForm.patchValue({
         stationChoice: {
           teacherId:this.tempTeacherId,
+          transferStatus:1,
         }
       });
       // this.outSideService.saveInitiatedTeacherTransfer(this.responseData).subscribe((res) => {
@@ -2178,7 +2190,7 @@ console.log(data)
     console.log(  this.stationList)
   }
   selectSchoolByUdise() {
-
+debugger
     var str = this.selectedUdiseCode
     console.log(str)
     var splitted = str.split("-", 2);
@@ -2193,7 +2205,7 @@ console.log(data)
     // alert(this.teacherForm.value.transferRelatedForm.spouseStationName);
 
     if (this.position == '1') {
-   if(splitted[1] != this.transferForm.value.stationChoice?.spouseStationName){
+   if(splitted[1] != this.spouseStationName){
     Swal.fire(
       'You have not selected spouse station in first choice so you are not eligible to get spouse point in transfer and spouse station is available in only first choice',
       '',
