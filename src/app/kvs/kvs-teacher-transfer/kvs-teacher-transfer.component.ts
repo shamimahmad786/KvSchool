@@ -203,18 +203,18 @@ debugger
     this.outSideService.fetchTransferBasicProfileByTchId(teacherId).subscribe((res) => {
       debugger
       this.teacherExperienceList = res.response.teacherExperience;
-      for(let i=0;i<this.teacherExperienceList.length; i++){
-        var temp = [];
-        for(let j=0; j<this.teacherExperienceList[i].groundForTransfer.length; j++){
-          temp.push(transferGround.transform(this.teacherExperienceList[i].groundForTransfer[j])) 
-        }
-        if (this.teacherExperienceList[i].workEndDate != "null" && this.teacherExperienceList[i].workEndDate != null) {
-          this.teacherExperienceList[i].workEndDate = this.date.transform(new Date(this.teacherExperienceList[i].workEndDate * 1), 'yyyy-MM-dd')
-        }
-        this.teacherExperienceList[i].workStartDate = this.date.transform(new Date(this.teacherExperienceList[i].workStartDate * 1), 'yyyy-MM-dd')
+      // for(let i=0;i<this.teacherExperienceList.length; i++){
+      //   var temp = [];
+      //   for(let j=0; j<this.teacherExperienceList[i].groundForTransfer.length; j++){
+      //     temp.push(transferGround.transform(this.teacherExperienceList[i].groundForTransfer[j])) 
+      //   }
+      //   if (this.teacherExperienceList[i].workEndDate != "null" && this.teacherExperienceList[i].workEndDate != null) {
+      //     this.teacherExperienceList[i].workEndDate = this.date.transform(new Date(this.teacherExperienceList[i].workEndDate * 1), 'yyyy-MM-dd')
+      //   }
+      //   this.teacherExperienceList[i].workStartDate = this.date.transform(new Date(this.teacherExperienceList[i].workStartDate * 1), 'yyyy-MM-dd')
 
-        this.teacherExperienceList[i].groundForTransfer = temp;
-      }
+      //   this.teacherExperienceList[i].groundForTransfer = temp;
+      // }
       
       this.teacherTransferDetails = res.response.profileDetails;
       

@@ -409,8 +409,8 @@ export class KvsTransferEditComponent implements OnInit {
       // }),
       stationChoice: new FormGroup({
         'applyTransferYn': new FormControl('', Validators.required),
-        'id':new FormControl(''),
-        'transferStatus':new FormControl(''),
+     //   'id':new FormControl(''),
+       // 'transferStatus':new FormControl(''),
         'teacherId':new FormControl(''),
         'choiceKv1StationCode':  new FormControl,
         'choiceKv2StationCode':  new FormControl,
@@ -421,17 +421,17 @@ export class KvsTransferEditComponent implements OnInit {
         'choiceKv2StationName': new FormControl('', Validators.required),
         'choiceKv3StationName': new FormControl('', Validators.required),
         'choiceKv4StationName': new FormControl('', Validators.required),
-        'choiceKv5StationName': new FormControl('', Validators.required),
-        'displacement1StationCode': new FormControl,
-        'displacement2StationCode': new FormControl,
-        'displacement3StationCode': new FormControl,
-        'displacement4StationCode': new FormControl,
-        'displacement5StationCode': new FormControl,
-        'displacement1StationName': new FormControl('', Validators.required),
-        'displacement2StationName': new FormControl,
-        'displacement3StationName': new FormControl,
-        'displacement4StationName': new FormControl,
-        'displacement5StationName': new FormControl
+        'choiceKv5StationName': new FormControl('', Validators.required)
+        // 'displacement1StationCode': new FormControl,
+        // 'displacement2StationCode': new FormControl,
+        // 'displacement3StationCode': new FormControl,
+        // 'displacement4StationCode': new FormControl,
+        // 'displacement5StationCode': new FormControl,
+        // 'displacement1StationName': new FormControl('', Validators.required),
+        // 'displacement2StationName': new FormControl,
+        // 'displacement3StationName': new FormControl,
+        // 'displacement4StationName': new FormControl,
+        // 'displacement5StationName': new FormControl
       }),
       displacementCount: new FormGroup({
         'kvCode': new FormControl(),
@@ -1330,39 +1330,11 @@ canculateTcPoint()
       this.transferForm.patchValue({
         stationChoice: {
           teacherId:this.tempTeacherId,
-          transferStatus:1,
         }
       });
-      // this.outSideService.saveInitiatedTeacherTransfer(this.responseData).subscribe((res) => {
-
-      //   this.responseData = res.response;
-      //   this.transferStatusOperation = res.response.transferStatus;
-      //   this.setReceivedData(this.responseData)
-      //   this.formStatusLocale = 'TRE'
-      //   Swal.fire(
-      //     'Your data has been saved successfully!',
-      //     '',
-      //     'success'
-      //   )
-      // })
-      this.outSideService.saveTransProfile(this.transferForm.value.stationChoice).subscribe((res) => {
-        if (res.status == 1) {
-     
-         this.transferRelatedFormTempId=res.response.id
-         this.transferForm.patchValue({
-          stationChoice: {
-             id: this.transferRelatedFormTempId,
-           }
-         })
-         // this.teacherForm.value.transferRelatedForm.i
-         // this.teacherForm.patchValue({
-         //   declarationRelatedForm: {
-         //     id: this.transferRelatedFormTempId,
-         //   }
-         // })
-     
-        
-     
+    //  return
+      this.outSideService.saveStationChoice(this.transferForm.value.stationChoice).subscribe((res) => {
+        if (res.status == 1) {   
          Swal.fire(
            'Your Data has been saved Successfully!',
            '',

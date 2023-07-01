@@ -207,6 +207,7 @@ export class TeacherEntryFormComponent implements OnInit {
   gkFilemMedical: boolean = false;
   dfpGround: boolean = false;
   abledChild: boolean = false;
+  positionHeld: boolean = false;
   onvalid;
   teacherData: any;
   genderMale: any;
@@ -254,6 +255,7 @@ export class TeacherEntryFormComponent implements OnInit {
   formDataList: any;
   stateMasterList: any;
   districListByStateIdC: any;
+  careGiverRelationData:any;
   districListByStateIdP: any;
   lastPromotionId: any;
   transferGroundList: any;
@@ -266,6 +268,7 @@ export class TeacherEntryFormComponent implements OnInit {
   child_10_12_ynDradioButton:any;
   inlineRadio13radioButton:any;
   personalStatusSpDradioButton:any;
+  surveHardYnradioButton:any;
   careGiverFaimlyYnDradioButton:any;
   teacherStationChioce:any;
   childDifferentAbleYnDradioButton:any;
@@ -571,13 +574,14 @@ transferRelatedForm: new FormGroup({
   'personalStatusSpD': new FormControl(),
   'personalStatusDfpD': new FormControl(),
   'memberJCM': new FormControl(),
+  'surveHardYn': new FormControl(),
   'careGiverYnD': new FormControl(),
   'childDifferentAbleYnD': new FormControl(),
   'spouseEmpCode': new FormControl(''),
   'spousePost': new FormControl(''),
   'spouseStationName': new FormControl(''),
   'careGiverFaimlyYnD': new FormControl(''),
-  'positionOfNjcmRjcm': new FormControl(''),
+  'positionOfNjcmRjcm': new FormControl('', Validators.required),
   'nameOfFamilyMember': new FormControl('', Validators.required),
   'medicalCertificateIssueDate': new FormControl('', Validators.required),
   'singleParentGround': new FormControl('', Validators.required),
@@ -609,12 +613,12 @@ transferRelatedForm: new FormGroup({
         'disabilityCertAuth': new FormControl(''),
         'disabilityCertNo': new FormControl(''),
         'crspndncAddress':  new FormControl('', Validators.required),
-        'crspndncState': new FormControl(''),
-        'crspndncDistrict': new FormControl(''),
+        'crspndncState':  new FormControl('', Validators.required),
+        'crspndncDistrict':  new FormControl('', Validators.required),
         'crspndncPinCode': new FormControl('', [Validators.minLength(6), Validators.maxLength(6), Validators.pattern("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$")]),
         'prmntAddress': new FormControl('', Validators.required),
-        'prmntState': new FormControl(''),
-        'prmntDistrict': new FormControl(''),
+        'prmntState':  new FormControl('', Validators.required),
+        'prmntDistrict':  new FormControl('', Validators.required),
         'prmntPinCode': new FormControl('', [Validators.minLength(6), Validators.maxLength(6), Validators.pattern("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$")]),
         'personalIdNo': new FormControl(''),
         'aadhaarNo': new FormControl('', [Validators.pattern("^[0-9]*$"), Validators.minLength(14), Validators.maxLength(14)]),
@@ -727,7 +731,7 @@ transferRelatedForm: new FormGroup({
         workExperienceId: data.workExperienceId,
         shiftType: data.shiftType,
         experienceType: experienceType,
-        groundForTransfer: data.groundForTransfer,
+        groundForTransfer: parseInt(data.groundForTransfer),
         currentlyActiveYn: data.currentlyActiveYn,
         shiftYn: data.shift_yn,
         udiseSchoolName: [data.udiseSchoolName, [Validators.required]],
@@ -825,7 +829,9 @@ transferRelatedForm: new FormGroup({
 
           this.tempTeacherId = this.tchExpList[i].teacherId;
         }
+        debugger
         for (let i = 0; i < this.tchExpList.length; i++) {
+          
           if (this.tchExpList[i].workExperienceId == this.workExpId) {
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workStartDate').disable();
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workEndDate').disable();
@@ -4048,6 +4054,7 @@ getTransferProfile(){
         childDifferentAbleYnD: '0',
         disciplinaryYn: '0',
         memberJCM: '0',
+        surveHardYn:'0',
       }
     })
 
@@ -4059,7 +4066,8 @@ this.patientAilmentData=res.response.patientAilment
 this.medicalCertificateIssueDateData = this.date.transform(res.response.medicalCertificateIssueDate, 'yyyy-MM-dd');
 this.singleParentGroundData =res.response.singleParentGround
 this.singleParentCertificateIssueDateData =  this.date.transform(res.response.singleParentCertificateIssueDate, 'yyyy-MM-dd');  
-this.deathOfFamilyGroundData=res.response.deathOfFamilyGround
+this.deathOfFamilyGroundData=res.response.deathOfFamilyGround;
+this.careGiverRelationData=res.response.careGiverRelation,
 this.deathCertificateIssueDateData = this.date.transform(res.response.deathCertificateIssueDate, 'yyyy-MM-dd');  
 
 this.teacherForm.patchValue({
@@ -4095,6 +4103,7 @@ personalStatusMdgD:res.response.personalStatusMdgD,
 personalStatusDfpD:res.response.personalStatusDfpD,
 personalStatusSpD:res.response.personalStatusSpD,
 memberJCM:res.response.memberJCM,
+surveHardYn :res.response.surveHardYn,
 spouseEmpCode:res.response.spouseEmpCode,
 spousePost:res.response.spousePost,
 spouseStation:res.response.spouseStation,
@@ -4104,7 +4113,6 @@ patientHospital:res.response.patientHospital,
 patientMedicalOfficerName:res.response.patientMedicalOfficerName,
 patientMedicalOfficerDesignation:res.response.patientMedicalOfficerDesignation,
 careGiverName:res.response.careGiverName,
-careGiverRelation:res.response.careGiverRelation,
 careGiverDisabilityName:res.response.careGiverDisabilityName,
 careGiverDisabilityPrcnt:res.response.careGiverDisabilityPrcnt,
 childDifferentName:res.response.childDifferentName,
@@ -4234,8 +4242,6 @@ if(this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD==0)
   this.abledChild=false
 }
 
-
-
 if(this.teacherForm.value.transferRelatedForm.disciplinaryYn==1)
 {
   this.disciplinaryYnradioButton=1;
@@ -4249,25 +4255,38 @@ if(this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD==0)
   this.disciplinaryYnradioButton=0;
 }
 
-
-
-
  if(this.teacherForm.value.transferRelatedForm.memberJCM==1)
 {
   this.inlineRadio13radioButton=1;
+  this.positionHeld=true
  
 } if(this.teacherForm.value.transferRelatedForm.memberJCM==2){
   this.inlineRadio13radioButton=2;
+  this.positionHeld=true
 }
 if(this.teacherForm.value.transferRelatedForm.memberJCM=='' || this.teacherForm.value.transferRelatedForm.memberJCM== null)
 {
   this.inlineRadio13radioButton=0;
- 
+  this.positionHeld=false 
 }
 
 if(this.teacherForm.value.transferRelatedForm.memberJCM==0)
 {
   this.inlineRadio13radioButton=0;
+  this.positionHeld=false
+}
+
+if(this.teacherForm.value.transferRelatedForm.surveHardYn==1)
+{
+  this.surveHardYnradioButton=1;
+}
+if(this.teacherForm.value.transferRelatedForm.surveHardYn=='' || this.teacherForm.value.transferRelatedForm.surveHardYn== null)
+{
+  this.surveHardYnradioButton=0;
+}
+if(this.teacherForm.value.transferRelatedForm.surveHardYn==0)
+{
+  this.surveHardYnradioButton=0;
 }
 
 this.teacherForm.patchValue({
@@ -4276,7 +4295,6 @@ this.teacherForm.patchValue({
     
   }
 })
-
 
 if(this.responseData.spouseStatus== null || this.responseData.spouseStatus=='5' || this.responseData.spouseStatus=='')
 {
@@ -4308,7 +4326,14 @@ else{
 
 }
 
-
+checkRjcmNjcm(val:any)
+{
+  if(val=='show'){
+    this.positionHeld=true
+  }else{
+    this.positionHeld=false
+  } 
+}
 getStatus(tempTeacherId){
   this.outSideService.getUpdatedFlag(tempTeacherId).subscribe((res) => {
     this.flagUpdatedList = res.response
