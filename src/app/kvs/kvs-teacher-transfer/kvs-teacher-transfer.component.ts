@@ -109,7 +109,7 @@ export class KvsTeacherTransferComponent implements OnInit {
 
     if (this.businessUnitTypeId != '2' && this.businessUnitTypeId != '3' && this.businessUnitTypeId != '4') {
       // this.disabledCreateButton = false;
-      // this.getSchoolDetailsByKvCode();
+       this.getSchoolDetailsByKvCode();
       // this.getKvTeacherByKvCode();
       // this.getKvTeacherByUdiseCode();
     }
@@ -118,7 +118,7 @@ export class KvsTeacherTransferComponent implements OnInit {
       // this.showNationalSelector = false;
       this.udiseSchoolCode = JSON.parse(sessionStorage.getItem("mappingData")).mappingData[0].udise_sch_code;
       // this.getTransferInitiatedTchByUdise(); commented by shamim
-      // this.getSchoolDetailsByKvCode(); commented by shamim
+       this.getSchoolDetailsByKvCode();
     }
 
     this.remarksForm = new FormGroup({
@@ -201,7 +201,7 @@ debugger
     this.getUploadedDocs();
    // this.modalService.open(this.transferVerifyModal, { size: 'full', backdrop: 'static', keyboard: false });
     this.outSideService.fetchTransferBasicProfileByTchId(teacherId).subscribe((res) => {
-      
+      debugger
       this.teacherExperienceList = res.response.teacherExperience;
       for(let i=0;i<this.teacherExperienceList.length; i++){
         var temp = [];
@@ -283,6 +283,7 @@ debugger
   }
 
   getSchoolDetailsByKvCode() {
+    debugger
     this.outSideService.fetchKvSchoolDetails(this.kvCode).subscribe((res) => {
       this.kvSchoolDetails = res.response;
       

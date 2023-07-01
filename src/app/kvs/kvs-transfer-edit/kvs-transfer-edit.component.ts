@@ -172,6 +172,14 @@ export class KvsTransferEditComponent implements OnInit {
   dcStayAtStation: any;
   dcPeriodAbsence: any;
   dcReturnStation: any;
+  tcSpouseAtSmaeStation: boolean;
+  tcSpouseAtCentralGovt: boolean;
+  tcSpouseAtStateGovt: boolean;
+  tcWooomanEmp: boolean;
+  totaldaysPresentTc: number;
+  tcStayAtStation: any;
+  tcPeriodAbsence: any;
+  tcReturnStation: any;
 
 
   constructor(private transferPdfService: TeacherTransferPdfService, private date: DatePipe, private formData: FormDataService, private dataService: DataService, private outSideService: OutsideServicesService, private fb: FormBuilder, private modalService: NgbModal) {
@@ -403,17 +411,17 @@ export class KvsTransferEditComponent implements OnInit {
         'applyTransferYn': new FormControl('', Validators.required),
         'id':new FormControl(''),
         'transferStatus':new FormControl(''),
-        'teacherId':new FormControl('', Validators.required),
+        'teacherId':new FormControl(''),
         'choiceKv1StationCode':  new FormControl,
         'choiceKv2StationCode':  new FormControl,
         'choiceKv3StationCode':  new FormControl,
         'choiceKv4StationCode':  new FormControl,
         'choiceKv5StationCode':  new FormControl,
         'choiceKv1StationName': new FormControl('', Validators.required),
-        'choiceKv2StationName': new FormControl,
-        'choiceKv3StationName': new FormControl,
-        'choiceKv4StationName': new FormControl,
-        'choiceKv5StationName': new FormControl,
+        'choiceKv2StationName': new FormControl('', Validators.required),
+        'choiceKv3StationName': new FormControl('', Validators.required),
+        'choiceKv4StationName': new FormControl('', Validators.required),
+        'choiceKv5StationName': new FormControl('', Validators.required),
         'displacement1StationCode': new FormControl,
         'displacement2StationCode': new FormControl,
         'displacement3StationCode': new FormControl,
@@ -430,13 +438,13 @@ export class KvsTransferEditComponent implements OnInit {
         'teacherId': new FormControl(),
         'transferId': new FormControl(),
         'teacherEmployeeCode': new FormControl(),
-        'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
-        'presentStationName': new FormControl(), //1
-        'presentStationCode': new FormControl(), //1
+        //'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
+       // 'presentStationName': new FormControl(), //1
+       // 'presentStationCode': new FormControl(), //1
         'dcStayStationPoint': new FormControl(),//1
-        'teacherDob': new FormControl,//3    
-        'hardStationWorkStartDate': new FormControl(), //3
-        'hardStationWorkEndDate': new FormControl(), //3
+       // 'teacherDob': new FormControl,//3    
+        //'hardStationWorkStartDate': new FormControl(), //3
+       // 'hardStationWorkEndDate': new FormControl(), //3
         'dcTenureHardPoint': new FormControl(),//3
         'dcPhysicalChallengedPoint': new FormControl(),//3     
         'dcMdDfGroungPoint': new FormControl(),   
@@ -447,24 +455,25 @@ export class KvsTransferEditComponent implements OnInit {
         'dcTotalPoint': new FormControl(),
       }),
       transferCount: new FormGroup({
-      'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
-      'presentStationName': new FormControl(), //1
-      'presentStationCode': new FormControl(), //1
-      'q1DPt': new FormControl(),//1
-      'teacherDob': new FormControl,//3
-      'hardStationWorkStartDate': new FormControl(), //3
-      'hardStationWorkEndDate': new FormControl(), //3
-      'q2DPt': new FormControl(),//3
-      'q3DPt': new FormControl(),//3
-      'q4DPt': new FormControl(),
-      'q5DPt': new FormControl(),//5
-      'q6DPt': new FormControl(),//6
-      'q7DPt': new FormControl(),//6 
-      'q8DPt': new FormControl(),//7       
-      'q11DPt': new FormControl(),//8  
-      'q12DPt': new FormControl(),//9
-      'q13DPt': new FormControl(), //10
-      'totalDisplacementCount': new FormControl(),
+        'kvCode': new FormControl(),
+        'teacherId': new FormControl(),
+        'transferId': new FormControl(),
+        'teacherEmployeeCode': new FormControl(),
+      //  'workExperiencePositionTypePresentStationStartDate': new FormControl(), //1
+      //  'presentStationName': new FormControl(), //1
+       // 'presentStationCode': new FormControl(), //1
+        'tcStayStationPoint': new FormControl(),//1
+       // 'teacherDob': new FormControl,//3    
+       // 'hardStationWorkStartDate': new FormControl(), //3
+        //'hardStationWorkEndDate': new FormControl(), //3
+        'tcTenureHardPoint': new FormControl(),//3
+        'tcPhysicalChallengedPoint': new FormControl(),//3     
+        'tcMdDfGroungPoint': new FormControl(),   
+        'tcLtrPoint': new FormControl(),//5   
+        'tcSinglePoint': new FormControl(),//6
+        'tcSpousePoint': new FormControl(),//6    
+        'tcRjcmNjcmPoint': new FormControl(),//7        
+        'tcTotalPoint': new FormControl(),
       }),
       // declaration: new FormGroup({
       //   'spouseKvsYnD': new FormControl(),
@@ -601,9 +610,13 @@ export class KvsTransferEditComponent implements OnInit {
 
          this.responseTcDcData=res;
          this.totaldaysPresent=this.responseTcDcData.dcStayAtStation+this.responseTcDcData.dcReturnStation-this.responseTcDcData.dcPeriodAbsence
+         this.totaldaysPresentTc=this.responseTcDcData.tcStayAtStation-this.responseTcDcData.tcPeriodAbsence
          this.dcStayAtStation =this.responseTcDcData.dcStayAtStation,
          this.dcPeriodAbsence =this.responseTcDcData.dcPeriodAbsence,
          this.dcReturnStation=this.responseTcDcData.dcReturnStation,
+         this.tcStayAtStation =this.responseTcDcData.tcStayAtStation,
+         this.tcPeriodAbsence =this.responseTcDcData.tcPeriodAbsence,
+         this.tcReturnStation=this.responseTcDcData.tcReturnStation,
          this.transferForm.patchValue({
           displacementCount: {
             kvCode:responseData.kvCode,
@@ -617,7 +630,29 @@ export class KvsTransferEditComponent implements OnInit {
             dcTotalPoint: this.responseTcDcData.dcTotalPoint
           },
         })
-        if(this.responseTcDcData.dcSinglePoint=='-12')
+        this.transferForm.patchValue({
+          transferCount: {
+            kvCode:responseData.kvCode,
+            teacherId:responseData.teacherId,
+            tcStayStationPoint: this.responseTcDcData.tcStayStationPoint,
+            tcTenureHardPoint: this.responseTcDcData.tcTenureHardPoint,
+            tcPhysicalChallengedPoint: this.responseTcDcData.tcPhysicalChallengedPoint,
+            tcMdDfGroungPoint: this.responseTcDcData.tcMdDfGroungPoint,
+            tcLtrPoint: this.responseTcDcData.tcLtrPoint,
+            tcRjcmNjcmPoint: this.responseTcDcData.tcRjcmNjcmPoint,
+            tcTotalPoint: this.responseTcDcData.tcTotalPoint
+          },
+        })
+        this.canculateDcPoint();
+        this.canculateTcPoint();
+    })
+
+    
+}
+
+canculateDcPoint()
+{
+  if(this.responseTcDcData.dcSinglePoint=='-12')
         {
           this.transferForm.patchValue({
             displacementCount: {
@@ -649,9 +684,43 @@ export class KvsTransferEditComponent implements OnInit {
           }
         
         }
-    })
+}
 
-    
+canculateTcPoint()
+{
+  debugger
+  if(this.responseTcDcData.tcSinglePoint=='25')
+        {
+          this.transferForm.patchValue({
+            transferCount: {
+              tcSinglePoint: this.responseTcDcData.dcSinglePoint
+            },
+          })
+        }
+        else{
+          this.transferForm.patchValue({
+            transferCount: {
+              tcSpousePoint: this.responseTcDcData.tcSpousePoint
+            },
+          })
+          if(this.responseTcDcData.tcSpousePoint=='15')
+          {
+            this.tcSpouseAtSmaeStation=true;
+          }
+          if(this.responseTcDcData.tcSpousePoint=='12')
+          {
+            this.tcSpouseAtCentralGovt=true;
+          }
+          if(this.responseTcDcData.tcSpousePoint=='10')
+          {
+            this.tcSpouseAtStateGovt=true;
+          }
+          if(this.responseTcDcData.tcSpousePoint=='8')
+          {
+            this.tcWooomanEmp=true;
+          }
+        
+        }
 }
   // getInitiatedTeacherDetails() {
   //   this.outSideService.fetchInitiateTeacherTransfer(this.tempTeacherId).subscribe((res) => {
@@ -1103,6 +1172,7 @@ export class KvsTransferEditComponent implements OnInit {
       })
     }
     const data={"teacherId":this.tempTeacherId}
+    debugger
     this.outSideService.getTransferData(data).subscribe((res) => { 
     if(res.response!=null || res.response=='')
     {
@@ -1527,36 +1597,36 @@ export class KvsTransferEditComponent implements OnInit {
     })
   }
 
-  // getSchoolDetailsByKvCode() {
-  //   this.outSideService.fetchKvSchoolDetails(this.kvCode).subscribe((res) => {
-  //     this.kvSchoolDetails = res.response;
+  getSchoolDetailsByKvCode() {
+    this.outSideService.fetchKvSchoolDetails(this.kvCode).subscribe((res) => {
+      this.kvSchoolDetails = res.response;
 
-  //     for (let i = 0; i < this.kvSchoolDetails.rowValue.length; i++) {
-  //       this.stationNameCode = this.kvSchoolDetails.rowValue[i].station_name;
-  //       this.stationNameCode = this.stationNameCode + "(" + this.kvSchoolDetails.rowValue[i].station_code + ")";
-  //       this.stationCode = this.kvSchoolDetails.rowValue[i].station_code
+      for (let i = 0; i < this.kvSchoolDetails.rowValue.length; i++) {
+        this.stationNameCode = this.kvSchoolDetails.rowValue[i].station_name;
+        this.stationNameCode = this.stationNameCode + "(" + this.kvSchoolDetails.rowValue[i].station_code + ")";
+        this.stationCode = this.kvSchoolDetails.rowValue[i].station_code
 
-  //       this.kvNameCode = this.kvSchoolDetails.rowValue[i].kv_name;
-  //       this.kvNameCode = this.kvNameCode + "(" + this.kvSchoolDetails.rowValue[i].kv_code + ")";
+        this.kvNameCode = this.kvSchoolDetails.rowValue[i].kv_name;
+        this.kvNameCode = this.kvNameCode + "(" + this.kvSchoolDetails.rowValue[i].kv_code + ")";
 
-  //       this.udiseSchCode = this.kvSchoolDetails.rowValue[i].udise_sch_code;
-  //       this.schName = this.kvSchoolDetails.rowValue[i].kv_name;
-  //       this.stationName = this.kvSchoolDetails.rowValue[i].station_name;
+        this.udiseSchCode = this.kvSchoolDetails.rowValue[i].udise_sch_code;
+        this.schName = this.kvSchoolDetails.rowValue[i].kv_name;
+        this.stationName = this.kvSchoolDetails.rowValue[i].station_name;
 
-  //     }
+      }
 
-  //     this.getKvSchoolByStationId(this.stationCode);
+      this.getKvSchoolByStationId(this.stationCode);
 
-  //     this.transferForm.patchValue({
-  //       basicDetails: {
-  //         currentSchoolName: this.kvNameCode,
-  //         presentStationName: this.stationNameCode,
-  //       }
-  //     })
+      this.transferForm.patchValue({
+        basicDetails: {
+          currentSchoolName: this.kvNameCode,
+          presentStationName: this.stationNameCode,
+        }
+      })
 
 
-  //   })
-  // }
+    })
+  }
 
   getSubjectByTchType(data) {
 
@@ -1919,11 +1989,11 @@ export class KvsTransferEditComponent implements OnInit {
   //   }
   // }
 
-  // getKvSchoolByStationId(val) {
-  //   this.outSideService.fetchIntraStationSchool(val).subscribe((res) => {
-  //     this.kvSchoolList = res.response.rowValue;
-  //   })
-  // }
+  getKvSchoolByStationId(val) {
+    this.outSideService.fetchIntraStationSchool(val).subscribe((res) => {
+      this.kvSchoolList = res.response.rowValue;
+    })
+  }
 
   // getKvSchoolByStationIdPreference(event) {
   //   var str = event.target.value

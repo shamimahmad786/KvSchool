@@ -47,7 +47,7 @@
                             <div formGroupName="stationChoice" class="form-card">
                                 <div class="row bg-light-green mx-0 py-1">
                                     <div class="col-7">
-                                        <h2 class="mb-0 text-black">Transfer Preference (Station Choice)</h2>
+                                        <h2 class="mb-0 text-black">Prefered Station For Transfer/Public Displacement</h2>
                                     </div>
                                     <div class="col-5">
                                         <h2 class="steps mb-0">{{responseData?.teacherId}} |
@@ -69,88 +69,102 @@
                                       
                                         <div class="col-md-offset-1 col-md-2">
                                             <div class="form-check form-check-inline ms-3 mt-1">
-                                                <input class="form-check-input" value="1" name="applyTransferYn" id="applyTransferYn" formControlName="applyTransferYn"  [checked]="empTransferradioButton == '1'"  type="radio" (click)="resetStationChoices();manageChoice(1)" />
+                                                <input class="form-check-input" value="1" name="applyTransferYn" id="applyTransferYn" formControlName="applyTransferYn"  [checked]="empTransferradioButton == '1'"  type="radio" (click)="manageChoice(1)" />
                                                 <label class="form-check-label">Yes</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" value="0" name="applyTransferYn" id="applyTransferYn" formControlName="applyTransferYn"  [checked]="empTransferradioButton == '0'" type="radio" (click)="resetStationChoices();manageChoice(0)">
+                                                <input class="form-check-input" value="0" name="applyTransferYn" id="applyTransferYn" formControlName="applyTransferYn"  [checked]="empTransferradioButton == '0'" type="radio" (click)="manageChoice(0)">
                                                 <label class="form-check-label font-weight-bold">No</label>
                                             </div>
-                                        </div>
-                                        
-                                        <hr>
-                                
-                                    </div>
-                                
-                                
-                                    <div class="row">
-                                        <div class="col-md-5 row"  *ngIf="transferStatus==1">
-                                            <h3><b>Station Choice</b></h3>
-                                            <div class="col-md-6">
-                                                <label for="basic-url" class="form-label stationName">Station Code &
-                                                    Name(I) </label>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="input-group-text input" id="choiceKv1StationCode" formControlName="choiceKv1StationCode" name="choiceKv1StationCode" disabled style="width:70px; height:33px;">
-                                                    <input type="text" class="form-control form-control-sm input" id="choiceKv1StationName" formControlName="choiceKv1StationName" name="choiceKv1StationName" placeholder="Station Name (Preference One)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled
-                                                        disabled>
-                                                    <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
-                                                            title="Reset"
-                                                            (click)="restStationSelection(1)"></i></button>
-                                                    <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
-                                                            class="fa fa-search SearchIconSet "
-                                                            (click)="selectSchool('1')" [ngClass]="{'Disabled': disabled}" ></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="basic-url" class="form-label stationName">Station Code &
-                                                    Name(II)</label>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="input-group-text input" id="choiceKv2StationCode" formControlName="choiceKv2StationCode" name="choiceKv2StationCode" disabled style="width:70px; height:33px;">
-                                                    <input type="text" class="form-control form-control-sm" id="choiceKv2StationName" formControlName="choiceKv2StationName" name="choiceKv2StationName" placeholder="Station Name (Preference Two)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
-                                                       
-                                                    <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
-                                                            title="Reset"
-                                                            (click)="restStationSelection(2)"></i></button>
-                                                    <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
-                                                            class="fa fa-search SearchIconSet"
-                                                            (click)="selectSchool('2')"[ngClass]="{'Disabled': disabled}"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="basic-url" class="form-label stationName">Station Code &
-                                                    Name(III)</label>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="input-group-text input" id="choiceKv3StationCode" formControlName="choiceKv3StationCode" name="choiceKv3StationCode" disabled style="width:70px; height:33px;">
-                                                    <input type="text" class="form-control form-control-sm" id="choiceKv3StationName" formControlName="choiceKv3StationName" name="choiceKv3StationName" placeholder="Station Name (Preference Three)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
-                                                      
-                                                    <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
-                                                            title="Reset"
-                                                            (click)="restStationSelection(3)"></i></button>
-                                                    <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
-                                                            class="fa fa-search SearchIconSet"
-                                                            (click)="selectSchool('3')" [ngClass]="{'Disabled': disabled}"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="basic-url" class="form-label stationName">Station Code &
-                                                    Name(IV)</label>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="input-group-text input" id="choiceKv4StationCode" formControlName="choiceKv4StationCode" name="choiceKv4StationCode" disabled style="width:70px; height:33px;">
-                                                    <input type="text" class="form-control form-control-sm" id="choiceKv4StationName" formControlName="choiceKv4StationName" name="choiceKv4StationName" placeholder="Station Name (Preference Four)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                                        </div>                                       
+                                        <hr>                              
+                                    </div>                                   
+                                                <div class="row mt-4">
+                                                    <div class="col-1">
+                                                        <h4 class="titleSet">Choice (I) <span class="required-asterisk">*</span></h4>    
+                                                    </div>
+
+
                                                     
-                                                    <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
-                                                            title="Reset"
-                                                            (click)="restStationSelection(4)"></i></button>
-                                                    <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
-                                                            class="fa fa-search SearchIconSet"
-                                                            (click)="selectSchool('4')" [ngClass]="{'Disabled': disabled}"></i></button>
+                                                    <div class="col-4">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="input-group-text input" id="choiceKv1StationCode" formControlName="choiceKv1StationCode" name="choiceKv1StationCode" disabled style="width:70px; height:33px;">
+                                                        <input type="text" class="form-control form-control-sm input" id="choiceKv1StationName" formControlName="choiceKv1StationName" name="choiceKv1StationName" placeholder="Station Name (Preference One)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled
+                                                            disabled>
+                                                        <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
+                                                                title="Reset"
+                                                                (click)="restStationSelection(1)"></i></button>
+                                                        <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
+                                                                class="fa fa-search SearchIconSet "
+                                                                (click)="selectSchool('1')"  ></i></button>
+                                                        </div>
+                                                    </div>                                                                                                    
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="basic-url" class="form-label stationName">Station Code &
-                                                    Name(V)</label>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="input-group-text input" id="choiceKv5StationCode" formControlName="choiceKv5StationCode" name="choiceKv5StationCode" disabled style="width:70px; height:33px;">
+                                                                              
+                                                <div class="row mt-4">
+                                                    <div class="col-1">
+                                                        <h4 class="titleSet">Choice (II) <span class="required-asterisk">*</span></h4>    
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="input-group-text input" id="choiceKv2StationCode" formControlName="choiceKv2StationCode" name="choiceKv2StationCode" disabled style="width:70px; height:33px;">
+                                                            <input type="text" class="form-control form-control-sm" id="choiceKv2StationName" formControlName="choiceKv2StationName" name="choiceKv2StationName" placeholder="Station Name (Preference Two)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                                                               
+                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
+                                                                    title="Reset"
+                                                                    (click)="restStationSelection(2)"></i></button>
+                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
+                                                                    class="fa fa-search SearchIconSet"
+                                                                    (click)="selectSchool('2')"></i></button>
+                                                        </div>
+                                                    </div>                                                                                                    
+                                                </div>
+
+                                                <div class="row mt-4">
+                                                    <div class="col-1">
+                                                        <h4 class="titleSet">Choice (III) <span class="required-asterisk">*</span></h4>    
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="input-group-text input" id="choiceKv3StationCode" formControlName="choiceKv3StationCode" name="choiceKv3StationCode" disabled style="width:70px; height:33px;">
+                                                            <input type="text" class="form-control form-control-sm" id="choiceKv3StationName" formControlName="choiceKv3StationName" name="choiceKv3StationName" placeholder="Station Name (Preference Three)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                                                              
+                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
+                                                                    title="Reset"
+                                                                    (click)="restStationSelection(3)"></i></button>
+                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
+                                                                    class="fa fa-search SearchIconSet"
+                                                                    (click)="selectSchool('3')" ></i></button>
+                                                        </div>
+                                                    </div>                                                                                                    
+                                                </div>
+
+                                                <div class="row mt-4">
+                                                    <div class="col-1">
+                                                        <h4 class="titleSet">Choice (IV) <span class="required-asterisk">*</span></h4>    
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="input-group-text input" id="choiceKv4StationCode" formControlName="choiceKv4StationCode" name="choiceKv4StationCode" disabled style="width:70px; height:33px;">
+                                                            <input type="text" class="form-control form-control-sm" id="choiceKv4StationName" formControlName="choiceKv4StationName" name="choiceKv4StationName" placeholder="Station Name (Preference Four)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                                                            
+                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
+                                                                    title="Reset"
+                                                                    (click)="restStationSelection(4)"></i></button>
+                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
+                                                                    class="fa fa-search SearchIconSet"
+                                                                    (click)="selectSchool('4')"></i></button>
+                                                        </div>
+                                                    </div>                                                                                                    
+                                                </div>
+
+                                                <div class="row mt-4">
+                                                    <div class="col-1">
+                                                        <h4 class="titleSet">Choice (V) <span class="required-asterisk">*</span></h4>    
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="input-group-text input" id="choiceKv5StationCode" formControlName="choiceKv5StationCode" name="choiceKv5StationCode" disabled style="width:70px; height:33px;">
                                                     <input type="text" class="form-control form-control-sm" id="choiceKv5StationName" formControlName="choiceKv5StationName" name="choiceKv5StationName" placeholder="Station Name (Preference Five)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
                                                    
                                                     <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
@@ -158,14 +172,16 @@
                                                             (click)="restStationSelection(5)"></i></button>
                                                     <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                             class="fa fa-search SearchIconSet"
-                                                            (click)="selectSchool('5')" [ngClass]="{'Disabled': disabled}"></i></button>
+                                                            (click)="selectSchool('5')"></i></button>
+                                                        </div>
+                                                    </div>                                                                                                    
                                                 </div>
-                                            </div>
-                                            <h3> <b>Note :</b> Please submit atleast one station <span class="required-asterisk">*</span></h3>
-                                        </div>
+
+                                            <h3> <b>Note :</b> Please Choose All Five Choices <span class="required-asterisk">*</span></h3>
                                 
                                 
-                                        <div [ngClass]="transferStatus === 1 ? 'offset-md-1 col-md-5 row'  : 'offset-md-1 col-md-10 row'">
+                                
+                                        <!-- <div [ngClass]="transferStatus === 1 ? 'offset-md-1 col-md-5 row'  : 'offset-md-1 col-md-10 row'">
                                             <h3><b>Displacement Choice</b></h3>
                                             <div class="col-md-6">
                                                 <label for="basic-url" class="form-label stationName">Station Code &
@@ -243,28 +259,19 @@
                                                 </div>
                                             </div>
                                             <h3> <b>Note: </b>Kindly fill maximum five stations choice other than present station, incase you are transferred on displacement.(Please select atleast one station)</h3>
-                                        </div>
+                                        </div> -->
                                         <hr>
-                                    </div>
+                               
                                 
                                 
                                 </div>
                             </div>
                             <div></div>
-                         
                             <input
-                            [disabled]="(!transferForm.get('stationChoice.applyTransferYn').valid ||
-                            !transferForm.get('stationChoice.displacement1StationCode').valid ||
-                            !transferForm.get('stationChoice.displacement1StationName').valid || 
-                            (transferForm.get('stationChoice.applyTransferYn').value == '1' && !transferForm.get('stationChoice.choiceKv1StationName').valid)
-                            )"
+                            [disabled]="(!transferForm.get('stationChoice.choiceKv1StationName').valid || !transferForm.get('stationChoice.choiceKv2StationName').valid || !transferForm.get('stationChoice.choiceKv3StationName').valid || !transferForm.get('stationChoice.choiceKv4StationName').valid || !transferForm.get('stationChoice.choiceKv5StationName').valid)"
                                 type="button" name="next" class="next action-button1 me-3" value="Next"
                                 (click)="nextClick(2)" />
-                            <input [disabled]="(!transferForm.get('stationChoice.applyTransferYn').valid ||
-                            !transferForm.get('stationChoice.displacement1StationCode').valid ||
-                            !transferForm.get('stationChoice.displacement1StationName').valid || 
-                            (transferForm.get('stationChoice.applyTransferYn').value == '1' && !transferForm.get('stationChoice.choiceKv1StationName').valid)
-                            )"
+                            <input  [disabled]="(!transferForm.get('stationChoice.choiceKv1StationName').valid || !transferForm.get('stationChoice.choiceKv2StationName').valid || !transferForm.get('stationChoice.choiceKv3StationName').valid || !transferForm.get('stationChoice.choiceKv4StationName').valid || !transferForm.get('stationChoice.choiceKv5StationName').valid)"
                                 type="submit" id="submit1" value="Save" class=" action-button"
                                 />
                             <!-- <input type="button" name="previous" class="previous action-button-previous "
@@ -362,7 +369,7 @@
                                                         <li class="w5 me-3">
                                                             <h4 class="titleSet ">1D </h4>
                                                         </li>
-                                                        <li class="w80"> Total days (present). 1A+1C    
+                                                        <li class="w80"> Total days (present). 1A+1C-1B    
                                                         <td width="7%" class=" text-center">
                                                             <input type="text" class="form-control form-control-sm "
                                                                placeholder="0"  value="{{this.totaldaysPresent}}" style=" margin:0px auto;"
@@ -903,44 +910,9 @@
                                             {{responseData?.teacherName | uppercase}}</h2>
                                     </div>
                                 </div>
-                                <!-- <div class="row p-3">
-                                    <div class="col-md-10">
-                                        <h4 class="titleSet">
-                                            Wheather the employee is willing to apply for request transfer as per choice
-                                            shift / KVs / Stations filled in column
-                                            10A / 10B / 10C of part A of application form.<span
-                                                class="required-asterisk">*</span>
-                                        </h4>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" formControlName="applyTransferYn"
-                                                name="applyTransferYn" id="applyTransferYn" type="radio" value="1"
-                                                (click)="enableTransferForm('1')">
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                Yes
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" formControlName="applyTransferYn"
-                                                name="applyTransferYn" id="applyTransferYn" type="radio" value="0"
-                                                (click)="enableTransferForm('0')">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                No
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div> -->
+                              
                                 <div *ngIf="enableTransferFormYn" class="p-3">
                                     <hr />
-                                    <!-- <div class="row ">
-                                        <div class="col-md-10 mb-2">
-                                            <h4 class="titleSet">
-                                                Calculation of transfer count: Factors Allot points for applicable
-                                                factors only and write NA for not applicable factors
-                                            </h4>
-                                        </div>
-                                    </div> -->
 
                                     <table class="table table-bordered">
                                         <thead>
@@ -960,34 +932,54 @@
 
                                                        continuous Active Stay at station as on 30th june for all stations excluding periods of absence (any kind of leave other than Materbity Leave) of 30 days or more at normal station and 45 days or more at Hard/NER/Priorty stations, irrespective of casder.
                                                     </h4>
-                                                    <ul class="DateOfBirth mt-3">
-
-                                                        <li>
-                                                            <label>Present Station Posting Date</label>
-                                                            <input type="text" class="form-control form-control-sm mb-1"
-                                                                disabled
-                                                                id="workExperiencePositionTypePresentStationStartDate"
-                                                                formControlName="workExperiencePositionTypePresentStationStartDate"
-                                                                name="workExperiencePositionTypePresentStationStartDate">
+                                                    <ul class="orderList border-bottom">
+                                                        <li class="w5 me-3">
+                                                            <h4 class="titleSet ">1A </h4>
                                                         </li>
-                                                        <li>
-                                                            <label>Present Station Name</label>
-                                                            <input type="text" class="form-control form-control-sm mb-1"
-                                                                disabled formControlName="presentStationName"
-                                                                name="presentStationName" id="presentStationName">
+                                                        <li class="w80 ml-2">Stay at a station as on 30th June in complete years irrespective of Cadre Clarification.
+                                                            <td width="7%" class=" text-center">
+                                                                <input type="text" class="form-control form-control-sm "
+                                                                   placeholder="0"  value="{{this.dcStayAtStation}}" style=" margin:0px auto;"
+                                                                   id="" disabled> 
+                                                           </td> 
                                                         </li>
-                                                        <li>
-                                                            <label>Present Station Code</label>
-                                                            <input type="text" class="form-control form-control-sm mb-1"
-                                                                disabled formControlName="presentStationCode"
-                                                                name="presentStationCode" id="presentStationCode">
+                                                       
+                                                    </ul>
+                                                  
+                                                    <ul class="orderList border-bottom">
+                                                        <li class="w5 me-3">
+                                                            <h4 class="titleSet ">1B </h4>
                                                         </li>
+                                                        <li class="w80"> Period of absence on any account shall also be counte for this purpose.<span
+                                                                class="required-asterisk">*</span>
+                                                                <td width="7%" class=" text-center">
+                                                                    <input type="text" class="form-control form-control-sm "
+                                                                       placeholder="0"  value="{{this.tcPeriodAbsence}}" style=" margin:0px auto;"
+                                                                       id="" disabled> 
+                                                               </td> 
+                                                            
+                                                            </li>
+                                                    </ul>
+													
+													
+													     <ul class="orderList  border-bottom">
+                                                        <li class="w5 me-3">
+                                                            <h4 class="titleSet ">1C </h4>
+                                                        </li>
+                                                        <li class="w80"> Total days (present). 1A-1B    
+                                                        <td width="7%" class=" text-center">
+                                                            <input type="text" class="form-control form-control-sm "
+                                                               placeholder="0"  value="{{this.totaldaysPresentTc}}" style=" margin:0px auto;"
+                                                               id="" disabled> 
+                                                       </td> 
+                                                    </li> 
+                                                      
                                                     </ul>
                                                 </td>
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q1TPt"
-                                                        formControlName="q1TPt" name="q1TPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="tcStayStationPoint"
+                                                        formControlName="tcStayStationPoint" name="tcStayStationPoint" disabled>
                                                 </td>
                                             </tr>                                         
 
@@ -1004,8 +996,8 @@
                                                
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q3TPt"
-                                                        formControlName="q3TPt" name="q3TPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="tcPhysicalChallengedPoint"
+                                                        formControlName="tcPhysicalChallengedPoint" name="tcPhysicalChallengedPoint" disabled>
                                                 </td>
                                             </tr>
 
@@ -1019,7 +1011,7 @@
 
                                                     </h4>
 
-                                                    <ul class="DateOfBirth mt-3">
+                                                    <!-- <ul class="DateOfBirth mt-3">
                                                         <li>
                                                             <label>Date Of Birth</label>
                                                             <input type="text" id="teacherDob"
@@ -1048,7 +1040,7 @@
                                                         </li>
 
 
-                                                    </ul>
+                                                    </ul> -->
 
                                                  
                                                 </td>
@@ -1056,7 +1048,7 @@
                                                <td width="7%" class=" text-center">
                                                      <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;"
-                                                        id="" formControlName="q2TPt" name="q2TPt" disabled> 
+                                                        id="" formControlName="tcTenureHardPoint" name="tcTenureHardPoint" disabled> 
                                                 </td> 
                                             </tr>
 
@@ -1089,8 +1081,8 @@
                                        
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q4TPt"
-                                                        formControlName="q4TPt" name="q4TPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="tcMdDfGroungPoint"
+                                                        formControlName="tcMdDfGroungPoint" name="tcMdDfGroungPoint" disabled>
                                                 </td>
                                             </tr>
 
@@ -1108,101 +1100,11 @@
                                              
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q5TPt"
-                                                        formControlName="q5TPt" name="q5TPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="tcLtrPoint"
+                                                        formControlName="tcLtrPoint" name="tcLtrPoint" disabled>
                                                 </td>
                                             </tr>
-
-
-                                            <!-- <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">611.</span>
-                                                </td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Spouse, if a KVS Employee and posted at the same station.
-                                                    </h4>
-                                                </td>
-
-                                              
-                                                <td width="7%" class=" text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
-                                                        formControlName="q9DPt" name="q9DPt" disabled>
-                                                </td>
-                                            </tr> -->
-
-
-
-
-                                            <!-- <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">7.</span>
-                                                </td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Spouse if a Central Government/Central
-                                                        Govt. Autonomous
-                                                        body/Central
-                                                        Govt. Public Sector Undertaking/ Defense Employee and
-                                                        Central Armed
-                                                        Police Forces employee posted at the same station.
-                                                    </h4>
-                                                </td> -->
-
-                                               
-                                                <!-- <td width="7%" class=" text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
-                                                        formControlName="q9DPt" name="q9DPt" disabled>
-                                                </td> 
-                                            </tr>-->
-
-
-
-
-
-
-                                            <!-- <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">8.</span>
-                                                </td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Spouse if a Central Government/Central
-                                                        Govt. Autonomous
-                                                        body/Central
-                                                        Govt. Public Sector Undertaking/ Defense Employee and
-                                                        Central Armed
-                                                        Police Forces employee posted at the same station.
-                                                    </h4>
-                                                </td>
-
-                                                <td width="7%" class=" text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
-                                                        formControlName="q9DPt" name="q9DPt" disabled>
-                                                </td>
-                                            </tr>
- -->
-
-                                            <!-- <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">9.</span>
-                                                </td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Spouse if a State Covernment / State Govt.
-                                                        Autonomous body / State Govt. Public Sectors
-                                                        Undertaking Employee & posted at the same station. 
-                                                    </h4>
-                                                </td>
-
-                                      
-                                                <td width="7%" class=" text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
-                                                        formControlName="q9DPt" name="q9DPt" disabled>
-                                                </td>
-                                            </tr> -->
-
-
+            
                                             <tr>
                                                 <td class="align-middle text-center"> <span class="text-green">6.</span>
                                                 </td>
@@ -1214,35 +1116,10 @@
 
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q6TPt"
-                                                        formControlName="q6TPt" name="q6TPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="tcSinglePoint"
+                                                        formControlName="tcSinglePoint" name="tcSinglePoint" disabled>
                                                 </td>
                                             </tr>
-
-
-
-                                            <!-- <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">11.</span>
-                                                </td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Woman employee not covered under Sl. No. 6, 7, 8&9 above.
-                                                    </h4>
-                                                </td>
-
-                                            
-                                                <td width="7%" class=" text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q9DPt"
-                                                        formControlName="q9DPt" name="q9DPt" disabled>
-                                                </td>
-                                            </tr> -->
-
-
-
-                                       
-
-
 
 
                                             <tr>
@@ -1259,8 +1136,8 @@
                                                         </li>
                                                         
                                                         <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the 
-                                                            same station.</li>   
-                                                        <i  *ngIf="spouseAtSmaeStation"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                           choice station.</li>   
+                                                        <i  *ngIf="tcSpouseAtSmaeStation"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
                                                             color: green;"></i>
                                                  
                                                     </ul>
@@ -1276,7 +1153,7 @@
                                                             Central Armed
                                                             Police Forces employee posted at the same station.</li>
 
-                                                            <i  *ngIf="spouseAtCentralGovt"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            <i  *ngIf="tcSpouseAtCentralGovt"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
                                                             color: green;"></i>
                                                    
                                                     </ul>
@@ -1287,7 +1164,7 @@
                                                             </h4>
                                                         </li>
                                                         <li class="w80 ml-2"> Spouse if a Central Government/Central Govt. Autonomous body/Central Govt. Public Sector Undertaking/ Defense Employee and Central Armed Police Forces employee posted at the same station.</li>
-                                                            <i  *ngIf="spouseAtStateGovt"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            <i  *ngIf="tcSpouseAtStateGovt"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
                                                             color: green;"></i>
                                                     
                                                     </ul>
@@ -1298,7 +1175,7 @@
                                                             </h4>
                                                         </li>
                                                         <li class="w80 ml-2">Spouse if a State Covernment / State Govt. Autonomous body / State Govt. Public Sectors Undertaking Employee & posted at the same station. </li>
-                                                            <i  *ngIf="wooomanEmp"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            <i  *ngIf="tcWooomanEmp"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
                                                             color: green;"></i>
                                                     </ul>
                                                     <ul class="orderList ">
@@ -1315,8 +1192,8 @@
                                                 </td>
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q7TPt"
-                                                        formControlName="q7TPt" name="q7TPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="tcSpousePoint"
+                                                        formControlName="tcSpousePoint" name="tcSpousePoint" disabled>
                                                 </td>
                                             </tr>
 
@@ -1330,145 +1207,31 @@
                                                         Note: - Benefit will be given only if they are posted in KVs located at the station of Regional Office/ ZIET.
                                                     </h4>
                                                 </td>
-
-                                          
+                                         
                                                 <td width="7%" class=" text-center">
                                                     <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q8TPt"
-                                                        formControlName="q8TPt" name="q8TPt" disabled>
+                                                        placeholder="0" style="width:40px; margin:0px auto;" id="tcRjcmNjcmPoint"
+                                                        formControlName="tcRjcmNjcmPoint" name="tcRjcmNjcmPoint" disabled>
                                                 </td>
-                                            </tr>
-
-                                            <!-- <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">9.</span>
-                                                </td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Physically challenged employee
-                                                    </h4>
-                                                </td>
-
-                                          
-                                                <td width="7%" class=" text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q7DPt"
-                                                        formControlName="q7DPt" name="q7DPt" disabled>
-                                                </td>
-                                            </tr> -->
-<!-- 
-                                            <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">10.</span>
-                                                </td>
-                                                <td class="align-middle" width="90%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Members of Recognized Associations of KVS staff.<span
-                                                            class="required-asterisk">*</span>
-                                                    </h4>
-                                                    <ul class="orderList border-bottom">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">A.</span>
-                                                            </h4>
-                                                        </li>
-                                                        <li class="w80 ml-2">Members of JCM at KVS Regional Office
-                                                            (RJCM).</li>
-                                                  
-                                                    </ul>
-                                                    <ul class="orderList border-bottom">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">B.</span>
-                                                            </h4>
-                                                        </li>
-                                                        <li class="w80 ml-2">Members of JCM at KVS Headquarters (NJCM).
-                                                        </li>
-                                                   
-                                                    </ul>
-
-                                                    <ul class="orderList">
-                                                        <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">C.</span>
-                                                            </h4>
-                                                        </li>
-                                                        <li class="w80 ml-2"> None.</li>
-                                                      
-                                                    </ul>
-                                                </td>
-                                               
-                                            </tr> -->
-<!-- 
-                                            <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">16.</span>
-                                                </td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                 
-                                                </td>
-
-                                                <td width="7%" class="text-center">
-                                                    <input type="text" class="form-control form-control-sm "
-                                                        placeholder="0" style="width:40px; margin:0px auto;" id="q11DPt"
-                                                        formControlName="q11DPt" name="q11DPt" disabled>
-                                                </td>
-
-                                            </tr> -->
-
-                                            <!-- <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">16.</span>
-                                                </td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Whether child of the employee is appearing in class X or XII
-                                                        Exam in the
-                                                        Academic year ending March 2023 and whether the employee is
-                                                        seeking
-                                                        exemption from displacement.<span
-                                                            class="required-asterisk">*</span>
-                                                    </h4>
-                                                </td>
-
-                                                <td width="7%" class="text-center">
-                                                  
-                                                </td>
-                                            </tr> -->
-                                            <!-- <tr>
-                                                <td class="align-middle text-center"> <span
-                                                        class="text-green">17.</span></td>
-                                                <td class="align-middle" width="75%" colspan="3">
-                                                    <h4 class="titleSet">
-                                                        Employee who serves as the main care-giver to the persons with
-                                                        disability in the family (spouse or dependent son/ daughter of
-                                                        the
-                                                        employee) would have a bearing on the systematic rehabilitation
-                                                        of
-                                                        persons with disabilities, as per KVS Transfer
-                                                        guideline.<span class="required-asterisk">*</span>
-
-                                                    </h4>
-                                                </td>                                        
-                                                <td width="7%" class="text-center">
-                                                 
-                                                </td>
-                                            </tr> -->
+                                            </tr>                
                                         </tbody>
                                     </table>
-
-
 
                                     <div class="row">
                                         <div class="col-md-10 ">
                                             <h2 class="titleSet mb-0">
-                                                Total Transfer Count</h2>
+                                                Total Transfer Countss</h2>
                                         </div>
+                                        {{tcTotalPoint}}
                                         <div class="col-md-2 ">
                                             <span class="text-green float-end">
-                                                <input id="totalTransferCount" formControlName="totalTransferCount"
-                                                    name="totalTransferCount" disabled>
+                                                <input id="tcTotalPoint" formControlName="tcTotalPoint"
+                                                    name="tcTotalPoint" disabled>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
-
 
                             <input  type="button" name="next"
                                 class="next action-button1 me-3" value="Next"
@@ -1488,8 +1251,6 @@
             </div>
         </div>
     </div>
-
-
 
 
     <div mat-dialog-content>
