@@ -594,7 +594,7 @@ transferRelatedForm: new FormGroup({
   'patientMedicalOfficerName': new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[A-Za-z ]*$")]),
   'patientMedicalOfficerDesignation': new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[A-Za-z ]*$")]),
   'careGiverName': new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[A-Za-z ]*$")]),
-  'careGiverRelation': new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[A-Za-z0-9 ]*$")]),
+  'careGiverRelation': new FormControl('', Validators.required),
   'careGiverDisabilityName': new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[A-Za-z0-9 ]*$")]),
   'careGiverDisabilityPrcnt': new FormControl('', [Validators.required, Validators.maxLength(3), Validators.min(0), Validators.max(100), RxwebValidators.numeric({ allowDecimal: true, isFormat: true })]),
   'childDifferentName': new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[A-Za-z ]*$")]),
@@ -2264,7 +2264,7 @@ this.getStatus(this.tempTeacherId);
                     this.outSideService.updateFormStatusFlag(this.flagUpdatedList).subscribe((res) => {
                       this.flagUpdatedList = res.response
                       Swal.fire(
-                        'Your Data has been saved and sent for Verification!',
+                        'Your Data has been saved and awaiting for final verification!',
                         '',
                         'success'
                       ).then((result) => {
@@ -2568,8 +2568,8 @@ debugger
   }
 
   teacherTypeSelect(event) {
-    
-    if(event.target.value != 22 && event.target.value != 23 && event.target.value != 24 && event.target.value != '22' && event.target.value != '23' && event.target.value != '24'){
+    console.log(event.target.value)
+    if(event.target.value != 22 && event.target.value != 23 && event.target.value != 24 && event.target.value != 11 && event.target.value != '22' && event.target.value != '23' && event.target.value != '11' && event.target.value != '24'){
       this.teacherForm.patchValue({
         profileForm:{
           staffType: '2'
@@ -4268,6 +4268,11 @@ if(this.teacherForm.value.transferRelatedForm.memberJCM=='' || this.teacherForm.
 {
   this.inlineRadio13radioButton=0;
   this.positionHeld=false 
+   this.teacherForm.patchValue({
+    transferRelatedForm: { 
+      memberJCM: '0',
+    }
+  })
 }
 
 if(this.teacherForm.value.transferRelatedForm.memberJCM==0)
