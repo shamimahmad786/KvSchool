@@ -381,9 +381,10 @@ export class KvsTransferEditComponent implements OnInit {
 
     for (let i = 0; i < JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails.length; i++) {
       this.kvCode = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[i].business_unit_type_code;
-      this.getTransferBasicProfileByTchId()
+      
      // this.getSchoolDetailsByKvCode();
     }
+    this.setTcDcReceivedData();
 
     setTimeout(function () {
       loadScroller12();
@@ -541,70 +542,70 @@ export class KvsTransferEditComponent implements OnInit {
 
   //Add Posting Form --Start
 
-  getTransferBasicProfileByTchId() {
-    debugger
-    this.outSideService.fetchTransferBasicProfileByTchId(this.tempTeacherId).subscribe((res) => {
+  // getTransferBasicProfileByTchId() {
+  //   debugger
+  //   this.outSideService.fetchTransferBasicProfileByTchId(this.tempTeacherId).subscribe((res) => {
 
-      this.profileData = res.response.profileDetails
-      this.responseData = res.response.profileDetails;
-      this.reponseDataForPdf = this.responseData
+  //     this.profileData = res.response.profileDetails
+  //     this.responseData = res.response.profileDetails;
+  //     this.reponseDataForPdf = this.responseData
 
-      this.teacherExperienceData = res.response.teacherExperience;
-      this.transferStatusOperation = res.response.profileDetails.transferStatus;
-      this.formStatusLocale = res.response.profileDetails.transferStatus;
-      this.spouseStationName=res.response.profileDetails.spouseStationName;
+  //     this.teacherExperienceData = res.response.teacherExperience;
+  //     this.transferStatusOperation = res.response.profileDetails.transferStatus;
+  //     this.formStatusLocale = res.response.profileDetails.transferStatus;
+  //     this.spouseStationName=res.response.profileDetails.spouseStationName;
 
-      if (this.responseData.hasOwnProperty('transferApplicationNumber')) {
-        this.transferApplicationNumberVal = this.responseData?.transferApplicationNumber;
-      } else {
-        this.transferApplicationNumberVal = 'Transfer Not Initiated';
-      }
+  //     if (this.responseData.hasOwnProperty('transferApplicationNumber')) {
+  //       this.transferApplicationNumberVal = this.responseData?.transferApplicationNumber;
+  //     } else {
+  //       this.transferApplicationNumberVal = 'Transfer Not Initiated';
+  //     }
 
 
-      if ((this.responseData.tpersonalStatusLtr == null || this.responseData.tpersonalStatusLtr == undefined) && (this.responseData.tpersonalStatusDfp == null || this.responseData.tpersonalStatusDfp == undefined) &&
-        (this.responseData.tpersonalStatusMdg == null || this.responseData.tpersonalStatusMdg == undefined) && (this.responseData.tpersonalStatusWid == null
-          || this.responseData.tpersonalStatusWid == undefined) && (this.responseData.tpersonalStatusSp == null || this.responseData.tpersonalStatusSp == undefined)) {
+  //     if ((this.responseData.tpersonalStatusLtr == null || this.responseData.tpersonalStatusLtr == undefined) && (this.responseData.tpersonalStatusDfp == null || this.responseData.tpersonalStatusDfp == undefined) &&
+  //       (this.responseData.tpersonalStatusMdg == null || this.responseData.tpersonalStatusMdg == undefined) && (this.responseData.tpersonalStatusWid == null
+  //         || this.responseData.tpersonalStatusWid == undefined) && (this.responseData.tpersonalStatusSp == null || this.responseData.tpersonalStatusSp == undefined)) {
 
-        this.transferForm.patchValue({
-          displacementCount: {
-            personalStatus: '1',
-            personalStatusDefault: '1'
-          }
-        })
-      }
+  //       this.transferForm.patchValue({
+  //         displacementCount: {
+  //           personalStatus: '1',
+  //           personalStatusDefault: '1'
+  //         }
+  //       })
+  //     }
 
-      setTimeout(() => {
-        this.getDistrictByStateId(this.profileData.teacherParmanentState)
-      }, 300);
+  //     setTimeout(() => {
+  //       this.getDistrictByStateId(this.profileData.teacherParmanentState)
+  //     }, 300);
 
-      this.setTcDcReceivedData(this.responseData)
-      this.outSideService.fetchUploadedDoc(this.responseData.teacherId).subscribe((res) => {
-        this.documentUploadArray = res;
+  //     this.setTcDcReceivedData(this.responseData)
+  //     this.outSideService.fetchUploadedDoc(this.responseData.teacherId).subscribe((res) => {
+  //       this.documentUploadArray = res;
 
-        for (let i = 0; i < res.length; i++) {
+  //       for (let i = 0; i < res.length; i++) {
 
-          if (res[i].docName == 'Medical_Certificate.pdf') {
-            this.deleteDocUpdate0 = false;
-          }
-          if (res[i].docName == 'Board_examination_Proof.pdf') {
-            this.deleteDocUpdate1 = false;
-          }
-          if (res[i].docName == 'Disability_Certificate.pdf') {
-            this.deleteDocUpdate2 = false;
-          }
-          if (res[i].docName == 'Differentially_Abled_Certificate.pdf') {
-            this.deleteDocUpdate3 = false;
-          }
-        }
-      })
-    })
-  }
-  setTcDcReceivedData(responseData:any)
+  //         if (res[i].docName == 'Medical_Certificate.pdf') {
+  //           this.deleteDocUpdate0 = false;
+  //         }
+  //         if (res[i].docName == 'Board_examination_Proof.pdf') {
+  //           this.deleteDocUpdate1 = false;
+  //         }
+  //         if (res[i].docName == 'Disability_Certificate.pdf') {
+  //           this.deleteDocUpdate2 = false;
+  //         }
+  //         if (res[i].docName == 'Differentially_Abled_Certificate.pdf') {
+  //           this.deleteDocUpdate3 = false;
+  //         }
+  //       }
+  //     })
+  //   })
+  // }
+  setTcDcReceivedData()
   {
     debugger
     const data = {
-           "kvCode":responseData.kvCode,
-           "teacherId": responseData.teacherId
+           "kvCode":this.kvCode,
+           "teacherId": this.tempTeacherId
        }
          this.outSideService.fetchTcDcData(data).subscribe((res) => {
 
@@ -619,8 +620,8 @@ export class KvsTransferEditComponent implements OnInit {
          this.tcReturnStation=this.responseTcDcData.tcReturnStation,
          this.transferForm.patchValue({
           displacementCount: {
-            kvCode:responseData.kvCode,
-            teacherId:responseData.teacherId,
+            kvCode:this.kvCode,
+            teacherId:this.tempTeacherId,
             dcStayStationPoint: this.responseTcDcData.dcStayStationPoint,
             dcTenureHardPoint: this.responseTcDcData.dcTenureHardPoint,
             dcPhysicalChallengedPoint: this.responseTcDcData.dcPhysicalChallengedPoint,
@@ -632,8 +633,8 @@ export class KvsTransferEditComponent implements OnInit {
         })
         this.transferForm.patchValue({
           transferCount: {
-            kvCode:responseData.kvCode,
-            teacherId:responseData.teacherId,
+            kvCode:this.kvCode,
+            teacherId:this.tempTeacherId,
             tcStayStationPoint: this.responseTcDcData.tcStayStationPoint,
             tcTenureHardPoint: this.responseTcDcData.tcTenureHardPoint,
             tcPhysicalChallengedPoint: this.responseTcDcData.tcPhysicalChallengedPoint,
@@ -1270,59 +1271,7 @@ canculateTcPoint()
   onSubmit(event: Event) {
     var activeButton = document.activeElement.id;
 
-    if (activeButton == 'submit2') {
-      // this.responseData.workExperiencePositionTypePresentStationStartDate = this.transferForm.value.displacementCount.workExperiencePositionTypePresentStationStartDate
-      // this.responseData.presentStationName = this.transferForm.value.displacementCount.presentStationName
-      // this.responseData.presentStationCode = this.transferForm.value.displacementCount.presentStationCode
-      // this.responseData.q1DPt = this.transferForm.value.displacementCount.q1DPt
-      // this.responseData.q2DPt = this.transferForm.value.displacementCount.q2DPt
-      // this.responseData.q2TPt = this.transferForm.value.transferCount.q2TPt
-      // this.responseData.teacherDob = this.transferForm.value.displacementCount.teacherDob
-      // this.responseData.hardStationCode = this.transferForm.value.displacementCount.hardStationCode
-      // this.responseData.hardStationName = this.transferForm.value.displacementCount.hardStationName
-      // this.responseData.hardStationWorkStartDate = this.transferForm.value.displacementCount.hardStationWorkStartDate
-      // this.responseData.hardStationWorkEndDate = this.transferForm.value.displacementCount.hardStationWorkEndDate
-      // this.responseData.q3DPt = this.transferForm.value.displacementCount.q3DPt
-      // this.responseData.personalStatus = this.transferForm.value.displacementCount.personalStatus
-      // this.responseData.personalStatusLtrDc = this.transferForm.value.displacementCount.personalStatusLtrDc
-      // this.responseData.q4DPt = this.transferForm.value.displacementCount.q4DPt
-      // this.responseData.q5DPt = this.transferForm.value.displacementCount.q5DPt
-      // this.responseData.q6DPt = this.transferForm.value.displacementCount.q6DPt           
-      // this.responseData.q7DPt = this.transferForm.value.displacementCount.q7DPt 
-      // this.responseData.q8DPt = this.transferForm.value.displacementCount.q8DPt
-      // this.responseData.q11DPt = this.transferForm.value.displacementCount.q11DPt
-      // this.responseData.q12DPt = this.transferForm.value.displacementCount.q12DPt
-      // this.responseData.q13DPt = this.transferForm.value.displacementCount.q13DPt
-      // this.responseData.totalDisplacementCount = this.transferForm.value.displacementCount.totalDisplacementCount
-     console.log(this.transferForm.value.displacementCount)
-
-
-  
-
-    // return;
-      this.responseData.transferStatus = 'TRE'
-      this.outSideService.saveInitiatedTeacherTransfer(this.transferForm.value.displacementCount).subscribe((res) => {
-        if (res.status == 1 || res.status == '1') {
-          this.responseData = res.response;
-          this.transferStatusOperation = res.response.transferStatus;
-          debugger
-       //   this.setReceivedData(this.responseData)
-          // nextTempClick();
-          this.formStatusLocale = 'TRE'
-          Swal.fire(
-            'Your data has been saved successfully!',
-            '',
-            'success'
-          )
-        } else {
-          Swal.fire(
-            'Data not saved',
-            'Please go to previous page and retry',
-            'error'
-          )
-        }
-      })
-    } else if (activeButton == 'submit1') {
+   if (activeButton == 'submit1') {
       debugger
       console.log(console.log(this.transferForm.value.stationChoice))
      
@@ -1345,49 +1294,15 @@ canculateTcPoint()
        }
      })
     } else if (activeButton == 'submit5') {
-
-     this.responseData.workExperiencePositionTypePresentStationStartDate = this.transferForm.value.transferCount.workExperiencePositionTypePresentStationStartDate
-     this.responseData.presentStationName = this.transferForm.value.transferCount.presentStationName
-     this.responseData.presentStationCode = this.transferForm.value.transferCount.presentStationCode
-     this.responseData.q1DPt = this.transferForm.value.transferCount.q1TPt
-     this.responseData.q2DPt = this.transferForm.value.transferCount.q2TPt
-     this.responseData.q2TPt = this.transferForm.value.transferCount.q2TPt
-     this.responseData.teacherDob = this.transferForm.value.transferCount.teacherDob
-     this.responseData.hardStationCode = this.transferForm.value.transferCount.hardStationCode
-     this.responseData.hardStationName = this.transferForm.value.transferCount.hardStationName
-     this.responseData.hardStationWorkStartDate = this.transferForm.value.transferCount.hardStationWorkStartDate
-     this.responseData.hardStationWorkEndDate = this.transferForm.value.transferCount.hardStationWorkEndDate
-     this.responseData.q3DPt = this.transferForm.value.transferCount.q3TPt
-     this.responseData.personalStatus = this.transferForm.value.transferCount.personalStatus
-     this.responseData.personalStatusLtrDc = this.transferForm.value.transferCount.personalStatusLtrDc
-     this.responseData.q4DPt = this.transferForm.value.transferCount.q4TPt
-     this.responseData.q5DPt = this.transferForm.value.transferCount.q5TPt
-     this.responseData.q6DPt = this.transferForm.value.transferCount.q6TPt           
-     this.responseData.q7DPt = this.transferForm.value.transferCount.q7TPt 
-     this.responseData.q8DPt = this.transferForm.value.transferCount.q8TPt
-     this.responseData.totalTransferCount = this.transferForm.value.transferCount.totalTransferCount
-    console.log(this.transferForm.value.transferCount)
-    return;
-     this.responseData.transferStatus = 'TRE'
-     this.outSideService.saveInitiatedTeacherTransfer(this.responseData).subscribe((res) => {
-       if (res.status == 1 || res.status == '1') {
-         this.responseData = res.response;
-         this.transferStatusOperation = res.response.transferStatus;
-         debugger
-      //   this.setReceivedData(this.responseData)
-         // nextTempClick();
-         this.formStatusLocale = 'TRE'
+      this.outSideService.schoolTransferVerify(this.tempTeacherId).subscribe((res) => {
+        if (JSON.parse(JSON.stringify(res)).status == 1) {   
          Swal.fire(
-           'Your data has been saved successfully!',
+           'Transfer has been Verified',
            '',
            'success'
          )
-       } else {
-         Swal.fire(
-           'Data not saved',
-           'Please go to previous page and retry',
-           'error'
-         )
+       
+       //  this.nextClick(2)
        }
      })
     }

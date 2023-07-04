@@ -100,12 +100,12 @@
 
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span class="mobile-label">Status : </span>
+                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span class="mobile-label">Status : </span> 
                     <span *ngIf="row.approved === 1" class=' bx-badge-check-initiated bxStyle1 mr-2'>Transfer
                         Initiated</span>
-                    <span *ngIf="row.approved === 'TRS'" class=' bx-badge-check-submitted bxStyle1 mr-2'>Transfer
-                        Submitted</span>
-                    <span *ngIf="row.approved === 'TRA'" class=' bx-badge-check-verified bxStyle1 mr-2'>Transfer
+                    <span *ngIf="row.approved === 0 || row.approved === ''" class=' bx-badge-check-submitted bxStyle1 mr-2'>Transfer
+                        Not Initiated</span>
+                    <span *ngIf="row.approved === 2" class=' bx-badge-check-verified bxStyle1 mr-2'>Transfer
                         Verified</span>
                     <span *ngIf="row.approved === 'TRR'" class=' bx-badge-check-rejected bxStyle1 mr-2'>Exempted</span>
                     <span *ngIf="row.approved === 'TRE'" class=' bx-badge-check-edited bxStyle1 mr-2'>Transfer
@@ -133,7 +133,8 @@
                     <!-- <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
                     <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'" class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application" (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i> -->
 
-                    <i *ngIf="row.approved == 1" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
+                    <!-- <i *ngIf="row.approved == 1" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i> -->
+                    <i *ngIf="row.approved == 1" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onEdit(row.teacherId)">{{row.c}}</i>
                     <i *ngIf="row.approved == 1" class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application" (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i>
 
 
