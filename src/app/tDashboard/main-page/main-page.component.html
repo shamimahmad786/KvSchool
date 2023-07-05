@@ -34,23 +34,23 @@
                         <!-- <li>
                             <a href="#" title="Screen Reader Access">Screen Reader Access</a>
                         </li> -->
-                        <li class="theme-toggle">
+                        <!-- <li class="theme-toggle">
                             <mat-slide-toggle class="example-margin" (change)="onToggle($event)" color="warn">
                             </mat-slide-toggle>
-                        </li>
+                        </li> -->
                         <!-- <li>
                             <a class="font-bdr">A-</a>
                             <a class="font-bdr">A</a>
                             <a class="font-bdr">A+</a>
                         </li> -->
-                        <li class="language-switch mr-0">
+                        <!-- <li class="language-switch mr-0">
                             <button mat-button [matMenuTriggerFor]="menu" class="bg-white">{{languageName}}
                                 <mat-icon>keyboard_arrow_down</mat-icon></button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item (click)="selectedLang('en')">English</button>
                                 <button mat-menu-item (click)="selectedLang('hn')">Hindi</button>
                             </mat-menu>
-                        </li>
+                        </li> -->
                         <!-- <li>
                             <a [class.active]="defaultLang == 'en'" (click)="selectedLang('en')">English</a>
                         </li>
@@ -139,7 +139,7 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-12 col-md-12 pt-0">
                     <h1 class="title">About <br/>Teacher Platform</h1>
-                    <p class="description">It's a platform for Employees Posted in  KV/RO/ZIET/HQ. It is designed to take into account the entire teacher life cycle, from the time teachers inception in TEIs to their retirement as educators.</p>
+                    <p class="description">It's a platform for Employees Posted in KV/RO/ZIET/HQ. It is designed to take into account the entire teacher life cycle, from the time teachers inception in TEIs to their retirement as educators.</p>
 
                     <!-- <ul class="stats">
                         <li>
@@ -176,45 +176,45 @@
                         <h2 class="sub-title">Onboard</h2>
                         <div class="col-sm-6">
                             <div class="card shadow p-3 minheight100">
-                             <table class="teacher_table">
-                                <tr>
-                                    <td class="pt-0"><img src="assets/images/icons/total-kvs.svg" alt="" class="me-2"> Total KVs</td>
-                                    <td>{{dashboarData.no_of_school}}</td>
-                                </tr>
-                                <tr>
-                                    <td><img src="assets/images/icons/regions-kvs.svg" alt="" class="me-2"> Regions</td>
-                                    <td>{{dashboarData.no_of_region}}</td>
-                                </tr>
-                                <tr>
-                                    <td><img src="assets/images/icons/stations-kvs.svg" alt="" class="me-2"> Stations</td>
-                                    <td>{{dashboarData.no_of_station}}</td>
-                                </tr>
-                                <tr>
-                                    <td><img src="assets/images/icons/ziets-kvs.svg" alt="" class="me-2"> ZIETs</td>
-                                    <td>{{dashboarData.no_of_zone}}</td>
-                                </tr>
+                                <table class="teacher_table">
+                                    <tr>
+                                        <td class="pt-0"><img src="assets/images/icons/total-kvs.svg" alt="" class="me-2"> Total KVs</td>
+                                        <td>{{dashboarData.no_of_school}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/icons/regions-kvs.svg" alt="" class="me-2"> Regions</td>
+                                        <td>{{dashboarData.no_of_region}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/icons/stations-kvs.svg" alt="" class="me-2"> Stations</td>
+                                        <td>{{dashboarData.no_of_station}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/icons/ziets-kvs.svg" alt="" class="me-2"> ZIETs</td>
+                                        <td>{{dashboarData.no_of_zone}}</td>
+                                    </tr>
 
-                            </table> 
-                        </div>                          
-                            
+                                </table>
+                            </div>
+
                         </div>
                         <div class="col-sm-6">
                             <div class="card shadow p-3 minheight100">
-                            <table class="teacher_table">
-                                <tr>
-                                    <th><img src="assets/images/icons/staff-kvs.svg" alt="" class="me-2"> Total Staff</th>
-                                    <th>{{dashboarData.no_of_teaching_teacher+dashboarData.no_of_nonteaching_teacher}}</th>
-                                </tr>
-                                <tr>
-                                    <td><img src="assets/images/icons/teaching-kvs.svg" alt="" class="me-2"> Teaching</td>
-                                    <td>{{dashboarData.no_of_teaching_teacher}}</td>
-                                </tr>
-                                <tr>
-                                    <td><img src="assets/images/icons/none-teaching-kvs.svg" alt="" class="me-2"> Non-Teachnig</td>
-                                    <td>{{dashboarData.no_of_nonteaching_teacher}}</td>
-                                </tr>
-                            </table>
-                        </div>
+                                <table class="teacher_table">
+                                    <tr>
+                                        <th><img src="assets/images/icons/staff-kvs.svg" alt="" class="me-2"> Total Staff</th>
+                                        <th>{{dashboarData.no_of_teaching_teacher+dashboarData.no_of_nonteaching_teacher}}</th>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/icons/teaching-kvs.svg" alt="" class="me-2"> Teaching</td>
+                                        <td>{{dashboarData.no_of_teaching_teacher}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/icons/none-teaching-kvs.svg" alt="" class="me-2"> Non-Teachnig</td>
+                                        <td>{{dashboarData.no_of_nonteaching_teacher}}</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
 

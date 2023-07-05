@@ -1,47 +1,48 @@
 <section class="main-wrapper">
     <div class="container  ">
-    <a routerLink="/"><img src="assets/images/login/emblem-school2.svg" class="img-fluid gov-logo mt-3"></a>
-</div>
-    <div class="align-items-center d-flex  p-2 w-100 inner-wrapper" >
-    <div class="container  ">
-        <div class="row align-items-center h-100">
-            <div class="col-lg-7">
-                <div class="left-content ">
-            <h6>LOGIN TO</h6>
-            <h1 class="mb-4">teacher <br>transfer application</h1>
-         
-            <p>Identity management, also known as identity and access management, is a framework of policies and technologies to ensure that the right users have the appropriate access to technology resources. IdM systems fall under the overarching umbrellas of IT security and data management.</p>
+        <a routerLink="/"><img src="assets/images/login/emblem-school2.svg" class="img-fluid gov-logo mt-3"></a>
+    </div>
+    <div class="align-items-center d-flex  p-2 w-100 inner-wrapper">
+        <div class="container  ">
+            <div class="row align-items-center h-100">
+                <div class="col-lg-7">
+                    <div class="left-content ">
+                        <h6>LOGIN TO</h6>
+                        <h1 class="mb-4">teacher <br>transfer application</h1>
+
+                        <p>Identity management, also known as identity and access management, is a framework of policies and technologies to ensure that the right users have the appropriate access to technology resources. IdM systems fall under the overarching
+                            umbrellas of IT security and data management.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-5 ">
-                <div class="right-form">
-                    
-                    <div class="card login-form shadow">
-                        <img src="assets/images/login/KVS-logo-1.png" class="img-fluid login-logo">
-                        <form id="msform" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                            <h1>Login</h1>
-                            <P>Please enter your username and password</P>
-                            <input type="text" class="form-control mb-2" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="username">
-                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback"></div>
-                            <div *ngIf="f.username.errors.required" class="invalid-feedback">username is required</div>
-                            <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback"></div>
-                            <div *ngIf="f.password.errors.required" class="invalid-feedback">Password is required</div>
-                            <!-- <h6 class="mt-3 mb-3">Enter Captcha code to process</h6>
+                <div class="col-lg-5 ">
+                    <div class="right-form">
+
+                        <div class="card login-form shadow">
+                            <img src="assets/images/login/KVS-logo-1.png" class="img-fluid login-logo">
+                            <form id="msform" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                                <h1>Login</h1>
+                                <P>Please enter your username and password</P>
+                                <input type="text" class="form-control mb-2" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="username">
+                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback"></div>
+                                <div *ngIf="f.username.errors.required" class="invalid-feedback">username is required</div>
+                                <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback"></div>
+                                <div *ngIf="f.password.errors.required" class="invalid-feedback">Password is required</div>
+                                <!-- <h6 class="mt-3 mb-3">Enter Captcha code to process</h6>
                             <div class="captcha d-flex mb-3 w-100">
                                 <input placeholder="Enter Captcha" class="w-75">
                                 <span><img src="assets/images/captcha.png" class="img-fluid w-25"></span>
                             </div> -->
-                            <button type="submit" class="btn btn-success login-btn mt-2">Login</button>
+                                <button type="submit" class="btn btn-success login-btn mt-2">Login</button>
 
-                            <p class="mt-4 text-center">By Login, you agree to our <u>terms & conditions</u></p>
-                        </form>
+                                <p class="mt-4 text-center fw-bold"><a style="text-decoration: none;" routerLink="/">Back to home</a></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
     <img src="assets/images/login/nic-logo.svg" class="img-fluid  nic-logo">
-    
+
 </section>

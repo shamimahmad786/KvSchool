@@ -62,6 +62,7 @@ export class ProfileComponent implements OnInit {
       this.businessUnitTypeId = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[i].business_unit_type_id;
       if (JSON.parse(sessionStorage.getItem("authTeacherDetails")).applicationDetails[i].business_unit_type_id == 5) {
         if (JSON.parse(sessionStorage.getItem("authTeacherDetails")).applicationDetails[i].application_id == environment.applicationId) {
+          // alert(JSON.parse(sessionStorage.getItem("authTeacherDetails")).applicationDetails[i].business_unit_type_code)
           const data: any = {
             "extcall": "MOE_EXT_MAPPINGDATA",
             "conditionvalue": [JSON.parse(sessionStorage.getItem("authTeacherDetails")).applicationDetails[i].business_unit_type_code]
@@ -107,8 +108,8 @@ export class ProfileComponent implements OnInit {
   getKvTeacherByUdiseCode() {
 
     
-    
-    this.outSideService.getKvTeacherByUdiseCode(JSON.parse(sessionStorage.getItem("mappingData")).mappingData[0].udise_sch_code).subscribe((res) => {
+    this.kvCode = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[0].business_unit_type_code;
+    this.outSideService.getKvTeacherByUdiseCode(this.kvCode).subscribe((res) => {
       
       this.teacherList = res.response;
 

@@ -258,9 +258,10 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
   
   getKvTeacherByUdiseCode() {
     if (this.businessUnitTypeId != '2' && this.businessUnitTypeId != '3' && this.businessUnitTypeId != '4') {
-      this.udiseSchoolCode = JSON.parse(sessionStorage.getItem("mappingData")).mappingData[0].udise_sch_code;
+      // this.udiseSchoolCode = JSON.parse(sessionStorage.getItem("mappingData")).mappingData[0].udise_sch_code;
+      this.kvCode = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[0].business_unit_type_code;
     }
-    this.outSideService.getKvTeacherByUdiseCode(this.udiseSchoolCode).subscribe((res) => {
+    this.outSideService.getKvTeacherByUdiseCode(this.kvCode).subscribe((res) => {
       
       this.teacherList = [];
       this.teacherList = res.response;

@@ -145,6 +145,7 @@ export class TeacherEntryFormComponent implements OnInit {
 
   }
   profileObjNew = {
+    'kvCode':'',
     'currentUdiseSchCode': '',
     'udiseSchoolName': '',
     'teacherDob': '',
@@ -297,7 +298,8 @@ export class TeacherEntryFormComponent implements OnInit {
   enableUploadButtonRelatedForm6: boolean = false;
   enableUploadButtonRelatedForm7: boolean = false;
   enableUploadButtonRelatedForm8: boolean = false;
-  maxDate:any
+  maxDate:any;
+  relationWithEmplMdgData:any;
   myAppointmnet(event) {
     if (event.target.value == "1") {
       this.onvalid = event.target.value;
@@ -367,7 +369,7 @@ export class TeacherEntryFormComponent implements OnInit {
     if (parseInt(day, 10) < 10) {
         day = '0' + day.toString();
     }
-     this.maxDate = `${year}-${month}-${day}`;
+     this.maxDate = `2023-06-30`;
     this.route.queryParams.subscribe(
       (queryParams: Params) => {
         this.allowEdit = queryParams['allowEdit'];
@@ -577,6 +579,7 @@ transferRelatedForm: new FormGroup({
   'surveHardYn': new FormControl(),
   'careGiverYnD': new FormControl(),
   'childDifferentAbleYnD': new FormControl(),
+  'relationWithEmplMdg': new FormControl('', Validators.required),
   'spouseEmpCode': new FormControl(''),
   'spousePost': new FormControl(''),
   'spouseStationName': new FormControl(''),
@@ -741,6 +744,7 @@ transferRelatedForm: new FormGroup({
         // natureOfAppointment: [data.natureOfAppointment, [Validators.required]],
         positionType: [data.positionType, [Validators.required]],
         appointedForSubject: [data.appointedForSubject, [Validators.required]],
+        kvCode:[data.kvCode, [Validators.required]]
       })
     } else {
 
@@ -759,6 +763,7 @@ transferRelatedForm: new FormGroup({
         positionType: ["", [Validators.required]],
         appointedForSubject: ["", [Validators.required]],
         shiftYn: '',
+        kvCode:['', [Validators.required]]
       })
     }
 
@@ -823,7 +828,7 @@ transferRelatedForm: new FormGroup({
           }
           this.tchExpList[i].workStartDate = this.date.transform(new Date(this.tchExpList[i].workStartDate * 1), 'yyyy-MM-dd')
 
-
+// alert(JSON.stringify(this.tchExpList[i]));
           this.addQuantity(this.tchExpList[i])
           this.getSubjectByTchTypeExp(data, i)
 
@@ -1600,6 +1605,7 @@ stationChoiceSpouse(e, val) {
       this.outSideService.uploadDocument(formData).subscribe((res) => {
         this.outSideService.fetchUploadedDoc(this.responseData.teacherId).subscribe((res) => {
           this.documentUploadArray = res;
+          // alert(JSON.stringify(this.documentUploadArray));
           for (let i = 0; i < res.length; i++) {
 
             if (res[i].docName == 'Medical_Certificate.pdf') {
@@ -1685,6 +1691,7 @@ debugger
         this.responseData.lastPromotionId = this.lastPromotionId;
         this.responseData.workExperienceIdPresentKv = this.workExpId;
         this.responseData.udiseSchoolName = this.schName;
+        this.responseData.kvCode=this.kvCode;
         this.responseData.currentUdiseSchCode = this.udiseSchCode;
         this.responseData.teacherId = this.tempTeacherId;
         this.responseData.teacherDob = this.teacherForm.value.profileForm.dob;
@@ -1703,14 +1710,15 @@ debugger
         this.responseData.lastPromotionPositionDate = this.teacherForm.value.profileForm.presentPostDate;
         this.responseData.teachingNonteaching = this.teacherForm.value.profileForm.staffType;
        
-        this.responseData.specialRecruitmentYn = this.teacherForm.value.profileForm.specialRecruitmentYn
+        this.responseData.specialRecruitmentYn = this.teacherForm.value.profileForm.specialRecruitmentYn;
         this.responseData.teacherAccountId = this.responseData.teacherAccountId;
-        this.responseData.kvCode=this.kvCode;
+        
         
         this.dataSubmit = this.responseData
       } else {
         this.profileObjNew.lastPromotionId = this.lastPromotionId;
         // }
+        this.profileObjNew.kvCode=this.kvCode;
         this.profileObjNew.workExperienceIdPresentKv = this.workExpId;
         this.profileObjNew.udiseSchoolName = this.schName;
         this.profileObjNew.currentUdiseSchCode = this.udiseSchCode;
@@ -1732,12 +1740,15 @@ debugger
         this.profileObjNew.teachingNonteaching = this.teacherForm.value.profileForm.staffType;
        // this.profileObjNew.natureOfAppointment = this.teacherForm.value.profileForm.natureOfAptmnt;
         //this.profileObjNew.maritalStatus = this.teacherForm.value.profileForm.maritalStatusF;
-        this.profileObjNew.specialRecruitmentYn = this.teacherForm.value.profileForm.specialRecruitmentYn
+        this.profileObjNew.specialRecruitmentYn = this.teacherForm.value.profileForm.specialRecruitmentYn;
+       
         this.responseData.kvCode=this.kvCode
         this.profileObjNew.spouseStatus = '5'
         this.dataSubmit = this.profileObjNew
       }
-     // return;
+
+
+    //  return;
       this.outSideService.saveSingleTeacher(this.dataSubmit).subscribe((res) => {
         this.responseData = res.response;
         this.responseStatus = res.status
@@ -2175,6 +2186,8 @@ this.getStatus(this.tempTeacherId);
         } else {
           this.teacherForm.value.detailsOfPosting[i].currentlyActiveYn = '0';
         }
+
+        // this.teacherForm.value.detailsOfPosting[i].kvCode=this.kvCode;
       }
 
       for (let i = 0; i < this.teacherForm.value.promotionDetails.length; i++) {
@@ -2184,6 +2197,8 @@ this.getStatus(this.tempTeacherId);
 
       // alert(this.teacherForm.controls.detailsOfPosting.status)
 
+      console.log(JSON.stringify(this.teacherForm.value.detailsOfPosting));
+// return
       if (this.teacherForm.controls.detailsOfPosting.status == 'VALID') {
         this.outSideService.saveTchExperience(this.teacherForm.value.detailsOfPosting).subscribe((res) => {
           var responsePosting = res.status;
@@ -3330,7 +3345,7 @@ this.getMaster(data,event.target.value);
     for (let i = 0; i < this.kvSchoolList.length; i++) {
       if (this.kvSchoolList[i].udiseSchCode == this.selectedUdiseCode) {
         this.shiftYN = this.kvSchoolList[i].shiftYn
-        this.setTeacherPostingData(this.kvSchoolList[i].kvName, this.kvSchoolList[i].udiseSchCode,this.selectedSchoolType)
+        this.setTeacherPostingData(this.kvSchoolList[i].kvName, this.kvSchoolList[i].kvCode,this.selectedSchoolType)
 
 
 
@@ -3361,12 +3376,13 @@ this.getMaster(data,event.target.value);
     ((this.teacherForm.get('awardReceived') as FormArray).at(index) as FormGroup).get('awardId').patchValue(awardId);
   }
 
-  setTeacherPostingData(name, udiseCode,schoolType) {
-   // debugger
+  setTeacherPostingData(name, kvCode,schoolType) {
+   debugger
    console.log(this.teacherForm.get('detailsOfPosting'));
     ((this.teacherForm.get('detailsOfPosting') as FormArray).at(this.indexNew) as FormGroup).get('udiseSchoolName').patchValue(name);
     ((this.teacherForm.get('detailsOfPosting') as FormArray).at(this.indexNew) as FormGroup).get('experienceType').patchValue(schoolType);
-    ((this.teacherForm.get('detailsOfPosting') as FormArray).at(this.indexNew) as FormGroup).get('udiseSchCode').patchValue(udiseCode);
+    ((this.teacherForm.get('detailsOfPosting') as FormArray).at(this.indexNew) as FormGroup).get('udiseSchCode').patchValue(kvCode);
+    ((this.teacherForm.get('detailsOfPosting') as FormArray).at(this.indexNew) as FormGroup).get('kvCode').patchValue(kvCode);
 
     if (this.shiftYN == '0' || this.shiftYN == 0) {
       ((this.teacherForm.get('detailsOfPosting') as FormArray).at(this.indexNew) as FormGroup).get('shiftYn').patchValue('0');
@@ -3899,6 +3915,8 @@ this.getMaster(data,event.target.value);
 
       this.documentUploadArray = res;
 
+      // alert(JSON.stringify(this.documentUploadArray))
+
       for (let i = 0; i < res.length; i++) {
 
         if (res[i].docName == 'Medical_Certificate.pdf') {
@@ -4068,6 +4086,7 @@ this.singleParentGroundData =res.response.singleParentGround
 this.singleParentCertificateIssueDateData =  this.date.transform(res.response.singleParentCertificateIssueDate, 'yyyy-MM-dd');  
 this.deathOfFamilyGroundData=res.response.deathOfFamilyGround;
 this.careGiverRelationData=res.response.careGiverRelation,
+this.relationWithEmplMdgData = res.response.relationWithEmplMdg
 this.deathCertificateIssueDateData = this.date.transform(res.response.deathCertificateIssueDate, 'yyyy-MM-dd');  
 
 this.teacherForm.patchValue({

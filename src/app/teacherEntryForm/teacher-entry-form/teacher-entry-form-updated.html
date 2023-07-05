@@ -98,7 +98,7 @@
                                                         <div class="col-md-6 mb-3">
                                                             <h4 class="titleSet">Full Name<span class="required-asterisk">*</span>
                                                             </h4>
-                                                            <input type="text" class="form-control " name="fullName" formControlName="fullName"  style="text-transform:uppercase" maxlength="50" [(ngModel)]="responseData.teacherName">
+                                                            <input type="text" class="form-control " name="fullName" formControlName="fullName" style="text-transform:uppercase" maxlength="50" [(ngModel)]="responseData.teacherName">
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.fullName').valid && teacherForm.get('profileForm.fullName').touched">
                                                                 Enter your valid name!</span>
                                                             <!-- <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.fullName').valid 
@@ -130,7 +130,7 @@
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <h4 class="titleSet">Date of birth<span class="required-asterisk">*</span></h4>
-                                                            <input type="date" class="form-control " name="dob" formControlName="dob" [(ngModel)]="responseData.teacherDob" style="text-transform: none">
+                                                            <input type="date" [max]="maxDate" class="form-control " name="dob" formControlName="dob" [(ngModel)]="responseData.teacherDob" style="text-transform: none">
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.dob').valid && teacherForm.get('profileForm.dob').touched ">
                                                                 <span class="help-block text-danger"
                                                                     *ngIf="teacherForm.get('profileForm.dob').errors['invalidDate'] ">
@@ -250,7 +250,7 @@
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <h4 class="titleSet">DoJ in Present KV/RO/ZIET/HQ in Present Post <span class="required-asterisk">*</span></h4>
-                                                            <input type="date" class="form-control" name="presentKvDate"  [max]="maxDate" formControlName="presentKvDate" (blur)="profileDateManagement($event, 'a')" [(ngModel)]="responseData.workExperienceWorkStartDatePresentKv" style="text-transform: none">
+                                                            <input type="date" [max]="maxDate" class="form-control" name="presentKvDate" [max]="maxDate" formControlName="presentKvDate" (blur)="profileDateManagement($event, 'a')" [(ngModel)]="responseData.workExperienceWorkStartDatePresentKv" style="text-transform: none">
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.presentKvDate').valid && teacherForm.get('profileForm.presentKvDate').touched">
                                                                 <span class="help-block text-danger"
                                                                     *ngIf="teacherForm.get('profileForm.presentKvDate').errors['invalidDate'] ">
@@ -271,7 +271,8 @@
                                                             <h4 class="titleSet"> DoJ in Present Station irrespective of Cadre
                                                                 <span class="required-asterisk">*</span>
                                                             </h4>
-                                                            <input type="date" class="form-control" name="presentStationPostDate" [max]="maxDate" (blur)="profileDateManagement($event, 'b')" formControlName="presentStationPostDate" [(ngModel)]="responseData.workExperiencePositionTypePresentStationStartDate" style="text-transform: none">
+                                                            <input type="date" [max]="maxDate" class="form-control" name="presentStationPostDate" [max]="maxDate" (blur)="profileDateManagement($event, 'b')" formControlName="presentStationPostDate" [(ngModel)]="responseData.workExperiencePositionTypePresentStationStartDate"
+                                                                style="text-transform: none">
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.presentStationPostDate').valid && teacherForm.get('profileForm.presentStationPostDate').touched">
                                                                 <span class="help-block text-danger"
                                                                     *ngIf="teacherForm.get('profileForm.presentStationPostDate').errors['invalidDate'] ">
@@ -337,11 +338,11 @@
                                                         <div class="col-md-6 mb-3">
                                                             <h4 class="titleSet">Staff Type<span class="required-asterisk">*</span></h4>
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" id="inlineRadio1" value="1" disabled  [(ngModel)]="responseData.teachingNonteaching" name="staffType" formControlName="staffType">
+                                                                <input class="form-check-input" type="radio" id="inlineRadio1" value="1" disabled [(ngModel)]="responseData.teachingNonteaching" name="staffType" formControlName="staffType">
                                                                 <label class="form-check-label font16 ff" for="inlineRadio1">Teaching</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" id="inlineRadio2" value="2" disabled  [(ngModel)]="responseData.teachingNonteaching" name="staffType" formControlName="staffType">
+                                                                <input class="form-check-input" type="radio" id="inlineRadio2" value="2" disabled [(ngModel)]="responseData.teachingNonteaching" name="staffType" formControlName="staffType">
                                                                 <label class="form-check-label font16 ff" for="inlineRadio2">Non-Teaching</label>
                                                             </div>
                                                             <!-- <div class="form-check form-check-inline">
@@ -595,7 +596,7 @@
                                                     <!-- <div class="col-5">
                                                         <h2 class="steps">{{responseData?.teacherId}} | {{responseData?.teacherName}}</h2>
                                                     </div> -->
-                                                </div>                                             
+                                                </div>
 
                                                 <div class="row">
 
@@ -604,7 +605,7 @@
                                                             <div class="col-md-6 mb-3">
                                                                 <h4 class="titleSet">
                                                                     Correspondence Address <span class="required-asterisk">*</span></h4>
-                                                                <textarea class="form-control" rows="1" name="crspndncAddress" formControlName="crspndncAddress"  style="text-transform:uppercase" [(ngModel)]="responseData.teacherCorrespondenceAddress" (change)="addOrPinChange('A')"></textarea>
+                                                                <textarea class="form-control" rows="1" name="crspndncAddress" formControlName="crspndncAddress" style="text-transform:uppercase" [(ngModel)]="responseData.teacherCorrespondenceAddress" (change)="addOrPinChange('A')"></textarea>
                                                                 <!-- <span class="help-block text-danger"
                                                                     *ngIf="!teacherForm.get('personalInfoForm.crspndncAddress').valid ">
                                                                     Enter your correspondence address!</span> -->
@@ -615,7 +616,7 @@
                                                                     <option selected disabled>Select State
                                                                     </option>
                                                                     <option *ngFor="let data of stateMasterList"
-                                                                        value="{{data.state_id}}">{{data.state_name}}
+                                                                        value="{{data.state_id}}">{{data.state_name | uppercase}}
                                                                     </option>
                                                                     <!-- <option value="1">Delhi</option>
                                                                     <option value="1">Punjab</option>
@@ -632,7 +633,7 @@
                                                                     </option>
                                                                     <option *ngFor="let data of districListByStateIdC"
                                                                         value="{{data.district_id}}">
-                                                                        {{data.district_name}}
+                                                                        {{data.district_name | uppercase}}
                                                                     </option>
                                                                     <!-- <option value="1">Delhi</option>
                                                                     <option value="1">Punjab</option>
@@ -855,13 +856,22 @@
                                                     </div>
                                                     <div *ngIf="documentUploadArray[4]?.docName == 'Physically_Handicap_Certificate.pdf' && isVisible" class="mt-2 col-md-3">
                                                         <h4 class="titleSet">Action</h4>
-                                                        <div>
+                                                        <div class="d-flex d-flex-row">
 
+                                                            <!-- <a href="{{documentUploadArray[4]?.url}}"><i
+                                                                    class='bx bx-show'></i></a> -->
                                                             <a href="{{documentUploadArray[4]?.url}}"><i
-                                                                    class='bx bx-show'></i></a>
+                                                                        class='bx bx-download'></i></a>
+                                                        </div>
+                                                        <div class="d-flex d-flex-row">
+
 
                                                             <i (click)="deleteDocumentUploaded('Physically_Handicap_Certificate.pdf')" class='bx bx-minus-circle'></i>
+                                                            <!-- <a href="{{documentUploadArray[4]?.url}}"> <i class='bx bx-message-square-x'></i> </a> -->
                                                         </div>
+
+
+
                                                     </div>
                                                     <div class="col-md-3 mt-2">
                                                         <div class="showDiv" *ngIf="isVisible">
@@ -951,7 +961,7 @@
                                                     </div>
                                                     <div *ngIf="spouseNone" class="col-md-6 mb-3">
                                                         <h4 class="titleSet">Serving Spouse Name<span class="required-asterisk">*</span> </h4>
-                                                        <input type="text" class="form-control "  style="text-transform:uppercase" [(ngModel)]="responseData.spouseName" name="spouseName" id="spouseName" formControlName="spouseName">
+                                                        <input type="text" class="form-control " style="text-transform:uppercase" [(ngModel)]="responseData.spouseName" name="spouseName" id="spouseName" formControlName="spouseName">
                                                     </div>
                                                     <div *ngIf="spouseNone && spouseKVSStation" class="col-md-6 mb-3">
                                                         <h4 class="titleSet"> Position Held<span class="required-asterisk">*</span> </h4>
@@ -1216,7 +1226,7 @@
                                                                 <i class="fa fa-search" (click)="selectSchool(i)"></i>
                                                                  -->
                                                                 <div class="input-group mb-3">
-                                                                    <input type="text" class="input-group-text input"  name="udiseSchCode" formControlName="udiseSchCode" disabled style="width:70px; height:33px;">
+                                                                    <input type="text" class="input-group-text input" name="udiseSchCode" formControlName="udiseSchCode" disabled style="width:70px; height:33px;">
                                                                     <input type="text" class="form-control form-control-sm" name="udiseSchoolName" formControlName="udiseSchoolName" disabled>
                                                                     <button class="btn btn-sm btn-outline-secondary btn-sm" type="button" id="button-addon2" (click)="selectExperianceSchool(i)"> <i
                                                                             class="fa fa-search"></i></button>
@@ -1250,7 +1260,8 @@
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.shiftType.errors?.required">
                                                                     Select Shift!</span>
                                                             </td> -->
-                                                            <td><input id="wordStartDate-{{i}}" type="date" class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (blur)="experienceDataManagement($event,i)" formControlName="workStartDate" style="text-transform: none">
+                                                            <td><input id="wordStartDate-{{i}}" type="date" class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (blur)="experienceDataManagement($event,i)" formControlName="workStartDate"
+                                                                    style="text-transform: none">
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.workStartDate.errors?.required">
                                                                     Select Work Start Date!</span>
                                                             </td>
@@ -1302,10 +1313,10 @@
 
                                                             </td>
                                                             <td>
-                                                                {{groundForTransfer}}   
+                                                                {{groundForTransfer}}
                                                                 <mat-form-field appearance="fill">
                                                                     <!-- <mat-label>Major Subject</mat-label> -->
-                                                                    <mat-select  formControlName="groundForTransfer"  name="groundForTransfer">
+                                                                    <mat-select formControlName="groundForTransfer" name="groundForTransfer">
                                                                         <!-- <mat-select-trigger>
                                                                         {{toppings.value ? toppings.value[0] : ''}}
                                                                         <span *ngIf="toppings.value?.length > 1"
@@ -1523,7 +1534,7 @@
 
 
                             <!-- <div> -->
-                             <!-- <div class="fieldSet" formGroupName="transferRelatedForm">
+                            <!-- <div class="fieldSet" formGroupName="transferRelatedForm">
                                New code start  here
                                <fieldset [disabled]="!allowEdit">
                                     <div class="form-card">
@@ -1771,7 +1782,7 @@
 
                                     </div>
                                 </fieldset> -->
-                                <!-- <input [disabled]="(!teacherForm.get('transferRelatedForm.applyTransferYn').valid ||
+                            <!-- <input [disabled]="(!teacherForm.get('transferRelatedForm.applyTransferYn').valid ||
                                 !teacherForm.get('transferRelatedForm.displacement1StationCode').valid ||
                                 !teacherForm.get('transferRelatedForm.displacement1StationName').valid || 
                                 (teacherForm.get('transferRelatedForm.applyTransferYn').value == '3' && !teacherForm.get('transferRelatedForm.choiceKv1StationName').valid)
@@ -1841,7 +1852,7 @@
                                                     </div> -->
                                                     <div class="col-md-3">
                                                         <h4 class="titleSet">Spouse name</h4>
-                                                        <input type="text" class="form-control mb-3"  style="text-transform:uppercase" id="spouseName" name="spouseName" value=" {{responseData.spouseName}}">
+                                                        <input type="text" class="form-control mb-3" style="text-transform:uppercase" id="spouseName" name="spouseName" value=" {{responseData.spouseName}}">
                                                     </div>
 
                                                     <!-- <div class="col-md-3">
@@ -1850,7 +1861,7 @@
                                                     </div> -->
                                                     <div class="col-md-3">
                                                         <h4 class="titleSet">Name of Station</h4>
-                                                        <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="spouseStationName" formControlName="spouseStationName" name="spouseStationName" disabled>
+                                                        <input type="text" class="form-control  mb-3" style="text-transform:uppercase" id="spouseStationName" formControlName="spouseStationName" name="spouseStationName" disabled>
 
                                                     </div>
                                                 </div>
@@ -1892,7 +1903,7 @@
                                             <div class="row mt-3" style="border-top: 1px dotted;">
                                                 <div class="col-md-10 mb-2 py-3">
                                                     <h4 class="titleSet">
-                                                        <span class="text-green">2.</span> Whether the employee is seeking benefit of medical ground (MDG Ground)
+                                                        <span class="text-green">2.</span> Whether the employee is seeking benefit of medical ground (MDG Ground) <a href="assets/assets/declaration/MdgDeclaration.pdf" download class="text-danger">(Mandatory instruction)</a>
                                                     </h4>
                                                 </div>
                                                 <div class="col-md-2 mb-2 py-3">
@@ -1912,11 +1923,25 @@
                                                     <div class="col-md-3 mb-3">
                                                         <h4 class="titleSet">Name of Patient<span class="required-asterisk">*</span>
                                                         </h4>
-                                                        <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="patientName" formControlName="patientName" name="patientName" maxlength="50">
+                                                        <input type="text" class="form-control  mb-3" style="text-transform:uppercase" id="patientName" formControlName="patientName" name="patientName" maxlength="50">
                                                     </div>
+                                                    <div class="col-md-3 mb-2">
+                                                        <label class="titleSet">Relation With the Employee<span class="required-asterisk">*</span>
+                                                        </label>
+
+                                                        <select class="form-select" aria-label="Default select example" name="relationWithEmplMdg" formControlName="relationWithEmplMdg" [(ngModel)]="relationWithEmplMdgData">
+                                                            <!-- <option selected>Select</option> -->
+                                                            <option selected disabled>Select</option>
+                                                            <option value="SELF">SELF</option>
+                                                            <option value="DAUGHTER">DAUGHTER</option> 
+                                                            <option value="SON">SON</option>
+                                                            <option value="SPOUSE">SPOUSE</option>
+                                                        </select>
+                                                    </div>
+
                                                     <div class="col-md-3 mb-3">
                                                         <h4 class="titleSet">Type of ailment<span class="required-asterisk">*</span>
-                                                        </h4>   
+                                                        </h4>
 
                                                         <select class="form-select" aria-label="Default select example" name="patientAilment" formControlName="patientAilment" [(ngModel)]="patientAilmentData">
                                                             <!-- <option selected>Select</option> -->
@@ -1933,12 +1958,12 @@
                                                             <option value="ANY OTHER">ANY OTHER</option> 
                                                         </select>
 
-                                                       
+
                                                     </div>
                                                     <div class="col-md-6 mb-3">
                                                         <h4 class="titleSet">Name of the Hospital and the place where treatement is being undertaken<span class="required-asterisk">*</span>
                                                         </h4>
-                                                        <input type="text" class="form-control  mb-3" id="patientHospital"  style="text-transform:uppercase" formControlName="patientHospital" name="patientHospital" maxlength="50">
+                                                        <input type="text" class="form-control  mb-3" id="patientHospital" style="text-transform:uppercase" formControlName="patientHospital" name="patientHospital" maxlength="50">
                                                     </div>
                                                     <div class="col-md-12 mb-3">
                                                         <h4 class="titleSet">Name and designation of the Medical Officer who has issued the medical certificate:<span class="required-asterisk">*</span>
@@ -1949,18 +1974,18 @@
                                                     <div class="col-md-3">
                                                         <label class="titleSet">Name  <span
                                                                 class="required-asterisk">*</span></label>
-                                                        <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="patientMedicalOfficerName" formControlName="patientMedicalOfficerName" name="patientMedicalOfficerName" maxlength="50">
+                                                        <input type="text" class="form-control  mb-3" style="text-transform:uppercase" id="patientMedicalOfficerName" formControlName="patientMedicalOfficerName" name="patientMedicalOfficerName" maxlength="50">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label class="titleSet">Designation  <span
                                                                 class="required-asterisk">*</span></label>
-                                                        <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="patientMedicalOfficerDesignation" formControlName="patientMedicalOfficerDesignation" name="patientMedicalOfficerDesignation" maxlength="50">
+                                                        <input type="text" class="form-control  mb-3" style="text-transform:uppercase" id="patientMedicalOfficerDesignation" formControlName="patientMedicalOfficerDesignation" name="patientMedicalOfficerDesignation" maxlength="50">
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <label class="titleSet">Issue date of medical certificate <span
                                                                 class="required-asterisk">*</span></label>
-                                                        <input type="date" class="form-control" name="medicalCertificateIssueDate" formControlName="medicalCertificateIssueDate" [(ngModel)]="medicalCertificateIssueDateData" style="text-transform: none">
+                                                        <input type="date" [max]="maxDate" class="form-control" name="medicalCertificateIssueDate" formControlName="medicalCertificateIssueDate" [(ngModel)]="medicalCertificateIssueDateData" style="text-transform: none">
                                                     </div>
 
                                                 </div>
@@ -2020,28 +2045,29 @@
                                                 </div>
                                             </div>
                                             <div *ngIf="spGround">
-                                            <div class="row"><div class="col-md-3 mb-2">
-                                                <label class="titleSet">Reason for being Single Parent<span class="required-asterisk">*</span>
+                                                <div class="row">
+                                                    <div class="col-md-3 mb-2">
+                                                        <label class="titleSet">Reason for being Single Parent<span class="required-asterisk">*</span>
                                                 </label>
 
-                                                <select class="form-select" aria-label="Default select example" name="singleParentGround" formControlName="singleParentGround" [(ngModel)]="singleParentGroundData">
+                                                        <select class="form-select" aria-label="Default select example" name="singleParentGround" formControlName="singleParentGround" [(ngModel)]="singleParentGroundData">
                                                     <!-- <option selected>Select</option> -->
                                                     <option selected disabled>Select</option>
                                                     <option value="ADOPTION">ADOPTION</option>
                                                     <option value="DEATH OF SPOUSE">DEATH OF SPOUSE</option>
                                                     <option value="DIVORCE">DIVORCE</option>
                                                     <option value="LEGAL SEPARATION">LEGAL SEPARATION</option>    
-                                                </select>  
-                                            </div>
-                                         
-                                            <div class="col-md-3 mb-3">
-                                                <label class="titleSet">Issue date certificate <span
+                                                </select>
+                                                    </div>
+
+                                                    <div class="col-md-3 mb-3">
+                                                        <label class="titleSet">Issue date certificate <span
                                                         class="required-asterisk">*</span></label>
-                                                <input type="date" class="form-control" name="singleParentCertificateIssueDate" formControlName="singleParentCertificateIssueDate" [(ngModel)]="singleParentCertificateIssueDateData" style="text-transform: none">
-                                            </div>
-                                            </div>
+                                                        <input type="date" class="form-control" name="singleParentCertificateIssueDate" formControlName="singleParentCertificateIssueDate" [(ngModel)]="singleParentCertificateIssueDateData" style="text-transform: none">
+                                                    </div>
+                                                </div>
                                                 <div class="row">
-                                                    
+
                                                     <div class="col-md-4">
                                                         <h4 class="titleSet">Upload SP Declaration In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
@@ -2098,17 +2124,17 @@
                                             <div *ngIf="dfpGround">
 
                                                 <div class="row">
-                                                    
+
                                                     <div class="col-md-3 mb-3">
                                                         <label class="titleSet">Name of family members <span
                                                                 class="required-asterisk">*</span></label>
-                                                                <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="nameOfFamilyMember" formControlName="nameOfFamilyMember" name="nameOfFamilyMember" >
-                                                         </div>                                                                                                                                                                                                       
+                                                        <input type="text" class="form-control  mb-3" style="text-transform:uppercase" id="nameOfFamilyMember" formControlName="nameOfFamilyMember" name="nameOfFamilyMember">
+                                                    </div>
                                                     <div class="col-md-3 mb-2">
-                                                    <label class="titleSet"> Relation With the Employee<span class="required-asterisk">*</span>
+                                                        <label class="titleSet"> Relation With the Employee<span class="required-asterisk">*</span>
                                                     </label>
-    
-                                                    <select class="form-select" aria-label="Default select example" name="deathOfFamilyGround" formControlName="deathOfFamilyGround" [(ngModel)]="deathOfFamilyGroundData">
+
+                                                        <select class="form-select" aria-label="Default select example" name="deathOfFamilyGround" formControlName="deathOfFamilyGround" [(ngModel)]="deathOfFamilyGroundData">
                                                         <!-- <option selected>Select</option> -->
                                                         <option selected disabled>Select</option>
                                                         <option value="DAUGHTER">DAUGHTER</option> 
@@ -2116,13 +2142,13 @@
                                                         <option value="SPOUSE">SPOUSE</option>
                                                        
                                                         
-                                                    </select>  
-                                                </div>
-                                                <div class="col-md-3 mb-3">
-                                                    <label class="titleSet">Date of Demise <span
+                                                    </select>
+                                                    </div>
+                                                    <div class="col-md-3 mb-3">
+                                                        <label class="titleSet">Date of Demise <span
                                                             class="required-asterisk">*</span></label>
-                                                    <input type="date" class="form-control" name="deathCertificateIssueDate" formControlName="deathCertificateIssueDate" [(ngModel)]="deathCertificateIssueDateData" style="text-transform: none">
-                                                </div>
+                                                        <input type="date" [max]="maxDate" class="form-control" name="deathCertificateIssueDate" formControlName="deathCertificateIssueDate" [(ngModel)]="deathCertificateIssueDateData" style="text-transform: none">
+                                                    </div>
                                                 </div>
 
                                                 <div class="row">
@@ -2146,7 +2172,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                           
+
                                             <div class="row mt-3" style="border-top: 1px dotted;">
                                                 <div class="col-md-10 mb-2 py-3">
                                                     <h4 class="titleSet">
@@ -2171,26 +2197,26 @@
                                                         <h4 class="titleSet ">Name of the family member who is having disability
                                                             <span class="required-asterisk">*</span>
                                                         </h4>
-                                                        <input type="text" class="form-control mb-3"  style="text-transform:uppercase" id="careGiverName" formControlName="careGiverName" name="careGiverName" maxlength="50">
+                                                        <input type="text" class="form-control mb-3" style="text-transform:uppercase" id="careGiverName" formControlName="careGiverName" name="careGiverName" maxlength="50">
                                                     </div>
 
                                                     <div class="col-md-3 mb-2">
                                                         <label class="titleSet"> Relation with care giver<span class="required-asterisk">*</span>
                                                         </label>
-        
+
                                                         <select class="form-select" aria-label="Default select example" name="careGiverRelation" formControlName="careGiverRelation" [(ngModel)]="careGiverRelationData">
                                                             <!-- <option selected>Select</option> -->
                                                             <option selected disabled>Select</option>
                                                             <option value="DAUGHTER">DAUGHTER</option> 
                                                             <option value="SON">SON</option>
                                                             <option value="SPOUSE">SPOUSE</option>  
-                                                        </select>  
+                                                        </select>
                                                     </div>
 
                                                     <div class="col-md-6">
                                                         <h4 class="titleSet">Name the type of disability as per the RPwD Act.<span class="required-asterisk">*</span>
                                                         </h4>
-                                                        <input type="text" class="form-control mb-3"  style="text-transform:uppercase" id="careGiverDisabilityName" formControlName="careGiverDisabilityName" name="careGiverDisabilityName" maxlength="50">
+                                                        <input type="text" class="form-control mb-3" style="text-transform:uppercase" id="careGiverDisabilityName" formControlName="careGiverDisabilityName" name="careGiverDisabilityName" maxlength="50">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <h4 class="titleSet">Percentage of disability<span class="required-asterisk">*</span>
@@ -2231,7 +2257,7 @@
                                                     </div>
                                                 </div>
 
-                                            </div>                             
+                                            </div>
                                             <div class="row mt-3" style="border-top: 1px dotted;">
                                                 <div class="col-md-10 mb-2 py-3">
                                                     <h4 class="titleSet">
@@ -2263,8 +2289,8 @@
                                                     <div class="col-md-3">
                                                         <h4 class="titleSet">Position Held<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control  mb-3"  style="text-transform:uppercase" id="positionOfNjcmRjcm" formControlName="positionOfNjcmRjcm" name="positionOfNjcmRjcm" >
-                                                           
+                                                            <input type="text" class="form-control  mb-3" style="text-transform:uppercase" id="positionOfNjcmRjcm" formControlName="positionOfNjcmRjcm" name="positionOfNjcmRjcm">
+
                                                         </div>
 
                                                     </div>
@@ -2293,7 +2319,8 @@
                                             <div class="row mt-3" style="border-top: 1px dotted;">
                                                 <div class="col-md-5 mb-2 py-3">
                                                     <h4 class="titleSet">
-                                                        <span class="text-green">7.</span> Active stay (in Years) in NER/Hard Station irrespective of Cadre <br> (Or) <br> Total number of Years served in normal station irrespective of Cadre. 
+                                                        <span class="text-green">7.</span> Active stay<span style="color:red">*</span> (in Years) in NER/Hard Station irrespective of Cadre <br> (Or) <br> Total number of Years served in normal station irrespective
+                                                        of Cadre.
                                                     </h4>
                                                 </div>
 
@@ -2301,9 +2328,9 @@
                                                     <div class="input-group mt-3">
                                                         <input type="text" class="form-control  mb-3" id="absenceDaysOne" formControlName="absenceDaysOne" value="0" name="absenceDaysOne" maxlength="50">
                                                     </div>
-                                                  
+
                                                 </div>
-                                              
+
                                             </div>
 
                                             <div class="row mt-3" style="border-top: 1px dotted;">
@@ -2322,7 +2349,7 @@
                                                         <input class="form-check-input" type="radio" id="disciplinaryYn" value="0" id="disciplinaryYn" formControlName="disciplinaryYn" name="disciplinaryYn" [checked]="disciplinaryYnradioButton == '0'">
                                                         <label class="form-check-label" for="disciplinaryYn">No
                                                         </label>
-                                                    </div>                       
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -2333,7 +2360,7 @@
                                                     </h4>
                                                 </div>
 
-                                               
+
                                                 <div class="col-md-2 mb-2 py-3">
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" id="surveHardYn" value="1" id="surveHardYn" formControlName="surveHardYn" name="surveHardYn" [checked]="surveHardYnradioButton == '1'">
@@ -2344,7 +2371,7 @@
                                                         <input class="form-check-input" type="radio" id="surveHardYn" value="0" id="surveHardYn" formControlName="surveHardYn" name="surveHardYn" [checked]="surveHardYnradioButton == '0'">
                                                         <label class="form-check-label" for="surveHardYn">No
                                                         </label>
-                                                    </div>                       
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -2363,19 +2390,26 @@
                                                         </p>
                                                     </div>
                                                 </div>
+                                                <hr>
                                             </div>
+
+                                            <div>
+                                                Active stay - As per para 1 of defination of transfer policy
+                                            </div>
+
+
                                         </div>
                                     </div>
                                 </fieldset>
                                 <input type="button" name="next" class="next action-button mt-2" value="Next" (click)="onVerifyClick()" />
                                 <input type="button" name="previous" class="previous action-button-previous mt-2" (click)=" onPreviousClick(4)" value="Previous" />
-                                <input  [disabled]="                            
+                                <input [disabled]="                            
                                 ((!teacherForm.get('transferRelatedForm.patientName').valid ||
                                 !teacherForm.get('transferRelatedForm.patientAilment').valid || 
                                 !teacherForm.get('transferRelatedForm.patientHospital').valid ||
                                 !teacherForm.get('transferRelatedForm.patientMedicalOfficerName').valid ||
                                 !teacherForm.get('transferRelatedForm.patientMedicalOfficerDesignation').valid ||
-                                !teacherForm.get('transferRelatedForm.medicalCertificateIssueDate').valid) &&  gkFilemMedical) || ((!teacherForm.get('transferRelatedForm.singleParentGround').valid ||
+                                !teacherForm.get('transferRelatedForm.medicalCertificateIssueDate').valid ||  !teacherForm.get('transferRelatedForm.relationWithEmplMdg').valid) &&  gkFilemMedical) || ((!teacherForm.get('transferRelatedForm.singleParentGround').valid ||
                                 !teacherForm.get('transferRelatedForm.singleParentCertificateIssueDate').valid ) &&  spGround) || ((!teacherForm.get('transferRelatedForm.nameOfFamilyMember').valid || !teacherForm.get('transferRelatedForm.deathOfFamilyGround').valid ||
                                 !teacherForm.get('transferRelatedForm.deathCertificateIssueDate').valid ) &&  dfpGround) ||
                                 ((!teacherForm.get('transferRelatedForm.careGiverName').valid ||
@@ -2629,7 +2663,7 @@
 
                                                     </tr>
                                                 </table> -->
-                                                    <!-- <table class=" table-striped">
+                                                <!-- <table class=" table-striped">
 
                                                         <h2 class="px-2 mt-2 text-green">Choice Of Station(Transfer)</h2>
                                                         <tr style="background-color: #cccccc;">
@@ -3165,7 +3199,7 @@
                                 <li style="width:150px;">
                                     <h4 class="titleSet"> Date of birth : </h4>
                                 </li>
-                                <li><input type="date" class="form-control form-control-sm" placeholder="Date of birth" style="text-transform: none">
+                                <li><input type="date" [max]="maxDate" class="form-control form-control-sm" placeholder="Date of birth" style="text-transform: none">
                                 </li>
                                 <li>
                                     <div class="form-check form-check-inline">
@@ -3177,7 +3211,7 @@
                                 </li>
                                 <li>
                                     <div class="text-center purple" *ngIf="sh3 == 0">
-                                        <input type="date" class="form-control form-control-sm" placeholder="Date of birth" style="text-transform: none">
+                                        <input type="date" [max]="maxDate" class="form-control form-control-sm" placeholder="Date of birth" style="text-transform: none">
                                     </div>
                                 </li>
                             </ul>
@@ -3318,7 +3352,7 @@
                                 <li style="width:30%;">
                                     <h4 class="titleSet"> Present KV/Institution in Present Post Date :</h4>
                                 </li>
-                                <li><input type="date" class="form-control form-control-sm" placeholder="Present KV/Institution in Present Post Date " style="text-transform: none">
+                                <li><input type="date" [max]="maxDate" class="form-control form-control-sm" placeholder="Present KV/Institution in Present Post Date " style="text-transform: none">
                                 </li>
                                 <li>
                                     <div class="form-check form-check-inline">
@@ -3330,7 +3364,7 @@
                                 </li>
                                 <li>
                                     <div class="text-center purple" *ngIf="sh24 == 0">
-                                        <input type="date" class="form-control form-control-sm" placeholder="Present KV/Institution in Present Post Date " style="text-transform: none">
+                                        <input type="date" [max]="maxDate" class="form-control form-control-sm" placeholder="Present KV/Institution in Present Post Date " style="text-transform: none">
                                     </div>
                                 </li>
                             </ul>
@@ -3359,7 +3393,7 @@
                                 <li style="width:30%;">
                                     <h4 class="titleSet"> Present Station in Present Post Date :</h4>
                                 </li>
-                                <li><input type="date" class="form-control form-control-sm" placeholder="Present Station in Present Post Date " style="text-transform: none"></li>
+                                <li><input type="date" [max]="maxDate" class="form-control form-control-sm" placeholder="Present Station in Present Post Date " style="text-transform: none"></li>
                                 <li>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" [value]="1" [(ngModel)]="sh22" name="sh22" [checked]="isChecked" type="radio" /> Yes
@@ -3370,7 +3404,7 @@
                                 </li>
                                 <li>
                                     <div class="text-center purple" *ngIf="sh22 == 0">
-                                        <input type="date" class="form-control form-control-sm" placeholder="Present Station in Present Post Date " style="text-transform: none">
+                                        <input type="date" [max]="maxDate" class="form-control form-control-sm" placeholder="Present Station in Present Post Date " style="text-transform: none">
                                     </div>
                                 </li>
                             </ul>
@@ -3401,7 +3435,7 @@
                                 <li style="width:30%;">
                                     <h4 class="titleSet"> DoJ in KVS in Present Post :</h4>
                                 </li>
-                                <li><input type="date" class="form-control form-control-sm" placeholder="Present Post Date" style="text-transform: none"></li>
+                                <li><input type="date" [max]="maxDate" class="form-control form-control-sm" placeholder="Present Post Date" style="text-transform: none"></li>
                                 <li>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" [value]="1" [(ngModel)]="sh26" name="sh26" [checked]="isChecked" type="radio" /> Yes
@@ -3412,7 +3446,7 @@
                                 </li>
                                 <li>
                                     <div class="text-center purple" *ngIf="sh26 == 0">
-                                        <input type="date" class="form-control form-control-sm" placeholder="Present Post Date" style="text-transform: none">
+                                        <input type="date" [max]="maxDate" class="form-control form-control-sm" placeholder="Present Post Date" style="text-transform: none">
                                     </div>
                                 </li>
                             </ul>
@@ -3802,6 +3836,7 @@
                 </div>
             </div>
         </div>
+
 
     </ng-template>
 </div>

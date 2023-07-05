@@ -71,13 +71,14 @@ export class KvsTeacherTransferComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.getInitiatedTransferByKvCode();
+   
 
     for (let i = 0; i < JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails.length; i++) {
       this.businessUnitTypeCode = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[i].business_unit_type_code;
       this.businessUnitTypeId = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[i].business_unit_type_id;
       this.kvCode = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[i].business_unit_type_code;
     }
+    this.getInitiatedTransferByKvCode();
 
     if (this.businessUnitTypeId == '2') {
       // this.disabledCreateButton = true;
@@ -411,7 +412,7 @@ debugger
 
 
     getInitiatedTransferByKvCode(){
-      const data={"kvCode":"9999"};
+      const data={"kvCode":this.kvCode};
   this.transferServ.getInitiatedTransferByKvCode(data).subscribe((res)=>{
 
     // alert(JSON.stringify(res.response.rowValue));

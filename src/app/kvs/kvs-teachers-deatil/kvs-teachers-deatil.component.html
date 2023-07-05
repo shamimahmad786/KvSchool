@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">Region Name :
             </span>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Select Region</mat-label>
                 <mat-select (selectionChange)="getStationByRegionId($event.value)" [(ngModel)]="regionCode">
                     <!-- <mat-option value="">Select</mat-option> -->
@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">Station Name :
             </span>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Select Station</mat-label>
                 <mat-select (selectionChange)="getKvSchoolByStationId($event.value)" [(ngModel)]="stationCode1" appearance="fill">
                     <!-- <mat-option value="">Select</mat-option> -->
@@ -41,8 +41,8 @@
         </div>
         <div class="col-md-3">
             <div class="mt-3">
-                <span style="font-weight: bolder; color: #427e72;">KV/Institution Code :
-                </span>{{kvSchoolDetails?.rowValue[0].udise_sch_code}}
+                <span style="font-weight: bolder; color: #427e72;">KV/RO/ZIET/HQ :
+                </span>{{kvSchoolDetails?.rowValue[0].kv_code}}
             </div>
         </div>
     </div>
@@ -54,41 +54,39 @@
             </span>{{kvSchoolDetails?.rowValue[0].region_name}} ({{kvSchoolDetails?.rowValue[0].region_code}})</div>
         <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">Station Name(Code) :
             </span>{{kvSchoolDetails?.rowValue[0].station_name}} ({{kvSchoolDetails?.rowValue[0].station_code}})</div>
-        <div class="col-md-4"><span style="font-weight: bolder; color: #427e72;">School Name(Code) :
+        <div class="col-md-4"><span style="font-weight: bolder; color: #427e72;">KV/RO/ZIET/HQ(Code) :
             </span>{{kvSchoolDetails?.rowValue[0].kv_name}} ({{kvSchoolDetails?.rowValue[0].kv_code}})</div>
-        <div class="col-md-2"><span style="font-weight: bolder; color: #427e72;">KV/Institution Code :
-            </span>{{kvSchoolDetails?.rowValue[0].udise_sch_code}}</div>
+        <div class="col-md-2"><span style="font-weight: bolder; color: #427e72;">Udise Code:
+            </span>{{kvSchoolDetails?.rowValue[0].udise_sch_code_final}}</div>
     </div>
 </div>
 <!---------------------------------------end  here --------------------------------------------------------->
 <div *ngIf="nationalLogin" class="shadow-sm bg-white p-3 rounded mt-3">
-    
+
     <div class="row">
         <div class="col-md-6">
             <div class="example-header">
-                <mat-form-field>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
+                <mat-form-field appearance="outline" class=" searchInput me-4">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search School Name">
+                    <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
-                &nbsp;&nbsp;
-                <mat-form-field>
+
+                <mat-form-field appearance="outline">
                     <mat-label>Select Filter</mat-label>
                     <mat-select (selectionChange)="applyFilterOnSelect($event.value)">
                         <mat-option value="Teaching">Teaching</mat-option>
                         <mat-option value="Non-Teaching">Non-Teaching</mat-option>
                         <!-- <mat-option value="NA">NA</mat-option> -->
                     </mat-select>
-                </mat-form-field>       
+                </mat-form-field>
             </div>
         </div>
-      
-        <div class="col-md-6">
-            <button mat-raised-button class="float-end mt-2 me-2 btn-primary"
-                (click)="exportexcel()">Download Excel</button>
 
-            <button mat-raised-button class="float-end mt-2 me-2 btn-secondary"
-                (click)="dashboardMasterpdf()">Download PDF</button>
-            <button mat-raised-button class="float-end mt-2 me-2 btn-success"
-                (click)="newTeacher()">New Employee</button>
+        <div class="col-md-6">
+            <button mat-raised-button class="float-end mt-2 me-2 btn-primary" (click)="exportexcel()">Download Excel</button>
+
+            <button mat-raised-button class="float-end mt-2 me-2 btn-secondary" (click)="dashboardMasterpdf()">Download PDF</button>
+            <button mat-raised-button class="float-end mt-2 me-2 btn-success" (click)="newTeacher()">New Employee</button>
         </div>
         <!-- <div class="p-2">
             <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
@@ -101,8 +99,8 @@
         </div>        -->
     </div>
     <!-------------------------Data Show in  table Start here--------------------------------->
-    <div class="example-container mat-elevation-z8">
-        <mat-table [dataSource]="dataSource" matSort >
+    <div class="example-container mat-elevation-z8 " id="style-2">
+        <mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="sno">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
                 <mat-cell *matCellDef="let row"><span class="mobile-label">S.No. : </span> {{row.sno}} </mat-cell>
@@ -110,26 +108,26 @@
 
             <ng-container matColumnDef="empcode">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code </mat-header-cell>
-                <mat-cell *matCellDef="let row"><span class="mobile-label">Employee Code : </span>  {{row.empcode}} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Employee Code : </span> {{row.empcode}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                <mat-cell *matCellDef="let row"><span class="mobile-label">Name : </span>  {{row.name | uppercase }}</mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Name : </span> {{row.name | uppercase }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="postName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Post Name </mat-header-cell>
-                <mat-cell *matCellDef="let row"><span class="mobile-label">Post Name : </span>   {{row.postName }} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Post Name : </span> {{row.postName }} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="subjectName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Subject Name</mat-header-cell>
                 <!-- <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.subjectName | genderPipe }} </mat-cell> -->
-                <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Subject Name : </span>   {{row.subjectName}} </mat-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Subject Name : </span> {{row.subjectName}} </mat-cell>
             </ng-container>
 
-          
+
 
             <!-- <ng-container matColumnDef="staffType">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
@@ -137,8 +135,8 @@
             </ng-container> -->
 
             <ng-container matColumnDef="status">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"><span class="mobile-label">Status : </span> 
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Current Status </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"><span class="mobile-label">Status : </span>
 
                     <span *ngIf="row.approved === 'SI'" class=' bx-badge-check-sch bxStyle1 mr-2'>SCHOOL INITIATED</span>
                     <span *ngIf="row.approved === 'SA'" class=' bx-badge-check-verified bxStyle1 mr-2'>VERIFIED</span>
@@ -1128,7 +1126,7 @@
                             <td>{{verifyTchTeacherProfileData?.spouseStationName}}</td>
                         </tr>
 
-                      
+
                     </table>
                     <!-- <table class="table-striped px-3">
                         <h2 class="px-2 mt-2 text-green">Academic Qualification</h2>
@@ -1314,7 +1312,7 @@
                             <td></td>
 
                         </tr>
-                                                                                                               
+
                         <!-- <tr>
                             <th> Whether you have a differently-abled child.</th>
                             <td>{{teacherStationChioce?.childDifferentAbleYnD == '1' ?'Yes':'No'}}</td>

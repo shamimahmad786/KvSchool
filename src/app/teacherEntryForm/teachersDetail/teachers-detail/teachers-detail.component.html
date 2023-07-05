@@ -1,8 +1,7 @@
 <div class="shadow-sm bg-white p-3 rounded">
-    <div><button class="btn btn-success  floatRight" style="background-color: #24695c; border: #24695c;"
-            (click)="newTeacher()">New Employee</button></div>
+    <div><button class="btn btn-success  floatRight" style="background-color: #24695c; border: #24695c;" (click)="newTeacher()">New Employee</button></div>
     <div class="example-header">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here">
         </mat-form-field>
     </div>
@@ -88,10 +87,8 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
                     <i class='bx bx-show bxStyle1 mr-2' title="View" (click)="onViewClick(row.teacherId)">{{row.a}} </i>
-                    <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit"
-                        (click)="onEditClick(row.teacherId)">{{row.b}}</i>
-                    <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify"
-                        (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
+                    <i class='bx bx-edit-alt bxStyle1 mr-2' title="edit" (click)="onEditClick(row.teacherId)">{{row.b}}</i>
+                    <i class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
                     <i class='bx bx-box bxStyle1' title="Dropbox" (click)="onDropboxClick(row.teacherId)">{{row.d}}</i>
                 </mat-cell>
             </ng-container>
@@ -391,12 +388,9 @@
 
                     </table>
                     <div class="p-2">
-                        <a class=" btn-cancel p-2 me-2"
-                            (click)="onVerify('false') ; modal.dismiss('Cross click')">Cancel</a>
-                        <button class="btn btn-sm btn-green-logout p-2 me-1"
-                            (click)="onVerify('false') ; modal.dismiss('Cross click')">Edit</button>
-                        <button class="btn btn-success btn-sm" style="margin-left: 3px;"
-                            (click)="onVerify('true') ; modal.dismiss('Cross click')"> Confirm & Verify</button>
+                        <a class=" btn-cancel p-2 me-2" (click)="onVerify('false') ; modal.dismiss('Cross click')">Cancel</a>
+                        <button class="btn btn-sm btn-green-logout p-2 me-1" (click)="onVerify('false') ; modal.dismiss('Cross click')">Edit</button>
+                        <button class="btn btn-success btn-sm" style="margin-left: 3px;" (click)="onVerify('true') ; modal.dismiss('Cross click')"> Confirm & Verify</button>
                     </div>
                 </div>
 
@@ -460,8 +454,7 @@
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label form-label-custom">Dropout
                                         Type</label>
-                                    <select class="form-select form-select-md" aria-label=".form-select-sm example"
-                                        (change)="onDropoutType($event)">
+                                    <select class="form-select form-select-md" aria-label=".form-select-sm example" (change)="onDropoutType($event)">
                                         <option selected>Select Type</option>
                                         <option value="1">Voluntary</option>
                                         <option value="2">Involuntary</option>
@@ -471,10 +464,8 @@
                             </div>
                             <div *ngIf="dropoutTypeSelected" class="col-md-6">
                                 <div *ngIf="dropoutType" class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label form-label-custom"
-                                        required>Voluntary</label>
-                                    <select class="form-select form-select-md" aria-label=".form-select-sm example"
-                                        (change)="onDropoutTypeValue($event)">
+                                    <label for="exampleFormControlInput1" class="form-label form-label-custom" required>Voluntary</label>
+                                    <select class="form-select form-select-md" aria-label=".form-select-sm example" (change)="onDropoutTypeValue($event)">
                                         <option selected> Select</option>
                                         <option value="1">Retired</option>
                                         <option value="2">Transfer</option>
@@ -484,10 +475,8 @@
                                     </select>
                                 </div>
                                 <div *ngIf="!dropoutType" class="mb-3">
-                                    <label for="exampleFormControlInput1"
-                                        class="form-label form-label-custom">Involuntary</label>
-                                    <select class="form-select form-select-md" aria-label=".form-select-sm example"
-                                        (change)="onDropoutTypeValue($event)">
+                                    <label for="exampleFormControlInput1" class="form-label form-label-custom">Involuntary</label>
+                                    <select class="form-select form-select-md" aria-label=".form-select-sm example" (change)="onDropoutTypeValue($event)">
                                         <option selected> Select</option>
                                         <option value="5">Dismissed</option>
                                         <option value="6">Terminated</option>
@@ -499,44 +488,38 @@
                             <form [formGroup]="dropboxForm">
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1"
-                                            class="form-label form-label-custom" >Give
+                                        <label for="exampleFormControlTextarea1" class="form-label form-label-custom">Give
                                             Feedback</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1"
-                                            rows="1" formControlName="feedback"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" formControlName="feedback"></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-1">
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
 
-                                        <div class="input-group">
-                                            <input type="text" placeholder="Enter Udise Code" aria-label="Search for..."
-                                                aria-describedby="btnNavbarSearch" class="form-control form-control-sm"
-                                                autocomplete="off" formControlName="udiseCode">
-                                            <!-- <button id="btnNavbarSearch" type="button" class="btn btn-default btn-sm">
+                                            <div class="input-group">
+                                                <input type="text" placeholder="Enter Udise Code" aria-label="Search for..." aria-describedby="btnNavbarSearch" class="form-control form-control-sm" autocomplete="off" formControlName="udiseCode">
+                                                <!-- <button id="btnNavbarSearch" type="button" class="btn btn-default btn-sm">
                                                 <i class="bx bx-search bxStyle"></i>
                                             </button> -->
-                                        </div>
+                                            </div>
 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="">
+                                            <button class="btn btn-success btn-sm me-2 " style="margin-left: 3px;" (click)="onVerifyDropbox('true') ; modal.dismiss('Cross click')">
+                                            Submit</button>
+                                            <a class=" btn-cancel p-2 " (click)="onVerifyDropbox('false') ; modal.dismiss('Cross click')">Cancel</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="">
-                                        <button class="btn btn-success btn-sm me-2 " style="margin-left: 3px;"
-                                            (click)="onVerifyDropbox('true') ; modal.dismiss('Cross click')">
-                                            Submit</button>
-                                        <a class=" btn-cancel p-2 "
-                                            (click)="onVerifyDropbox('false') ; modal.dismiss('Cross click')">Cancel</a>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <hr>
-                                <div class="col-md-12" >
-                                <h3 style="color: red; text-align: center;"> *Note - Teacher moved to dropbox can be found inside Outbox section of Dropbox.</h3>
+                                <hr>
+                                <div class="col-md-12">
+                                    <h3 style="color: red; text-align: center;"> *Note - Teacher moved to dropbox can be found inside Outbox section of Dropbox.</h3>
                                 </div>
                             </form>
-                            
+
                         </div>
 
                     </div>
