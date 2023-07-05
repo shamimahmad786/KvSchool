@@ -699,12 +699,6 @@ transferRelatedForm: new FormGroup({
       }
     }, 1000);
     
-    
-
-    // alert(JSON.stringify(this.teacherForm.get("transferRelatedForm").value));
-
-
-
   }
 
   //Add and Remove Posting Form --Start
@@ -1687,7 +1681,6 @@ debugger
             kvCode:  this.kvCode,
           }
         })
-
         this.responseData.lastPromotionId = this.lastPromotionId;
         this.responseData.workExperienceIdPresentKv = this.workExpId;
         this.responseData.udiseSchoolName = this.schName;
@@ -2167,17 +2160,14 @@ console.log(this.teacherForm.value.transferRelatedForm)
 })
 
     } else if (activeButton == "submit5") {
-
-      
+      debugger 
       this.responseData.spouseName=this.teacherForm.value.personalInfoForm.spouseName
       this.teacherForm.patchValue({
                 transferRelatedForm: {
                   teacherId:this.tempTeacherId,
                 }
               });
-
-this.getStatus(this.tempTeacherId);
-   debugger
+      this.getStatus(this.tempTeacherId);
       for (let i = 0; i < this.teacherForm.value.detailsOfPosting.length; i++) {
         ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workStartDate').enable();
         this.teacherForm.value.detailsOfPosting[i].teacherId = this.tempTeacherId
@@ -2193,12 +2183,8 @@ this.getStatus(this.tempTeacherId);
       for (let i = 0; i < this.teacherForm.value.promotionDetails.length; i++) {
         this.teacherForm.value.promotionDetails[i].teacherId = this.tempTeacherId
       }
-
-
-      // alert(this.teacherForm.controls.detailsOfPosting.status)
-
       console.log(JSON.stringify(this.teacherForm.value.detailsOfPosting));
-// return
+
       if (this.teacherForm.controls.detailsOfPosting.status == 'VALID') {
         this.outSideService.saveTchExperience(this.teacherForm.value.detailsOfPosting).subscribe((res) => {
           var responsePosting = res.status;
@@ -2872,14 +2858,6 @@ debugger
     var splitted = str.split("-", 2);
     var spouseStation=this.teacherForm.value.transferRelatedForm?.spouseStationName;
     debugger
-
-    // spouseKvsYnD,spouseEmpCode,spousePost,spouseStationName
-    // alert(JSON.stringify(this.teacherForm.value.transferRelatedForm));
-    // alert(this.teacherForm.value.transferRelatedForm.spouseKvsYnD);
-    // alert(this.teacherForm.value.transferRelatedForm.spouseEmpCode);
-    // alert(this.teacherForm.value.transferRelatedForm.spousePost);
-    // alert(this.teacherForm.value.transferRelatedForm.spouseStationName);
-
     if (this.position == '1') {
    if(splitted[1] != this.teacherForm.value.transferRelatedForm?.spouseStationName){
     Swal.fire(
@@ -3261,7 +3239,6 @@ return
     this.outSideService.fetchStationByRegionId(data).subscribe((res) => {
      
       this.stationList =res.rowValue
-      // alert(JSON.stringify(this.stationList));
     })
     console.log(this.stationList)
   }
