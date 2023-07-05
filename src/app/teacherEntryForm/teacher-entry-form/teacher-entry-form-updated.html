@@ -2063,7 +2063,7 @@
                                                     <div class="col-md-3 mb-3">
                                                         <label class="titleSet">Issue date certificate <span
                                                         class="required-asterisk">*</span></label>
-                                                        <input type="date" class="form-control" name="singleParentCertificateIssueDate" formControlName="singleParentCertificateIssueDate" [(ngModel)]="singleParentCertificateIssueDateData" style="text-transform: none">
+                                                        <input type="date" class="form-control" [max]="maxDate" name="singleParentCertificateIssueDate" formControlName="singleParentCertificateIssueDate" [(ngModel)]="singleParentCertificateIssueDateData" style="text-transform: none">
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -2326,7 +2326,7 @@
 
                                                 <div class="col-md-1 mb-2 py-3">
                                                     <div class="input-group mt-3">
-                                                        <input type="text" class="form-control  mb-3" id="absenceDaysOne" formControlName="absenceDaysOne" value="0" name="absenceDaysOne" maxlength="50">
+                                                        <input type="text" class="form-control  mb-3" id="absenceDaysOne" formControlName="absenceDaysOne" value="0" name="absenceDaysOne" maxlength="2">
                                                     </div>
 
                                                 </div>

@@ -835,7 +835,7 @@ console.log(teacherStationChioc['choiceKv1StationName'])
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
+    doc.setFontSize(12);
     doc.text(teacherStationChioc['personalStatusMdgD'] == '1'?'Yes':'No', 250, 116) 
 
     doc.setTextColor(0, 0, 0);
@@ -871,7 +871,7 @@ console.log(teacherStationChioc['choiceKv1StationName'])
 
 
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
+    doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
     doc.text('Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).', 15, 139)
 
@@ -902,6 +902,17 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setFontSize(12); 
     doc.text(this.absencedays, 250, 151)  
 
+
+    
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.setFont('Times-Roman', 'bold');
+    doc.text('Whether, the employee has completed one teure at hard/NER/Priority station(during entire service).', 15, 157)
+
+    doc.setFont('Times-Roman', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12); 
+    doc.text(teacherStationChioc['surveHardYn'] == '1'?'Yes':'No', 250, 157)  
 
 
     doc.setTextColor(0, 0, 0);
