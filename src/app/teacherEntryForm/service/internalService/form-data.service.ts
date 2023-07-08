@@ -113,7 +113,7 @@ export class FormDataService {
       { "disabilityType": "Physically Disabled", "disabilityId": 3 }],
 
       "transferGround": [
-        { "transferGroundType": "Request Transfer General", "transferGroundId": 1 },
+        { "transferGroundType": "Request Transfer", "transferGroundId": 1 },
         { "transferGroundType": "Request On LTR", "transferGroundId": 2 },      
         { "transferGroundType": "Request On MDG", "transferGroundId": 3 },
         { "transferGroundType": "Request On DFP", "transferGroundId": 4 },

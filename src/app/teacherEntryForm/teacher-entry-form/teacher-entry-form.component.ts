@@ -300,6 +300,7 @@ export class TeacherEntryFormComponent implements OnInit {
   enableUploadButtonRelatedForm8: boolean = false;
   maxDate:any;
   relationWithEmplMdgData:any;
+  buttonVisible: boolean = false;
   myAppointmnet(event) {
     if (event.target.value == "1") {
       this.onvalid = event.target.value;
@@ -678,7 +679,7 @@ transferRelatedForm: new FormGroup({
     //this.getProfQualList();
     debugger
     this.getTchExpByTchId();
-    this.getPromotionByTchId();
+    // this.getPromotionByTchId();
     this.getQualMasterByTchType();
     this.getKvRegion();
     this.getTransferProfile();
@@ -722,7 +723,7 @@ transferRelatedForm: new FormGroup({
     // alert("experience---->"+experienceType);
    
     if (data != undefined) {
-
+debugger
       return this.fb.group({
         teacherId: data.teacherId,
         workExperienceId: data.workExperienceId,
@@ -734,11 +735,11 @@ transferRelatedForm: new FormGroup({
         udiseSchoolName: [data.udiseSchoolName, [Validators.required]],
         udiseSchCode: [data.udiseSchCode, [Validators.required]],
         workStartDate: [data.workStartDate, [Validators.required]],
-        workEndDate: [data.workEndDate, [Validators.required]],
+        workEndDate:data.workEndDate,
         // natureOfAppointment: [data.natureOfAppointment, [Validators.required]],
-        positionType: [data.positionType, [Validators.required]],
-        appointedForSubject: [data.appointedForSubject, [Validators.required]],
-        kvCode:[data.kvCode, [Validators.required]]
+        positionType: data.positionType,
+        appointedForSubject: data.appointedForSubject,
+        kvCode:[data.kvCode, [Validators.required]],
       })
     } else {
 
@@ -755,9 +756,9 @@ transferRelatedForm: new FormGroup({
         workEndDate: ["", [Validators.required]],
         // natureOfAppointment: ["", [Validators.required]],
         positionType: ["", [Validators.required]],
-        appointedForSubject: ["", [Validators.required]],
+        appointedForSubject: "",
         shiftYn: '',
-        kvCode:['', [Validators.required]]
+        kvCode:['', [Validators.required]],
       })
     }
 
@@ -835,6 +836,9 @@ transferRelatedForm: new FormGroup({
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workStartDate').disable();
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workEndDate').disable();
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('groundForTransfer').disable();
+
+           ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('positionType').disable();
+           ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('appointedForSubject').disable();
             if (sessionStorage.getItem('shiftAvailable') == '0') {
               ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('shiftType').disable();
             }
@@ -2170,6 +2174,9 @@ console.log(this.teacherForm.value.transferRelatedForm)
       this.getStatus(this.tempTeacherId);
       for (let i = 0; i < this.teacherForm.value.detailsOfPosting.length; i++) {
         ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workStartDate').enable();
+        ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('positionType').enable();
+        ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('appointedForSubject').enable();
+     
         this.teacherForm.value.detailsOfPosting[i].teacherId = this.tempTeacherId
         if (this.teacherForm.value.detailsOfPosting[i].workExperienceId == this.workExpId) {
           this.teacherForm.value.detailsOfPosting[i].currentlyActiveYn = '1';
@@ -2570,7 +2577,7 @@ debugger
 
   teacherTypeSelect(event) {
     console.log(event.target.value)
-    if(event.target.value != 22 && event.target.value != 23 && event.target.value != 24 && event.target.value != 11 && event.target.value != '22' && event.target.value != '23' && event.target.value != '11' && event.target.value != '24'){
+    if(event.target.value != 22 && event.target.value != 23 && event.target.value != 12 && event.target.value != 24 && event.target.value != 11 && event.target.value != '22' && event.target.value != '23' && event.target.value != '11' && event.target.value != '24'){
       this.teacherForm.patchValue({
         profileForm:{
           staffType: '2'
@@ -2605,7 +2612,14 @@ debugger
     }
     this.getSubjectByTchTypeExp(data, index);
   }
-
+  showSaveBuuton(event:any)
+  {
+   if(this.buttonVisible==true){
+    this.buttonVisible=false;
+   }else{
+    this.buttonVisible=true;
+   }
+  }
   getSubjectByTchTypeExp(data, index) {
     this.outSideService.fetchKvSubjectListByTchType(data).subscribe((res) => {
       this.subjectList = res.response.rowValue;
@@ -3314,33 +3328,22 @@ this.getMaster(data,event.target.value);
 
 
   }
-
+  enableInstitution:any=false;
   selectSchoolByUdise() {
     console.log(this.kvSchoolList)
+    this.enableInstitution=true;
+  
 
+    ((this.teacherForm.get('detailsOfPosting') as FormArray).at(this.indexNew) as FormGroup).get('udiseSchoolName').patchValue(name);
     if(this.selectSchoolType==1){
     for (let i = 0; i < this.kvSchoolList.length; i++) {
       if (this.kvSchoolList[i].udiseSchCode == this.selectedUdiseCode) {
         this.shiftYN = this.kvSchoolList[i].shiftYn
+
+       // alert(this.kvSchoolList[i].kvName+"------"+"kc code--->"+this.kvSchoolList[i].kvCode)
+
         this.setTeacherPostingData(this.kvSchoolList[i].kvName, this.kvSchoolList[i].kvCode,this.selectedSchoolType)
 
-
-
-
-        // this.detailsOfPosting.at(this.index)([
-        //   { empId: "111", empName: "Mohan", skill: "Java"},
-        //   { empId: "112", empName: "Krishna", skill: "Angular"}	
-        // ]);
-
-        // this.teacherForm.patchValue({
-        //   detailsOfPosting.at
-        // })
-        // this.formArray.at(1).patchValue('9');
-        // this.teacherForm.patchValue({
-        //   detailsOfPosting:{
-
-        //   }
-        // })
       }
     }
   }
@@ -3479,7 +3482,7 @@ this.getMaster(data,event.target.value);
 
     if (returnType == 0) {
       Swal.fire(
-        'Dates provide in "Present KV in Present Post Date","Present Station in Present Post Date","Date of Joining in KVS in Present Post" are contradicting !',
+        'Dates provide in "DoJ in Present KV/RO/ZIET/HQ in Present Post","DoJ in Present Station Irrespective of Cadre","DoJ in KVS" are contradicting !',
         'Kindly enter the dates in correct sequence',
         'error'
       );
@@ -4372,6 +4375,7 @@ getMaster(data,schoolType) {
 getStationByHqId(id:any){
 this.selectStationName='';
 if(this.selectSchoolType==4){
+ 
 for (let i = 0; i < this.headQuaterList.length; i++) {
 if(this.headQuaterList[i].kv_code==id.target.value)
 {

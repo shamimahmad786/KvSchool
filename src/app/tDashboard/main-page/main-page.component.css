@@ -495,11 +495,19 @@ h5.ManagementWiseTe{ color:#1B2021; font-size: 1.8rem ! important;    letter-spa
 .b13{ border-right: 1px solid #F0F0F0;}
 .gkRight{  float:right} */
 
+@media (min-width:1200px) {
 .footerSet {
     background-color: #106384;
-    padding: 15px 0px 10px 0px
+    padding: 15px 0px 10px 0px;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
 }
-
+}
+.footerSet {
+    background-color: #106384;
+    padding: 15px 0px 10px 0px;
+}
 .footerPara {
     color: #fff;
     font-size: 14px;

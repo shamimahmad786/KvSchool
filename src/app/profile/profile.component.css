@@ -469,3 +469,24 @@ body {
     padding: 15px;
   }
 }
+input.ng-invalid.ng-touched{
+  border-left: 3px solid red;
+}
+input.ng-valid.ng-touched{
+  border-left: 3px solid green;
+}
+
+
+.required-asterisk{
+
+  margin-left: 3px;
+  font-size: 14px;
+}
+label {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'medium';
+  margin-bottom: 6px;
+}
+.cardLogin{width: 491px; margin: 0px auto; padding:25px; background-color: white; border-radius: 5px;}

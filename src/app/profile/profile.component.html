@@ -260,13 +260,13 @@
                                     <h2 class="text-white ms-2 card-title">{{kvSchoolDetails?.kv_name}} <span class="d-block card-desc">{{kvSchoolDetails?.station_name}}</span></h2>
                                 </div>
                                 <div class="right w-50">
-                                    <h2 class="text-white card-title">KV/Institution Code<span class="d-block card-desc">{{kvSchoolDetails?.kv_code}}</span></h2>
+                                    <h2 class="text-white card-title">KV/RO/ZIET/HQ - Code<span class="d-block card-desc">{{kvSchoolDetails?.kv_code}}</span></h2>
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-between mt-3">
-                                <h2 class="text-white card-title w-50">Region Name Code <span class="d-block card-desc">{{kvSchoolDetails?.region_name}}({{kvSchoolDetails?.region_code}})</span></h2>
-                                <h2 class="text-white card-title w-50">Station name (Code) <span class="d-block card-desc">{{kvSchoolDetails?.station_name}}({{kvSchoolDetails?.station_code}})</span></h2>
+                                <h2 class="text-white card-title w-50">Region Name (Code) <span class="d-block card-desc">{{kvSchoolDetails?.region_name}}({{kvSchoolDetails?.region_code}})</span></h2>
+                                <h2 class="text-white card-title w-50">Station Name (Code) <span class="d-block card-desc">{{kvSchoolDetails?.station_name}}({{kvSchoolDetails?.station_code}})</span></h2>
                             </div>
                         </div>
                     </div>
@@ -366,13 +366,13 @@
                                 <h2 class="font64989985 mb-0">{{schoolInitiated}}</h2>
                             </div>
                         </li>
-                        <li>
+                        <!-- <li>
                             <div>
                                 <img src="assets/assets/img/not-initiated.png" class="mb-2" />
                                 <h4 class="font26589 mb-1">Not Initiated</h4>
                                 <h2 class="font64989985 mb-0">{{notInitiatedCount}}</h2>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
@@ -384,3 +384,55 @@
 
 
 </section>
+
+
+<div mat-dialog-content>
+    <ng-template #resetPasswordModal let-modal>
+
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="clearfix">
+                        <div class="float-left">
+                            <h2 class="mb-0 text-green">Reset Password</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <div class="cardLogin">
+
+                <form [formGroup]="changePaswordForm">
+                    <div class="mb-3">
+                        <label>Old Password <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" id="oldPassword" formControlName="oldPassword"
+                            name="oldPassword">
+                    </div>
+                    <div class="mb-3">
+                        <label>New Password <span class="required-asterisk text-danger">(8-12 Characters)
+                                *</span></label>
+                        <input type="password" class="form-control" id="newPassword" formControlName="newPassword"
+                            name="newPassword" placeholder="Enter New Password" maxlength="12" minlength="8">
+                    </div>
+                    <div class="mb-3">
+                        <label>Confirm New Password <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" id="confirmPassword"
+                            formControlName="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
+                            maxlength="12" minlength="8">
+                        <span *ngIf="changePaswordForm.controls['confirmPassword'].hasError('passwordNotSame')"
+                            class="text-danger">Password not same</span>
+                    </div>
+
+                    <div class="mb-2" style="text-align:center">
+                        <button [disabled]="!changePaswordForm.valid" type="submit" class="btn btn-success"
+                            (click)="onSubmit()">Submit</button>
+                    </div>
+                </form>
+
+
+            </div>
+
+    </ng-template>
+</div>

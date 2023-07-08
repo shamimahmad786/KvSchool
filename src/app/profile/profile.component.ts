@@ -1,8 +1,11 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from 'src/app/service/data.service'
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
+declare const changePassword: any;
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -11,11 +14,13 @@ import { environment } from 'src/environments/environment';
 export class ProfileComponent implements OnInit {
 
   @ViewChild('processFlow', { static: true }) processFlow: TemplateRef<any>;
-  
+  @ViewChild('resetPasswordModal', { static: true }) resetPasswordModal: TemplateRef<any>;
+  user_name: any;
+  dialogRef: any;
   constructor(private dataService: DataService, private outSideService: OutsideServicesService,  private modalService: NgbModal) { }
   schoolProfile: any;
   teacherList:any;
-
+  changePaswordForm: FormGroup;
   verifiedCOunt:any;
   notInitiatedCount:any;
   teacherPendingCount:any;
@@ -48,10 +53,18 @@ export class ProfileComponent implements OnInit {
   shiftAvailable: any;
 
   ngOnInit(): void {
-    
-    // this.getSchoolProfile();
-    // alert("Called profile");
-    debugger;
+    this.user_name = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.user_name;
+    const  data = {
+      userId:this.user_name
+    }
+    debugger
+    this.outSideService.checkPasswordChanged(data).subscribe((res)=>{
+      if(res.status==1){  
+        this.dialogRef = this.modalService.open(this.resetPasswordModal, {  backdrop: 'static', keyboard: false,
+          }, );
+      }
+     console.log(res);
+    })
 
     if(sessionStorage.getItem('displayPopUp') == 'true' && JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[0].business_unit_type_id !='2'){
       // this.modalService.open(this.processFlow, { size: 'xl', backdrop: 'static', keyboard: false })
@@ -71,10 +84,54 @@ export class ProfileComponent implements OnInit {
         }
       }
     }
+    this.changePaswordForm = new FormGroup({
+     
+      'oldPassword': new FormControl('', Validators.required),
+      'newPassword': new FormControl('', [Validators.required, Validators.maxLength(12), Validators.minLength(8)]),
+      'confirmPassword': new FormControl('', [Validators.required, Validators.maxLength(12), Validators.minLength(8), this.checkConfirmPassword.bind(this)])
+    })
     // this.getSchoolDetailsByKvCode();
 
 
 
+  }
+  // userIdCheck(event) {
+  //   var userIdTemp = event.target.value;
+  //   if (userIdTemp == JSON.parse(sessionStorage.getItem('authTeacherDetails')).user_name) {
+
+  //   } else {
+  //     this.changePaswordForm.patchValue({
+  //       userId: ''
+  //     })
+
+  //     Swal.fire(
+  //       'Incorrect User Id !',
+  //       'Please re-enter again',
+  //       'error'
+  //     )
+  //   }
+  // }
+
+  checkConfirmPassword(control: FormControl): { [s: string]: boolean } {
+    if (control.value) {
+      if (this.changePaswordForm.value.newPassword != control.value) {
+        return { 'passwordNotSame': true }
+      }
+    }
+    return null;
+  }
+  onSubmit() {
+    debugger
+    var res = changePassword(this.user_name, this.changePaswordForm.value.oldPassword, this.changePaswordForm.value.newPassword, this.changePaswordForm.value.confirmPassword);
+   console.log(res)
+    if(res=="Password Changed successfully"){
+      this.dialogRef.close();
+    }
+      Swal.fire(
+        '',
+        res,
+      )
+   
   }
 
   // getSchoolProfile() {
@@ -104,7 +161,7 @@ export class ProfileComponent implements OnInit {
       
     })
   }
-
+ 
   getKvTeacherByUdiseCode() {
 
     

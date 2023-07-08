@@ -99,7 +99,7 @@ body {
     display: flex;
 }
 
-
+.setlogo{width:250px;}
 /* Sidebar css */
 
 .main-wrapper .sidebar {

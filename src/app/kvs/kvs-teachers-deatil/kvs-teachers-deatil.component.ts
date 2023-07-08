@@ -27,7 +27,6 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['sno', 'empcode', 'name','postName', 'subjectName',   "status", 'systchcode', 'action'];
   dataSource: MatTableDataSource<any>;
-
   dropboxForm: FormGroup;
   remarksForm: FormGroup;
 
@@ -98,6 +97,8 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
   verifyTchTeacherWorkExp: any;
   rejectedTeacher: any;
   isNationalLogin:boolean = false;
+  user_name:any;
+  
 
   constructor(private pdfService: MasterReportPdfService,private date: DatePipe,private outSideService: OutsideServicesService, private router: Router, private modalService: NgbModal, private setDataService: DataService,private toastr: ToastrService) { }
 
@@ -106,7 +107,9 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
   @ViewChild('changeRequest', { static: true }) changeRequest: TemplateRef<any>;
   @ViewChild('verifyModal', { static: true }) verifyModal: TemplateRef<any>;
 
+
   ngOnInit(): void {
+  
     console.log(sessionStorage.getItem("authTeacherDetails"))
 
     for (let i = 0; i < JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails.length; i++) {
@@ -164,7 +167,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
       'schoolRemarks': new FormControl('', Validators.required)
     })
 
-
+  
 
   }
 
@@ -181,6 +184,8 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
     }
   }
 
+
+ 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
@@ -399,6 +404,7 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
   // Below Code is for teacher varification -- Start
   onVerifyClick(value) {
+    
     this.outSideService.fetchConfirmedTchDetails(value).subscribe((res) => {  
       this.verifyTchTeacherProfileData = res.response.teacherProfile
       this.verifyTchTeacherAcdQualification = res.response.educationalQualification
@@ -566,8 +572,34 @@ debugger;
       }
     }
   }
-
+  resetPassword(empCode){
+    debugger
+    this.outSideService.resetPassword(empCode).subscribe((res)=>{
+      if(res.status == '1'){
+        Swal.fire(
+          'Password reset successfully !',
+          '',
+          'success'
+        )
+      }else if(res.status == '0'){
+        Swal.fire(
+          'Try again !',
+          '',
+          'error'
+        )
+      }
+    })
+  }
+  
   onVerify(value, flag) {
+   debugger
+   const data ={
+    "teacherId":value,
+    "reportType":"1"
+   }
+    this.outSideService.sentReport(data).subscribe((res) => {
+    console.log(res) 
+    })
     if (flag == 'SA') {
       for (let i = 0; i < this.users.length; i++) {
         if (this.users[i].teacherId == value) {
@@ -579,34 +611,11 @@ debugger;
           this.outSideService.updateFlagByTeacherId(flagData).subscribe((res) => {
             
             this.users[i].approved = res.response.finalStatus;
+            
           })
         }
       }
 
-
-      // if(this.verifyTchTeacherProfileData.teacherId == value){
-      //   const data = {
-      //     "teacherId": this.verifyTchTeacherProfileData.teacherId,
-      //     "currentUdiseSchCode": this.verifyTchTeacherProfileData.currentUdiseSchCode
-      //   }
-
-      //   this.outSideService.getVerified(data).subscribe((res) => {
-        
-      //       this.verifiedSchCode = res.response
-
-      //       for (let i = 0; i < this.teacherList.length; i++) {
-      //         if (this.teacherList[i].teacherId == data.teacherId) {
-      //           // this.teacherList[i].teacherSystemGeneratedCode = this.verifiedSchCode.rowValue[0].teacher_system_generated_code
-      //           this.teacherList[i].verifyFlag = this.verifiedSchCode.rowValue[0].verify_flag
-      //         }
-      //         if (this.users[i].teacherId == data.teacherId) {
-      //           // this.users[i].systchcode = this.verifiedSchCode.rowValue[0].teacher_system_generated_code
-      //           this.users[i].approved = this.verifiedSchCode.rowValue[0].verify_flag
-      //         }
-      //       }
-      //   })
-
-      // }
     } else if (flag == 'SR') {
       
       for (let i = 0; i < this.users.length; i++) {
@@ -646,34 +655,7 @@ debugger;
         }
       }
 
-
-      // if(this.verifyTchTeacherProfileData.teacherId == value){
-      //   const data = {
-      //     "teacherId": this.verifyTchTeacherProfileData.teacherId,
-      //     "currentUdiseSchCode": this.verifyTchTeacherProfileData.currentUdiseSchCode
-      //   }
-
-      // this.outSideService.getVerified(data).subscribe((res) => {
-        
-      //     this.verifiedSchCode = res.response
-
-      //     for (let i = 0; i < this.teacherList.length; i++) {
-      //       if (this.teacherList[i].teacherId == data.teacherId) {
-      //         // this.teacherList[i].teacherSystemGeneratedCode = this.verifiedSchCode.rowValue[0].teacher_system_generated_code
-      //         this.teacherList[i].verifyFlag = this.verifiedSchCode.rowValue[0].final_status
-      //       }
-      //       if (this.users[i].teacherId == data.teacherId) {
-      //         // this.users[i].systchcode = this.verifiedSchCode.rowValue[0].teacher_system_generated_code
-      //         this.users[i].approved = this.verifiedSchCode.rowValue[0].final_status
-      //       }
-      //     }
-      // })
-
-      // }
     }
-
-
-
   }
   // Teacher varification Code -- End
 
@@ -939,23 +921,7 @@ debugger;
   testRemarksForm() {
   }
 
-  resetPassword(tchId){
-    this.outSideService.resetPassword(tchId).subscribe((res)=>{
-      if(res.status == '1'){
-        Swal.fire(
-          'Password reset successfully !',
-          '',
-          'success'
-        )
-      }else if(res.status == '0'){
-        Swal.fire(
-          'Try again !',
-          '',
-          'error'
-        )
-      }
-    })
-  }
+
 
 
   getConfirmedTchDetails() {

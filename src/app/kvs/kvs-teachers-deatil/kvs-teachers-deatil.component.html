@@ -19,7 +19,8 @@
             </span>
             <mat-form-field appearance="outline">
                 <mat-label>Select Station</mat-label>
-                <mat-select (selectionChange)="getKvSchoolByStationId($event.value)" [(ngModel)]="stationCode1" appearance="fill">
+                <mat-select (selectionChange)="getKvSchoolByStationId($event.value)" [(ngModel)]="stationCode1"
+                    appearance="fill">
                     <!-- <mat-option value="">Select</mat-option> -->
                     <mat-option *ngFor="let data of stationList" value="{{data.statinCode}}">{{data.stationName}}
                     </mat-option>
@@ -56,7 +57,7 @@
             </span>{{kvSchoolDetails?.rowValue[0].station_name}} ({{kvSchoolDetails?.rowValue[0].station_code}})</div>
         <div class="col-md-4"><span style="font-weight: bolder; color: #427e72;">KV/RO/ZIET/HQ(Code) :
             </span>{{kvSchoolDetails?.rowValue[0].kv_name}} ({{kvSchoolDetails?.rowValue[0].kv_code}})</div>
-        <div class="col-md-2"><span style="font-weight: bolder; color: #427e72;">Udise Code:
+        <div class="col-md-2"><span style="font-weight: bolder; color: #427e72;">UDISE Code:
             </span>{{kvSchoolDetails?.rowValue[0].udise_sch_code_final}}</div>
     </div>
 </div>
@@ -67,7 +68,7 @@
         <div class="col-md-6">
             <div class="example-header">
                 <mat-form-field appearance="outline" class=" searchInput me-4">
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search School Name">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
                     <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
 
@@ -83,10 +84,13 @@
         </div>
 
         <div class="col-md-6">
-            <button mat-raised-button class="float-end mt-2 me-2 btn-primary" (click)="exportexcel()">Download Excel</button>
+            <button mat-raised-button class="float-end mt-2 me-2 btn-primary" (click)="exportexcel()">Download
+                Excel</button>
 
-            <button mat-raised-button class="float-end mt-2 me-2 btn-secondary" (click)="dashboardMasterpdf()">Download PDF</button>
-            <button mat-raised-button class="float-end mt-2 me-2 btn-success" (click)="newTeacher()">New Employee</button>
+            <button mat-raised-button class="float-end mt-2 me-2 btn-secondary" (click)="dashboardMasterpdf()">Download
+                PDF</button>
+            <button mat-raised-button class="float-end mt-2 me-2 btn-success" (click)="newTeacher()">New
+                Employee</button>
         </div>
         <!-- <div class="p-2">
             <button mat-raised-button class="float-end mt-2 btn-primary" (click)="exportexcel()">Download Excel</button>
@@ -108,23 +112,27 @@
 
             <ng-container matColumnDef="empcode">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code </mat-header-cell>
-                <mat-cell *matCellDef="let row"><span class="mobile-label">Employee Code : </span> {{row.empcode}} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Employee Code : </span> {{row.empcode}}
+                </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                <mat-cell *matCellDef="let row"><span class="mobile-label">Name : </span> {{row.name | uppercase }}</mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Name : </span> {{row.name | uppercase
+                    }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="postName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Post Name </mat-header-cell>
-                <mat-cell *matCellDef="let row"><span class="mobile-label">Post Name : </span> {{row.postName }} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label">Post Name : </span> {{row.postName }}
+                </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="subjectName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Subject Name</mat-header-cell>
                 <!-- <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.subjectName | genderPipe }} </mat-cell> -->
-                <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Subject Name : </span> {{row.subjectName}} </mat-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Subject Name :
+                    </span> {{row.subjectName}} </mat-cell>
             </ng-container>
 
 
@@ -136,14 +144,19 @@
 
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Current Status </mat-header-cell>
-                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"><span class="mobile-label">Status : </span>
+                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"><span
+                        class="mobile-label">Status : </span>
 
-                    <span *ngIf="row.approved === 'SI'" class=' bx-badge-check-sch bxStyle1 mr-2'>SCHOOL INITIATED</span>
+                    <span *ngIf="row.approved === 'SI'" class=' bx-badge-check-sch bxStyle1 mr-2'>SCHOOL
+                        INITIATED</span>
                     <span *ngIf="row.approved === 'SA'" class=' bx-badge-check-verified bxStyle1 mr-2'>VERIFIED</span>
                     <span *ngIf="row.approved === 'SR'" class=' bx-badge-check-rejected bxStyle1 mr-2'>REJECTED</span>
-                    <span *ngIf="row.approved === 'SEM' || row.approved === 'SES'" class=' bx-badge-check-edited bxStyle1 mr-2'>SCHOOL EDITED</span>
-                    <span *ngIf="row.approved === 'SE'" class=' bx-badge-check-edited bxStyle1 mr-2'>SCHOOL EDITING(PENDING)</span>
-                    <span *ngIf="row.approved === 'TA'" class=' bx-badge-check-pSch bxStyle1 mr-2'>PENDING(SCHOOL)</span>
+                    <span *ngIf="row.approved === 'SEM' || row.approved === 'SES'"
+                        class=' bx-badge-check-edited bxStyle1 mr-2'>SCHOOL EDITED</span>
+                    <span *ngIf="row.approved === 'SE'" class=' bx-badge-check-edited bxStyle1 mr-2'>SCHOOL
+                        EDITING(PENDING)</span>
+                    <span *ngIf="row.approved === 'TA'"
+                        class=' bx-badge-check-pSch bxStyle1 mr-2'>PENDING(SCHOOL)</span>
                     <!-- <i class='bx bx-loader-circle bxStyle1 mr-2' title="edit"
                     >{{row.reInitiate}}</i> -->
 
@@ -151,7 +164,8 @@
                             (click)="onProcessingInfoClick(row.teacherId)"></box-icon> -->
 
                     <span *ngIf="row.approved != 'TI' && row.approved != 'TA' && row.approved != 'SI' && row.approved != 'SA' && row.approved != 'SR' && row.approved != 'SE' 
-                        && row.approved != 'SEM' && row.approved != 'SES'" class=' bx-message-square-x-ni bxStyle1 mr-2'> NOT INITIATED</span>
+                        && row.approved != 'SEM' && row.approved != 'SES'"
+                        class=' bx-message-square-x-ni bxStyle1 mr-2'> NOT INITIATED</span>
                     <span *ngIf="row.approved == 'TI'" class=' bx-loader-circle-tch bxStyle1 mr-2'>PENDING(EMPLOYEE)
                     </span>
                 </mat-cell>
@@ -160,32 +174,39 @@
             <ng-container matColumnDef="systchcode">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>User Created </mat-header-cell>
                 <mat-cell *matCellDef="let row"> <span class="mobile-label">User Id - </span>
-                    <span *ngIf="row.systchcode != 'null' && row.systchcode != '' "><i class="fa fa-check-square fa-2x fa-fw" aria-hidden="true" style="
+                    <span *ngIf="row.systchcode != 'null' && row.systchcode != '' "><i
+                            class="fa fa-check-square fa-2x fa-fw" aria-hidden="true" style="
                         color: green;
                     "></i></span>
-                    <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
+                    <!-- <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
                         <button [disabled]="disabledCreateButton" type="button"
-                            class="btn btn-sm btn12 btn-outline-success" (click)="createUser(row.empcode,row.teacherId)">Create
+                            class="btn btn-sm btn12 btn-outline-success"
+                            (click)="createUser(row.empcode,row.teacherId)">Create
                             User</button>
-                    </span>
+                    </span> -->
                 </mat-cell>
                 <!-- <mat-cell *ngIf="!row.systchcode" *matCellDef="let row"> Create User </mat-cell> -->
             </ng-container>
 
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
-                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span class="mobile-label">Action : </span>
-                    <i class='bx bx-show bxStyle1 mr-2 view-btn' title="View" (click)="onViewClick(row.teacherId)">{{row.a}} </i>
+                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span
+                        class="mobile-label">Action : </span>
+                    <i class='bx bx-show bxStyle1 mr-2 view-btn' title="View"
+                        (click)="onViewClick(row.teacherId)">{{row.a}} </i>
 
-                    <i *ngIf="row.approved != 'TI' && row.approved != 'SI' && row.approved != 'SA' && !isNationalLogin" class='bx bx-edit-alt bxStyle1 mr-2 edit-btn' title="Edit" (click)="onEditClick(row.teacherId)">{{row.b}}</i>
+                    <i *ngIf="row.approved != 'TI' && row.approved != 'SI' && row.approved != 'SA' && !isNationalLogin"
+                        class='bx bx-edit-alt bxStyle1 mr-2 edit-btn' title="Edit"
+                        (click)="onEditClick(row.teacherId)">{{row.b}}</i>
 
                     <!-- // commented for dropbox -->
 
-                    <i *ngIf="!isNationalLogin" class='bx bx-box bxStyle1 dropbox-btn' title="Dropbox" (click)="onDropboxClick(row.teacherId)">{{row.d}}</i>
+                    <!-- <i *ngIf="!isNationalLogin" class='bx bx-box bxStyle1 dropbox-btn' title="Dropbox" (click)="onDropboxClick(row.teacherId)">{{row.d}}</i> -->
 
                     <!-- end -->
 
-                    <i *ngIf="!isNationalLogin" class='bx bx-key bxStyle1 reset-btn' title="Reset Password" (click)="resetPassword(row.teacherId)">{{row.e}}</i>
+                    <i *ngIf="!isNationalLogin" class='bx bx-key bxStyle1 reset-btn' title="Reset Password"
+                        (click)="resetPassword(row.teacherEmployeeCode)">{{row.e}}</i>
 
                     <span *ngIf="row.systchcode != 'null' && row.systchcode != '' && !isNationalLogin">
                         <i *ngIf="row.approved == 'TA' || row.approved == 'SES'"
@@ -208,7 +229,7 @@
         <div style="float: left;">
             <i class='bx bx-show bxStyle1 view-btn' style="margin-right: 4px; margin-left: 10px;"></i>View
             <i class='bx bx-edit-alt bxStyle1 edit-btn' style="margin-right: 4px; margin-left: 10px;"></i>Edit
-            <i class='bx bx-box bxStyle1 dropbox-btn' style="margin-right: 4px; margin-left: 10px;"></i>Dropbox
+            <!-- <i class='bx bx-box bxStyle1 dropbox-btn' style="margin-right: 4px; margin-left: 10px;"></i>Dropbox -->
             <i class='bx bx-key bxStyle1 reset-btn' style="margin-right: 4px; margin-left: 10px;"></i>Reset Password
             <i class='bx bx-user-check bxStyle1 verify-btn' style="margin-right: 4px; margin-left: 10px;"></i>Verify
         </div>
@@ -386,7 +407,8 @@
                             <th>Employee Code</th>
                             <td *ngIf="verifySingleTeacherList?.currentUdiseSchCode != null">
                                 {{verifySingleTeacherList?.teacherEmployeeCode}}</td>
-                            <td *ngIf="verifySingleTeacherList?.currentUdiseSchCode == '' || verifySingleTeacherList?.currentUdiseSchCode == null">
+                            <td
+                                *ngIf="verifySingleTeacherList?.currentUdiseSchCode == '' || verifySingleTeacherList?.currentUdiseSchCode == null">
                                 <box-icon name='question-mark' animation='flashing' color='red'></box-icon>
                             </td>
                         </tr>
@@ -445,9 +467,11 @@
                             <th>Present Station Name</th>
                             <td>{{stationNameCode}}</td>
                             <th>Present Station in Present Post Date</th>
-                            <td *ngIf="verifySingleTeacherList?.workExperiencePositionTypePresentStationStartDate != null">
+                            <td
+                                *ngIf="verifySingleTeacherList?.workExperiencePositionTypePresentStationStartDate != null">
                                 {{verifySingleTeacherList?.workExperiencePositionTypePresentStationStartDate}}</td>
-                            <td *ngIf="verifySingleTeacherList?.workExperiencePositionTypePresentStationStartDate == null">
+                            <td
+                                *ngIf="verifySingleTeacherList?.workExperiencePositionTypePresentStationStartDate == null">
                                 <box-icon name='question-mark' animation='flashing' color='red'></box-icon>
                             </td>
                         </tr>
@@ -526,7 +550,8 @@
                     <div class="p-2">
 
                         <a class=" btn-cancel p-2 me-2" (click)="modal.dismiss('Cross click')">Cancel</a>
-                        <button class="btn btn-success btn-sm" style="margin-left: 3px;" (click)="onVerify(verifySingleTeacherList.teacherId) ; modal.dismiss('Cross click')">
+                        <button class="btn btn-success btn-sm" style="margin-left: 3px;"
+                            (click)="onVerify(verifySingleTeacherList.teacherId) ; modal.dismiss('Cross click')">
                             Confirm & Verify</button>
                         <!-- <span style="color: rgb(163, 10, 10); font-weight: bolder;"> Please fill
                             the data with (?) mark in basic profile section to verify this account.</span> -->
@@ -659,9 +684,11 @@
                                     </div> -->
                                     <div class="col-md-12" style="text-align: right;">
                                         <div class="">
-                                            <button class="btn btn-success btn-sm me-2 " style="margin-left: 3px;" (click)="onVerifyDropbox('true') ; modal.dismiss('Cross click')">
+                                            <button class="btn btn-success btn-sm me-2 " style="margin-left: 3px;"
+                                                (click)="onVerifyDropbox('true') ; modal.dismiss('Cross click')">
                                                 Submit</button>
-                                            <button class="btn btn-danger btn-sm me-2 " style="margin-left: 3px;" (click)="onVerifyDropbox('false') ; modal.dismiss('Cross click')">
+                                            <button class="btn btn-danger btn-sm me-2 " style="margin-left: 3px;"
+                                                (click)="onVerifyDropbox('false') ; modal.dismiss('Cross click')">
                                                 Cancel</button>
                                             <!-- <a class=" btn-cancel p-2 "
                                                 (click)="onVerifyDropbox('false') ; modal.dismiss('Cross click')">Cancel</a> -->
@@ -670,7 +697,8 @@
                                 </div>
                                 <hr>
                                 <div class="col-md-12">
-                                    <h2 style="color: red; text-align: center;"> *Note - Employee moved to dropbox can be found inside Outbox section of Dropbox.</h2>
+                                    <h2 style="color: red; text-align: center;"> *Note - Employee moved to dropbox can
+                                        be found inside Outbox section of Dropbox.</h2>
                                 </div>
                             </form>
 
@@ -686,6 +714,8 @@
 
     </ng-template>
 </div>
+
+
 
 <div mat-dialog-content>
     <ng-template #changeRequest let-modal style="min-width: 100%;">
@@ -749,7 +779,8 @@
                                         <th>Email</th>
                                         <td>{{processingSingleTchList.teacherEmail}}</td>
                                     </tr>
-                                    <tr *ngIf="processingSingleTchList.workExperiencePositionTypePresentStationStartDateNew != ''">
+                                    <tr
+                                        *ngIf="processingSingleTchList.workExperiencePositionTypePresentStationStartDateNew != ''">
                                         <th>Present Station in Present Post Date</th>
                                         <td>{{processingSingleTchList.workExperiencePositionTypePresentStationStartDate}}
                                         </td>
@@ -810,7 +841,8 @@
                                         <th>Email</th>
                                         <td>{{processingSingleTchList.teacherEmailNew}}</td>
                                     </tr>
-                                    <tr *ngIf="processingSingleTchList.workExperiencePositionTypePresentStationStartDateNew">
+                                    <tr
+                                        *ngIf="processingSingleTchList.workExperiencePositionTypePresentStationStartDateNew">
                                         <th>Present Station in Present Post Date</th>
                                         <td>{{processingSingleTchList.workExperiencePositionTypePresentStationStartDateNew}}
                                         </td>
@@ -888,7 +920,8 @@
                                         <!-- <label for="exampleFormControlTextarea1"
                                             class="form-label form-label-custom" >Your Remar
                                             </label> -->
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" formControlName="feedback" placeholder="Your remarks (if any)"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
+                                            formControlName="feedback" placeholder="Your remarks (if any)"></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -905,16 +938,19 @@
                                 </div> -->
                                     <div class="col-md-6">
                                         <div class="">
-                                            <button class="btn btn-success btn-sm me-2 " style="margin-left: 3px;" (click)="modal.dismiss('Cross click')">
+                                            <button class="btn btn-success btn-sm me-2 " style="margin-left: 3px;"
+                                                (click)="modal.dismiss('Cross click')">
                                                 Approve</button>
-                                            <a class=" btn-cancel p-2 " (click)="modal.dismiss('Cross click')">Reject</a>
+                                            <a class=" btn-cancel p-2 "
+                                                (click)="modal.dismiss('Cross click')">Reject</a>
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="col-md-12">
                                     <h2 style="color: blue; text-align: center;"> <span style="color: red;">*Note:
-                                        </span>On click <span style="color: green;">(Approve)</span> the change will be applied and the data will be updated.</h2>
+                                        </span>On click <span style="color: green;">(Approve)</span> the change will be
+                                        applied and the data will be updated.</h2>
                                 </div>
                             </form>
 
@@ -934,17 +970,7 @@
 
 <div mat-dialog-content>
     <ng-template #verifyModal let-modal style="min-width: 100%;">
-        <!-- <div class="modal-header">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="clearfix">
-                        <div style="text-align:center;">
-                            <h2 class="mb-0 text-green">Detailed Data of Selected Teacher</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+    
 
         <div class="" style="min-width: 100%; ">
 
@@ -956,81 +982,53 @@
                         <h2 class="px-2 mt-2 text-green">Profile Details</h2>
 
                         <tr>
-                            <th>KV / Institution Code</th>
-                            <td>{{verifyTchTeacherProfileData?.currentUdiseSchCode}}</td>
+                            <!-- <th>KV / Institution Code</th>
+                            <td>{{verifyTchTeacherProfileData?.currentUdiseSchCode}}</td> -->
 
-                            <th>Present KV / Institution Name</th>
+                            <th>KV/RO/ZIET/HQ Name</th>
                             <td>{{kvNameCode}}</td>
-
                             <th>Employee Code</th>
                             <td>{{verifyTchTeacherProfileData?.teacherEmployeeCode}}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Employee Id</th>
-                            <td>{{verifyTchTeacherProfileData?.teacherId}}</td>
-
                             <th>Name</th>
                             <td>{{verifyTchTeacherProfileData?.teacherName | titlecase}}</td>
+                        </tr>
 
+                        <tr>                         
                             <th>Gender</th>
                             <td>{{verifyTchTeacherProfileData?.teacherGender | genderPipe}}</td>
-
-                        </tr>
-                        <tr>
                             <th>Date of Birth</th>
                             <td>{{verifyTchTeacherProfileData?.teacherDob}}</td>
-
                             <th>Email</th>
                             <td>{{verifyTchTeacherProfileData?.teacherEmail}}</td>
-
+                        </tr>
+                        <tr>
+                            
                             <th>Mobile Number</th>
                             <td>{{verifyTchTeacherProfileData?.teacherMobile}}</td>
-
-                        </tr>
-
-                        <tr>
-
-                            <!-- <th>Nationality</th>
-                            <td>{{verifyTchTeacherProfileData?.teacherNationality | nationality}}</td> -->
-
                             <th>Marital Status</th>
                             <td>{{verifyTchTeacherProfileData?.maritalStatus | maritalStatus}}</td>
-
                             <th>Present Station Name</th>
                             <td>{{stationNameCode}}</td>
-                            <th>Present Station in Present Post Date</th>
-                            <td>{{verifyTchTeacherProfileData?.workExperiencePositionTypePresentStationStartDate}}</td>
-
-
                         </tr>
+
                         <tr>
-
-
-
-                            <th>Present KV in Present Post Date</th>
-                            <td>{{verifyTchTeacherProfileData?.workExperienceWorkStartDatePresentKv}}</td>
-
+                            <th>DoJ in Present Station Irrespective of Cadre</th>
+                            <td>{{verifyTchTeacherProfileData?.workExperiencePositionTypePresentStationStartDate  | date: 'dd-MM-YYYY'}}</td>
+                            <th>DoJ in Present KV/RO/ZIET/HQ in Present Post</th>
+                            <td>{{verifyTchTeacherProfileData?.workExperienceWorkStartDatePresentKv  | date: 'dd-MM-YYYY'}}</td>
                             <th>Present post name</th>
                             <td>{{verifyTchTeacherProfileData?.lastPromotionPositionType}}</td>
-                            <th>Present post date</th>
-                            <td>{{verifyTchTeacherProfileData?.lastPromotionPositionDate}}</td>
 
                         </tr>
-
                         <tr>
-
-
-
+                            <th>DoJ in KVS</th>
+                            <td>{{verifyTchTeacherProfileData?.lastPromotionPositionDate  | date: 'dd-MM-YYYY'}}</td>
                             <th>Subject Name</th>
                             <td>{{verifyTchTeacherProfileData?.workExperienceAppointedForSubject}}</td>
-
                             <th>Staff Type</th>
                             <td>{{verifyTchTeacherProfileData?.teachingNonteaching | staffType}}</td>
-
-                            <!-- <th>Nature of Appointment</th>
-                            <td>Reular</td> -->
                         </tr>
+
 
                         <!-- <tr>
 
@@ -1038,15 +1036,10 @@
 
                         </tr> -->
 
-                        <h2 class="px-2 mt-2 text-green">Information</h2>
+                        <!-- <h2 class="px-2 mt-2 text-green">Information</h2> -->
 
-                        <tr>
-                            <!-- <th>Boold Group</th>
-                            <td>{{verifyTchTeacherProfileData?.teacherBloodGroup | bloodGroup}}</td>
-
-                            <th>Pan Number</th>
-                            <td>{{verifyTchTeacherProfileData?.teacherPanNumber}}</td> -->
-
+                        <!-- <tr>
+                           
                             <th>Correspondence Address</th>
                             <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceAddress}}</td>
                             <th>Correspondence State</th>
@@ -1054,9 +1047,9 @@
 
                             <th>Correspondence District</th>
                             <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceDistrict}}</td>
-                        </tr>
+                        </tr> -->
 
-                        <tr>
+                        <!-- <tr>
 
 
                             <th>Correspondence Pin Code</th>
@@ -1067,8 +1060,8 @@
 
                             <th>Permanent State</th>
                             <td>{{verifyTchTeacherProfileData?.teacherParmanentState}}</td>
-                        </tr>
-                        <tr>
+                        </tr> -->
+                        <!-- <tr>
 
 
                             <th>Permanent District</th>
@@ -1076,7 +1069,7 @@
                             <th>Permanent Pin Code</th>
                             <td>{{verifyTchTeacherProfileData?.teacherPermanentPin}}</td>
 
-                        </tr>
+                        </tr> -->
 
                         <!-- <tr>
 
@@ -1084,9 +1077,9 @@
 
                         </tr> -->
 
-                        <h2 class="px-2 mt-2 text-green">Disability</h2>
+                        <!-- <h2 class="px-2 mt-2 text-green">Disability</h2> -->
 
-                        <tr>
+                        <!-- <tr>
 
                             <th>Any kind of Disability</th>
                             <td>{{verifyTchTeacherProfileData?.teacherDisabilityYn | yesNoPipe}}</td>
@@ -1095,11 +1088,11 @@
                             <td>{{verifyTchTeacherProfileData?.teacherDisabilityType | disabilityPipe}}</td>
 
 
-                        </tr>
+                        </tr> -->
 
-                        <h2 class="px-2 mt-2 text-green">Spouse Details</h2>
+                        <!-- <h2 class="px-2 mt-2 text-green">Spouse Details</h2> -->
 
-                        <tr>
+                        <!-- <tr>
 
                             <th>KVS Employee</th>
                             <td>{{verifyTchTeacherProfileData?.spouseStatus == '1' ? 'Yes':'No'}}</td>
@@ -1110,21 +1103,19 @@
                             <th>State Government Employee</th>
                             <td>{{verifyTchTeacherProfileData?.spouseStatus == '3' ? 'Yes':'No'}}</td>
 
-                        </tr>
+                        </tr> -->
 
-                        <tr>
+                        <!-- <tr>
 
                             <th>None of these</th>
                             <td>{{verifyTchTeacherProfileData?.spouseStatus == '4' ? 'Yes':'No'}}</td>
 
-                            <!-- <th>Spouse Employee Code</th>
-                            <td>{{verifyTchTeacherProfileData?.spouseEmpCode}}</td> -->
 
                             <th>Spouse Name</th>
                             <td>{{verifyTchTeacherProfileData?.spouseName}}</td>
                             <th>Spouse Station</th>
                             <td>{{verifyTchTeacherProfileData?.spouseStationName}}</td>
-                        </tr>
+                        </tr> -->
 
 
                     </table>
@@ -1197,12 +1188,12 @@
                             <td>{{data.place}}</td>
                         </tr>
                     </table> -->
-                    <table class="table-striped">
+                    <!-- <table class="table-striped">
                         <h2 class="px-2 mt-2 text-green">Experience</h2>
 
                         <tr style="background-color: #cccccc;">
                             <th>School Name</th>
-                            <!-- <th>Shift</th> -->
+                           
                             <th>From</th>
                             <th>To</th>
                             <th>Nature of Appointment</th>
@@ -1212,7 +1203,7 @@
                         </tr>
                         <tr *ngFor="let data of verifyTchTeacherWorkExp">
                             <td>{{data.udiseSchoolName}}</td>
-                            <!-- <td>{{data.shiftType}}</td> -->
+                          
                             <td>{{data.workStartDate}}</td>
                             <td>{{data.workEndDate}}</td>
                             <td>Regular</td>
@@ -1220,7 +1211,7 @@
                             <td>{{data.appointedForSubject}}</td>
                             <td>{{data.groundForTransfer}}</td>
                         </tr>
-                    </table>
+                    </table> -->
                     <!-- <table class="table-striped px-3">
                         <h2 class="px-2 mt-2 text-green">Choice Of Station(Displacement) </h2>
 
@@ -1262,121 +1253,16 @@
                         </tr>
                         
                     </table> -->
-                    <table class=" table-striped">
-
-                        <h2 class="px-2 mt-2 text-green">Miscellaneous</h2>
-
-                        <tr>
-                            <th>Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for.</th>
-                            <td>{{teacherStationChioce?.spouseKvsYnD == '1' ?'Yes':'No'}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>Whether the employee is seeking benefit of medical ground (MDG Ground).</th>
-                            <td>{{teacherStationChioce?.personalStatusMdgD == '1' ?'Yes':'No'}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-                        <tr>
-                            <th>Whether the employee is seeking benefit of single parent (SP Ground).</th>
-                            <td>{{teacherStationChioce?.personalStatusSpD == '1' ?'Yes':'No'}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-                        <tr>
-
-                            <th>Whether the employee is seeking benefit of Death of Family Person (DFP Ground).</th>
-                            <td>{{teacherStationChioce?.personalStatusDfpD == '1' ?'Yes':'No'}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-                        <tr>
-
-                            <th>Whether your are main care-giver to the person with disability in the family (i.e spouse or own son/own daughter).</th>
-                            <td>{{teacherStationChioce?.careGiverFaimlyYnD == '1' ?'Yes':'No'}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-
-                        <!-- <tr>
-                            <th> Whether you have a differently-abled child.</th>
-                            <td>{{teacherStationChioce?.childDifferentAbleYnD == '1' ?'Yes':'No'}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr> -->
-                        <tr>
-
-                            <th> Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).</th>
-                            <td *ngIf="teacherStationChioce?.memberJCM == '1'">RJCM</td>
-                            <td *ngIf="teacherStationChioce?.memberJCM == '2'">NJCM</td>
-                            <td *ngIf="teacherStationChioce?.memberJCM == '0'">None</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th> Whether disciplinary proceedings are in progress.</th>
-                            <td *ngIf="teacherStationChioce?.disciplinaryYn == '1'">Yes</td>
-                            <td *ngIf="teacherStationChioce?.disciplinaryYn == '0'">No</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th> Period of continuous absence(except maternity leave).</th>
-                            <td>{{teacherStationChioce?.absenceDaysOne}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>Whether, the employee has completed one teure at hard/NER/Priority station(during entire service).</th>
-                            <td>{{teacherStationChioce?.surveHardYn == '1' ?'Yes':'No'}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
+                  
                     <form [formGroup]="remarksForm">
-                        <!-- <div class="row mt-2">
-                        <div class="col-md-12  px-3">
-                            <label for="exampleFormControlTextarea1" class="form-label form-label-custom">Give
-                                your remarks: <span class="required-asterisk">*</span><span style="color: red;">(If Rejected)</span></label>
-                            <textarea class="form-control" id="schoolRemarks" formControlName="schoolRemarks" name="schoolRemarks"
-                            (keyup)="testRemarksForm()" rows="3"></textarea>
-                        </div>
-                    </div> -->
+                     
                         <div class="p-2 floatRight">
-                            <button class="btn btn-secondary btn-sm" (click)="modal.dismiss('Cross click')">Cancel</button>
+                            <button class="btn btn-secondary btn-sm"
+                                (click)="modal.dismiss('Cross click')">Cancel</button>
                             <!-- <button [disabled]="!remarksForm.valid" class="btn btn-danger btn-sm" style="margin-left: 3px;"
                             (click)="onVerify(verifyTchTeacherProfileData.teacherId, 'SR') ; modal.dismiss('Cross click')">Reject</button> -->
-                            <button class="btn btn-success btn-sm" style="margin-left: 3px;" (click)="onVerify(verifyTchTeacherProfileData.teacherId, 'SA') ; modal.dismiss('Cross click')">
+                            <button class="btn btn-success btn-sm" style="margin-left: 3px;"
+                                (click)="onVerify(verifyTchTeacherProfileData.teacherId, 'SA') ; modal.dismiss('Cross click')">
                                 Confirm & Verify</button>
                         </div>
                     </form>

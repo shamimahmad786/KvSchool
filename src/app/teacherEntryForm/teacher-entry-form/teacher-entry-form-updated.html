@@ -130,7 +130,7 @@
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <h4 class="titleSet">Date of birth<span class="required-asterisk">*</span></h4>
-                                                            <input type="date" [max]="maxDate" class="form-control " name="dob" formControlName="dob" [(ngModel)]="responseData.teacherDob" style="text-transform: none">
+                                                            <input type="date" [max]="maxDate" class="form-control " data-date-format="DD MMMM YYYY" name="dob" formControlName="dob" [(ngModel)]="responseData.teacherDob" style="text-transform: none">
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.dob').valid && teacherForm.get('profileForm.dob').touched ">
                                                                 <span class="help-block text-danger"
                                                                     *ngIf="teacherForm.get('profileForm.dob').errors['invalidDate'] ">
@@ -257,7 +257,7 @@
                                                                     Enter a valid date!
                                                                 </span>
                                                             <span class="help-block text-danger" *ngIf="teacherForm.get('profileForm.presentKvDate').errors['required'] ">
-                                                                    Enter Present KV/Institution in Present Post Date!
+                                                                    Enter Present KV/RO/ZIET/HQ Name(Code)!
                                                                 </span>
                                                             </span>
                                                         </div>
@@ -268,7 +268,7 @@
 
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <h4 class="titleSet"> DoJ in Present Station irrespective of Cadre
+                                                            <h4 class="titleSet"> DoJ in Present Station Irrespective of Cadre
                                                                 <span class="required-asterisk">*</span>
                                                             </h4>
                                                             <input type="date" [max]="maxDate" class="form-control" name="presentStationPostDate" [max]="maxDate" (blur)="profileDateManagement($event, 'b')" formControlName="presentStationPostDate" [(ngModel)]="responseData.workExperiencePositionTypePresentStationStartDate"
@@ -279,7 +279,7 @@
                                                                     Enter a valid date!
                                                                 </span>
                                                             <span class="help-block text-danger" *ngIf="teacherForm.get('profileForm.presentStationPostDate').errors['required'] ">
-                                                                    Enter Present Station in Present Post Date!
+                                                                    Enter DoJ in Present Station Irrespective of Cadre!
                                                                 </span>
                                                             </span>
                                                         </div>
@@ -301,7 +301,7 @@
                                                                 Enter Present Post Name(Code)!</span>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <h4 class="titleSet">DoJ in KVS in Present Post
+                                                            <h4 class="titleSet">DoJ in KVS 
                                                                 <span class="required-asterisk">*</span></h4>
                                                             <input type="date" class="form-control" (blur)="profileDateManagement($event, 'c')" [max]="maxDate" name="presentPostDate" formControlName="presentPostDate" [(ngModel)]="responseData.lastPromotionPositionDate" style="text-transform: none">
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.presentPostDate').valid 
@@ -311,7 +311,7 @@
                                                                     Enter a valid date!
                                                                 </span>
                                                             <span class="help-block text-danger" *ngIf="teacherForm.get('profileForm.presentPostDate').errors['required'] ">
-                                                                    Enter Present Post Date!
+                                                                    Enter DoJ in KVS!
                                                                 </span>
                                                             </span>
                                                         </div>
@@ -414,7 +414,7 @@
                                 !teacherForm.get('profileForm.staffType').valid ||
                                 !teacherForm.get('profileForm.empCode').valid ||
                                 !teacherForm.get('profileForm.presentPostName').valid ||
-                                !teacherForm.get('profileForm.presentSubjectName').valid || !teacherForm.get('profileForm.email').valid || !allowEdit" type="submit" id="submit1" value="Save" class=" action-save mt-2 me-2" />
+                                !teacherForm.get('profileForm.presentSubjectName').valid || !teacherForm.get('profileForm.email').valid || !allowEdit" type="submit" id="submit1" value="Save & Next" class=" action-save mt-2 me-2" />
                                 <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.email').valid || !teacherForm.get('profileForm.dob').valid && teacherForm.get('profileForm.dob').touched||
                                 !teacherForm.get('profileForm.fullName').valid && teacherForm.get('profileForm.fullName').touched ||
                                 !teacherForm.get('profileForm.mobile').valid && teacherForm.get('profileForm.mobile').touched ||
@@ -678,7 +678,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6 mb-3">
                                                                 <h4 class="titleSet">
-                                                                    Home town address as per service record <span class="required-asterisk">*</span>
+                                                                    Home Town Address as per Service Record <span class="required-asterisk">*</span>
                                                                 </h4>
                                                                 <textarea class="form-control" rows="1" name="prmntAddress" style="text-transform:uppercase" formControlName="prmntAddress" [(ngModel)]="responseData.teacherPermanentAddress"></textarea>
                                                                 <!-- <span class="help-block text-danger"
@@ -691,7 +691,7 @@
                                                                     <option selected disabled>Select
                                                                     </option>
                                                                     <option *ngFor="let data of stateMasterList"
-                                                                        value="{{data.state_id}}">{{data.state_name}}
+                                                                        value="{{data.state_id}}">{{data.state_name | uppercase}}
                                                                     </option>
                                                                     <!-- <option value="1">Punjab</option>
                                                                     <option value="2">UP</option> -->
@@ -796,7 +796,7 @@
                                                 <div class="row">
 
                                                     <div class="col-md-6">
-                                                        <h4 class="titleSet">Do you have any kind of disability ?</h4>
+                                                        <h4 class="titleSet">Do You Have Any Kind of Disability,if any ?</h4>
 
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" value="1" name="disabilityYN" type="radio" formControlName="disabilityYN" [(ngModel)]="responseData.teacherDisabilityYn" (click)="onClickDisability('yes')">
@@ -815,7 +815,7 @@
                                                     <div class="col-md-6">
                                                         <div class="showDiv" *ngIf="isVisible">
                                                             <h4 class="titleSet">
-                                                                Type of disability : <span class="required-asterisk">*</span>
+                                                                Type of Disability : <span class="required-asterisk">*</span>
                                                             </h4>
 
                                                             <select class="form-select" aria-label="Default select example" name="disabilityType" formControlName="disabilityType" [(ngModel)]="responseData.teacherDisabilityType">
@@ -847,7 +847,7 @@
                                                     </div> -->
 
                                                     <div class="col-md-6 mt-2" *ngIf="isVisible">
-                                                        <h4 class="titleSet">Upload PH Certificate In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload PwD Certificate In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (blur)="handleFileInput($event.target.files, '4')">
                                                             <button class="btn btn-outline-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUpload(4)">Upload</button>
@@ -1132,7 +1132,7 @@
                                                                    !teacherForm.get('personalInfoForm.spouseStationName').valid))||(!teacherForm.get('personalInfoForm.crspndncPinCode').valid ||
                                                                    (teacherForm.get('personalInfoForm.prmntPinCode').status != 'VALID' && teacherForm.get('personalInfoForm.prmntPinCode').status != 'DISABLED') ||
                                                                    (documentUploadArray[4]?.docName != 'Physically_Handicap_Certificate.pdf' &&  teacherForm.get('personalInfoForm.disabilityYN').value == '1'))) || !allowEdit" type="submit" id="submit2"
-                                    value="Save" class="action-save  me-2" />
+                                    value="Save & Next" class="action-save  me-2" />
 
                             </div>
 
@@ -1192,7 +1192,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th width="20%">
-                                                                Institution Name/Code
+                                                                KV/RO/ZIET/HQ
                                                             </th>
                                                             <!-- <th>
                                                                 Type
@@ -1228,8 +1228,15 @@
                                                                 <div class="input-group mb-3">
                                                                     <input type="text" class="input-group-text input" name="udiseSchCode" formControlName="udiseSchCode" disabled style="width:70px; height:33px;">
                                                                     <input type="text" class="form-control form-control-sm" name="udiseSchoolName" formControlName="udiseSchoolName" disabled>
+                                                                   
+                                                                   <div *ngIf="i==0">
+                                                                    <button class="btn btn-sm btn-outline-secondary btn-sm" type="button" id="button-addon2" disabled (click)="selectExperianceSchool(i)"> <i
+                                                                        class="fa fa-search"></i></button>
+                                                                   </div>
+                                                                   <div *ngIf="i!=0">
                                                                     <button class="btn btn-sm btn-outline-secondary btn-sm" type="button" id="button-addon2" (click)="selectExperianceSchool(i)"> <i
                                                                             class="fa fa-search"></i></button>
+                                                                            </div>
                                                                 </div>
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.udiseSchoolName.errors?.required">
                                                                     Enter School Name!</span>
@@ -1524,14 +1531,9 @@
                                 <!-- <input type="button" name="next" class="next action-button mt-2" value="Next" /> -->
                                 <input type="button" name="next" class="next action-button mt-2" value="Next" (click)="onNextButtonClick(4)" />
                                 <input type="button" name="previous" (click)=" onPreviousClick(2)" class="previous action-button-previous mt-2" value="Previous" />
-                                <input [disabled]="!allowEdit" type="submit" id="submit5" value="Save" class=" action-save me-2 mt-2" />
+                                <input [disabled]="!allowEdit" type="submit" id="submit5" value="Save & Next" class=" action-save me-2 mt-2" />
 
                             </div>
-
-
-
-
-
 
                             <!-- <div> -->
                             <!-- <div class="fieldSet" formGroupName="transferRelatedForm">
@@ -1867,7 +1869,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload Spouse Declaration In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload Spouse Declaration In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '5')">
                                                             <button [disabled]="enableUploadButtonRelatedForm5" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(5)">Upload</button>
@@ -1903,7 +1905,7 @@
                                             <div class="row mt-3" style="border-top: 1px dotted;">
                                                 <div class="col-md-10 mb-2 py-3">
                                                     <h4 class="titleSet">
-                                                        <span class="text-green">2.</span> Whether the employee is seeking benefit of medical ground (MDG Ground) <a href="assets/assets/declaration/MdgDeclaration.pdf" download class="text-danger">(Mandatory instruction)</a>
+                                                        <span class="text-green">2.</span> Whether the employee is seeking benefit of medical ground (MDG Ground) <a href="assets/assets/declaration/MdgDeclaration.pdf" download class="text-danger">(Mandatory Instruction)</a>
                                                     </h4>
                                                 </div>
                                                 <div class="col-md-2 mb-2 py-3">
@@ -1992,7 +1994,7 @@
 
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload Medical Certificate In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload Medical Certificate In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '0')">
                                                             <button [disabled]="enableUploadButtonRelatedForm0" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(0)">Upload</button>
@@ -2069,7 +2071,7 @@
                                                 <div class="row">
 
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload SP Declaration In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload SP Declaration In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '6')">
                                                             <button [disabled]="enableUploadButtonRelatedForm6" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(6)">Upload</button>
@@ -2153,7 +2155,7 @@
 
                                                 <div class="row">
                                                     <div class="col-md-5">
-                                                        <h4 class="titleSet">Upload DFP Certificate Issued by Compitent Authority In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload DFP Certificate Issued by Compitent Authority In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '7')">
                                                             <button [disabled]="enableUploadButtonRelatedForm7" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(7)">Upload</button>
@@ -2227,7 +2229,7 @@
 
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload Disability Certificate In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload Disability Certificate In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '2')">
                                                             <button [disabled]="enableUploadButtonRelatedForm2" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(2)">Upload</button>
@@ -2296,7 +2298,7 @@
                                                     </div>
 
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload NJCM/RJCM Office Order In Pdf (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload NJCM/RJCM Office Order In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '8')">
                                                             <button [disabled]="enableUploadButtonRelatedForm8" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(8)">Upload</button>
@@ -2316,16 +2318,16 @@
 
                                                 </div>
                                             </div>
+                                           
                                             <div class="row mt-3" style="border-top: 1px dotted;">
-                                                <div class="col-md-5 mb-2 py-3">
-                                                    <h4 class="titleSet">
-                                                        <span class="text-green">7.</span> Active stay<span style="color:red">*</span> (in Years) in NER/Hard Station irrespective of Cadre <br> (Or) <br> Total number of Years served in normal station irrespective
-                                                        of Cadre.
+                                                <div class="col-md-5 mb-2 py-3">                                               
+                                                    <h4 class="hover-text titleSet"><span class="text-green">7.</span>Active stay (in years) <span class="required-asterisk">Refer 2 (i) of Part- 1 of Transfer Policy 2023.</span> <i class="fa fa-info-circle fa-lg" aria-hidden="true" style="color: red;"></i> 
+                                                        <span class="tooltip-text" id="top">Continuous Service at a station as on 1st July for all Stations excluding the period or periods of absence (including any kind of leave other than Maternity leave) from duty exceeding 30 days or more at normal station and 45 days or more at Hard,NER and Priority Station,irrespective of cadre </span>
                                                     </h4>
                                                 </div>
 
                                                 <div class="col-md-1 mb-2 py-3">
-                                                    <div class="input-group mt-3">
+                                                    <div class="input-group ">
                                                         <input type="text" class="form-control  mb-3" id="absenceDaysOne" formControlName="absenceDaysOne" value="0" name="absenceDaysOne" maxlength="2">
                                                     </div>
 
@@ -2356,7 +2358,7 @@
                                             <div class="row mt-3" style="border-top: 1px dotted;">
                                                 <div class="col-md-10 mb-2 py-3">
                                                     <h4 class="titleSet">
-                                                        <span class="text-green">9.</span> Whether, the employee has completed one teure at hard/NER/Priority station(during entire service).
+                                                        <span class="text-green">9.</span> Whether, the employee has completed one tenure at hard/NER/Priority station(during entire service).
                                                     </h4>
                                                 </div>
 
@@ -2379,12 +2381,12 @@
                                             <div class="row mt-3" style="border-top: 1px dotted;">
                                                 <div class="col-md-12 mb-2 py-3">
                                                     <h4 class="titleSet mb-0">
-                                                        Declaration by Employee.
+                                                        Undertaking
                                                     </h4>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="showSaveBuuton($event)">
                                                         <p>I hereby undertake that imformation given by me, as below is absolutely correct and true as per my knowledge and belief.If later on, any thing is found misleading /wrong then my application is liable
                                                             to be rejected by KVS and i shall be opened for any disciplinary action as deemed fit against me for giving misleading information.
                                                         </p>
@@ -2393,9 +2395,9 @@
                                                 <hr>
                                             </div>
 
-                                            <div>
+                                            <!-- <div>
                                                 Active stay - As per para 1 of defination of transfer policy
-                                            </div>
+                                            </div> -->
 
 
                                         </div>
@@ -2419,7 +2421,7 @@
                                ) && positionHeld) ||
                                 ((!teacherForm.get('transferRelatedForm.childDifferentName').valid || 
                                 !teacherForm.get('transferRelatedForm.childDifferentDisabilityName').valid || 
-                                !teacherForm.get('transferRelatedForm.childDifferentDisabilityPrcnt').valid) && abledChild) || !allowEdit" type="submit" id="submit4" value="Save" class=" action-save me-2 mt-2" />
+                                !teacherForm.get('transferRelatedForm.childDifferentDisabilityPrcnt').valid) && abledChild) || buttonVisible!=true || !allowEdit " type="submit" id="submit4" value="Save & Next" class=" action-save me-2 mt-2" />
 
                                 <!-- <input 
                                         type="submit" id="submit4" value="Save"
@@ -2444,18 +2446,21 @@
                                                     <h2 class="px-2 mt-2 text-green">Profile Details</h2>
 
                                                     <tr>
-                                                        <th>KV / Institution Code</th>
-                                                        <td>{{verifyTchTeacherProfileData?.currentUdiseSchCode}}</td>
+                                                        <!-- <th>KV/RO/ZIET/HQ Code</th>
+                                                        <td>{{verifyTchTeacherProfileData?.currentUdiseSchCode}}</td> -->
 
-                                                        <th>Present KV/Institution Name</th>
+                                                        <th>KV/RO/ZIET/HQ Name</th>
                                                         <td>{{kvNameCode}}</td>
 
                                                         <th>Employee Code</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherEmployeeCode}}</td>
+                                                        <th>Staff Type</th>
+                                                        <td>{{verifyTchTeacherProfileData?.teachingNonteaching | staffType}}
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Employee Id</th>
-                                                        <td>{{verifyTchTeacherProfileData?.teacherId}}</td>
+                                                        <!-- <th>Employee Id</th>
+                                                        <td>{{verifyTchTeacherProfileData?.teacherId}}</td> -->
 
                                                         <th>Name</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherName | titlecase}}
@@ -2464,69 +2469,49 @@
                                                         <th>Gender</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherGender | genderPipe}}
                                                         </td>
-
-                                                    </tr>
-                                                    <tr>
                                                         <th>Date of Birth</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherDob | date: 'dd-MM-YYYY'}}</td>
 
+                                                    </tr>
+                                                    <tr>                                                    
                                                         <th>Email</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherEmail}}</td>
 
                                                         <th>Mobile Number</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherMobile}}</td>
-
+                                                        <th>Marital Status</th>
+                                                        <td>{{verifyTchTeacherProfileData?.maritalStatus | maritalStatus}}
+                                                        </td>
                                                     </tr>
                                                     <tr>
 
                                                         <!-- <th>Nationality</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherNationality | nationality}}
-                                                        </td> -->
-
-                                                        <th>Marital Status</th>
-                                                        <td>{{verifyTchTeacherProfileData?.maritalStatus | maritalStatus}}
-                                                        </td>
-
+                                                        </td> -->                                                    
                                                         <th>Present Station Name</th>
                                                         <td>{{stationNameCode}}</td>
 
-                                                        <th>Present Station in Present Post Date</th>
+                                                        <th>DoJ in Present Station Irrespective of Cadre </th>
                                                         <td>{{verifyTchTeacherProfileData?.workExperiencePositionTypePresentStationStartDate | date: 'dd-MM-YYYY'}}
                                                         </td>
-
-                                                    </tr>
-                                                    <tr>
-
-
-
-                                                        <th>Present KV/Institution in Present Post Date</th>
+                                                        <th>DoJ in Present KV/RO/ZIET/HQ in Present Post</th>
                                                         <td>{{verifyTchTeacherProfileData?.workExperienceWorkStartDatePresentKv | date: 'dd-MM-YYYY'}}
                                                         </td>
-
+                                                    </tr>
+                                                    <tr>
+                                                        <th>DoJ in KVS</th>
+                                                        <td>{{verifyTchTeacherProfileData?.lastPromotionPositionDate | date: 'dd-MM-YYYY'}}
+                                                        </td>
                                                         <th>Present post name</th>
                                                         <td>{{verifyTchTeacherProfileData?.lastPromotionPositionType}}
                                                         </td>
 
-                                                        <th>Present post date</th>
-                                                        <td>{{verifyTchTeacherProfileData?.lastPromotionPositionDate | date: 'dd-MM-YYYY'}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-
-
-
+                                                        
                                                         <th>Subject Name</th>
                                                         <td>{{verifyTchTeacherProfileData?.workExperienceAppointedForSubject}}
                                                         </td>
-
-                                                        <th>Staff Type</th>
-                                                        <td>{{verifyTchTeacherProfileData?.teachingNonteaching | staffType}}
-                                                        </td>
-
-                                                        <!-- <th>Nature of Appointment</th>
-                                                        <td>Regular
-                                                        </td> -->
                                                     </tr>
+                                                
                                                     <h2 class="px-2 mt-2 text-green">Information</h2>
                                                     <tr>
                                                         <!-- <th>Boold Group</th>
@@ -2553,20 +2538,20 @@
                                                         <th>Correspondence Pin Code</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondencePin}}
                                                         </td>
-                                                        <th>Permanent Address</th>
+                                                        <th>Home Town Address as per Service Record</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherPermanentAddress}}
                                                         </td>
-                                                        <th>Permanent State</th>
+                                                        <th>State</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherParmanentState}}</td>
 
                                                     </tr>
                                                     <tr>
 
 
-                                                        <th>Permanent District</th>
+                                                        <th>District</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherPermanentDistrict}}
                                                         </td>
-                                                        <th>Permanent Pin Code</th>
+                                                        <th>Pin Code</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherPermanentPin}}</td>
 
                                                     </tr>
@@ -2640,7 +2625,7 @@
                                                         <!-- <td>{{data?.natureOfAppointment | natureOfAppointment}}</td> -->
                                                         <td>{{data?.positionType}}</td>
                                                         <td>{{data?.appointedForSubject}}</td>
-                                                        <td>{{data?.groundForTransfer}}</td>
+                                                        <td>{{data?.groundForTransfer == 'null' ? '':data?.groundForTransfer}}</td>
                                                     </tr>
                                                 </table>
                                                 <!-- <table class="table-striped px-3">
@@ -2727,7 +2712,7 @@
                                                     </tr>
                                                     <tr>
 
-                                                        <th>Whether your are main care-giver to the person with disability in the family (i.e spouse or own son/own daughter).</th>
+                                                        <th>Whether your are main care-giver to the person with disability in the family (i.e spouse/son/daughter).</th>
                                                         <td>{{teacherStationChioce?.careGiverFaimlyYnD == '1' ?'Yes':'No'}}</td>
                                                         <td></td>
                                                         <td></td>
@@ -2745,6 +2730,17 @@
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
+                                                  
+                                                    <tr>
+                                                        <th> Active stay (in years) refer 2 (i) of Part- 1 of Transfer Policy 2023.</th>
+                                                        <td>{{teacherStationChioce?.absenceDaysOne}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
                                                     <tr>
                                                         <th> Whether disciplinary proceedings are in progress.</th>
                                                         <td *ngIf="teacherStationChioce?.disciplinaryYn == '1'">Yes</td>
@@ -2756,17 +2752,7 @@
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <th> Period of continuous absence(except maternity leave).</th>
-                                                        <td>{{teacherStationChioce?.absenceDaysOne}}</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Whether, the employee has completed one teure at hard/NER/Priority station(during entire service).</th>
+                                                        <th>Whether, the employee has completed one tenure at hard/NER/Priority station(during entire service).</th>
                                                         <td>{{teacherStationChioce?.surveHardYn == '1' ?'Yes':'No'}}</td>
                                                         <td></td>
                                                         <td></td>
@@ -2830,7 +2816,7 @@
                                                 <div class="form-card">
                                                     <div class="row">
                                                         <div class="col-7">
-                                                            <h2 class="mb-0 font8958"> Declaration: </h2>
+                                                            <h2 class="mb-0 font8958"> Undertaking: </h2>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -2843,7 +2829,7 @@
                                                                     I, the undersigned, certify that to the best
                                                                     of my knowledge and belief, this Profile
                                                                     Information, Qualifications, Experience etc.
-                                                                    correctly describes the associated teacher.
+                                                                    correctly describes the associated employee.
                                                                 </label>
                                                             </div>
                                                             <div class="form-check">
@@ -3022,7 +3008,7 @@
                     <div class="col-md-3 " *ngIf="zoneShow">
                         <!-- <h3>Region</h3> -->
                         <select class="form-select form-select-sm" aria-label="Default select example" (change)="getStationByHqId($event)">
-                            <option selected disabled> Select Zone</option>
+                            <option selected disabled> Select Zite</option>
                             <option *ngFor="let data of zoneList; let i=index;" value="{{data.kv_code}}">
                                 {{data.kv_name}}
                             </option>
@@ -3070,7 +3056,7 @@
                     </div>
                     <div class="col-md-3 " *ngIf="selectHeadQuaterZoneRegion">
                         <!-- <h3>Region</h3> -->
-                        <input type="text" class="form-control form-control-sm" name="udiseSchoolName" formControlName="udiseSchoolName" value="{{selectStationName}}" disabled>
+                        <input type="text" class="form-control form-control-sm" name="udiseSchoolName" formControlName="udiseSchoolName" value="{{selectStationName}}" >
                     </div>
 
 
@@ -3433,7 +3419,7 @@
                             <hr />
                             <ul class="ulLeft">
                                 <li style="width:30%;">
-                                    <h4 class="titleSet"> DoJ in KVS in Present Post :</h4>
+                                    <h4 class="titleSet"> DoJ in KVS :</h4>
                                 </li>
                                 <li><input type="date" [max]="maxDate" class="form-control form-control-sm" placeholder="Present Post Date" style="text-transform: none"></li>
                                 <li>

@@ -418,7 +418,8 @@
 <section class="main-wrapper">
     <div class="sidebar">
         <div class="logo-box">
-            <img src="assets/img/logo.svg" class="img-fluid">
+             <img src="assets/img/employee-platform.svg" class="img-fluid"> 
+            <!-- <img src="assets/img/logo.svg" class="img-fluid"> -->
         </div>
         <div class="side-navigation">
             <ul class="list-unstyled">
@@ -479,7 +480,7 @@
                     </div>
                 </li> -->
 
-                <li class="mb-1" *ngIf="kvIfConditions == false">
+                <!-- <li class="mb-1" *ngIf="kvIfConditions == false">
                     <button class="btn btn-toggle align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false"> <img src="assets/img/dropbox.svg">
                         Dropbox </button>
                     <div class="collapse" id="orders-collapse">
@@ -490,7 +491,7 @@
                             </a>
                         </ul>
                     </div>
-                </li>
+                </li> -->
 
 
                 <li class="nav-item" *ngIf="showNational || showRegion">
@@ -621,12 +622,13 @@
                     <button class="btn btn-toggle align-items-center" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false"> <img src="assets/img/password.svg">
                     Change Password </button>
                 </li> -->
-
+<!-- 
                 <li class="nav-item ng-star-inserted">
                     <a class="btn btn-toggle align-items-center collapsed" routerLinkActive="active" routerLink="/teacher/kvsTchTransfer">
                         <img src="assets/img/details.svg">Employee Transfer
                     </a>
-                </li>
+                </li> -->
+               
 
                 <li class="mb-1">
                     <a class="btn btn-toggle align-items-center" routerLinkActive="active" routerLink="/teacher/changePassword">
@@ -634,6 +636,17 @@
                     </a>
                 </li>
 
+                <li class="nav-item ng-star-inserted">
+                    <a class="btn btn-toggle align-items-center collapsed" download  href="assets/schoolUserManual.pdf">
+                        <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i> User Manual
+                    </a>
+                </li>
+
+                <li class="nav-item ng-star-inserted">
+                    <a class="btn btn-toggle align-items-center collapsed" download  href="assets/transferPolicy.pdf">
+                        <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i> Transfer Policy 2023
+                    </a>
+                </li>
 
 
                 <li class="mb-1">
