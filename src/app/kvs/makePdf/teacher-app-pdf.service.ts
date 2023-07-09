@@ -41,7 +41,7 @@ export class TeacherAppPdfService {
   testFnc(teacherProfile, kvNameCode, stationNameCode, workExperience,teacherStationChioc) {
     console.log("pdf data")
     debugger
-console.log(teacherStationChioc['choiceKv1StationName'])
+    console.log(teacherStationChioc['choiceKv1StationName'])
     const transferGround = new TransferGroundPipe();
     var teacherTrainingData= [];
     this.absencedays =teacherStationChioc['absenceDaysOne'].toString();
@@ -77,8 +77,7 @@ console.log(teacherStationChioc['choiceKv1StationName'])
      // workExperienceTemp.push(workExperience[i]?.natureOfAppointment == '1'?'Regular':'Not Applicable')
       workExperienceTemp.push(workExperience[i]?.positionType)
       workExperienceTemp.push(workExperience[i]?.appointedForSubject)
-      workExperienceTemp.push(workExperience[i].groundForTransfer)
-
+      workExperienceTemp.push(workExperience[i].groundForTransfer == 'null' ? '':workExperience[i]?.groundForTransfer)
       this.workExperienceArray.push(workExperienceTemp)
     }
 
@@ -152,19 +151,19 @@ console.log(teacherStationChioc['choiceKv1StationName'])
 
     
 
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Teacher Id', 140, 59)
+    // doc.setTextColor(0, 0, 0);
+    // doc.setFontSize(12);
+    // doc.setFont('Times-Roman', 'bold');
+    // doc.text('Teacher Id', 140, 59)
 
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    if(tchId == null ||tchId == 'null' || tchId == ''){
-      doc.text('Not Given', 205, 59)
-    }else{
-      doc.text(tchId, 205, 59)
-    }
+    // doc.setFont('Times-Roman', 'normal');
+    // doc.setTextColor(0, 0, 0);
+    // doc.setFontSize(10);
+    // if(tchId == null ||tchId == 'null' || tchId == ''){
+    //   doc.text('Not Given', 205, 59)
+    // }else{
+    //   doc.text(tchId, 205, 59)
+    // }
 
     
 
@@ -188,15 +187,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Gender', 140, 66)
+    doc.text('Gender', 140, 60)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherGender == null || teacherProfile?.teacherGender == 'null' || teacherProfile?.teacherGender == ''){
-      doc.text('Not Given', 205, 66)
+      doc.text('Not Given', 205, 60)
     }else{
-      doc.text(teacherProfile?.teacherGender == '1' ? 'Male' : 'Female', 205, 66)
+      doc.text(teacherProfile?.teacherGender == '1' ? 'Male' : 'Female', 205, 60)
     }
 
    
@@ -221,15 +220,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Email', 140, 73)
+    doc.text('Email', 140, 67)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherEmail == null || teacherProfile?.teacherEmail == 'null' || teacherProfile?.teacherEmail == ''){
-      doc.text('Not Given', 205, 73)
+      doc.text('Not Given', 205, 67)
     }else{
-      doc.text(teacherProfile?.teacherEmail, 205, 73)
+      doc.text(teacherProfile?.teacherEmail, 205, 67)
     }
 
   
@@ -251,19 +250,19 @@ console.log(teacherStationChioc['choiceKv1StationName'])
 
     
 
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.setFont('Times-Roman', 'bold');
-    doc.text('Nature of Appointment',140, 80)
+    // doc.setTextColor(0, 0, 0);
+    // doc.setFontSize(12);
+    // doc.setFont('Times-Roman', 'bold');
+    // doc.text('Nature of Appointment',140, 80)
 
-    doc.setFont('Times-Roman', 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    if(teacherProfile?.natureOfAppointment == null || teacherProfile?.natureOfAppointment == 'null' || teacherProfile?.natureOfAppointment == ''){
-      doc.text('Regular', 205, 80)
-    }else{
-      doc.text(teacherProfile?.natureOfAppointment == '1' ? 'Regular' : 'Not Available',  205, 80)
-    }
+    // doc.setFont('Times-Roman', 'normal');
+    // doc.setTextColor(0, 0, 0);
+    // doc.setFontSize(10);
+    // if(teacherProfile?.natureOfAppointment == null || teacherProfile?.natureOfAppointment == 'null' || teacherProfile?.natureOfAppointment == ''){
+    //   doc.text('Regular', 205, 80)
+    // }else{
+    //   doc.text(teacherProfile?.natureOfAppointment == '1' ? 'Regular' : 'Not Available',  205, 80)
+    // }
 
 
     //1.6
@@ -286,15 +285,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Present Station Name', 140, 87)
+    doc.text('Present Station Name', 140, 75)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(stationNameCode == null || stationNameCode == 'null' || stationNameCode == ''){
-      doc.text('Not Given', 205, 87)
+      doc.text('Not Given', 205, 75)
     }else{
-      doc.text(stationNameCode, 205, 87)
+      doc.text(stationNameCode, 205, 75)
     }
 
     
@@ -352,15 +351,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('DoJ in KVS', 140, 94)
+    doc.text('DoJ in KVS', 140, 88)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.lastPromotionPositionDate == null || teacherProfile?.lastPromotionPositionDate == 'null' || teacherProfile?.lastPromotionPositionDate == ''){
-      doc.text('Not Given', 205, 94)
+      doc.text('Not Given', 205, 88)
     }else{
-      doc.text(this.date.transform(new Date(teacherProfile?.lastPromotionPositionDate ), 'dd-MM-yyyy') , 205, 94  )
+      doc.text(this.date.transform(new Date(teacherProfile?.lastPromotionPositionDate ), 'dd-MM-yyyy') , 205, 88  )
     }
 
     
@@ -385,15 +384,15 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Staff Type', 140, 102)
+    doc.text('Staff Type', 140, 96)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teachingNonteaching == null || teacherProfile?.teachingNonteaching == 'null' || teacherProfile?.teachingNonteaching == ''){
-      doc.text('Not Given', 205, 108)
+      doc.text('Not Given', 205, 96)
     }else{
-      doc.text(teacherProfile?.teachingNonteaching == '1' ? 'Teaching' : 'Non-Teaching', 205, 102)
+      doc.text(teacherProfile?.teachingNonteaching == '1' ? 'Teaching' : 'Non-Teaching', 205, 96)
     }
 
    
@@ -642,7 +641,7 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Any kind of Disability', 15, 52)
+    doc.text('Any kind of Disability,if any', 15, 52)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
@@ -885,22 +884,22 @@ console.log(teacherStationChioc['choiceKv1StationName'])
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Whether disciplinary proceedings are in progress.', 15, 145)
+    doc.text('Active stay (in years) refer 2 (i) of Part- 1 of Transfer Policy 2023.', 15, 145)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
-    doc.text(teacherStationChioc['disciplinaryYn'] == '1'?'Yes':'No', 250, 145) 
+    doc.text(this.absencedays, 250, 145) 
     
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Active stay (in years) refer 2 (i) of Part- 1 of Transfer Policy 2023.', 15, 151)
+    doc.text('Whether disciplinary proceedings are in progress.', 15, 151)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12); 
-    doc.text(this.absencedays, 250, 151)  
+    doc.text(teacherStationChioc['disciplinaryYn'] == '1'?'Yes':'No', 250, 151)  
 
 
     
