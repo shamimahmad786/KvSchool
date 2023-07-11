@@ -130,15 +130,16 @@
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <h4 class="titleSet">Date of birth<span class="required-asterisk">*</span></h4>
-                                                           
+
                                                             <mat-form-field style=" width: 100%;">
-                                                                <input matInput [matDatepicker]="pdob" class="form-control" placeholder="dd-MM-YYYY" name="presentKvDate" [max]="maxDate" [max]="maxDate" class="form-control " data-date-format="DD MMMM YYYY" name="dob" formControlName="dob" [(ngModel)]="responseData.teacherDob"   style="text-transform: none;">
-                                                              <mat-datepicker-toggle matSuffix [for]="pdob"></mat-datepicker-toggle>
-                                                              <mat-datepicker #pdob></mat-datepicker>
+                                                                <input matInput [matDatepicker]="pdob" class="form-control" placeholder="dd-MM-YYYY" name="presentKvDate" [max]="maxDate" [max]="maxDate" class="form-control " data-date-format="DD MMMM YYYY" name="dob" formControlName="dob" [(ngModel)]="responseData.teacherDob"
+                                                                    style="text-transform: none;">
+                                                                <mat-datepicker-toggle matSuffix [for]="pdob"></mat-datepicker-toggle>
+                                                                <mat-datepicker #pdob></mat-datepicker>
                                                             </mat-form-field>
 
                                                             <!-- <input type="date" [max]="maxDate" class="form-control " data-date-format="DD MMMM YYYY" name="dob" formControlName="dob" [(ngModel)]="responseData.teacherDob" style="text-transform: none"> -->
-                                                           
+
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.dob').valid && teacherForm.get('profileForm.dob').touched ">
                                                                 <span class="help-block text-danger"
                                                                     *ngIf="teacherForm.get('profileForm.dob').errors['invalidDate'] ">
@@ -257,15 +258,16 @@
                                                             <input type="text" class="form-control " name="presentKvName" formControlName="presentKvName" value="kvCode" [(ngModel)]="kvNameCode" disabled>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            
+
                                                             <h4 class="titleSet">DoJ in Present KV/RO/ZIET/HQ in Present Post <span class="required-asterisk">*</span></h4>
                                                             <!-- <input class="form-control" placeholder="yyyy-mm-dd" (click)="d.toggle()" readonly
                                                             name="dp" [(ngModel)]="responseData.workExperienceWorkStartDatePresentKv" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="responseData.workExperienceWorkStartDatePresentKv" [minDate]="min"
                                                                [maxDate]="max" > -->
-                                                               <mat-form-field style=" width: 100%;">
-                                                                <input matInput [matDatepicker]="dpc" class="form-control" placeholder="dd-MM-YYYY" name="presentKvDate" [max]="maxDate" (change)="profileDateManagement($event, 'a')"  (dateChange)="profileDateManagement($event, 'a')" formControlName="presentKvDate"  [(ngModel)]="responseData.workExperienceWorkStartDatePresentKv"   style="text-transform: none;">
-                                                              <mat-datepicker-toggle matSuffix [for]="dpc"></mat-datepicker-toggle>
-                                                              <mat-datepicker #dpc></mat-datepicker>
+                                                            <mat-form-field style=" width: 100%;">
+                                                                <input matInput [matDatepicker]="dpc" class="form-control" placeholder="dd-MM-YYYY" name="presentKvDate" [max]="maxDate" (change)="profileDateManagement($event, 'a')" (dateChange)="profileDateManagement($event, 'a')" formControlName="presentKvDate" [(ngModel)]="responseData.workExperienceWorkStartDatePresentKv"
+                                                                    style="text-transform: none;">
+                                                                <mat-datepicker-toggle matSuffix [for]="dpc"></mat-datepicker-toggle>
+                                                                <mat-datepicker #dpc></mat-datepicker>
                                                             </mat-form-field>
 
                                                             <!-- <input type="date"  id="a" [max]="maxDate" class="form-control " name="presentKvDate" [max]="maxDate" formControlName="presentKvDate" (blur)="profileDateManagement($event, 'a')"  [(ngModel)]="responseData.workExperienceWorkStartDatePresentKv"   style="text-transform: none"  /> -->
@@ -289,13 +291,14 @@
                                                             <h4 class="titleSet"> DoJ in Present Station Irrespective of Cadre
                                                                 <span class="required-asterisk">*</span>
                                                             </h4>
-                                                          
 
-                                                                <mat-form-field style=" width: 100%;">
-                                                                    <input matInput [matDatepicker]="dpo" class="form-control" placeholder="dd-MM-YYYY" name="presentStationPostDate" [max]="maxDate" (change)="profileDateManagement($event, 'b')" (dateChange)="profileDateManagement($event, 'b')" formControlName="presentStationPostDate"  [(ngModel)]="responseData.workExperiencePositionTypePresentStationStartDate"   style="text-transform: none;">
-                                                                  <mat-datepicker-toggle matSuffix [for]="dpo"></mat-datepicker-toggle>
-                                                                  <mat-datepicker #dpo></mat-datepicker>
-                                                                </mat-form-field>
+
+                                                            <mat-form-field style=" width: 100%;">
+                                                                <input matInput [matDatepicker]="dpo" class="form-control" placeholder="dd-MM-YYYY" name="presentStationPostDate" [max]="maxDate" (change)="profileDateManagement($event, 'b')" (dateChange)="profileDateManagement($event, 'b')" formControlName="presentStationPostDate"
+                                                                    [(ngModel)]="responseData.workExperiencePositionTypePresentStationStartDate" style="text-transform: none;">
+                                                                <mat-datepicker-toggle matSuffix [for]="dpo"></mat-datepicker-toggle>
+                                                                <mat-datepicker #dpo></mat-datepicker>
+                                                            </mat-form-field>
 
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.presentStationPostDate').valid && teacherForm.get('profileForm.presentStationPostDate').touched">
                                                                 <span class="help-block text-danger"
@@ -312,7 +315,7 @@
 
                                                         <div class="col-md-6 mb-3">
                                                             <h4 class="titleSet">Present Post Name(Code)<span class="required-asterisk">*</span></h4>
-                                                            <select class="form-select" aria-label="Default select example" name="presentPostName" formControlName="presentPostName" (change)="teacherTypeSelect($event)"  [(ngModel)]="responseData.lastPromotionPositionType">
+                                                            <select class="form-select" aria-label="Default select example" name="presentPostName" formControlName="presentPostName" (change)="teacherTypeSelect($event)" [(ngModel)]="responseData.lastPromotionPositionType">
                                                                 <!-- <option selected>Select Post</option> -->
                                                                 <option selected disabled>Select</option>
                                                                 <option
@@ -325,17 +328,18 @@
                                                                 Enter Present Post Name(Code)!</span>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <h4 class="titleSet">DoJ in KVS 
+                                                            <h4 class="titleSet">DoJ in KVS
                                                                 <span class="required-asterisk">*</span></h4>
-                                                         
+
                                                             <mat-form-field style=" width: 100%;">
-                                                                <input matInput [matDatepicker]="dpoo" class="form-control" placeholder="dd-MM-YYYY" name="presentPostDate" [max]="maxDate" (blur)="profileDateManagement($event, 'c')" (dateChange)="profileDateManagement($event, 'c')" formControlName="presentPostDate"  [(ngModel)]="responseData.lastPromotionPositionDate"   style="text-transform: none;">
-                                                              <mat-datepicker-toggle matSuffix [for]="dpoo"></mat-datepicker-toggle>
-                                                              <mat-datepicker #dpoo></mat-datepicker>
+                                                                <input matInput [matDatepicker]="dpoo" class="form-control" placeholder="dd-MM-YYYY" name="presentPostDate" [max]="maxDate" (change)="profileDateManagement($event, 'c')" (dateChange)="profileDateManagement($event, 'c')" formControlName="presentPostDate"
+                                                                    [(ngModel)]="responseData.lastPromotionPositionDate" style="text-transform: none;">
+                                                                <mat-datepicker-toggle matSuffix [for]="dpoo"></mat-datepicker-toggle>
+                                                                <mat-datepicker #dpoo></mat-datepicker>
                                                             </mat-form-field>
-                                                           
-                                                           
-                                                           
+
+
+
                                                             <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.presentPostDate').valid 
                                                                 && teacherForm.get('profileForm.presentPostDate').touched ">
                                                                 <span class="help-block text-danger"
@@ -872,8 +876,8 @@
                                                     <div class="col-md-6 my-2">
                                                         <div *ngIf="isVisible">
                                                             <a target="_blank" class="btn  btn-sm btn-green"
-                                                                href="assets/assets/declaration/Annexture_I.pdf"> <i
-                                                                    class='bx bx-file'></i> Annexture I </a>
+                                                                href="assets/assets/declaration/Annexure_I.pdf"> <i
+                                                                    class='bx bx-file'></i> Annexure I </a>
                                                         </div>
 
                                                     </div> -->
@@ -910,7 +914,7 @@
                                                             <h4 class="titleSet">
                                                                 Declaration Format:</h4>
                                                             <div *ngIf="isVisible">
-                                                                <a target="_blank" class="btn  btn-sm btn-green" href="assets/assets/declaration/Annexture_I.pdf"> <i class='bx bx-file'></i> Annexture I </a>
+                                                                <a target="_blank" class="btn  btn-sm btn-green" href="assets/assets/declaration/Annexture_I.pdf"> <i class='bx bx-file'></i> Annexure I </a>
                                                             </div>
 
                                                         </div>
@@ -1260,15 +1264,15 @@
                                                                 <div class="input-group mb-3">
                                                                     <input type="text" class="input-group-text input" name="udiseSchCode" formControlName="udiseSchCode" disabled style="width:70px; height:33px;">
                                                                     <input type="text" class="form-control form-control-sm" name="udiseSchoolName" formControlName="udiseSchoolName" disabled>
-                                                                   
-                                                                   <div *ngIf="i==0">
-                                                                    <button class="btn btn-sm btn-outline-secondary btn-sm" type="button" id="button-addon2" disabled (click)="selectExperianceSchool(i)"> <i
+
+                                                                    <div *ngIf="i==0">
+                                                                        <button class="btn btn-sm btn-outline-secondary btn-sm" type="button" id="button-addon2" disabled (click)="selectExperianceSchool(i)"> <i
                                                                         class="fa fa-search"></i></button>
-                                                                   </div>
-                                                                   <div *ngIf="i!=0">
-                                                                    <button class="btn btn-sm btn-outline-secondary btn-sm" type="button" id="button-addon2" (click)="selectExperianceSchool(i)"> <i
+                                                                    </div>
+                                                                    <div *ngIf="i!=0">
+                                                                        <button class="btn btn-sm btn-outline-secondary btn-sm" type="button" id="button-addon2" (click)="selectExperianceSchool(i)"> <i
                                                                             class="fa fa-search"></i></button>
-                                                                            </div>
+                                                                    </div>
                                                                 </div>
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.udiseSchoolName.errors?.required">
                                                                     Enter KV/RO/ZIET/HQ !</span>
@@ -1303,26 +1307,26 @@
                                                                 <!-- <input id="wordStartDate-{{i}}" type="date" class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (blur)="experienceDataManagement($event,i)" formControlName="workStartDate"
                                                                     style="text-transform: none"> -->
 
-                                                                    <mat-form-field style=" width: 100%;">
-                                                                        <input matInput    [matDatepicker]="si" id="wordStartDate-{{i}}" class="form-control"  class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (change)="experienceDataManagement($event,i)" (dateChange)="experienceDataManagement($event,i)" formControlName="workStartDate" style="text-transform: none">
-                                                                        <mat-datepicker-toggle matSuffix [for]="si"></mat-datepicker-toggle>
-                                                                        <mat-datepicker #si></mat-datepicker>
-                                                                        </mat-form-field>
+                                                                <mat-form-field style=" width: 100%;">
+                                                                    <input matInput [matDatepicker]="si" id="wordStartDate-{{i}}" class="form-control" class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (dateChange)="experienceDataManagement($event,i)" formControlName="workStartDate" style="text-transform: none">
+                                                                    <mat-datepicker-toggle matSuffix [for]="si"></mat-datepicker-toggle>
+                                                                    <mat-datepicker #si></mat-datepicker>
+                                                                </mat-form-field>
 
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.workStartDate.errors?.required">
                                                                     Select Work Start Date!</span>
                                                             </td>
                                                             <td>
-                                                                
+
                                                                 <mat-form-field style=" width: 100%;">
-                                                                    <input matInput   [matDatepicker]="ei" id="wordEndDate-{{i}}" class="form-control"  class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (change)="experienceDataManagement($event,i)" (dateChange)="experienceDataManagement($event,i)" formControlName="workEndDate" style="text-transform: none">
+                                                                    <input matInput [matDatepicker]="ei" id="wordEndDate-{{i}}" class="form-control" class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (dateChange)="experienceDataManagement($event,i)" formControlName="workEndDate" style="text-transform: none">
                                                                     <mat-datepicker-toggle matSuffix [for]="ei"></mat-datepicker-toggle>
                                                                     <mat-datepicker #ei></mat-datepicker>
-                                                                    </mat-form-field>
+                                                                </mat-form-field>
 
                                                                 <!-- <input id="wordEndDate-{{i}}" type="date" class="form-control form-control-sm " [max]="maxDate" name="workEndDate" (blur)="experienceDataManagement($event,i)" formControlName="workEndDate" style="text-transform: none"> -->
-                                                               
-                                                               
+
+
                                                                 <span class="help-block text-danger" *ngIf="quantity.controls.workEndDate.errors?.required">
                                                                     Enter Work End Date!</span>
                                                             </td>
@@ -1944,7 +1948,7 @@
                                                                 Download Declaration Format:</h4>
 
                                                             <div>
-                                                                <a target="_blank" class="btn  btn-sm btn-green" href="assets/assets/declaration/Annexture_II.pdf"> <i class='bx bx-file'></i> Annexture II </a>
+                                                                <a target="_blank" class="btn  btn-sm btn-green" href="assets/assets/declaration/Annexture_II.pdf"> <i class='bx bx-file'></i> Annexure II </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2037,9 +2041,9 @@
                                                     <div class="col-md-3">
                                                         <label class="titleSet">Issue date of medical certificate <span
                                                                 class="required-asterisk">*</span></label>
-                                                       
-                                                       
-                                                                <input type="date" [max]="maxDate" class="form-control" name="medicalCertificateIssueDate" formControlName="medicalCertificateIssueDate" [(ngModel)]="medicalCertificateIssueDateData" style="text-transform: none">
+
+
+                                                        <input type="date" [max]="maxDate" class="form-control" name="medicalCertificateIssueDate" formControlName="medicalCertificateIssueDate" [(ngModel)]="medicalCertificateIssueDateData" style="text-transform: none">
                                                     </div>
 
                                                 </div>
@@ -2073,7 +2077,7 @@
                                                                 Download Declaration Format:</h4>
 
                                                             <div>
-                                                                <a target="_blank" class="btn  btn-sm btn-green" href="assets/assets/declaration/Annexture_III.pdf"> <i class='bx bx-file'></i> Annexture III </a>
+                                                                <a target="_blank" class="btn  btn-sm btn-green" href="assets/assets/declaration/Annexture_III.pdf"> <i class='bx bx-file'></i> Annexure III </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2150,7 +2154,7 @@
                                                                 Download Declaration Format:</h4>
 
                                                             <div>
-                                                                <a target="_blank" class="btn  btn-sm btn-green" href="assets/assets/declaration/Annexture_V.pdf"> <i class='bx bx-file'></i> Annexture V </a>
+                                                                <a target="_blank" class="btn  btn-sm btn-green" href="assets/assets/declaration/Annexture_V.pdf"> <i class='bx bx-file'></i> Annexure V </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2305,7 +2309,7 @@
                                                                 Download Declaration Format:</h4>
 
                                                             <div>
-                                                                <a target="_blank" class="btn  btn-sm btn-green" href="assets/assets/declaration/Annexture_IV.pdf"> <i class='bx bx-file'></i> Annexture IV </a>
+                                                                <a target="_blank" class="btn  btn-sm btn-green" href="assets/assets/declaration/Annexture_IV.pdf"> <i class='bx bx-file'></i> Annexure IV </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2370,10 +2374,10 @@
 
                                                 </div>
                                             </div>
-                                           
+
                                             <div class="row mt-3" style="border-top: 1px dotted;">
-                                                <div class="col-md-5 mb-2 py-3">                                               
-                                                    <h4 class="hover-text titleSet"><span class="text-green">7.</span>Active stay (in years) <span class="required-asterisk">Refer 2 (i) of Part- 1 of Transfer Policy 2023.</span> <i class="fa fa-info-circle fa-lg" aria-hidden="true" style="color: red;"></i> 
+                                                <div class="col-md-5 mb-2 py-3">
+                                                    <h4 class="hover-text titleSet"><span class="text-green">7.</span>Active stay (in years) <span class="required-asterisk">Refer 2 (i) of Part- 1 of Transfer Policy 2023.</span> <i class="fa fa-info-circle fa-lg" aria-hidden="true" style="color: red;"></i>
                                                         <span class="tooltip-text" id="top">Continuous Service at a station as on 1st July for all Stations excluding the period or periods of absence (including any kind of leave other than Maternity leave) from duty exceeding 30 days or more at normal station and 45 days or more at Hard,NER and Priority Station,irrespective of cadre </span>
                                                     </h4>
                                                 </div>
@@ -2525,7 +2529,7 @@
                                                         <td>{{verifyTchTeacherProfileData?.teacherDob | date: 'dd-MM-YYYY'}}</td>
 
                                                     </tr>
-                                                    <tr>                                                    
+                                                    <tr>
                                                         <th>Email</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherEmail}}</td>
 
@@ -2539,7 +2543,7 @@
 
                                                         <!-- <th>Nationality</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherNationality | nationality}}
-                                                        </td> -->                                                    
+                                                        </td> -->
                                                         <th>Present Station Name</th>
                                                         <td>{{stationNameCode}}</td>
 
@@ -2558,12 +2562,12 @@
                                                         <td>{{verifyTchTeacherProfileData?.lastPromotionPositionType}}
                                                         </td>
 
-                                                        
+
                                                         <th>Subject Name</th>
                                                         <td>{{verifyTchTeacherProfileData?.workExperienceAppointedForSubject}}
                                                         </td>
                                                     </tr>
-                                                
+
                                                     <h2 class="px-2 mt-2 text-green">Information</h2>
                                                     <tr>
                                                         <!-- <th>Boold Group</th>
@@ -2782,7 +2786,7 @@
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
-                                                  
+
                                                     <tr>
                                                         <th> Active stay (in years) refer 2 (i) of Part- 1 of Transfer Policy 2023.</th>
                                                         <td>{{teacherStationChioce?.absenceDaysOne}}</td>
@@ -3108,7 +3112,7 @@
                     </div>
                     <div class="col-md-3 " *ngIf="selectHeadQuaterZoneRegion">
                         <!-- <h3>Region</h3> -->
-                        <input type="text" class="form-control form-control-sm" name="udiseSchoolName" formControlName="udiseSchoolName" value="{{selectStationName}}" >
+                        <input type="text" class="form-control form-control-sm" name="udiseSchoolName" formControlName="udiseSchoolName" value="{{selectStationName}}">
                     </div>
 
 
@@ -3663,10 +3667,11 @@
                         <ul class="varify">
 
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" value="1" name="flexRadioDefault" id="flexRadioDefault1" (click)="empAlreadyExist($event)">
+                                <!-- <input class="form-check-input" type="radio" value="1" name="flexRadioDefault" id="flexRadioDefault1" (click)="empAlreadyExist($event)">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Move the teacher from dropbox to your school.
-                                </label>
+                                </label> -->
+                                Contact to Region/HQ
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" value="0" name="flexRadioDefault" id="flexRadioDefault2" (click)="empAlreadyExist($event)">

@@ -871,7 +871,7 @@ debugger
         for (let i = 0; i < this.tchExpList.length; i++) {
           
           if (this.tchExpList[i].workExperienceId == this.workExpId) {
-            ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workStartDate');
+            ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workStartDate').disable();
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workEndDate').disable();
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('groundForTransfer').disable();
 
@@ -2254,6 +2254,9 @@ console.log(this.teacherForm.value.transferRelatedForm)
         // this.outSideService.savePromotion(this.teacherForm.value.promotionDetails).subscribe((res) => {
         // })
       } else {
+        ((this.teacherForm.get('detailsOfPosting') as FormArray).at(0) as FormGroup).get('workStartDate').disable();
+        ((this.teacherForm.get('detailsOfPosting') as FormArray).at(0) as FormGroup).get('positionType').disable();
+        ((this.teacherForm.get('detailsOfPosting') as FormArray).at(0) as FormGroup).get('appointedForSubject').disable();
         Swal.fire(
           'Please enter the required data!',
           '',
@@ -3426,6 +3429,7 @@ this.getMaster(data,event.target.value);
 
 
   experienceDataManagement(event, index) {
+    // alert("called");
     debugger
     ((this.teacherForm.get('detailsOfPosting') as FormArray).at(0) as FormGroup).get('workStartDate').enable();
     for (let i = 0; i < this.teacherForm.value.detailsOfPosting.length - 1; i++) {
@@ -3433,12 +3437,15 @@ this.getMaster(data,event.target.value);
       var dateTo = this.teacherForm.value.detailsOfPosting[i].workEndDate;
       var dateCheck;
       if(event.target.value =='undefined'){
+        // alert("if");
         dateCheck =event.target.value;
         
       }else{
-        dateCheck = moment(event.value._d).format("YYYY-MM-DD");
+        dateCheck = moment(event.value?._d).format("YYYY-MM-DD");
+        // alert("in else");
       }
      
+      // alert(dateCheck);
       var returnType
       if (dateTo == null || dateTo == 'null') {
         returnType = this.dateGreater(dateFrom, dateCheck);
@@ -3452,13 +3459,18 @@ this.getMaster(data,event.target.value);
           'error'
         );
        
-        (<HTMLInputElement>document.getElementById("wordStartDate-" + index)).value = "";
-        (<HTMLInputElement>document.getElementById("wordEndDate-" + index)).value = "";
-        this.teacherForm.value.detailsOfPosting[index].workStartDate = "";
-        this.teacherForm.value.detailsOfPosting[index].workEndDate = "";
-        event.stopPropagation();
-        this.teacherForm.value.detailsOfPosting[index].workStartDate.setValue(null);
-        this.teacherForm.value.detailsOfPosting[index].workEndDate.setValue(null);
+        setTimeout(() => {
+          
+          (<HTMLInputElement>document.getElementById("wordStartDate-" + index)).value = "";
+          (<HTMLInputElement>document.getElementById("wordEndDate-" + index)).value = "";
+          this.teacherForm.value.detailsOfPosting[index].workStartDate = "";
+          this.teacherForm.value.detailsOfPosting[index].workEndDate = "";
+        }, 200);
+
+        // this.teacherForm.value.detailsOfPosting[index].workStartDate.setValue(null);
+        // this.teacherForm.value.detailsOfPosting[index].workEndDate.setValue(null);
+        // event.stopPropagation();
+        
        
       }
     }
@@ -3581,9 +3593,9 @@ if(event.target.value =='undefined' || event.target.value==null){
   check3ProfileDate(a, b, c) {
 debugger;
 
-    var checkA = new Date(a).getDay();
-    var checkB = new Date(b).getDay();
-    var checkC = new Date(c).getDay();
+    var checkA = new Date(a).getTime();
+    var checkB = new Date(b).getTime();
+    var checkC = new Date(c).getTime();
     if (checkC >= checkB && checkC >= checkA && checkB >= checkA) {
       return 1;
     } else {
@@ -3603,9 +3615,12 @@ debugger;
   }
 
   dateCheck(dateFrom, dateTo, dateCheck) {
+    // alert("from--->"+dateFrom+"----to-"+dateTo+"--check--"+dateCheck);
     var from = new Date(dateFrom).getTime();
     var to = new Date(dateTo).getTime();
     var check = new Date(dateCheck).getTime();
+
+    // alert("from--->"+from+"----to-"+to+"--check--"+check);
     if (check > from && check < to) {
       return 0
     } else {
