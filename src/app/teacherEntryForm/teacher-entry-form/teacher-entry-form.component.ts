@@ -18,6 +18,19 @@ import * as moment from 'moment';
 import { TeacherAppPdfService } from 'src/app/kvs/makePdf/teacher-app-pdf.service';
 // import{ExperienceType} from 'src/app/utilities/myPipe/myPipe'
 
+// import {MatNativeDateModule, NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+
+
+// import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material";
+// import {MomentModule} from "ngx-moment";
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
+
+import {
+  MAT_DATE_FORMATS,
+  DateAdapter,
+  MAT_DATE_LOCALE
+} from '@angular/material/core';
+
 declare const onNextClick:any;
 declare const onPreviousClick:any;
 declare const onNextButtonClick:any;
@@ -31,11 +44,29 @@ interface SubjectData {
 }
 
 // import { filter} from 'rxjs/add/operator/filter';
-
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD-MM-YYYY',
+  },
+  display: {
+    dateInput: 'DD-MM-YYYY',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
 @Component({
   selector: 'app-teacher-entry-form',
   templateUrl: './teacher-entry-form-updated.html',
-  styleUrls: ['./teacher-entry-form.component.css']
+  styleUrls: ['./teacher-entry-form.component.css'],
+  providers: [
+
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+
+    
+  ],
 })
 
 
@@ -301,6 +332,7 @@ export class TeacherEntryFormComponent implements OnInit {
   maxDate:any;
   relationWithEmplMdgData:any;
   buttonVisible: boolean = false;
+  formattedDate: string;
   myAppointmnet(event) {
     if (event.target.value == "1") {
       this.onvalid = event.target.value;
@@ -350,13 +382,15 @@ export class TeacherEntryFormComponent implements OnInit {
   }
   constructor(private pdfServive: TeacherAppPdfService, private date: DatePipe, private dataService: DataService, 
     private modalService: NgbModal, private outSideService: OutsideServicesService,
-     private route: ActivatedRoute, private fb: FormBuilder, private formData: FormDataService) {
+     private route: ActivatedRoute, private fb: FormBuilder, private formData: FormDataService,private _adapter: DateAdapter<any>) {
 
 
   }
 
   ngOnInit(): void {
-    
+    // this._adapter.setLocale('de-DE');
+    const date = new Date();
+    this.formattedDate = this.date.transform(date, 'dd-MM-yyyy');
     this.formDataList = this.formData.formData();
     this.transferGroundList = this.formDataList.transferGround
     loadScroller();
@@ -724,6 +758,7 @@ transferRelatedForm: new FormGroup({
    
     if (data != undefined) {
 debugger
+
       return this.fb.group({
         teacherId: data.teacherId,
         workExperienceId: data.workExperienceId,
@@ -734,6 +769,7 @@ debugger
         shiftYn: data.shift_yn,
         udiseSchoolName: [data.udiseSchoolName, [Validators.required]],
         udiseSchCode: [data.udiseSchCode, [Validators.required]],
+        // workStartDate: [data.workStartDate, [Validators.required]],
         workStartDate: [data.workStartDate, [Validators.required]],
         workEndDate:data.workEndDate,
         // natureOfAppointment: [data.natureOfAppointment, [Validators.required]],
@@ -741,6 +777,8 @@ debugger
         appointedForSubject: data.appointedForSubject,
         kvCode:[data.kvCode, [Validators.required]],
       })
+
+      // alert(this.fb.value.workStartDate);
     } else {
 
       return this.fb.group({
@@ -833,7 +871,7 @@ debugger
         for (let i = 0; i < this.tchExpList.length; i++) {
           
           if (this.tchExpList[i].workExperienceId == this.workExpId) {
-            ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workStartDate').disable();
+            ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workStartDate');
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('workEndDate').disable();
             ((this.teacherForm.get('detailsOfPosting') as FormArray).at(i) as FormGroup).get('groundForTransfer').disable();
 
@@ -3393,7 +3431,14 @@ this.getMaster(data,event.target.value);
     for (let i = 0; i < this.teacherForm.value.detailsOfPosting.length - 1; i++) {
       var dateFrom = this.teacherForm.value.detailsOfPosting[i].workStartDate;
       var dateTo = this.teacherForm.value.detailsOfPosting[i].workEndDate;
-      var dateCheck = event.target.value;
+      var dateCheck;
+      if(event.target.value =='undefined'){
+        dateCheck =event.target.value;
+        
+      }else{
+        dateCheck = moment(event.value._d).format("YYYY-MM-DD");
+      }
+     
       var returnType
       if (dateTo == null || dateTo == 'null') {
         returnType = this.dateGreater(dateFrom, dateCheck);
@@ -3406,10 +3451,15 @@ this.getMaster(data,event.target.value);
           '',
           'error'
         );
+       
         (<HTMLInputElement>document.getElementById("wordStartDate-" + index)).value = "";
         (<HTMLInputElement>document.getElementById("wordEndDate-" + index)).value = "";
         this.teacherForm.value.detailsOfPosting[index].workStartDate = "";
         this.teacherForm.value.detailsOfPosting[index].workEndDate = "";
+        event.stopPropagation();
+        this.teacherForm.value.detailsOfPosting[index].workStartDate.setValue(null);
+        this.teacherForm.value.detailsOfPosting[index].workEndDate.setValue(null);
+       
       }
     }
     ((this.teacherForm.get('detailsOfPosting') as FormArray).at(0) as FormGroup).get('workStartDate').disable();
@@ -3418,13 +3468,27 @@ this.getMaster(data,event.target.value);
 
 
   profileDateManagement(event, val) {
-    var date1 = event.target.value
-    var date2 = this.teacherForm.value.profileForm.dob;
+debugger;
+var date1
+var dateVaule
+if(event.target.value =='undefined' || event.target.value==null){
+  
+ date1 = event.target.value.split("-").reverse().join("-");
+ var dateVaule= event.target.value.split("-").reverse().join("-");
+
+}else{
+  date1 = moment(event.value._d).format("DD-MM-YYYY").split("-").reverse().join("-");
+  dateVaule= moment(event.value._d).format("DD-MM-YYYY").split("-").reverse().join("-");
+}
+
+    
+    
+    var date2 =this.teacherForm.value.profileForm.dob;
     var Time = new Date(date1).getTime() - new Date(date2).getTime();
     var Days = Time / (1000 * 3600 * 24); //Diference in Days
 
     if (val == 'a') {
-      var dateA = event.target.value
+      var dateA =dateVaule
       var dateB = this.teacherForm.value.profileForm.presentStationPostDate
       var dateC = this.teacherForm.value.profileForm.presentPostDate
       var returnType
@@ -3438,7 +3502,7 @@ this.getMaster(data,event.target.value);
         returnType = this.check3ProfileDate(dateC, dateB, dateA);
       }
     } else if (val == 'b') {
-      var dateB = event.target.value
+      var dateB = dateVaule;
       var dateA = this.teacherForm.value.profileForm.presentKvDate
       var dateC = this.teacherForm.value.profileForm.presentPostDate
       var returnType
@@ -3453,7 +3517,7 @@ this.getMaster(data,event.target.value);
       }
     } else if (val == 'c') {
       if (Days * 1 >= 6570) {
-        var dateC = event.target.value
+        var dateC = dateVaule;
         var dateA = this.teacherForm.value.profileForm.presentKvDate
         var dateB = this.teacherForm.value.profileForm.presentStationPostDate
         var returnType
@@ -3515,11 +3579,11 @@ this.getMaster(data,event.target.value);
   }
 
   check3ProfileDate(a, b, c) {
+debugger;
 
-
-    var checkA = new Date(a).getTime();
-    var checkB = new Date(b).getTime();
-    var checkC = new Date(c).getTime();
+    var checkA = new Date(a).getDay();
+    var checkB = new Date(b).getDay();
+    var checkC = new Date(c).getDay();
     if (checkC >= checkB && checkC >= checkA && checkB >= checkA) {
       return 1;
     } else {

@@ -81,9 +81,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { FreezeMastersComponent } from './components/freeze-masters/freeze-masters.component';
 import { MaterialModule } from './mat/material/material.module';
 import { StationMasterModule } from './components/station-master/station-master.module';
-
-
-
+// import { MAT_DATE_FORMATS } from '@angular/material/';
+// import { DatePickerModule } from 'angular-material-datepicker';
 
 
 // import { MatStepperModule} from '@angular/material/stepper';
@@ -192,8 +191,12 @@ import { StationMasterModule } from './components/station-master/station-master.
     MatMenuModule,
     MatSortModule,
     MatButtonModule,
-    MaterialModule,
+    MaterialModule
+    // NgbDatepickerModule,
+  
     
+    // BsDatepickerModule.forRoot()
+    // DatePickerModule
 
     // TranslateModule.forRoot({
     //   loader: {
@@ -208,7 +211,8 @@ import { StationMasterModule } from './components/station-master/station-master.
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }],
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
