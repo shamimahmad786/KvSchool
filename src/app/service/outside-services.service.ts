@@ -48,7 +48,7 @@ export class OutsideServicesService {
   }
 
   saveSingleTeacher(data: any): Observable<Response> {
-    
+    debugger
     var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
     var headers = new HttpHeaders({
       'Authorization':token,
@@ -459,7 +459,7 @@ export class OutsideServicesService {
     
     // return this._http.post<any>('https://pgi.udiseplus.gov.in/UserService/api/user/create-kvuser', data)
     // return this._http.post<any>('https://kvsdemo.udiseplus.gov.in/UserService/api/user/create-kvuser', data)
-    return this._http.post<any>(environment.BASE_URL_MEUSER + "create-kvuser", data)
+    return this._http.post<any>(environment.LOGIN_URL_JWT + "createKvUser", data)
   }
 
   fetchCorrectionInitiatedDetails(data){
@@ -789,9 +789,13 @@ return this._http.post<any>(environment.BASE_URL_DATA_TRANSFER+ "uploadDocument"
 
 
 resetPassword(data){
- 
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token, 
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
   // return this._http.post<any>('http://10.25.26.251:8090/meuser/api/user/', data);
-  return this._http.post<any>(environment.BASE_URL_MEUSER + "resetPassword", data)
+  return this._http.post<any>(environment.LOGIN_URL_JWT + "resetPassword", data)
 
   // return this._http.post<any>('https://pgi.udiseplus.gov.in/UserService/api/user/resetPassword', data);
   // return this._http.post<any>('https://kvsdemo.udiseplus.gov.in/UserService/api/user/resetPassword', data);

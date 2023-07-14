@@ -1602,3 +1602,7 @@ i.bx.bx-message-square-x:hover {
         margin: 0px auto;
     }
 }
+
+.mat-form-field-infix {
+    border-top: none !important; 
+  }

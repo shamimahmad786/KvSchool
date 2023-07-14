@@ -277,7 +277,7 @@
                                                                     Enter a valid date!
                                                                 </span>
                                                             <span class="help-block text-danger" *ngIf="teacherForm.get('profileForm.presentKvDate').errors['required'] ">
-                                                                DoJ in Present KV/RO/ZIET/HQ in Present Post!
+                                                                Enter DoJ in Present KV/RO/ZIET/HQ in Present Post!
                                                                 </span>
                                                             </span>
                                                         </div>
@@ -883,11 +883,13 @@
                                                     </div> -->
 
                                                     <div class="col-md-6 mt-2" *ngIf="isVisible">
-                                                        <h4 class="titleSet">Upload PwD Certificate In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload PwD Certificate In PDF (Max 500 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
-                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (blur)="handleFileInput($event.target.files, '4')">
+                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="500" accept=".pdf" (blur)="handleFileInput($event.target.files, '4')" #Physically_Handicap_Certificate>
                                                             <button class="btn btn-outline-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUpload(4)">Upload</button>
                                                         </div>
+
+                                                        <span class="help-block text-danger" *ngIf="fileUpload">Please upload the file</span>
 
                                                     </div>
                                                     <div *ngIf="documentUploadArray[4]?.docName == 'Physically_Handicap_Certificate.pdf' && isVisible" class="mt-2 col-md-3">
@@ -1167,7 +1169,7 @@
                                                                    (!teacherForm.get('personalInfoForm.spouseName').valid ||
                                                                    !teacherForm.get('personalInfoForm.spouseStationName').valid))||(!teacherForm.get('personalInfoForm.crspndncPinCode').valid ||
                                                                    (teacherForm.get('personalInfoForm.prmntPinCode').status != 'VALID' && teacherForm.get('personalInfoForm.prmntPinCode').status != 'DISABLED') ||
-                                                                   (documentUploadArray[4]?.docName != 'Physically_Handicap_Certificate.pdf' &&  teacherForm.get('personalInfoForm.disabilityYN').value == '1'))) || !allowEdit" type="submit" id="submit2"
+                                                                   (documentUploadArray[4]?.docName != 'Physically_Handicap_Certificate.pdf' &&  teacherForm.get('personalInfoForm.disabilityYN').value == '1'))) || !allowEdit || (isVisible ? fileUpload : false)" type="submit" id="submit2"
                                     value="Save & Next" class="action-save  me-2" />
 
                             </div>
@@ -1923,11 +1925,15 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload Spouse Declaration In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload Spouse Declaration In PDF (Max 500 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
-                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '5')">
+                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="500" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '5')" #spouseFile>
                                                             <button [disabled]="enableUploadButtonRelatedForm5" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(5)">Upload</button>
                                                         </div>
+
+                                                        <span class="help-block text-danger" *ngIf="fileUpgkFilebenefit">Please upload the file</span>
+
+                                                        
 
                                                     </div>
                                                     <div *ngIf="documentUploadArray[5]?.docName == 'Spouse_Declaration.pdf'" class="col-md-4">
@@ -2050,13 +2056,16 @@
 
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload Medical Certificate In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload Medical Certificate In PDF (Max 500 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
-                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '0')">
+                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="500" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '0')" #Medical_Certificate>
                                                             <button [disabled]="enableUploadButtonRelatedForm0" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(0)">Upload</button>
                                                         </div>
 
+                                                        <span class="help-block text-danger" *ngIf="fileUpgkFilemMedical">Please upload the file</span>
+
                                                     </div>
+
                                                     <div *ngIf="documentUploadArray[0]?.docName == 'Medical_Certificate.pdf'" class="col-md-4">
                                                         <h4 class="titleSet">Uploaded Document</h4>
                                                         <div>
@@ -2127,11 +2136,13 @@
                                                 <div class="row">
 
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload SP Declaration In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload SP Declaration In PDF (Max 500 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
-                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '6')">
+                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="500" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '6')" #Single_Parent_Declaration>
                                                             <button [disabled]="enableUploadButtonRelatedForm6" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(6)">Upload</button>
                                                         </div>
+
+                                                        <span class="help-block text-danger" *ngIf="fileUpspGround">Please upload the file</span>
 
                                                     </div>
                                                     <div *ngIf="documentUploadArray[6]?.docName == 'Single_Parent_Declaration.pdf'" class="col-md-4">
@@ -2211,11 +2222,13 @@
 
                                                 <div class="row">
                                                     <div class="col-md-5">
-                                                        <h4 class="titleSet">Upload DFP Certificate Issued by Compitent Authority In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload DFP Certificate Issued by Compitent Authority In PDF (Max 500 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
-                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '7')">
+                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="500" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '7')" #DFP_Declaration>
                                                             <button [disabled]="enableUploadButtonRelatedForm7" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(7)">Upload</button>
                                                         </div>
+
+                                                        <span class="help-block text-danger" *ngIf="fileUpdfpGround">Please upload the file</span>
 
                                                     </div>
                                                     <div *ngIf="documentUploadArray[7]?.docName == 'DFP_Declaration.pdf'" class="col-md-4">
@@ -2279,17 +2292,19 @@
                                                     <div class="col-md-3">
                                                         <h4 class="titleSet">Percentage of disability<span class="required-asterisk">*</span>
                                                         </h4>
-                                                        <input type="text" class="form-control mb-3" id="careGiverDisabilityPrcnt" formControlName="careGiverDisabilityPrcnt" name="careGiverDisabilityPrcnt" maxlength="3" max="100" min="0">
+                                                        <input type="text" class="form-control mb-3" id="careGiverDisabilityPrcnt" formControlName="careGiverDisabilityPrcnt" name="careGiverDisabilityPrcnt" maxlength="3" max="100" min="0" (input)="checkPercentageOfDisablity($event)">
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload Disability Certificate In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload Disability Certificate In PDF (Max 500 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
-                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '2')">
+                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="500" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '2')" #Disability_Certificate>
                                                             <button [disabled]="enableUploadButtonRelatedForm2" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(2)">Upload</button>
                                                         </div>
+
+                                                        <span class="help-block text-danger" *ngIf="fileUpcareGiver">Please upload the file</span>
 
                                                     </div>
                                                     <div *ngIf="documentUploadArray[2]?.docName == 'Disability_Certificate.pdf'" class="col-md-4">
@@ -2354,11 +2369,13 @@
                                                     </div>
 
                                                     <div class="col-md-4">
-                                                        <h4 class="titleSet">Upload NJCM/RJCM Office Order In PDF (Max 200 KB)<span class="required-asterisk">*</span></h4>
+                                                        <h4 class="titleSet">Upload NJCM/RJCM Office Order In PDF (Max 500 KB)<span class="required-asterisk">*</span></h4>
                                                         <div class="input-group">
-                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="200" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '8')">
+                                                            <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="500" accept=".pdf" (change)="handledeclarationRelatedFormFileInput($event.target.files, '8')" #NJCM_RJCM_Declaration>
                                                             <button [disabled]="enableUploadButtonRelatedForm8" class="btn btn-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUploadRelatedForm(8)">Upload</button>
                                                         </div>
+
+                                                        <span class="help-block text-danger" *ngIf="fileUppositionHeld">Please upload the file</span>
 
                                                     </div>
                                                     <div *ngIf="documentUploadArray[8]?.docName == 'NJCM_RJCM_Declaration.pdf'" class="col-md-4">
@@ -2384,7 +2401,7 @@
 
                                                 <div class="col-md-1 mb-2 py-3">
                                                     <div class="input-group ">
-                                                        <input type="text" class="form-control  mb-3" id="absenceDaysOne" formControlName="absenceDaysOne" value="0" name="absenceDaysOne" maxlength="2">
+                                                        <input type="text" class="form-control  mb-3" id="absenceDaysOne" formControlName="absenceDaysOne" value="0" name="absenceDaysOne" (blur)="checkActiveStaty($event)" maxlength="2">
                                                     </div>
 
                                                 </div>
@@ -2474,10 +2491,10 @@
                                 !teacherForm.get('transferRelatedForm.careGiverRelation').valid || 
                                 !teacherForm.get('transferRelatedForm.careGiverDisabilityName').valid || 
                                 !teacherForm.get('transferRelatedForm.careGiverDisabilityPrcnt').valid) && careGiver) || ((!teacherForm.get('transferRelatedForm.positionOfNjcmRjcm').valid 
-                               ) && positionHeld) ||
+                               ) && positionHeld) || !teacherForm.get('transferRelatedForm.absenceDaysOne').valid ||
                                 ((!teacherForm.get('transferRelatedForm.childDifferentName').valid || 
                                 !teacherForm.get('transferRelatedForm.childDifferentDisabilityName').valid || 
-                                !teacherForm.get('transferRelatedForm.childDifferentDisabilityPrcnt').valid) && abledChild) || buttonVisible!=true || !allowEdit " type="submit" id="submit4" value="Save & Next" class=" action-save me-2 mt-2" />
+                                !teacherForm.get('transferRelatedForm.childDifferentDisabilityPrcnt').valid) && abledChild) || buttonVisible!=true || !allowEdit || (gkFilebenefit ? fileUpgkFilebenefit : false) || (gkFilemMedical ? fileUpgkFilemMedical : false) || (spGround ? fileUpspGround : false) || (dfpGround ? fileUpdfpGround : false) || (careGiver ? fileUpcareGiver : false) || (positionHeld ? fileUppositionHeld : false)" type="submit" id="submit4" value="Save & Next" class=" action-save me-2 mt-2" />
 
                                 <!-- <input 
                                         type="submit" id="submit4" value="Save"
@@ -2929,10 +2946,9 @@
                                 <!-- <button style="background-color: #24695c; color: white;" type="button" class="btn mt-2 float-right" >
                                     
                                   </button> -->
-
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                                 <!-- <input type="submit" id="submit1" value="Save & Next" class="next action-button" /> -->
-                                <input [disabled]="!confirmEnable || !allowEdit" type="submit" id="submit33" value="Confirm" class="action-save1  me-2" />
+                                      <input [disabled]="!confirmEnable || !allowEdit" type="submit" id="submit33" value="Confirm" class="action-save1  me-2" />
                                 <!-- <input type="submit" id="submit12" value="Save Confirm" class=" action-button" /> -->
 
                                 <!-- <input type="button" class="action-button" value="Confirm"
@@ -3048,6 +3064,7 @@
                             <option value="2">ZIET</option>
                             <option value="3">REGION</option>
                             <option value="1">SCHOOL</option>
+                            <option value="5">DEPUTATION</option>
                         </select>
                     </div>
                     <div class="col-md-3 " *ngIf="headQuaterShow">
@@ -3066,11 +3083,12 @@
                         <select class="form-select form-select-sm" aria-label="Default select example" (change)="getStationByHqId($event)">
                             <option selected disabled> Select Zite</option>
                             <option *ngFor="let data of zoneList; let i=index;" value="{{data.kv_code}}">
-                                {{data.kv_name}}
+                                {{data.kv_name}}eeeee
                             </option>
 
                         </select>
                     </div>
+
                     <div class="col-md-3 " *ngIf="regionShow">
                         <!-- <h3>Region</h3> -->
                         <select class="form-select form-select-sm" aria-label="Default select example" (change)="getStationByHqId($event)">

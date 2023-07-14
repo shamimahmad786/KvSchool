@@ -54,6 +54,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_name = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.user_name;
+    setTimeout(() => {
+      this.changePaswordForm.patchValue({
+        userId:this.user_name
+      })
+    }, 100)
     const  data = {
       userId:this.user_name
     }
@@ -85,7 +90,7 @@ export class ProfileComponent implements OnInit {
       }
     }
     this.changePaswordForm = new FormGroup({
-     
+      'userId': new FormControl(''),
       'oldPassword': new FormControl('', Validators.required),
       'newPassword': new FormControl('', [Validators.required, Validators.maxLength(12), Validators.minLength(8)]),
       'confirmPassword': new FormControl('', [Validators.required, Validators.maxLength(12), Validators.minLength(8), this.checkConfirmPassword.bind(this)])

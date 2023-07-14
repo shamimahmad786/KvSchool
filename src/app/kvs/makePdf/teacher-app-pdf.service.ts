@@ -4,6 +4,7 @@ import { BloodGroupPipe, DisabilityPipe, TransferGroundPipe } from '../../utilit
 import 'jspdf-autotable';
 import autoTable from 'jspdf-autotable';
 import { DatePipe } from '@angular/common';
+import { upperCase } from '@rxweb/reactive-form-validators';
 
 @Injectable({
   providedIn: 'root'
@@ -77,7 +78,7 @@ export class TeacherAppPdfService {
      // workExperienceTemp.push(workExperience[i]?.natureOfAppointment == '1'?'Regular':'Not Applicable')
       workExperienceTemp.push(workExperience[i]?.positionType)
       workExperienceTemp.push(workExperience[i]?.appointedForSubject)
-      workExperienceTemp.push(workExperience[i].groundForTransfer == 'null' ? '':workExperience[i]?.groundForTransfer)
+      workExperienceTemp.push(workExperience[i].groundForTransfer == 'null' ? '':workExperience[i]?.groundForTransfer.toUpperCase())
       this.workExperienceArray.push(workExperienceTemp)
     }
 
@@ -111,7 +112,7 @@ export class TeacherAppPdfService {
     // doc.setTextColor(0, 0, 0);
     // doc.setFontSize(10);
     // if(teacherProfile?.currentUdiseSchCode == null || teacherProfile?.currentUdiseSchCode == 'null' || teacherProfile?.currentUdiseSchCode == ''){
-    //   doc.text('Not Given', 85, 52)
+    //   doc.text('NOT GIVEN', 85, 52)
     // }else{
     //   doc.text(teacherProfile?.currentUdiseSchCode, 85, 52)
     // }
@@ -127,7 +128,7 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(kvNameCode == null || kvNameCode == 'null' || kvNameCode == ''){
-      doc.text('Not Given', 85, 52)
+      doc.text('NOT GIVEN', 85, 52)
     }else{
       doc.text(kvNameCode, 85, 52)
     }
@@ -144,7 +145,7 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherEmployeeCode == null || teacherProfile?.teacherEmployeeCode == 'null' || teacherProfile?.teacherEmployeeCode == ''){
-      doc.text('Not Given', 205, 52)
+      doc.text('NOT GIVEN', 205, 52)
     }else{
       doc.text(teacherProfile?.teacherEmployeeCode, 205, 52)
     }
@@ -160,7 +161,7 @@ export class TeacherAppPdfService {
     // doc.setTextColor(0, 0, 0);
     // doc.setFontSize(10);
     // if(tchId == null ||tchId == 'null' || tchId == ''){
-    //   doc.text('Not Given', 205, 59)
+    //   doc.text('NOT GIVEN', 205, 59)
     // }else{
     //   doc.text(tchId, 205, 59)
     // }
@@ -177,9 +178,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherName == null || teacherProfile?.teacherName == 'null' || teacherProfile?.teacherName == ''){
-      doc.text('Not Given', 85, 60)
+      doc.text('NOT GIVEN', 85, 60)
     }else{
-      doc.text(teacherProfile?.teacherName, 85, 60)
+      doc.text(teacherProfile?.teacherName.toUpperCase(), 85, 60,)
     }
 
  
@@ -193,9 +194,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherGender == null || teacherProfile?.teacherGender == 'null' || teacherProfile?.teacherGender == ''){
-      doc.text('Not Given', 205, 60)
+      doc.text('NOT GIVEN', 205, 60)
     }else{
-      doc.text(teacherProfile?.teacherGender == '1' ? 'Male' : 'Female', 205, 60)
+      doc.text(teacherProfile?.teacherGender == '1' ? 'MALE' : 'FEMALE', 205, 60)
     }
 
    
@@ -210,7 +211,7 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherDob == null || teacherProfile?.teacherDob == 'null' || teacherProfile?.teacherDob == ''){
-      doc.text('Not Given', 85, 67)
+      doc.text('NOT GIVEN', 85, 67)
     }else{
       doc.text(this.date.transform(new Date(teacherProfile?.teacherDob ), 'dd-MM-yyyy'), 85, 67)
     }
@@ -226,9 +227,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherEmail == null || teacherProfile?.teacherEmail == 'null' || teacherProfile?.teacherEmail == ''){
-      doc.text('Not Given', 205, 67)
+      doc.text('NOT GIVEN', 205, 67)
     }else{
-      doc.text(teacherProfile?.teacherEmail, 205, 67)
+      doc.text(teacherProfile?.teacherEmail.toUpperCase(), 205, 67)
     }
 
   
@@ -243,7 +244,7 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherMobile == null || teacherProfile?.teacherMobile == 'null' || teacherProfile?.teacherMobile == ''){
-      doc.text('Not Given', 85, 74)
+      doc.text('NOT GIVEN', 85, 74)
     }else{
       doc.text(teacherProfile?.teacherMobile, 85, 74)
     }
@@ -275,9 +276,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.maritalStatus == null || teacherProfile?.maritalStatus == 'null' || teacherProfile?.maritalStatus == ''){
-      doc.text('Not Given', 85, 81)
+      doc.text('NOT GIVEN', 85, 81)
     }else{
-      doc.text(teacherProfile?.maritalStatus == '1' ? 'Married' : 'Single', 85, 81)
+      doc.text(teacherProfile?.maritalStatus == '1' ? 'MARRIED' : 'SINGLE', 85, 81)
     }
 
     
@@ -291,9 +292,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(stationNameCode == null || stationNameCode == 'null' || stationNameCode == ''){
-      doc.text('Not Given', 205, 75)
+      doc.text('NOT GIVEN', 205, 75)
     }else{
-      doc.text(stationNameCode, 205, 75)
+      doc.text(stationNameCode.toUpperCase(), 205, 75)
     }
 
     
@@ -308,7 +309,7 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.workExperiencePositionTypePresentStationStartDate == null || teacherProfile?.workExperiencePositionTypePresentStationStartDate == 'null' || teacherProfile?.workExperiencePositionTypePresentStationStartDate == ''){
-      doc.text('Not Given', 85, 88)
+      doc.text('NOT GIVEN', 85, 88)
     }else{
       doc.text(this.date.transform(new Date(teacherProfile?.workExperiencePositionTypePresentStationStartDate ), 'dd-MM-yyyy') , 105, 88)
     }
@@ -324,7 +325,7 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.workExperienceWorkStartDatePresentKv == null || teacherProfile?.workExperienceWorkStartDatePresentKv == 'null' || teacherProfile?.workExperienceWorkStartDatePresentKv == ''){
-      doc.text('Not Given', 85, 94)
+      doc.text('NOT GIVEN', 85, 94)
     }else{
       doc.text(this.date.transform(new Date( teacherProfile?.workExperienceWorkStartDatePresentKv ), 'dd-MM-yyyy'), 105, 94)
     }
@@ -341,9 +342,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.lastPromotionPositionType == null || teacherProfile?.lastPromotionPositionType == 'null' || teacherProfile?.lastPromotionPositionType == ''){
-      doc.text('Not Given', 85, 101)
+      doc.text('NOT GIVEN', 85, 101)
     }else{
-      doc.text(teacherProfile?.lastPromotionPositionType, 85, 101)
+      doc.text(teacherProfile?.lastPromotionPositionType.toUpperCase(), 85, 101)
     }
 
     
@@ -357,7 +358,7 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.lastPromotionPositionDate == null || teacherProfile?.lastPromotionPositionDate == 'null' || teacherProfile?.lastPromotionPositionDate == ''){
-      doc.text('Not Given', 205, 88)
+      doc.text('NOT GIVEN', 205, 88)
     }else{
       doc.text(this.date.transform(new Date(teacherProfile?.lastPromotionPositionDate ), 'dd-MM-yyyy') , 205, 88  )
     }
@@ -374,9 +375,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.workExperienceAppointedForSubject == null || teacherProfile?.workExperienceAppointedForSubject == 'null' || teacherProfile?.workExperienceAppointedForSubject == ''){
-      doc.text('Not Given', 85, 108)
+      doc.text('NOT GIVEN', 85, 108)
     }else{
-      doc.text(teacherProfile?.workExperienceAppointedForSubject, 85, 108)
+      doc.text(teacherProfile?.workExperienceAppointedForSubject.toUpperCase(), 85, 108)
     }
 
    
@@ -390,9 +391,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teachingNonteaching == null || teacherProfile?.teachingNonteaching == 'null' || teacherProfile?.teachingNonteaching == ''){
-      doc.text('Not Given', 205, 96)
+      doc.text('NOT GIVEN', 205, 96)
     }else{
-      doc.text(teacherProfile?.teachingNonteaching == '1' ? 'Teaching' : 'Non-Teaching', 205, 96)
+      doc.text(teacherProfile?.teachingNonteaching == '1' ? 'TEACHING' : 'NON-TEACHING', 205, 96)
     }
 
    
@@ -418,7 +419,7 @@ export class TeacherAppPdfService {
     // doc.setTextColor(0, 0, 0);
     // doc.setFontSize(10);
     // if(teacherProfile?.teacherBloodGroup == null || teacherProfile?.teacherBloodGroup == 'null' || teacherProfile?.teacherBloodGroup == ''){
-    //   doc.text('Not Given', 85, 132)
+    //   doc.text('NOT GIVEN', 85, 132)
     // }else{
     //   doc.text(bloodGroupPipe.transform(teacherProfile?.teacherBloodGroup), 85, 132)
     // }
@@ -433,7 +434,7 @@ export class TeacherAppPdfService {
     // doc.setTextColor(0, 0, 0);
     // doc.setFontSize(10);
     // if(teacherProfile?.teacherPanNumber == null || teacherProfile?.teacherPanNumber == 'null' || teacherProfile?.teacherPanNumber == ''){
-    //   doc.text('Not Given', 205, 132)
+    //   doc.text('NOT GIVEN', 205, 132)
     // }else{
     //   doc.text(teacherProfile?.teacherPanNumber, 205, 132)
     // }
@@ -449,9 +450,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherCorrespondenceAddress == null || teacherProfile?.teacherCorrespondenceAddress == 'null' || teacherProfile?.teacherCorrespondenceAddress == ''){
-      doc.text('Not Given', 85, 125)
+      doc.text('NOT GIVEN', 85, 125)
     }else{
-      doc.text(teacherProfile?.teacherCorrespondenceAddress, 85, 125)
+      doc.text(teacherProfile?.teacherCorrespondenceAddress.toUpperCase(), 85, 125)
     }
 
     
@@ -476,9 +477,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherCorrespondenceState == null || teacherProfile?.teacherCorrespondenceState == 'null' || teacherProfile?.teacherCorrespondenceState == ''){
-      doc.text('Not Given', 85, 132)
+      doc.text('NOT GIVEN', 85, 132)
     }else{
-      doc.text(teacherProfile?.teacherCorrespondenceState, 85, 132)
+      doc.text(teacherProfile?.teacherCorrespondenceState.toUpperCase(), 85, 132)
     }
 
     
@@ -492,9 +493,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherCorrespondenceDistrict == null || teacherProfile?.teacherCorrespondenceDistrict == 'null' || teacherProfile?.teacherCorrespondenceDistrict == ''){
-      doc.text('Not Given', 205, 132)
+      doc.text('NOT GIVEN', 205, 132)
     }else{
-      doc.text(teacherProfile?.teacherCorrespondenceDistrict, 205, 132)
+      doc.text(teacherProfile?.teacherCorrespondenceDistrict.toUpperCase(), 205, 132)
     }
 
     
@@ -509,7 +510,7 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherCorrespondencePin == null || teacherProfile?.teacherCorrespondencePin == 'null' || teacherProfile?.teacherCorrespondencePin == ''){
-      doc.text('Not Given', 85, 139)
+      doc.text('NOT GIVEN', 85, 139)
     }else{
       doc.text(teacherProfile?.teacherCorrespondencePin, 85, 139)
     }
@@ -530,15 +531,15 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Permanent Address', 15, 148)
+    doc.text('Home Town Address as per Service Record	', 15, 148)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherPermanentAddress == null || teacherProfile?.teacherPermanentAddress == 'null' || teacherProfile?.teacherPermanentAddress == ''){
-      doc.text('Not Given', 85, 148)
+      doc.text('NOT GIVEN', 85, 148)
     }else{
-      doc.text(teacherProfile?.teacherPermanentAddress, 85, 148)
+      doc.text(teacherProfile?.teacherPermanentAddress.toUpperCase(), 85, 148)
     }
 
    
@@ -557,15 +558,15 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Permanent State', 15, 155)
+    doc.text('State', 15, 155)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherParmanentState == null || teacherProfile?.teacherParmanentState == 'null' || teacherProfile?.teacherParmanentState == ''){
-      doc.text('Not Given', 85, 155)
+      doc.text('NOT GIVEN', 85, 155)
     }else{
-      doc.text(teacherProfile?.teacherParmanentState, 85, 155)
+      doc.text(teacherProfile?.teacherParmanentState.toUpperCase(), 85, 155)
     }
 
     
@@ -573,15 +574,15 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Permanent District', 140, 155)
+    doc.text('District', 140, 155)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherPermanentDistrict == null || teacherProfile?.teacherPermanentDistrict == 'null' || teacherProfile?.teacherPermanentDistrict == ''){
-      doc.text('Not Given', 205, 155)
+      doc.text('NOT GIVEN', 205, 155)
     }else{
-      doc.text(teacherProfile?.teacherPermanentDistrict, 205, 155)
+      doc.text(teacherProfile?.teacherPermanentDistrict.toUpperCase(), 205, 155)
     }
 
    
@@ -590,13 +591,13 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');
-    doc.text('Permanent Pin Code', 15, 162)
+    doc.text('Pin Code', 15, 162)
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherPermanentPin == null || teacherProfile?.teacherPermanentPin == 'null' || teacherProfile?.teacherPermanentPin == ''){
-      doc.text('Not Given', 85, 162)
+      doc.text('NOT GIVEN', 85, 162)
     }else{
       doc.text(teacherProfile?.teacherPermanentPin, 85, 162)
     }
@@ -647,9 +648,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherDisabilityYn == null || teacherProfile?.teacherDisabilityYn == 'null' || teacherProfile?.teacherDisabilityYn == ''){
-      doc.text('Not Given', 85, 52)
+      doc.text('NOT GIVEN', 85, 52)
     }else{
-      doc.text(teacherProfile?.teacherDisabilityYn == '1' ? 'Yes' : 'No', 85, 52)
+      doc.text(teacherProfile?.teacherDisabilityYn == '1' ? 'YES' : 'NO', 85, 52)
     }
 
     
@@ -663,9 +664,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherDisabilityType == null || teacherProfile?.teacherDisabilityType == 'null' || teacherProfile?.teacherDisabilityType == ''){
-      doc.text('Not Given', 205, 52)
+      doc.text('NOT GIVEN', 205, 52)
     }else{
-      doc.text(disabilityPipe.transform(teacherProfile?.teacherDisabilityType), 205, 52)
+      doc.text(disabilityPipe.transform(teacherProfile?.teacherDisabilityType).toUpperCase(), 205, 52)
     }
 
    
@@ -685,9 +686,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseStatus == null || teacherProfile?.spouseStatus == 'null' || teacherProfile?.spouseStatus == ''){
-      doc.text('Not Given', 85, 72)
+      doc.text('NOT GIVEN', 85, 72)
     }else{
-      doc.text(teacherProfile?.spouseStatus == '1' ? 'Yes' : 'No', 85, 72)
+      doc.text(teacherProfile?.spouseStatus == '1' ? 'YES' : 'NO', 85, 72)
     }
 
    
@@ -701,9 +702,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseStatus == null || teacherProfile?.spouseStatus == 'null' || teacherProfile?.spouseStatus == ''){
-      doc.text('Not Given', 205, 75)
+      doc.text('NOT GIVEN', 205, 75)
     }else{
-      doc.text(teacherProfile?.spouseStatus == '2' ? 'Yes' : 'No', 205, 75)
+      doc.text(teacherProfile?.spouseStatus == '2' ? 'YES' : 'NO', 205, 75)
     }
 
    
@@ -718,9 +719,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseStatus == null || teacherProfile?.spouseStatus == 'null' || teacherProfile?.spouseStatus == ''){
-      doc.text('Not Given', 85, 78)
+      doc.text('NOT GIVEN', 85, 78)
     }else{
-      doc.text(teacherProfile?.spouseStatus == '3' ? 'Yes' : 'No', 85, 78)
+      doc.text(teacherProfile?.spouseStatus == '3' ? 'YES' : 'NO', 85, 78)
     }
 
     
@@ -734,9 +735,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseStatus == null || teacherProfile?.spouseStatus == 'null' || teacherProfile?.spouseStatus == ''){
-      doc.text('Not Given', 205, 81)
+      doc.text('NOT GIVEN', 205, 81)
     }else{
-      doc.text(teacherProfile?.spouseStatus == '4' ? 'Yes' : 'No', 205, 81)
+      doc.text(teacherProfile?.spouseStatus == '4' ? 'YES' : 'NO', 205, 81)
     }
 
     
@@ -751,7 +752,7 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseEmpCode == null || teacherProfile?.spouseEmpCode == 'null' || teacherProfile?.spouseEmpCode == ''){
-      doc.text('Not Given', 85, 84)
+      doc.text('NOT GIVEN', 85, 84)
     }else{
       doc.text(teacherProfile?.spouseEmpCode, 85, 84)
     }
@@ -767,9 +768,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseName == null || teacherProfile?.spouseName == 'null' || teacherProfile?.spouseName == ''){
-      doc.text('Not Given', 205, 87)
+      doc.text('NOT GIVEN', 205, 87)
     }else{
-      doc.text(teacherProfile?.spouseName, 205, 87)
+      doc.text(teacherProfile?.spouseName.toUpperCase(), 205, 87)
     }
 
    
@@ -784,9 +785,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spousePost == null || teacherProfile?.spousePost == 'null' || teacherProfile?.spousePost == ''){
-      doc.text('Not Given', 85, 90)
+      doc.text('NOT GIVEN', 85, 90)
     }else{
-      doc.text(teacherProfile?.spousePost, 85, 90)
+      doc.text(teacherProfile?.spousePost.toUpperCase(), 85, 90)
     }
 
     
@@ -800,9 +801,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.spouseStationName == null || teacherProfile?.spouseStationName == 'null' || teacherProfile?.spouseStationName == ''){
-      doc.text('Not Given', 205, 93)
+      doc.text('NOT GIVEN', 205, 93)
     }else{
-      doc.text(teacherProfile?.spouseStationName, 205, 93);
+      doc.text(teacherProfile?.spouseStationName.toUpperCase(), 205, 93);
     }
 
    
@@ -824,7 +825,7 @@ export class TeacherAppPdfService {
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
-    doc.text(teacherStationChioc['spouseKvsYnD'] == '1'?'Yes':'No', 250, 110)
+    doc.text(teacherStationChioc['spouseKvsYnD'] == '1'?'YES':'NO', 250, 110)
 
 
     doc.setTextColor(0, 0, 0);
@@ -835,7 +836,7 @@ export class TeacherAppPdfService {
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
-    doc.text(teacherStationChioc['personalStatusMdgD'] == '1'?'Yes':'No', 250, 116) 
+    doc.text(teacherStationChioc['personalStatusMdgD'] == '1'?'YES':'NO', 250, 116) 
 
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
@@ -845,7 +846,7 @@ export class TeacherAppPdfService {
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
-    doc.text(teacherStationChioc['personalStatusSpD'] == '1'?'Yes':'No', 250, 121) 
+    doc.text(teacherStationChioc['personalStatusSpD'] == '1'?'YES':'NO', 250, 121) 
 
 
     doc.setTextColor(0, 0, 0);
@@ -856,7 +857,7 @@ export class TeacherAppPdfService {
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
-    doc.text(teacherStationChioc['personalStatusDfpD'] == '1'?'Yes':'No', 250, 127) 
+    doc.text(teacherStationChioc['personalStatusDfpD'] == '1'?'YES':'NO', 250, 127) 
 
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
@@ -866,7 +867,7 @@ export class TeacherAppPdfService {
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
-    doc.text(teacherStationChioc['careGiverFaimlyYnD'] == '1'?'Yes':'No', 250, 133) 
+    doc.text(teacherStationChioc['careGiverFaimlyYnD'] == '1'?'YES':'NO', 250, 133) 
 
 
     doc.setTextColor(0, 0, 0);
@@ -899,7 +900,7 @@ export class TeacherAppPdfService {
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12); 
-    doc.text(teacherStationChioc['disciplinaryYn'] == '1'?'Yes':'No', 250, 151)  
+    doc.text(teacherStationChioc['disciplinaryYn'] == '1'?'YES':'NO', 250, 151)  
 
 
     
@@ -911,7 +912,7 @@ export class TeacherAppPdfService {
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12); 
-    doc.text(teacherStationChioc['surveHardYn'] == '1'?'Yes':'No', 250, 157)  
+    doc.text(teacherStationChioc['surveHardYn'] == '1'?'YES':'NO', 250, 157)  
 
 
     doc.setTextColor(0, 0, 0);

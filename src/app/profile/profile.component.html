@@ -406,6 +406,11 @@
 
                 <form [formGroup]="changePaswordForm">
                     <div class="mb-3">
+                        <label>User Name <span>*</span></label>
+                        <input type="text" class="form-control" id="userId"
+                            formControlName="userId" name="userId" aria-describedby="emailHelp" disabled>
+                    </div>
+                    <div class="mb-3">
                         <label>Old Password <span class="text-danger">*</span></label>
                         <input type="password" class="form-control" id="oldPassword" formControlName="oldPassword"
                             name="oldPassword">

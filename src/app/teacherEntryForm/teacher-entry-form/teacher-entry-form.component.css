@@ -462,7 +462,26 @@ tr {
     border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
 
-.action-save1{
+
+.action-save1 {
+    width: 100px;
+    background: #0f6191;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 0px 10px 5px;
+    float: right
+}
+
+.action-save1:hover,
+.action-save1:focus {
+    background-color: #0b7cbd !important
+}
+
+.action-save1:disabled {
     width: 100px;
     background: #8ea7b6;
     font-weight: bold;
@@ -472,7 +491,12 @@ tr {
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 0px 10px 5px;
-    float: right;
+    float: right
+}
+
+.action-save1:hover:disabled,
+.action-save1:focus:disabled {
+    background-color: #8ea7b6 !important
 }
 .tooltip-text {
     visibility: hidden;
@@ -516,4 +540,9 @@ tr {
    
     font-family: Arial;
     text-align: center;
+  }
+ 
+  .mat-form-field-appearance-fill .mat-form-field-infix {
+    padding: 0px ! important;
+    
   }

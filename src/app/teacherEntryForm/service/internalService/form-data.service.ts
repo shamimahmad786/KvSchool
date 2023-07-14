@@ -117,7 +117,7 @@ export class FormDataService {
         { "transferGroundType": "Request On LTR", "transferGroundId": 2 },      
         { "transferGroundType": "Request On MDG", "transferGroundId": 3 },
         { "transferGroundType": "Request On DFP", "transferGroundId": 4 },
-        { "transferGroundType": "Request On PH", "transferGroundId": 5 },
+        { "transferGroundType": "Request On PwD", "transferGroundId": 5 },
         { "transferGroundType": "Request On Spouse Ground", "transferGroundId": 6 },
         { "transferGroundType": "Surplus", "transferGroundId": 7 },
         { "transferGroundType": "Displacement", "transferGroundId": 8 },

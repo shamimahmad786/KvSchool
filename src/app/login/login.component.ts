@@ -3,6 +3,7 @@ import {AuthService} from '../service/AuthService'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+declare const encriptedText: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,7 +42,8 @@ export class LoginComponent implements OnInit {
   console.log(this.loginForm.value)
   debugger
   // this.userDto={"username":"kv_9999","password":"system123#"};
-  this.auth.login(this.loginForm.value).subscribe(res => {
+  var encriptedPassword=encriptedText(this.loginForm.controls['username'].value,this.loginForm.controls['password'].value);
+  this.auth.login(encriptedPassword).subscribe(res => {
     
     //console.log(res);
     sessionStorage.setItem("loginType","jwt");

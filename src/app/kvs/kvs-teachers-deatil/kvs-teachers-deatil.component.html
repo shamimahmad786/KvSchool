@@ -178,12 +178,12 @@
                             class="fa fa-check-square fa-2x fa-fw" aria-hidden="true" style="
                         color: green;
                     "></i></span>
-                    <!-- <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
+                    <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
                         <button [disabled]="disabledCreateButton" type="button"
                             class="btn btn-sm btn12 btn-outline-success"
-                            (click)="createUser(row.empcode,row.teacherId)">Create
+                            (click)="createUser(row.empcode,row.teacherId)" [id]="row.teacherId">Create
                             User</button>
-                    </span> -->
+                    </span>
                 </mat-cell>
                 <!-- <mat-cell *ngIf="!row.systchcode" *matCellDef="let row"> Create User </mat-cell> -->
             </ng-container>
@@ -206,7 +206,7 @@
                     <!-- end -->
 
                     <i *ngIf="!isNationalLogin" class='bx bx-key bxStyle1 reset-btn' title="Reset Password"
-                        (click)="resetPassword(row.teacherEmployeeCode)">{{row.e}}</i>
+                        (click)="resetPassword(row.empcode)">{{row.e}}</i>
 
                     <span *ngIf="row.systchcode != 'null' && row.systchcode != '' && !isNationalLogin">
                         <i *ngIf="row.approved == 'TA' || row.approved == 'SES'"

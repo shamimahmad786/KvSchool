@@ -426,6 +426,8 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
   }
 
   createUser(val,teacherId) {
+
+    document.getElementById(teacherId).setAttribute("disabled","disabled")
     
     // alert("create user--->"+JSON.stringify(this.teacherList));
     debugger;
