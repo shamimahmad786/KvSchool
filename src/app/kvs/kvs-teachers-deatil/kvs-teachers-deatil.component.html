@@ -104,6 +104,13 @@
     </div>
     <!-------------------------Data Show in  table Start here--------------------------------->
     <div class="example-container mat-elevation-z8 " id="style-2">
+        <!-- <div> -->
+            <span style="color:red;size: 12px;">*</span><marquee class="marquee" style="font-size: medium; color: red;">
+                School may Unfreeze/Unlock the employee data by using Unfreeze/Unlock button <i class='bx  bxStyle1 bx-lock-open-alt Blink ' style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i> to correct the discrepancy if any. 
+             </marquee> 
+        <!-- </div> -->
+        
+
         <mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="sno">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
@@ -192,6 +199,8 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span
                         class="mobile-label">Action : </span>
+                        <i class='bx  bxStyle1 bx-lock-open-alt Blink' *ngIf="row.approved == 'SA'" (click)="unlockEmloyee(row.empcode)"  style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i>
+                        <!-- <i class='bx   bxStyle1 mr-2 view-btn'>Employee Enable</i> -->
                     <i class='bx bx-show bxStyle1 mr-2 view-btn' title="View"
                         (click)="onViewClick(row.teacherId)">{{row.a}} </i>
 
@@ -227,11 +236,13 @@
     <div class="mt-3 pb-4">
         <!-- <h5 style="float: left;">Legend: </h5> -->
         <div style="float: left;">
+            
             <i class='bx bx-show bxStyle1 view-btn' style="margin-right: 4px; margin-left: 10px;"></i>View
             <i class='bx bx-edit-alt bxStyle1 edit-btn' style="margin-right: 4px; margin-left: 10px;"></i>Edit
             <!-- <i class='bx bx-box bxStyle1 dropbox-btn' style="margin-right: 4px; margin-left: 10px;"></i>Dropbox -->
             <i class='bx bx-key bxStyle1 reset-btn' style="margin-right: 4px; margin-left: 10px;"></i>Reset Password
             <i class='bx bx-user-check bxStyle1 verify-btn' style="margin-right: 4px; margin-left: 10px;"></i>Verify
+            <i class='bx  bxStyle1 bx-lock-open-alt ' style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i> Unfreeze/Unlock Employee
         </div>
     </div>
 </div>

@@ -27,6 +27,7 @@ declare var $: any;
 export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['sno', 'empcode', 'name','postName', 'subjectName',   "status", 'systchcode', 'action'];
+  
   dataSource: MatTableDataSource<any>;
   dropboxForm: FormGroup;
   remarksForm: FormGroup;
@@ -871,6 +872,35 @@ debugger;
     }
   }
 
+  unloackStatus:any;
+
+  unlockEmloyee(empCode){
+    
+    this.outSideService.unlockEmloyee(empCode).subscribe((res) => {
+      // alert(JSON.stringify(res));
+       this.unloackStatus=JSON.parse(JSON.stringify(res)).status;
+       if(this.unloackStatus=="1"){
+      Swal.fire(
+        '',
+        'Employee data unfreeze.You can now edit the data.',
+        'success'
+      )
+
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
+    
+      
+       }else{
+        Swal.fire(
+          'Please contact with admin',
+          'error'
+        )
+       }
+    
+    })
+    }
+
   getKvRegion() {
     this.outSideService.fetchKvRegion(1).subscribe((res) => {
       this.regionList = res.response;
@@ -984,5 +1014,7 @@ debugger;
 //         '</div>'
 //     });
 // }
+
+
 
 }

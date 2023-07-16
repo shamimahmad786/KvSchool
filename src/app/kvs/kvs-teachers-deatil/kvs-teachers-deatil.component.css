@@ -398,3 +398,44 @@ button.btn.btn12.btn-outline-primary {
         display: table-caption !important;
     }
 }
+
+
+
+
+  .Blink {
+    animation: blinker 1.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;  
+}
+
+@keyframes blinker {  
+  from { opacity: 1; }
+  to { opacity: 0.1; }
+}
+
+.marquee {
+    background-color: #ddd;
+    width: 1450px;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 100%;
+    animation: marquee 35s linear 15;
+}
+.marqueeimg {
+    width: 1450px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-indent: 100%;
+    animation: marqueeimg 25s linear 5;
+}
+.marqueeimg:hover,
+.marquee:hover {
+    animation-play-state: paused
+}
+@keyframes marquee {
+    0%   { text-indent: 80%; }
+    100% { text-indent: -60%; }
+}
+@keyframes marqueeimg {
+    0%   { text-indent: 100%; }
+    100% { text-indent: -70%; }
+}

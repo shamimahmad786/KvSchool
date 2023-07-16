@@ -1522,4 +1522,13 @@ schoolTransferVerify(data:any){
 //   return this._http.get(environment.BASE_URL_REPORT+ "sentReport",data,{headers})
 // }
 
+unlockEmloyee(data:any){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.LOGIN_URL_JWT+ "correctPassword",data,{headers})
+}
+
 }
