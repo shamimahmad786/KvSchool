@@ -15,6 +15,7 @@ import { DatePipe } from '@angular/common';
 import { MasterReportPdfService } from 'src/app/kvs/makePdf/master-report-pdf.service';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
+import * as moment from 'moment';
 // import { type } from 'os';
 declare var $: any;
 
@@ -185,7 +186,9 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
   }
 
 
- 
+  changeDateFormat(date: any){
+    return moment(date).format('DD-MM-YYYY')
+  }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches

@@ -69,9 +69,11 @@ export class TeacherAppPdfService {
       var workExperienceTemp = [];
       workExperienceTemp.push(workExperience[i]?.udiseSchoolName)
      // workExperienceTemp.push(workExperience[i]?.shiftType)
-      workExperienceTemp.push( this.date.transform(new Date( workExperience[i]?.workStartDate ), 'dd-MM-yyyy'))
+      // workExperienceTemp.push( this.date.transform(new Date( workExperience[i]?.workStartDate ), 'dd-MM-yyyy'))
+      workExperienceTemp.push( workExperience[i]?.workStartDate)
       if(workExperience[i]?.workEndDate != null && workExperience[i]?.workEndDate != 'null'){
-        workExperienceTemp.push( this.date.transform(new Date( workExperience[i]?.workEndDate ), 'dd-MM-yyyy'))
+        // workExperienceTemp.push( this.date.transform(new Date( workExperience[i]?.workEndDate ), 'dd-MM-yyyy'))
+        workExperienceTemp.push(workExperience[i]?.workEndDate)
       }else{
         workExperienceTemp.push(workExperience[i]?.workEndDate)
       }
@@ -278,11 +280,10 @@ export class TeacherAppPdfService {
     if(teacherProfile?.maritalStatus == null || teacherProfile?.maritalStatus == 'null' || teacherProfile?.maritalStatus == ''){
       doc.text('NOT GIVEN', 85, 81)
     }else{
-      doc.text(teacherProfile?.maritalStatus == '1' ? 'MARRIED' : 'SINGLE', 85, 81)
+      doc.text(teacherProfile?.maritalStatus == '1' ? 'MARRIED' : teacherProfile?.maritalStatus == '4' ?'SINGLE' : teacherProfile?.maritalStatus == '7' ?  'WIDOW/WIDOWER' :' ', 85, 81)
     }
 
-    
-
+  
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont('Times-Roman', 'bold');

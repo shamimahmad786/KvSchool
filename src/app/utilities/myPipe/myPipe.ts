@@ -155,7 +155,10 @@ export class MaritalStatusPipe implements PipeTransform {
       return "Married";
     }
     else if (value == 4 || value == '4') {
-      return "Unmarried";
+      return "Single";
+    }
+    else if (value == 7 || value == '7') {
+      return "Widow/Widower";
     }
   }
 }

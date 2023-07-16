@@ -1890,6 +1890,7 @@
                                                         </li>
                                                     </ul>
                                                 </div>
+                                               
                                                 <div class="col-md-2 mb-2">
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" id="inlineRadio13" value="1" (click)="declarationtransferRelated1($event)" id="spouseKvsYnD" formControlName="spouseKvsYnD" name="spouseKvsYnD" [checked]="spouseKvsYnDradioButton == '1'">
@@ -2414,6 +2415,7 @@
                                                         <span class="text-green">8.</span> Whether disciplinary proceedings are in progress.
                                                     </h4>
                                                 </div>
+                                              
                                                 <div class="col-md-2 mb-2 py-3">
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" id="disciplinaryYn" value="1" id="disciplinaryYn" formControlName="disciplinaryYn" name="disciplinaryYn" [checked]="disciplinaryYnradioButton == '1'">
@@ -2506,6 +2508,8 @@
 
                             <div class="fieldSet">
                                 <div style="text-align: right;">
+                                    <!-- <a target="_blank" class="btn btn-primary btn-sm" href="http://10.25.26.251:8087/api/kvsreport/sentReport?teacherId={{tempTeacherId}}&reportType=1" >Export to PDF</a> -->
+                                    <!-- <a target="_blank" class="btn btn-primary btn-sm" href="https://kvsonlinetransfer.kvs.gov.in/MOE-KVS-PDF/api/kvsreport/sentReport?teacherId={{tempTeacherId}}&reportType=1" >Export to PDF</a> -->
                                     <button class="btn btn-primary btn-sm" (click)="teacherPdf()">Export to PDF</button>
                                 </div>
                                 <fieldset>
@@ -2543,7 +2547,7 @@
                                                         <td>{{verifyTchTeacherProfileData?.teacherGender | genderPipe}}
                                                         </td>
                                                         <th>Date of Birth</th>
-                                                        <td>{{verifyTchTeacherProfileData?.teacherDob | date: 'dd-MM-YYYY'}}</td>
+                                                        <td>{{changeDateFormat(verifyTchTeacherProfileData?.teacherDob) }}</td>
 
                                                     </tr>
                                                     <tr>
@@ -2565,15 +2569,15 @@
                                                         <td>{{stationNameCode}}</td>
 
                                                         <th>DoJ in Present Station Irrespective of Cadre </th>
-                                                        <td>{{verifyTchTeacherProfileData?.workExperiencePositionTypePresentStationStartDate | date: 'dd-MM-YYYY'}}
+                                                        <td>{{changeDateFormat(verifyTchTeacherProfileData?.workExperiencePositionTypePresentStationStartDate)}}
                                                         </td>
                                                         <th>DoJ in Present KV/RO/ZIET/HQ in Present Post</th>
-                                                        <td>{{verifyTchTeacherProfileData?.workExperienceWorkStartDatePresentKv | date: 'dd-MM-YYYY'}}
+                                                        <td>{{changeDateFormat(verifyTchTeacherProfileData?.workExperienceWorkStartDatePresentKv) }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <th>DoJ in KVS</th>
-                                                        <td>{{verifyTchTeacherProfileData?.lastPromotionPositionDate | date: 'dd-MM-YYYY'}}
+                                                        <td>{{changeDateFormat(verifyTchTeacherProfileData?.lastPromotionPositionDate)}}
                                                         </td>
                                                         <th>Present post name</th>
                                                         <td>{{verifyTchTeacherProfileData?.lastPromotionPositionType}}
@@ -2693,8 +2697,8 @@
                                                     <tr *ngFor="let data of verifyTchTeacherWorkExp">
                                                         <td>{{data?.udiseSchoolName}}</td>
                                                         <!-- <td>{{data?.shiftType}}</td> -->
-                                                        <td>{{data?.workStartDate | date: 'dd-MM-YYYY'}}</td>
-                                                        <td>{{data?.workEndDate | date: 'dd-MM-YYYY'}}</td>
+                                                        <td>{{data?.workStartDate}}</td>
+                                                        <td>{{data?.workEndDate}}</td>
                                                         <!-- <td>{{data?.natureOfAppointment | natureOfAppointment}}</td> -->
                                                         <td>{{data?.positionType}}</td>
                                                         <td>{{data?.appointedForSubject}}</td>
@@ -2748,7 +2752,119 @@
                                                     <h2 class="px-2 mt-2 text-green">Miscellaneous</h2>
 
                                                     <tr>
-                                                        <th>Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for.</th>
+                                                        <th>1. Whether the employee is seeking benefit of spouse who is working at the same station where employee is posted/transfer is being sought for .</th>
+                                                        <td>{{teacherStationChioce?.spouseKvsYnD == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td *ngIf="teacherStationChioce?.spouseKvsYnD == '1'"><a href="{{spouseDeclarationDocUrlName}}" target="_blank"> View Document</a></td>
+                                                      
+                                                       
+                                                       
+                                                    </tr>
+                                                    <tr>
+                                                        <th>2. Whether the employee is seeking benefit of medical ground (MDG Ground).</th> 
+                                                        <td>{{teacherStationChioce?.personalStatusMdgD == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td *ngIf="teacherStationChioce?.personalStatusMdgD == '1'"><a href="{{medicalDocURLName}}" style="cursor: pointer;" target="_blank"> View Document</a></td>
+                                                      
+                                                      
+                                                       
+                                                    </tr>
+                                                    <tr>
+                                                        <th>3. Whether the employee is seeking benefit of single parent (SP Ground).</th>
+                                                        <td>{{teacherStationChioce?.personalStatusSpD == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>                                
+                                                        <td *ngIf="teacherStationChioce?.personalStatusSpD == '1'"><a href="{{singleParentDocURLName}}" target="_blank"> View Document</a></td>
+                                                      
+                                                      
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th>4. Whether the employee is seeking benefit of Death of Family Person (DFP Ground).</th>
+                                                        <td>{{teacherStationChioce?.personalStatusDfpD == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td *ngIf="teacherStationChioce?.personalStatusDfpD == '1'"><a href="{{dFPDocURLName}}" target="_blank"> View Document</a></td>
+                                                       
+                                                       
+                                                      
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th>5. Whether your are main care-giver to the person with disability in the family (i.e spouse/son/daughter).</th>
+                                                        <td>{{teacherStationChioce?.careGiverFaimlyYnD == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td *ngIf="teacherStationChioce?.careGiverFaimlyYnD == '1'"><a href="{{disabilityCertiDocURLName}}" target="_blank"> View Document</a></td>
+                                                       
+                                                       
+                                                      
+                                                    </tr>
+                                                    <tr>
+                                                        <th>6. Members of JCM at KVS Regional Office (RJCM) / KVS Headquarters (NJCM).</th>
+                                                        <td>{{teacherStationChioce?.memberJCM == '1' ?'RJCM': teacherStationChioce?.memberJCM == '2'? 'NJCM': teacherStationChioce?.memberJCM == '0'?'None':" " }}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td *ngIf="teacherStationChioce?.memberJCM != '0'"><a href="{{nJCMRJCMDocURLName}}" target="_blank"> View Document</a></td>
+                                                       
+                                                       
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th>7. Active stay (in years) refer 2 (i) of Part- 1 of Transfer Policy 2023.</th>
+                                                        <td>{{teacherStationChioce?.absenceDaysOne}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                       
+                                                    </tr>
+                                                    <tr>
+                                                        <th>8. Whether disciplinary proceedings are in progress.</th>
+                                                        <td>{{teacherStationChioce?.disciplinaryYn == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                       
+                                                      
+                                                    </tr>
+                                                    <tr>
+                                                        <th>9. Whether, the employee has completed one tenure at hard/NER/Priority station(during entire service).</th>
+                                                        <td>{{teacherStationChioce?.surveHardYn == '1' ?'Yes':'No'}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        
+                                                      
+                                                      
+                                                    </tr>
+                                                </table>
+
+                                                <!-- <table class=" table-striped">
+
+                                                    <h2 class="px-2 mt-2 text-green">Document</h2>
+
+                                                    <tr>
+                                                        <th>{{docOne}}</th>
                                                         <td>{{teacherStationChioce?.spouseKvsYnD == '1' ?'Yes':'No'}}</td>
                                                         <td></td>
                                                         <td></td>
@@ -2834,7 +2950,7 @@
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
-                                                </table>
+                                                </table> -->
                                                 <!-- <table class="table-striped">
                                                     <h2 class="px-2 mt-2 text-green">Professional Qualification</h2>
                                                     <tr style="background-color: #cccccc;">
@@ -3083,7 +3199,7 @@
                         <select class="form-select form-select-sm" aria-label="Default select example" (change)="getStationByHqId($event)">
                             <option selected disabled> Select Zite</option>
                             <option *ngFor="let data of zoneList; let i=index;" value="{{data.kv_code}}">
-                                {{data.kv_name}}eeeee
+                                {{data.kv_name}}
                             </option>
 
                         </select>

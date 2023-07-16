@@ -334,6 +334,19 @@ export class TeacherEntryFormComponent implements OnInit {
   buttonVisible: boolean = false;
   formattedDate: string;
 
+  // For Document Show On PreView Page
+  medicalDocName:any;
+  medicalDocURLName:any;
+  disabilityCertiDocName:any;
+  disabilityCertiDocURLName:any;
+  singleParentDocName:any;
+  singleParentDocURLName:any;
+  dFPDocName:any;
+  dFPDocURLName:any;
+  nJCMRJCMDocName:any;
+  nJCMRJCMDocURLName:any;
+  spouseDeclarationDocUrlName:any;
+
   fileUpgkFilebenefit: boolean = true;
   fileUpgkFilemMedical: boolean = true;
   fileUpspGround: boolean = true;
@@ -1610,7 +1623,7 @@ console.log(data)
           'error'
         )
         if (index == '0') {
-          alert(2)
+        
           this.fileUpgkFilemMedical = false;
           this.enableUploadButtonRelatedForm0 = true;
         } else if (index == '1') {
@@ -1642,7 +1655,6 @@ console.log(data)
         'error'
       )
       if (index == '0') {
-        alert(3)
         this.fileUpgkFilemMedical = false;
         this.enableUploadButtonRelatedForm0 = true;
       } else if (index == '1') {
@@ -1772,6 +1784,10 @@ console.log(data)
 
     this.fileToRelatedFormUpload = null;
   }
+
+  changeDateFormat(date: any){
+    return moment(date).format('DD-MM-YYYY')
+  }
   //------------------------------------------------ end declarationRelatedForm here --------------------------------------
   onSubmit(event: Event) {
     var activeButton = document.activeElement.id;
@@ -1892,7 +1908,7 @@ console.log(data)
       this.outSideService.getUpdatedFlag(this.tempTeacherId).subscribe((res) => {
         this.flagUpdatedList = res.response
       })
-
+      
       this.responseData.teacherDisabilityYn = this.teacherForm.value.disabilityForm.disabilityYN;
       this.responseData.teacherDisabilityType = this.teacherForm.value.disabilityForm.disabilityType;
       this.responseData.teacherDisabilityPrcnt = this.teacherForm.value.disabilityForm.disabilityPercentage;
@@ -1953,6 +1969,14 @@ console.log(data)
           }
         })
       }
+      this.teacherForm.patchValue({
+        profileForm: {
+          dob: moment(JSON.parse(JSON.stringify((this.teacherForm.value.profileForm.dob).toString()))).format('YYYY-MM-DD'),
+          presentStationPostDate :moment(JSON.parse(JSON.stringify((this.teacherForm.value.profileForm.presentStationPostDate).toString()))).format('YYYY-MM-DD'),
+          presentKvDate : moment(JSON.parse(JSON.stringify((this.teacherForm.value.profileForm.presentKvDate).toString()))).format('YYYY-MM-DD'),
+          presentPostDate: moment(JSON.parse(JSON.stringify((this.teacherForm.value.profileForm.presentPostDate).toString()))).format('YYYY-MM-DD')
+        }
+      })
       if (this.teacherForm.value.personalInfoForm.disabilityYN == '1') {
         debugger
         if (this.documentUploadArray[4]?.docName == 'Physically_Handicap_Certificate.pdf') {
@@ -2039,13 +2063,13 @@ console.log(data)
               }
               else {
                 (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').enable();
-                this.optionDisable = false;
-                this.gkFilebenefit = true
-                this.teacherForm.patchValue({
-                  transferRelatedForm: {
-                    spouseKvsYnD: '1'
-                  }
-                })
+                // this.optionDisable = false;
+                // this.gkFilebenefit = true
+                // this.teacherForm.patchValue({
+                //   transferRelatedForm: {
+                //     spouseKvsYnD: '1'
+                //   }
+                // })
               }
               if (this.responseData.spouseStatus == "1" || this.responseData.spouseStatus == 1) {
                 this.teacherForm.patchValue({
@@ -2156,13 +2180,13 @@ console.log(data)
             }
             else {
               (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').enable();
-              this.optionDisable = false;
-              this.gkFilebenefit = true
-              this.teacherForm.patchValue({
-                transferRelatedForm: {
-                  spouseKvsYnD: '1'
-                }
-              })
+              // this.optionDisable = false;
+              // this.gkFilebenefit = true
+              // this.teacherForm.patchValue({
+              //   transferRelatedForm: {
+              //     spouseKvsYnD: '1'
+              //   }
+              // })
             }
           } else if (this.responseStatus == '0') {
             Swal.fire(
@@ -2213,6 +2237,7 @@ console.log(data)
       })
 
     } else if (activeButton == "submit4") {
+      debugger
       this.getStatus(this.tempTeacherId);
       this.teacherForm.patchValue({
         transferRelatedForm: {
@@ -2254,6 +2279,7 @@ console.log(data)
             '',
             'success'
           )
+          this.getDocumentByTeacherId();
           this.onVerifyClick();
           this.nextClick(6)
         } else if (this.responseStatus == '0') {
@@ -2271,6 +2297,14 @@ console.log(data)
           teacherId: this.tempTeacherId,
         }
       });
+      this.teacherForm.patchValue({
+        profileForm: {
+          dob: moment(JSON.parse(JSON.stringify((this.teacherForm.value.profileForm.dob).toString()))).format('YYYY-MM-DD'),
+          presentStationPostDate :moment(JSON.parse(JSON.stringify((this.teacherForm.value.profileForm.presentStationPostDate).toString()))).format('YYYY-MM-DD'),
+          presentKvDate : moment(JSON.parse(JSON.stringify((this.teacherForm.value.profileForm.presentKvDate).toString()))).format('YYYY-MM-DD'),
+          presentPostDate: moment(JSON.parse(JSON.stringify((this.teacherForm.value.profileForm.presentPostDate).toString()))).format('YYYY-MM-DD')
+        }
+      })
       this.getStatus(this.tempTeacherId);
       console.log(this.teacherForm.value.detailsOfPosting)
       for (let i = 0; i < this.teacherForm.value.detailsOfPosting.length; i++) {
@@ -2306,6 +2340,7 @@ console.log(data)
               '',
               'success'
             )
+            this.getDocumentByTeacherId()
             this.nextClick(5)
             this.getTchExpByTchId();
           } else if (responsePosting == '0') {
@@ -2496,8 +2531,6 @@ console.log(data)
   }
 
   maritalStatusCheck(event) {
-    console.log(event.target)
-    console.log(event.target.value)
     if (event.target.value == '1') {
       this.responseData.maritalStatus = '1'
       this.responseData.spouseStatus = '5'
@@ -2681,7 +2714,7 @@ console.log(data)
 
   teacherTypeSelect(event) {
     console.log(event.target.value)
-    if (event.target.value != 22 && event.target.value != 23 && event.target.value != 12 && event.target.value != 24 && event.target.value != 11 && event.target.value != '22' && event.target.value != '23' && event.target.value != '11' && event.target.value != '24') {
+    if (event.target.value != 22 && event.target.value != 23 && event.target.value != 10 && event.target.value != 12 && event.target.value != 24 && event.target.value != 11 && event.target.value != '22' && event.target.value != '23' && event.target.value != '11' && event.target.value != '24') {
       this.teacherForm.patchValue({
         profileForm: {
           staffType: '2'
@@ -4132,6 +4165,8 @@ console.log(data)
     this.outSideService.fetchUploadedDoc(this.responseData.teacherId).subscribe((res) => {
 
       this.documentUploadArray = res;
+   
+
 
       // alert(JSON.stringify(this.documentUploadArray))
 
@@ -4140,6 +4175,8 @@ console.log(data)
         if (res[i].docName == 'Medical_Certificate.pdf') {
           this.fileUpgkFilemMedical=false;
           this.deleteDocUpdate0 = false;
+          this.medicalDocName = res[i].docName;
+          this.medicalDocURLName = res[i].url;
         }
         if (res[i].docName == 'Board_examination_Proof.pdf') {
           this.deleteDocUpdate1 = false;
@@ -4147,6 +4184,8 @@ console.log(data)
         if (res[i].docName == 'Disability_Certificate.pdf') {
           this.fileUpcareGiver = false;
           this.deleteDocUpdate2 = false;
+          this.disabilityCertiDocName = res[i].docName;
+          this.disabilityCertiDocURLName = res[i].url
         }
         if (res[i].docName == 'Differentially_Abled_Certificate.pdf') {
           this.deleteDocUpdate3 = false;
@@ -4154,16 +4193,23 @@ console.log(data)
         if (res[i].docName == 'Spouse_Declaration.pdf') {
           this.fileUpgkFilebenefit = false;
           this.deleteDocUpdate0 = false;
+          this.spouseDeclarationDocUrlName = res[i].url
         }
         if (res[i].docName == 'Single_Parent_Declaration.pdf') {
           this.fileUpspGround = false;
+          this.singleParentDocName = res[i].docName;
+          this.singleParentDocURLName = res[i].url;
         }
 
         if (res[i].docName == 'DFP_Declaration.pdf') {
           this.fileUpdfpGround = false;
+          this.dFPDocName = res[i].docName;
+          this.dFPDocURLName = res[i].url;
         }
         if (res[i].docName == 'NJCM_RJCM_Declaration.pdf') {
           this.fileUppositionHeld = false;
+          this.nJCMRJCMDocName = res[i].docName;
+          this.nJCMRJCMDocURLName = res[i].url;
         }
       
         if (res[i].docName == 'Physically_Handicap_Certificate.pdf') {
@@ -4202,7 +4248,8 @@ console.log(data)
 
     this.outSideService.fetchConfirmedTchDetails(this.responseData.teacherId).subscribe((res) => {
       debugger
-      console.log(res)
+     // console.log(res.response.teacherProfile.teacherDob)
+   //   alert(res.response.teacherProfile.teacherDob)
       this.verifyTchTeacherProfileData = res.response.teacherProfile
       //this.verifyTchTeacherAcdQualification = res.response.educationalQualification
       this.verifyTchTeacherProfQualification = res.response.profestinalQualification
@@ -4212,9 +4259,10 @@ console.log(data)
       this.verifyTchTeacherTraining = res.response.training
       for (let i = 0; i < res.response.experience.length; i++) {
         if (res.response.experience[i].workEndDate != null || res.response.experience[i].workEndDate != null) {
-          res.response.experience[i].workEndDate = this.date.transform(new Date(res.response.experience[i].workEndDate * 1), 'yyyy-MM-dd')
+          // res.response.experience[i].workEndDate = this.date.transform(new Date(res.response.experience[i].workEndDate * 1), 'yyyy-MM-dd')
+          res.response.experience[i].workEndDate = res.response.experience[i].workEndDate;
         }
-        res.response.experience[i].workStartDate = this.date.transform(new Date(res.response.experience[i].workStartDate * 1), 'yyyy-MM-dd')
+        res.response.experience[i].workStartDate = res.response.experience[i].workStartDate;
       }
       this.verifyTchTeacherWorkExp = res.response.experience
     })
@@ -4329,7 +4377,6 @@ console.log(data)
         this.careGiverRelationData = res.response.careGiverRelation,
           this.relationWithEmplMdgData = res.response.relationWithEmplMdg
         this.deathCertificateIssueDateData = this.date.transform(res.response.deathCertificateIssueDate, 'yyyy-MM-dd');
-
         this.teacherForm.patchValue({
           transferRelatedForm: {
             id: res.response.id,
@@ -4382,7 +4429,6 @@ console.log(data)
 
         })
       }
-      debugger
       // ----------------------------- emp transfer radio button start  here ------------------------------------
       this.empTransferradioButton = this.teacherForm.value.transferRelatedForm.applyTransferYn
       if (this.empTransferradioButton == 3) {
@@ -4394,19 +4440,27 @@ console.log(data)
       // ---------------------------- end here--------------------------------------------------------------------
 
       // ---------------------------  declairation from radio button start  here ---------------------------------
-      console.log(this.teacherForm.value.transferRelatedForm.spouseKvsYnD)
       if (this.teacherForm.value.transferRelatedForm.spouseKvsYnD == 1) {
         this.spouseKvsYnDradioButton = 1;
         this.gkFilebenefit = true
+        this.teacherForm.patchValue({
+          spouseKvsYnD: 1
+        })
 
       }
       if (this.teacherForm.value.transferRelatedForm.spouseKvsYnD == '' || this.teacherForm.value.transferRelatedForm.spouseKvsYnD == null) {
         this.spouseKvsYnDradioButton = 0;
         this.gkFilebenefit = false
+        this.teacherForm.patchValue({
+          spouseKvsYnD: 0
+        })
 
       }
       if (this.teacherForm.value.transferRelatedForm.spouseKvsYnD == 0) {
         this.spouseKvsYnDradioButton = 0;
+        this.teacherForm.patchValue({
+          spouseKvsYnD: 0
+        })
         this.gkFilebenefit = false
       }
       if (this.teacherForm.value.transferRelatedForm.personalStatusMdgD == 1) {
@@ -4478,16 +4532,15 @@ console.log(data)
         this.childDifferentAbleYnDradioButton = 0;
         this.abledChild = false
       }
-
+      debugger
       if (this.teacherForm.value.transferRelatedForm.disciplinaryYn == 1) {
+      
         this.disciplinaryYnradioButton = 1;
       }
       if (this.teacherForm.value.transferRelatedForm.disciplinaryYn == '' || this.teacherForm.value.transferRelatedForm.disciplinaryYn == null) {
         this.disciplinaryYnradioButton = 0;
       }
-      if (this.teacherForm.value.transferRelatedForm.childDifferentAbleYnD == 0) {
-        this.disciplinaryYnradioButton = 0;
-      }
+     
 
       if (this.teacherForm.value.transferRelatedForm.memberJCM == 1) {
         this.inlineRadio13radioButton = 1;
@@ -4528,31 +4581,33 @@ console.log(data)
 
         }
       })
+      // if (this.responseData.spouseStatus == null || this.responseData.spouseStatus == '5' || this.responseData.spouseStatus == '' || this.teacherForm.value.transferRelatedForm.spouseKvsYnD ==0)
+      //  {
+       
+      //   (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').disable();
+      
+      //   this.optionDisable = true;
+      //   this.gkFilebenefit = false
+      //   this.spouseKvsYnDradioButton = 0;
+      //   this.teacherForm.patchValue({
+      //     transferRelatedForm: {
+      //       spouseKvsYnD: '0',
 
-      if (this.responseData.spouseStatus == null || this.responseData.spouseStatus == '5' || this.responseData.spouseStatus == '') {
-
-        (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').disable();
-        this.optionDisable = true;
-        this.gkFilebenefit = false
-        this.spouseKvsYnDradioButton = 0;
-        this.teacherForm.patchValue({
-          transferRelatedForm: {
-            spouseKvsYnD: '0',
-
-          }
-        })
-      }
-      else {
-        (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').enable();
-        this.optionDisable = false;
-        this.gkFilebenefit = true
-        this.spouseKvsYnDradioButton = 1;
-        this.teacherForm.patchValue({
-          transferRelatedForm: {
-            spouseKvsYnD: '1'
-          }
-        })
-      }
+      //     }
+      //   })
+      // }
+      // else {
+       
+      //   (this.teacherForm.get('transferRelatedForm') as FormGroup).get('spouseKvsYnD').enable();
+      //   this.optionDisable = false;
+      //   this.gkFilebenefit = true
+      //   this.spouseKvsYnDradioButton = 1;
+      //   this.teacherForm.patchValue({
+      //     transferRelatedForm: {
+      //       spouseKvsYnD: '1'
+      //     }
+      //   })
+      // }
       // --------------------------- end here --------------------------------------------------------------------
     })
 

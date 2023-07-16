@@ -997,7 +997,7 @@
                             <th>Gender</th>
                             <td>{{verifyTchTeacherProfileData?.teacherGender | genderPipe}}</td>
                             <th>Date of Birth</th>
-                            <td>{{verifyTchTeacherProfileData?.teacherDob}}</td>
+                            <td>{{changeDateFormat(verifyTchTeacherProfileData?.teacherDob)}}</td>
                             <th>Email</th>
                             <td>{{verifyTchTeacherProfileData?.teacherEmail}}</td>
                         </tr>
@@ -1013,16 +1013,16 @@
 
                         <tr>
                             <th>DoJ in Present Station Irrespective of Cadre</th>
-                            <td>{{verifyTchTeacherProfileData?.workExperiencePositionTypePresentStationStartDate  | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{changeDateFormat(verifyTchTeacherProfileData?.workExperiencePositionTypePresentStationStartDate) }}</td>
                             <th>DoJ in Present KV/RO/ZIET/HQ in Present Post</th>
-                            <td>{{verifyTchTeacherProfileData?.workExperienceWorkStartDatePresentKv  | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{changeDateFormat(verifyTchTeacherProfileData?.workExperienceWorkStartDatePresentKv) }}</td>
                             <th>Present post name</th>
                             <td>{{verifyTchTeacherProfileData?.lastPromotionPositionType}}</td>
 
                         </tr>
                         <tr>
                             <th>DoJ in KVS</th>
-                            <td>{{verifyTchTeacherProfileData?.lastPromotionPositionDate  | date: 'dd-MM-YYYY'}}</td>
+                            <td>{{changeDateFormat(verifyTchTeacherProfileData?.lastPromotionPositionDate)}}</td>
                             <th>Subject Name</th>
                             <td>{{verifyTchTeacherProfileData?.workExperienceAppointedForSubject}}</td>
                             <th>Staff Type</th>
@@ -1262,7 +1262,7 @@
                             <!-- <button [disabled]="!remarksForm.valid" class="btn btn-danger btn-sm" style="margin-left: 3px;"
                             (click)="onVerify(verifyTchTeacherProfileData.teacherId, 'SR') ; modal.dismiss('Cross click')">Reject</button> -->
                             <button class="btn btn-success btn-sm" style="margin-left: 3px;"
-                                (click)="onVerify(verifyTchTeacherProfileData.teacherId, 'SA') ; modal.dismiss('Cross click')">
+                                (click)="onVerify(verifyTchTeacherProfileData.teacherId, 'SA') ; modal.dismiss('Cross click')" >
                                 Confirm & Verify</button>
                         </div>
                     </form>

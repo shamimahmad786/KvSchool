@@ -26,7 +26,7 @@ export const environment = {
 	AUTH_GUARD_HREF:'http://localhost:6200/teacher/profile',
 	AUTH_GUARD_HREF1:'http://10.25.26.251:8385/meauth/logout?returnTo=http://localhost:4200/',
 	BASE_URL_MEUSER:'http://10.25.26.251:8090/meuser/api/user/',
-  BASE_URL_REPORT:'https://kvsonlinetransfer.kvs.gov.in/MOE-KVS-PDF/api/kvsreport/',
+  BASE_URL_REPORT:'http://10.25.26.251:8087/api/kvsreport/',
 	BASE_URL_DATA_MASTER1:'http://10.25.26.251:8014/unee-api/v1/master/',
 	BASE_URL_DATA_MAPPING:'http://10.25.26.251:8014/unee-api/v1/mapping/',
 
