@@ -1224,7 +1224,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h4 class="titleSet mb-0">
-                                                    Details of Posting From initial joining in KVS
+                                                    Details of Posting From initial joining in KVS (From Latest to Old Order )
                                                 </h4>
                                                 <table class="table mt-1" formArrayName="detailsOfPosting">
                                                     <thead>
@@ -1310,7 +1310,7 @@
                                                                     style="text-transform: none"> -->
 
                                                                 <mat-form-field style=" width: 100%;">
-                                                                    <input matInput [matDatepicker]="si" id="wordStartDate-{{i}}" class="form-control" class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (dateChange)="experienceDataManagement($event,i)" formControlName="workStartDate" style="text-transform: none">
+                                                                    <input matInput [matDatepicker]="si" id="wordStartDate-{{i}}" class="form-control" class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (dateChange)="experienceDataManagement($event,i,1)" formControlName="workStartDate" style="text-transform: none">
                                                                     <mat-datepicker-toggle matSuffix [for]="si"></mat-datepicker-toggle>
                                                                     <mat-datepicker #si></mat-datepicker>
                                                                 </mat-form-field>
@@ -1321,7 +1321,7 @@
                                                             <td>
 
                                                                 <mat-form-field style=" width: 100%;">
-                                                                    <input matInput [matDatepicker]="ei" id="wordEndDate-{{i}}" class="form-control" class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (dateChange)="experienceDataManagement($event,i)" formControlName="workEndDate" style="text-transform: none">
+                                                                    <input matInput [matDatepicker]="ei" id="wordEndDate-{{i}}" class="form-control" class="form-control form-control-sm " [max]="maxDate" name="workStartDate" (dateChange)="experienceDataManagement($event,i,2)" formControlName="workEndDate" style="text-transform: none">
                                                                     <mat-datepicker-toggle matSuffix [for]="ei"></mat-datepicker-toggle>
                                                                     <mat-datepicker #ei></mat-datepicker>
                                                                 </mat-form-field>
@@ -1858,7 +1858,7 @@
                                     <div class="form-card">
                                         <div class="row">
                                             <div class="col-7">
-                                                <h2 class="mb-0">Miscellaneous:</h2>
+                                                <h2 class="mb-0">Miscellaneous: <span style="color: #f9384b;font-size: 14px;">(Please do not use any special Characters to fill form)</span></h2>
                                             </div>
                                             <div class="col-5">
                                                 <h2 class="steps">{{responseData?.teacherName}}

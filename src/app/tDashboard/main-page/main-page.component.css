@@ -1158,3 +1158,8 @@ img {
 .minheight100 {
     min-height: 200px;
 }
+
+.carousel-fade .carousel-item-next.carousel-item-start, .carousel-fade .carousel-item-prev.carousel-item-end, .carousel-fade .carousel-item.active {
+    z-index: -1;
+    opacity: 1;
+}

@@ -2120,6 +2120,9 @@ canculateTcPoint()
       this.regionList = res.response.rowValue;
     })
   }
+
+
+  
   getStationByRegionId(event) {
     this.stationList = [];
     this.selectedUdiseCode = '';
@@ -2133,18 +2136,13 @@ canculateTcPoint()
     })
   }
 
-
   getStationByRegionIdWithCond(event) {
     debugger
-    var stationByInterCond = {
-      "extcall": "MOE_EXT_GETSTATION_BY_TEACHER_INTER",
-      "conditionvalue": [this.responseData.teacherId, event.target.value, event.target.value, this.responseData.teacherId]
-    }
-
-    this.outSideService.fetchIntraStationSchool(stationByInterCond).subscribe((res) => {
-      this.stationList = res.response.rowValue
+    const data = { "regionCode": event.target.value };
+    this.outSideService.fetchStationByRegionId(data).subscribe((res) => {
+      this.stationList = res.rowValue
     })
-    console.log(  this.stationList)
+    console.log(this.stationList)
   }
   selectSchoolByUdise() {
 debugger

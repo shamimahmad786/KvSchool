@@ -131,7 +131,8 @@ export class FormDataService {
         { "transferGroundType": "Request On Any Other Ground", "transferGroundId": 16 },
         { "transferGroundType": "No Taker Vacancy Availed", "transferGroundId": 17 },
         { "transferGroundType": "Any Other Administrative Ground", "transferGroundId": 18 },
-        { "transferGroundType": "Transfer Modification", "transferGroundId": 19 }],
+        { "transferGroundType": "Transfer Modification", "transferGroundId": 19 },
+        { "transferGroundType": "Public Interest", "transferGroundId": 20 }],
       
       "yesNo": [{ "responseType": "Yes", "responseId": 1 },
       { "responseType": "No", "responseId": 2 }]

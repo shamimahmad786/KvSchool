@@ -3532,27 +3532,30 @@ console.log(data)
   // }
 
 
-  experienceDataManagement(event, index) {
+  experienceDataManagement(event, index,type) {
+    
+    // alert("called");
+    debugger
     ((this.teacherForm.get('detailsOfPosting') as FormArray).at(0) as FormGroup).get('workStartDate').enable();
     for (let i = 0; i < this.teacherForm.value.detailsOfPosting.length - 1; i++) {
       var dateFrom = this.teacherForm.value.detailsOfPosting[i].workStartDate;
       var dateTo = this.teacherForm.value.detailsOfPosting[i].workEndDate;
       var dateCheck;
-      if (event.target.value == 'undefined') {
+      if(event.target.value =='undefined'){
         // alert("if");
-        dateCheck = event.target.value;
-
-      } else {
+        dateCheck =event.target.value;
+        
+      }else{
         dateCheck = moment(event.value?._d).format("YYYY-MM-DD");
         // alert("in else");
       }
-
+     
       // alert(dateCheck);
       var returnType
       if (dateTo == null || dateTo == 'null') {
-        returnType = this.dateGreater(dateFrom, dateCheck);
+        returnType = this.dateGreater(dateFrom, dateCheck,type);
       } else {
-        returnType = this.dateCheck(dateFrom, dateTo, dateCheck);
+        returnType = this.dateCheck(dateFrom, dateTo, dateCheck,type);
       }
       if (returnType == 0) {
         Swal.fire(
@@ -3560,9 +3563,9 @@ console.log(data)
           '',
           'error'
         );
-
+       
         setTimeout(() => {
-
+          
           (<HTMLInputElement>document.getElementById("wordStartDate-" + index)).value = "";
           (<HTMLInputElement>document.getElementById("wordEndDate-" + index)).value = "";
           this.teacherForm.value.detailsOfPosting[index].workStartDate = "";
@@ -3572,8 +3575,8 @@ console.log(data)
         // this.teacherForm.value.detailsOfPosting[index].workStartDate.setValue(null);
         // this.teacherForm.value.detailsOfPosting[index].workEndDate.setValue(null);
         // event.stopPropagation();
-
-
+        
+       
       }
     }
     ((this.teacherForm.get('detailsOfPosting') as FormArray).at(0) as FormGroup).get('workStartDate').disable();
@@ -3740,30 +3743,51 @@ console.log(data)
     }
   }
 
-  dateCheck(dateFrom, dateTo, dateCheck) {
+  dateCheck(dateFrom, dateTo, dateCheck,type) {
     // alert("from--->"+dateFrom+"----to-"+dateTo+"--check--"+dateCheck);
-    var from = new Date(dateFrom).getTime();
-    var to = new Date(dateTo).getTime();
-    var check = new Date(dateCheck).getTime();
+    var from = Math.round((new Date(dateFrom).getTime())/(3600000*24));
+    var to = Math.round((new Date(dateTo).getTime())/(3600000*24));
+    var check = Math.round((new Date(dateCheck).getTime())/(3600000*24));
 
+    // var final1=(+check)-(+to);
     // alert("from--->"+from+"----to-"+to+"--check--"+check);
-    if (check > from && check < to) {
+
+debugger;
+    if(type==1){
+      if (check >= from && check < to) {
+        return 0
+      } else {
+        return 1;
+      }
+    }else if(type==2){
+      if (check > from && check <= to) {
+        return 0
+      } else {
+        return 1;
+      }
+    }
+
+
+  }
+
+  dateGreater(dateFrom, dateCheck,type) {
+    var from =  Math.round((new Date(dateFrom).getTime())/(3600000*24));
+    var check = Math.round((new Date(dateCheck).getTime())/(3600000*24));
+    if(type==1){
+    if (check >= from) {
       return 0
     } else {
       return 1;
     }
+}else if(type==2){
+  if (check > from) {
+    return 0
+  } else {
+    return 1;
   }
+}
 
-  dateGreater(dateFrom, dateCheck) {
-    var from = new Date(dateFrom).getTime();
-    var check = new Date(dateCheck).getTime();
-    if (check > from) {
-      return 0
-    } else {
-      return 1;
-    }
-
-  }
+}
 
 
   empAlreadyExist(event) {

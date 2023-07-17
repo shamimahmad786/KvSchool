@@ -825,7 +825,7 @@ export class TeacherAppPdfService {
 
     doc.setFont('Times-Roman', 'normal');
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
+    doc.setFontSize(12);
     doc.text(teacherStationChioc['spouseKvsYnD'] == '1'?'YES':'NO', 250, 110)
 
 
@@ -880,7 +880,7 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.text(teacherStationChioc['memberJCM'] == '1'?'RJCM':'', 250, 139) 
-    doc.text(teacherStationChioc['memberJCM'] == '0'?'No':'', 250, 139) 
+    doc.text(teacherStationChioc['memberJCM'] == '0'?'NO':'', 250, 139) 
     doc.text(teacherStationChioc['memberJCM'] == '2'?'NJCM':'', 250, 139) 
 
     doc.setTextColor(0, 0, 0);
