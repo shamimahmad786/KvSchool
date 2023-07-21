@@ -1,8 +1,8 @@
 .mat-column-sno {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 8% !important;
-    width: 8% !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
   }
 
   .mat-column-empcode {
@@ -15,8 +15,8 @@
   .mat-column-name {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 15% !important;
-    width: 15% !important;
+    flex: 0 0 20% !important;
+    width: 20% !important;
   }
 
   .mat-column-dob {
@@ -29,8 +29,8 @@
   .mat-column-gender {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 8% !important;
-    width: 8% !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
   }
 
   .mat-column-status {
@@ -43,8 +43,8 @@
   .mat-column-action {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
   }
 
   .bx-badge-check-verified{

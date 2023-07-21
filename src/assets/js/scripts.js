@@ -50,8 +50,9 @@ function getCredential() {
     alert("get credential");
     debugger;
     $.ajax({
-          // url: "http://10.25.26.251:8090/meuser/api/userCradential/get-usercradential", 
-           url: "https://kvsonlinetransfer.kvs.gov.in/UserService/api/userCradential/get-usercradential",
+               //  url: "http://10.25.26.35:8090/meuser/api/userCradential/get-usercradential", 
+                 //  url: "https://kvsonlinetransfer.kvs.gov.in/UserService/api/userCradential/get-usercradential",
+                url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
         type: 'post',
         async: false,
         contentType: "text/plain",
@@ -69,8 +70,9 @@ var publcKey;
 
 function getKey() {
     $.ajax({
-          url: "https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/login/getKey",
-          //  url: "http://10.25.26.251:8014/api/login/getKey",
+           //  url: "https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/login/getKey",
+            // url: "http://10.25.26.35:8014/api/login/getKey",
+               url: "https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/login/getKey",
         type: "POST",
         cache: false,
         async: false,
@@ -97,8 +99,9 @@ function changePassword(userId, password, newPassword, confirmPassword) {
     var data = { "userId": encrypt.encrypt(userId), "oldPassword": encrypt.encrypt(password), "newPassword": encrypt.encrypt(newPassword), "confirmPassword": encrypt.encrypt(confirmPassword) }
 
     $.ajax({
-      url: "https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/login/renamePassword",
-        // url: "http://10.25.26.251:8014/api/login/renamePassword",
+            // url: "https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/login/renamePassword",
+            // url: "http://10.25.26.35:8014/api/login/renamePassword",
+             url: "https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/login/renamePassword",
         type: "POST",
         async: false,
         contentType: "text/plain; charset=utf-8",
@@ -120,7 +123,9 @@ function changePassword(userId, password, newPassword, confirmPassword) {
 
 function getUdiseCode() {
     $.ajax({
-       url: "http://kvsonlinetransfer.kvs.gov.in/meuser/api/userCradential/get-usercradential",
+          //  url: "http://kvsonlinetransfer.kvs.gov.in/meuser/api/userCradential/get-usercradential",
+          url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
+       //  url: "https://demopgi.udiseplus.gov.in/meuser/api/userCradential/get-usercradential",
         type: 'post',
         async: false,
         contentType: "text/plain",

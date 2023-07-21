@@ -26,8 +26,8 @@ export class KvsTeacherTransferComponent implements OnInit {
 
   remarksForm: FormGroup;
 
-  displayedColumns = ['sno', 'empcode', 'name', 'dob', 'gender', "status", 'systchcode', 'action'];
-  testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "", "approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "", "teacherId": "", "empcode": "", "staffType": "" }
+  displayedColumns = ['sno', 'empcode', 'name', 'dob', 'gender', "status",  'action'];
+  testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "", "approved": "", "reInitiate": "", "rejected": "", "a": "", "b": "", "c": "", "d": "", "teacherId": "", "empcode": "", "staffType": "" }
   dataSource: MatTableDataSource<any>;
   users: any = [];
   tempTeacherId: any;
@@ -69,9 +69,6 @@ export class KvsTeacherTransferComponent implements OnInit {
   constructor(private date: DatePipe,private outSideService: OutsideServicesService, private modalService: NgbModal, private router: Router,private transferServ: TransferService) { }
 
   ngOnInit(): void {
-
-
-   
 
     for (let i = 0; i < JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails.length; i++) {
       this.businessUnitTypeCode = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[i].business_unit_type_code;
@@ -182,10 +179,10 @@ debugger
       this.testData.gender = (data[i].teacher_gender == '1') ? 'Male' : 'Female';
       this.testData.empcode = data[i].teacher_employee_code;
       this.testData.teacherId = data[i].teacher_id;
-      this.testData.systchcode = data[i].transfer_id;
+      //this.testData.systchcode = data[i].transfer_id;
       this.testData.approved = data[i].transfer_status;
       this.users.push(this.testData);
-      this.testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "", "approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "", "teacherId": "", "empcode": "", "staffType": "" }
+      this.testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "", "approved": "", "reInitiate": "", "rejected": "", "a": "", "b": "", "c": "", "d": "", "teacherId": "", "empcode": "", "staffType": "" }
     }
     setTimeout(() => {
       this.dataSource = new MatTableDataSource(this.users);

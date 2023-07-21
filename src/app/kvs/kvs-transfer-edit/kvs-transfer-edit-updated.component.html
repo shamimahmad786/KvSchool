@@ -47,7 +47,7 @@
                             <div formGroupName="stationChoice" class="form-card">
                                 <div class="row bg-light-green mx-0 py-1">
                                     <div class="col-7">
-                                        <h2 class="mb-0 text-black">Prefered Station For Transfer/Displacement</h2>
+                                        <h2 class="mb-0 text-black">Preferred Station For Transfer/Displacement</h2>
                                     </div>
                                     <div class="col-5">
                                         <h2 class="steps mb-0">{{responseData?.teacherId}} |
@@ -69,11 +69,11 @@
                                       
                                         <div class="col-md-offset-1 col-md-2">
                                             <div class="form-check form-check-inline ms-3 mt-1">
-                                                <input class="form-check-input" value="1" name="applyTransferYn" id="applyTransferYn" formControlName="applyTransferYn"  [checked]="empTransferradioButton == '1'"  type="radio" (click)="manageChoice(1)" />
+                                                <input class="form-check-input" value="1" name="applyTransferYn" id="applyTransferYn" formControlName="applyTransferYn"  [checked]="empTransferradioButton == '1'"  type="radio" disabled />
                                                 <label class="form-check-label">Yes</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" value="0" name="applyTransferYn" id="applyTransferYn" formControlName="applyTransferYn"  [checked]="empTransferradioButton == '0'" type="radio" (click)="manageChoice(0)">
+                                                <input class="form-check-input" value="0" name="applyTransferYn" id="applyTransferYn" formControlName="applyTransferYn"  [checked]="empTransferradioButton == '0'" type="radio" disabled >
                                                 <label class="form-check-label ">No</label>
                                             </div>
                                         </div>                                       
@@ -91,12 +91,12 @@
                                                             <input type="text" class="input-group-text input" id="choiceKv1StationCode" formControlName="choiceKv1StationCode" name="choiceKv1StationCode" disabled style="width:70px; height:33px;">
                                                         <input type="text" class="form-control form-control-sm input" id="choiceKv1StationName" formControlName="choiceKv1StationName" name="choiceKv1StationName" placeholder="Station Name (Preference One)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled
                                                             disabled>
-                                                        <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
+                                                        <!-- <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
                                                                 title="Reset"
-                                                                (click)="restStationSelection(1)"></i></button>
-                                                        <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
+                                                                (click)="restStationSelection(1)"></i></button> -->
+                                                        <!-- <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                                 class="fa fa-search SearchIconSet "
-                                                                (click)="selectSchool('1')"  ></i></button>
+                                                                (click)="selectSchool('1')"  ></i></button> -->
                                                         </div>
                                                     </div>                                                                                                    
                                                 </div>
@@ -110,12 +110,12 @@
                                                             <input type="text" class="input-group-text input" id="choiceKv2StationCode" formControlName="choiceKv2StationCode" name="choiceKv2StationCode" disabled style="width:70px; height:33px;">
                                                             <input type="text" class="form-control form-control-sm" id="choiceKv2StationName" formControlName="choiceKv2StationName" name="choiceKv2StationName" placeholder="Station Name (Preference Two)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
                                                                
-                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
+                                                            <!-- <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
                                                                     title="Reset"
-                                                                    (click)="restStationSelection(2)"></i></button>
-                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
+                                                                    (click)="restStationSelection(2)"></i></button> -->
+                                                            <!-- <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                                     class="fa fa-search SearchIconSet"
-                                                                    (click)="selectSchool('2')"></i></button>
+                                                                    (click)="selectSchool('2')"></i></button> -->
                                                         </div>
                                                     </div>                                                                                                    
                                                 </div>
@@ -129,12 +129,12 @@
                                                             <input type="text" class="input-group-text input" id="choiceKv3StationCode" formControlName="choiceKv3StationCode" name="choiceKv3StationCode" disabled style="width:70px; height:33px;">
                                                             <input type="text" class="form-control form-control-sm" id="choiceKv3StationName" formControlName="choiceKv3StationName" name="choiceKv3StationName" placeholder="Station Name (Preference Three)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
                                                               
-                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
+                                                            <!-- <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
                                                                     title="Reset"
-                                                                    (click)="restStationSelection(3)"></i></button>
-                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
+                                                                    (click)="restStationSelection(3)"></i></button> -->
+                                                            <!-- <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                                     class="fa fa-search SearchIconSet"
-                                                                    (click)="selectSchool('3')" ></i></button>
+                                                                    (click)="selectSchool('3')" ></i></button> -->
                                                         </div>
                                                     </div>                                                                                                    
                                                 </div>
@@ -148,12 +148,12 @@
                                                             <input type="text" class="input-group-text input" id="choiceKv4StationCode" formControlName="choiceKv4StationCode" name="choiceKv4StationCode" disabled style="width:70px; height:33px;">
                                                             <input type="text" class="form-control form-control-sm" id="choiceKv4StationName" formControlName="choiceKv4StationName" name="choiceKv4StationName" placeholder="Station Name (Preference Four)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
                                                             
-                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
+                                                            <!-- <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
                                                                     title="Reset"
-                                                                    (click)="restStationSelection(4)"></i></button>
-                                                            <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
+                                                                    (click)="restStationSelection(4)"></i></button> -->
+                                                            <!-- <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                                     class="fa fa-search SearchIconSet"
-                                                                    (click)="selectSchool('4')"></i></button>
+                                                                    (click)="selectSchool('4')"></i></button> -->
                                                         </div>
                                                     </div>                                                                                                    
                                                 </div>
@@ -167,12 +167,12 @@
                                                             <input type="text" class="input-group-text input" id="choiceKv5StationCode" formControlName="choiceKv5StationCode" name="choiceKv5StationCode" disabled style="width:70px; height:33px;">
                                                     <input type="text" class="form-control form-control-sm" id="choiceKv5StationName" formControlName="choiceKv5StationName" name="choiceKv5StationName" placeholder="Station Name (Preference Five)" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
                                                    
-                                                    <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
+                                                    <!-- <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i class='bx bx-reset'
                                                             title="Reset"
-                                                            (click)="restStationSelection(5)"></i></button>
-                                                    <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
+                                                            (click)="restStationSelection(5)"></i></button> -->
+                                                    <!-- <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                             class="fa fa-search SearchIconSet"
-                                                            (click)="selectSchool('5')"></i></button>
+                                                            (click)="selectSchool('5')"></i></button> -->
                                                         </div>
                                                     </div>                                                                                                    
                                                 </div>
@@ -271,11 +271,12 @@
                             [disabled]="(!transferForm.get('stationChoice.choiceKv1StationName').valid || !transferForm.get('stationChoice.choiceKv2StationName').valid || !transferForm.get('stationChoice.choiceKv3StationName').valid || !transferForm.get('stationChoice.choiceKv4StationName').valid || !transferForm.get('stationChoice.choiceKv5StationName').valid)"
                                 type="button" name="next" class="next action-button1 me-3" value="Next"
                                 (click)="nextClick(2)" />
-                            <input  [disabled]="(!transferForm.get('stationChoice.choiceKv1StationName').valid || !transferForm.get('stationChoice.choiceKv2StationName').valid || !transferForm.get('stationChoice.choiceKv3StationName').valid || !transferForm.get('stationChoice.choiceKv4StationName').valid || !transferForm.get('stationChoice.choiceKv5StationName').valid)"
+                            <!-- <input  [disabled]="(!transferForm.get('stationChoice.choiceKv1StationName').valid || !transferForm.get('stationChoice.choiceKv2StationName').valid || !transferForm.get('stationChoice.choiceKv3StationName').valid || !transferForm.get('stationChoice.choiceKv4StationName').valid || !transferForm.get('stationChoice.choiceKv5StationName').valid)"
                                 type="submit" id="submit1" value="Save" class=" action-button"
-                                />
+                                /> -->
                             <!-- <input type="button" name="previous" class="previous action-button-previous "
                                 (click)=" nextClick(3)" value="Previous" /> -->
+                                
                         </fieldset>
 
                         <fieldset formGroupName="displacementCount">
@@ -393,6 +394,7 @@
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="dcStayStationPoint"
                                                         formControlName="dcStayStationPoint" name="dcStayStationPoint" disabled>
                                                 </td>
+                                            
                                             </tr>                                         
 
                                             <tr>
@@ -458,11 +460,12 @@
 
                                                 </td>
                                                
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" >
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="dcPhysicalChallengedPoint"
                                                         formControlName="dcPhysicalChallengedPoint" name="dcPhysicalChallengedPoint" disabled>
                                                 </td>
+                                               
                                             </tr>
 
                                             <tr>
@@ -490,11 +493,12 @@
                                                     </ul>                                
                                                 </td>
                                        
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" >
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="dcMdDfGroungPoint"
                                                         formControlName="dcMdDfGroungPoint" name="dcMdDfGroungPoint" disabled>
                                                 </td>
+                                               
                                             </tr>
 
 
@@ -509,11 +513,12 @@
                                                 </td>
 
                                              
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" >
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="dcLtrPoint"
                                                         formControlName="dcLtrPoint" name="dcLtrPoint" disabled>
                                                 </td>
+                                              
                                             </tr>
 
 
@@ -615,11 +620,12 @@
                                                     </h4>
                                                 </td>
 
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" >
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="dcSinglePoint"
                                                         formControlName="dcSinglePoint" name="dcSinglePoint" disabled>
                                                 </td>
+                                              
                                             </tr>
 
 
@@ -649,15 +655,15 @@
 
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">7.</span>
-                                                </td>
+                                                <!-- <td class="align-middle text-center"> <span class="text-green">7.</span>
+                                                </td> -->
 
                                                 <td class="align-middle" width="90%" colspan="3">
                                                 
                                                   
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">A.</span>
+                                                            <h4 class="titleSet"> <span class="text-green">7.</span>
                                                             </h4>
                                                         </li>
                                                         
@@ -669,13 +675,13 @@
                                                     </ul>
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">B.</span>
+                                                            <h4 class="titleSet"> <span class="text-green">8.</span>
                                                             </h4>
                                                         </li>
                                                         <li class="w80 ml-2"> Spouse if a Central Government/Central
                                                             Govt. Autonomous
                                                             body/Central
-                                                            Govt. Public Sector Undertaking/ Defense Employee and
+                                                            Govt. Public Sector Undertaking/ Defence Employee and
                                                             Central Armed
                                                             Police Forces employee posted at the same station.</li>
 
@@ -684,20 +690,20 @@
                                                    
                                                     </ul>
 
-                                                    <ul class="orderList ">
+                                                    <!-- <ul class="orderList ">
                                                         <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">C.</span>
+                                                            <h4 class="titleSet"> <span class="text-green">9.</span>
                                                             </h4>
                                                         </li>
                                                         <li class="w80 ml-2"> Spouse if a Central Government/Central Govt. Autonomous body/Central Govt. Public Sector Undertaking/ Defense Employee and Central Armed Police Forces employee posted at the same station.</li>
                                                             <i  *ngIf="spouseAtStateGovt"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
                                                             color: green;"></i>
                                                     
-                                                    </ul>
+                                                    </ul> -->
 
                                                     <ul class="orderList">
                                                         <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">D.</span>
+                                                            <h4 class="titleSet"> <span class="text-green">9.</span>
                                                             </h4>
                                                         </li>
                                                         <li class="w80 ml-2">Spouse if a State Covernment / State Govt. Autonomous body / State Govt. Public Sectors Undertaking Employee and posted at the same station. </li>
@@ -706,25 +712,26 @@
                                                     </ul>
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">E.</span>
+                                                            <h4 class="titleSet"> <span class="text-green">10.</span>
                                                             </h4>
                                                         </li>
-                                                        <li class="w80 ml-2">Woman employee not covered under Sl. No. 7(A,B,C,D) above. </li>
+                                                        <li class="w80 ml-2">Woman employee not covered under Sl. No. 6,7,8,9 above. </li>
                                                      
                                                     </ul>
 
 
 
                                                 </td>
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center"  >
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="dcSpousePoint"
                                                         formControlName="dcSpousePoint" name="dcSpousePoint" disabled>
                                                 </td>
+                                              
                                             </tr>
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">8.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">11.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
                                                     <h4 class="titleSet">
@@ -739,6 +746,7 @@
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="dcRjcmNjcmPoint"
                                                         formControlName="dcRjcmNjcmPoint" name="dcRjcmNjcmPoint" disabled>
                                                 </td>
+                                               
                                             </tr>
 
                                             <!-- <tr>
@@ -866,6 +874,8 @@
                                                         formControlName="dcTotalPoint"
                                                         name="dcTotalPoint" disabled>
                                                 </span>
+                                             
+
                                             </h4>
                                         </div>
                                     </div>
@@ -915,7 +925,7 @@
                                                 <td width="75%" class="align-middle " colspan="3">
                                                     <h4 class="titleSet mb-0">
 
-                                                       Continuous Active Stay at station as on 30th june for all stations excluding periods of absence (any kind of leave other than maternity Leave) of 30 days or more at normal station and 45 days or more at Hard/NER/Priorty stations, irrespective of cader.
+                                                       Continuous Active Stay at station as on 30th june for all stations excluding periods of absence (any kind of leave other than maternity Leave) of 30 days or more at normal station and 45 days or more at Hard/NER/Priorty stations, irrespective of cadre.
                                                     </h4>
                                                     <!-- <ul class="orderList border-bottom">
                                                         <li class="w5 me-3">
@@ -961,10 +971,14 @@
                                                       
                                                     </ul> -->
                                                 </td>
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" *ngIf="!showTcField">
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="tcStayStationPoint"
                                                         formControlName="tcStayStationPoint" name="tcStayStationPoint" disabled>
+                                                </td>
+                                                <td width="7%" class=" text-center" *ngIf="showTcField">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        value="0" style="width:40px; margin:0px auto;" disabled>
                                                 </td>
                                             </tr>                                         
 
@@ -979,10 +993,14 @@
 
                                                 </td>
                                                
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" *ngIf="!showTcField">
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="tcPhysicalChallengedPoint"
                                                         formControlName="tcPhysicalChallengedPoint" name="tcPhysicalChallengedPoint" disabled>
+                                                </td>
+                                                <td width="7%" class=" text-center" *ngIf="showTcField">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        value="0" style="width:40px; margin:0px auto;" disabled>
                                                 </td>
                                             </tr>
 
@@ -1030,11 +1048,15 @@
                                                  
                                                 </td>
 
-                                               <td width="7%" class=" text-center">
+                                               <td width="7%" class=" text-center" *ngIf="!showTcField">
                                                      <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;"
                                                         id="" formControlName="tcTenureHardPoint" name="tcTenureHardPoint" disabled> 
                                                 </td> 
+                                                <td width="7%" class=" text-center" *ngIf="showTcField">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        value="0" style="width:40px; margin:0px auto;" disabled>
+                                                </td>
                                             </tr>
 
                                      
@@ -1067,10 +1089,14 @@
                                                     </ul>                                
                                                 </td>
                                        
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" *ngIf="!showTcField">
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="tcMdDfGroungPoint"
                                                         formControlName="tcMdDfGroungPoint" name="tcMdDfGroungPoint" disabled>
+                                                </td>
+                                                <td width="7%" class=" text-center" *ngIf="showTcField">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        value="0" style="width:40px; margin:0px auto;" disabled>
                                                 </td>
                                             </tr>
 
@@ -1086,10 +1112,14 @@
                                                 </td>
 
                                              
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" *ngIf="!showTcField">
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="tcLtrPoint"
                                                         formControlName="tcLtrPoint" name="tcLtrPoint" disabled>
+                                                </td>
+                                                <td width="7%" class=" text-center" *ngIf="showTcField">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        value="0" style="width:40px; margin:0px auto;" disabled>
                                                 </td>
                                             </tr>
             
@@ -1102,92 +1132,100 @@
                                                     </h4>
                                                 </td>
 
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" *ngIf="!showTcField">
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="tcSinglePoint"
                                                         formControlName="tcSinglePoint" name="tcSinglePoint" disabled>
+                                                </td>
+                                                <td width="7%" class=" text-center" *ngIf="showTcField">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        value="0" style="width:40px; margin:0px auto;" disabled>
                                                 </td>
                                             </tr>
 
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">7.</span>
-                                                </td>
+                                                <!-- <td class="align-middle text-center"> <span class="text-green">7.</span>
+                                                </td> -->
 
                                                 <td class="align-middle" width="90%" colspan="3">
                                                 
                                                   
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">A.</span>
+                                                            <h4 class="titleSet"> <span class="text-green">7.</span>
                                                             </h4>
                                                         </li>
                                                         
                                                         <li class="w80 ml-2"> Spouse if a KVS Employee and posted at the 
                                                            choice station.</li>   
-                                                        <i  *ngIf="tcSpouseAtSmaeStation"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
-                                                            color: green;"></i>
+                                                        <!-- <i  *ngIf="tcSpouseAtSmaeStation && !showTcField"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            color: green;"></i> -->
                                                  
                                                     </ul>
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">B.</span>
+                                                            <h4 class="titleSet"> <span class="text-green">8.</span>
                                                             </h4>
                                                         </li>
                                                         <li class="w80 ml-2"> Spouse if a Central Government/Central
                                                             Govt. Autonomous
                                                             body/Central
-                                                            Govt. Public Sector Undertaking/ Defense Employee and
+                                                            Govt. Public Sector Undertaking/ Defence Employee and
                                                             Central Armed
                                                             Police Forces employee posted at the same station.</li>
 
-                                                            <i  *ngIf="tcSpouseAtCentralGovt"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
-                                                            color: green;"></i>
+                                                            <!-- <i  *ngIf="tcSpouseAtCentralGovt && !showTcField"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            color: green;"></i> -->
                                                    
                                                     </ul>
 
-                                                    <ul class="orderList ">
+                                                    <!-- <ul class="orderList ">
                                                         <li class="w5 me-3">
                                                             <h4 class="titleSet"> <span class="text-green">C.</span>
                                                             </h4>
                                                         </li>
                                                         <li class="w80 ml-2"> Spouse if a Central Government/Central Govt. Autonomous body/Central Govt. Public Sector Undertaking/ Defense Employee and Central Armed Police Forces employee posted at the same station.</li>
-                                                            <i  *ngIf="tcSpouseAtStateGovt"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            <i  *ngIf="tcSpouseAtStateGovt && !showTcField"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
                                                             color: green;"></i>
                                                     
-                                                    </ul>
+                                                    </ul> -->
 
                                                     <ul class="orderList">
                                                         <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">D.</span>
+                                                            <h4 class="titleSet"> <span class="text-green">9.</span>
                                                             </h4>
                                                         </li>
                                                         <li class="w80 ml-2">Spouse if a State Covernment / State Govt. Autonomous body / State Govt. Public Sectors Undertaking Employee & posted at the same station. </li>
-                                                            <i  *ngIf="tcWooomanEmp"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
-                                                            color: green;"></i>
+                                                            <!-- <i  *ngIf="tcWooomanEmp && !showTcField"class="fa fa-check fa-2x fa-fw" aria-hidden="true" style="
+                                                            color: green;"></i> -->
                                                     </ul>
                                                     <ul class="orderList ">
                                                         <li class="w5 me-3">
-                                                            <h4 class="titleSet"> <span class="text-green">E.</span>
+                                                            <h4 class="titleSet"> <span class="text-green">10.</span>
                                                             </h4>
                                                         </li>
-                                                        <li class="w80 ml-2">Woman employee not covered under Sl. No. 7(A,B,C,D) above. </li>
+                                                        <li class="w80 ml-2">Woman employee not covered under Sl. No. 6,7,8,9 above. </li>
                                                      
                                                     </ul>
 
 
 
                                                 </td>
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" *ngIf="!showTcField">
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="tcSpousePoint"
                                                         formControlName="tcSpousePoint" name="tcSpousePoint" disabled>
+                                                </td>
+                                                <td width="7%" class=" text-center" *ngIf="showTcField">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        value="0" style="width:40px; margin:0px auto;" disabled>
                                                 </td>
                                             </tr>
 
 
                                             <tr>
-                                                <td class="align-middle text-center"> <span class="text-green">8.</span>
+                                                <td class="align-middle text-center"> <span class="text-green">11.</span>
                                                 </td>
                                                 <td class="align-middle" width="75%" colspan="3">
                                                     <h4 class="titleSet">
@@ -1196,10 +1234,14 @@
                                                     </h4>
                                                 </td>
                                          
-                                                <td width="7%" class=" text-center">
+                                                <td width="7%" class=" text-center" *ngIf="!showTcField">
                                                     <input type="text" class="form-control form-control-sm "
                                                         placeholder="0" style="width:40px; margin:0px auto;" id="tcRjcmNjcmPoint"
                                                         formControlName="tcRjcmNjcmPoint" name="tcRjcmNjcmPoint" disabled>
+                                                </td>
+                                                <td width="7%" class=" text-center" *ngIf="showTcField">
+                                                    <input type="text" class="form-control form-control-sm "
+                                                        value="0" style="width:40px; margin:0px auto;" disabled>
                                                 </td>
                                             </tr>                
                                         </tbody>
@@ -1212,21 +1254,25 @@
                                         </div>
                                         {{tcTotalPoint}}
                                         <div class="col-md-2 ">
-                                            <span class="text-green float-end">
+                                            <span class="text-green float-end"  *ngIf="!showTcField">
                                                 <input id="tcTotalPoint" formControlName="tcTotalPoint"
                                                     name="tcTotalPoint" disabled>
+                                            </span>
+                                            <span class="text-green float-end" *ngIf="showTcField">
+                                                <input type="text" class="form-control form-control-sm "
+                                                value="0" style="width:40px; margin:0px auto;" disabled>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <input  type="button" name="next"
+                            <!-- <input  type="button" name="next"
                                 class="next action-button1 me-3" value="Next"
-                                (click)="nextClick(5)" />
+                                (click)="nextClick(5)" /> -->
 
-                            <input  type="submit" name="next"
-                                id="submit5" class="action-button me-3" value="Verify"  />
+                            <!-- <input  type="submit" name="next"
+                                id="submit5" class="action-button me-3" value="Verify"  /> -->
                             <input type="button" name="previous" class="previous action-button-previous"
                                 (click)=" nextClick(4)" value="Previous" />
 
@@ -1249,7 +1295,7 @@
                     <div class="col-md-12">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h2 class="mb-0 text-green">Select Your School1</h2>
+                                <h2 class="mb-0 text-green">Select Your School</h2>
                             </div>
                         </div>
                     </div>

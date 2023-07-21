@@ -114,9 +114,9 @@
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="systchcode">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Transfer Id</mat-header-cell>
-                <mat-cell *matCellDef="let row"> <span class="mobile-label">Transfer Id : </span>
+            <!-- <ng-container matColumnDef="systchcode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Transferss Id</mat-header-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label">Transferss Id : </span>
                     <span *ngIf="row.systchcode != 'null' && row.systchcode != '' ">{{row.systchcode}}</span>
                     <span *ngIf="row.systchcode == 'null' || row.systchcode == '' ">
                         <button [disabled]="disabledCreateButton" type="button" class="btn btn12 btn-outline-primary"
@@ -124,12 +124,13 @@
                             User</button>
                     </span>
                 </mat-cell>
-            </ng-container>
+            </ng-container> -->
 
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
                     <span class="mobile-label">Action : </span>
+                    
                     <!-- <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
                     <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'" class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application" (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i> -->
 
@@ -283,21 +284,7 @@
                     </table> -->
                     <!-- <h2 class="px-2 mt-2 text-green">Displacement Count</h2> -->
                   
-                
-                  
-                  
-               
-                  
-                 
-                
-                  
-            
-              
-              
-              
-                 
-                 
-                  
+        
               
                     <hr>
                     <form [formGroup]="remarksForm">

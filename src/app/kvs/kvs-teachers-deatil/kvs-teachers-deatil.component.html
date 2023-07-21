@@ -204,7 +204,7 @@
                     <i class='bx bx-show bxStyle1 mr-2 view-btn' title="View"
                         (click)="onViewClick(row.teacherId)">{{row.a}} </i>
 
-                    <i *ngIf="row.approved != 'TI' && row.approved != 'SI' && row.approved != 'SA' && !isNationalLogin"
+                    <i *ngIf="row.approved != 'TI' && row.approved != 'TTD' && row.approved != 'SI' && row.approved != 'SA' && !isNationalLogin"
                         class='bx bx-edit-alt bxStyle1 mr-2 edit-btn' title="Edit"
                         (click)="onEditClick(row.teacherId)">{{row.b}}</i>
 
@@ -217,7 +217,7 @@
                     <i *ngIf="!isNationalLogin" class='bx bx-key bxStyle1 reset-btn' title="Reset Password"
                         (click)="resetPassword(row.empcode)">{{row.e}}</i>
 
-                    <span *ngIf="row.systchcode != 'null' && row.systchcode != '' && !isNationalLogin">
+                    <span *ngIf="row.systchcode != 'null' && row.systchcode != '' && row.approved != 'TTD' && !isNationalLogin">
                         <i *ngIf="row.approved == 'TA' || row.approved == 'SES'"
                             class='bx bx-user-check bxStyle1 mr-2 verify-btn' title="Verify"
                             (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>

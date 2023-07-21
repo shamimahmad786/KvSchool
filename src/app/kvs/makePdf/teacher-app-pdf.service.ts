@@ -538,9 +538,9 @@ export class TeacherAppPdfService {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     if(teacherProfile?.teacherPermanentAddress == null || teacherProfile?.teacherPermanentAddress == 'null' || teacherProfile?.teacherPermanentAddress == ''){
-      doc.text('NOT GIVEN', 85, 148)
+      doc.text('NOT GIVEN', 95, 148)
     }else{
-      doc.text(teacherProfile?.teacherPermanentAddress.toUpperCase(), 85, 148)
+      doc.text(teacherProfile?.teacherPermanentAddress.toUpperCase(), 95, 148)
     }
 
    

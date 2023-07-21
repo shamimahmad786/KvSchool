@@ -1969,6 +1969,7 @@ console.log(data)
           }
         })
       }
+      
       this.teacherForm.patchValue({
         profileForm: {
           dob: moment(JSON.parse(JSON.stringify((this.teacherForm.value.profileForm.dob).toString()))).format('YYYY-MM-DD'),
@@ -2242,7 +2243,7 @@ console.log(data)
       this.teacherForm.patchValue({
         transferRelatedForm: {
           teacherId: this.tempTeacherId,
-          transferStatus: 1,
+          transferStatus: 0,
         }
       });
 
@@ -3937,6 +3938,7 @@ debugger;
   }
 
   selectSpouseStationFn() {
+    debugger
     var str = this.selectedSpouseStation
     var splitted = str.split("-", 2);
     this.teacherForm.patchValue({

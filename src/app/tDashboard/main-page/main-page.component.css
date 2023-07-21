@@ -1069,7 +1069,8 @@ img {
     .home-main {
         padding-top: 40px;
         padding-bottom: 0px;
-        min-height: calc(100vh - 330px);
+        /* min-height: calc(100vh - 330px); */
+        min-height: 720px;
     }
     .img-kv {
         height: 420px;

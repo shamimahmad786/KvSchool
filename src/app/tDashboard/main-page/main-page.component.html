@@ -120,7 +120,8 @@
                         <button mat-button [matMenuTriggerFor]="menu2" class="login-btn">Login <mat-icon>keyboard_arrow_down</mat-icon></button>
                         <mat-menu #menu2="matMenu">
                             <button mat-menu-item routerLink="/login">Administrator Login</button>
-                            <a mat-menu-item href="https://kvsonlinetransfer.kvs.gov.in/teacher" (click)="teacherLogin()">Employee Login</a>
+                            <!-- <a mat-menu-item href="https://kvsonlinetransfer.kvs.gov.in/teacher" (click)="teacherLogin()">Employee Login</a> -->
+                            <a mat-menu-item href="https://demopgi.udiseplus.gov.in/teacher" (click)="teacherLogin()">Employee Login</a>
                         </mat-menu>
                         <!-- <a class="login-btn ms-2" [href]="loginUrlCommon">{{'tDashboard.login' |   (click)="adminLogin()"
                             translate}}</a> -->
@@ -226,12 +227,12 @@
 
                 </div>
                 <div class="col-xl-6 col-lg-12 col-md-12 text-center">
-                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <!-- <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                          <div class="carousel-item active">
+                          <div class="carousel-item active"  data-bs-interval="4000">
                             <img src="assets/assets/img/teacher-img-home.png" class="d-block w-100" alt="...">
                           </div>
-                          <div class="carousel-item">
+                          <div class="carousel-item"  data-bs-interval="4000">
                             <img src="assets/assets/img/teacher-male.png" class="d-block w-100" alt="...">
                           </div>
                         
@@ -244,15 +245,15 @@
                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                           <span class="visually-hidden">Next</span>
                         </button>
-                      </div>
+                      </div> -->
                     <!-- <img src="assets/assets/img/teacher-img-home.png" alt="teacher-image" class="img-kv" /> -->
-                    <!-- <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                          <div class="carousel-item active" data-bs-interval="10000">
-                            <img src="assets/assets/img/teacher-img-home.png" class="d-block w-100" alt="...">
+                          <div class="carousel-item active" data-bs-interval="3000">
+                            <img src="assets/assets/img/teacher-female.jpg" class="d-block w-100" alt="...">
                           </div>
-                          <div class="carousel-item" data-bs-interval="2000">
-                            <img src="assets/assets/img/teacher-male.png" class="d-block w-100" alt="...">
+                          <div class="carousel-item" data-bs-interval="4000">
+                            <img src="assets/assets/img/teacher-male.jpg" class="d-block w-100" alt="...">
                           </div>
                         
                         </div>
@@ -264,7 +265,7 @@
                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                           <span class="visually-hidden">Next</span>
                         </button>
-                      </div> -->
+                      </div> 
                 </div>
             </div>
         </div>

@@ -901,10 +901,10 @@
                                                             <a href="{{documentUploadArray[4]?.url}}"><i
                                                                         class='bx bx-download'></i></a>
                                                         </div>
-                                                        <div class="d-flex d-flex-row">
+                                                        <div class="d-flex d-flex-row" >
 
 
-                                                            <i (click)="deleteDocumentUploaded('Physically_Handicap_Certificate.pdf')" class='bx bx-minus-circle'></i>
+                                                            <i  *ngIf="allowEdit" (click)="deleteDocumentUploaded('Physically_Handicap_Certificate.pdf')" class='bx bx-minus-circle'></i>
                                                             <!-- <a href="{{documentUploadArray[4]?.url}}"> <i class='bx bx-message-square-x'></i> </a> -->
                                                         </div>
 
@@ -1023,11 +1023,12 @@
                                                             [(ngModel)]="responseData.spouseStationName"
                                                             name="spouseStationName" id="spouseStationName"
                                                             formControlName="spouseStationName"> -->
+                                                          
                                                         <div class="input-group mb-3">
-                                                            <input type="text" class="form-control form-control-sm" id="spouseStationName" formControlName="spouseStationName" name="spouseStationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="responseData.spouseStationName">
+                                                            <input type="text" class="form-control form-control-sm" id="spouseStationName" formControlName="spouseStationName" name="spouseStationName" placeholder="Station Name" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="responseData.spouseStationName" [readonly]="true">
                                                             <button class="btn btn-sm btn-outline-secondary btn-bdr-color input-group-text" type="button" id="button-addon2"><i
                                                                     class="fa fa-search SearchIconSet"
-                                                                    (click)="selectSpouseStation()"></i></button>
+                                                                    (click)="selectSpouseStation()" ></i></button>
                                                         </div>
                                                     </div>
                                                     <!-- <div *ngIf="spouseNone" class="col-md-6 mb-3">
@@ -1136,6 +1137,7 @@
                                     </div>
 
                                 </fieldset>
+                           
                                 <input [disabled]="(!teacherForm.get('personalInfoForm.maritalStatusF').valid || 
                                 !teacherForm.get('personalInfoForm.crspndncAddress').valid  || !teacherForm.get('personalInfoForm.crspndncState').valid  ||
                                  !teacherForm.get('personalInfoForm.crspndncDistrict').valid || !teacherForm.get('personalInfoForm.crspndncPinCode').valid ||
@@ -1945,7 +1947,7 @@
                                                                     class='bx bx-show'></i></a> -->
                                                             <a target="_blank" class="btn  btn-sm btn-green" href="{{documentUploadArray[5]?.url}}"> <i class='bx bx-file'>{{documentUploadArray[5]?.docName}}</i>
                                                             </a>
-                                                            <i (click)="deleteDocumentUploaded('Spouse_Declaration.pdf')" class='bx bx-minus-circle'></i>
+                                                            <i *ngIf="allowEdit" (click)="deleteDocumentUploaded('Spouse_Declaration.pdf')" class='bx bx-minus-circle'></i>
                                                         </div>
                                                     </div>
 
@@ -2077,7 +2079,7 @@
                                                             <a target="_blank" class="btn  btn-sm btn-green" href="{{documentUploadArray[0]?.url}}"> <i class='bx bx-file'>{{documentUploadArray[0]?.docName}}</i>
                                                             </a>
 
-                                                            <i (click)="deleteDocumentUploaded('Medical_Certificate.pdf')" class='bx bx-minus-circle'></i>
+                                                            <i *ngIf="allowEdit" (click)="deleteDocumentUploaded('Medical_Certificate.pdf')" class='bx bx-minus-circle'></i>
                                                         </div>
                                                     </div>
 
@@ -2156,7 +2158,7 @@
                                                             <a target="_blank" class="btn  btn-sm btn-green" href="{{documentUploadArray[6]?.url}}"> <i class='bx bx-file'>{{documentUploadArray[6]?.docName}}</i>
                                                             </a>
 
-                                                            <i (click)="deleteDocumentUploaded('Single_Parent_Declaration.pdf')" class='bx bx-minus-circle'></i>
+                                                            <i *ngIf="allowEdit" (click)="deleteDocumentUploaded('Single_Parent_Declaration.pdf')" class='bx bx-minus-circle'></i>
                                                         </div>
                                                     </div>
 
@@ -2239,7 +2241,7 @@
                                                             <a target="_blank" class="btn  btn-sm btn-green" href="{{documentUploadArray[7]?.url}}"> <i class='bx bx-file'>{{documentUploadArray[7]?.docName}}</i>
                                                             </a>
 
-                                                            <i (click)="deleteDocumentUploaded('DFP_Declaration.pdf')" class='bx bx-minus-circle'></i>
+                                                            <i *ngIf="allowEdit" (click)="deleteDocumentUploaded('DFP_Declaration.pdf')" class='bx bx-minus-circle'></i>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2315,7 +2317,7 @@
                                                             <a target="_blank" class="btn  btn-sm btn-green" href="{{documentUploadArray[2]?.url}}"> <i class='bx bx-file'>{{documentUploadArray[2]?.docName}}</i>
                                                             </a>
 
-                                                            <i (click)="deleteDocumentUploaded('Disability_Certificate.pdf')" class='bx bx-minus-circle'></i>
+                                                            <i  *ngIf="allowEdit" (click)="deleteDocumentUploaded('Disability_Certificate.pdf')" class='bx bx-minus-circle'></i>
                                                         </div>
                                                     </div>
 
@@ -2386,7 +2388,7 @@
                                                             <a target="_blank" class="btn  btn-sm btn-green" href="{{documentUploadArray[8]?.url}}"> <i class='bx bx-file'>{{documentUploadArray[8]?.docName}}</i>
                                                             </a>
 
-                                                            <i (click)="deleteDocumentUploaded('NJCM_RJCM_Declaration.pdf')" class='bx bx-minus-circle'></i>
+                                                            <i  *ngIf="allowEdit" (click)="deleteDocumentUploaded('NJCM_RJCM_Declaration.pdf')" class='bx bx-minus-circle'></i>
                                                         </div>
                                                     </div>
 
@@ -2462,7 +2464,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="showSaveBuuton($event)">
-                                                        <p>I hereby undertake that imformation given by me, as below is absolutely correct and true as per my knowledge and belief.If later on, any thing is found misleading /wrong then my application is liable
+                                                        <p>I hereby undertake that information given by me, as below is absolutely correct and true as per my knowledge and belief.If later on, any thing is found misleading /wrong then my application is liable
                                                             to be rejected by KVS and i shall be opened for any disciplinary action as deemed fit against me for giving misleading information.
                                                         </p>
                                                     </div>
@@ -2599,7 +2601,7 @@
                                                         <td>{{verifyTchTeacherProfileData?.teacherPanNumber}}</td> -->
 
                                                         <th>Correspondence Address</th>
-                                                        <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceAddress}}
+                                                        <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceAddress | uppercase}}
                                                         </td>
                                                         <th>Correspondence State</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondenceState}}
@@ -2616,7 +2618,7 @@
                                                         <td>{{verifyTchTeacherProfileData?.teacherCorrespondencePin}}
                                                         </td>
                                                         <th>Home Town Address as per Service Record</th>
-                                                        <td>{{verifyTchTeacherProfileData?.teacherPermanentAddress}}
+                                                        <td>{{verifyTchTeacherProfileData?.teacherPermanentAddress | uppercase}}
                                                         </td>
                                                         <th>State</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherParmanentState}}</td>
@@ -2630,7 +2632,8 @@
                                                         </td>
                                                         <th>Pin Code</th>
                                                         <td>{{verifyTchTeacherProfileData?.teacherPermanentPin}}</td>
-
+                                                        <th></th>
+                                                        <td></td>
                                                     </tr>
 
 

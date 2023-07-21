@@ -50,7 +50,7 @@ export class KvsTransferEditComponent implements OnInit {
   teacherTypeData: any;
   teacherTypeDataNameCode: any;
   stationList: any;
-
+  showTcField: boolean = false;
   empTransferradioButton:any;
   kvSchoolDetails: any;
   stationNameCode: any;
@@ -608,7 +608,8 @@ export class KvsTransferEditComponent implements OnInit {
            "teacherId": this.tempTeacherId
        }
          this.outSideService.fetchTcDcData(data).subscribe((res) => {
-
+          console.log("tc dc res school")
+console.log(res)
          this.responseTcDcData=res;
          this.totaldaysPresent=this.responseTcDcData.dcStayAtStation+this.responseTcDcData.dcReturnStation-this.responseTcDcData.dcPeriodAbsence
          this.totaldaysPresentTc=this.responseTcDcData.tcStayAtStation-this.responseTcDcData.tcPeriodAbsence
@@ -690,11 +691,11 @@ canculateDcPoint()
 canculateTcPoint()
 {
   debugger
-  if(this.responseTcDcData.tcSinglePoint=='25')
+  if(this.responseTcDcData.tcSinglePoint=='20')
         {
           this.transferForm.patchValue({
             transferCount: {
-              tcSinglePoint: this.responseTcDcData.dcSinglePoint
+              tcSinglePoint: this.responseTcDcData.tcSinglePoint
             },
           })
         }
@@ -1212,16 +1213,19 @@ canculateTcPoint()
    
   this.empTransferradioButton=0;
   this.disabled  = true;
+  this.showTcField =true;
  }
  if(this.empTransferradioButton==1 || this.empTransferradioButton=='1'){
 
   this.empTransferradioButton=1;
   this.disabled  = false;
+  this.showTcField =false;
  }
  if(this.empTransferradioButton==0 || this.empTransferradioButton=='0'){
  
   this.empTransferradioButton=0;
   this.disabled  = true;
+  this.showTcField =true;
  }
 })
   

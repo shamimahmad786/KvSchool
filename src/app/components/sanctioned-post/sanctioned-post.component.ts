@@ -108,7 +108,7 @@ shift:any;
     })
  
   }
-
+  nationalEdit:any;
   fetchSanctionPost(type,value,depValue,schoolShift){
   const data={"type":type,"value":value,"depValue":depValue,"shift":schoolShift};
   this.sanctionedPost.get('schoolCode').setValue(value);
@@ -141,6 +141,13 @@ shift:any;
           }else{
             this.isEdit=false;
           }
+
+          if(this.businessTypeId=="2"){
+            this.nationalEdit=true;
+          }else{
+            this.nationalEdit=false;
+          }
+
 
           if(JSON.parse(JSON.stringify(res)).rowValue[0].freezed_sanction_post==1){
             this.isEdit=false;
@@ -303,7 +310,7 @@ this.schoolName=this.schoolList[i].schoolName;
         // })
       } 
 
-      if(sanctionedPostRequestVo2Data.length > 0 && this.isEdit == true){
+      if(sanctionedPostRequestVo2Data.length > 0 && (this.isEdit == true || this.nationalEdit==true)){
         //update case
         let request = {
           listOfSanctionedPostUpdateRequestVo: sanctionedPostRequestVo2Data

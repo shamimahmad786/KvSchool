@@ -179,7 +179,7 @@
                                         <input type="text" class="form-control form-control-sm " name="shiftYn" id="shiftYn" formControlName="shiftYn" disabled>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control form-control-sm text-center" name="sanctionedPost" id="sanctionedPost" formControlName="sanctionedPost" (blur)="calculateVacantPost($event,i,'S')" (keypress)="keyPressNumbers($event)" disabled>
+                                        <input type="number" class="form-control form-control-sm text-center" name="sanctionedPost" id="sanctionedPost" formControlName="sanctionedPost" (blur)="calculateVacantPost($event,i,'S')" (keypress)="keyPressNumbers($event)" [attr.disabled]="nationalEdit==false?'':null">
                                     </td>
                                     <td>
                                         <input type="number" class="form-control form-control-sm text-center" name="occupiedPost" id="occupiedPost" formControlName="occupiedPost" (blur)="calculateVacantPost($event,i,'O')" (keypress)="keyPressNumbers($event)" [attr.disabled]="isEdit==false?'':null">
@@ -214,6 +214,10 @@
             </div>
         </fieldset>
         <div style="text-align: center !important;">
+            <ng-container *ngIf="nationalEdit">
+                <button class="btn btn-green float-end" (click)="onSubmit()" type="submit">{{(isEdit==true)?'Update':'Save'}}</button>
+            </ng-container>
+           
             <button [disabled]="!sanctionedPost.valid || businessTypeId !=3" class="btn btn-green float-end" (click)="onSubmit()" type="submit">{{(isEdit==true)?'Update':'Save'}}</button>
             <button [disabled]="!sanctionedPost.valid || businessTypeId !=3" class="btn btn-green float-end" (click)="freezeSanctionPost()" style="margin-right: 1%;">Freeze</button>
         </div>
