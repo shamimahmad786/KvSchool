@@ -156,7 +156,7 @@
 
                     <span *ngIf="row.approved === 'SI'" class=' bx-badge-check-sch bxStyle1 mr-2'>SCHOOL
                         INITIATED</span>
-                    <span *ngIf="row.approved === 'SA'" class=' bx-badge-check-verified bxStyle1 mr-2'>VERIFIED</span>
+                    <span *ngIf="row.approved === 'SA' || row.approved === 'TTD'" class=' bx-badge-check-verified bxStyle1 mr-2'>VERIFIED</span>
                     <span *ngIf="row.approved === 'SR'" class=' bx-badge-check-rejected bxStyle1 mr-2'>REJECTED</span>
                     <span *ngIf="row.approved === 'SEM' || row.approved === 'SES'"
                         class=' bx-badge-check-edited bxStyle1 mr-2'>SCHOOL EDITED</span>
@@ -199,7 +199,7 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span
                         class="mobile-label">Action : </span>
-                        <i class='bx  bxStyle1 bx-lock-open-alt Blink' *ngIf="row.approved == 'SA'" (click)="unlockEmloyee(row.empcode)"  style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i>
+                        <!-- <i class='bx  bxStyle1 bx-lock-open-alt Blink' *ngIf="row.approved == 'SA'" (click)="unlockEmloyee(row.empcode)"  style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i> -->
                         <!-- <i class='bx   bxStyle1 mr-2 view-btn'>Employee Enable</i> -->
                     <i class='bx bx-show bxStyle1 mr-2 view-btn' title="View"
                         (click)="onViewClick(row.teacherId)">{{row.a}} </i>

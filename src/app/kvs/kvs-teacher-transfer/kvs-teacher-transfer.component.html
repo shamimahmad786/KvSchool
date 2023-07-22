@@ -66,26 +66,28 @@
         </mat-form-field> -->
 
     </div>
+
+    
     <div class="example-container mat-elevation-z8">
-        <mat-table [dataSource]="dataSource" matSort>
+        <mat-table [dataSource]="dataSource1" matSort>
             <ng-container matColumnDef="sno">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
-                <mat-cell *matCellDef="let row"><span class="mobile-label">S.No. : </span> {{row.sno}} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label"> </span> {{row.sno}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="empcode">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Employee Code </mat-header-cell>
-                <mat-cell *matCellDef="let row"><span class="mobile-label">Employee Code : </span>  {{row.empcode}} </mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label"> </span>  {{row.empcode}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                <mat-cell *matCellDef="let row"><span class="mobile-label">Name : </span>  {{row.name | titlecase}}</mat-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label"></span>  {{row.name | titlecase}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="dob">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
-                <mat-cell *matCellDef="let row"> <span class="mobile-label">Date of Birth : </span> {{row?.dob | date: 'dd-MM-YYYY'}} </mat-cell>
+                <mat-cell *matCellDef="let row"> <span class="mobile-label"> </span> {{row?.dob | date: 'dd-MM-YYYY'}} </mat-cell>
             </ng-container>
 
             <!-- <ng-container matColumnDef="staffType">
@@ -95,21 +97,26 @@
 
             <ng-container matColumnDef="gender">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
-                <mat-cell *matCellDef="let row" [style.color]="row.color"> <span class="mobile-label">Gender : </span> {{row.gender}} </mat-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color"> <span class="mobile-label"></span> {{row.gender}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-                <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span class="mobile-label">Status : </span> 
-                    <span *ngIf="row.approved === 1" class=' bx-badge-check-initiated bxStyle1 mr-2'>Transfer
+                <mat-cell *matCellDef="let row" [style.color]="row.color" >
+                     <!-- <span class="mobile-label">{{row.status}}</span>  -->
+                    <!-- <span *ngIf="row.approved === 1" class=' bx-badge-check-initiated bxStyle1 mr-2'>Transfer
                         Initiated</span>
-                    <span *ngIf="row.approved === 0 || row.approved === ''" class=' bx-badge-check-submitted bxStyle1 mr-2'>Transfer
-                        Not Initiated</span>
+                    <span *ngIf="row.approved === 0 || row.approved === ''" class=' bx-badge-check-submitted bxStyle1 mr-2'></span>
                     <span *ngIf="row.approved === 2" class=' bx-badge-check-verified bxStyle1 mr-2'>Transfer
                         Verified</span>
                     <span *ngIf="row.approved === 'TRR'" class=' bx-badge-check-rejected bxStyle1 mr-2'>Exempted</span>
                     <span *ngIf="row.approved === 'TRE'" class=' bx-badge-check-edited bxStyle1 mr-2'>Transfer
-                        Edited</span>
+                        Edited</span> -->
+
+                        <span *ngIf="row.status === '1'" class=' bx-badge-check-initiated bxStyle1 mr-2'>Transfer Submitted</span>
+                        <span *ngIf="row.status === '2' || row.approved === ''" class=' bx-badge-check-submitted bxStyle1 mr-2'>DC Submitted</span>
+                        <span *ngIf="row.status === '3'" class=' bx-badge-check-verified bxStyle1 mr-2'>Transfer Not Initiated</span>
+                       
 
                 </mat-cell>
             </ng-container>
@@ -129,14 +136,14 @@
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx">
-                    <span class="mobile-label">Action : </span>
+                    <!-- <span class="mobile-label">Action :{{row.teacherId}} </span> -->
                     
                     <!-- <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i>
                     <i *ngIf="row.approved == 'TRS' || row.approved == 'TRA' || row.approved == 'TRE'" class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application" (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i> -->
-
+                    <i *ngIf="row.action == 1"  class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onEdit(row.teacherId)">{{row.c}}</i>
                     <!-- <i *ngIf="row.approved == 1" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onVerifyClick(row.teacherId)">{{row.c}}</i> -->
-                    <i *ngIf="row.approved == 1" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onEdit(row.teacherId)">{{row.c}}</i>
-                    <i *ngIf="row.approved == 1" class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application" (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i>
+                    <!-- Commented by shamim <i *ngIf="row.approved == 1" class='bx bx-message-square-check bxStyle1 mr-2' title="Verify" (click)="onEdit(row.teacherId)">{{row.c}}</i> -->
+                    <!-- <i *ngIf="row.approved == 1" class='bx bx-box bxStyle1 dropbox-btn-transfer mr-2' title="Delete Transfer Application" (click)="deleteInitiatedTransfer(row.teacherId, row.systchcode)">{{row.c}}</i> -->
 
 
                 </mat-cell>

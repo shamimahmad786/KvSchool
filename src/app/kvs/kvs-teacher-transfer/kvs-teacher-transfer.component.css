@@ -33,12 +33,12 @@
     width: 15% !important;
   }
 
-  .mat-column-status {
+  /* .mat-column-status {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 15% !important;
     width: 15% !important;
-  }
+  } */
 
   .mat-column-action {
     word-wrap: break-word !important;
@@ -735,9 +735,9 @@ i.bx.bx-minus-circle:hover {
     max-height: 500px;
   }
   
-  .mobile-label {
+  /* .mobile-label {
     display: none;
-  }
+  } */
   
   @media(max-width: 1024px) {
     .mat-column-postName, .mat-column-subjectName, .mat-column-status, .mat-column-sno, .mat-column-empcode,.mat-column-name

@@ -29,6 +29,7 @@ export class KvsTeacherTransferComponent implements OnInit {
   displayedColumns = ['sno', 'empcode', 'name', 'dob', 'gender', "status",  'action'];
   testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "", "approved": "", "reInitiate": "", "rejected": "", "a": "", "b": "", "c": "", "d": "", "teacherId": "", "empcode": "", "staffType": "" }
   dataSource: MatTableDataSource<any>;
+  dataSource1: MatTableDataSource<any>;
   users: any = [];
   tempTeacherId: any;
 
@@ -407,7 +408,7 @@ debugger
     })
     }
 
-
+transUser:any=[];
     getInitiatedTransferByKvCode(){
       const data={"kvCode":this.kvCode};
   this.transferServ.getInitiatedTransferByKvCode(data).subscribe((res)=>{
@@ -415,12 +416,70 @@ debugger
     // alert(JSON.stringify(res.response.rowValue));
     if(res.status==1){
       // alert(res.response.rowValue)
-      this.setToMatTable(res.response.rowValue);
+      this.setToMatTable1(res.response.rowValue);
     }
     
 
   })
     }
+
+    transData:any = {"sno":"","empcode":"","name":"","dob":"","gender":"","status":"","action":"","teacherId":""}
+    setToMatTable1(data){
+      // alert("Data after get--->"+JSON.stringify(data));
+
+    this.users = [];
+    for (let i = 0; i < data.length; i++) {
+
+      // alert(data[i].transfer_id);
+
+      this.tempTeacherId = data[i].teacher_id
+      this.transData.teacherId=data[i].teacher_id;
+      this.transData.sno = '' + (i + 1) + '';
+      this.transData.empcode = data[i].teacher_employee_code;
+      this.transData.name = data[i].teacher_name;
+      var dateString = data[i].dob;
+    
+      dateString = new Date(dateString).toUTCString();
+      dateString = dateString.split(' ').slice(0, 4).join(' ');
+      this.transData.dob = data[i].teacher_dob;
+      this.transData.gender = (data[i].teacher_gender == '1') ? 'Male' : 'Female';
+     
+      // this.transData.teacherId = data[i].teacher_id;
+      //this.testData.systchcode = data[i].transfer_id;
+      // this.transData.status ="1";
+      // this.transData.action="1";
+
+      if(data[i]?.tc_save_yn==1){
+        this.transData.status = "1";
+        this.transData.action="1";
+      }else if(data[i]?.dc_save_yn==2){
+        this.transData.status = "2";
+        this.transData.action="1";
+      }else{
+        this.transData.status = "3";
+      }
+// alert(JSON.stringify(this.transData));
+
+      // this.testData.approved = data[i].transfer_status;
+      this.transUser.push(this.transData);
+
+      
+
+      this.transData = {"sno":"","empcode":"","name":"","dob":"","gender":"","status":"","action":"","teacher":""}
+    }
+
+
+   
+
+    setTimeout(() => {
+      // alert(JSON.stringify(this.users));
+      this.dataSource1 = new MatTableDataSource(this.transUser);
+      this.dataSource1.paginator = this.paginator;
+      this.dataSource1.sort = this.sort;
+    }, 1000)
+    }
+
+
 
 
 
