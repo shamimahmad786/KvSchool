@@ -50,7 +50,7 @@ function getCredential() {
     alert("get credential");
     debugger;
     $.ajax({
-               //  url: "http://10.25.26.35:8090/meuser/api/userCradential/get-usercradential", 
+                // url: "http://10.25.26.35:8090/meuser/api/userCradential/get-usercradential", 
                   url: "https://kvsonlinetransfer.kvs.gov.in/UserService/api/userCradential/get-usercradential",
                 // url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
         type: 'post',

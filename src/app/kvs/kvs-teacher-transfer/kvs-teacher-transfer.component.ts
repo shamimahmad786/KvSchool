@@ -26,7 +26,7 @@ export class KvsTeacherTransferComponent implements OnInit {
 
   remarksForm: FormGroup;
 
-  displayedColumns = ['sno', 'empcode', 'name', 'dob', 'gender', "status",  'action'];
+  displayedColumns = ['sno', 'empcode', 'name', 'gender', "status",  'action'];
   testData = { "sno": "", "name": "", "dob": "", "email": "", "mobile": "", "gender": "", "approved": "", "reInitiate": "", "rejected": "", "a": "", "b": "", "c": "", "d": "", "teacherId": "", "empcode": "", "staffType": "" }
   dataSource: MatTableDataSource<any>;
   dataSource1: MatTableDataSource<any>;
@@ -423,7 +423,7 @@ transUser:any=[];
   })
     }
 
-    transData:any = {"sno":"","empcode":"","name":"","dob":"","gender":"","status":"","action":"","teacherId":""}
+    transData:any = {"sno":"","empcode":"","name":"","gender":"","status":"","action":"","teacherId":""}
     setToMatTable1(data){
       // alert("Data after get--->"+JSON.stringify(data));
 
@@ -441,7 +441,7 @@ transUser:any=[];
     
       dateString = new Date(dateString).toUTCString();
       dateString = dateString.split(' ').slice(0, 4).join(' ');
-      this.transData.dob = data[i].teacher_dob;
+      // this.transData.dob = data[i].teacher_dob;
       this.transData.gender = (data[i].teacher_gender == '1') ? 'Male' : 'Female';
      
       // this.transData.teacherId = data[i].teacher_id;

@@ -170,7 +170,7 @@
                     <!-- <box-icon name='info-circle' animation='tada' color='#13a227'
                             (click)="onProcessingInfoClick(row.teacherId)"></box-icon> -->
 
-                    <span *ngIf="row.approved != 'TI' && row.approved != 'TA' && row.approved != 'SI' && row.approved != 'SA' && row.approved != 'SR' && row.approved != 'SE' 
+                    <span *ngIf="row.approved != 'TI' && row.approved != 'TA' && row.approved != 'SI' && row.approved != 'TTD' && row.approved != 'SA' && row.approved != 'SR' && row.approved != 'SE' 
                         && row.approved != 'SEM' && row.approved != 'SES'"
                         class=' bx-message-square-x-ni bxStyle1 mr-2'> NOT INITIATED</span>
                     <span *ngIf="row.approved == 'TI'" class=' bx-loader-circle-tch bxStyle1 mr-2'>PENDING(EMPLOYEE)
@@ -199,7 +199,7 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span
                         class="mobile-label">Action : </span>
-                        <!-- <i class='bx  bxStyle1 bx-lock-open-alt Blink' *ngIf="row.approved == 'SA'" (click)="unlockEmloyee(row.empcode)"  style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i> -->
+                        <i class='bx  bxStyle1 bx-lock-open-alt Blink' *ngIf="row.approved == 'SA'" (click)="unlockEmloyee(row.empcode)"  style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i>
                         <!-- <i class='bx   bxStyle1 mr-2 view-btn'>Employee Enable</i> -->
                     <i class='bx bx-show bxStyle1 mr-2 view-btn' title="View"
                         (click)="onViewClick(row.teacherId)">{{row.a}} </i>
