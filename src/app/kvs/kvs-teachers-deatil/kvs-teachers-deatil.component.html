@@ -156,7 +156,7 @@
 
                     <span *ngIf="row.approved === 'SI'" class=' bx-badge-check-sch bxStyle1 mr-2'>SCHOOL
                         INITIATED</span>
-                    <span *ngIf="row.approved === 'SA' || row.approved === 'TTD'" class=' bx-badge-check-verified bxStyle1 mr-2'>VERIFIED</span>
+                    <span *ngIf="row.approved === 'SA' || row.approved === 'TTD' ||  row.approved === 'TTS'" class=' bx-badge-check-verified bxStyle1 mr-2'>VERIFIED</span>
                     <span *ngIf="row.approved === 'SR'" class=' bx-badge-check-rejected bxStyle1 mr-2'>REJECTED</span>
                     <span *ngIf="row.approved === 'SEM' || row.approved === 'SES'"
                         class=' bx-badge-check-edited bxStyle1 mr-2'>SCHOOL EDITED</span>
@@ -170,7 +170,7 @@
                     <!-- <box-icon name='info-circle' animation='tada' color='#13a227'
                             (click)="onProcessingInfoClick(row.teacherId)"></box-icon> -->
 
-                    <span *ngIf="row.approved != 'TI' && row.approved != 'TA' && row.approved != 'SI' && row.approved != 'TTD' && row.approved != 'SA' && row.approved != 'SR' && row.approved != 'SE' 
+                    <span *ngIf="row.approved != 'TI' && row.approved != 'TTS' && row.approved != 'TA' && row.approved != 'SI' && row.approved != 'TTD' && row.approved != 'SA' && row.approved != 'SR' && row.approved != 'SE' 
                         && row.approved != 'SEM' && row.approved != 'SES'"
                         class=' bx-message-square-x-ni bxStyle1 mr-2'> NOT INITIATED</span>
                     <span *ngIf="row.approved == 'TI'" class=' bx-loader-circle-tch bxStyle1 mr-2'>PENDING(EMPLOYEE)
@@ -199,14 +199,15 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span
                         class="mobile-label">Action : </span>
-                        <i class='bx  bxStyle1 bx-lock-open-alt Blink' *ngIf="row.approved == 'SA'" (click)="unlockEmloyee(row.empcode)"  style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i>
+                     
+                        <i class='bx  bxStyle1 bx-lock-open-alt Blink' *ngIf="row.approved == 'SA' " (click)="unlockEmloyee(row.empcode)"  style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i>
                         <!-- <i class='bx   bxStyle1 mr-2 view-btn'>Employee Enable</i> -->
                     <i class='bx bx-show bxStyle1 mr-2 view-btn' title="View"
-                        (click)="onViewClick(row.teacherId)">{{row.a}} </i>
+                        (click)="onViewClick(row.teacherId)">{{row.a}}  </i>
 
-                    <i *ngIf="row.approved != 'TI' && row.approved != 'TTD' && row.approved != 'SI' && row.approved != 'SA' && !isNationalLogin"
+                    <i *ngIf="row.approved != 'TI' && row.approved != 'TTD' && row.approved != 'TTS' && row.approved != 'SI' && row.approved != 'SA' && !isNationalLogin"
                         class='bx bx-edit-alt bxStyle1 mr-2 edit-btn' title="Edit"
-                        (click)="onEditClick(row.teacherId)">{{row.b}}</i>
+                        (click)="onEditClick(row.teacherId)">{{row.b}} </i>
 
                     <!-- // commented for dropbox -->
 

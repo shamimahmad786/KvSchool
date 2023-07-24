@@ -452,8 +452,8 @@ transUser:any=[];
       if(data[i]?.tc_save_yn==1){
         this.transData.status = "1";
         this.transData.action="1";
-      }else if(data[i]?.dc_save_yn==2){
-        this.transData.status = "2";
+      }else if(data[i]?.dc_save_yn==1){
+        this.transData.status = "1";
         this.transData.action="1";
       }else{
         this.transData.status = "3";
