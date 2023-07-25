@@ -603,9 +603,9 @@ debugger;
     "teacherId":value,
     "reportType":"1"
    }
-    this.outSideService.sentReport(data).subscribe((res) => {
-    console.log(res) 
-    })
+    // this.outSideService.sentReport(data).subscribe((res) => {
+    // console.log(res) 
+    // })
     if (flag == 'SA') {
       for (let i = 0; i < this.users.length; i++) {
         if (this.users[i].teacherId == value) {

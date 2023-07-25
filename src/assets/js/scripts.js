@@ -47,7 +47,7 @@ function getCredential() {
     // const data = { 'authcode': authCode, 'authcredential': btoa("teacher:pin"),'redirectUrl': 'https://kvsonlinetransfer.kvs.gov.in/school/teacher/profile' }
     // const data = { 'authcode': authCode, 'authcredential': btoa("teacher:pin"),'redirectUrl': 'https://pgi.udiseplus.gov.in/school/teacher/profile' }
     const data = { 'authcode': authCode, 'authcredential': btoa("teacher:pin"), 'redirectUrl': 'http://localhost:4200/teacher/profile' }
-    alert("get credential");
+    // alert("get credential");
     debugger;
     $.ajax({
                 // url: "http://10.25.26.35:8090/meuser/api/userCradential/get-usercradential", 

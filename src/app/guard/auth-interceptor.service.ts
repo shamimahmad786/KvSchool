@@ -20,7 +20,9 @@ export class AuthInterceptorService implements HttpInterceptor {
                     const modifiedReq = req.clone(
                         {
                             setHeaders: {
-                                'Content-Type': 'text/plain; charset=utf-8'
+                                'Content-Type': 'text/plain; charset=utf-8',
+                                'loginType':'s',
+                                'systemTeacherCode':sessionStorage.systemTeacherCode
                             }
                         });
                     return next.handle(modifiedReq).pipe(
@@ -38,7 +40,9 @@ export class AuthInterceptorService implements HttpInterceptor {
                     const modifiedReq = req.clone(
                         {
                             setHeaders: {
-                                'username': JSON.parse(sessionStorage.getItem('authTeacherDetails')).user_name
+                                'username': JSON.parse(sessionStorage.getItem('authTeacherDetails')).user_name,
+                                'loginType':'s',
+                                'systemTeacherCode':sessionStorage.systemTeacherCode,
                             }
                         });
                     return next.handle(modifiedReq).pipe(
@@ -48,7 +52,10 @@ export class AuthInterceptorService implements HttpInterceptor {
                                 return throwError(error);
                             })
                         ))
+                        
                 }
+                
+            
 
                 return next.handle(req).pipe(
                     (
@@ -57,7 +64,24 @@ export class AuthInterceptorService implements HttpInterceptor {
                             return throwError(error);
                         })
                     ))
-            } else {
+            } else if( req.url.indexOf("uploadDocument") !== -1 || req.url.indexOf("deleteDocumentByTeacherIdAndName") !== -1 || req.url.indexOf("updateFlagByTeachId") !== -1 || req.url.indexOf("saveTeacher") !== -1 || req.url.indexOf("saveExperience") !== -1 || req.url.indexOf("updatdFlag")  !== -1 || req.url.indexOf("saveTransProfile")  !== -1 || req.url.indexOf("updateFlagByTeachId") !== -1){
+                // alert(sessionStorage.systemTeacherCode)
+                 const modifiedReq = req.clone(
+                     {
+                         setHeaders: {
+                             'username': JSON.parse(sessionStorage.getItem('authTeacherDetails')).user_name,
+                             'loginType':'s',
+                             'systemTeacherCode':sessionStorage.systemTeacherCode,
+                         }
+                     });
+                 return next.handle(modifiedReq).pipe(
+                     (
+                         catchError((error: HttpErrorResponse) => {
+                             let msg = '';
+                             return throwError(error);
+                         })
+                     ))  
+             } else {
                 var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
                 // var token = ''
                 const modifiedReq = req.clone(
@@ -65,6 +89,8 @@ export class AuthInterceptorService implements HttpInterceptor {
                         setHeaders: {
                             'Authorization': token,
                             'Content-Type': (req.url.indexOf('unee-api/v1') !==-1)?'application/json; charset=utf-8':'text/plain; charset=utf-8',
+                            // 'loginType':'s',
+                            // 'systemTeacherCode':sessionStorage.systemTeacherCode,
                             'username': JSON.parse(sessionStorage.getItem('authTeacherDetails')).user_name
                         }
                     });
@@ -109,7 +135,9 @@ export class AuthInterceptorService implements HttpInterceptor {
                         setHeaders: {
                             // 'Authorization': token,
                             'Content-Type': 'text/plain; charset=utf-8',
-                            'username': 'XYZ'
+                            'username': 'XYZ',
+                            // 'systemTeacherCode':sessionStorage.systemTeacherCode,
+                            // 'loginType':'s',
                         }
                     });
                     // alert("before modify request")
