@@ -339,6 +339,8 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
       // (data[i].teachingNonteaching == '1') ? 'Teaching' : 'Non-Teaching';
       this.testData.postName = data[i].postName;
       this.users.push(this.testData);
+      console.log("---------------user detail----------")
+      console.log(this.users)
       this.testData = { "sno": "", "name": "", "postName": "", "email": "", "mobile": "", "subjectName": "","approvedStatus": "", "approved": "", "reInitiate": "", "rejected": "", "systchcode": "", "a": "", "b": "", "c": "", "d": "","e":"", "teacherId": "", "empcode": "", "staffType": "" }
     }
 
@@ -499,10 +501,10 @@ debugger;
                 
                 this.outSideService.createUserOnVerify(createUser).subscribe((response) => {
                   debugger;
-                  debugger;
+               
 
                   // alert(JSON.stringify(response));
-                  debugger;
+               
                   if(response.status == '1' || response.status == 1){
                     // alert(this.kvTeacher.length);
                     for(let i=0; i<this.kvTeacher.length; i++){
@@ -598,14 +600,13 @@ debugger;
   }
   
   onVerify(value, flag) {
+   // alert("called--->"+value);
    debugger
    const data ={
     "teacherId":value,
     "reportType":"1"
    }
-    // this.outSideService.sentReport(data).subscribe((res) => {
-    // console.log(res) 
-    // })
+   debugger
     if (flag == 'SA') {
       for (let i = 0; i < this.users.length; i++) {
         if (this.users[i].teacherId == value) {

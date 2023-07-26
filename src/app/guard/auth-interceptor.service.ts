@@ -13,10 +13,10 @@ export class AuthInterceptorService implements HttpInterceptor {
         if (JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token != undefined) {
             // alert("in if");
             if (req.url.indexOf('getProfileImage') !== -1 || req.url.indexOf('uploadProfileImage') !== -1 || req.url.indexOf('deleteDocumentByTeacherIdAndName') !== -1 ||
-                req.url.indexOf('getDocumentByTeacherId') !== -1 || req.url.indexOf('uploadDocument') !== -1 || req.url.indexOf('resetPassword') !== -1 || req.url.indexOf('create-kvuser') !== -1
+                req.url.indexOf('getDocumentByTeacherId') !== -1 || req.url.indexOf('uploadDocument') !== -1 || req.url.indexOf('create-kvuser') !== -1
                 || req.url.indexOf('get-usercradential') !== -1 || req.url.indexOf('renamePassword') !== -1 || req.url.indexOf('getKey') !== -1 || req.url.indexOf('translate') !== -1) {
 
-                if (req.url.indexOf('resetPassword') !== -1 || req.url.indexOf('create-kvuser') !== -1) {
+                if (req.url.indexOf('create-kvuser') !== -1) {
                     const modifiedReq = req.clone(
                         {
                             setHeaders: {
@@ -64,7 +64,7 @@ export class AuthInterceptorService implements HttpInterceptor {
                             return throwError(error);
                         })
                     ))
-            } else if( req.url.indexOf("uploadDocument") !== -1 || req.url.indexOf("deleteDocumentByTeacherIdAndName") !== -1 || req.url.indexOf("updateFlagByTeachId") !== -1 || req.url.indexOf("saveTeacher") !== -1 || req.url.indexOf("saveExperience") !== -1 || req.url.indexOf("updatdFlag")  !== -1 || req.url.indexOf("saveTransProfile")  !== -1 || req.url.indexOf("updateFlagByTeachId") !== -1){
+            } else if( req.url.indexOf("uploadDocument") !== -1 || req.url.indexOf("deleteDocumentByTeacherIdAndName") !== -1  || req.url.indexOf("saveTeacher") !== -1 || req.url.indexOf("saveExperience") !== -1 || req.url.indexOf("updatdFlag")  !== -1 || req.url.indexOf("saveTransProfile")  !== -1 ){
                 // alert(sessionStorage.systemTeacherCode)
                  const modifiedReq = req.clone(
                      {
