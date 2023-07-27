@@ -150,9 +150,10 @@ export class KvsTeacherTransferComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
+    
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    this.dataSource1.filter = filterValue;
   }
 
   applyFilterOnSelect(filterValueSelect: string) {
