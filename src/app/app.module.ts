@@ -81,6 +81,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { FreezeMastersComponent } from './components/freeze-masters/freeze-masters.component';
 import { MaterialModule } from './mat/material/material.module';
 import { StationMasterModule } from './components/station-master/station-master.module';
+import { SchoolReviewComponent } from './kvs/school-review/school-review/school-review.component';
 // import { MAT_DATE_FORMATS } from '@angular/material/';
 // import { DatePickerModule } from 'angular-material-datepicker';
 
@@ -154,7 +155,8 @@ import { StationMasterModule } from './components/station-master/station-master.
     ReportGridComponent,
     KvTchSanctionedPostComponent,
     ExperienceType,
-    FreezeMastersComponent
+    FreezeMastersComponent,
+    SchoolReviewComponent
    
     
   ],

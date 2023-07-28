@@ -52,7 +52,7 @@ function getCredential() {
     $.ajax({
                  url: "http://10.25.26.35:8090/meuser/api/userCradential/get-usercradential", 
                  // url: "https://kvsonlinetransfer.kvs.gov.in/UserService/api/userCradential/get-usercradential",
-                // url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
+              //   url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
         type: 'post',
         async: false,
         contentType: "text/plain",
@@ -100,8 +100,8 @@ function changePassword(userId, password, newPassword, confirmPassword) {
 
     $.ajax({
              //  url: "https://kvsonlinetransfer.kvs.gov.in/MOE-RAD-TEACHER/api/login/renamePassword",
-             url: "http://10.25.26.35:8014/api/login/renamePassword",
-            //  url: "https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/login/renamePassword",
+            url: "http://10.25.26.35:8014/api/login/renamePassword",
+          //   url: "https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/login/renamePassword",
         type: "POST",
         async: false,
         contentType: "text/plain; charset=utf-8",
@@ -123,8 +123,8 @@ function changePassword(userId, password, newPassword, confirmPassword) {
 
 function getUdiseCode() {
     $.ajax({
-           url: "http://kvsonlinetransfer.kvs.gov.in/meuser/api/userCradential/get-usercradential",
-        //   url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
+        //   url: "http://kvsonlinetransfer.kvs.gov.in/meuser/api/userCradential/get-usercradential",
+          url: "https://demopgi.udiseplus.gov.in/UserService/api/userCradential/get-usercradential",
        //  url: "https://demopgi.udiseplus.gov.in/meuser/api/userCradential/get-usercradential",
         type: 'post',
         async: false,

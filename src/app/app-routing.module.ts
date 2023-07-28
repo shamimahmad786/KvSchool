@@ -30,6 +30,7 @@ import { ReportGridComponent } from './reports/report-grid/report-grid.component
 import { KvTchSanctionedPostComponent } from './kvs/sanctionedPost/kv-tch-sanctioned-post/kv-tch-sanctioned-post.component';
 import {LoginComponent} from './login/login.component';
 import { FreezeMastersComponent } from './components/freeze-masters/freeze-masters.component';
+import { SchoolReviewComponent } from './kvs/school-review/school-review/school-review.component';
 const routes: Routes = [
   {path:'', component: MainPageComponent},
   {path:'mainPage', component: MainPageComponent},
@@ -52,6 +53,7 @@ const routes: Routes = [
       {path: 'kvsTchProfile', component:KvsTeacherProfileComponent},
       {path: 'kvsTchTransfer', component:KvsTeacherTransferComponent},
       {path: 'kvsTchDetails', component:KvsTeachersDeatilComponent},
+      {path: 'schoolReview', component:SchoolReviewComponent},
       {path: 'transferEdit', component:KvsTransferEditComponent},
       {path: 'surplusListing', component:KvsSurplusListingComponent},
       {path: 'identifySurplus', component:KvsIdentifySurplusComponent},
