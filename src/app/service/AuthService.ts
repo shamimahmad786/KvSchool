@@ -11,8 +11,14 @@ export class AuthService {
     
    }
 
-  login(userDto) {
-    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+  login(userDto,userName:any) {
+
+    // alert(userName);
+
+    var headers = new HttpHeaders({
+      'username':userName,
+      // 'Content-Type': 'text/plain; charset=utf-8'
+     });
     // alert("At service--->"+JSON.stringify(userDto));
      return this.http.post<any>(environment.LOGIN_URL_JWT + "sign-in", userDto,{headers});
   }

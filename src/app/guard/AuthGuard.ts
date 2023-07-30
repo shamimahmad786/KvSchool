@@ -78,7 +78,7 @@ export class AuthGuard implements CanActivate {
         sessionStorage.removeItem('shiftAvailable')
         sessionStorage.removeItem('singleKvTeacher')
         sessionStorage.removeItem('systemTeacherCode')
-        window.location.href = environment.AUTH_GUARD_HREF1
+        // window.location.href = environment.AUTH_GUARD_HREF1
         return false;
 
       }

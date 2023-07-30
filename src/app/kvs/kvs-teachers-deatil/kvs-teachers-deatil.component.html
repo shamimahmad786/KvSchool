@@ -200,7 +200,7 @@
                 <mat-cell *matCellDef="let row" [style.color]="row.color" class="IconBx"> <span
                         class="mobile-label">Action : </span>
                      
-                        <i class='bx  bxStyle1 bx-lock-open-alt Blink' *ngIf="row.approved == 'SA' " (click)="unlockEmloyee(row.empcode)"  style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i>
+                        <!-- <i class='bx  bxStyle1 bx-lock-open-alt Blink' *ngIf="row.approved == 'SA' " (click)="unlockEmloyee(row.empcode)"  style="padding: 3px; margin: 1px; background: cyan; border-radius: 6px;"></i> -->
                         <!-- <i class='bx   bxStyle1 mr-2 view-btn'>Employee Enable</i> -->
                     <i class='bx bx-show bxStyle1 mr-2 view-btn' title="View"
                         (click)="onViewClick(row.teacherId)">{{row.a}}  </i>

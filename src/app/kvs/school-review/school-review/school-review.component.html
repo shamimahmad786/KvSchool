@@ -23,14 +23,14 @@
                     <th >
                         Total TC
                       </th>
-                      <th >
+                      <!-- <th >
                        Select DC
-                      </th>
-                      <th >
+                      </th> -->
+                      <!-- <th >
                         Select TC
-                       </th>
-                       <th>Change DC Point</th>
-                       <th>Change TC Point</th>
+                       </th> -->
+                       <!-- <th>Change DC Point</th>
+                       <th>Change TC Point</th> -->
                        <th>Action</th>
                 </tr>
             </thead>
@@ -41,21 +41,21 @@
                     <td>{{ teacherdetail.name }}</td>
                     <td>{{ teacherdetail.tc_count }}</td>
                     <td>{{ teacherdetail.dc_count }}</td>
-                    <td> <select class="form-select" aria-label="Default select example" name="relationWithEmplMdg" formControlName="correctDcDropDown">
+                    <!-- <td> <select class="form-select" aria-label="Default select example" name="relationWithEmplMdg" formControlName="correctDcDropDown">
                         <option selected disabled>Select</option>
                         <option value="1">YES</option>
                         <option value="0">NO</option> 
                        
-                    </select></td>
-                    <td> <select class="form-select" aria-label="Default select example" name="relationWithEmplMdg" formControlName="correctTcDropDown" >
+                    </select></td> -->
+                    <!-- <td> <select class="form-select" aria-label="Default select example" name="relationWithEmplMdg" formControlName="correctTcDropDown" >
                         <option selected disabled>Select</option>
                         <option value="1">YES</option>
                         <option value="0">NO</option> 
-                    </select></td>
-                    <td>  <input type="text" class="form-control" 
+                    </select></td> -->
+                    <!-- <td>  <input type="text" class="form-control" 
                         placeholder="Enter Dc point" formControlName="correctDcPoint" ></td>
                     <td>  <input type="text" class="form-control" 
-                        placeholder="Enter Tc Point" formControlName="correctTcPoint"></td>
+                        placeholder="Enter Tc Point" formControlName="correctTcPoint"></td> -->
                         <td><button mat-raised-button class=" btn-success"  (click)="verifyTcDcData(teacherdetail.emp_code )" >Verify</button></td>
                   </tr>
             </tbody>

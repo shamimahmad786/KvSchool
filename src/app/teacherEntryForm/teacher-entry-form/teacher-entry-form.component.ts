@@ -2780,6 +2780,7 @@ console.log(data)
   getSubjectByTchType(data) {
     this.outSideService.fetchKvSubjectListByTchType(data).subscribe((res) => {
       this.subjectList = res.response.rowValue;
+      console.log(this.subjectList);
       this.subjectListNameCode = [];
       for (let i = 0; i < this.subjectList.length; i++) {
         var conElement;

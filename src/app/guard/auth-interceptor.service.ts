@@ -9,7 +9,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         // alert("At interceptor");
        //debugger
     //    alert("at interceptor--->"+JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token);
-      // debugger;
+       debugger;
         if (JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token != undefined) {
             // alert("in if");
             if (req.url.indexOf('getProfileImage') !== -1 || req.url.indexOf('uploadProfileImage') !== -1 || req.url.indexOf('deleteDocumentByTeacherIdAndName') !== -1 ||
@@ -89,7 +89,7 @@ export class AuthInterceptorService implements HttpInterceptor {
                         setHeaders: {
                             'Authorization': token,
                             'Content-Type': (req.url.indexOf('unee-api/v1') !==-1)?'application/json; charset=utf-8':'text/plain; charset=utf-8',
-                            // 'loginType':'s',
+                             'loginType':'s',
                             // 'systemTeacherCode':sessionStorage.systemTeacherCode,
                             'username': JSON.parse(sessionStorage.getItem('authTeacherDetails')).user_name
                         }
@@ -127,7 +127,9 @@ export class AuthInterceptorService implements HttpInterceptor {
             // alert("In else");
             // if (req.url.indexOf('translate') !== -1) {
             //     return next.handle(req);
-            if (req.url.indexOf('getkvsDashboardReport') !== -1 || req.url.indexOf('sign-in') !== -1 || req.url.indexOf('translate') !== -1 || req.url.indexOf('getStationByRegion') !== -1 || req.url.indexOf('getReportData') !== -1 || 
+            // || req.url.indexOf('sign-in') !== -1
+
+            if (req.url.indexOf('getkvsDashboardReport') !== -1   || req.url.indexOf('translate') !== -1 || req.url.indexOf('getStationByRegion') !== -1 || req.url.indexOf('getReportData') !== -1 || 
             req.url.indexOf('getKVRegion') !== -1 || req.url.indexOf('getSchoolByStation') !== -1) {
 
                 const modifiedReq = req.clone(
@@ -135,7 +137,7 @@ export class AuthInterceptorService implements HttpInterceptor {
                         setHeaders: {
                             // 'Authorization': token,
                             'Content-Type': 'text/plain; charset=utf-8',
-                            'username': 'XYZ',
+                            // 'username': 'XYZ',
                             // 'systemTeacherCode':sessionStorage.systemTeacherCode,
                             // 'loginType':'s',
                         }
@@ -143,6 +145,8 @@ export class AuthInterceptorService implements HttpInterceptor {
                     // alert("before modify request")
                 return next.handle(modifiedReq);
 
+            }else if(req.url.indexOf('sign-in') !== -1){
+                return next.handle(req);
             } else if (req.url.indexOf('1') !== -1) {
                 return next.handle(req).pipe(
                     (
