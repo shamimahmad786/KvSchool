@@ -439,7 +439,7 @@
                                 !teacherForm.get('profileForm.presentPostName').valid ||
                                 !teacherForm.get('profileForm.presentSubjectName').valid ||
                                 responseData?.teacherId == null || responseData?.teacherId == '' || responseData?.teacherId == 'null'" type="button" name="next" (click)="onNextButtonClick(2)" class="next action-button mt-2" value="Next" />
-                                <input [disabled]="!teacherForm.get('profileForm.dob').valid ||
+                                <!-- <input [disabled]="!teacherForm.get('profileForm.dob').valid ||
                                 !teacherForm.get('profileForm.fullName').valid || !teacherForm.get('profileForm.specialRecruitmentYn').valid ||
                                 !teacherForm.get('profileForm.mobile').valid ||
                                 !teacherForm.get('profileForm.gender').valid ||
@@ -450,7 +450,7 @@
                                 !teacherForm.get('profileForm.staffType').valid ||
                                 !teacherForm.get('profileForm.empCode').valid ||
                                 !teacherForm.get('profileForm.presentPostName').valid ||
-                                !teacherForm.get('profileForm.presentSubjectName').valid || !teacherForm.get('profileForm.email').valid || !allowEdit" type="submit" id="submit1" value="Save & Next" class=" action-save mt-2 me-2" />
+                                !teacherForm.get('profileForm.presentSubjectName').valid || !teacherForm.get('profileForm.email').valid || !allowEdit" type="submit" id="submit1" value="Save & Next" class=" action-save mt-2 me-2" /> -->
                                 <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.email').valid || !teacherForm.get('profileForm.dob').valid && teacherForm.get('profileForm.dob').touched||
                                 !teacherForm.get('profileForm.fullName').valid && teacherForm.get('profileForm.fullName').touched ||
                                 !teacherForm.get('profileForm.mobile').valid && teacherForm.get('profileForm.mobile').touched ||
@@ -1159,7 +1159,7 @@
                                 (documentUploadArray[4]?.docName != 'Physically_Handicap_Certificate.pdf' &&  teacherForm.get('personalInfoForm.disabilityYN').value == '1')))" type="button" name="next" (click)="onNextButtonClick(3)" class="next action-button"
                                     value="Next" />
                                 <input type="button" name="previous" class="previous action-button-previous" (click)=" onPreviousClick(1)" value="Previous" />
-                                <input [disabled]="((!teacherForm.get('personalInfoForm.maritalStatusF').valid ) || (!teacherForm.get('personalInfoForm.crspndncAddress').valid ) || (!teacherForm.get('personalInfoForm.prmntAddress').valid ) || (!teacherForm.get('personalInfoForm.disabilityYN').valid ) || (!teacherForm.get('personalInfoForm.disabilityType').valid &&
+                                <!-- <input [disabled]="((!teacherForm.get('personalInfoForm.maritalStatusF').valid ) || (!teacherForm.get('personalInfoForm.crspndncAddress').valid ) || (!teacherForm.get('personalInfoForm.prmntAddress').valid ) || (!teacherForm.get('personalInfoForm.disabilityYN').valid ) || (!teacherForm.get('personalInfoForm.disabilityType').valid &&
                                                                    teacherForm.get('personalInfoForm.disabilityYN').value == '1') || 
                                                                    ((teacherForm.get('personalInfoForm.spouseStatusF').value == '1') &&
                                                                    (!teacherForm.get('personalInfoForm.spouseEmpCode').valid ||
@@ -1172,7 +1172,7 @@
                                                                    !teacherForm.get('personalInfoForm.spouseStationName').valid))||(!teacherForm.get('personalInfoForm.crspndncPinCode').valid ||
                                                                    (teacherForm.get('personalInfoForm.prmntPinCode').status != 'VALID' && teacherForm.get('personalInfoForm.prmntPinCode').status != 'DISABLED') ||
                                                                    (documentUploadArray[4]?.docName != 'Physically_Handicap_Certificate.pdf' &&  teacherForm.get('personalInfoForm.disabilityYN').value == '1'))) || !allowEdit || (isVisible ? fileUpload : false)" type="submit" id="submit2"
-                                    value="Save & Next" class="action-save  me-2" />
+                                    value="Save & Next" class="action-save  me-2" /> -->
 
                             </div>
 
@@ -1589,7 +1589,7 @@
                                 <!-- <input type="button" name="next" class="next action-button mt-2" value="Next" /> -->
                                 <input type="button" name="next" class="next action-button mt-2" value="Next" (click)="onNextButtonClick(4)" />
                                 <input type="button" name="previous" (click)=" onPreviousClick(2)" class="previous action-button-previous mt-2" value="Previous" />
-                                <input [disabled]="!allowEdit" type="submit" id="submit5" value="Save & Next" class=" action-save me-2 mt-2" />
+                                <!-- <input [disabled]="!allowEdit" type="submit" id="submit5" value="Save & Next" class=" action-save me-2 mt-2" /> -->
 
                             </div>
 
@@ -2482,7 +2482,7 @@
                                 </fieldset>
                                 <input type="button" name="next" class="next action-button mt-2" value="Next" (click)="onVerifyClick()" />
                                 <input type="button" name="previous" class="previous action-button-previous mt-2" (click)=" onPreviousClick(4)" value="Previous" />
-                                <input [disabled]="                            
+                                <!-- <input [disabled]="                            
                                 ((!teacherForm.get('transferRelatedForm.patientName').valid ||
                                 !teacherForm.get('transferRelatedForm.patientAilment').valid || 
                                 !teacherForm.get('transferRelatedForm.patientHospital').valid ||
@@ -2498,7 +2498,7 @@
                                ) && positionHeld) || !teacherForm.get('transferRelatedForm.absenceDaysOne').valid ||
                                 ((!teacherForm.get('transferRelatedForm.childDifferentName').valid || 
                                 !teacherForm.get('transferRelatedForm.childDifferentDisabilityName').valid || 
-                                !teacherForm.get('transferRelatedForm.childDifferentDisabilityPrcnt').valid) && abledChild) || buttonVisible!=true || !allowEdit || (gkFilebenefit ? fileUpgkFilebenefit : false) || (gkFilemMedical ? fileUpgkFilemMedical : false) || (spGround ? fileUpspGround : false) || (dfpGround ? fileUpdfpGround : false) || (careGiver ? fileUpcareGiver : false) || (positionHeld ? fileUppositionHeld : false)" type="submit" id="submit4" value="Save & Next" class=" action-save me-2 mt-2" />
+                                !teacherForm.get('transferRelatedForm.childDifferentDisabilityPrcnt').valid) && abledChild) || buttonVisible!=true || !allowEdit || (gkFilebenefit ? fileUpgkFilebenefit : false) || (gkFilemMedical ? fileUpgkFilemMedical : false) || (spGround ? fileUpspGround : false) || (dfpGround ? fileUpdfpGround : false) || (careGiver ? fileUpcareGiver : false) || (positionHeld ? fileUppositionHeld : false)" type="submit" id="submit4" value="Save & Next" class=" action-save me-2 mt-2" /> -->
 
                                 <!-- <input 
                                         type="submit" id="submit4" value="Save"
