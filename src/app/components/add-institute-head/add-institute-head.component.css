@@ -1,0 +1,24 @@
+.insitute-svae-button{
+    color: #fff;
+    position: relative;
+    top: 7px;
+    padding: 3px 40px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #632765;
+    height: 34px;
+    line-height: normal;
+    border: none;
+}
+.insitute-svae-button:disabled {
+    color: #fff;
+    position: relative;
+    top: 7px;
+    padding: 3px 40px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #7E4880;
+    height: 34px;
+    line-height: normal;
+    border: none;
+}

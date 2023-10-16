@@ -447,7 +447,7 @@ export class TeacherEntryFormComponent implements OnInit {
     if (parseInt(day, 10) < 10) {
       day = '0' + day.toString();
     }
-    this.maxDate = `2023-07-20`;
+    this.maxDate = `2024-07-20`;
     this.route.queryParams.subscribe(
       (queryParams: Params) => {
         this.allowEdit = queryParams['allowEdit'];
@@ -456,6 +456,7 @@ export class TeacherEntryFormComponent implements OnInit {
           this.allowEdit = true;
           if (sessionStorage.getItem('responseData') == null) {
             this.responseData = JSON.parse(sessionStorage.getItem('singleKvTeacher'))
+          //  alert(JSON.stringify(this.responseData))
             console.log(this.responseData)
             this.outSideService.getUpdatedFlag(this.responseData.teacherId).subscribe((res) => {
               this.flagUpdatedList = res.response
@@ -477,7 +478,9 @@ export class TeacherEntryFormComponent implements OnInit {
             this.getDistrictByStateId(this.responseData.teacherCorrespondenceState, "C")
             this.getDistrictByStateId(this.responseData.teacherParmanentState, "P")
           } else {
+          
             this.responseData = JSON.parse(sessionStorage.getItem('responseData'))
+            alert(JSON.stringify(this.responseData))
             this.kvCode = sessionStorage.getItem('kvCode')
             sessionStorage.setItem('systemTeacherCode', this.responseData.teacherSystemGeneratedCode)
 
@@ -1790,6 +1793,8 @@ console.log(data)
   }
   //------------------------------------------------ end declarationRelatedForm here --------------------------------------
   onSubmit(event: Event) {
+    //alert(this.teacherForm.value.profileForm.dob)
+   // alert(moment(JSON.parse(JSON.stringify((this.teacherForm.value.profileForm.dob).toString()))).format('YYYY-MM-DD'))
     var activeButton = document.activeElement.id;
     if (activeButton == "submit1") {
       if (this.tempTeacherId) {

@@ -130,9 +130,8 @@
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <h4 class="titleSet">Date of birth<span class="required-asterisk">*</span></h4>
-
                                                             <mat-form-field style=" width: 100%;">
-                                                                <input matInput [matDatepicker]="pdob" class="form-control" placeholder="dd-MM-YYYY" name="presentKvDate" [max]="maxDate" [max]="maxDate" class="form-control " data-date-format="DD MMMM YYYY" name="dob" formControlName="dob" [(ngModel)]="responseData.teacherDob"
+                                                                <input matInput [matDatepicker]="pdob" class="form-control" placeholder="dd-MM-YYYY" name="presentKvDate" [max]="maxDate" class="form-control " data-date-format="DD MMMM YYYY" name="dob" formControlName="dob" [(ngModel)]="responseData.teacherDob"
                                                                     style="text-transform: none;">
                                                                 <mat-datepicker-toggle matSuffix [for]="pdob"></mat-datepicker-toggle>
                                                                 <mat-datepicker #pdob></mat-datepicker>
@@ -439,7 +438,7 @@
                                 !teacherForm.get('profileForm.presentPostName').valid ||
                                 !teacherForm.get('profileForm.presentSubjectName').valid ||
                                 responseData?.teacherId == null || responseData?.teacherId == '' || responseData?.teacherId == 'null'" type="button" name="next" (click)="onNextButtonClick(2)" class="next action-button mt-2" value="Next" />
-                                <!-- <input [disabled]="!teacherForm.get('profileForm.dob').valid ||
+                                <input [disabled]="!teacherForm.get('profileForm.dob').valid ||
                                 !teacherForm.get('profileForm.fullName').valid || !teacherForm.get('profileForm.specialRecruitmentYn').valid ||
                                 !teacherForm.get('profileForm.mobile').valid ||
                                 !teacherForm.get('profileForm.gender').valid ||
@@ -450,7 +449,7 @@
                                 !teacherForm.get('profileForm.staffType').valid ||
                                 !teacherForm.get('profileForm.empCode').valid ||
                                 !teacherForm.get('profileForm.presentPostName').valid ||
-                                !teacherForm.get('profileForm.presentSubjectName').valid || !teacherForm.get('profileForm.email').valid || !allowEdit" type="submit" id="submit1" value="Save & Next" class=" action-save mt-2 me-2" /> -->
+                                !teacherForm.get('profileForm.presentSubjectName').valid || !teacherForm.get('profileForm.email').valid || !allowEdit" type="submit" id="submit1" value="Save & Next" class=" action-save mt-2 me-2" />
                                 <span class="help-block text-danger" *ngIf="!teacherForm.get('profileForm.email').valid || !teacherForm.get('profileForm.dob').valid && teacherForm.get('profileForm.dob').touched||
                                 !teacherForm.get('profileForm.fullName').valid && teacherForm.get('profileForm.fullName').touched ||
                                 !teacherForm.get('profileForm.mobile').valid && teacherForm.get('profileForm.mobile').touched ||

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import * as $ from 'jquery';
 import { Router, ActivatedRoute } from '@angular/router';
+import { OutsideServicesService } from 'src/app/service/outside-services.service';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -14,16 +15,18 @@ export class SideNavComponent implements OnInit {
   kvicons: any;
   kvIfConditions: boolean = false;
   businessUnitTypeId:any;
-
+  timeLeft: number = 15;
+  interval;
   showNational:boolean = false;
   showRegion:boolean = false;
   showStation:boolean = false;
   showSchool:boolean = false;
-  constructor(private router: Router) {
+  constructor(private router: Router,private outSideService: OutsideServicesService,) {
 
   }
 
   ngOnInit(): void {
+    
     this.applicationId = environment.applicationId;
     for (let i = 0; i < JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails.length; i++) {
       
@@ -46,26 +49,30 @@ export class SideNavComponent implements OnInit {
     }else if(this.businessUnitTypeId == '5'){
       this.showSchool = true;
     }
-
-  }
-
-  checkFunction(){
-    alert("called");
+this.timeWatch();
   }
 
   
-  authlogout(){
-    
+timeWatch()
+{
+  
 
-    
-
-if(sessionStorage.getItem("loginType")=="jwt"){
-      this.router.navigate(['/mainPage']);
-}else if(sessionStorage.getItem("loginType")=="auth"){
-  window.location.href=this.logoutLink;
+if((sessionStorage.getItem("authTeacherDetails")!= null) && (JSON.parse(sessionStorage.getItem("authTeacherDetails")).status != 0)){
+   this.timeLeft = 15;
+   
+   this.interval = setInterval(() => {
+     if(this.timeLeft > 0) {
+       this.timeLeft--;
+     }else if(this.timeLeft==0 && sessionStorage.getItem("authTeacherDetails")!= null) {
+      this.timeLeft=30;
+      // this.outSideService.refreshtoken().subscribe(res => {
+      //   console.log(res)
+      //   this.childUserList = res;
+      //   this.setToJoingMatTable(this.childUserList);
+      //  })
+    //  alert("time going---------------"+sessionStorage.getItem("authTeacherDetails"))
+     }
+   },1000)
+  } 
 }
-sessionStorage.clear();
-}
-
-
 }

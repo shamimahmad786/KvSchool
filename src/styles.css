@@ -1,251 +1,143 @@
-/* 
-@import '~ngx-toastr/toastr';
-@import "~ag-grid-community/dist/styles/ag-grid.css";
-@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Montserrat', sans-serif; }
-body {
-    font-size: 14px;
-    overflow-x: hidden;
-    font-family: "Montserrat", sans-serif;
-    color: #242934;
-  
+/*====Reset css=========*/
+img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
 }
-.checkbox_animated:after {
-    content: "";
-    position: absolute;
-    top: -0.125rem;
-    left: 0;
-    width: 1.3rem;
-    height: 1.3rem;
-    background: #fff;
-    border: 2px solid #e6edef;
-    cursor: pointer;
-}
-.checkbox_animated:checked:before {
-    -webkit-transform: rotate(-45deg) scale(1, 1);
-    transform: rotate(-45deg) scale(1, 1);
-}
-.checkbox_animated:before {
-    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-    transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75), -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-    -webkit-transform: rotate(-45deg) scale(0, 0);
-    transform: rotate(-45deg) scale(0, 0);
-    content: "";
-    position: absolute;
-    left: 0.25rem;
-    top: 0.225rem;
-    z-index: 1;
-    width: 0.75rem;
-    height: 0.375rem;
-    border: 2px solid #24695c;
-    border-top-style: none;
-    border-right-style: none;
-}
-
-.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
-    font-size: 35px ! important;
-    background: #ff5556 ! important;
-    padding:3px 7px 8px !important;
-    color: white ! important; 
+@font-face {
+    font-family: 'PoppinsLight';
+    src: url('src/assets/fonts/PoppinsLight.eot');
+    src: url('src/assets/fonts/PoppinsLight.eot') format('embedded-opentype'),
+         url('src/assets/fonts/PoppinsLight.woff2') format('woff2'),
+         url('src/assets/fonts/PoppinsLight.woff') format('woff'),
+         url('src/assets/fonts/PoppinsLight.ttf') format('truetype'),
+         url('src/assets/fonts/PoppinsLight.svg#PoppinsLight') format('svg');
   }
-  .border-right {
-    border-right: 1px solid #eeeeee;
+  
+  @font-face {
+    font-family: 'PoppinsRegular';
+    src: url('src/assets/fonts/PoppinsRegular.eot');
+    src: url('src/assets/fonts/PoppinsRegular.eot') format('embedded-opentype'),
+         url('src/assets/fonts/PoppinsRegular.woff2') format('woff2'),
+         url('src/assets/fonts/PoppinsRegular.woff') format('woff'),
+         url('src/assets/fonts/PoppinsRegular.ttf') format('truetype'),
+         url('src/assets/fonts/PoppinsRegular.svg#PoppinsRegular') format('svg');
+  }
+  @font-face {
+    font-family: 'PoppinsMedium';
+    src: url('src/assets/fonts/PoppinsMedium.eot');
+    src: url('src/assets/fonts/PoppinsMedium.eot') format('embedded-opentype'),
+         url('src/assets/fonts/PoppinsMedium.woff2') format('woff2'),
+         url('src/assets/fonts/PoppinsMedium.woff') format('woff'),
+         url('src/assets/fonts/PoppinsMedium.ttf') format('truetype'),
+         url('src/assets/fonts/PoppinsMedium.svg#PoppinsMedium') format('svg');
+  }
+  @font-face {
+    font-family: 'PoppinsSemiBold';
+    src: url('src/assets/fonts/PoppinsSemiBold.eot');
+    src: url('src/assets/fonts/PoppinsSemiBold.eot') format('embedded-opentype'),
+         url('src/assets/fonts/PoppinsSemiBold.woff2') format('woff2'),
+         url('src/assets/fonts/PoppinsSemiBold.woff') format('woff'),
+         url('src/assets/fonts/PoppinsSemiBold.ttf') format('truetype'),
+         url('src/assets/fonts/PoppinsSemiBold.svg#PoppinsSemiBold') format('svg');
+  }
+  @font-face {
+    font-family: 'PoppinsBold';
+    src: url('src/assets/fonts/PoppinsBold.eot');
+    src: url('src/assets/fonts/PoppinsBold.eot') format('embedded-opentype'),
+         url('src/assets/fonts/PoppinsBold.woff2') format('woff2'),
+         url('src/assets/fonts/PoppinsBold.woff') format('woff'),
+         url('src/assets/fonts/PoppinsBold.ttf') format('truetype'),
+         url('src/assets/fonts/PoppinsBold.svg#PoppinsBold') format('svg');
+  }
+  
+
+
+/*====Reset css=========*/
+img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
 }
-  .owl-carousel{ padding-bottom: 70px;;}
+.login-wrap {position: relative;  font-family: 'PoppinsRegular'; 	font-size: 15px;
+	line-height: 1.6;}
+.login-wrap .login-bg {background-color:#632765; height: 100vh; padding-left: 40px !important; position: relative;}
+.login-bg h1, .login-bg h2 {color: #fff; text-transform: uppercase; }
+.login-bg h2 { font-family: 'PoppinsLight'; color: #fff; font-size: 26px; margin: 0;}
+.login-bg h1 { font-family: 'PoppinsBold'; font-size: 50px; line-height: 55px;}
+.login-bg h3 {color: #fff; font-family: 'PoppinsLight'; font-size: 26px; }
+.login-content {padding-top: 180px !important;}
+.login-img{position: absolute; right: 0; bottom:0; height: 400px;}
+.login-img-forgot{position: absolute; right: 25%; bottom:0; height: 450px;}
+.logo-left {height: 80px;}
+.logo-right {height: 100px; margin-right: 40px;}
+.login-form{height: calc(100vh - 250px); display: flex; justify-content: center; align-items: center; }
+.login-form .form-control {border: none; border-bottom: solid 1px #717171; border-radius: 0; padding-bottom:10px; padding-left: 30px; font-size: 18px;}
+.login-form .form-control:focus{outline: none; box-shadow: none;}
+.login-cnt .mb-4{margin-bottom: 30px !important;}
+.login-cnt{max-width:500px; width: 100%; }
+.login-cnt .sec-title { position: relative; line-height: 60px; text-align: center; margin-bottom: 50px !important; font-size: 2rem; color:#37338a;   font-family: 'PoppinsBold';}  
+.login-cnt .sec-title:after{width: 70px; background-color:#9c219e;  height: 4px; margin: auto; content: ""; display: block;}
+.login-cnt i {position: absolute; left: 0; top: 8px; font-size: 24px;}
+.login-cnt .btn {padding: 10px 12px; background:#37338a; border-color: #37338a; font-size: 16px;}
+.login-cnt a {color:#37338a;    font-family: 'PoppinsSemiBold';}
+.w-70{width: 70%;} 
+.login-wrap .button-group .btn {color: #fff; background: #dbdbdb; border-color: #dbdbdb; font-family: 'PoppinsSemiBold'; padding: 8px 12px;}
+.login-wrap .button-group .btn img {margin-top: -2px; height: 22px;}
+.login-wrap .button-group .btn.active {background:#37338a; border-color: #37338a;}
 
-  ag-grid-angular {
-    width: 100% !important;
-}
+@media (max-width:1600px) {
 
-
-.mat-select-search-inside-mat-option .mat-select-search-input {
-    background: rgba(36, 105, 92, 0.1) !important;
-    border-radius: 45px !important;
-    margin: 4px;
-    width: 96% !important;
-    margin: 5px !important;
-    height: 31px ! important;
-    border: 2px solid #24695c !important;
-}
-
-.mat-icon-button i,
-.mat-icon-button .mat-icon {
-    line-height: 18px !important;
-} */
-
-
-/* You can add global styles to this file, and also import other style files */
-
-@import '~ngx-toastr/toastr';
-@import "~ag-grid-community/dist/styles/ag-grid.css";
-@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
-
-/* @import '~ngx-toastr/toastr-bs4-alert'; */
-
-
-/* @import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins'; */
-
-
-/* @import '~ngx-toastr/toastr-bs4-alert'; */
-
-
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
-// Poppins Font-Family and Font-weight */
-
-@font-face {
-    font-family: 'light';
-    src: url(assets/Poppins/Poppins-Light.ttf);
-    font-style: normal;
-    font-weight: 300;
-}
-
-@font-face {
-    font-family: 'regular';
-    src: url(assets/Poppins/Poppins-Regular.ttf);
-    font-style: normal;
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: 'medium';
-    src: url(assets/Poppins/Poppins-Regular.ttf);
-    font-style: normal;
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: 'semiBold';
-    src: url(assets/Poppins/Poppins-SemiBold.ttf);
-    font-style: normal;
-    font-weight: 600;
-}
-
-@font-face {
-    font-family: 'bold';
-    src: url(assets/Poppins/Poppins-Bold.ttf);
-    font-style: normal;
-    font-weight: 700;
-}
-
-@font-face {
-    font-family: 'black';
-    src: url(assets/Poppins/Poppins-Black.ttf);
-    font-style: normal;
-    font-weight: 900;
+    .login-bg h2 { font-size: 22px; }
+    .login-bg h1 { font-size: 40px;}
+    .login-bg h3 { font-size: 22px; }
+    .login-content {padding-top: 100px !important;}
+    .login-img{ height: 280px;}
+    .login-cnt{max-width:500px; width: 100%; }
+    .login-cnt i {position: absolute; left: 0; top: 10px; font-size:18px;}
+    .login-form .form-control {  padding-bottom:10px; padding-left: 20px; font-size:1rem;}
+    .login-cnt .btn {padding: 6px 12px; }
 }
 
-html,
-body {
-    height: 100%;
+@media (max-width:1366px) {
+    .login-img{height: 200px;}
 }
 
-body {
-    margin: 0;
-    font-family: regular;
+@media (max-width:1199px) {
+    .logo-left {height: 70px;}  
+    .logo-right {height: 90px;}
+    .login-cnt{max-width:400px; width: 100%; }
 }
 
-body {
-    font-size: 14px;
-    overflow-x: hidden;
-    color: #242934;
+@media (max-width:991px) {
+
+    .login-cnt{max-width:80%; width: 100%; }
+
+    .pencil-bg{height: 70px;}
 }
 
-.checkbox_animated:after {
-    content: "";
-    position: absolute;
-    top: -0.125rem;
-    left: 0;
-    width: 1.3rem;
-    height: 1.3rem;
-    background: #fff;
-    border: 2px solid #e6edef;
-    cursor: pointer;
+@media (max-width:767px) {
+   
+    .login-wrap .login-bg { padding-left: 20px !important; }
+    .logo-right {height: 70px; margin-right: 20px;}
+    .logo-left {height: 55px; margin-left:-20px !important;}
+    .login-head{text-align: center;}
 }
 
-.checkbox_animated:checked:before {
-    -webkit-transform: rotate(-45deg) scale(1, 1);
-    transform: rotate(-45deg) scale(1, 1);
+@media (max-width:575px) {
+    .login-content{padding-top: 40px !important;}
+    .login-wrap .login-bg {height: auto; padding-left: 20px !important; }
+    .login-img{display: none;}
+    .logo-left {height: 60px; margin-left:0px !important;}
+    .login-head{text-align: left;}
+    .login-bg h3 {font-size:18px; }
+    .login-bg h1{font-size: 24px;}
+    .login-wrap .button-group .btn{font-size: 13px; padding: 6px 10px;}
+    .login-wrap .button-group .btn img {height: 20px;}
 }
 
-.checkbox_animated:before {
-    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-    transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75), -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-    -webkit-transform: rotate(-45deg) scale(0, 0);
-    transform: rotate(-45deg) scale(0, 0);
-    content: "";
-    position: absolute;
-    left: 0.25rem;
-    top: 0.225rem;
-    z-index: 1;
-    width: 0.75rem;
-    height: 0.375rem;
-    border: 2px solid #24695c;
-    border-top-style: none;
-    border-right-style: none;
-}
-
-.owl-carousel .owl-nav button.owl-next,
-.owl-carousel .owl-nav button.owl-prev,
-.owl-carousel button.owl-dot {
-    font-size: 35px ! important;
-    background: #ff5556 ! important;
-    padding: 3px 7px 8px !important;
-    color: white ! important;
-}
-
-.border-right {
-    border-right: 1px solid #eeeeee;
-}
-
-.owl-carousel {
-    padding-bottom: 70px;
-    ;
-}
-
-ag-grid-angular {
-    width: 100% !important;
-}
-
-.mat-select-search-inside-mat-option .mat-select-search-input {
-    background: rgba(36, 105, 92, 0.1) !important;
-    border-radius: 45px !important;
-    margin: 4px;
-    width: 96% !important;
-    margin: 5px !important;
-    height: 31px ! important;
-    border: 2px solid #24695c !important;
-}
-
-.mat-icon-button i,
-.mat-icon-button .mat-icon {
-    line-height: 18px !important;
-}
-
-.color-satyam {
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 36px;
-    color: #106384;
-}
-
-
-/* #b1b1b1  */
-
-.btn-secondary {
-    color: #fff !important;
-    background-color: #106183 !important;
-}
-
-.btn-primary {
-    color: #fff !important;
-    background-color: #106183 !important;
-    border-color:#106183 !important;
+@media (max-width:360px) {
+    .logo-left {height: 55px;} 
 }

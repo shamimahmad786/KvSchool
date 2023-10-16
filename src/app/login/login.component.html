@@ -1,48 +1,111 @@
-<section class="main-wrapper">
-    <div class="container  ">
-        <a routerLink="/"><img src="assets/images/login/emblem-school2.svg" class="img-fluid gov-logo mt-3"></a>
-    </div>
-    <div class="align-items-center d-flex  p-2 w-100 inner-wrapper">
-        <div class="container  ">
-            <div class="row align-items-center h-100">
-                <div class="col-lg-7">
-                    <div class="left-content ">
-                        <h6>LOGIN TO</h6>
-                        <h1 class="mb-4"> KVS Employees  Platform</h1>
-
-                        <!-- <p>Identity management, also known as identity and access management, is a framework of policies and technologies to ensure that the right users have the appropriate access to technology resources. IdM systems fall under the overarching
-                            umbrellas of IT security and data management.</p> -->
-                    </div>
+<div class="login-wrap">
+        <div class="container-fluid">
+            <div class="row">
+            <div class="col-xl-5 col-lg-5 col-sm-6 p-0 login-bg">
+                <div class="login-head pt-4">
+                    <a href="#"><img src="assets/images/emblem-school-white.svg" class="logo-left"></a>
                 </div>
-                <div class="col-lg-5 ">
-                    <div class="right-form">
-
-                        <div class="card login-form shadow">
-                            <img src="assets/images/login/KVS-logo-1.png" class="img-fluid login-logo">
-                            <form id="msform" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                                <h1>Login</h1>
-                                <P>Please enter your username and password</P>
-                                <input type="text" class="form-control mb-2" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="username">
-                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback"></div>
-                                <div *ngIf="f.username.errors.required" class="invalid-feedback">username is required</div>
-                                <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback"></div>
-                                <div *ngIf="f.password.errors.required" class="invalid-feedback">Password is required</div>
-                                <!-- <h6 class="mt-3 mb-3">Enter Captcha code to process</h6>
-                            <div class="captcha d-flex mb-3 w-100">
-                                <input placeholder="Enter Captcha" class="w-75">
-                                <span><img src="assets/images/captcha.png" class="img-fluid w-25"></span>
-                            </div> -->
-                                <button type="submit" class="btn btn-success login-btn mt-2">Login</button>
-
-                                <p class="mt-4 text-center fw-bold"><a style="text-decoration: none;" routerLink="/">Back to home</a></p>
-                            </form>
+                <div class="login-content" >
+                    <h2>Login To</h2>
+                    <h1>KVS EMPLOYEES<br>PLATFORM</h1>
+                    <h3>Kendriya Vidyalaya Sangthan</h3>
+                </div>
+              <img src="assets/images/employees-bg.svg"  class="login-img">
+            </div>
+            <div class="col-xl-7 col-lg-7 col-sm-6 p-0 login-right">
+                <div class="login-head pt-4 text-end">
+                    <a href="#"><img src="assets/images/kvs-logo.png" class="logo-right"></a>
+                </div>
+                <div class="login-form">
+                    <div class="login-cnt">`
+                        <h2 class="sec-title">Login Here</h2>
+                        <div class="button-group d-flex justify-content-center mb-5">
+                            <button class="btn me-3 password"><img src="assets/images/password.svg" class="me-2">Password</button>
+                            <button class="btn mobile active"><img src="assets/images/mobile.svg" class="me-2">Mobile OTP</button>
                         </div>
-                    </div>
+                        <form id="msform" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+       <!-----------------------Password Form---------------------------------------------->                   
+                         <div class="login-with-pass d-none">
+                            <div class="fieldSet bg-white" formGroupName="passwordForm">
+                            <div class="mb-4 position-relative">
+                            
+                              <i class="fa fa-user-o fa-color" aria-hidden="true"></i>
+                              <input type="text" class="form-control mb-2" autocomplete="new-password" formControlName="username" [ngClass]="{ 'is-invalid': submitted && !loginForm.get('passwordForm.username').valid }" placeholder="username">
+                              <span class="help-block text-danger" *ngIf="!loginForm.get('passwordForm.username').valid && submitted ">
+                                Enter a valid  User name!</span>                     
+                            </div>                       
+                            <div class="mb-4 position-relative">
+                              <i class="fa fa-unlock-alt fa-color" aria-hidden="true"></i>
+                              <input type="password" class="form-control" autocomplete="new-password" formControlName="password" onpaste="return false" [ngClass]="{ 'is-invalid': submitted && !loginForm.get('passwordForm.password').valid }" placeholder="Password">
+                              <span class="help-block text-danger" *ngIf="!loginForm.get('passwordForm.password').valid && submitted">
+                                Enter a valid   password!</span>                   
+                            </div>
+                            <div class="mb-4 d-flex position-relative">
+                             <input type="text" class="form-control ps-0 w-70" autocomplete="new-password" onpaste="return false" formControlName="passwordCaptcha" [ngClass]="{ 'is-invalid': submitted && !loginForm.get('passwordForm.passwordCaptcha').valid }"  placeholder="Captcha">
+                             <div id="captchaBackground">
+                              <canvas id="captcha"></canvas>
+                              <span id="output"></span>
+                          </div>
+                             <div class="captcha" (click)="generate()" style="align-items: center;display: flex;"> 
+                              <svg xmlns="http://www.w3.org/2000/svg" width="46" height="36" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                              </svg>
+                             </div> 
+                            </div>
+                            <span class="help-block text-danger" *ngIf="!loginForm.get('passwordForm.passwordCaptcha').valid && submitted">
+                              Incorrect Captcha !</span>
+                            <button type="submit" id="submitPasswordForm" class="btn btn-secondary btn-lg btn-block mt-2">Login</button>
+                     </div>
+                        </div>
+        <!-----------------------otp Form---------------------------------------------->  
+                        <div class="login-with-otp">
+                          <div class="fieldSet" formGroupName="otpForm">
+                              <div class="mb-1 position-relative">
+                              
+                                <i class="fa fa-mobile fa-color" aria-hidden="true"></i>
+                                <input type="number" class="form-control mb-2" autocomplete="new-password" onKeyPress="if(this.value.length==10) return false;" formControlName="mobileNo" [ngClass]="{ 'is-invalid': submittedOtp && !loginForm.get('otpForm.mobileNo').valid }" placeholder="Mobile Number">
+                                <span class="help-block text-danger" *ngIf="!loginForm.get('otpForm.mobileNo').valid && submittedOtp">
+                                  Enter a valid  Mobile Number!</span>  
+                              </div>
+
+                              <div class="mb-3 d-flex position-relative">
+                                <button type="button" [disabled]="isDisabled" (click)="otpSend()" class="btn btn-success " style="padding: 3px 10px 3px 8px;">Get Otp</button>
+                              <div class="timer" *ngIf="showTimer"> Resend OTP in <b>{{timeLeft}}</b></div> 
+                              </div>
+                               
+                              <div class="mb-4 position-relative">
+                                <i class="fa fa-unlock-alt fa-color" aria-hidden="true"></i>
+                                <input type="number"  class="form-control" autocomplete="new-password" formControlName="OTP" [ngClass]="{ 'is-invalid': submittedOtp && !loginForm.get('otpForm.OTP').valid }" placeholder="Otp">
+                                <span class="help-block text-danger" *ngIf="!loginForm.get('otpForm.OTP').valid && submittedOtp">
+                                  Enter a valid  otp!</span>  
+                              </div>
+    
+                               <div class="mb-4 d-flex position-relative">
+                               <input type="text" class="form-control ps-0 w-70" autocomplete="new-password" onpaste="return false" formControlName="otpCaptcha"  [ngClass]="{ 'is-invalid': submittedOtp && !loginForm.get('otpForm.otpCaptcha').valid }"  placeholder="Captcha">
+                               <div id="captchaBackground">
+                                <canvas id="otpcaptcha"></canvas>
+                                <span id="outputotp"></span>
+                               </div>
+                               <div class="captcha" (click)="generate()" style="align-items: center;display: flex;"> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="36" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                                </svg>
+                               </div> 
+                              </div>
+                              <span class="help-block text-danger" *ngIf="!loginForm.get('otpForm.otpCaptcha').valid && submittedOtp">
+                                Incorrect Captcha !</span>
+                              <button type="submit" id="submitOtpForm" class="btn btn-secondary btn-lg btn-block mt-2">Login</button>
+                            </div>
+                        </div>
+                      </form>
+                          <p class="text-center mt-3">   <a class="nav-link navStyle" routerLink="/forgetPassword">Forgot Password</a></p>
+                        
+                    </div>               
                 </div>
             </div>
         </div>
-    </div>
-    <img src="assets/images/login/nic-logo.svg" class="img-fluid  nic-logo">
+        </div>
+       </div>
 
-</section>

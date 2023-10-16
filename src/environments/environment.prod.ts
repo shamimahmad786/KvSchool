@@ -55,19 +55,19 @@ export const environment = {
 
 
   //Demo 2
-  // BASE_URL_DATA_TEACHER: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/teacher/',
-  // BASE_URL_DATA_MASTER: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/master/',
-  // BASE_URL_DATA_QUESTION: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/question/',
-  // BASE_URL_DATA_SURVEY: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/survey/',
-  // BASE_URL_DATA_EXPERIENCE: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/experience/',
-  // BASE_URL_DATA_PROMOTION: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/promotion/',
-  // BASE_URL_DATA_QUALIFICATION: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/qualification/',
-  // BASE_URL_DATA_AWARDS: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/awards/', 
-  // BASE_URL_DATA_TRANSFER: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/transfer/',
-  // BASE_URL_DATA_DASHBOARD: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/dashboard/',
+  // BASE_URL_DATA_TEACHER: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/teacher/',
+  // BASE_URL_DATA_MASTER: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/master/',
+  // BASE_URL_DATA_QUESTION: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/question/',
+  // BASE_URL_DATA_SURVEY: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/survey/',
+  // BASE_URL_DATA_EXPERIENCE: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/experience/',
+  // BASE_URL_DATA_PROMOTION: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/promotion/',
+  // BASE_URL_DATA_QUALIFICATION: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/qualification/',
+  // BASE_URL_DATA_AWARDS: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/awards/', 
+  // BASE_URL_DATA_TRANSFER: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/transfer/',
+  // BASE_URL_DATA_DASHBOARD: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/dashboard/',
   // BASE_URL_DATA_USER: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/user/',
-  // BASE_URL_DATA_SURPLUS_TRANSFER:'https://demopgi.udiseplus.gov.in/MOE-RAD-TRANSFER/api/transfer/',
-  // BASE_URL_DATA_TEACHER_TRANSFER:'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/transprofile/',
+  // BASE_URL_DATA_SURPLUS_TRANSFER:'https://demopgi.udiseplus.gov.in/MOE-RAD-TRANSFER-V1/api/transfer/',
+  // BASE_URL_DATA_TEACHER_TRANSFER:'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/transprofile/',
   // LOGOUT_URL:'https://demopgi.udiseplus.gov.in/SpringAuthSecurity/logout?returnTo=https://demopgi.udiseplus.gov.in/school',
   // LOGIN_URL_INDIVIDUAL:'https://demopgi.udiseplus.gov.in/SpringAuthSecurity/oauth/authorize?response_type=code&user_oauth_approval=true&client_id=teacher&redirect_uri=https://demopgi.udiseplus.gov.in/school/teacher/profile&scopes=read',
   // LOGIN_URL_COMMON:'https://demopgi.udiseplus.gov.in/SpringAuthSecurity/oauth/authorize?response_type=code&user_oauth_approval=true&client_id=teacher&redirect_uri=https://demopgi.udiseplus.gov.in/school/teacher/profile&scopes=read',
@@ -76,10 +76,16 @@ export const environment = {
   // AUTH_GUARD_HREF:'https://demopgi.udiseplus.gov.in/teacher/teacher/profile',
   // AUTH_GUARD_HREF1:'https://demopgi.udiseplus.gov.in/SpringAuthSecurity/logout?returnTo=https://pgi.udiseplus.gov.in/school',
   // BASE_URL_MEUSER:'https://demopgi.udiseplus.gov.in/UserService/api/user/',
-  // LOGIN_URL_JWT:'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/login/',
+  // LOGIN_URL_JWT:'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/api/login/',
   // BASE_URL_REPORT:'https://demopgi.udiseplus.gov.in/MOE-KVS-PDF/api/kvsreport/',
-  // BASE_URL_DATA_MASTER1:'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/unee-api/v1/master/',
-  // BASE_URL_DATA_MAPPING:'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/unee-api/v1/mapping/',
+  // BASE_URL_DATA_MASTER1:'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/unee-api/v1/master/',
+  // BASE_URL_DATA_MAPPING:'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/unee-api/v1/mapping/',
+  //  BASE_URL_DATA_USERMANAGEMENT:'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER-V1/usermanagement/',
+
+
+
+
+
 
 //   BASE_URL_DATA_TEACHER: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/teacher/',
 //   BASE_URL_DATA_MASTER: 'https://demopgi.udiseplus.gov.in/MOE-RAD-TEACHER/api/master/',

@@ -1,0 +1,344 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" style=" width: 756px; border: solid 0.2px #d6d6d6;border-radius: 8px 8px 8px 8px;" id="home-tab" (click)="navColor('transferin')" [class.myClass]="showFirstButtonColor" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> Transfer Out</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" style=" width: 760px; border: solid 0.2px #d6d6d6;border-radius: 8px 8px 8px 8px;" (click)="navColor('transferout')" [class.myClass]="showsecondButtonColor" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Transfer In </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+<!--------------------------Transfer In Start Here-------------------------------------------------->
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><div class="shadow-sm bg-white p-3 rounded mt-3">
+        <div class="row">
+            <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">EMPLOYEE TRANSFER OUT</span>
+              </div>
+            </div>
+        </div>
+
+        <div *ngIf="nationalLogin" class="shadow-sm bg-white p-3 rounded mt-3">   
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-header">
+                        <mat-form-field appearance="outline" class=" searchInput me-4">
+                            <input matInput (keyup)="applyFilterSBSource($event.target.value)" placeholder="Search">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </div>      
+                <div class="col-md-6">
+                    <button mat-raised-button class="float-end mt-2 me-2 btn-primary" (click)="exportexcelRelieving()">Download
+                        Excel</button>
+                    <button mat-raised-button class="float-end mt-2 me-2 btn-secondary" (click)="exportTransferOutDataInpdf()">Download
+                        PDF</button>
+                </div>
+            </div>
+            <div class="example-container mat-elevation-z8 " id="style-2">
+                <mat-table [dataSource]="sBSource" matSort #sBSort="matSort">
+                    <ng-container matColumnDef="sno">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
+                        <mat-cell *matCellDef="let row"><span class="mobile-label">S.No. : </span> {{row.sno}} </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="empcode">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code </mat-header-cell>
+                        <mat-cell *matCellDef="let row"><span class="mobile-label">Employee Code : </span> {{row.empcode}}
+                        </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let row"><span class="mobile-label">Name : </span> {{row.name | uppercase
+                            }}</mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="postName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Post Name </mat-header-cell>
+                        <mat-cell *matCellDef="let row"><span class="mobile-label">Post Name : </span> {{row.postName }}
+                        </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="subjectName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Subject Name</mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Subject Name :
+                            </span> {{row.subjectName}} </mat-cell>
+                    </ng-container>                   
+                   
+                    <ng-container matColumnDef="To">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Transfer To </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">To :
+                        </span> {{row.To}} ({{row.allot_kv_code}}) </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="transferGround">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Transfer Ground  </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Transfer Ground :
+                        </span> {{row.transferGround}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="relivingdate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Relieving Date  </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Relieving date :
+                        </span> {{changeDateFormat(row.relivingdate)}} </mat-cell>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Action :
+                        </span> <button type="button"  *ngIf="row.join_relieve_flag != '2'" class="btn btn-success btn-sm"  (click)="openRelivingmodal(row.teacher_id,row.empcode,row.name)" >Relieving</button> </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumnsOut; sticky:true; "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumnsOut;">
+                    </mat-row>
+                </mat-table>
+                <mat-paginator #paginatorOut [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+            </div>
+        </div>
+    </div>
+<!----------------------Transfer Out End Here--------------------------------------------------------->
+
+<!--------------------------Transfer In Start Here-------------------------------------------------->
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><div class="shadow-sm bg-white p-3 rounded mt-3">
+        <div class="row">
+            <div class="col-md-3"><span style="font-weight: bolder; color: #427e72;">EMPLOYEE TRANSFER IN</span>
+              </div>
+            </div>
+        </div>
+        <div *ngIf="nationalLogin" class="shadow-sm bg-white p-3 rounded mt-3">   
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-header">
+                        <mat-form-field appearance="outline" class=" searchInput me-4">
+                            <input matInput (keyup)="applyFilterHBSource($event.target.value)" placeholder="Search">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>      
+                    </div>
+                </div>  
+                <div class="col-md-6">
+                    <button mat-raised-button class="float-end mt-2 me-2 btn-primary" (click)="exportexcelJoining()">Download
+                        Excel</button>
+                    <button mat-raised-button class="float-end mt-2 me-2 btn-secondary" (click)="exportTransferInDataInpdf()">Download
+                        PDF</button>
+                </div>     
+            </div>
+            <div class="example-container mat-elevation-z8 " id="style-2">
+                <mat-table [dataSource]="hBSource" matSort #hBSort="matSort">
+                    <ng-container matColumnDef="sno">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
+                        <mat-cell *matCellDef="let row"><span class="mobile-label">S.No. : </span> {{row.sno}} </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="empcode">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Employee Code </mat-header-cell>
+                        <mat-cell *matCellDef="let row"><span class="mobile-label">Emp. Code : </span> {{row.empcode}}
+                        </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let row"><span class="mobile-label">Name : </span> {{row.name | uppercase
+                            }}</mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="postName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Post Name </mat-header-cell>
+                        <mat-cell *matCellDef="let row"><span class="mobile-label">Post Name : </span> {{row.postName }}
+                        </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="subjectName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Subject Name</mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Subject Name :
+                            </span> {{row.subjectName}} </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="From">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Transfer From </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">From :
+                        </span> {{row.From}} ({{row.from_kv}}) </mat-cell>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="To">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> To </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">To :
+                        </span> {{row.To}} </mat-cell>
+                    </ng-container> -->
+                    <!-- <ng-container matColumnDef="relived">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Relived  </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Relived :
+                        </span> {{row.relived}} </mat-cell>
+                    </ng-container> -->
+                    <ng-container matColumnDef="transferGround">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Transfer Ground  </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Transfer Ground :
+                        </span> {{row.transferGround}} </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="relivingdate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Relieving Date  </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Relieving date :
+                        </span> {{changeDateFormat(row.relivingdate)}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="joiningdate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Joining Date  </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Joining date :
+                        </span> {{changeDateFormat(row.joiningdate)}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">Action :
+                        </span> <button  *ngIf="row.join_relieve_flag != '1'" type="button" class="btn btn-success  btn-sm" (click)="openJoiningmodal(row.teacher_id,row.empcode,row.from_kv,row.name)">Joining </button> </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true; "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                </mat-table>
+                <mat-paginator #paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+            </div>
+        </div>
+    </div>
+
+    <div mat-dialog-content>
+        <ng-template #JoiningBox  let-modal style="min-width: 100%;">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2 class="mb-0 text-green">Employee Transfer In  </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="" style="min-width: 100%; max-height: 1000px;">
+                <div class="container-fluid">             
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="shadow-sm p-3 mb-2 bg-body rounded m-3 p-3">
+                                    <div class="row">
+                                        <ul class="nav nav-pills nav-fill" style="font-weight: bolder; color: #427e72;">
+                                           
+                                            <li style="font-weight: bolder; color: #427e72;">
+                                                NAME : {{teacherName}} ({{onClickEmplCode}})
+                                            </li>
+                                          </ul>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                </div>
+            </div>
+            <div class="" style="min-width: 100%; max-height: 1000px;">
+                <div class="container-fluid">
+                    <form id="msform" class="msform" [formGroup]="employeeTransferIn"  (ngSubmit)="onEmployeeTransferFormSubmit($event)">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="shadow m-3 p-3">
+                                    <div class="row">
+                                 <div class="col-md-6">
+                                    <h4 class="titleSet"> Employee Joining Date :</h4>
+                              
+                                       <input type="date" [max]="maxDate" class="form-control form-control-sm"
+                                        formControlName="JoiningDate" name="JoiningDate"
+                                        placeholder="JoiningDate">
+                                  </div>
+                                  <!-- <div class="col-md-6" >
+                                    <h4 class="titleSet">Upload File In PDF (Max 500 KB)<span class="required-asterisk">*</span></h4>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="500" accept=".pdf" (blur)="handleFileInput($event.target.files, '4')" #Physically_Handicap_Certificate>
+                                        <button class="btn btn-outline-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUpload(1)">Upload</button>
+                                    </div>
+                                    <span class="help-block text-danger" *ngIf="fileUpload">Please upload the file</span>
+                                </div> -->
+                                </div>
+                                <div class="p-3" style="text-align: right;">
+                                    <button type="button" class="btn btn-danger btn-sm" style="margin-left: 3px;"
+                                        (click)="modal.dismiss('Cross click')">Cancel</button>
+                                  
+                                        <input [disabled]="!employeeTransferIn.get('JoiningDate').valid " type="submit" id="submit" value="submit" class="action-button" />
+                                </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+
+    <div mat-dialog-content>
+        <ng-template #RelivingBox  let-modal style="min-width: 100%;"> 
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h2 class="mb-0 text-green">Employee Transfer Out  </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" style="min-width: 100%; max-height: 1000px;">
+                <div class="container-fluid">             
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="shadow-sm p-3 mb-2 bg-body rounded m-3 p-3">
+                                    <div class="row">
+                                        <ul class="nav nav-pills nav-fill" style="font-weight: bolder; color: #427e72;">
+                                           
+                                            <li style="font-weight: bolder; color: #427e72;">
+                                                NAME : {{teacherRelName}} ({{onClickRelEmplCode}})
+                                            </li>
+                                          </ul>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                </div>
+            </div>
+            <div class="" style="min-width: 100%; max-height: 1000px;">
+                <div class="container-fluid">
+                    <form id="msform" class="msform" [formGroup]="employeeTransferOut"  (ngSubmit)="onEmployeeTransferOutFormSubmit($event)">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="shadow m-3 p-3">
+                                    <div class="row">
+                                       
+                                 <div class="col-md-6">
+                                         <h4 class="titleSet"> Employee Relieving Date :</h4>
+                                         <input type="date" [max]="maxDate" class="form-control form-control-sm"
+                                         formControlName="relievingDate" name="relievingDate"
+                                         placeholder="relievingDate">
+                                  </div>
+                                 <!-- <div class="col-md-6">
+                                    <h4 class="titleSet"> Employee Joining Date :</h4>
+                              
+                                       <input type="date" class="form-control form-control-sm"
+                                        formControlName="JoiningDate" name="JoiningDate"
+                                        placeholder="JoiningDate">
+                                  </div> -->
+                                  <!-- <div class="col-md-6" >
+                                    <h4 class="titleSet">Upload File In PDF (Max 500 KB)<span class="required-asterisk">*</span></h4>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control form-control-sm" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" id="file" data-max-size="500" accept=".pdf" (blur)="handleFileInput($event.target.files, '4')" #Physically_Handicap_Certificate>
+                                        <button class="btn btn-outline-secondary btn-sm" type="button" id="inputGroupFileAddon04" (click)="documentUpload(1)">Upload</button>
+                                    </div>
+                                    <span class="help-block text-danger" *ngIf="fileUpload">Please upload the file</span>
+                                </div> -->
+
+                                </div>
+                                <div class="p-3" style="text-align: right;">
+                                    <button type="button" class="btn btn-danger btn-sm" style="margin-left: 3px;"
+                                        (click)="modal.dismiss('Cross click')">Cancel</button>
+                                  
+                                        <input [disabled]="!employeeTransferOut.get('relievingDate').valid " type="submit" id="submit1" value="submit" class="action-button" />
+                                </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+   <!----------------------Transfer Out End Here-------------------------------------------------------> 
+  </div>

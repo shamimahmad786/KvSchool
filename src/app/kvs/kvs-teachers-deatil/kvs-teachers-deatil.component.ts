@@ -271,7 +271,8 @@ export class KvsTeachersDeatilComponent implements OnInit, AfterViewInit {
       this.kvCode = JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails[0].business_unit_type_code;
     }
     this.outSideService.getKvTeacherByUdiseCode(this.kvCode).subscribe((res) => {
-      
+      console.log("--------------teacher detail----------------------")
+      console.log(res.response)
       this.teacherList = [];
       this.teacherList = res.response;
       this.setToMatTable(res.response);

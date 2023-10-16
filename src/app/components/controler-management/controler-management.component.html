@@ -1,0 +1,205 @@
+<div class="dashboard-main-content" style="min-height: 600px;">
+    <div class="dashboard-main-content__header">
+      <h1>User Mapping</h1>
+    </div>
+   
+      <nav aria-label="breadcrumb" class="mt-1">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">User Mapping</a></li>
+        </ol>
+      </nav>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+  
+  
+       
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" style="width: 730px; border: solid 0.2px #d6d6d6; background-color: white; color:black" (click)="navColor('transferin')" id="home-tab" [class.myClass]="showFirstButtonColor" type="button" role="tab" aria-controls="profile" aria-selected="false">User List </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" style="width: 760px; border: solid 0.2px #d6d6d6; background-color: white; color:black" (click)="navColor('transferout');getLoginUserdetail()" [class.myClass]="showsecondButtonColor"   data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> My Profile</button>
+        </li>
+      </ul>
+      <div class="dashboard-main-content-info p-5">
+        <div class="tab-content" id="myTabContent">
+  <!------------------------------------------------- first tab start  here------------------------------->
+  <div *ngIf="activePaneOne">
+    <div class="row justify-content-center d-flex  profile-info">
+      <div class="col-lg-9">
+      
+      
+         <div  class="shadow-sm bg-white p-3 rounded ">   
+          <div class="row">
+              <div class="col-md-6">
+  
+                <button mat-raised-button class=" me-2 btn-primary">Download
+                  Excel</button>
+              <button mat-raised-button class="me-2 btn-secondary">Download
+                  PDF</button>
+                 
+                  <button mat-raised-button class="me-2 btn-secondary"  routerLinkActive="active" routerLink="/teacher/user-mapping" > User Mapping</button>
+  
+                
+              </div>  
+              <div class="col-md-6" style="
+              text-align: end;">
+                <div class="example-header">
+                  <mat-form-field appearance="outline" class=" searchInput me-4">
+                      <input matInput (keyup)="applyFilterHBSource($event.target.value)" placeholder="Search">
+                   
+                  </mat-form-field>      
+              </div>
+              </div>     
+          </div>
+          <div class="example-container mat-elevation-z8 " id="style-2">
+              <mat-table [dataSource]="hBSource" matSort #hBSort="matSort">
+                  <ng-container matColumnDef="Sno">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
+                      <mat-cell *matCellDef="let row"><span class="mobile-label"></span> {{row.sno}} </mat-cell>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="User Name">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>User Name </mat-header-cell>
+                      <mat-cell *matCellDef="let row"><span class="mobile-label"> </span> {{row.username}}
+                      </mat-cell>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="Email">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+                      <mat-cell *matCellDef="let row"><span class="mobile-label"></span> {{row.email }}
+                      </mat-cell>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="Enabled">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>Enabled </mat-header-cell>
+                      <mat-cell *matCellDef="let row"><span class="mobile-label"> </span> {{row.enabled }}
+                      </mat-cell>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="First Name">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+                      <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">
+                          </span> {{row.firstname}} </mat-cell>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="Mobile">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile </mat-header-cell>
+                      <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">
+                      </span> {{row.mobile}} </mat-cell>
+                  </ng-container>
+                 
+                  <ng-container matColumnDef="Parent User">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Parent User  </mat-header-cell>
+                      <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">
+                      </span> {{row.parentuser}} </mat-cell>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="Action">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                    <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">
+                    </span> <button  *ngIf="row.enabled == '1'" class="t-status-btn approved" (click)="childActiveDeactive(0,row.username)">Active</button> <button   *ngIf="row.enabled != '1'" (click)="childActiveDeactive(1,row.username)" class="t-status-btn not-initiated">Deactivate</button>&nbsp;&nbsp;<i  (click)="editChildUser(row.username,'edite')"class="bi bi-eye" style="font-size: 1.5rem; color: #7e4880;"></i> </mat-cell>
+                </ng-container>
+                 
+                 
+                  <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true; "></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns;">
+                  </mat-row>
+              </mat-table>
+              <mat-paginator #paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+          </div>
+      </div>
+      </div>
+    </div><!--close row-->
+    </div> 
+        <div *ngIf="activePaneTwo">
+        <div class="row justify-content-center d-flex  profile-info">
+          <div class="col-lg-9">
+            <div class="row">
+                <div class="col-lg-9">
+                  <h2>Your profile info</h2>
+                  <!-- <p>Personal info and options to manage it. You can make<br> some of this info, like your contact details, visible to<br> others so they can reach you easily. You can also see<br> a summary of your profiles.</p> -->
+                </div>
+                <!-- <div class="col-lg-3">
+                  <img src="assets/images/add-user.svg">
+                </div> -->
+            </div>
+           
+            <div class="card p-3">
+  
+              <!-- <div class="pb-2 mt-2 row border-bottom m-0">
+                <label for="staticEmail" class="col-sm-3 col-form-label ps-0">Profile Picture</label>
+                <div class="col-sm-9 text-end">
+                  <div class="profile-user">
+                    <p class="profile-user-inner"><i class="bi bi-person-fill"></i></p>
+                    <i class="bi bi-camera-fill"></i>
+                  </div>
+                </div>
+              </div> -->
+  
+            
+       
+              <div class="pb-2 mt-2  row border-bottom m-0">
+                <label for="staticEmail" class="col-sm-3 col-form-label ps-0">User Name</label>
+                <div class="col-sm-9">
+                  <input type="text" [readonly]="userName" [(ngModel)]="loginUserNameForChild" class="form-control-plaintext w-50 " id="staticUserType" id="staticUserName" value="Aswani Kumar">
+                </div>
+              </div>
+  
+              <div class="pb-2 mt-2  row border-bottom m-0">
+                <label for="staticEmail" class="col-sm-3 col-form-label ps-0">Email</label>
+                <div class="col-sm-9">
+                  <input type="text" [readonly]="userEmail" [(ngModel)]="loginUserEmail" class="{{userEmail ? 'form-control-plaintext w-50 float-start' : 'form-control w-50 float-start'}}" id="staticUserEmail" value="">
+                  <div *ngIf="staticUserEmail"><button class="btn-save" (click)="saveProfileData(loginUserEmail,loginUserNameForChild,'email')">Save</button></div>
+                  <i class="{{staticUserEmail ? 'bi bi-pencil-fill active' : 'bi bi-pencil-fill '}}" (click)="enableInputField('staticUserEmail')"></i>
+                  
+                </div>
+              </div>
+  
+     
+  
+              <div class="pb-2 mt-2  row border-bottom m-0">
+                <label  class="col-sm-3 col-form-label ps-0">Mobile</label>
+                <div class="col-sm-9">
+                  <input type="text" [readonly]="userMobile" autocomplete="new-password" onKeyPress="if(this.value.length==10) return false;" [(ngModel)]="loginUserMobile" id="staticUserMobile" class="{{userMobile ? 'form-control-plaintext w-50 float-start' : 'form-control w-50 float-start'}}"  value="0000004586">
+                  <div *ngIf="staticUserMobile"><button class="btn-save"  (click)="saveProfileData(loginUserMobile,loginUserNameForChild,'mobile')">Save</button></div>
+                  <i class="{{staticUserMobile ? 'bi bi-pencil-fill active' : 'bi bi-pencil-fill '}}" (click)="enableInputField('staticUserMobile')"></i>
+                </div>
+              </div>
+  
+              <div class="pb-2 mt-2 row m-0">
+                <label class="col-sm-3 col-form-label ps-0">New Password</label>
+                <div class="col-sm-9">
+                  <input type="text" [readonly]="changePassword" onKeyPress="if(this.value.length==10) return false;"  id="staticChangePassword" class="{{changePassword ? 'form-control-plaintext w-50 float-start' : 'form-control w-50 float-start'}}" placeholder="Password" > 
+                
+                  <i class="{{staticChangePassword ? 'bi bi-pencil-fill active' : 'bi bi-pencil-fill '}}" (click)="enableInputField('staticChangePassword')"></i>
+                </div>
+                <label class="col-sm-3 col-form-label ps-0 mt-2">Confirm Password</label>
+                <div class="col-sm-9 mt-2">
+                  <input type="text" [readonly]="changePassword" onKeyPress="if(this.value.length==10) return false;"  id="staticConfirmChangePassword" class="{{changePassword ? 'form-control-plaintext w-50 float-start' : 'form-control w-50 float-start'}}"  placeholder="Confirm Password" > 
+                  <br style="clear: both;">
+                  <div *ngIf="staticChangePassword" class="mt-1"><button class="btn-save" (click)="saveProfileData('',loginUserNameForChild,'password')">Save</button></div>
+                </div>
+                
+  
+              </div>
+  
+            </div>
+          </div>
+        </div><!--close row-->
+        </div>  <!--close first  tab-->
+  <!------------------------------------------------- first tab end  here---------------------------------->
+  
+  <!------------------------------------------------- secand tab start  here------------------------------->
+       
+  <!------------------------------close secand  tab-------------------------------------------------------->
+  
+  
+  
+             </div>  
+             
+             
+  
+      </div><!--close main-content-info-->
+   
+  </div><!--close dashboard-main-content-->
+  

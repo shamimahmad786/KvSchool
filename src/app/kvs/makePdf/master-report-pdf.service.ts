@@ -23,6 +23,8 @@ export class MasterReportPdfService {
   postSubjectMappingListArray:any;
   sanctionPostMappingListArray:any;
   dashboardMasterListArray:any;
+  relevingDataListArray:any;
+  joiningDataListArray:any
   regionHead = [['S.No', 'Region Code', 'Region Name', 'Status']]
   stationHead = [['S.No', 'Station Code', 'Station Name', 'Status']]
   schoolHead = [['S.No', 'School Code', 'School Name', 'Status','Shift' ]]
@@ -37,6 +39,8 @@ export class MasterReportPdfService {
   postSubjectMappingHead = [['S.No', 'Post Code','Post name','Subject Code','Subject Name']]
   sanctionPostMappingHead = [['S.No', 'Staff Type','Post Name','Post Code','Subject Name','Subject Code','Sanctioned Post','Occupied Post','Vacant Post','Surplus Post']]
   dashboardHead=[['S.No', 'Employee Code','Name','Post Name','Subject Name','Status']]
+  relieviengData=[['S.No', 'Employee Code','Name','Post Name','Subject Name','Transfer Ground','Relieving Date','Transfer To']]
+  joiningData=[['S.No', 'Employee Code','Name','Post Name','Subject Name','Transfer Ground','Relieving Date','Joining Date','Transfer From']]
   yPoint: any;
   currentDate: any;
   constructor(private date: DatePipe) {
@@ -1284,6 +1288,258 @@ if(schoolStationMappingList[i]?.shift==0){
       doc.setFontSize(14);
       doc.setFont('Times-Roman', 'bold');
       doc.text('REPORT : EMPLOYEE DETAILS OF '+kvNameCode, 15, 28);
+
+      // Footer
+      var str = "Page " + data.doc.internal.getNumberOfPages();
+
+      doc.setFontSize(10);
+      // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+      var pageSize = doc.internal.pageSize;
+      var pageHeight = pageSize.height
+        ? pageSize.height
+        : pageSize.getHeight();
+      doc.text(str,130, pageHeight - 7);
+      doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont('Times-Roman', 'bold');
+      doc.text('Report Generation Date & Time',  data.settings.margin.left+210, pageHeight - 10)
+  
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont('Times-Roman', 'normal');
+      doc.text(convtCurrentDate,  data.settings.margin.left+210, pageHeight - 5)       
+    },
+
+    didDrawCell: data => {
+      this.yPoint = data.cursor.y
+    },
+    headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
+    alternateRowStyles: { fillColor: [255, 251, 245] },
+    valign: 'top',
+    margin: {
+      top: 40,
+      bottom: 15,
+    },
+  })
+  doc.save('kvDetails.pdf')
+ }
+ exportTransferOutDataList(relevingDataArray:any,serTime:any){
+  this.relevingDataListArray = [];
+  console.log("pdf data")
+  console.log(relevingDataArray);
+  for(let i=0; i<relevingDataArray.length; i++){
+
+ //   relieviengData=[['S.No', 'Employee Code','Name','Post Name','Subject Name','Transfer Ground','Relieving Date','Transfer To']]
+    var relevingDatalistTemp = [];
+    relevingDatalistTemp.push(relevingDataArray[i]?.sno)
+    relevingDatalistTemp.push(relevingDataArray[i]?.empcode)
+    relevingDatalistTemp.push(relevingDataArray[i]?.name)
+    relevingDatalistTemp.push(relevingDataArray[i]?.postName)
+    relevingDatalistTemp.push(relevingDataArray[i]?.subjectName)
+    relevingDatalistTemp.push(relevingDataArray[i]?.transferGround)
+    relevingDatalistTemp.push(relevingDataArray[i]?.relivingdate)
+    relevingDatalistTemp.push(relevingDataArray[i]?.To + '(' +relevingDataArray[i]?.allot_kv_code+')')
+  
+    this.relevingDataListArray.push(relevingDatalistTemp)
+  }
+  this.currentDate = "(" + this.currentDate + ")"
+  // var tchId = "" + teacherProfile.teacherId + ""
+  const doc = new jsPDF('l', 'mm', 'a4');
+  doc.setTextColor(138, 24, 34);
+  doc.setFontSize(14);
+  doc.setFont('Times-Roman', 'bold');
+  doc.text('Station Category Master', 130, 45);    
+
+  
+  (doc as any).autoTable({
+    head: this.relieviengData,
+    body: this.relevingDataListArray,
+    theme: 'grid',
+    startY: 40,
+    didDrawPage: function (data) {
+     const currentDate = serTime.toString();
+     var index = currentDate.lastIndexOf(':') +3
+     const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
+      // Header
+      doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 4, 100, 20);
+      doc.setDrawColor(0, 0, 0);
+      doc.setTextColor(0, 0, 0);
+      doc.setLineWidth(1);
+      doc.line(15, 35, 280, 35);
+
+      doc.setTextColor(138, 24, 34);
+      doc.setFontSize(14);
+      doc.setFont('Times-Roman', 'bold');
+      doc.text('REPORT : EMPLOYEE TRANSFR OUT DETAILS', 15, 28);
+
+      // Footer
+      var str = "Page " + data.doc.internal.getNumberOfPages();
+
+      doc.setFontSize(10);
+      // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+      var pageSize = doc.internal.pageSize;
+      var pageHeight = pageSize.height
+        ? pageSize.height
+        : pageSize.getHeight();
+      doc.text(str,130, pageHeight - 7);
+      doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont('Times-Roman', 'bold');
+      doc.text('Report Generation Date & Time',  data.settings.margin.left+210, pageHeight - 10)
+  
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont('Times-Roman', 'normal');
+      doc.text(convtCurrentDate,  data.settings.margin.left+210, pageHeight - 5)       
+    },
+
+    didDrawCell: data => {
+      this.yPoint = data.cursor.y
+    },
+    headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
+    alternateRowStyles: { fillColor: [255, 251, 245] },
+    valign: 'top',
+    margin: {
+      top: 40,
+      bottom: 15,
+    },
+  })
+  doc.save('EmployeeTransferOut.pdf')
+ }
+
+
+ exportTransferInDataList(joiningDataArray:any,serTime:any){
+  this.joiningDataListArray = [];
+  console.log("pdf data")
+  console.log(joiningDataArray);
+  for(let i=0; i<joiningDataArray.length; i++){
+
+ //   relieviengData=[['S.No', 'Employee Code','Name','Post Name','Subject Name','Transfer Ground','Relieving Date','Transfer To']]
+    var joiningDataListTemp = [];
+    joiningDataListTemp.push(joiningDataArray[i]?.sno)
+    joiningDataListTemp.push(joiningDataArray[i]?.empcode)
+    joiningDataListTemp.push(joiningDataArray[i]?.name)
+    joiningDataListTemp.push(joiningDataArray[i]?.postName)
+    joiningDataListTemp.push(joiningDataArray[i]?.subjectName)
+    joiningDataListTemp.push(joiningDataArray[i]?.transferGround)
+    joiningDataListTemp.push(joiningDataArray[i]?.relivingdate)
+    joiningDataListTemp.push(joiningDataArray[i]?.joiningdate)
+    joiningDataListTemp.push(joiningDataArray[i]?.From + '(' +joiningDataArray[i]?.from_kv+')')
+  
+    this.joiningDataListArray.push(joiningDataListTemp)
+  }
+  this.currentDate = "(" + this.currentDate + ")"
+  // var tchId = "" + teacherProfile.teacherId + ""
+  const doc = new jsPDF('l', 'mm', 'a4');
+  doc.setTextColor(138, 24, 34);
+  doc.setFontSize(14);
+  doc.setFont('Times-Roman', 'bold');
+  doc.text('Station Category Master', 130, 45);    
+
+  
+  (doc as any).autoTable({
+    head: this.joiningData,
+    body: this.joiningDataListArray,
+    theme: 'grid',
+    startY: 40,
+    didDrawPage: function (data) {
+     const currentDate = serTime.toString();
+     var index = currentDate.lastIndexOf(':') +3
+     const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
+      // Header
+      doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 4, 100, 20);
+      doc.setDrawColor(0, 0, 0);
+      doc.setTextColor(0, 0, 0);
+      doc.setLineWidth(1);
+      doc.line(15, 35, 280, 35);
+
+      doc.setTextColor(138, 24, 34);
+      doc.setFontSize(14);
+      doc.setFont('Times-Roman', 'bold');
+      doc.text('REPORT : EMPLOYEE TRANSFR IN DETAILS', 15, 28);
+
+      // Footer
+      var str = "Page " + data.doc.internal.getNumberOfPages();
+
+      doc.setFontSize(10);
+      // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+      var pageSize = doc.internal.pageSize;
+      var pageHeight = pageSize.height
+        ? pageSize.height
+        : pageSize.getHeight();
+      doc.text(str,130, pageHeight - 7);
+      doc.addImage("assets/assets/img/nic-logo.png", "png", 13, 198, 0, 0);
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont('Times-Roman', 'bold');
+      doc.text('Report Generation Date & Time',  data.settings.margin.left+210, pageHeight - 10)
+  
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont('Times-Roman', 'normal');
+      doc.text(convtCurrentDate,  data.settings.margin.left+210, pageHeight - 5)       
+    },
+
+    didDrawCell: data => {
+      this.yPoint = data.cursor.y
+    },
+    headStyles: { fillColor: [255, 228, 181], textColor: 0, fontStyle: 'bold' },
+    alternateRowStyles: { fillColor: [255, 251, 245] },
+    valign: 'top',
+    margin: {
+      top: 40,
+      bottom: 15,
+    },
+  })
+  doc.save('EmployeeTransferIn.pdf')
+ }
+
+ employeeTransferList(employeeTransferList:any,){
+  this.dashboardMasterListArray = [];
+  for(let i=0; i<employeeTransferList.length; i++){
+    var dashboardlistTemp = [];
+    dashboardlistTemp.push(employeeTransferList[i]?.sno)
+    dashboardlistTemp.push(employeeTransferList[i]?.empcode)
+    dashboardlistTemp.push(employeeTransferList[i]?.name)
+    dashboardlistTemp.push(employeeTransferList[i]?.postName)
+    dashboardlistTemp.push(employeeTransferList[i]?.subjectName)
+    dashboardlistTemp.push(employeeTransferList[i]?.From)
+    dashboardlistTemp.push(employeeTransferList[i]?.To)
+    dashboardlistTemp.push(employeeTransferList[i]?.transferGround)
+    dashboardlistTemp.push(employeeTransferList[i]?.relivingdate)
+    this.dashboardMasterListArray.push(dashboardlistTemp)
+  }
+  this.currentDate = "(" + this.currentDate + ")"
+  // var tchId = "" + teacherProfile.teacherId + ""
+  const doc = new jsPDF('l', 'mm', 'a4');
+  doc.setTextColor(138, 24, 34);
+  doc.setFontSize(14);
+  doc.setFont('Times-Roman', 'bold');
+  doc.text('Station Category Master', 130, 45);    
+
+  
+  (doc as any).autoTable({
+    head: this.dashboardHead,
+    body: this.dashboardMasterListArray,
+    theme: 'grid',
+    startY: 40,
+    didDrawPage: function (data) {
+     const currentDate = new Date().toString();
+     var index = currentDate.lastIndexOf(':') +3
+     const convtCurrentDate = "(" + currentDate.substring(0, index) + ")"
+      // Header
+      doc.addImage("assets/assets/img/kvslogo1.jpg", "JPG", 100, 4, 100, 20);
+      doc.setDrawColor(0, 0, 0);
+      doc.setTextColor(0, 0, 0);
+      doc.setLineWidth(1);
+      doc.line(15, 35, 280, 35);
+
+      doc.setTextColor(138, 24, 34);
+      doc.setFontSize(14);
+      doc.setFont('Times-Roman', 'bold');
+      doc.text('REPORT : EMPLOYEE TRANSFR DETAILS OF '+'12345', 15, 28);
 
       // Footer
       var str = "Page " + data.doc.internal.getNumberOfPages();

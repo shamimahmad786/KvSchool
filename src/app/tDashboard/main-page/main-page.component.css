@@ -1069,8 +1069,7 @@ img {
     .home-main {
         padding-top: 40px;
         padding-bottom: 0px;
-        /* min-height: calc(100vh - 330px); */
-        min-height: 720px;
+        min-height: calc(100vh - 330px);
     }
     .img-kv {
         height: 420px;
@@ -1158,9 +1157,4 @@ img {
 
 .minheight100 {
     min-height: 200px;
-}
-
-.carousel-fade .carousel-item-next.carousel-item-start, .carousel-fade .carousel-item-prev.carousel-item-end, .carousel-fade .carousel-item.active {
-    z-index: -1;
-    opacity: 1;
 }

@@ -31,11 +31,20 @@ import { KvTchSanctionedPostComponent } from './kvs/sanctionedPost/kv-tch-sancti
 import {LoginComponent} from './login/login.component';
 import { FreezeMastersComponent } from './components/freeze-masters/freeze-masters.component';
 import { SchoolReviewComponent } from './kvs/school-review/school-review/school-review.component';
+import { KvsJoiningComponent } from './kvs/kvs-joining/kvs-joining.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UserMasterComponent } from './components/user-master/user-master.component';
+import { AddInstituteHeadComponent } from './components/add-institute-head/add-institute-head.component';
+import { ControlerManagementComponent } from './components/controler-management/controler-management.component';
+import { UserMappingComponent } from './components/user-mapping/user-mapping.component';
 const routes: Routes = [
   {path:'', component: MainPageComponent},
   {path:'mainPage', component: MainPageComponent},
   {path:'tDashboard', component: TDashboardComponent},
   {path:'login', component:LoginComponent},
+  {path:'forgetPassword', component:ForgetPasswordComponent},
+  {path:'restPassword', component:ResetPasswordComponent},
   {path: 'teacher', component:TeacherComponent,canActivate: [AuthGuard], children:[
       {path:'', component: ProfileComponent},
       {path:'profile', component: ProfileComponent},
@@ -52,6 +61,7 @@ const routes: Routes = [
       {path: 'surveyMaster', component:SurveyMasterComponent},
       {path: 'kvsTchProfile', component:KvsTeacherProfileComponent},
       {path: 'kvsTchTransfer', component:KvsTeacherTransferComponent},
+      {path: 'employeeJoining', component:KvsJoiningComponent},
       {path: 'kvsTchDetails', component:KvsTeachersDeatilComponent},
       {path: 'schoolReview', component:SchoolReviewComponent},
       {path: 'transferEdit', component:KvsTransferEditComponent},
@@ -62,8 +72,12 @@ const routes: Routes = [
       {path: 'schoolReport', component:SchoolReportComponent},
       {path:'changePassword', component:ChangePasswordComponent},
       {path:'freezeMaster', component:FreezeMastersComponent},
+      {path:'userMaster', component:UserMasterComponent},
       {path:'reportGrid', component:ReportGridComponent},
       {path:'kvSanctionedPost', component:KvTchSanctionedPostComponent},
+      {path:'addInstituteHead', component:AddInstituteHeadComponent},
+      {path:'user-mapping', component:UserMappingComponent},
+      {path:'controler-management', component:ControlerManagementComponent},
       {path: 'regionMaster', loadChildren: () => import('./components/region-master/region-master.module').then(m => m.RegionMasterModule) },
       {path: 'stationMaster', loadChildren: () => import('./components/station-master/station-master.module').then(m => m.StationMasterModule) },
       {path: 'schoolMaster', loadChildren: () => import('./components/school-master/school-master.module').then(m => m.SchoolMasterModule) },

@@ -194,6 +194,34 @@ export class OutsideServicesService {
     return this._http.post<any>(environment.BASE_URL_DATA_TEACHER + "getKvTeacherByKvCode", data, {headers})
   }
 
+  getEmployeetransferDetails(data: any): Observable<Response> { 
+    var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+    var headers = new HttpHeaders({
+      'Authorization':token,
+      'Content-Type': 'text/plain; charset=utf-8',
+
+    });
+    return this._http.post<any>(environment.BASE_URL_DATA_TRANSFER + "getTransferINByKvCode", data, {headers})
+  }
+  sendEmplooyeeJoiningDate(data: any): Observable<Response> { 
+    var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+    var headers = new HttpHeaders({
+      'Authorization':token,
+      'Content-Type': 'text/plain; charset=utf-8',
+
+    });
+    return this._http.post<any>(environment.BASE_URL_DATA_TRANSFER + "updateTransferINByKvCode", data, {headers})
+  }
+  sendEmplooyeeRelevingDate(data: any): Observable<Response> { 
+    var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+    var headers = new HttpHeaders({
+      'Authorization':token,
+      'Content-Type': 'text/plain; charset=utf-8',
+
+    });
+    return this._http.post<any>(environment.BASE_URL_DATA_TRANSFER + "updateTransferOutByKvCode", data, {headers})
+  }
+
   getKvTeacherByUdiseCode(data){
     
     var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
@@ -1522,7 +1550,34 @@ schoolTransferVerify(data:any){
   }); 
   return this._http.post(environment.BASE_URL_DATA_TRANSFER+ "schoolTransferVerify",data,{headers})
 }
+getChilduserList(data:any,userName:any){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'username':userName,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_USERMANAGEMENT+ "getChildUser",data,{headers})
+}
 
+childActiveDeactiveAction(data:any, userName:any){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'username':userName,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_USERMANAGEMENT+ "updateUser",data,{headers})
+}
+createInstitutionUser(data:any,userName:any){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'username':userName,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.LOGIN_URL_JWT+ "createUsers",data,{headers})
+}
 // exportToPdf(data:any){
 //   var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
 //   var headers = new HttpHeaders({

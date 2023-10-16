@@ -82,6 +82,13 @@ import { FreezeMastersComponent } from './components/freeze-masters/freeze-maste
 import { MaterialModule } from './mat/material/material.module';
 import { StationMasterModule } from './components/station-master/station-master.module';
 import { SchoolReviewComponent } from './kvs/school-review/school-review/school-review.component';
+import { KvsJoiningComponent } from './kvs/kvs-joining/kvs-joining.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UserMasterComponent } from './components/user-master/user-master.component';
+import { AddInstituteHeadComponent } from './components/add-institute-head/add-institute-head.component';
+import { ControlerManagementComponent } from './components/controler-management/controler-management.component';
+import { UserMappingComponent } from './components/user-mapping/user-mapping.component';
 // import { MAT_DATE_FORMATS } from '@angular/material/';
 // import { DatePickerModule } from 'angular-material-datepicker';
 
@@ -156,7 +163,14 @@ import { SchoolReviewComponent } from './kvs/school-review/school-review/school-
     KvTchSanctionedPostComponent,
     ExperienceType,
     FreezeMastersComponent,
-    SchoolReviewComponent
+    SchoolReviewComponent,
+    KvsJoiningComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
+    UserMasterComponent,
+    AddInstituteHeadComponent,
+    ControlerManagementComponent,
+    UserMappingComponent
    
     
   ],
