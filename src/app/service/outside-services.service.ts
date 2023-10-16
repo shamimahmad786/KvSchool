@@ -1578,6 +1578,43 @@ createInstitutionUser(data:any,userName:any){
   }); 
   return this._http.post(environment.LOGIN_URL_JWT+ "createUsers",data,{headers})
 }
+
+getregionSchool(data:any,userName:any){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'username':userName,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_USERMAPPING+ "getRegionSchool",data,{headers})
+}
+getRegionSchoolEmployee(data:any,userName:any){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'username':userName,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_USERMAPPING+ "getRegionSchoolEmployee",data,{headers})
+}
+saveControllerOffice(data:any,userName:any){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'username':userName,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_KVCONTROLER+ "saveControllerOffice",data,{headers})
+}
+getControllerOffice(data:any,userName:any){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'username':userName,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_KVCONTROLER+ "getControllerOffice",data,{headers})
+}
 // exportToPdf(data:any){
 //   var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
 //   var headers = new HttpHeaders({

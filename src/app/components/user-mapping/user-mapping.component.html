@@ -2,29 +2,23 @@
     <div class="dashboard-main-content__header">
       <h1>Add/Edit User Mapping</h1>
     </div>
-   
       <nav aria-label="breadcrumb" class="mt-1">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Institute Management</a></li>
         </ol>
       </nav>
-     
-      <div class="dashboard-main-content-info p-5">
-        
-        <div class="tab-content" id="myTabContent"> 
-           
+      <div class="dashboard-main-content-info p-5">  
+        <div class="tab-content" id="myTabContent">  
         <div class="row justify-content-center d-flex">
-            
           <div class="col-lg-10">
-           
             <div class="card p-3">
                 <form id="msform" [formGroup]="addUserMapping" (ngSubmit)="onSubmit()">
               <div class="pb-2 mt-2  row  m-0">
                 <label for="staticEmail" class="col-sm-2 col-form-label ps-0">Region</label>
                 <div class="col-sm-3">
 
-                    <select class="form-select" aria-label="Default select example" name="region" formControlName="region" (change)="getroOfficeByRegionId($event)" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.region.errors }">
+                    <select class="form-select" aria-label="Default select example" name="region" formControlName="region" (change)="getRoOfficeByRegionId($event)" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.region.errors }">
                         <option selected disabled>Select Region</option>
                         <option *ngFor="let data of regionList; let i=index;" value="{{data.region_code}}">
                             {{data.region_name}}
@@ -35,43 +29,43 @@
 
                 <label for="staticEmail" class="col-sm-2 col-form-label ">RO Office </label>
                 <div class="col-sm-3">   
-                    <select class="form-select " aria-label="Default select example" formControlName="rooffice" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.rooffice.errors }">
+                    <select class="form-select " aria-label="Default select example" (change)="getRoEmpByRegionOfficeId($event)" formControlName="rooffice" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.rooffice.errors }">
                         <option selected disabled>Select RO Office </option>
-                        <option *ngFor="let data of regionList; let i=index;" value="{{data.region_code}}">
-                            {{data.region_name}}
+                        <option *ngFor="let roData of roOfficeList; let i=index;" value="{{roData.kvCode}}">
+                            {{roData.kvName}}
                         </option>
                     </select>
                     <div *ngIf="addUserMappingFormubmitted && f.rooffice.errors" class="invalid-feedback">RO Office is required</div>
                 </div>
               </div>
-  
 
               <div class="pb-2 mt-2  row  m-0">
                <label for="staticEmail" class="col-sm-2 col-form-label ps-0">Employee Name</label>
                 <div class="col-sm-3">
 
-                    <input type="text"   class="form-control" id="empname" formControlName="empname" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.empname.errors }">
+                    <select class="form-select " aria-label="Default select example" formControlName="empname" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.empname.errors }">
+                        <option selected disabled>Select RO Office </option>
+                        <option *ngFor="let empdata of regionEmployeeSchoolList; let i=index;" value="{{empdata.teacherEmployeeCode}}/{{empdata.teacherName}} ">
+                            {{empdata.teacherName}} ( {{empdata.teacherEmployeeCode}})
+                        </option>
+                    </select>
                     <div *ngIf="addUserMappingFormubmitted && f.empname.errors" class="invalid-feedback">Employee Name is required</div>
                 </div>
 
                 <label for="staticEmail" class="col-sm-2 col-form-label" >Start Date</label>
                 <div class="col-sm-3">
-
-                    <input type="text"   class="form-control" id="startdate" formControlName="startdate"  [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.startdate.errors }">
+                    <input type="date"   class="form-control" id="startdate" formControlName="startdate"  [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.startdate.errors }">
                     <div *ngIf="addUserMappingFormubmitted && f.startdate.errors" class="invalid-feedback">Start Date is required</div>
                 </div>
               </div>
-  
-     
-              <div class="pb-2 mt-2  row  m-0">
+
+              <div class="pb-2 mt-2  row  m-0" *ngIf="endDateStatus">
                 <label for="staticEmail" class="col-sm-2 col-form-label ps-0">End Date</label>
                  <div class="col-sm-3">
- 
-                    <input type="text"   class="form-control" id="enddate" formControlName="enddate" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.enddate.errors }" >
+                    <input type="date"   class="form-control" id="enddate" formControlName="enddate" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.enddate.errors }" >
                     <div *ngIf="addUserMappingFormubmitted && f.enddate.errors" class="invalid-feedback">End Date is required</div>
                 </div>
  
-                
                </div> 
                <div class="text-center my-2 "><button class="insitute-svae-button"  [disabled]="!this.addUserMapping.get('region').valid || 
                 !this.addUserMapping.get('rooffice').valid || 

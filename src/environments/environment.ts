@@ -31,8 +31,9 @@ BASE_URL_DATA_TEACHER: 'http://10.25.26.251:8014/api/teacher/',
 	BASE_URL_DATA_MASTER1:'http://10.25.26.251:8014/unee-api/v1/master/',
 	BASE_URL_DATA_MAPPING:'http://10.25.26.251:8014/unee-api/v1/mapping/',  
   BASE_URL_DATA_USERMANAGEMENT:'http://10.25.26.251:8014/api/usermanagement/',
+  BASE_URL_DATA_USERMAPPING:'http://10.25.26.251:8014/api/usermapping/',  
 
-
+  BASE_URL_DATA_KVCONTROLER:'http://10.25.26.251:8014/api/kvscontroller/',
 
 
   

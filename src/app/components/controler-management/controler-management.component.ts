@@ -23,7 +23,7 @@ declare const srvTime: any;
 })
 export class ControlerManagementComponent implements OnInit, AfterViewInit {
 
-  displayedColumns = ['Sno', 'User Name', 'Email','Enabled', 'First Name','Mobile','Parent User','Action' ];
+  displayedColumns = ['Sno', 'Employee Code', 'Employee name','Created By', 'Modified By','Start Date','End Date','Status','Action' ];
  
   hBSource : MatTableDataSource<any>;
 
@@ -32,7 +32,7 @@ export class ControlerManagementComponent implements OnInit, AfterViewInit {
  @ViewChild('hBSort') hBSort: MatSort;
  @ViewChild('JoiningBox', { static: true }) JoiningBox: TemplateRef<any>;   
 
-  childUserData = { "sno": "","username": "", "email": "","enabled": "","firstname": "","mobile":"","parentuser": ""}
+  childUserData = { "sno": "","employeeCode": "", "employeeName": "","createdBy": "","modifiedBy": "","stateDate":"","endDate": "","regionCode":"","status": ""}
   applicationId: any;
   loginUsername: any;
   userType: boolean = true;
@@ -52,8 +52,8 @@ export class ControlerManagementComponent implements OnInit, AfterViewInit {
   loginUserMobile:any;
   loginUserEmail:any;
   loginUserNameForChild: any;
-  childUserList:any;
-  childuserDataArray: any = [];
+  controllerOfficeList:any;
+  controllerOfficeDataArray: any = [];
   newChildUserListArr: any = [];
   showFirstButtonColor: boolean = true;
   showsecondButtonColor: boolean = false;
@@ -81,7 +81,7 @@ export class ControlerManagementComponent implements OnInit, AfterViewInit {
       this.loginUserNameForChild=JSON.parse(sessionStorage.getItem("authTeacherDetails")).user_name;
       this.loginUserNameForService=JSON.parse(sessionStorage.getItem("authTeacherDetails")).user_name;
     }
-    this.getChilduser();
+    this.getControllerOffice();
   }
   applyFilterHBSource(filterValue: string) {
     filterValue = filterValue.trim(); 
@@ -90,17 +90,15 @@ export class ControlerManagementComponent implements OnInit, AfterViewInit {
   }
 
   //**********************   Logic for get  Data from Api  ******************************
-  getChilduser() {
-    debugger
-     this.childUserList = [];
+  getControllerOffice() {
+     this.controllerOfficeList = [];
      const data = {
-      "username":this.loginUserNameForChild
+      "controllerType":"R"
   }
-debugger
-  this.outSideService.getChilduserList(data,this.loginUserNameForService ).subscribe(res => {
+  this.outSideService.getControllerOffice(data,this.loginUserNameForService ).subscribe(res => {
       console.log(res)
-      this.childUserList = res;
-      this.setToJoingMatTable(this.childUserList);
+      this.controllerOfficeList = res['response'];
+      this.setToJoingMatTable(this.controllerOfficeList);
      })
   }
   navColor(nav:any){
@@ -119,20 +117,22 @@ debugger
   }
   //********************** Joining Data Set in to Table ******************************
    setToJoingMatTable(data:any) {
-    this.childuserDataArray = [];
+    this.controllerOfficeDataArray = [];
     for (let i = 0; i < data.length; i++) {
       this.childUserData.sno = '' + (i + 1) + '';
-      this.childUserData.username =data[i].username;
-      this.childUserData.email = data[i].email;
-      this.childUserData.enabled = data[i].enabled;
-      this.childUserData.firstname = data[i].firstname;  
-      this.childUserData.mobile =data[i].mobile;  
-      this.childUserData.parentuser = data[i].parentuser;  
-      this.childuserDataArray.push(this.childUserData);
-      this.childUserData = { "sno": "","username": "", "email": "","enabled": "","firstname": "","mobile":"","parentuser": ""}
+      this.childUserData.employeeCode =data[i].employeeCode;
+      this.childUserData.employeeName = data[i].employeeName;
+      this.childUserData.createdBy = data[i].createdBy;
+      this.childUserData.modifiedBy = data[i].modifiedBy;  
+      this.childUserData.stateDate =data[i].stateDate;  
+      this.childUserData.endDate = data[i].endDate;  
+      this.childUserData.regionCode = data[i].regionCode;  
+      this.childUserData.status = data[i].isActive;  
+      this.controllerOfficeDataArray.push(this.childUserData);
+      this.childUserData = { "sno": "","employeeCode": "", "employeeName": "","createdBy": "","modifiedBy": "","stateDate":"","endDate": "","regionCode":"","status": ""}
     }
     setTimeout(() => {
-      this.hBSource  = new MatTableDataSource(this.childuserDataArray);
+      this.hBSource  = new MatTableDataSource(this.controllerOfficeDataArray);
       this.hBSource .paginator = this.paginator;
       this.hBSource .sort = this.hBSort;  
     }, 100)
@@ -153,7 +153,16 @@ debugger
         this.getLoginUserdetail();
        })
   }
-
+  addUpdateUserMapping(regionId:any,event:any){
+    debugger
+    if(event=='add'){
+      this.router.navigate(['/teacher/user-mapping'], { queryParams: { action: 'Add' } });  
+    }
+    if(event=='update'){
+      this.router.navigate(['/teacher/user-mapping'], { queryParams: { action: 'update',regionId :regionId} });  
+    }
+  }
+ 
   enableInputField(event:any){
     if(event=='staticUserEmail'){
       this.staticUserEmail=true;
@@ -191,9 +200,9 @@ console.log(event)
     this.activePaneTwo=true;
     this.newChildUserListArr=[];
     debugger
-    for (let i = 0; i < this.childUserList.length; i++) {
-      if ( this.childUserList[i]['username']== userName) {
-        this.newChildUserListArr.push(this.childUserList[i]);
+    for (let i = 0; i < this.controllerOfficeList.length; i++) {
+      if ( this.controllerOfficeList[i]['username']== userName) {
+        this.newChildUserListArr.push(this.controllerOfficeList[i]);
       }
     }
     console.log(this.newChildUserListArr)
