@@ -1551,7 +1551,7 @@ schoolTransferVerify(data:any){
   return this._http.post(environment.BASE_URL_DATA_TRANSFER+ "schoolTransferVerify",data,{headers})
 }
 getChilduserList(data:any,userName:any){
-  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
   var headers = new HttpHeaders({
     'Authorization':token,
     'username':userName,
@@ -1561,7 +1561,7 @@ getChilduserList(data:any,userName:any){
 }
 
 childActiveDeactiveAction(data:any, userName:any){
-  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
   var headers = new HttpHeaders({
     'Authorization':token,
     'username':userName,
@@ -1570,7 +1570,7 @@ childActiveDeactiveAction(data:any, userName:any){
   return this._http.post(environment.BASE_URL_DATA_USERMANAGEMENT+ "updateUser",data,{headers})
 }
 createInstitutionUser(data:any,userName:any){
-  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
   var headers = new HttpHeaders({
     'Authorization':token,
     'username':userName,
@@ -1580,7 +1580,7 @@ createInstitutionUser(data:any,userName:any){
 }
 
 getregionSchool(data:any,userName:any){
-  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
   var headers = new HttpHeaders({
     'Authorization':token,
     'username':userName,
@@ -1589,7 +1589,7 @@ getregionSchool(data:any,userName:any){
   return this._http.post(environment.BASE_URL_DATA_USERMAPPING+ "getRegionSchool",data,{headers})
 }
 getRegionSchoolEmployee(data:any,userName:any){
-  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
   var headers = new HttpHeaders({
     'Authorization':token,
     'username':userName,
@@ -1598,7 +1598,7 @@ getRegionSchoolEmployee(data:any,userName:any){
   return this._http.post(environment.BASE_URL_DATA_USERMAPPING+ "getRegionSchoolEmployee",data,{headers})
 }
 saveControllerOffice(data:any,userName:any){
-  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
   var headers = new HttpHeaders({
     'Authorization':token,
     'username':userName,
@@ -1607,13 +1607,22 @@ saveControllerOffice(data:any,userName:any){
   return this._http.post(environment.BASE_URL_DATA_KVCONTROLER+ "saveControllerOffice",data,{headers})
 }
 getControllerOffice(data:any,userName:any){
-  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.refreshToken
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
   var headers = new HttpHeaders({
     'Authorization':token,
     'username':userName,
     'Content-Type': 'text/plain; charset=utf-8',
   }); 
   return this._http.post(environment.BASE_URL_DATA_KVCONTROLER+ "getControllerOffice",data,{headers})
+}
+getControllerOfficeHistory(data:any,userName:any){
+  var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token
+  var headers = new HttpHeaders({
+    'Authorization':token,
+    'username':userName,
+    'Content-Type': 'text/plain; charset=utf-8',
+  }); 
+  return this._http.post(environment.BASE_URL_DATA_KVCONTROLER+ "getControllerOfficeHistory",data,{headers})
 }
 // exportToPdf(data:any){
 //   var token = JSON.parse(sessionStorage.getItem('authTeacherDetails'))?.token

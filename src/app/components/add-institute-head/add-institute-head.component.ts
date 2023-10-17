@@ -39,7 +39,6 @@ export class AddInstituteHeadComponent implements OnInit {
    }]
   }
   get f() { return this.addInstituteForm.controls; }
- 
   getStationByRegionId(event:any){
     console.log(event.target.value)
   if(event.target.value==3){
@@ -49,6 +48,14 @@ export class AddInstituteHeadComponent implements OnInit {
     console.log(this.regionList)
   })
   }
+  }
+  getUserNameForInstitute(event:any){
+console.log(event)
+      var instituteUserNameSplit = event.split("/")
+      var instituteUserName ='ro_'+instituteUserNameSplit[1].toLowerCase();
+      this.addInstituteForm.patchValue({
+        userName:instituteUserName,
+      })
   }
   onSubmit(){
     this.addInstituteFormubmitted=true
@@ -64,10 +71,18 @@ export class AddInstituteHeadComponent implements OnInit {
       }
       this.outSideService.createInstitutionUser(data,this.loginUserNameForChild).subscribe(res => {
         console.log(res)
-      Swal.fire({
+        if(res['success']){
+          Swal.fire({
         'icon':'success',
         'text':res['message']
       })
+      }
+      if(!res['success']){
+        Swal.fire({
+      'icon':'error',
+      'text':res['errorMessage']
+       })
+        }
        },
        error => { 
         Swal.fire({

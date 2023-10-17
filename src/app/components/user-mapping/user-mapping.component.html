@@ -13,12 +13,13 @@
         <div class="row justify-content-center d-flex">
           <div class="col-lg-10">
             <div class="card p-3">
+              <div *ngIf="userMappingAction=='Add' || userMappingAction=='update'">
                 <form id="msform" [formGroup]="addUserMapping" (ngSubmit)="onSubmit()">
               <div class="pb-2 mt-2  row  m-0">
                 <label for="staticEmail" class="col-sm-2 col-form-label ps-0">Region</label>
                 <div class="col-sm-3">
 
-                    <select class="form-select" aria-label="Default select example" name="region" formControlName="region" (change)="getRoOfficeByRegionId($event)" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.region.errors }">
+                    <select class="form-select"  aria-label="Default select example" name="region"  #region formControlName="region" (change)="getRoOfficeByRegionId(region.value)" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.region.errors }">
                         <option selected disabled>Select Region</option>
                         <option *ngFor="let data of regionList; let i=index;" value="{{data.region_code}}">
                             {{data.region_name}}
@@ -29,9 +30,9 @@
 
                 <label for="staticEmail" class="col-sm-2 col-form-label ">RO Office </label>
                 <div class="col-sm-3">   
-                    <select class="form-select " aria-label="Default select example" (change)="getRoEmpByRegionOfficeId($event)" formControlName="rooffice" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.rooffice.errors }">
+                    <select class="form-select " aria-label="Default select example" #rooffice (change)="getRoEmpByRegionOfficeId(rooffice.value)" formControlName="rooffice" [ngClass]="{'is-invalid': addUserMappingFormubmitted && f.rooffice.errors }">
                         <option selected disabled>Select RO Office </option>
-                        <option *ngFor="let roData of roOfficeList; let i=index;" value="{{roData.kvCode}}">
+                        <option *ngFor="let roData of roOfficeList; let i=index;" value="{{roData.kvCode}}/{{roData.kvName}}">
                             {{roData.kvName}}
                         </option>
                     </select>
@@ -72,6 +73,73 @@
                 !this.addUserMapping.get('empname').valid || !this.addUserMapping.get('startdate').valid || 
                 !this.addUserMapping.get('enddate').valid">Save</button></div>
             </form>
+            </div>
+
+<div *ngIf="userMappingAction=='view'">
+  <div  class="shadow-sm bg-white p-3 rounded ">   
+    <div class="row">
+        <div class="col-md-6">
+
+          <button mat-raised-button class=" me-2 btn-primary">Download
+            Excel</button>
+        <button mat-raised-button class="me-2 btn-secondary">Download
+            PDF</button>
+
+        </div>  
+        <div class="col-md-6" style="
+        text-align: end;">
+          <div class="example-header">
+            <mat-form-field appearance="outline" class=" searchInput me-4">
+                <input matInput (keyup)="applyFilterHBSource($event.target.value)" placeholder="Search">
+             
+            </mat-form-field>      
+        </div>
+        </div>     
+    </div>
+    <div class="example-container mat-elevation-z8 " id="style-2">
+        <mat-table [dataSource]="userMappingSource" matSort #hBSort="matSort">
+            <ng-container matColumnDef="Sno">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label"></span> {{row.sno}} </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Institution Name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Institution Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"><span class="mobile-label"> </span> {{row.institutionName}}
+              </mat-cell>
+          </ng-container>
+
+            <ng-container matColumnDef="Employee name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Employee name </mat-header-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label"> </span> {{row.employeeName}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Modified By">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Modified By </mat-header-cell>
+                <mat-cell *matCellDef="let row"><span class="mobile-label"></span> {{row.modifiedBy }}
+                </mat-cell>
+            </ng-container>
+      
+
+            <ng-container matColumnDef="Status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+              <mat-cell *matCellDef="let row" [style.color]="row.color"><span class="mobile-label">
+              </span> <button  *ngIf="row.status == '1'" class="t-status-btn approved" >Mapped</button> <button   *ngIf="row.status != '1'"  class="t-status-btn not-initiated">Not Mapped</button> </mat-cell>
+          </ng-container>
+          
+                           
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true; "></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+        <mat-paginator #paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+    </div>
+</div>
+
+</div>
+
             </div>
       
           </div>

@@ -34,9 +34,9 @@
 
                 <label for="staticEmail" class="col-sm-2 col-form-label ">Instituion List </label>
                 <div class="col-sm-3">   
-                    <select class="form-select " aria-label="Default select example" formControlName="instituteCode" [ngClass]="{ 'is-invalid': addInstituteFormubmitted && f.instituteCode.errors }">
+                    <select class="form-select " aria-label="Default select example" #institutelist (change)="getUserNameForInstitute(institutelist.value)" formControlName="instituteCode" [ngClass]="{ 'is-invalid': addInstituteFormubmitted && f.instituteCode.errors }">
                         <option selected disabled>Select Institute List </option>
-                        <option *ngFor="let data of regionList; let i=index;" value="{{data.region_code}}">
+                        <option *ngFor="let data of regionList; let i=index;" value="{{data.region_code}}/{{data.region_name}}">
                             {{data.region_name}}
                         </option>
                     </select>
@@ -49,7 +49,7 @@
                <label for="staticEmail" class="col-sm-2 col-form-label ps-0">User Name</label>
                 <div class="col-sm-3">
 
-                    <input type="text"   class="form-control" id="userName" formControlName="userName" [ngClass]="{ 'is-invalid': addInstituteFormubmitted && f.userName.errors }">
+                    <input type="text"   class="form-control" id="userName" [readonly]="true" formControlName="userName" [ngClass]="{ 'is-invalid': addInstituteFormubmitted && f.userName.errors }">
                     <div *ngIf="addInstituteFormubmitted && f.userName.errors" class="invalid-feedback">Institute name is required</div>
                 </div>
 

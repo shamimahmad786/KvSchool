@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OutsideServicesService } from 'src/app/service/outside-services.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -9,36 +12,41 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user-mapping.component.css']
 })
 export class UserMappingComponent implements OnInit {
+  displayedColumns = ['Sno', 'Institution Name', 'Employee name', 'Modified By','Status'];
+ 
+  userMappingSource : MatTableDataSource<any>;
+  @ViewChild('paginator') paginator: MatPaginator;
+  @ViewChild('userMappingSort') userMappingSort: MatSort;
+  @ViewChild('JoiningBox', { static: true }) JoiningBox: TemplateRef<any>; 
+  childUserData = { "sno": "","institutionName": "","employeeName": "","modifiedBy": "","status": ""}
   addUserMapping: FormGroup;
   addUserMappingFormubmitted=false;
+  regionReadOnly=false;
   endDateStatus=false
   regionList: any=[];
   loginUserNameForChild: any;
   roOfficeList: any=[];
   regionEmployeeSchoolList: any=[];
   duplicateregionCheck: any=[];
+  historyControlingOfficedata: any=[];
   userMappingAction: any;
-  userMappingRegionId: any;
+  userMappingRegionCode: any;
   controllerOfficeList: any;
   roOfficeCode: any;
-  constructor(private outSideService: OutsideServicesService,private route: ActivatedRoute) { }
+  historyControllerOfficeDataArray: any = [];
+  constructor(private outSideService: OutsideServicesService,private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      console.log(params['action']); // 13467tdgbgfhjfgy
       this.userMappingAction=params['action'];
-      this.userMappingRegionId=params['regionId'];
+      this.userMappingRegionCode=params['regionId'];
     });
+    for (let i = 0; i < JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails.length; i++) {
+      this.loginUserNameForChild=JSON.parse(sessionStorage.getItem("authTeacherDetails")).user_name;
+    }
     if(this.userMappingAction=="Add"){
     this.endDateStatus=false;
-    }
-  
-    for (let i = 0; i < JSON.parse(sessionStorage.getItem("authTeacherDetails"))?.applicationDetails.length; i++) {
-      console.log(JSON.parse(sessionStorage.getItem("authTeacherDetails")));
-  
-      this.loginUserNameForChild=JSON.parse(sessionStorage.getItem("authTeacherDetails")).user_name;
-     
-    }
+    this.regionReadOnly=true;
     this.addUserMapping = new FormGroup({
       'region': new FormControl('', Validators.required),
       'rooffice': new FormControl('', Validators.required),
@@ -46,53 +54,61 @@ export class UserMappingComponent implements OnInit {
       'startdate':new FormControl('', Validators.required),
       'enddate': new FormControl(''),
     });
-   this.getStationByRegionId(); 
+  }           
+  if(this.userMappingAction=="update"){
+    this.addUserMapping = new FormGroup({
+      'region': new FormControl('', Validators.required),
+      'rooffice': new FormControl('', Validators.required),
+      'empname': new FormControl('', Validators.required),
+      'startdate':new FormControl('', Validators.required),
+      'enddate': new FormControl('', Validators.required),
+    });
+  }
+  if(this.userMappingAction=="view"){
+   this.viewControlerHeirechy();
+  }
    this.getControllerOffice();
   
   }
   get f() { return this.addUserMapping.controls; }
  
-  getStationByRegionId(){
+  getStationByRegionId(regionCode:any){
    
   this.outSideService.fetchKvRegion(1).subscribe((res) => {
     this.regionList = res.response.rowValue;
     console.log("region list")
     console.log(this.regionList)
+    
   })
   }
  
   getRoOfficeByRegionId(event:any){
-    debugger
     this.regionEmployeeSchoolList=[];
     this.roOfficeList=[];
-console.log(event)
- var data={
-  "regionCode":event
-}
-this.outSideService.getregionSchool(data,this.loginUserNameForChild).subscribe(res => {
- debugger
-this.roOfficeList=res
-this.roOfficeCode=res[0]['kvCode']
-if(this.userMappingAction=='update'){
-this.getRoEmpByRegionOfficeId(this.roOfficeCode);
-}
-console.log(res)
- },
- error => { 
-  Swal.fire({
-    'icon':'error',
-     'text':'You are not Authorized.'
-  })
- });
+    var data={
+      "regionCode":event
+    }
+    this.outSideService.getregionSchool(data,this.loginUserNameForChild).subscribe(res => {
+    debugger
+    this.roOfficeList=res
+    console.log(res)
+    },
+    error => { 
+      Swal.fire({
+        'icon':'error',
+        'text':'You are not Authorized.'
+      })
+    });
   }
 
   getRoEmpByRegionOfficeId(event:any){
     this.regionEmployeeSchoolList=[];
+    const roOfficeCodename = event.split("/");
+    var roOfficeCode= roOfficeCodename[0];
     var data={
-      "kvCode":event
+      "kvCode":roOfficeCode
     }
     this.outSideService.getRegionSchoolEmployee(data,this.loginUserNameForChild).subscribe(res => {
-      debugger
     this.regionEmployeeSchoolList=res
     console.log(res)
      },
@@ -103,110 +119,178 @@ console.log(res)
       })
      });
   }
-
+  applyFilterHBSource(filterValue: string) {
+    filterValue = filterValue.trim(); 
+    filterValue = filterValue.toLowerCase(); 
+    this.userMappingSource.filter = filterValue;
+  }
   getControllerOffice() {
     this.controllerOfficeList = [];
     const data = {
      "controllerType":"R"
- }
+  }
  this.outSideService.getControllerOffice(data,this.loginUserNameForChild ).subscribe(res => {
-  console.log("--controler ofice list---------")
-     console.log(res)
-     this.controllerOfficeList = res['response'];
+     this.controllerOfficeList = res['response']['rowValue'];
      if(this.userMappingAction=="update"){
-
       this.endDateStatus=true;
       this.editeControler();
       }
+      if(this.userMappingAction=="Add"){
+        this.addControler();
+        }
+      
     })
-   
  }
- editeControler(){
-  debugger
- for (let i = 0; i < this.controllerOfficeList.length; i++) {
 
-    if(this.controllerOfficeList[i].regionCode==this.userMappingRegionId)
-    {
-      this.duplicateregionCheck.push(this.controllerOfficeList[i]);
+    addControler(){
+      debugger
+      this.getStationByRegionId(this.userMappingRegionCode);
+      this.getRoOfficeByRegionId(this.userMappingRegionCode);
+      this.addUserMapping.patchValue({
+        region:this.userMappingRegionCode,
+      })
     }
-    this.getRoOfficeByRegionId(this.duplicateregionCheck[0]['regionCode'])
-    debugger
- 
 
-  }
-}
-
-  onSubmit(){
-    this.addUserMappingFormubmitted=true
-    const splittedArray = this.addUserMapping.value.empname.split("/");
-    var empCode= splittedArray[0];
-    var empName= splittedArray[1];
-    console.log(splittedArray)
-    debugger
+    editeControler(){
+      debugger
     for (let i = 0; i < this.controllerOfficeList.length; i++) {
 
+        if(this.controllerOfficeList[i].region_code==this.userMappingRegionCode)
+        {
+          this.duplicateregionCheck.push(this.controllerOfficeList[i]); 
+        }
+      }
+      this.getStationByRegionId(this.duplicateregionCheck[0]['region_code']);
+      this.getRoOfficeByRegionId(this.duplicateregionCheck[0]['region_code']);
+      this.getRoEmpByRegionOfficeId(this.duplicateregionCheck[0]['institution_code']+'/'+this.duplicateregionCheck[0]['institutionname']);
+      this.addUserMapping.patchValue({
+        region:this.duplicateregionCheck[0]['region_code'],
+        rooffice:this.duplicateregionCheck[0]['institution_code']+'/'+this.duplicateregionCheck[0]['institutionname'],
+        empname:this.duplicateregionCheck[0]['employee_code']+'/'+this.duplicateregionCheck[0]['employee_name'],
+        startdate:this.duplicateregionCheck[0]['state_date']
+      })
+    }
+    viewControlerHeirechy(){
+      var data={
+        "regionCode":this.userMappingRegionCode,
+         "controllerType":"R"
+      }
+      this.outSideService.getControllerOfficeHistory(data,this.loginUserNameForChild).subscribe(res => {
+        console.log(res)
+        this.historyControlingOfficedata=res['response'];
+        this.historyControllerOfficeDataArray = [];
+        for (let i = 0; i < this.historyControlingOfficedata.length; i++) {
+          this.childUserData.sno = '' + (i + 1) + '';
+          this.childUserData.institutionName =this.historyControlingOfficedata[i].institutionName;
+          this.childUserData.employeeName =this.historyControlingOfficedata[i].employeeName;
+          this.childUserData.modifiedBy = this.historyControlingOfficedata[i].modifiedBy;
+          this.childUserData.status = this.historyControlingOfficedata[i].isActive;
+          this.historyControllerOfficeDataArray.push(this.childUserData);
+          this.childUserData = { "sno": "","institutionName": "","employeeName": "","modifiedBy": "","status": ""}
+        }
+        setTimeout(() => {
+          this.userMappingSource  = new MatTableDataSource(this.historyControllerOfficeDataArray);
+          this.userMappingSource .paginator = this.paginator;
+          this.userMappingSource .sort = this.userMappingSort;  
+        }, 100)
+
+
+      },
+      error => { 
+        Swal.fire({
+          'icon':'error',
+          'text':'You are not Authorized.'
+        })
+      });
+    }
+  onSubmit(){
+    this.addUserMappingFormubmitted=true
+    const splittedArrayEmp = this.addUserMapping.value.empname.split("/");
+    var empCode= splittedArrayEmp[0];
+    var empName= splittedArrayEmp[1];
+    const splittedArrayInstitution = this.addUserMapping.value.rooffice.split("/");
+    var institutionCode= splittedArrayInstitution[0];
+    var institutionName= splittedArrayInstitution[1];
+
+    if( this.userMappingAction=='Add' && this.addUserMapping.value.region ==  this.userMappingRegionCode){
+    for (let i = 0; i < this.controllerOfficeList.length; i++) {
       if(this.controllerOfficeList[i].regionCode==this.addUserMapping.value.region)
       {
         this.duplicateregionCheck.push(this.controllerOfficeList[i]);
       }
-console.log("-----duplicate controler check----------")
-console.log( this.duplicateregionCheck)
     if(this.duplicateregionCheck.length>0){
       Swal.fire({
         'icon':'error',
-        'text':"please update controling officer"
+        'text':"Please update the current controling officer end date.."
       })
       return false;
     }
-
     }
-
-if( this.userMappingAction=='Add'){
-  var data = {
+  const data = {
     "employeeCode":empCode,
     "employeeName":empName,
     "controllerType":"R",
     "regionCode":this.addUserMapping.value.region,
     "stationCode":"",
+    "institutionCode":institutionCode,
+    "institutionName":institutionName,
     "isActive":"1",
     "stateDate":this.addUserMapping.value.startdate,
     "endDate":"",
     "createdBy":this.loginUserNameForChild,
     "modifiedBy":this.loginUserNameForChild,
-
 }
+console.log(data)
+//return;
+    this.outSideService.saveControllerOffice(data,this.loginUserNameForChild).subscribe(res => {
+      console.log(res)
+    Swal.fire({
+      'icon':'success',
+      'text':res['message']
+    })
+    this.router.navigate(['/teacher/controler-management'])
+    },
+    error => { 
+      Swal.fire({
+        'icon':'error',
+        'text':'You are not Authorized.'
+      })
+    });
 }
 if( this.userMappingAction=='update'){
-  var data = {
+  const data = {
     "employeeCode":empCode,
     "employeeName":empName,
     "controllerType":"R",
     "regionCode":this.addUserMapping.value.region,
     "stationCode":"",
-    "isActive":"1",
+    "institutionCode":institutionCode,
+    "institutionName":institutionName,
+    "isActive":"0",
     "stateDate":this.addUserMapping.value.startdate,
-    "endDate":"",
+    "endDate":this.addUserMapping.value.enddate,
+    "id":this.duplicateregionCheck[0]['id'],
     "createdBy":this.loginUserNameForChild,
     "modifiedBy":this.loginUserNameForChild,
 
 }
-}
-  //  return;
-     console.log(data);
-      this.outSideService.saveControllerOffice(data,this.loginUserNameForChild).subscribe(res => {
-        console.log(res)
-      Swal.fire({
-        'icon':'success',
-        'text':res['message']
-      })
-       },
-       error => { 
-        Swal.fire({
-          'icon':'error',
-           'text':'You are not Authorized.'
-        })
-       });
+console.log(data)
 
-  }
+this.outSideService.saveControllerOffice(data,this.loginUserNameForChild).subscribe(res => {
+  console.log(res)
+Swal.fire({
+  'icon':'success',
+  'text':res['message']
+})
+this.router.navigate(['/teacher/controler-management'])
+ },
+ error => { 
+  Swal.fire({
+    'icon':'error',
+     'text':'You are not Authorized.'
+  })
+ });
+}
+}
 
 }
